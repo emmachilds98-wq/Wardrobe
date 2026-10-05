@@ -399,6 +399,41 @@ people using the page.
 - The directory lists all 17 new shops, and the Friday routine checks them.
 - Page version 19. Totals: **1354 picks, 296 outfits, 133 shops with picks.**
 
+## 2n. Every shop searched for every kind of item (5 Oct 2026, night)
+
+Emma noticed that a shop was often used for one kind of thing only (one shop for shoes,
+another for jumpers) and never checked for anything else. So every shop was swept across
+its whole range.
+
+- **How it was done:**
+  - Read the full catalogue of about 85 shops (everything that publishes one in pounds),
+    plus six more that had never been pulled: Samuel Windsor, Mrs Bow Tie, Philip Morris
+    Direct, Stuarts London, Marrkt and Twisted Tailor.
+  - Sorted every product into 25 kinds: jumpers, hoodies, fleeces, polos, tees, shirts,
+    overshirts, jackets, gilets, jeans, trousers, joggers, shorts, swim, loungewear,
+    slippers, trainers, shoes, boots, sandals, hats, bags, belts, small accessories and
+    socks.
+  - For each shop, listed the kinds it sells in Dave's size that had no picks yet (about
+    900 gaps). Then added the best reduced pick for up to six kinds per shop.
+  - Matalan and Peacocks aren't on Shopify, so they were read from their own product
+    data. Matalan gained hoodies, joggers, shorts, a knitted polo, brogues, trainers,
+    Chelsea and chukka boots, slippers, pyjamas, swim shorts, sliders and a flat cap.
+    Peacocks gained a hoodie, shirt, joggers, dressing gown, flat cap, gloves and braces.
+  - Every photo was checked on contact sheets. Women's, kids', mismatched or
+    wrong-colour items were dropped, along with sizes that wouldn't fit (suit trousers in
+    40 inch, S/M-only hats).
+- **357 new picks** from 86 shops. Most are reduced: 244 have a "was" price and 188
+  are under £40.
+- **26 new outfits**, many of them head to toe from one shop: three from Matalan, plus
+  Peacocks, Lambretta, Luke 1977, Closure London, Farah, Weekend Offender, Pretty Green,
+  Tokyo Laundry, Ellesse, Berghaus, Montane and Passenger. There are also two dressing
+  gown nights in, holiday looks and more.
+- Workwear shops were not part of the automatic sweep, because the Workwear rules
+  (100% cotton, black, extra wide safety boots) need checking by hand.
+- The Friday routine now runs this sweep every week before adding new shops, and has
+  instructions for reading Matalan and Peacocks.
+- Page version 20. Totals: **1711 picks, 322 outfits, 141 shops with picks.**
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
