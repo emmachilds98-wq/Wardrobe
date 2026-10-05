@@ -6,9 +6,9 @@ it, so the page and its data can be used or rebuilt outside Claude.
 
 | File | What it is |
 |---|---|
-| `page.html` | The page source as published (version 8, 5 Oct 2026). |
-| `data/items.json` | All 794 picks, keyed by id, as stored in the artifact's `items` collection. |
-| `data/outfits.json` | All 110 outfits from the `outfits` collection. |
+| `page.html` | The page source as published (version 9, 5 Oct 2026). |
+| `data/items.json` | All 843 picks, keyed by id, as stored in the artifact's `items` collection. |
+| `data/outfits.json` | All 120 outfits from the `outfits` collection. |
 | `tools/fetch_photos.py` | Downloads listing photos and packs them for the page (step 2 below). |
 
 The shared shortlist, Dave's thumbs and saved outfits (`saved`, `votes`,
@@ -110,6 +110,29 @@ people using the page.
   banner rather than the product.
 - To fill the gaps, run the tool from a home computer: shops rarely block home broadband the way
   they block cloud servers. Then republish the packs.
+
+## 2d. Round three: live stock (5 Oct 2026, evening)
+
+- With network access, picks now come straight from shops' own product feeds
+  (`tools/shopify_pull.py` downloads a shop's whole catalogue). Each new pick has:
+  - the live price and full price
+  - **real stock in his size** (L, 34W 32L or UK 11)
+  - the shop's own photo
+- **49 new picks**, all in stock in his size when checked:
+  - Jean Store: Levi's 501, 578 and 568, Lee, Stan Ray, Carhartt WIP, Fred Perry and
+    Colorful Standard.
+  - Community Clothing, Uskees, Brakeburn, Farah, Lyle & Scott, Peregrine, Base London, Savile Row
+    Company, Montirex, Cernucci, Original Penguin and Route One.
+  - New shops: Finisterre and Albam.
+  - Most are 40 to 70% off.
+- **10 new outfits** built on them: 501s and a chore jacket, Made in Britain knit, Baggy 578s and
+  a coach jacket, Workwear weekend, Cold Saturday in cord, Black utility, Merino and derbies,
+  Parka and checks, Navy bomber with ecru denim, and Sofa, brown and navy.
+- Totals: **843 picks, 120 outfits, 76 shops; 532 picks with the shop's photo.**
+- Shops whose feeds work, for the weekly refresh: Jean Store, Route One, Community Clothing,
+  Uskees, Brakeburn, Cernucci, Montirex, Herring, Savile Row Company, T.M. Lewin, Fila, Summits,
+  Albam, Sunspel, Finisterre, Colorful Standard, Base London, Farah, Original Penguin, Lyle & Scott,
+  Peregrine and Oliver Spencer.
 
 ## 3. Next steps
 

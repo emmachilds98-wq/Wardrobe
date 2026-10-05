@@ -1789,6 +1789,417 @@
    "mild"
   ]
  },
+ "n3-baggy-578": {
+  "name": "Baggy 578s and a coach jacket",
+  "occ": "everyday",
+  "style": [
+   "street"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Washed-olive baggy jeans, a boxy black tee, a navy coach jacket and Old Skools.",
+  "look": "men navy coach jacket black boxy t-shirt olive baggy jeans vans old skool",
+  "rank": 6,
+  "tags": [],
+  "pieces": [
+   {
+    "item": "us-coach-navy",
+    "shape": "jacket",
+    "col": "navy",
+    "what": "Coach jacket"
+   },
+   {
+    "item": "js-lee-boxy-tee",
+    "shape": "tee",
+    "col": "black",
+    "what": "Boxy tee"
+   },
+   {
+    "item": "js-levis-578",
+    "shape": "trousers",
+    "col": "olive",
+    "what": "Levi's 578 baggy"
+   },
+   {
+    "item": "of-vans-oldskool",
+    "shape": "trainers",
+    "col": "black",
+    "what": "Vans Old Skool"
+   }
+  ]
+ },
+ "n3-black-utility": {
+  "name": "Black utility",
+  "occ": "party",
+  "style": [
+   "rave"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Everything black in three textures: a technical quarter-zip, ripstop trousers with closing pockets, waxy combat boots.",
+  "look": "men black technical quarter zip black ripstop utility trousers black combat boots wrap sunglasses rave",
+  "rank": 4,
+  "tags": [],
+  "pieces": [
+   {
+    "item": "mx-golf-qz",
+    "shape": "halfzip",
+    "col": "black",
+    "what": "Quarter-zip"
+   },
+   {
+    "item": "us-ripstop-black",
+    "shape": "trousers",
+    "col": "black",
+    "what": "Ripstop utility trousers"
+   },
+   {
+    "item": "bl-bradley-combat",
+    "shape": "boots",
+    "col": "black",
+    "what": "Combat boots"
+   },
+   {
+    "item": "rv-wrap-sunglasses",
+    "shape": "sunglasses",
+    "col": "black",
+    "what": "Wrap sunglasses"
+   }
+  ]
+ },
+ "n3-bomber-ecru": {
+  "name": "Navy bomber, ecru denim",
+  "occ": "party",
+  "style": [
+   "casual",
+   "quiet"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "A Fred Perry bomber over a white tee, ecru carpenter trousers and black Campus.",
+  "look": "men navy bomber jacket white t-shirt ecru carpenter jeans black adidas campus",
+  "rank": 11,
+  "tags": [],
+  "pieces": [
+   {
+    "item": "js-fp-bomber",
+    "shape": "jacket",
+    "col": "navy",
+    "what": "Fred Perry bomber"
+   },
+   {
+    "item": "uq-airism-tee",
+    "shape": "tee",
+    "col": "white",
+    "what": "White tee"
+   },
+   {
+    "item": "js-levis-568-ecru",
+    "shape": "trousers",
+    "col": "cream",
+    "what": "Ecru carpenter trousers"
+   },
+   {
+    "item": "r1-campus-adv",
+    "shape": "trainers",
+    "col": "black",
+    "what": "adidas Campus ADV"
+   }
+  ]
+ },
+ "n3-british-knit": {
+  "name": "Made in Britain knit",
+  "occ": "smart",
+  "style": [
+   "quiet"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "A £33 Peregrine knit over a white Oxford, Finisterre chinos and navy Chelsea boots.",
+  "look": "men blue crew neck jumper white oxford collar stone chinos navy chelsea boots",
+  "rank": 9,
+  "tags": [
+   "winter"
+  ],
+  "pieces": [
+   {
+    "item": "pe-harry-crew",
+    "shape": "jumper",
+    "col": "blue",
+    "what": "Peregrine knit"
+   },
+   {
+    "item": "ms-oxford",
+    "shape": "shirt",
+    "col": "white",
+    "what": "Oxford shirt"
+   },
+   {
+    "item": "fi-rincon-chino",
+    "shape": "trousers",
+    "col": "stone",
+    "what": "Straight chinos"
+   },
+   {
+    "item": "bl-bloom-chelsea",
+    "shape": "boots",
+    "col": "navy",
+    "what": "Navy Chelsea boots"
+   }
+  ]
+ },
+ "n3-chore-501": {
+  "name": "501s and a chore jacket",
+  "occ": "everyday",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Light-wash 501s, a putty chore jacket from a British factory, a white tee and black Campus trainers.",
+  "look": "men putty chore jacket white t-shirt light wash levis 501 black adidas campus",
+  "rank": 7,
+  "tags": [],
+  "pieces": [
+   {
+    "item": "cc-chore-putty",
+    "shape": "jacket",
+    "col": "stone",
+    "what": "Chore jacket"
+   },
+   {
+    "item": "uq-airism-tee",
+    "shape": "tee",
+    "col": "white",
+    "what": "White tee"
+   },
+   {
+    "item": "js-levis-501",
+    "shape": "trousers",
+    "col": "blue",
+    "what": "Levi's 501"
+   },
+   {
+    "item": "r1-campus-adv",
+    "shape": "trainers",
+    "col": "black",
+    "what": "adidas Campus ADV"
+   }
+  ]
+ },
+ "n3-cord-puffer": {
+  "name": "Cold Saturday in cord",
+  "occ": "everyday",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "wx": [
+   "cold",
+   "wet"
+  ],
+  "note": "A navy cord puffer over an ecru roll neck, dark jeans and navy Chelsea boots.",
+  "look": "men navy corduroy puffer jacket ecru roll neck dark straight jeans navy chelsea boots",
+  "rank": 10,
+  "tags": [
+   "winter"
+  ],
+  "pieces": [
+   {
+    "item": "bb-kempsford-cord",
+    "shape": "jacket",
+    "col": "navy",
+    "what": "Cord puffer"
+   },
+   {
+    "item": "pe-moore-rollneck",
+    "shape": "rollneck",
+    "col": "cream",
+    "what": "Roll neck"
+   },
+   {
+    "item": "js-lee-brooklyn",
+    "shape": "trousers",
+    "col": "indigo",
+    "what": "Dark jeans"
+   },
+   {
+    "item": "bl-bloom-chelsea",
+    "shape": "boots",
+    "col": "navy",
+    "what": "Navy Chelsea boots"
+   }
+  ]
+ },
+ "n3-merino-derby": {
+  "name": "Merino and derbies",
+  "occ": "smart",
+  "style": [
+   "minimal"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "A navy merino quarter-zip over a white Oxford, olive wide pleated chinos and black derbies.",
+  "look": "men navy merino quarter zip white shirt collar olive wide pleated chinos black derby shoes minimal",
+  "rank": 8,
+  "tags": [],
+  "pieces": [
+   {
+    "item": "js-cs-merino-qz",
+    "shape": "halfzip",
+    "col": "navy",
+    "what": "Merino quarter-zip"
+   },
+   {
+    "item": "hc-white-oxford",
+    "shape": "shirt",
+    "col": "white",
+    "what": "White Oxford"
+   },
+   {
+    "item": "r1-pleated-olive",
+    "shape": "trousers",
+    "col": "olive",
+    "what": "Wide pleated chinos"
+   },
+   {
+    "item": "bl-dime-derby",
+    "shape": "shoes",
+    "col": "black",
+    "what": "Black derbies"
+   }
+  ]
+ },
+ "n3-parka": {
+  "name": "Parka and checks",
+  "occ": "everyday",
+  "style": [
+   "outdoor",
+   "quiet"
+  ],
+  "wx": [
+   "cold",
+   "wet"
+  ],
+  "note": "A long olive parka over a brushed blue check shirt, stone chinos and wheat Timberlands.",
+  "look": "men olive parka blue check shirt stone chinos wheat timberland boots",
+  "rank": 14,
+  "tags": [
+   "winter"
+  ],
+  "pieces": [
+   {
+    "item": "cc-parka-olive",
+    "shape": "coat",
+    "col": "olive",
+    "what": "Parka"
+   },
+   {
+    "item": "fi-petrel-check",
+    "shape": "shirt",
+    "col": "blue",
+    "what": "Check shirt"
+   },
+   {
+    "item": "fi-rincon-chino",
+    "shape": "trousers",
+    "col": "stone",
+    "what": "Chinos"
+   },
+   {
+    "item": "sl-timberland-6in",
+    "shape": "boots",
+    "col": "tan",
+    "what": "Timberland boots"
+   }
+  ]
+ },
+ "n3-sofa": {
+  "name": "Sofa, brown and navy",
+  "occ": "lounge",
+  "style": [
+   "lounge"
+  ],
+  "wx": [
+   "cold",
+   "mild"
+  ],
+  "note": "A heavy navy hoodie, knitted brown joggers and suede moccasins.",
+  "look": "men navy hoodie brown knitted joggers suede moccasin slippers loungewear",
+  "rank": 5,
+  "tags": [],
+  "pieces": [
+   {
+    "item": "js-stanray-hoodie",
+    "shape": "hoodie",
+    "col": "navy",
+    "what": "Heavy hoodie"
+   },
+   {
+    "item": "ce-knit-jogger",
+    "shape": "trousers",
+    "col": "brown",
+    "what": "Knitted joggers"
+   },
+   {
+    "item": "ms-moccasin-tan",
+    "shape": "slippers",
+    "col": "tan",
+    "what": "Moccasin slippers"
+   }
+  ]
+ },
+ "n3-workwear": {
+  "name": "Workwear weekend",
+  "occ": "everyday",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Carhartt Single Knee trousers, a brown check overshirt worn open over a green tee, and black boots.",
+  "look": "men brown plaid overshirt open green t-shirt stone carhartt single knee pants black combat boots",
+  "rank": 12,
+  "tags": [],
+  "pieces": [
+   {
+    "item": "js-lee-overshirt",
+    "shape": "shirt",
+    "col": "brown",
+    "what": "Check overshirt, worn open"
+   },
+   {
+    "item": "us-tee-lichen",
+    "shape": "tee",
+    "col": "olive",
+    "what": "Green tee"
+   },
+   {
+    "item": "js-carhartt-singleknee",
+    "shape": "trousers",
+    "col": "stone",
+    "what": "Single Knee trousers"
+   },
+   {
+    "item": "bl-bradley-combat",
+    "shape": "boots",
+    "col": "black",
+    "what": "Combat boots"
+   }
+  ]
+ },
  "night-out": {
   "look": "men navy knitted polo wide pleated stone trousers white adidas samba night out outfit",
   "name": "Night out",

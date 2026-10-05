@@ -25,6 +25,33 @@
    "warm"
   ]
  },
+ "al-fenton-stripe": {
+  "name": "Albam Fenton Oxford stripe shirt, pale blue",
+  "shop": "Albam",
+  "cat": "shirt",
+  "kind": "new",
+  "price": 46.0,
+  "url": "https://www.albamclothing.com/products/oxford-stripe-fenton-shirt-in-pale-blue-alb2211ox073",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "minimal"
+  ],
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "British label's Oxford stripe, 60% off.",
+  "rank": 380,
+  "sets": [],
+  "was": 115.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
  "ar-heavy-tee-grey": {
   "name": "Arket 270 GSM oversized T-shirt, grey",
   "shop": "Arket",
@@ -2397,6 +2424,33 @@
    "cold"
   ]
  },
+ "bb-atworth-crew": {
+  "name": "Brakeburn Atworth crew-neck jumper, navy",
+  "shop": "Brakeburn",
+  "cat": "knit",
+  "kind": "new",
+  "price": 16.49,
+  "url": "https://www.brakeburn.com/products/atworth-crew-neck-jumper-aw25",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "cold",
+   "mild"
+  ],
+  "note": "£16.49 knit, 70% off.",
+  "rank": 100,
+  "sets": [],
+  "was": 54.99,
+  "insize": true,
+  "sizes": "L in stock"
+ },
  "bb-babcary": {
   "cat": "coat",
   "checked": "2026-10-05",
@@ -2539,6 +2593,64 @@
    "wet"
   ]
  },
+ "bb-heritage-gilet": {
+  "name": "Brakeburn heritage quilted gilet, navy",
+  "shop": "Brakeburn",
+  "cat": "coat",
+  "kind": "new",
+  "price": 25.49,
+  "url": "https://www.brakeburn.com/products/heritage-gilet-aw23",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "outdoor"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Quilted gilet for £25.",
+  "rank": 290,
+  "sets": [],
+  "was": 84.99,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "bb-kempsford-cord": {
+  "name": "Brakeburn Kempsford corduroy puffer jacket, navy",
+  "shop": "Brakeburn",
+  "cat": "coat",
+  "kind": "new",
+  "price": 32.99,
+  "url": "https://www.brakeburn.com/products/kempsford-corduroy-jacket-aw25",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "wx": [
+   "cold",
+   "wet",
+   "mild"
+  ],
+  "note": "Navy corduroy padded jacket with a detachable hood. £33, 70% off.",
+  "rank": 80,
+  "sets": [
+   "winter"
+  ],
+  "was": 109.99,
+  "insize": true,
+  "sizes": "L in stock"
+ },
  "bb-tadnoll": {
   "cat": "knit",
   "checked": "2026-10-05",
@@ -2649,6 +2761,91 @@
    "cold",
    "mild"
   ]
+ },
+ "bl-bloom-chelsea": {
+  "name": "Base London Bloom Chelsea boots, navy",
+  "shop": "Base London",
+  "cat": "shoe",
+  "kind": "new",
+  "price": 39.99,
+  "url": "https://www.baselondon.com/products/bloom-burnished-navy-chelsea-boots",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "minimal"
+  ],
+  "occ": [
+   "smart",
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Burnished navy leather Chelsea boots, half price.",
+  "rank": 260,
+  "sets": [],
+  "was": 79.99,
+  "insize": true,
+  "sizes": "UK 11 in stock"
+ },
+ "bl-bradley-combat": {
+  "name": "Base London Bradley combat boots, black",
+  "shop": "Base London",
+  "cat": "shoe",
+  "kind": "new",
+  "price": 40.0,
+  "url": "https://www.baselondon.com/products/bradley-waxy-black-combat-boots",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "rave"
+  ],
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "wx": [
+   "cold",
+   "wet",
+   "mild"
+  ],
+  "note": "Chunky black boots for £40, half price.",
+  "rank": 160,
+  "sets": [],
+  "was": 79.99,
+  "insize": true,
+  "sizes": "UK 11 in stock"
+ },
+ "bl-dime-derby": {
+  "name": "Base London Dime derby shoes, black",
+  "shop": "Base London",
+  "cat": "shoe",
+  "kind": "new",
+  "price": 37.49,
+  "url": "https://www.baselondon.com/products/dime-waxy-black-derby-shoes",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "occ": [
+   "smart",
+   "event"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Black derbies for the black suit, at £37.",
+  "rank": 280,
+  "sets": [],
+  "was": 74.99,
+  "insize": true,
+  "sizes": "UK 11 in stock"
  },
  "bl-foster": {
   "cat": "shoe",
@@ -3303,6 +3500,114 @@
    "cold"
   ]
  },
+ "cc-chore-putty": {
+  "name": "Community Clothing chore jacket, putty",
+  "shop": "Community Clothing",
+  "cat": "coat",
+  "kind": "new",
+  "price": 42.0,
+  "url": "https://communityclothing.co.uk/products/mens-chore-jacket-putty",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Made in a British factory. 70% off, which is as cheap as these get.",
+  "rank": 70,
+  "sets": [],
+  "was": 140.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "cc-george-overshirt": {
+  "name": "Community Clothing collarless overshirt, navy",
+  "shop": "Community Clothing",
+  "cat": "shirt",
+  "kind": "new",
+  "price": 59.5,
+  "url": "https://communityclothing.co.uk/products/mens-george-lightweight-collarless-overshirt-navy",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "minimal",
+   "casual"
+  ],
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Collarless, so it looks clean under a coat or on its own.",
+  "rank": 360,
+  "sets": [],
+  "was": 119.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "cc-joe-denim": {
+  "name": "Community Clothing Joe denim jacket, indigo",
+  "shop": "Community Clothing",
+  "cat": "coat",
+  "kind": "new",
+  "price": 44.7,
+  "url": "https://communityclothing.co.uk/products/mens-joe-denim-jacket-indigo",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "casual",
+   "street"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "British-made denim jacket, 70% off.",
+  "rank": 120,
+  "sets": [],
+  "was": 149.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "cc-parka-olive": {
+  "name": "Community Clothing parka, olive",
+  "shop": "Community Clothing",
+  "cat": "coat",
+  "kind": "new",
+  "price": 99.0,
+  "url": "https://communityclothing.co.uk/products/mens-parka-olive",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "outdoor",
+   "quiet"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "cold",
+   "wet"
+  ],
+  "note": "Long olive parka, made in Britain. Half price.",
+  "rank": 160,
+  "sets": [
+   "winter"
+  ],
+  "was": 198.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
  "cc-polo": {
   "cat": "polo",
   "checked": "2026-10-05",
@@ -3381,6 +3686,33 @@
    "mild",
    "cold"
   ]
+ },
+ "ce-knit-jogger": {
+  "name": "Cernucci embroidered knitted joggers, chocolate brown",
+  "shop": "Cernucci",
+  "cat": "lounge",
+  "kind": "new",
+  "price": 20.99,
+  "url": "https://cernucci.com/products/embroidered-knitted-jogger-chocolate",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "lounge",
+   "street"
+  ],
+  "occ": [
+   "lounge"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Brown knitted joggers, 70% off.",
+  "rank": 410,
+  "sets": [],
+  "was": 69.99,
+  "insize": true,
+  "sizes": "L in stock"
  },
  "clarks-banbury": {
   "cat": "shoe",
@@ -5037,6 +5369,58 @@
    "mild"
   ]
  },
+ "fa-netherton-cord": {
+  "name": "Farah Netherton cord shirt, ecru",
+  "shop": "Farah",
+  "cat": "shirt",
+  "kind": "new",
+  "price": 34.0,
+  "url": "https://www.farah.co.uk/products/netherton-corduroy-shirt-beige-f4whf004gp-280",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Bedford cord shirt in ecru. 60% off.",
+  "rank": 220,
+  "sets": [],
+  "was": 85.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "fa-ralph-overshirt": {
+  "name": "Farah Ralph overshirt, green",
+  "shop": "Farah",
+  "cat": "shirt",
+  "kind": "new",
+  "price": 38.0,
+  "url": "https://www.farah.co.uk/products/ralph-overshirt-green-f4wsg035gp-328",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Green overshirt, 60% off.",
+  "rank": 350,
+  "sets": [],
+  "was": 95.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
  "fa-ramsey-navy": {
   "cat": "coat",
   "checked": "2026-10-05",
@@ -5093,6 +5477,33 @@
    "mild",
    "warm"
   ]
+ },
+ "fa-sands-check": {
+  "name": "Farah Sands check shirt, navy",
+  "shop": "Farah",
+  "cat": "shirt",
+  "kind": "new",
+  "price": 36.0,
+  "url": "https://www.farah.co.uk/products/sands-check-shirt-blue-f4wsg034gp-412",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "casual",
+   "quiet"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Navy check shirt, 60% off.",
+  "rank": 370,
+  "sets": [],
+  "was": 90.0,
+  "insize": true,
+  "sizes": "L in stock"
  },
  "fa-spencer-cord": {
   "cat": "shirt",
@@ -5176,6 +5587,84 @@
    "winter"
   ],
   "was": 55
+ },
+ "fi-coho-sweat": {
+  "name": "Finisterre Surf Club sweatshirt, royal blue",
+  "shop": "Finisterre",
+  "cat": "knit",
+  "kind": "new",
+  "price": 40.0,
+  "url": "https://finisterre.com/products/mens-organic-cotton-surf-club-coho-sweatshirt-royal-blue",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "One colourful piece. Half price.",
+  "rank": 430,
+  "sets": [],
+  "was": 80.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "fi-petrel-check": {
+  "name": "Finisterre Petrel check shirt, blue",
+  "shop": "Finisterre",
+  "cat": "shirt",
+  "kind": "new",
+  "price": 57.0,
+  "url": "https://finisterre.com/products/mens-organic-cotton-petrel-check-shirt-bay-blue-check-shirt",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "outdoor"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Brushed check shirt, 40% off.",
+  "rank": 440,
+  "sets": [],
+  "was": 95.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "fi-rincon-chino": {
+  "name": "Finisterre Rincon straight chinos, flint",
+  "shop": "Finisterre",
+  "cat": "trouser",
+  "kind": "new",
+  "price": 57.0,
+  "url": "https://finisterre.com/products/mens-organic-cotton-rincon-straight-fit-chino-flint",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "outdoor"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Organic cotton chinos from the Cornish surf brand. 40% off in 34W 32L.",
+  "rank": 320,
+  "sets": [],
+  "was": 95.0,
+  "insize": true,
+  "sizes": "34W 32L in stock"
  },
  "fl-nb740": {
   "name": "New Balance 740, brown and green",
@@ -5971,6 +6460,118 @@
   "sets": [],
   "offer": "2 for £89 with other knits and sweats"
  },
+ "js-carhartt-singleknee": {
+  "name": "Carhartt WIP Single Knee canvas trousers, stone",
+  "shop": "Jean Store",
+  "cat": "trouser",
+  "kind": "new",
+  "price": 81.0,
+  "url": "https://jeanstore.co.uk/products/carhartt-wip-single-knee-pant-relaxed-fit-canvas-trousers-shale-stone-canvas",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Heavy canvas work trousers that soften with wear. Stone goes with every top here.",
+  "rank": 230,
+  "sets": [],
+  "was": 135.0,
+  "insize": true,
+  "sizes": "34W 32L in stock"
+ },
+ "js-carhartt-sweatjkt": {
+  "name": "Carhartt WIP Active sweat jacket, washed black",
+  "shop": "Jean Store",
+  "cat": "knit",
+  "kind": "new",
+  "price": 82.5,
+  "url": "https://jeanstore.co.uk/products/carhartt-wip-active-sweat-jacket-black-stone-washed",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "rave"
+  ],
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Zip hoodie in washed black, which looks softer than jet black.",
+  "rank": 330,
+  "sets": [],
+  "was": 165.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "js-cs-beanie": {
+  "name": "Colorful Standard merino beanie, light grey",
+  "shop": "Jean Store",
+  "cat": "acc",
+  "kind": "new",
+  "price": 16.0,
+  "url": "https://jeanstore.co.uk/products/colorful-standard-merino-wool-beanie-snow-melange",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "minimal",
+   "quiet",
+   "street"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "cold"
+  ],
+  "note": "Plain merino beanie. Half price.",
+  "rank": 380,
+  "sets": [
+   "winter"
+  ],
+  "was": 32.0,
+  "gift": true
+ },
+ "js-cs-merino-qz": {
+  "name": "Colorful Standard merino quarter-zip, navy",
+  "shop": "Jean Store",
+  "cat": "knit",
+  "kind": "new",
+  "price": 77.5,
+  "url": "https://jeanstore.co.uk/products/colorful-standard-merino-wool-quarter-zip-sweater-navy-blue",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "wx": [
+   "cold",
+   "mild"
+  ],
+  "note": "Plain merino quarter-zip with no logo. Half price.",
+  "rank": 200,
+  "sets": [],
+  "was": 155.0,
+  "gift": true,
+  "insize": true,
+  "sizes": "L in stock"
+ },
  "js-dm-1460": {
   "name": "Dr Martens 1460 smooth leather boots, black",
   "shop": "Jean Store",
@@ -5996,6 +6597,365 @@
   "note": "The original 8-eye boot. Stiff for the first few weeks, then lasts for years. Survives a warehouse floor.",
   "rank": 300,
   "sets": []
+ },
+ "js-fp-bomber": {
+  "name": "Fred Perry folded-rib-collar bomber, navy",
+  "shop": "Jean Store",
+  "cat": "coat",
+  "kind": "new",
+  "price": 97.5,
+  "url": "https://jeanstore.co.uk/products/fred-perry-folded-rib-collar-bomber-jacket-navy",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Neat navy bomber with a knitted collar. Half price.",
+  "rank": 260,
+  "sets": [],
+  "was": 195.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "js-fp-pique-navy": {
+  "name": "Fred Perry crepe piqué polo, navy",
+  "shop": "Jean Store",
+  "cat": "polo",
+  "kind": "new",
+  "price": 53.4,
+  "url": "https://jeanstore.co.uk/products/fred-perry-crepe-pique-polo-shirt-navy",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "wx": [
+   "warm",
+   "mild"
+  ],
+  "note": "Textured piqué polo with a small laurel logo.",
+  "rank": 300,
+  "sets": [],
+  "was": 89.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "js-lee-boxy-tee": {
+  "name": "Lee Workwear boxy tee, washed black",
+  "shop": "Jean Store",
+  "cat": "polo",
+  "kind": "new",
+  "price": 17.4,
+  "url": "https://jeanstore.co.uk/products/lee-workwear-relaxed-boxy-tee-washed-black",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "rave"
+  ],
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "wx": [
+   "warm",
+   "mild"
+  ],
+  "note": "Boxy heavy tee for £17.",
+  "rank": 190,
+  "sets": [],
+  "was": 29.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "js-lee-brooklyn": {
+  "name": "Lee Brooklyn straight jeans, dark wash",
+  "shop": "Jean Store",
+  "cat": "trouser",
+  "kind": "new",
+  "price": 57.0,
+  "url": "https://jeanstore.co.uk/products/lee-brooklyn-straight-regular-fit-mens-jeans-jasper",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Regular rise, straight leg, dark enough for a dinner out.",
+  "rank": 170,
+  "sets": [],
+  "was": 95.0,
+  "insize": true,
+  "sizes": "34W 32L in stock"
+ },
+ "js-lee-overshirt": {
+  "name": "Lee relaxed overshirt, brown plaid",
+  "shop": "Jean Store",
+  "cat": "shirt",
+  "kind": "new",
+  "price": 49.5,
+  "url": "https://jeanstore.co.uk/products/lee-relaxed-overshirt-arabica-plaid",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "casual",
+   "street"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Brown check overshirt to wear open over a tee. Half price.",
+  "rank": 250,
+  "sets": [],
+  "was": 99.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "js-levis-501": {
+  "name": "Levi's 501 Original jeans, light wash",
+  "shop": "Jean Store",
+  "cat": "trouser",
+  "kind": "new",
+  "price": 60.0,
+  "url": "https://jeanstore.co.uk/products/levis®-501-original-regular-fit-mens-jeans-texas-rides",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "casual",
+   "street"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "The straight-leg classic, button fly, in a light wash. Non-stretch, so they mould to him. 40% off in his exact size.",
+  "rank": 60,
+  "sets": [],
+  "was": 100.0,
+  "insize": true,
+  "sizes": "34W 32L in stock"
+ },
+ "js-levis-568-ecru": {
+  "name": "Levi's 568 loose carpenter trousers, ecru",
+  "shop": "Jean Store",
+  "cat": "trouser",
+  "kind": "new",
+  "price": 54.0,
+  "url": "https://jeanstore.co.uk/products/levis®-568-loose-straight-carpenter-pants-undyed-ecru-greige",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "warm"
+  ],
+  "note": "Undyed ecru denim with a hammer loop. An easy swap for black jeans.",
+  "rank": 150,
+  "sets": [],
+  "was": 90.0,
+  "insize": true,
+  "sizes": "34W 32L in stock"
+ },
+ "js-levis-578": {
+  "name": "Levi's 578 baggy jeans, washed olive",
+  "shop": "Jean Store",
+  "cat": "trouser",
+  "kind": "new",
+  "price": 60.0,
+  "url": "https://jeanstore.co.uk/products/levis®-578-baggy-fit-mens-jeans-long-drive-home-od",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street"
+  ],
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Baggy fit in an over-dyed olive wash, without dragging. Fits the Street tab's wide-bottom, boxy-top shape.",
+  "rank": 90,
+  "sets": [],
+  "was": 100.0,
+  "insize": true,
+  "sizes": "34W 32L in stock"
+ },
+ "js-levis-bayview": {
+  "name": "Levi's Bayview worker shirt, green",
+  "shop": "Jean Store",
+  "cat": "shirt",
+  "kind": "new",
+  "price": 45.0,
+  "url": "https://jeanstore.co.uk/products/levis®-bayview-soft-worker-shirt-garment-dye-kombu-green",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "casual",
+   "quiet"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Garment-dyed soft twill shirt. Wear it buttoned or open over a tee.",
+  "rank": 320,
+  "sets": [],
+  "was": 75.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "js-levis-trucker-ecru": {
+  "name": "Levi's Workwear trucker jacket, ecru",
+  "shop": "Jean Store",
+  "cat": "coat",
+  "kind": "new",
+  "price": 57.0,
+  "url": "https://jeanstore.co.uk/products/levis®-workwear-sunrise-trucker-jacket-undyed-ecru-greige",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "warm"
+  ],
+  "note": "Undyed denim jacket. Pair it with dark jeans, not ecru trousers.",
+  "rank": 340,
+  "sets": [],
+  "was": 95.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "js-stanray-fleece": {
+  "name": "Stan Ray wool fleece jacket, navy",
+  "shop": "Jean Store",
+  "cat": "coat",
+  "kind": "new",
+  "price": 79.5,
+  "url": "https://jeanstore.co.uk/products/stan-ray-wool-fleece-jacket-navy-heather",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "street",
+   "outdoor"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "cold",
+   "mild"
+  ],
+  "note": "Wool fleece shirt-jacket: warmer than an overshirt, smarter than a fleece. 50% off.",
+  "rank": 240,
+  "sets": [
+   "winter"
+  ],
+  "was": 159.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "js-stanray-hoodie": {
+  "name": "Stan Ray OG hoodie, washed navy",
+  "shop": "Jean Store",
+  "cat": "knit",
+  "kind": "new",
+  "price": 39.5,
+  "url": "https://jeanstore.co.uk/products/stan-ray-og-hoodie-washed-navy",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "occ": [
+   "everyday",
+   "lounge"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Heavy loopback cotton, made to last. Half price.",
+  "rank": 180,
+  "sets": [],
+  "was": 79.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "js-stanray-painter": {
+  "name": "Stan Ray OG painter jeans, stonewash",
+  "shop": "Jean Store",
+  "cat": "trouser",
+  "kind": "new",
+  "price": 47.5,
+  "url": "https://jeanstore.co.uk/products/stan-ray-og-painter-relaxed-fit-jeans-70s-stone-denim",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "American workwear cut: relaxed, with a hammer loop and rule pocket. Half price.",
+  "rank": 210,
+  "sets": [],
+  "was": 95.0,
+  "insize": true,
+  "sizes": "34W 32L in stock"
  },
  "jt-lambswool-green": {
   "cat": "knit",
@@ -6944,6 +7904,34 @@
   "sets": [],
   "was": 125
  },
+ "ls-collar-puffer": {
+  "name": "Lyle & Scott collared puffer jacket, black",
+  "shop": "Lyle & Scott",
+  "cat": "coat",
+  "kind": "new",
+  "price": 56.0,
+  "url": "https://www.lyleandscott.com/products/collared-puffer-jacket-jet-black",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "minimal"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "cold"
+  ],
+  "note": "Short black puffer with a shirt collar. 60% off.",
+  "rank": 300,
+  "sets": [
+   "winter"
+  ],
+  "was": 140.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
  "ls-funnel-puffer": {
   "cat": "coat",
   "checked": "2026-10-05",
@@ -6973,6 +7961,33 @@
    "cold"
   ]
  },
+ "ls-insulated-gilet": {
+  "name": "Lyle & Scott insulated gilet, navy",
+  "shop": "Lyle & Scott",
+  "cat": "coat",
+  "kind": "new",
+  "price": 48.0,
+  "url": "https://www.lyleandscott.com/products/water-resistant-insulated-gilet-dark-navy",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "outdoor",
+   "quiet"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Water-resistant gilet, 60% off.",
+  "rank": 420,
+  "sets": [],
+  "was": 120.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
  "ls-jacquard-tee": {
   "cat": "polo",
   "checked": "2026-10-05",
@@ -7001,6 +8016,33 @@
   "wx": [
    "warm"
   ]
+ },
+ "ls-marl-crew": {
+  "name": "Lyle & Scott marl crew jumper, navy",
+  "shop": "Lyle & Scott",
+  "cat": "knit",
+  "kind": "new",
+  "price": 44.0,
+  "url": "https://www.lyleandscott.com/products/knitted-marl-crew-neck-jumper-dark-navy-marl",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "cold",
+   "mild"
+  ],
+  "note": "Navy marl knit, 60% off.",
+  "rank": 280,
+  "sets": [],
+  "was": 110.0,
+  "insize": true,
+  "sizes": "L in stock"
  },
  "ls-merino-crew": {
   "cat": "knit",
@@ -10575,6 +11617,33 @@
   ],
   "was": 79.99
  },
+ "mx-golf-qz": {
+  "name": "Montirex quarter-zip, black",
+  "shop": "Montirex",
+  "cat": "knit",
+  "kind": "new",
+  "price": 24.99,
+  "url": "https://montirex.com/products/golf-1-4-zip-black-onyx-mtx1213-199",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "rave",
+   "street"
+  ],
+  "occ": [
+   "party",
+   "everyday"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Light technical quarter-zip, 62% off.",
+  "rank": 290,
+  "sets": [],
+  "was": 64.99,
+  "insize": true,
+  "sizes": "L in stock"
+ },
  "next-epsom": {
   "cat": "coat",
   "checked": "2026-10-05",
@@ -10800,6 +11869,33 @@
    "warm",
    "mild"
   ]
+ },
+ "op-polo-neck": {
+  "name": "Original Penguin long-sleeve knitted polo, sapphire",
+  "shop": "Original Penguin",
+  "cat": "knit",
+  "kind": "new",
+  "price": 30.0,
+  "url": "https://www.originalpenguin.co.uk/products/long-sleeve-cotton-polo-sweater-blue-opgm9c07ou-413",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Knitted polo, 60% off.",
+  "rank": 400,
+  "sets": [],
+  "was": 75.0,
+  "insize": true,
+  "sizes": "L in stock"
  },
  "op-qz-sweater": {
   "cat": "knit",
@@ -11086,6 +12182,63 @@
    "winter"
   ],
   "gift": true
+ },
+ "pe-harry-crew": {
+  "name": "Peregrine Harry crew jumper, washed denim",
+  "shop": "Peregrine",
+  "cat": "knit",
+  "kind": "new",
+  "price": 33.0,
+  "url": "https://peregrineclothing.co.uk/products/harry-sweater",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ],
+  "note": "Made in Britain, 70% off: £33 for a £110 knit.",
+  "rank": 50,
+  "sets": [],
+  "was": 110.0,
+  "gift": true,
+  "insize": true,
+  "sizes": "L in stock"
+ },
+ "pe-moore-rollneck": {
+  "name": "Peregrine Moore roll neck, ecru",
+  "shop": "Peregrine",
+  "cat": "knit",
+  "kind": "new",
+  "price": 60.0,
+  "url": "https://peregrineclothing.co.uk/products/moore-polo-neck",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet",
+   "minimal"
+  ],
+  "occ": [
+   "smart",
+   "everyday"
+  ],
+  "wx": [
+   "cold"
+  ],
+  "note": "Ecru roll neck, made in Britain. Half price.",
+  "rank": 190,
+  "sets": [
+   "winter"
+  ],
+  "was": 120.0,
+  "insize": true,
+  "sizes": "L in stock"
  },
  "po-arket": {
   "cat": "knit",
@@ -11994,6 +13147,58 @@
    "warm",
    "wet"
   ]
+ },
+ "r1-campus-adv": {
+  "name": "adidas Campus ADV skate shoes, black",
+  "shop": "Route One",
+  "cat": "shoe",
+  "kind": "new",
+  "price": 54.95,
+  "url": "https://www.routeone.co.uk/products/adidas-campus-adv-skate-shoes-core-black-white-white",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "warm"
+  ],
+  "note": "Suede Campus with a skate sole. 35% off in UK 11.",
+  "rank": 210,
+  "sets": [],
+  "was": 84.95,
+  "insize": true,
+  "sizes": "UK 11 in stock"
+ },
+ "r1-pleated-olive": {
+  "name": "Route One wide-leg pleated chinos, olive",
+  "shop": "Route One",
+  "cat": "trouser",
+  "kind": "new",
+  "price": 54.95,
+  "url": "https://www.routeone.co.uk/products/route-one-wide-leg-pleated-chino-olive-001194564",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "minimal"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Wide pleated chinos in olive, a replacement for black.",
+  "rank": 310,
+  "sets": [],
+  "insize": true,
+  "sizes": "34R in stock"
  },
  "rg-arec": {
   "cat": "coat",
@@ -15775,6 +16980,32 @@
    "cold"
   ]
  },
+ "sr-tan-merino-polo": {
+  "name": "Savile Row Company merino knitted polo, tan",
+  "shop": "Savile Row Company",
+  "cat": "knit",
+  "kind": "new",
+  "price": 27.95,
+  "url": "https://www.savilerowco.com/products/tan-merino-wool-knitted-polo-shirt-mkw527tan",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "quiet"
+  ],
+  "occ": [
+   "smart",
+   "everyday"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Merino knitted polo for £28, 65% off.",
+  "rank": 230,
+  "sets": [],
+  "was": 80.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
  "ss-balefire": {
   "name": "Seasalt Balefire organic cotton polo",
   "shop": "Seasalt",
@@ -17537,6 +18768,32 @@
    "mild",
    "cold"
   ]
+ },
+ "tml-ringer-navy": {
+  "name": "T.M. Lewin ringer T-shirt, navy",
+  "shop": "T.M. Lewin",
+  "cat": "polo",
+  "kind": "new",
+  "price": 7.0,
+  "url": "https://tmlewin.co.uk/products/the-ringer-t-shirt-navy-68235",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "warm",
+   "mild"
+  ],
+  "note": "£7 tee, 72% off.",
+  "rank": 310,
+  "sets": [],
+  "was": 25.0,
+  "insize": true,
+  "sizes": "L in stock"
  },
  "tml-rugby": {
   "cat": "polo",
@@ -20468,6 +21725,33 @@
    "cold"
   ]
  },
+ "us-coach-navy": {
+  "name": "Uskees coach jacket, navy",
+  "shop": "Uskees",
+  "cat": "coat",
+  "kind": "new",
+  "price": 30.0,
+  "url": "https://uskees.com/products/3052-coach-jacket-navy",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "mild",
+   "wet"
+  ],
+  "note": "Snap-front coach jacket at £30, 70% off.",
+  "rank": 110,
+  "sets": [],
+  "was": 100.0,
+  "insize": true,
+  "sizes": "L in stock"
+ },
  "us-drill-charcoal": {
   "cat": "coat",
   "checked": "2026-10-05",
@@ -20495,6 +21779,34 @@
    "mild",
    "cold"
   ]
+ },
+ "us-ripstop-black": {
+  "name": "Uskees ripstop utility trousers, black",
+  "shop": "Uskees",
+  "cat": "trouser",
+  "kind": "new",
+  "price": 45.0,
+  "url": "https://uskees.com/products/5020-ripstop-utility-pants-old-black",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "rave",
+   "street",
+   "outdoor"
+  ],
+  "occ": [
+   "party",
+   "everyday"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "note": "Ripstop with pockets that close: built for warehouse nights.",
+  "rank": 200,
+  "sets": [],
+  "was": 90.0,
+  "insize": true,
+  "sizes": "L in stock"
  },
  "us-taupe": {
   "cat": "coat",
@@ -20525,6 +21837,33 @@
    "mild",
    "cold"
   ]
+ },
+ "us-tee-lichen": {
+  "name": "Uskees plain T-shirt, lichen green",
+  "shop": "Uskees",
+  "cat": "polo",
+  "kind": "new",
+  "price": 14.0,
+  "url": "https://uskees.com/products/7006-plain-t-shirt-lichen",
+  "checked": "2026-10-05",
+  "added": "2026-10-05",
+  "style": [
+   "casual",
+   "street"
+  ],
+  "occ": [
+   "everyday"
+  ],
+  "wx": [
+   "warm",
+   "mild"
+  ],
+  "note": "Heavy organic cotton tee for £14.",
+  "rank": 270,
+  "sets": [],
+  "was": 35.0,
+  "insize": true,
+  "sizes": "L in stock"
  },
  "w-casio-a158": {
   "added": "2026-10-05",
