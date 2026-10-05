@@ -367,6 +367,38 @@ people using the page.
   more extra wide safety footwear under £50.
 - Page version 18. Totals: **1283 picks, 268 outfits, 116 shops with picks.**
 
+## 2m. 17 more shops, and more in every area (5 Oct 2026, night)
+
+- **New shops (17):**
+  - Mod and skate: Jump the Gun (a Brighton mod shop), Admiral (up to 75% off) and Flatspot.
+  - Street and rave: SikSilk, Criminal Damage and Oi Polloi.
+  - Classic: Percival (up to 70% off) and Kestin.
+  - Holiday and surf: Saltrock and Animal (up to 76% off).
+  - Outdoor: Sealskinz (waterproof gloves, socks and hats) and Urban Excess (Columbia, Bhode).
+  - Lounge, socks and gifts: Bamboo Clothing, TBCo and Thought.
+  - Rokit for vintage, and Wynsors for cheap shoes and slippers.
+- **71 new picks**, most of them reduced:
+  - **Workwear (11):**
+    - Apache Barkerville cargo trousers (£20.74) and Portwest KX3 winter cargos. Both are
+      98% cotton with 2% elastane, and say so on the card.
+    - Clip-on holster and nail pockets (Mascot and Fristads), Snickers hammer and long tool
+      pouches, and a Fristads leather tool belt.
+    - Cofra Off Shore EE side-zip safety boots, and brown UKD Grafter Expanse and Grit
+      4E boots.
+    - Sealskinz waterproof fleece-lined gloves.
+  - **Other styles:** knits, hoodies, tees, a padded jacket, a longline waterproof,
+    windcheaters, track jackets, oxford and Cuban shirts, board and swim shorts,
+    flip-flops, walking shoes, slippers, bamboo loungewear, sock gifts, a tie bar and a
+    vintage silk tie.
+- **28 new outfits:**
+  - 6 Workwear: holsters, a hammer pouch, a nail pocket, a leather tool belt and a long
+    pouch, worn with cotton cargos or shorts and 4E or EE boots.
+  - 22 across Casual, Street, Mod, Rave, Holiday, Classic, Outdoor and Lounge.
+- I checked Timberland PRO, Tradesman Workwear, Safetywear, Wynsors and Amblers.
+  None had new EE or wider safety footwear in UK 11.
+- The directory lists all 17 new shops, and the Friday routine checks them.
+- Page version 19. Totals: **1354 picks, 296 outfits, 133 shops with picks.**
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
