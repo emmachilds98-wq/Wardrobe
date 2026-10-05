@@ -434,6 +434,41 @@ its whole range.
   instructions for reading Matalan and Peacocks.
 - Page version 20. Totals: **1711 picks, 322 outfits, 141 shops with picks.**
 
+## 2o. Workwear sweep, an "All styles" tab and more wide-boot shops (5 Oct 2026, night)
+
+- **"All styles" tab:** the first style button now shows every pick and outfit at once.
+- **Workwear sweep across every shop:** black or charcoal shorts at 97% cotton or more
+  from any shop (cargo first, not only "work" shorts), plus work accessories: knee pads,
+  neck warmers, socks, beanies, gloves, base layers, ear defenders, braces, tool belts
+  and a tool backpack.
+- **New extra wide (4E) safety footwear shops:** Rock Solid Safety (Grafters from
+  £22.99) and Tiger Safety (from £24.78).
+- 70 new picks and 12 Workwear outfits. Page version 21. Totals: 1781 picks, 334 outfits.
+
+## 2p. No slim fits, more 6E boots and 20 more shops (5 Oct 2026, night)
+
+- **No slim-fit work trousers or shorts.** Every Workwear trouser and short was checked
+  against the shop's own description. Eight were slim or tapered and were removed:
+  Carhartt slim double-front and Rigby, Portwest KX3 T801, KX312, S231 and S232, Apache
+  Barkerville and Caterpillar Dynamic. The 10 outfits that used them now use relaxed
+  100% cotton trousers instead. The Friday routine now skips slim, skinny and tapered
+  fits.
+- **Wider than 4E:** three Steitz Secura 6E safety boots and shoes at Wide Fit Shoes
+  (sold out in every size today, kept as watch items), and the 6E Rock Fall Otus at
+  Safety Boots UK for £94.49 (shown as "VAT free"). Nothing wider than 6E was found as a
+  safety boot in the UK. DB Shoes do a 6V (6E to 8E) fitting, but those aren't safety
+  shoes.
+- **20 new shops:** Military Kit, Military Mart, Lifting Equipment Store, Safety Boots
+  UK, New Era, Gramicci, O'Neill, Volcom, HUF, KAVU, Jack Wolfskin, Lazy Jacks, Dubarry,
+  Goodhood, Mountain Equipment, Padders, Voi Jeans, Timex, Gym King and Henri Lloyd.
+- **New Workwear:** black 100% cotton cargo shorts from £24 (New Era canvas Bermuda at
+  65% off, Mil-Tec Vintage, Surplus Airborne, New Era cargo), loose Brandit cargo
+  trousers, Highlander Magnum cargo trousers, Gramicci G-Pants, O'Neill carpenter
+  trousers, belt pouches from £8.95, and cheap Portwest, JCB and TuffStuff fleeces,
+  hoodies and gilets.
+- 88 new picks and 9 outfits (4 Workwear). Page version 22. Totals: **1861 picks, 343
+  outfits, 169 shops with picks.**
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
