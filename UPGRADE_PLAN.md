@@ -493,7 +493,7 @@ here.
 | Photo size | The refresh aims for under 25 KB a photo, but rows hold photos of up to 60 KB | Some batches went over the target. |
 | Status line | `meta/status` says 1,781 picks; `meta/photos` says 758 photos | Both are out of date (1,861 picks; 1,703 with a photo). The refresh rewrites `meta/status` each Friday, but the extra rounds since then didn't. |
 | His size | 1,247 confirmed, 52 not in his size, **562 unknown (30%)** | ASOS 195, M and M Direct 31, M&S 30, Vinted 28, Charles Tyrwhitt 18, WoolOvers 13, Moss 13. The card already says "His size: L. The shop does not show stock", so this is about checking more, not labelling. Shirt and jacket sizes are still "to confirm". |
-| Colour | 521 pick names say black, against 208 navy, 45 stone, 19 olive and 7 burgundy | The profile says swapping black for navy, olive or stone is "the quickest improvement", but the catalogue leans the other way. Workwear (black by rule) and Rave explain only part of it. |
+| Colour | 521 pick names say black, against 208 navy, 45 stone, 19 olive and 7 burgundy | No cap on any colour (Emma, 5 Oct). A colour filter makes the other colours easier to find. |
 | Pick use | **1,028 of 1,861 picks are in no outfit** | Half the catalogue is never shown worn. |
 | Outfit occasions | 217 everyday, 49 party, 30 smart, 28 lounge, **10 event** | Hardly anything for weddings, christenings, funerals, interviews or a work Christmas do. Casual has 7 smart or party outfits and Street 8. |
 | Outfit weather | **41 wet** of 334; Holiday has 0 cold or mild; Lounge has 5 warm | There are 74 coats tagged for wet weather, so the gap is outfits, not stock. |
@@ -546,10 +546,9 @@ here.
 #### B. Shop
 1. **Colour filter:** navy, black, grey, stone, olive, brown, green, burgundy, ecru, blue. Use the
    same colour words as the outfits.
-2. **"Not black" switch** outside Rave and Workwear, following the profile's own advice.
-3. **"Goes with" on each card:** three picks from other categories that suit it, plus the
+2. **"Goes with" on each card:** three picks from other categories that suit it, plus the
    outfits that already use it.
-4. **"Cheaper like this":** the cheapest picks in the same category and colour, shown on the card.
+3. **"Cheaper like this":** the cheapest picks in the same category and colour, shown on the card.
 
 #### C. Sale
 1. **Price history line** on each card ("was £60, £45 on 29 Sep, now £30"). The refresh only
@@ -560,7 +559,7 @@ here.
 
 #### D. Outfits
 1. **"What to wear today":** choose occasion and weather (cold, mild, warm, wet) and get three
-   outfits, putting first those that use pieces already bought.
+   outfits, putting first those that use pieces already bought from the shortlist.
 2. **Swap a piece:** each piece gets a "swap" button that offers cheaper or different-colour
    picks of the same kind and updates the total.
 3. **Photo strip** under the drawing (open since the first review).
@@ -571,33 +570,25 @@ here.
 
 #### E. Builder
 1. **Lock a piece and re-suggest the rest:** keep the boots, rebuild everything else to budget.
-2. **Colour check:** warn on three or more black pieces outside Rave and Workwear, black trousers
-   with brown shoes, and navy against black. Suggest one swap.
-3. **Budget split hint:** spend on shoes and coat, save on knit and tees (from the style guides).
+2. **Budget split hint:** spend on shoes and coat, save on knit and tees (from the style guides).
 
 #### F. Shortlist
 1. **Totals per shop** with the delivery threshold, and a single "buy list" total.
 2. **Download the buy list** as a text or CSV file, with links, sizes and prices, to work through
    on a laptop.
-3. **Who liked it:** record thumbs per person, so Dave's and Emma's are told apart, and let the
-   ranking follow Dave's. This works only if Dave opens the page signed in to his own Claude
-   account (question 2).
 
-#### G. His wardrobe (only if the owned-clothes rule changes, question 1)
-- A list of what Dave already owns (black suit, New Balance and Nike trainers, crossbody, bum
-  and side bags, plus anything marked bought). Outfits and the builder could use them at £0.
-- **This goes against the current rule.** The Friday refresh says to treat his own clothes as
-  background only and never build outfits around them. Leave this section out unless that rule
-  changes.
+#### G. His wardrobe (a separate section at the back)
+- **"He has this" on every card:** two choices, "He has this" or "He has something like it". This
+  only records it. The Shop, Sale, Outfits and Build views, and the Friday refresh's outfits,
+  carry on exactly as now and never use owned pieces.
+- **A "His wardrobe" view, last in the bar:** everything marked, plus his own things typed in by
+  hand (black suit, New Balance and Nike trainers, crossbody, bum and side bags to start). Here,
+  and only here, the page puts together outfits from what he owns, drawn on Dave like the others,
+  by occasion and weather.
+- Storage: in the artifact, a new `owned` collection (it needs a new database rule, so the page
+  is republished once). In Dave's GitHub copy, his marks stay in his browser (section J).
 
-#### H. Ask the stylist (only if wanted, question 3)
-- A box on the Outfits and Build views: "wedding in November, about £120, no tie". The page asks
-  Claude, with the pick list as a search tool, and the answer loads straight into the builder as
-  a priced outfit in his size.
-- It uses the Claude allowance of whoever types the question, asks their permission the first
-  time, and hides if they say no.
-
-#### I. Style guide and sizes
+#### H. Style guide and sizes
 - A **measuring card** (neck, chest, inside leg) that saves to `meta/profile`. Once filled in,
   drop the "to confirm" notes.
 - A **"Dave's colours"** panel: the colours that suit his fair skin, dark hair and ginger-brown
@@ -605,19 +596,40 @@ here.
   harder), linked to the colour filter.
 - **Care notes** on cards for wool, linen and waxed cotton.
 
-#### J. Drawings
+#### I. Drawings
 - Shapes the outfits now use but the figure draws plainly: suits with a waistcoat, an overcoat
   over a blazer, knee pads, a neck warmer and a tool backpack (Workwear extras), and swim shorts
   with an open shirt for Holiday.
 
-### 4.4 More picks (target: about 300 new on top of the Friday refresh's 40 a week)
+#### J. Dave's copy on GitHub Pages
+Dave will use a copy served from this repo, not the artifact. The repo is public, so GitHub
+Pages is free. It is not switched on yet: Settings, Pages, deploy from `main`, root folder.
+- **Same page, no database.** When the artifact's database isn't there, the page loads
+  `data/items.json`, `data/outfits.json`, `data/meta.json` and the photo files from the repo
+  instead. Add an `index.html` so the site address opens the page.
+- **His thumbs, shortlist, "He has this" marks and his own outfits stay on his phone** (browser
+  storage). They shape what he sees and are not sent anywhere. The page already has a
+  device-only mode for the shortlist, so this extends it.
+- **Photos as files.** The export writes photos into pack files grouped by category, loaded
+  only when that category is opened.
+- **Updated only when Emma asks.** A Claude session reads the artifact's database, writes the
+  JSON and photo files, and opens a pull request. Merging it updates Dave's site. The page shows
+  the export date ("Prices checked 9 Oct") so he knows how fresh it is, and the card's
+  "Check before buying" warning appears after 30 days as now.
+- Never part of the export: the artifact's shared shortlist, votes, saved outfits and `owned`
+  marks (they belong to the people using the artifact).
+- **Public by default.** A Pages site from a public repo can be found by anyone. The export would
+  publish Dave's first name, sizes and profile notes. Leave the name out of the public copy, or
+  make the repo private (Pages on a private repo needs a paid GitHub plan).
+
+### 4.4 More picks (target: about 260 new on top of the Friday refresh's 40 a week)
 
 Fill the gaps the numbers show, mostly reduced and mostly under £40:
 
 | Gap | Now | Add | What |
 |---|---|---|---|
 | Smart shirts and accessories | Tailoring 18 | 30 | White and pale blue shirts in a 15.5 to 16in collar, ties, pocket squares, tie bars, dress belts and socks, black Oxford and Derby shoes, a smart overcoat |
-| Non-black colours | 7 burgundy, 19 olive, 45 stone | 80 | Navy, olive, stone, brown, burgundy and ecru knits, chinos, overshirts and jackets across Classic, Casual, Mod and Outdoors |
+| Colours with few picks | 7 burgundy, 19 olive, 45 stone | 40 | Olive, stone, brown, burgundy and ecru knits, chinos, overshirts and jackets, for choice (no cap on black or any other colour) |
 | Basics | 30 | 25 | Thermals, merino socks, multipacks of plain tees, vests and boxers |
 | Sport | 27 | 20 | Gym shorts, training tops and running shoes in UK 11 |
 | Rain extras | 74 wet-weather coats already | 10 | Waterproof trainers and boots, a compact umbrella, a smart mac |
@@ -626,9 +638,6 @@ Fill the gaps the numbers show, mostly reduced and mostly under £40:
 | Workwear extras | 197 | 25 | Knee pads, base layers, thick socks, a tool backpack and winter gloves, plus black cotton cargo shorts in 34W (still the hardest gap). All checked by hand against the Workwear rules. |
 | Directory shops with no picks | 14 shops | 40 | Gap, Levi's, Dr Martens, Vans, New Balance, Timberland, Berghaus, Urban Outfitters, Pull&Bear, Bershka, TK Maxx, BrandAlley, Very and F&F, 3 each. Note: the refresh is told not to fetch Gap, New Balance, TK Maxx, F&F or Very (they block cloud servers), so those need a home computer or stay links only. |
 | Size checks | 562 unknown | — | Re-check the size on the ASOS, M&S, Charles Tyrwhitt, WoolOvers and Moss picks where the product page shows it |
-
-Rule for the round: no more than a third of new non-Workwear, non-Rave picks in black
-(question 4).
 
 ### 4.5 More outfits (target: about 120 new, to about 455)
 
@@ -644,24 +653,26 @@ Rule for the round: no more than a third of new non-Workwear, non-Rave picks in 
 | Capsule: one 12-piece set that makes 20 outfits, shown together | 0 | 1 set, 14 outfits |
 
 Build them from the 1,028 picks in no outfit first, and give every 3-piece outfit a fourth piece
-where a layer, belt or bag would finish it. If the owned-clothes rule changes, add 10 outfits
-built round his black suit, trainers and bags.
+where a layer, belt or bag would finish it. These outfits never use owned pieces; the outfits
+in "His wardrobe" are put together by the page from what is marked there.
 
 ### 4.6 Changes to the Friday refresh
 - Write photos to `photos/<id>` rows instead of `img`, at 25 KB or less (A1).
 - Keep a short price history per pick, not only `prev` (C1).
 - Respect the sixth load group (A4) and update the group sizes in its notes.
-- Report the black share and the occasion and weather gaps each week, and close the biggest gap
-  first when choosing new outfits.
+- Report the occasion and weather gaps each week, and close the biggest gap first when choosing
+  new outfits.
+- Keep the owned-clothes rule as it is, and never read or write the `owned` collection.
 - The routine has 12 connectors attached (Gmail, Google Drive, Spotify, Lucid and others) that a
   clothes refresh never uses. Removing them would be safer, especially Gmail.
 
 ### 4.7 Order of work
 1. Section A (speed and data), and the refresh changes in 4.6. One round.
-2. Sections D and E (swap, lock, what to wear today, "£X to finish").
-3. Sections B, C and F (colour filter, price history, buy list download, per-person thumbs).
-4. Sections I and J, and G and H if wanted.
-5. Picks (4.4) and outfits (4.5), spread across all four rounds so every release adds some.
+2. Section J (Dave's GitHub Pages copy), with the first export, so he has it early.
+3. Sections D and E (swap, lock, what to wear today, "£X to finish").
+4. Sections B, C and F (colour filter, price history, buy list download).
+5. Sections G, H and I (his wardrobe, measuring card, drawings).
+6. Picks (4.4) and outfits (4.5), spread across every round. Export to Dave's copy when asked.
 
 ### 4.8 Corrections made on the second review
 - Photos: the first draft suggested the asset store. It would end public link sharing, and the
@@ -675,16 +686,22 @@ built round his black suit, trainers and bags.
 - The duplicates are mostly the same product at two shops, which is useful.
 - Tailoring already has navy and charcoal suits, so the gap is shirts, ties and shoes.
 - There are 74 wet-weather coats, so rainwear needs outfits more than picks.
-- Owned clothes: the Friday refresh forbids outfits built round them, so G and those outfits now
-  wait on question 1.
+- Owned clothes: the Friday refresh forbids outfits built round them, so G is a separate section
+  that never touches the main views.
 - The refresh already re-checks prices weekly, so the plan no longer says "once a fortnight".
 
-### 4.9 Open questions for Emma
-1. **His own clothes:** the refresh says never to build outfits round what Dave already owns.
-   Keep that rule, or allow a "His wardrobe" view and outfits using the suit, trainers and bags?
-2. **How Dave uses the page:** does he open it signed in to his own Claude account? Per-person
-   thumbs need that.
-3. **Ask the stylist:** wanted, knowing it uses the Claude allowance of whoever types into it?
-4. **Black:** cap new black picks at a third outside Rave and Workwear, or does Dave want black?
-5. **His measurements** (neck, chest under the arms, inside leg), if you have them, so the
-   "to confirm" sizes can go.
+### 4.9 Emma's answers (5 Oct 2026)
+1. **His own clothes:** don't use them in the existing sections. Add a "he has this, or something
+   like it" mark, and a separate "His wardrobe" section at the back that styles outfits from them
+   (G).
+2. **How Dave uses it:** through the GitHub version (J), with his thumbs and shortlist on his
+   device only. It is updated only when Emma asks, and served as a GitHub Pages site.
+3. **Ask the stylist:** left out.
+4. **Colours:** no cap on any colour. The "not black" switch and the builder's colour warning
+   are removed. The colour filter stays.
+
+Still open:
+- **His measurements** (neck, chest under the arms, inside leg), so the "to confirm" sizes can
+  go.
+- **Switching on GitHub Pages** in the repo settings (Emma's step, once the page is ready).
+- **Privacy of the Pages copy:** is it fine for his sizes and first name to be on a public site?
