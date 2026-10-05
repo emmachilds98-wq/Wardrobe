@@ -286,6 +286,59 @@ people using the page.
 - Page version 16. Totals: **1152 picks, 211 outfits, 105 shops with picks.** The two load
   queries hold about 743 and 409 picks (limit 1000 each).
 
+## 2k. Workwear rebuild, a more lifelike Dave, and dropdowns instead of chips (5 Oct 2026, late)
+
+- **Workwear, rebuilt around Emma's answers:**
+  - **6E boots:** every 6E safety boot that could be found is listed. Only the Wide Load range
+    (Wide Shoes) and Rock Fall Otus make 6E with a toe cap in the UK. Four are in stock in
+    UK 11; five more Wide Load models (690BLWC, 290BSC, 690SZC, 490BPO, 690WZ) are sold out in
+    11 and are listed as "sold out" so the page flags them when they come back.
+  - **4E boots:** Cofra RAP and FUNK (Wide Fit Shoes) were added alongside the Grafters range.
+  - **Shorts:** cargo and plain, black or very dark grey. 100% cotton: Portwest WX1 cargo
+    work shorts (£11.51), Luke 1977 Molfre carpenter shorts (£19), Stan Ray A shorts,
+    ICHPIG workshop shorts and Polar Jiro. Near-100% (98% cotton, 2% elastane) and marked as
+    such: Lambretta cargo shorts, T.M. Lewin chino shorts and Duck and Cover chino shorts.
+  - **Trousers:** 100% cotton Portwest WX1 (from £13) and Fristads Kansas, plus near-100%
+    Carhartt Rigby, Carhartt double-front and Portwest KX3, all marked with their blend.
+  - **Belts for bottoms with few pockets:** Snickers and ToughBuilt clip-on holster pockets
+    and pouches, Carhartt 7-pocket and half-apron tool belts, Fristads and Helly Hansen tool
+    belts, and a Carhartt cotton duck belt.
+  - **Trade brands:** Carhartt (black Detroit, Super Dux, Gilliam, Galesburg), Snickers,
+    Helly Hansen, Dickies, Scruffs, Portwest, DeWalt, TuffStuff and Regatta Professional,
+    from Workwear Gurus, Trade Workwear (new), Wide Fit Shoes (new) and TuffStuff (new).
+  - Fashion pieces (khaki Peacocks jacket, Matalan khaki jumper, Brakeburn shacket) moved
+    out of Workwear. Two Tokyo Laundry shorts and a Carhartt "shadow" short stayed out
+    because they are mid grey.
+  - New `fabric` field on items, shown on each card. A Workwear dropdown under Filter
+    shows 6E boots only, 4E and 6E boots, cargo or plain shorts, belts and holsters, or
+    100% cotton only.
+- **Style options tidied:**
+  - The "Within" chips and "Quick sets" chips are gone (Emma prefers dropdowns). Look
+    (Clean minimal, Relaxed street, Heritage and so on) is a dropdown in the Shop, Sale and
+    Outfits filters, and Collection (Winter, Christmas, Holiday, Gifts) is a dropdown in the
+    Shop filter.
+  - Lists show at most two colours of the same product, so one polo in six colours no
+    longer fills a page.
+  - Items now count towards at most three tabs.
+  - Picks load in five groups (knit, polo, trouser, shirt and coat, everything else), so the
+    old 1000-item ceiling no longer limits the collection.
+- **A more lifelike Dave in the outfit drawings:**
+  - A slimmer, taller build, a mop of dark curls, a ginger-brown moustache, light stubble
+    and fairer skin, all taken from photos Emma shared. The photos themselves are not
+    stored anywhere.
+  - Light and shade on every garment, elbow and knee creases, a trouser break, thumbs,
+    laces, and toe caps on safety boots. Tool belts and holster pockets are drawn on the
+    hips.
+  - When most pieces in an outfit have a shop photo, the right-hand side of the outfit card
+    shows the real photos, head to toe, instead of drawn icons.
+- **Another round of picks and outfits:**
+  - 39 general picks from three new shops: Weekend Offender, Luke 1977 and Closure London
+    (mostly 60 to 80% off), plus Cyberjammies and more shoes, swim and accessories.
+  - 49 Workwear pieces.
+  - 28 new outfits, 10 of them Workwear (belts, holsters, cargo and plain shorts, and
+    4E and 6E boots).
+- Page version 17. Totals: **1240 picks, 239 outfits, 111 shops with picks.**
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

@@ -7,7 +7,7 @@
   --ground:#edf0ec; --surface:#fafbf8; --ink:#14201b; --muted:#55625b; --line:#cbd3cc; --chip:#dfe6e0;
   --green:#1c4a37; --on-green:#f6faf7; --tan:#8a5c22; --claret:#8b1b2b; --on-claret:#fff5f6; --claret-wash:#f3e1e3;
   --stripe-a:#1c4a37; --stripe-b:#1d2a44; --stripe-c:#8b1b2b; --stripe-d:#c9a25e;
-  --board:#e6dfd0; --badge:#14201b; --on-badge:#ffffff; --sole:#f4f1e8; --skin:#e3c0a4; --hair:#2a1d17; --board-ink:#4b5650;
+  --board:#e6dfd0; --badge:#14201b; --on-badge:#ffffff; --sole:#f4f1e8; --skin:#eecdb6; --hair:#2b1c15; --tache:#6e4329; --board-ink:#4b5650;
   --f-display:"Libre Caslon Display","Libre Caslon Text",Georgia,"Times New Roman",serif;
   --f-serif:"Libre Caslon Text",Georgia,"Times New Roman",serif;
   --f-text:"Hanken Grotesk","Segoe UI",system-ui,-apple-system,sans-serif;
@@ -17,7 +17,7 @@
     --ground:#0d1411; --surface:#151e1a; --ink:#e6ece7; --muted:#9aa79f; --line:#2b3832; --chip:#1e2924;
     --green:#8fd0ad; --on-green:#0d1411; --tan:#d6a868; --claret:#f2939f; --on-claret:#2a0a0f; --claret-wash:#35171c;
     --stripe-a:#2f6e55; --stripe-b:#33456e; --stripe-c:#a8384a; --stripe-d:#c9a25e;
-    --board:#d3ccbc; --badge:#14201b; --on-badge:#ffffff; --sole:#f4f1e8; --skin:#e3c0a4; --hair:#2a1d17; --board-ink:#4b5650;
+    --board:#d3ccbc; --badge:#14201b; --on-badge:#ffffff; --sole:#f4f1e8; --skin:#eecdb6; --hair:#2b1c15; --tache:#6e4329; --board-ink:#4b5650;
     color-scheme:dark;
   }
 }
@@ -25,7 +25,7 @@
   --ground:#0d1411; --surface:#151e1a; --ink:#e6ece7; --muted:#9aa79f; --line:#2b3832; --chip:#1e2924;
   --green:#8fd0ad; --on-green:#0d1411; --tan:#d6a868; --claret:#f2939f; --on-claret:#2a0a0f; --claret-wash:#35171c;
   --stripe-a:#2f6e55; --stripe-b:#33456e; --stripe-c:#a8384a; --stripe-d:#c9a25e;
-  --board:#d3ccbc; --badge:#14201b; --on-badge:#ffffff; --sole:#f4f1e8; --skin:#e3c0a4; --hair:#2a1d17; --board-ink:#4b5650;
+  --board:#d3ccbc; --badge:#14201b; --on-badge:#ffffff; --sole:#f4f1e8; --skin:#eecdb6; --hair:#2b1c15; --tache:#6e4329; --board-ink:#4b5650;
   color-scheme:dark;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -429,8 +429,6 @@ details.filt > summary small{font-weight:400}
 
   <section class="intro slim" id="style" aria-labelledby="style-name">
     <div class="sec-head" style="gap:8px"><h2 id="style-name"></h2><p class="lede" id="style-lede" style="color:var(--ink)" data-view="guide"></p><p class="tally" id="style-tally"></p></div>
-    <div class="fgroup" id="g-sub" data-view="shop sale fits guide" hidden><span class="label" id="l-sub">Within Classic</span><div class="chips" id="f-sub" role="group" aria-labelledby="l-sub"></div></div>
-    <div class="fgroup" data-view="shop"><span class="label" id="l-set">Quick sets</span><div class="chips" id="f-set" role="group" aria-labelledby="l-set"></div></div>
     <p class="tip" id="style-tip" data-view="guide"></p>
     <details class="fold" id="rules" data-view="guide" open><summary>How to wear it <small id="rules-sum"></small></summary><div class="fold-body" id="rules-body"></div></details>
   </section>
@@ -447,6 +445,9 @@ details.filt > summary small{font-weight:400}
       <div class="fgroup"><span class="label">Narrow</span>
         <div class="controls">
           <label class="check" for="s-size"><input type="checkbox" id="s-size">Only confirmed in his size</label>
+          <label class="field" for="s-look" data-look hidden>Look
+            <select id="s-look" class="lookSel"></select>
+          </label>
           <label class="field" for="s-sort">Sort
             <select id="s-sort"><option value="deal">Best value</option><option value="price">Cheapest first</option><option value="pct">Biggest % off</option></select>
           </label>
@@ -468,6 +469,9 @@ details.filt > summary small{font-weight:400}
       <div class="fgroup"><span class="label" id="l-fit">Occasion</span><div class="chips" id="f-fit" role="group" aria-labelledby="l-fit"></div></div>
       <div class="fgroup"><span class="label">Budget</span>
         <div class="controls">
+          <label class="field" for="o-look" data-look hidden>Look
+            <select id="o-look" class="lookSel"></select>
+          </label>
           <label class="field" for="f-fitmax">Whole outfit
             <select id="f-fitmax"><option value="0">Any total</option><option value="60">£60 or less</option><option value="100">£100 or less</option><option value="150">£150 or less</option><option value="200">£200 or less</option></select>
           </label>
@@ -533,6 +537,15 @@ details.filt > summary small{font-weight:400}
           <label class="check" for="f-size"><input type="checkbox" id="f-size">In his size</label>
           <label class="check" for="f-sale"><input type="checkbox" id="f-sale">On sale</label>
           <label class="check" for="f-new"><input type="checkbox" id="f-new">New this week</label>
+          <label class="field" for="f-look" data-look hidden>Look
+            <select id="f-look" class="lookSel"></select>
+          </label>
+          <label class="field" for="f-set">Collection
+            <select id="f-set"><option value="all">Everything</option><option value="winter">Winter warmers</option><option value="christmas">Christmas party</option><option value="holiday">Summer holiday</option><option value="gifts">Gifts</option></select>
+          </label>
+          <label class="field" for="f-jx" id="l-jx" hidden>Workwear
+            <select id="f-jx"><option value="all">Everything for work</option><option value="6e">6E boots only</option><option value="wide">4E and 6E boots</option><option value="cargo">Cargo trousers and shorts</option><option value="cargoshort">Cargo shorts</option><option value="plainshort">Plain shorts</option><option value="belts">Belts, holsters and tool belts</option><option value="cotton">100% cotton only</option></select>
+          </label>
           <label class="field" for="f-src">Source
             <select id="f-src"><option value="all">New and pre-owned</option><option value="new">New only</option><option value="pre">Pre-owned only</option></select>
           </label>
@@ -610,6 +623,7 @@ details.filt > summary small{font-weight:400}
         <li><a href="https://www.seasaltcornwall.com/sale/mens-all-sale" target="_blank" rel="noopener">Seasalt sale</a><small data-shop="Seasalt"></small></li>
       </ul></div>
       <div class="shopgroup"><span class="label">Supermarkets and value</span><ul>
+        <li><a href="https://www.closurelondon.com/" target="_blank" rel="noopener">Closure London</a><small data-shop="Closure London"></small></li>
         <li><a href="https://www.tokyolaundry.com/collections/mens" target="_blank" rel="noopener">Tokyo Laundry</a><small data-shop="Tokyo Laundry"></small></li>
         <li><a href="https://www.duckandcover.co.uk/" target="_blank" rel="noopener">Duck and Cover</a><small data-shop="Duck and Cover"></small></li>
         <li><a href="https://www.bravesoul.co.uk/" target="_blank" rel="noopener">Brave Soul</a></li>
@@ -676,6 +690,8 @@ details.filt > summary small{font-weight:400}
         <li><a href="https://www.secretsales.com/" target="_blank" rel="noopener">Secret Sales</a></li>
       </ul></div>
       <div class="shopgroup"><span class="label">Mod and terrace</span><ul>
+        <li><a href="https://www.weekendoffender.com/" target="_blank" rel="noopener">Weekend Offender</a><small data-shop="Weekend Offender"></small></li>
+        <li><a href="https://www.luke1977.com/" target="_blank" rel="noopener">Luke 1977</a><small data-shop="Luke 1977"></small></li>
         <li><a href="https://www.lambrettaclothing.co.uk/" target="_blank" rel="noopener">Lambretta</a><small data-shop="Lambretta"></small></li>
         <li><a href="https://www.prettygreen.com/" target="_blank" rel="noopener">Pretty Green</a><small data-shop="Pretty Green"></small></li>
         <li><a href="https://www.merc.co.uk/" target="_blank" rel="noopener">Merc</a><small data-shop="Merc"></small></li>
@@ -717,7 +733,11 @@ details.filt > summary small{font-weight:400}
         <li><a href="https://www.screwfix.com/c/workwear/cat830662" target="_blank" rel="noopener">Screwfix workwear</a></li>
         <li><a href="https://www.toolstation.com/" target="_blank" rel="noopener">Toolstation</a></li>
         <li><a href="https://www.arco.co.uk/" target="_blank" rel="noopener">Arco</a></li>
-        <li><a href="https://www.wideshoes.co.uk/" target="_blank" rel="noopener">Wide Shoes (4E and 6E boots)</a></li>
+        <li><a href="https://www.wideshoes.co.uk/" target="_blank" rel="noopener">Wide Shoes (4E and 6E boots)</a><small data-shop="Wide Shoes"></small></li>
+        <li><a href="https://www.widefitshoes.co.uk/" target="_blank" rel="noopener">Wide Fit Shoes (4E safety)</a><small data-shop="Wide Fit Shoes"></small></li>
+        <li><a href="https://www.tradeworkwear.co.uk/" target="_blank" rel="noopener">Trade Workwear (Portwest, Dickies)</a><small data-shop="Trade Workwear"></small></li>
+        <li><a href="https://www.tuffstuffworkwear.co.uk/" target="_blank" rel="noopener">TuffStuff</a><small data-shop="TuffStuff"></small></li>
+        <li><a href="https://www.screwfix.com/c/safety-workwear/cat830680" target="_blank" rel="noopener">Screwfix (Site brand)</a></li>
         <li><a href="https://www.workwearexpress.com/" target="_blank" rel="noopener">Workwear Express</a></li>
       </ul></div>
       <div class="shopgroup"><span class="label">Outdoors</span><ul>
@@ -879,10 +899,10 @@ function texOf(p){
   if((sh==="jumper"||sh==="rollneck"||sh==="halfzip"||sh==="cardigan")&&!/sweat|fleece/.test(s))return "knit";
   return "";
 }
-function body(d,p,dim){ /* main cloth: colour, fabric texture, then shading */
+function body(d,p,dim){ /* main cloth: colour, fabric texture, side light, then top-to-bottom volume */
   var t=texOf(p),c=COL[p.col]||COL.grey;
   if(dim){return P("g",d);}
-  return P("g",d)+(t?'<path d="'+d+'" fill="url(#tx-'+t+(c[1]?"-l":"-d")+')"/>':"")+'<path d="'+d+'" fill="url(#fg-shade)"/>';
+  return P("g",d)+(t?'<path d="'+d+'" fill="url(#tx-'+t+(c[1]?"-l":"-d")+')"/>':"")+'<path d="'+d+'" fill="url(#fg-shade)"/><path d="'+d+'" fill="url(#fg-vol)"/>';
 }
 function closedTop(H,long){
   return long
@@ -906,7 +926,7 @@ function upperArt(p,dim){
     var vd="M101 90 Q120 112 139 90 L153 94 Q149 120 159 142 L160 "+H+" Q120 "+(H+6)+" 80 "+H+" L81 142 Q91 120 87 94 Z";
     return '<g '+tone(p.col,dim)+'>'+body(vd,p,dim)+P("d","M81 "+(H-5)+" Q120 "+(H+1)+" 159 "+(H-5))+'</g>';
   }
-  var cuffs=long?"M54 247 L71 251 M186 247 L169 251":"M61 146 L78 151 M179 146 L162 151";
+  var cuffs=long?"M54 247 L71 251 M186 247 L169 251 M59 196 Q66 192 76 197 M181 196 Q174 192 164 197 M58 206 Q64 204 70 207 M182 206 Q176 204 170 207":"M61 146 L78 151 M179 146 L162 151 M70 132 Q74 136 80 135 M170 132 Q166 136 160 135";
   if(isOpen(p)){
     var v=s==="cardigan",sl=s!=="gilet";l=panelL(H,sl,v);r=mir(l);
     h='<path d="'+(v?"M117 "+H+" L117 166 L108 92 L113 92 L123 166 L123 "+H:"M103 "+H+" L105 150 L112 92 L118 92 L112 150 L110 "+H)+' Z" fill="rgba(0,0,0,'+(dim?".04":".16")+')"/>';
@@ -952,8 +972,8 @@ function figure(pieces,hi){
   function grp(p,inner){return '<g '+tone(p.col,dim(p))+'>'+inner+'</g>';}
   up=up.map(function(p,k){return {p:p,k:k};}).sort(function(a,b){return rank(a.p)-rank(b.p)||b.k-a.k;}).map(function(x){return x.p;});
   var bare=!lo||lo.shape==="shorts";
-  var armL="M66 114 L81 134 L75 204 L71 260 L71 277 Q66 291 57 285 Q53 270 54 256 L57 198 Z",legL="M80 344 H114 L111 402 L109 452 H86 L83 402 Z";
-  var h='<ellipse cx="120" cy="471" rx="64" ry="6.5" fill="rgba(20,32,27,.14)"/>';
+  var armL="M66 114 L81 134 L75 204 L71 260 L71 277 Q70 286 64 288 Q55 289 54 280 Q52 268 54 256 L57 198 Z",legL="M80 344 H114 L111 402 L109 452 H86 L83 402 Z";
+  var h='<ellipse cx="120" cy="471" rx="60" ry="6.5" fill="rgba(20,32,27,.14)"/><g transform="matrix(0.93 0 0 1 8.4 0)">';
   h+='<g class="sk">'+P("","M111 66 H129 V92 Q120 99 111 92 Z")+P("",armL)+P("",mir(armL))+(bare?P("",legL)+P("",mir(legL)):"")+'</g>'+
      '<path class="sd" d="M111 76 Q120 84 129 76 V84 Q120 90 111 84 Z M63 262 L70 264 M177 262 L170 264'+(bare?" M92 396 Q98 400 104 396 M136 396 Q142 400 148 396":"")+'"/>';
   if(ft){
@@ -961,12 +981,14 @@ function figure(pieces,hi){
     h+=grp(ft,(fs==="boots"?P("g",shaft)+P("g",mir(shaft)):"")+(bare&&fs==="trainers"?'<path class="so" d="M84 432 H111 V448 H84 Z"/><path class="so" d="M129 432 H156 V448 H129 Z"/>':"")+
       P("g",shoeL)+P("g",mir(shoeL))+(dim(ft)?"":'<path d="'+shoeL+'" fill="url(#fg-shade)"/><path d="'+mir(shoeL)+'" fill="url(#fg-shade)"/>')+
       (fs==="trainers"?P("so",soleL)+P("so",mir(soleL)):P("d","M68 463 H115 M125 463 H172"))+
-      (fs==="slippers"?P("d","M80 452 Q93 460 107 452 M133 452 Q147 460 160 452"):P("d","M84 450 H104 M85 454 H103 M136 450 H156 M137 454 H155 M76 459 Q93 453 110 459 M130 459 Q147 453 164 459")));
+      (fs==="slippers"?P("d","M80 452 Q93 460 107 452 M133 452 Q147 460 160 452"):P("d","M84 450 H104 M85 454 H103 M136 450 H156 M137 454 H155 M76 459 Q93 453 110 459 M130 459 Q147 453 164 459"))+
+      (fs==="boots"?P("d","M86 422 L103 426 M86 428 L103 432 M86 434 L103 438 M86 440 L103 444 M154 422 L137 426 M154 428 L137 432 M154 434 L137 438 M154 440 L137 444"):"")+
+      (/safety|toe cap|steel|composite|dealer/i.test(((byId[ft.item]||{}).name||"")+" "+ft.what)?P("d","M68 460 Q70 449 86 448 M172 460 Q170 449 154 448")+P("so","M66 465 Q66 470 76 470 H106 Q116 470 116 465 V462 H66 Z")+P("so",mir("M66 465 Q66 470 76 470 H106 Q116 470 116 465 V462 H66 Z")):""));
   }else{var fL="M72 452 H114 V461 Q114 469 105 469 H78 Q68 469 70 460 Z";h+='<g class="sk">'+P("",fL)+P("",mir(fL))+'</g>';}
   if(lo){
     var tr=lo.shape==="trousers",ld=tr?"M82 222 H158 L163 300 L167 449 L127 449 L120 304 L113 449 L73 449 L77 300 Z":"M82 222 H158 L163 300 L164 349 L125 349 L120 302 L115 349 L76 349 L77 300 Z";
     h+=grp(lo,body(ld,lo,dim(lo))+P("d","M82 230 H158 M120 230 V296 M113 232 Q116 262 120 272 M88 232 Q92 248 84 256 M152 232 Q148 248 156 256"+
-      (tr?" M95 250 L93 444 M145 250 L147 444 M74 443 H113 M127 443 H166":" M77 343 H115 M125 343 H163")+
+      (tr?" M95 250 L93 444 M145 250 L147 444 M74 443 H113 M127 443 H166 M86 372 Q95 377 106 371 M134 371 Q145 377 154 372 M84 382 Q92 385 99 382 M141 382 Q148 385 156 382 M77 432 Q93 426 111 432 M129 432 Q147 426 163 432":" M77 343 H115 M125 343 H163 M84 330 Q94 334 106 329 M134 329 Q146 334 156 330")+
       (/cargo|parachute|utility|combat/i.test(lo.what+" "+((byId[lo.item]||{}).name||""))?(tr?" M77 322 H96 V352 H77 Z M77 329 H96 M144 322 H163 V352 H144 Z M144 329 H163":" M77 296 H95 V322 H77 Z M77 302 H95 M145 296 H163 V322 H145 Z M145 302 H163"):"")));
   }
   var base=null,covered=false;
@@ -978,12 +1000,21 @@ function figure(pieces,hi){
   if(base&&covered){h+=grp(base,neckArt(base));}
   if(ac.chain){h+='<path d="M107 90 Q120 116 133 90" fill="none" stroke="'+(dim(ac.chain)?fade(COL.silver[0]):COL.silver[0])+'" stroke-width="2.4" stroke-linecap="round" stroke-dasharray=".6 3.4"/><path d="M107 90 Q120 116 133 90" fill="none" stroke="rgba(20,32,27,.45)" stroke-width=".6"/>';}
   if(ac.belt&&!up.length){h+=grp(ac.belt,P("g","M82 222 H158 V231 H82 Z"));}
+  if(ac.belt&&/holster|tool|pouch|apron/i.test(((byId[ac.belt.item]||{}).name||"")+" "+ac.belt.what)){
+    var pch="M68 236 H97 L95 286 Q83 294 70 286 Z";
+    h+=grp(ac.belt,P("g","M78 228 H162 V238 H78 Z")+P("g",pch)+P("g",mir(pch))+P("d","M70 248 H96 M144 248 H170 M76 262 H90 M150 262 H164 M83 238 V286 M157 238 V286")+(dim(ac.belt)?"":'<path d="'+pch+'" fill="url(#fg-vol)"/><path d="'+mir(pch)+'" fill="url(#fg-vol)"/>'));
+  }
+  h+='</g>';
   if(ac.scarf){h+=grp(ac.scarf,P("g","M103 98 L98 190 H118 L118 104 Z")+P("g","M99 77 Q120 92 141 77 L146 96 Q120 115 94 96 Z")+P("d","M99 182 H118 M102 190 V196 M107 190 V196 M112 190 V196 M117 190 V196 M100 88 Q120 104 140 88"));}
   h+='<g class="sk"><circle cx="101" cy="52" r="4"/><circle cx="139" cy="52" r="4"/>'+P("","M101.5 47 Q101 29 120 27 Q139 29 138.5 47 Q139 64 129 71 Q120 77 111 71 Q101 64 101.5 47 Z")+'</g>';
-  h+='<g class="hr">'+[[103,45,8],[100,35,9],[105,25,9.5],[114,18,10],[126,18,10],[135,25,9.5],[140,35,9],[137,45,8],[110,32,7],[120,29,7.5],[130,32,7],[99,55,6],[141,55,6]].map(function(c){return '<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'"/>';}).join("")+
-    P("","M110 64 Q120 58 130 64 Q125 68 120 66 Q115 68 110 64 Z")+(ac.sunglasses?"":'<circle cx="113" cy="50" r="1.7"/><circle cx="127" cy="50" r="1.7"/>')+'</g>'+
-    '<path class="hl" d="M103 30 Q107 22 114 20 M122 14 Q130 14 134 20 M138 30 Q141 36 139 42 M112 30 Q116 26 121 27"/>'+
-    '<path class="fc" d="M108 45 Q113 42.5 117 45 M123 45 Q127 42.5 132 45 M120 52 L118.5 59 H121.5 M115 70 Q120 72 125 70"/>';
+  /* Dave: a mop of dark curls, a ginger-brown moustache and light stubble. */
+  h+='<path d="M104 58 Q106 73 120 77 Q134 73 136 58 Q130 66 120 67 Q110 66 104 58 Z" fill="rgba(90,58,38,.13)"/>'+
+    '<circle cx="108" cy="58" r="4" fill="rgba(214,120,100,.16)"/><circle cx="132" cy="58" r="4" fill="rgba(214,120,100,.16)"/>';
+  h+='<g class="hr">'+[[115.8,18.7,8.3],[117.0,19.1,7.2],[96.8,29.4,7.3],[138.1,30.5,6.2],[90.0,34.7,7.6],[87.0,38.4,8.5],[133.4,20.7,5.7],[92.2,40.9,5.4],[99.8,30.5,5.3],[117.0,19.8,8.1],[121.8,17.7,6.9],[133.2,22.3,6.1],[153.4,41.8,8.1],[135.4,25.2,6.0],[106.2,27.3,7.8],[110.3,16.9,6.5],[151.4,38.5,5.2],[94.4,25.5,6.8],[146.3,40.6,5.4],[132.2,18.4,6.1],[95.4,36.2,8.5],[136.7,28.8,6.0],[98.8,36.2,7.9],[96.0,29.5,6.7],[95.0,27.8,5.6],[130.0,24.8,6.6],[100.5,29.2,8.5],[140.6,29.8,8.2],[99.3,28.5,8.1],[129.8,24.9,8.6],[100.7,29.2,7.8],[107.1,24.0,5.4],[92.6,35.4,6.0],[128.1,21.4,6.7],[147.1,39.1,7.2],[141.7,33.9,5.7],[150.0,34.6,6.0],[94.9,27.8,8.4],[93.2,26.1,8.2],[128.5,21.0,5.6],[94.9,45.6,6.0],[131.4,32.3,8.0],[126.0,28.9,5.8],[130.2,34.2,6.0],[125.3,22.5,7.3],[101.7,28.0,5.9],[104.1,45.4,6.7],[104.8,43.1,6.5],[123.9,30.2,6.4],[145.5,39.9,7.4],[133.6,29.1,5.7],[137.5,26.6,5.3],[129.4,28.1,7.7],[103.7,25.2,5.5],[123.9,23.5,8.3],[137.2,30.5,7.9],[137.5,41.9,7.5],[96,50,6.0],[95,59,6.0],[144,50,5.3],[145,59,5.9],[98,42,6.0],[142,42,5.5],[101,64,5.6],[139,64,5.2],[94,67,5.5],[146,67,5.6]].map(function(c){return '<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'"/>';}).join("")+
+    (ac.sunglasses?"":'<circle cx="113" cy="50" r="1.7"/><circle cx="127" cy="50" r="1.7"/>')+'</g>'+
+    '<path class="hl" d="M110.8 17.0 Q115.8 11.2 120.0 16.2 M92.4 27.9 Q96.8 22.8 100.5 27.2 M85.4 33.2 Q90.0 27.9 93.8 32.4 M130.0 19.6 Q133.4 15.6 136.2 19.0 M96.6 29.4 Q99.8 25.7 102.5 28.9 M117.7 16.3 Q121.8 11.5 125.2 15.6 M148.5 40.2 Q153.4 34.5 157.5 39.4 M101.5 25.7 Q106.2 20.3 110.1 25.0 M148.3 37.5 Q151.4 33.8 154.0 36.9 M143.1 39.5 Q146.3 35.7 149.0 39.0 M90.3 34.5 Q95.4 28.6 99.7 33.7 M94.1 34.6 Q98.8 29.1 102.8 33.8 M91.6 26.7 Q95.0 22.8 97.8 26.1 M95.4 27.5 Q100.5 21.5 104.8 26.6 M94.4 26.9 Q99.3 21.2 103.3 26.1 M96.0 27.6 Q100.7 22.2 104.6 26.9 M89.0 34.2 Q92.6 30.0 95.6 33.6 M142.8 37.7 Q147.1 32.6 150.7 36.9 M146.4 33.4 Q150.0 29.2 153.0 32.8 M88.3 24.5 Q93.2 18.7 97.3 23.6 M91.3 44.4 Q94.9 40.2 97.9 43.8 M122.5 27.7 Q126.0 23.7 128.9 27.2 M120.9 21.0 Q125.3 15.9 128.9 20.3 M100.1 44.1 Q104.1 39.4 107.4 43.4 M120.1 28.9 Q123.9 24.4 127.1 28.3 M130.2 28.0 Q133.6 24.0 136.4 27.4 M124.8 26.6 Q129.4 21.2 133.2 25.8 M118.9 21.8 Q123.9 16.0 128.1 21.0 M133.0 40.4 Q137.5 35.1 141.2 39.6 M91.4 57.8 Q95.0 53.6 98.0 57.2 M141.5 57.8 Q145.0 53.7 147.9 57.2 M138.7 40.9 Q142.0 37.0 144.8 40.4 M135.9 63.0 Q139.0 59.3 141.6 62.4 M142.6 65.9 Q146.0 62.0 148.8 65.3"/>'+
+    '<path d="M109 62.5 Q113 58.5 120 60.5 Q127 58.5 131 62.5 Q132.5 65 130 65.5 Q126 63.5 120 64.5 Q114 63.5 110 65.5 Q107.5 65 109 62.5 Z" fill="var(--tache)"/>'+
+    '<path class="fc" d="M107.5 45 Q113 41.5 117.5 44.5 M122.5 44.5 Q127 41.5 132.5 45 M120 51 L118.2 58 Q120 59.2 121.8 58 M116 69.5 Q120 71.3 124 69.5"/>';
   var hat=ac.beanie||ac.bcap||ac.cap||ac.bucket;
   if(hat){
     var hs=hat.shape,ha;
@@ -1001,6 +1032,7 @@ function figure(pieces,hi){
 }
 function figDefs(){
   var h='<linearGradient id="fg-shade" gradientUnits="userSpaceOnUse" x1="50" y1="0" x2="190" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset=".58" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".24"/></linearGradient>';
+  h+='<linearGradient id="fg-vol" gradientUnits="objectBoundingBox" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".07"/><stop offset=".45" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".16"/></linearGradient>';
   var T={
     cable:[16,18,'<path d="M4 0 Q9 4.5 4 9 Q-1 13.5 4 18 M12 0 Q7 4.5 12 9 Q17 13.5 12 18" stroke-width="1.2" opacity=".5"/><path d="M8 0 V18 M0 0 V18" stroke-width=".7" opacity=".28"/>'],
     cord:[5,5,'<path d="M2.5 0 V5" stroke-width="1" opacity=".34"/>'],
@@ -1045,12 +1077,26 @@ function board(f,nums){
   });
   var m=ac.length,as=m>3?66:78,astep=m>1?Math.min(92,(288-18-as)/(m-1)):0;
   ac.forEach(function(p,k){var x=18+astep*k,y=202+(78-as)/2;art+=use(p.shape,p.col,x,y,as);marks+=badge(nums[p.item],x+as*0.86,y+as*0.14);});
+  /* When most pieces have a shop photo, the right-hand side shows the real pieces, head to toe, instead of drawn icons. */
+  var seen={},order=up.concat(lo,ft.slice(0,1),ac).filter(function(p){if(seen[p.item])return false;seen[p.item]=1;return true;});
+  var withPh=order.filter(function(p){return photoOf(byId[p.item]);}).length,real=order.length&&withPh/order.length>=0.6;
+  if(real){
+    var cols=order.length>6?3:2,cw=cols===3?112:168,chh=Math.round(cw*0.75),gap=8,rows=Math.ceil(order.length/cols);
+    var gx=280+(350-(cols*cw+(cols-1)*gap))/2,gy=40+Math.max(0,(440-(rows*chh+(rows-1)*gap))/2);
+    art="";marks="";
+    order.forEach(function(p,k){
+      var it=byId[p.item],ph=photoOf(it),x=gx+(k%cols)*(cw+gap),y=gy+Math.floor(k/cols)*(chh+gap);
+      art+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+cw+'" height="'+chh+'" rx="4" fill="#fff" stroke="rgba(20,32,27,.18)"/>';
+      art+=ph?'<image href="'+esc(ph)+'" x="'+(x+1).toFixed(1)+'" y="'+(y+1).toFixed(1)+'" width="'+(cw-2)+'" height="'+(chh-2)+'" preserveAspectRatio="xMidYMid slice"/>':use(p.shape,p.col,x+(cw-chh*0.9)/2,y+chh*0.05,chh*0.9);
+      marks+=badge(nums[p.item],x+13,y+13);
+    });
+  }
   var alt="Drawing of Dave wearing the outfit, next to the pieces laid out: "+f.pieces.map(function(p){return p.what;}).join(", ")+".";
   return '<svg viewBox="0 0 640 500" role="img" aria-label="'+esc(alt)+'">'+
     '<text class="bl" x="16" y="26">On Dave</text><text class="bl" x="280" y="26">The pieces</text>'+
     '<path d="M264 34 V478" stroke="rgba(20,32,27,.16)" stroke-width="1"/>'+
     '<g transform="translate(14,6)">'+figure(f.pieces)+'</g>'+
-    '<g transform="translate(274,126) scale(0.82)">'+art+marks+'</g></svg>';
+    (real?art+marks:'<g transform="translate(274,126) scale(0.82)">'+art+marks+'</g>')+'</svg>';
 }
 
 var OCC=[["all","All"],["everyday","Everyday"],["smart","Smart"],["event","Event"],["party","Party and nights out"],["lounge","At home"]];
@@ -1105,7 +1151,7 @@ var BIG=50,PAGE=48,FITPAGE=6;
 var STYLES={
   quiet:{
     name:"Classic, heritage and minimal",
-    lede:"Lambswool, Oxford shirts, chinos and suede boots, with wax jackets, chore coats and cord for the weekend. Choose Clean minimal above for the plain black, white and grey version, with its own guide.",
+    lede:"Lambswool, Oxford shirts, chinos and suede boots, with wax jackets, chore coats and cord for the weekend. Pick Clean minimal in the Look dropdown (under Filter) for the plain black, white and grey version.",
     aim:"Good cloth, quiet colours and a decent fit",
     tip:"Start with one knit, one Oxford shirt and a pair of suede boots. They go with trousers he already owns.",
     colours:[["#1d2a44","Navy"],["#efe7d6","Cream"],["#c19a5b","Camel"],["#4f5a36","Olive"],["#8b8f92","Mid grey"],["#a9c4e2","Oxford blue"],["#5b3a26","Brown"],["#6d1f2a","Burgundy"]],
@@ -1117,7 +1163,7 @@ var STYLES={
   },
   casual:{
     name:"Casual and street",
-    lede:"Easy clothes for the pub, town and friends' houses: good jeans, overshirts, polos, sweatshirts and clean trainers. Choose Relaxed street above for the looser, trainer-led version, with its own guide.",
+    lede:"Easy clothes for the pub, town and friends' houses: good jeans, overshirts, polos, sweatshirts and clean trainers. Pick Relaxed street in the Look dropdown (under Filter) for the looser, trainer-led version.",
     aim:"Comfortable and tidy without looking as if he tried",
     tip:"Start with one overshirt and one pair of dark straight jeans. Between them they finish most outfits here.",
     colours:[["#1d2a44","Navy"],["#fbfaf5","White"],["#9a9ea1","Grey marl"],["#4f5a36","Olive"],["#cfc6b3","Stone"],["#5b7aa6","Mid-blue denim"],["#5b3a26","Brown"],["#1b1c1e","Black"]],
@@ -1203,10 +1249,10 @@ var STYLES={
     name:"Workwear for the job",
     lede:"For manual work: tough work trousers and shorts, jackets, gilets and jumpers to go over the T-shirts work provides, and extra wide safety boots with toe protection. Every work trouser and pair of shorts here is 100% cotton, which is kinder to sensitive skin than polycotton or stretch blends, and black or very dark grey. Every work boot is extra wide (EE) or wider (4E or 6E).",
     aim:"Tough, comfortable all day and kind to his skin",
-    tip:"Start with one pair of black 100% cotton work trousers, one pair of black work shorts and extra wide (4E or 6E) safety boots in UK 11. Those three do most of the job.",
+    tip:"Start with one pair of black 100% cotton work trousers, one pair of black cotton shorts (cargo or plain), a belt with clip-on holster pockets, and 4E or 6E safety boots in UK 11. Use the Workwear dropdown under Filter to see only 6E boots, cargo or plain shorts, belts and holsters, or 100% cotton pieces.",
     colours:[["#1b1c1e","Black"],["#2b2e31","Very dark grey"],["#3c4144","Charcoal"],["#5b3a26","Carhartt brown (jackets)"],["#1d2a44","Navy (jumpers)"],["#4f5a36","Olive (jumpers)"]],
     colourNotes:["Work trousers and shorts are black, or very dark grey at most.","Jackets, gilets and jumpers can be any dark colour: brown, navy and olive all sit well over black."],
-    keep:["Black or very dark grey trousers and shorts in 100% cotton: duck, canvas, twill or ripstop. Check the label: many work trousers are polycotton, have stretch fibres, or have Cordura knee panels.","Double fronts or knee-pad pockets for kneeling work.","A hammer loop and deep pockets.","Safety boots marked extra wide (EE) or wider (4E or 6E), with a toe cap (S1, S3 or S7 on the label).","A gilet or bodywarmer, which keeps him warm and leaves the arms free."],
+    keep:["Black or very dark grey trousers and shorts in 100% cotton: duck, canvas, twill or ripstop. Check the label: many work trousers are polycotton, have stretch fibres, or have Cordura knee panels.","Double fronts or knee-pad pockets for kneeling work.","A hammer loop and deep pockets.","Safety boots marked extra wide (EE) or wider (4E or 6E), with a toe cap (S1, S3 or S7 on the label).","A gilet or bodywarmer, which keeps him warm and leaves the arms free.","Clip-on holster pockets or a tool belt, which give plain cotton trousers and shorts work pockets without Cordura panels.","The fabric line on each card: 100% cotton is best for his skin, and a few near-100% picks (98% cotton, 2% elastane) are marked so he can decide."],
     skip:["Polycotton or stretch work trousers if they irritate his skin.","Trainers or ordinary boots on site: safety footwear needs a toe cap.","Standard or plain wide fit safety boots: they rub at the toe cap. Look for EE, 4E or 6E.","Brown, stone or khaki work trousers.","New boots straight onto a long shift. Wear them in at home first.","Washing new duck with fabric softener: it stays stiff, so wash it a few times plain."],
     money:["Spend on the boots: he stands in them all day.","Save on jumpers and sweatshirts, which get ruined anyway.","Two pairs of trousers and two pairs of shorts let one pair dry while he wears the other.","Ask whether work pays for safety boots or PPE before buying."],
     wear:{everyday:"Work T-shirt, a cotton sweatshirt or hoodie, black 100% cotton work trousers or shorts, a gilet or duck jacket, and extra wide safety boots.",smart:"",event:"",party:"",lounge:""}
@@ -1235,14 +1281,14 @@ var SALE={
   outdoor:{lede:"Waterproof shells, fleeces, walking trousers and trail shoes. Last season's colours are often 60 to 70% off at outlets, and work just as well.",focus:["coat","knit","trouser","shoe"],shops:"Best sales for this style: Regatta, Trespass, Montane, Alpkit, Summits and M and M Direct."},
   mod:{lede:"Tipped polos, Harringtons, knitted polos, loafers, desert boots, work trousers and skate shoes. The mod pieces are often reduced at the heritage brands, and the skate ones at the skate shops.",focus:["polo","coat","shoe","trouser","knit"],shops:"Best sales for this style: Original Penguin, Lyle & Scott, Farah, Base London, Slam City Skates and Jean Store."},
   summer:{lede:"Linen and resort shirts, polos, shorts, swim shorts, sliders and sunglasses. Summer stock is at its cheapest now, at the end of the season.",focus:["shirt","trouser","swim","shoe","polo"],shops:"Best sales for this style: Brakeburn, Savile Row Company, T.M. Lewin, Mountain Warehouse, Moss and M&S."},
-  job:{lede:"Black or very dark grey 100% cotton work trousers and shorts, work jackets and gilets, jumpers to go over the work T-shirts, and extra wide (EE, 4E or 6E) safety boots. Trade shops rarely discount, so the cheapest boots and cotton trousers are listed first.",focus:["trouser","shoe","coat","knit"],shops:"Shops for this style: Workwear Gurus (Carhartt, Blaklader, Grafters, Rockfall, Amblers), Wide Shoes (4E and 6E boots), Stan Ray, Cernucci, Colorful Standard, Community Clothing and Hikerdelic."},
+  job:{lede:"Black or very dark grey cotton work trousers and shorts, plain work jackets, gilets and hoodies, belts and holster pockets, and extra wide (EE, 4E or 6E) safety boots. Trade shops rarely discount, so the cheapest boots and cotton trousers are listed first.",focus:["trouser","shoe","coat","knit","acc"],shops:"Shops for this style: Workwear Gurus (Carhartt, Snickers, Helly Hansen, Fristads, Blaklader, Portwest), Trade Workwear (Portwest, Dickies), Wide Shoes and Wide Fit Shoes (4E and 6E boots), Scruffs, TuffStuff, Stan Ray and Luke 1977."},
   lounge:{lede:"Pyjamas, joggers, sweatshirts, slippers and dressing gowns. Very little here needs to cost more than £30.",focus:["lounge","knit","shoe"],shops:"Best sales for this style: M&S, Uniqlo, ASOS and Cyberjammies."}
 };
 var SMAX=[["0","Any price"],["20","Under £20"],["40","Under £40"],["75","Under £75"]];
 var SPAGE=12;
 var sale={cat:"all",max:"0",size:false,sort:"deal",n:SPAGE};
 var styleTags={};
-var state={view:"shop",dept:"all",shop:"all",compact:false,style:"quiet",sub:"all",set:"all",gift:"all",mix:"",fit:"all",fitmax:0,fitsort:"rec",occ:"all",wx:"all",cat:"all",src:"all",sale:false,size:false,fresh:false,max:0,sort:"rec",q:"",showNo:false};
+var state={view:"shop",dept:"all",shop:"all",compact:false,style:"quiet",sub:"all",set:"all",jx:"all",gift:"all",mix:"",fit:"all",fitmax:0,fitsort:"rec",occ:"all",wx:"all",cat:"all",src:"all",sale:false,size:false,fresh:false,max:0,sort:"rec",q:"",showNo:false};
 var lim={picks:PAGE,fits:FITPAGE};
 var items=[],fits=[],byId={},fitById={},meta={},profile={},phase="loading",fitsSeen=false;
 var db=null,canShare=true,saved={},votes={},myfits=[],local={saved:{},votes:{},myfits:{}};
@@ -1324,7 +1370,7 @@ function norm(id,d){
     offer:String(d.offer||""),note:String(d.note||""),url:url,checked:String(d.checked||""),added:String(d.added||""),rank:Number(d.rank)||9999,
     insize:d.insize===true?true:(d.insize===false?false:null),sizes:String(d.sizes||""),gift:d.gift===true,
     sets:Array.isArray(d.sets)?d.sets.filter(function(s){return typeof s==="string";}):[],img:okImg(d.img),
-    sizeNote:String(d.sizeNote||"").slice(0,140)};
+    sizeNote:String(d.sizeNote||"").slice(0,140),fabric:String(d.fabric||"").slice(0,60)};
   if(!it.name||!url)return null;
   if(it.kind==="preowned"?!(it.lo>0):!(it.price>0))return null;
   it.sub=subOf(it);it.dept=SUBDEPT[it.sub]||"acc";
@@ -1429,10 +1475,11 @@ function buildChips(id,list,key,cls,after){
   });
 }
 function syncChips(){
-  [["f-occ","occ"],["f-wx","wx"],["f-fit","fit"],["f-style","style"],["f-set","set"],["f-gift","gift"],["f-sub","sub"]].forEach(function(p){
+  [["f-occ","occ"],["f-wx","wx"],["f-fit","fit"],["f-style","style"],["f-gift","gift"]].forEach(function(p){
     Array.prototype.forEach.call($(p[0]).children,function(c){c.setAttribute("aria-pressed",String(c.getAttribute("data-v")===state[p[1]]));});
   });
   $("f-sale").checked=state.sale;$("f-size").checked=state.size;$("f-new").checked=state.fresh;$("f-no").checked=state.showNo;
+  $("f-set").value=state.set;$("f-jx").value=state.jx;
   $("f-src").value=state.src;$("f-max").value=String(state.max);$("f-compact").checked=state.compact;$("f-sort").value=state.sort;$("f-fitmax").value=String(state.fitmax);$("f-fitsort").value=state.fitsort;
   if($("q").value!==state.q){$("q").value=state.q;}
 }
@@ -1464,6 +1511,20 @@ function narrow(it,skipCat){
   if(state.size&&!sizeOk(it))return false;
   if(state.max>0&&cost(it)>state.max)return false;
   if(state.shop!=="all"&&it.shop!==state.shop)return false;
+  if(state.style==="job"&&state.jx!=="all"&&!jobOk(it))return false;
+  return true;
+}
+/* Workwear dropdown: boot widths, cargo or plain shorts, belts and holsters, and the cotton check. */
+function famKey(it){return it.shop+"|"+it.name.split(",")[0].toLowerCase();}
+function jobOk(it){
+  var n=it.name+" "+(it.sizes||""),j=state.jx;
+  if(j==="6e")return it.cat==="shoe"&&/6E/.test(n);
+  if(j==="wide")return it.cat==="shoe"&&/4E|6E/.test(n);
+  if(j==="cargo")return it.cat==="trouser"&&(it.sub==="cargos"||(it.sub==="shorts"&&/cargo|pocket|workshop/i.test(it.name)));
+  if(j==="cargoshort")return it.sub==="shorts"&&/cargo|pocket|workshop/i.test(it.name);
+  if(j==="plainshort")return it.sub==="shorts"&&!/cargo|pocket|workshop/i.test(it.name);
+  if(j==="belts")return it.cat==="acc"&&/belt|holster|pouch|apron/i.test(it.name);
+  if(j==="cotton")return /^100% (organic )?cotton/.test(it.fabric||"");
   return true;
 }
 function sizeFor(it){var m=profile&&profile.bycat;return m&&typeof m==="object"&&typeof m[it.cat]==="string"?m[it.cat]:"";}
@@ -1492,7 +1553,7 @@ function card(it){
     (it.note?'<p class="note">'+esc(it.note)+'</p>':"")+
     '<div class="price">'+price+'</div>'+
     (it.offer?'<p class="offer">'+esc(it.offer)+'</p>':"")+
-    '<p class="meta">'+(sz?sz+'<br>':"")+(it.sizeNote?'<span class="fitnote">Fit tip: '+esc(it.sizeNote)+'</span><br>':"")+esc(where)+(wide?'<br>'+esc(it.style.map(function(s){return label(STYLE,s);}).join(", ")):"")+(chk?'<br>'+(old?'<span class="stale">Price seen '+esc(chk)+', over a month ago. Check before buying.</span>':'Checked '+esc(chk)):"")+'</p>'+
+    '<p class="meta">'+(sz?sz+'<br>':"")+(it.fabric?'<span class="fitnote">Fabric: '+esc(it.fabric)+'</span><br>':"")+(it.sizeNote?'<span class="fitnote">Fit tip: '+esc(it.sizeNote)+'</span><br>':"")+esc(where)+(wide?'<br>'+esc(it.style.map(function(s){return label(STYLE,s);}).join(", ")):"")+(chk?'<br>'+(old?'<span class="stale">Price seen '+esc(chk)+', over a month ago. Check before buying.</span>':'Checked '+esc(chk)):"")+'</p>'+
     '<a class="buy" href="'+esc(it.url)+'" target="_blank" rel="noopener">'+(pre?"Search ":"View at ")+esc(it.shop)+' <span aria-hidden="true">↗</span></a>'+
     (heroCount[it.id]?'<button class="linkbtn mixlink" type="button" data-mix="'+esc(it.id)+'">See it in '+heroCount[it.id]+' outfits</button>':"")+
     '<div class="acts">'+saveBtn("i_"+it.id)+voteBtns(it.id)+'</div>'+
@@ -1774,8 +1835,10 @@ function paintStyle(){
   $("style-name").textContent=S.name;$("style-lede").textContent=S.lede;
   $("style-tip").innerHTML="<b>Where to start</b>"+esc(S.tip);
   $("rules-sum").textContent=S.aim;
-  $("g-sub").hidden=!subs;
-  if(!subs){$("f-sub").innerHTML="";}else{$("l-sub").textContent="Within "+label(STYLE,k);$("f-sub").innerHTML=subs.map(function(o){return '<button type="button" class="chip" data-v="'+o[0]+'" aria-pressed="'+(state.sub===o[0])+'">'+esc(o[1])+'</button>';}).join("");}
+  var lopts=subs?subs.map(function(o){return '<option value="'+o[0]+'">'+esc(o[0]==="all"?"All of "+label(STYLE,k):o[1])+'</option>';}).join(""):"";
+  Array.prototype.forEach.call(document.querySelectorAll("[data-look]"),function(l){l.hidden=!subs;});
+  Array.prototype.forEach.call(document.querySelectorAll(".lookSel"),function(sel){if(sel.innerHTML!==lopts)sel.innerHTML=lopts;if(subs)sel.value=state.sub;});
+  $("l-jx").hidden=k!=="job";
   $("rules-body").innerHTML='<div class="rules">'+
     '<div class="rule"><h3>Colours</h3><div class="swatches">'+S.colours.map(function(c){return '<span class="sw"><i style="background:'+c[0]+'"></i>'+esc(c[1])+'</span>';}).join("")+'</div><ul>'+S.colourNotes.map(function(t){return "<li>"+esc(t)+"</li>";}).join("")+'</ul></div>'+
     ruleBlock("What makes it work",S.keep)+ruleBlock("What to avoid",S.skip)+ruleBlock("Where the money goes",S.money)+'</div>'+
@@ -1919,6 +1982,8 @@ function renderPicks(){
   $("filt-sum").textContent=fc?fc+(fc===1?" filter on":" filters on"):"occasion, weather, size, price, shop";
   var list=mine.filter(function(it){return narrow(it);});
   list=list.filter(function(it){if(voteOf(it.id)===-1){no++;return state.showNo;}return true;});
+  /* Keep lists from filling up with one product in many colours: at most two colours of the same thing per list (search still shows all). */
+  if(!state.q&&state.shop==="all"){var fam={},keep={};list.slice().sort(function(a,b){return (a.insize===false)-(b.insize===false)||pct(b)-pct(a)||cost(a)-cost(b);}).forEach(function(it){var k=famKey(it);fam[k]=(fam[k]||0)+1;if(fam[k]<=2)keep[it.id]=1;});list=list.filter(function(it){return keep[it.id];});}
   $("l-no").hidden=!no&&!state.showNo;$("no-text").textContent="Show the "+no+" he said no to";
   $("g-gift").hidden=state.set!=="gifts"||!!state.q;
   $("size-note").hidden=!state.size;
@@ -2071,9 +2136,13 @@ function refilter(){lim.picks=PAGE;lim.fits=FITPAGE;sale.n=SPAGE;renderHead();re
   function barh(){document.documentElement.style.setProperty("--barh",bar.offsetHeight+"px");}
   barh();if(window.ResizeObserver){new ResizeObserver(barh).observe(bar);}else{window.addEventListener("resize",barh);}
 })();
-buildChips("f-style",STYLE,"style","tab",function(){derived={};state.fit="all";state.sub="all";state.cat="all";state.dept="all";state.q="";state.set="all";state.gift="all";sale.cat="all";sale.n=SPAGE;syncChips();paintStyle();lim.picks=PAGE;lim.fits=FITPAGE;build={};$("b-msg").textContent="";renderAll();});
-buildChips("f-sub",[],"sub","chip",function(){paintStyle();refilter();});
-buildChips("f-set",SETS,"set","chip",function(){state.q="";state.gift="all";syncChips();refilter();});
+buildChips("f-style",STYLE,"style","tab",function(){derived={};state.fit="all";state.sub="all";state.jx="all";state.cat="all";state.dept="all";state.q="";state.set="all";state.gift="all";sale.cat="all";sale.n=SPAGE;syncChips();paintStyle();lim.picks=PAGE;lim.fits=FITPAGE;build={};$("b-msg").textContent="";renderAll();});
+document.addEventListener("change",function(e){
+  var t=e.target;
+  if(t.classList&&t.classList.contains("lookSel")){state.sub=t.value;paintStyle();refilter();}
+  else if(t.id==="f-set"){state.set=t.value;state.q="";state.gift="all";syncChips();refilter();}
+  else if(t.id==="f-jx"){state.jx=t.value;refilter();}
+});
 buildChips("f-gift",GIFT,"gift","chip",refilter);
 buildChips("f-fit",OCC,"fit","chip",function(){lim.fits=FITPAGE;renderFits();syncMarks();});
 buildChips("f-occ",OCC,"occ","chip",function(){lim.picks=PAGE;renderPicks();syncMarks();});
@@ -2141,19 +2210,20 @@ renderAll();
   try{if(window.claude&&typeof window.claude.use==="function"){db=await window.claude.use("db");}}catch(e){db=null;}
   if(!db){phase="absent";renderAll();return;}
   try{
-    /* A query returns at most 1000 documents, so the picks load as two halves split by type. */
-    var CLOTHES=["knit","shirt","polo","trouser","coat"],half={a:null,b:null};
+    /* A query returns at most 1000 documents, so the picks load in five groups split by type (each group stays well under the limit). */
+    var GROUPS=[["knit"],["polo"],["trouser"],["shirt","coat"]],ALLG=[].concat.apply([],GROUPS),half={};
     function part(k){return function(snap){
       var got=snap.docs.map(function(doc){return norm(doc.id,doc.data());}).filter(Boolean);
       if(!got.length&&snap.metadata&&snap.metadata.fromCache&&phase==="loading"){return;}
       half[k]=got;
-      if(!half.a||!half.b){return;}
-      items=half.a.concat(half.b);byId={};derived={};items.forEach(function(it){byId[it.id]=it;});applyTags();
+      for(var g=0;g<=GROUPS.length;g++){if(!half[g])return;}
+      items=[];for(g=0;g<=GROUPS.length;g++){items=items.concat(half[g]);}
+      byId={};derived={};items.forEach(function(it){byId[it.id]=it;});applyTags();
       phase=items.length?"ready":"empty";schedule();
     };}
     function bad(){if(phase!=="ready"){phase="error";schedule();}}
-    db.collection("items").where("cat","in",CLOTHES).limit(1000).onSnapshot(part("a"),bad);
-    db.collection("items").where("cat","not-in",CLOTHES).limit(1000).onSnapshot(part("b"),bad);
+    GROUPS.forEach(function(g,i){db.collection("items").where("cat","in",g).limit(1000).onSnapshot(part(i),bad);});
+    db.collection("items").where("cat","not-in",ALLG).limit(1000).onSnapshot(part(GROUPS.length),bad);
     db.collection("outfits").limit(400).onSnapshot(function(snap){
       var got=snap.docs.map(function(doc){return normFit(doc.id,doc.data());}).filter(Boolean);
       if(!got.length&&snap.metadata&&snap.metadata.fromCache&&!fitsSeen){return;}

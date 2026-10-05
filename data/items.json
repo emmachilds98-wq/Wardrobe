@@ -13566,8 +13566,7 @@
   "sizes": "L in stock",
   "style": [
    "quiet",
-   "casual",
-   "job"
+   "casual"
   ],
   "url": "https://www.matalan.co.uk/p/clothing/khaki-smart-ribbed-crew-neck-jumper/17835325/",
   "wx": [
@@ -14623,8 +14622,7 @@
   "sizes": "L in stock",
   "style": [
    "casual",
-   "quiet",
-   "job"
+   "quiet"
   ],
   "url": "https://www.brakeburn.com/products/newchurch-canvas-shacket?variant=42976246693949",
   "was": 69.99,
@@ -15991,8 +15989,7 @@
   "sizes": "L in stock",
   "style": [
    "casual",
-   "outdoor",
-   "job"
+   "outdoor"
   ],
   "url": "https://www.peacocks.co.uk/4202211-khaki-plain.html",
   "was": 28.0,
@@ -17851,6 +17848,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "98% cotton, 2% elastane",
   "insize": true,
   "kind": "new",
   "name": "Duck and Cover Moreshore chino shorts, black",
@@ -17868,7 +17866,8 @@
   "style": [
    "summer",
    "street",
-   "minimal"
+   "minimal",
+   "job"
   ],
   "url": "https://www.duckandcover.co.uk/products/moreshore-chino-shorts-black?variant=44039092535546",
   "was": 49.0,
@@ -20276,6 +20275,1074 @@
    "mild",
    "cold",
    "wet"
+  ]
+ },
+ "r8-bg-beanie": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Berghaus logo beanie, blue",
+  "note": "Beanie. £10, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 10.0,
+  "rank": 120,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Berghaus",
+  "style": [
+   "outdoor"
+  ],
+  "url": "https://www.berghaus.com/products/unisex-logo-recognition-beanie-blue-4x000092kv3",
+  "was": 20.0,
+  "wx": [
+   "cold"
+  ]
+ },
+ "r8-bl-drum": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Drum suede loafers, sand",
+  "note": "Sand suede loafers. £32.50, 50% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 32.5,
+  "rank": 160,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "summer",
+   "mod"
+  ],
+  "url": "https://www.baselondon.com/products/drum-suede-sand-loafers-shoes?variant=54949101240663",
+  "was": 64.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r8-cj-striker": {
+  "added": "2026-10-05",
+  "cat": "lounge",
+  "checked": "2026-10-05",
+  "gift": true,
+  "insize": true,
+  "kind": "new",
+  "name": "Cyberjammies Striker pyjama shorts",
+  "note": "Football-print pyjama shorts. £10, 50% off.",
+  "occ": [
+   "lounge"
+  ],
+  "price": 10.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Cyberjammies",
+  "sizes": "L in stock",
+  "style": [
+   "lounge"
+  ],
+  "url": "https://www.cyberjammies.co.uk/products/striker-mens-football-print-shorts?variant=56527131017596",
+  "was": 20.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r8-cl-alpine": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London Alpine jacket, black",
+  "note": "Technical jacket. £21.99, 76% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 21.99,
+  "rank": 160,
+  "sets": [],
+  "shop": "Closure London",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "outdoor"
+  ],
+  "url": "https://www.closurelondon.com/products/alpine-jacket-black?variant=55459783475578",
+  "was": 90.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r8-cl-borg": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London borg zip-through jacket, black",
+  "note": "Borg jacket. £21.99, 73% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 21.99,
+  "rank": 160,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Closure London",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "outdoor"
+  ],
+  "url": "https://www.closurelondon.com/products/borg-tech-zip-through-jacket-black?variant=55204601692538",
+  "was": 80.0,
+  "wx": [
+   "cold"
+  ]
+ },
+ "r8-cl-cargo": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London smart utility cargo trousers, grey",
+  "note": "Smart cargo trousers. £14.99, 77% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 14.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Closure London",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "rave"
+  ],
+  "url": "https://www.closurelondon.com/products/smart-utility-cargo-pant-charcoal-copy?variant=56526302052730",
+  "was": 65.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r8-cl-crinkle": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London crinkle shirt, black",
+  "note": "Black crinkle shirt. £13.99, 75% off.",
+  "occ": [
+   "party"
+  ],
+  "price": 13.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Closure London",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "summer"
+  ],
+  "url": "https://www.closurelondon.com/products/crinkle-shirt-black?variant=41091077963838",
+  "was": 55.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r8-cl-heatseal": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London tech knit hoodie, black",
+  "note": "Black tech hoodie. £14.99, 75% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 14.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Closure London",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "street"
+  ],
+  "url": "https://www.closurelondon.com/products/heat-seal-tech-knit-hoodie-black?variant=55204635771258",
+  "was": 60.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r8-cl-pleated": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London pleated shorts, stone",
+  "note": "Pleated tailored shorts. £13.99, 72% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 13.99,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Closure London",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "quiet"
+  ],
+  "url": "https://www.closurelondon.com/products/pleated-short-stone?variant=54989256458618",
+  "was": 50.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r8-cl-puffer": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London diamond quilted puffer jacket, black",
+  "note": "Quilted puffer. £24.99, 72% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 24.99,
+  "rank": 160,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Closure London",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "url": "https://www.closurelondon.com/products/diamond-quilted-pocket-puffer-jacket-black?variant=55204618535290",
+  "was": 90.0,
+  "wx": [
+   "cold"
+  ]
+ },
+ "r8-cl-runner": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London Smart Runner trainers, black",
+  "note": "Black runners. £26.99, 75% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 26.99,
+  "rank": 160,
+  "sets": [],
+  "shop": "Closure London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "street",
+   "minimal"
+  ],
+  "url": "https://www.closurelondon.com/products/smart-runner-black-white?variant=41090715942974",
+  "was": 110.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r8-cl-tech-runner": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London Premium Tech Runner trainers, black",
+  "note": "All-black tech runners. £29.99, 73% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 29.99,
+  "rank": 160,
+  "sets": [],
+  "shop": "Closure London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "rave",
+   "street"
+  ],
+  "url": "https://www.closurelondon.com/products/premium-tech-runner-black-black-4844?variant=41343625396286",
+  "was": 110.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r8-cl-waffle": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London waffle zip hoodie, charcoal",
+  "note": "Waffle-knit zip hoodie. £17.99, 73% off.",
+  "occ": [
+   "everyday",
+   "lounge"
+  ],
+  "price": 17.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Closure London",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "lounge"
+  ],
+  "url": "https://www.closurelondon.com/products/waffle-knit-fz-hoodie-charcoal?variant=55519684362618",
+  "was": 66.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r8-cl-wooljkt": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London faux wool button-up jacket, brown",
+  "note": "Wool-look button-up jacket. £19.99, 78% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.99,
+  "rank": 120,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Closure London",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.closurelondon.com/products/wool-button-up-overshirt-brown?variant=55583793086842",
+  "was": 90.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r8-cl-zipwool": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Closure London smart zip wool-look jacket, black",
+  "note": "Clean black zip jacket. £18.99, 73% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 18.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Closure London",
+  "sizes": "L in stock",
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "url": "https://www.closurelondon.com/products/smart-zip-through-wool-jacket-black?variant=55204680925562",
+  "was": 70.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r8-el-sylbio": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Ellesse Sylbio swim shorts, white and light blue",
+  "note": "Swim shorts. £17.50, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 17.5,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Ellesse",
+  "sizes": "34W in stock",
+  "style": [
+   "summer",
+   "mod"
+  ],
+  "url": "https://www.ellesse.com/products/mens-sylbio-swim-short-white-light-blue-633657?variant=44577725349981",
+  "was": 35.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r8-hs-paris-black": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Herring Paris rubber-soled shoes, black calf and suede",
+  "note": "Black leather and suede shoes. £49, 66% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 49.0,
+  "rank": 220,
+  "sets": [],
+  "shop": "Herring Shoes",
+  "sizes": "EU 45 (UK 11) in stock",
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "url": "https://herringshoes.co.uk/products/herring-paris-mens-rubber-soled-in-black-calf-and-suede?variant=53409841905993",
+  "was": 145.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r8-js-beanie": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Service Works waffle beanie, black",
+  "note": "Black waffle beanie. £17.50, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 17.5,
+  "rank": 120,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Jean Store",
+  "style": [
+   "street",
+   "minimal"
+  ],
+  "url": "https://jeanstore.co.uk/products/service-works-waffle-patch-beanie-black",
+  "was": 35.0,
+  "wx": [
+   "cold"
+  ]
+ },
+ "r8-lb-cap": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Lambretta Originals cap",
+  "note": "Cap. £10, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 10.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Lambretta",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/originals-cap",
+  "was": 20.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r8-lk-crantock": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Luke 1977 Crantock tapered chinos, navy",
+  "note": "Tapered navy chinos. £22, 71% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 22.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Luke 1977",
+  "sizes": "34W in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.luke1977.com/products/crantock-tapered-trouser-navy?variant=55562332438907",
+  "was": 75.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r8-lk-ellison": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Luke 1977 Ellison waffle T-shirt, black",
+  "note": "Waffle-knit tee. £13, 71% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 13.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Luke 1977",
+  "sizes": "L in stock",
+  "style": [
+   "minimal",
+   "casual"
+  ],
+  "url": "https://www.luke1977.com/products/ellison-black?variant=55562346463611",
+  "was": 45.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r8-lk-fort": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Luke 1977 Fort check zip-neck polo shirt, beige",
+  "note": "Check zip-neck polo. £18, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 18.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Luke 1977",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "summer"
+  ],
+  "url": "https://www.luke1977.com/products/fort-biscuit-caramel?variant=54900519666043",
+  "was": 60.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r8-lk-helston": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Luke 1977 Helston ribbed shorts, black",
+  "note": "Textured black shorts. £15, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Luke 1977",
+  "sizes": "34W in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.luke1977.com/products/helston-black?variant=54947836592507",
+  "was": 50.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r8-lk-jenson": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Luke 1977 Jenson rib-neck knitted jumper, blue",
+  "note": "Rib-neck jumper. £18, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 18.0,
+  "rank": 120,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Luke 1977",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "mod"
+  ],
+  "url": "https://www.luke1977.com/products/jenson-elemental-blue?variant=45294240858365",
+  "was": 60.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r8-lk-joggers": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Luke 1977 Astonishing joggers, dark navy",
+  "note": "Joggers. £15, 70% off.",
+  "occ": [
+   "lounge",
+   "everyday"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Luke 1977",
+  "sizes": "34W in stock",
+  "style": [
+   "lounge",
+   "casual"
+  ],
+  "url": "https://www.luke1977.com/products/astonishing-joggers-dark-navy?variant=54900563739003",
+  "was": 50.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r8-lk-molfre": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "100% cotton",
+  "insize": true,
+  "kind": "new",
+  "name": "Luke 1977 Molfre carpenter cargo shorts, black",
+  "note": "Black canvas carpenter shorts with cargo pockets and a hammer loop. £19, 71% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Luke 1977",
+  "sizes": "34W in stock",
+  "style": [
+   "job",
+   "street",
+   "summer"
+  ],
+  "url": "https://www.luke1977.com/products/molfre-black?variant=55562342662523",
+  "was": 65.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r8-lk-morden": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Luke 1977 Morden knitted jumper, mid grey",
+  "note": "Plain knitted jumper. £22, 71% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 22.0,
+  "rank": 160,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Luke 1977",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.luke1977.com/products/morden-knitted-jumper-mid-grey?variant=56335508341115",
+  "was": 75.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r8-lk-peking": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Luke 1977 Peking short-sleeve shirt, black",
+  "note": "Contrast-panel shirt. £22, 71% off.",
+  "occ": [
+   "party"
+  ],
+  "price": 22.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Luke 1977",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "rave"
+  ],
+  "url": "https://www.luke1977.com/products/peking-shirt-black?variant=54947839050107",
+  "was": 75.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r8-lk-perranporth": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Luke 1977 Perranporth pima cotton shirt, ecru",
+  "note": "Pima cotton shirt. £18, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 18.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Luke 1977",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "quiet"
+  ],
+  "url": "https://www.luke1977.com/products/perranporth-dark-ecru?variant=54947832529275",
+  "was": 60.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r8-ro-belt": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Route One camo web belt, brown",
+  "note": "Web belt for under £6. £5.95, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 5.95,
+  "rank": 120,
+  "sets": [],
+  "shop": "Route One",
+  "style": [
+   "street",
+   "outdoor"
+  ],
+  "url": "https://www.routeone.co.uk/products/route-one-tree-camo-web-belt-brown-001182726",
+  "was": 14.95,
+  "wx": [
+   "warm",
+   "mild",
+   "cold"
+  ]
+ },
+ "r8-sp-hyperboom": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Speedo Hyperboom swim shorts, blue",
+  "note": "Swim shorts. £17, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 17.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Speedo",
+  "sizes": "34W in stock",
+  "style": [
+   "summer"
+  ],
+  "url": "https://www.speedo.com/products/mens-hyperboom-band-swim-shorts-blue-800334715334?variant=53086089740655",
+  "was": 34.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r8-tg-cap": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Tog24 Johan cap, pebble",
+  "note": "Cap. £8, 73% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 8.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tog24",
+  "style": [
+   "outdoor",
+   "summer"
+  ],
+  "url": "https://www.tog24.com/products/johan-baseball-cap-pebble",
+  "was": 30.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r8-wo-bucket": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Weekend Offender Kaos bucket hat, black and white print",
+  "note": "Bucket hat. £16, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 16.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Weekend Offender",
+  "style": [
+   "street",
+   "summer"
+  ],
+  "url": "https://www.weekendoffender.com/products/kaos-bucket-hat-ghost-navy",
+  "was": 40.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r8-wo-caneiros": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Weekend Offender Caneiros polo shirt, white",
+  "note": "Terrace-style white polo. £18, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 18.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Weekend Offender",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.weekendoffender.com/products/caneiros-polo-shirt-aw24-white?variant=41092981293099",
+  "was": 45.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r8-wo-levanto": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Weekend Offender Levanto polo shirt, white",
+  "note": "Two-tone polo. £20, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 20.0,
+  "rank": 160,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Weekend Offender",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "mod"
+  ],
+  "url": "https://www.weekendoffender.com/products/levanto-polo-shirt-white-amazonite-green?variant=56017039851899",
+  "was": 50.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r8-wo-ouzou": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Weekend Offender Ouzou short-sleeve shirt, black and grey print",
+  "note": "Black short-sleeve shirt. £30, 60% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 30.0,
+  "rank": 160,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Weekend Offender",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "rave"
+  ],
+  "url": "https://www.weekendoffender.com/products/ouzou-terrain-short-sleeve-shirt-black?variant=56017034772859",
+  "was": 75.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r8-wo-sheehan": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Weekend Offender Sheehan tricot track pants, black",
+  "note": "Tricot track pants. £28, 60% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 28.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Weekend Offender",
+  "sizes": "34W in stock",
+  "style": [
+   "street",
+   "rave",
+   "lounge"
+  ],
+  "url": "https://www.weekendoffender.com/products/sheehan-tricot-track-pants?variant=55651154854267",
+  "was": 70.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r8-wo-tote": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Weekend Offender Perryman tote bag, black",
+  "note": "Black canvas tote. £10.50, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 10.5,
+  "rank": 120,
+  "sets": [],
+  "shop": "Weekend Offender",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "url": "https://www.weekendoffender.com/products/perryman-tote-bag-black",
+  "was": 35.0,
+  "wx": [
+   "warm",
+   "mild",
+   "cold"
+  ]
+ },
+ "r8-wo-zidane": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Weekend Offender Zidane graphic T-shirt, black",
+  "note": "Football graphic tee. £12, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 12.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Weekend Offender",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "url": "https://www.weekendoffender.com/products/zidane-graphic-t-shirt-black?variant=56146686640507",
+  "was": 40.0,
+  "wx": [
+   "warm",
+   "mild"
   ]
  },
  "rg-arec": {
@@ -29996,6 +31063,1283 @@
    "wet"
   ]
  },
+ "w8-ch-7pocket": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Carhartt 7-pocket tool belt, brown",
+  "note": "A full tool belt with seven pockets and a hammer loop. £55.16.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 55.16,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/carhartt-7-pocket-tool-belt-b0000527",
+  "wx": [
+   "mild",
+   "cold",
+   "warm"
+  ]
+ },
+ "w8-ch-apron": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt firm duck half-apron tool belt, black",
+  "note": "Cotton duck apron with deep pockets: handy over shorts. £36.89.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 36.89,
+  "rank": 160,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "XL (fits 34 to 38in) in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/carhartt-a09-firm-duck-half-apron-tool-belt-106668?variant=55096195678589",
+  "wx": [
+   "mild",
+   "cold",
+   "warm"
+  ]
+ },
+ "w8-ch-detroit-black": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt Detroit blanket-lined duck jacket, black",
+  "note": "The classic Carhartt work jacket in black duck. £117.68.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 117.68,
+  "rank": 220,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job",
+   "street",
+   "quiet"
+  ],
+  "url": "https://www.workweargurus.com/products/carhartt-duck-detroit-blanket-lined-jacket-103828?variant=55093035368829",
+  "wx": [
+   "cold"
+  ]
+ },
+ "w8-ch-duck-belt": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt canvas duck belt, black",
+  "note": "100% cotton duck belt, strong enough for a holster pocket. £32.85.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 32.85,
+  "rank": 160,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "34in in stock",
+  "style": [
+   "job",
+   "street"
+  ],
+  "url": "https://www.workweargurus.com/products/carhartt-canvas-duck-belt-a0005782?variant=55096228872573",
+  "wx": [
+   "mild",
+   "cold",
+   "warm"
+  ]
+ },
+ "w8-ch-galesburg": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt Galesburg softshell jacket, black",
+  "note": "Plain water-repellent softshell. £81.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 81.0,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/carhartt-galesburg-softshell-jacket-106438?variant=56811512430973",
+  "wx": [
+   "mild",
+   "cold",
+   "wet"
+  ]
+ },
+ "w8-ch-gilliam-vest": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt Gilliam insulated gilet, black",
+  "note": "Light padded gilet for arms-free work. £64.89.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 64.89,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/carhartt-gilliam-lightweight-insulated-gilet-vest-102286?variant=55088950149501",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-ch-k121": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "fabric": "50% cotton, 50% polyester",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt K121 midweight hoodie, black",
+  "note": "Carhartt's standard work hoodie. £47.89. Fabric: 50% cotton, 50% polyester.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 47.89,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job",
+   "street"
+  ],
+  "url": "https://www.workweargurus.com/products/carhartt-loose-midweight-hoodie-k121?variant=55096264622461",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-ch-superdux": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt Super Dux sherpa-lined active jacket, black",
+  "note": "Hooded, sherpa-lined work jacket. £73.29.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 73.29,
+  "rank": 220,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/carhartt-super-dux-regular-sherpa-lined-active-jacket-105001?variant=55093059813757",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-cofra-funk": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Cofra FUNK 4E S3 safety boots, black",
+  "note": "4E extra wide S3 safety boot with a toe cap and metal-free midsole. £159.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 159.99,
+  "rank": 220,
+  "sets": [],
+  "shop": "Wide Fit Shoes",
+  "sizes": "UK 11 (4E) in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.widefitshoes.co.uk/products/mens-wide-fit-cofra-funk-safety-boots?variant=41642786160685",
+  "wx": [
+   "mild",
+   "cold",
+   "wet"
+  ]
+ },
+ "w8-cofra-rap": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Cofra RAP 4E S3 safety shoes, black",
+  "note": "4E extra wide S3 safety shoe with a toe cap. £149.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 149.99,
+  "rank": 220,
+  "sets": [],
+  "shop": "Wide Fit Shoes",
+  "sizes": "UK 11 (4E) in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.widefitshoes.co.uk/products/mens-wide-fit-cofra-rap-safety-shoes?variant=41642943938605",
+  "wx": [
+   "mild",
+   "cold",
+   "wet"
+  ]
+ },
+ "w8-dk-rockfield": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "fabric": "80% cotton, 20% polyester",
+  "insize": true,
+  "kind": "new",
+  "name": "Dickies Rockfield hoodie, black",
+  "note": "Dickies work hoodie. £49. Fabric: 80% cotton, 20% polyester.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 49.0,
+  "rank": 220,
+  "sets": [],
+  "shop": "Trade Workwear",
+  "sizes": "L in stock",
+  "style": [
+   "job",
+   "street"
+  ],
+  "url": "https://www.tradeworkwear.co.uk/products/1946473?variant=48676567286063",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-dw-force": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "DeWalt Force padded gilet, black",
+  "note": "Light padded work gilet. £30.40.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 30.4,
+  "rank": 160,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/dewalt-force-soft-padded-lightweight-gilet?variant=43217866162338",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-fr-kansas": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "100% cotton",
+  "insize": true,
+  "kind": "new",
+  "name": "Fristads Kansas Icon One cotton work trousers, black",
+  "note": "Classic Scandinavian cotton work trousers with knee-pad pockets. £60.38. Fabric: 100% cotton.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 60.38,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "W34 regular (C48) in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/fristads-kansas-icon-one-cotton-trousers-114119?variant=55867674886525",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-fr-snikki": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Fristads Snikki leather tool belt with pouches, brown",
+  "note": "Leather tool belt with pouches. £41.08.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 41.08,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/fristads-snikki-tool-belt-9333-lthr-100898",
+  "wx": [
+   "mild",
+   "cold",
+   "warm"
+  ]
+ },
+ "w8-hh-ergo": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Helly Hansen Connect Ergo padded tool belt, black",
+  "note": "Padded belt that takes Helly Hansen's clip-on pockets. £65.89.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 65.89,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "M/L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/helly-hansen-connect-ergo-tool-belt-79461?variant=55784095515005",
+  "wx": [
+   "mild",
+   "cold",
+   "warm"
+  ]
+ },
+ "w8-hh-manchester": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Helly Hansen Manchester fleece gilet, black",
+  "note": "Plain fleece gilet. £41.89.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 41.89,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job",
+   "outdoor"
+  ],
+  "url": "https://www.workweargurus.com/products/helly-hansen-manchester-2-0-fleece-gilet-vest?variant=42599082557602",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-lb-cargo-black": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "98% cotton, 2% elastane",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta cargo shorts, black",
+  "note": "Cheap black cargo shorts. £20, 50% off. Fabric: 98% cotton, 2% elastane.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 20.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Lambretta",
+  "sizes": "34W in stock",
+  "style": [
+   "job",
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/cargo-short-5?variant=57226269622620",
+  "was": 40.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "w8-pw-cd111": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "100% cotton",
+  "insize": true,
+  "kind": "new",
+  "name": "Portwest WX1 cotton cargo work trousers, black and grey",
+  "note": "Cotton cargo work trousers with knee-pad pockets. £13.96. Fabric: 100% cotton.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 13.96,
+  "rank": 120,
+  "sets": [],
+  "shop": "Trade Workwear",
+  "sizes": "34W in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.tradeworkwear.co.uk/products/portwest-wx1-two-tone-cotton-work-trousers-cd111?variant=56185964593535",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-pw-cd114": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "100% cotton",
+  "insize": true,
+  "kind": "new",
+  "name": "Portwest WX1 cotton cargo work shorts, black and grey",
+  "note": "Proper work shorts with cargo pockets and reflective piping. £11.51. Fabric: 100% cotton.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 11.51,
+  "rank": 120,
+  "sets": [],
+  "shop": "Trade Workwear",
+  "sizes": "34W in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.tradeworkwear.co.uk/products/portwest-wx1-two-tone-cotton-shorts-cd114?variant=56185966035327",
+  "wx": [
+   "warm"
+  ]
+ },
+ "w8-pw-cd131": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "100% cotton",
+  "insize": true,
+  "kind": "new",
+  "name": "Portwest WX1 lightweight cotton work trousers, black and grey",
+  "note": "Lightweight cotton work trousers with cargo pockets, £13. £13. Fabric: 100% cotton.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 13.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Trade Workwear",
+  "sizes": "34W in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.tradeworkwear.co.uk/products/portwest-wx1-lightweight-cotton-work-trousers-cd131?variant=56185970295167",
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "w8-pw-ec300": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "fabric": "100% organic cotton",
+  "insize": true,
+  "kind": "new",
+  "name": "Portwest organic cotton sweatshirt, black",
+  "note": "Plain 100% organic cotton sweatshirt: kind to sensitive skin. £15.65. Fabric: 100% organic cotton.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15.65,
+  "rank": 120,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/portwest-ec300-organic-cotton-recyclable-sweatshirt?variant=44674269184162",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-pw-es300": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Portwest Essential sweatshirt, black",
+  "note": "The cheapest plain work sweatshirt here. £6.67.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 6.67,
+  "rank": 120,
+  "sets": [],
+  "shop": "Trade Workwear",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.tradeworkwear.co.uk/products/portwest-es1-essential-sweatshirt-es300?variant=58115109060991",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-pw-esk50": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Portwest Essential softshell jacket, black",
+  "note": "Plain black softshell for under £15. £14.92.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 14.92,
+  "rank": 120,
+  "sets": [],
+  "shop": "Trade Workwear",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.tradeworkwear.co.uk/products/portwest-es1-essential-softshell-3l-esk50?variant=58115108340095",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-pw-s232": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "98% cotton, 2% elastane",
+  "insize": true,
+  "kind": "new",
+  "name": "Portwest slim chino work trousers, black",
+  "note": "Plain black work chinos with no cargo pockets. £14.89. Fabric: 98% cotton, 2% elastane.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 14.89,
+  "rank": 120,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "34W regular in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/portwest-s232-stretch-slim-chino-trousers?variant=41334461628578",
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "w8-pw-s415": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Portwest classic bodywarmer, black",
+  "note": "Padded bodywarmer, cleared at £11.73. £11.73, 35% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 11.73,
+  "rank": 120,
+  "sets": [],
+  "shop": "Trade Workwear",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.tradeworkwear.co.uk/products/warehouse-clearance-portwest-classic-bodywarmer-s415-s415bkrl",
+  "was": 17.99,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-pw-t801": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "98% cotton, 2% elastane",
+  "insize": true,
+  "kind": "new",
+  "name": "Portwest KX3 cargo work trousers, black",
+  "note": "Cheap cargo work trousers. £23.42. Fabric: 98% cotton, 2% elastane.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 23.42,
+  "rank": 160,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "34W regular in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/portwest-t801-kx3-cargo-trousers?variant=41334507733154",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-rg-stormbreak": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Regatta Professional Stormbreak waterproof jacket, black",
+  "note": "Cheap packable waterproof for wet days on site. £11.63.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 11.63,
+  "rank": 120,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job",
+   "outdoor"
+  ],
+  "url": "https://www.workweargurus.com/products/regatta-mens-stormbreak-waterproof-jacket?variant=42324425736354",
+  "wx": [
+   "wet",
+   "mild"
+  ]
+ },
+ "w8-ro-ichpig": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "100% cotton",
+  "insize": true,
+  "kind": "new",
+  "name": "ICHPIG Workshop canvas cargo shorts, black",
+  "note": "Heavy canvas workshop shorts with cargo pockets. £84.95. Fabric: 100% cotton.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 84.95,
+  "rank": 220,
+  "sets": [],
+  "shop": "Route One",
+  "sizes": "L in stock",
+  "style": [
+   "job",
+   "street"
+  ],
+  "url": "https://www.routeone.co.uk/products/ichpig-workshop-canvas-shorts-black-001192977?variant=55534123581816",
+  "wx": [
+   "warm"
+  ]
+ },
+ "w8-ro-stanray-a": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "100% cotton",
+  "insize": true,
+  "kind": "new",
+  "name": "Stan Ray A shorts, black",
+  "note": "Plain work shorts from Stan Ray. £84.95. Fabric: 100% cotton.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 84.95,
+  "rank": 220,
+  "sets": [],
+  "shop": "Route One",
+  "sizes": "34W in stock",
+  "style": [
+   "job",
+   "street"
+  ],
+  "url": "https://www.routeone.co.uk/products/stan-ray-a-shorts-black-001196839?variant=55620458578296",
+  "wx": [
+   "warm"
+  ]
+ },
+ "w8-sc-jiro": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "100% cotton",
+  "insize": true,
+  "kind": "new",
+  "name": "Polar Jiro cargo shorts, aged black",
+  "note": "Baggy cargo shorts in aged black. £119.99. Fabric: 100% cotton.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 119.99,
+  "rank": 220,
+  "sets": [],
+  "shop": "Slam City Skates",
+  "sizes": "34W in stock",
+  "style": [
+   "job",
+   "street"
+  ],
+  "url": "https://www.slamcity.com/products/polar-jiro-shorts-aged-black?variant=57960254046582",
+  "wx": [
+   "warm"
+  ]
+ },
+ "w8-sf-softshell": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Scruffs Worker softshell jacket, black",
+  "note": "Work softshell. £44.95.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 44.95,
+  "rank": 220,
+  "sets": [],
+  "shop": "Scruffs",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.scruffs.com/products/worker-softshell-jacket?variant=51718451134793",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-sf-tamworth": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "fabric": "80% cotton, 20% polyester",
+  "insize": true,
+  "kind": "new",
+  "name": "Scruffs Tamworth hoodie, black",
+  "note": "Work hoodie. £29.95. Fabric: 80% cotton, 20% polyester.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 29.95,
+  "rank": 160,
+  "sets": [],
+  "shop": "Scruffs",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.scruffs.com/products/tamworth-logo-hoodie?variant=51764571275593",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-sn-2800": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "fabric": "80% cotton, 20% polyester",
+  "insize": true,
+  "kind": "new",
+  "name": "Snickers hoodie with kangaroo pocket, black",
+  "note": "Work hoodie. £46.87. Fabric: 80% cotton, 20% polyester.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 46.87,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/snickers-2800-hoodie-with-kangaroo-pocket?variant=43536336191650",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-sn-2892": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "fabric": "82% cotton, 18% polyester",
+  "insize": true,
+  "kind": "new",
+  "name": "Snickers logo sweatshirt, black",
+  "note": "Cotton-rich work sweatshirt. £45.48. Fabric: 82% cotton, 18% polyester.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 45.48,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/snickers-2892-logo-sweatshirt?variant=43536360210594",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-sn-2896": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "fabric": "80% cotton, 20% polyester",
+  "insize": true,
+  "kind": "new",
+  "name": "Snickers small logo hoodie, black",
+  "note": "Cotton work hoodie. £46.75. Fabric: 80% cotton, 20% polyester.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 46.75,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/snickers-2896-small-logo-hoodie?variant=56898898297213",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-sn-9794": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Snickers Flexi holster pockets, clip-on, black",
+  "note": "A pair of holster pockets that slide onto any belt, so plain cotton trousers or shorts get work pockets. £19.60.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.6,
+  "rank": 120,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/snickers-9794-flexi-holster-pockets",
+  "wx": [
+   "mild",
+   "cold",
+   "warm"
+  ]
+ },
+ "w8-tb-cliptech": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "ToughBuilt ClipTech 7-pocket tool pouch",
+  "note": "Clips on and off a belt in a second: seven pockets for tools and fixings. £23.50.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 23.5,
+  "rank": 160,
+  "sets": [],
+  "shop": "Trade Workwear",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.tradeworkwear.co.uk/products/toughbuilt-tb-ct-36-l7-cliptech-large-7-pocket-technician-pouch",
+  "wx": [
+   "mild",
+   "cold",
+   "warm"
+  ]
+ },
+ "w8-tl-marini": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "100% cotton",
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Marini cotton cargo shorts, asphalt grey",
+  "note": "Very dark grey twill cargo shorts. £16.99, 43% off. Fabric: 100% cotton.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 16.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "casual",
+   "street"
+  ],
+  "url": "https://www.tokyolaundry.com/products/marini-cotton-twill-cargo-shorts-in-asphalt-grey-tokyo-laundry?variant=41667552739379",
+  "was": 29.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "w8-tl-positano": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "100% cotton",
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Positano ripstop cargo shorts with belt, asphalt grey",
+  "note": "Ripstop cargo shorts that come with a belt. £19.99, 33% off. Fabric: 100% cotton.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "casual",
+   "outdoor"
+  ],
+  "url": "https://www.tokyolaundry.com/products/positano-ripstop-cotton-cargo-shorts-with-belt-in-asphalt-grey-tokyo-laundry?variant=54952222589304",
+  "was": 29.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "w8-tml-chino-short": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "98% cotton, 2% elastane",
+  "insize": true,
+  "kind": "new",
+  "name": "T.M. Lewin chino shorts, black",
+  "note": "Plain black chino shorts. £40. Fabric: 98% cotton, 2% elastane.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 40.0,
+  "rank": 220,
+  "sets": [],
+  "shop": "T.M. Lewin",
+  "sizes": "34W in stock",
+  "style": [
+   "job",
+   "summer",
+   "quiet"
+  ],
+  "url": "https://tmlewin.co.uk/products/the-cotton-stretch-chino-short-black?variant=55181654163841",
+  "wx": [
+   "warm"
+  ]
+ },
+ "w8-ts-stanton": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "TuffStuff Stanton softshell jacket, black",
+  "note": "Work softshell. £35.95.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 35.95,
+  "rank": 160,
+  "sets": [],
+  "shop": "TuffStuff",
+  "sizes": "L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.tuffstuffworkwear.co.uk/products/tuffstuff-stanton-softshell-jacket?variant=43630658420931",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-wg-dbl-front": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "99% cotton, 1% elastane",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt slim duck double-front work trousers, black",
+  "note": "Double-front duck trousers for kneeling. £62.51. Fabric: 99% cotton, 1% elastane.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 62.51,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "34W 32L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/carhartt-slim-duck-double-front-trousers-103340?variant=55088983179645",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-wg-rigby-cargo": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "98% cotton, 2% elastane",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt Rigby stretch canvas cargo shorts, shadow grey",
+  "note": "Carhartt cargo work shorts. £60.38. Fabric: 98% cotton, 2% elastane.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 60.38,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "34W in stock",
+  "style": [
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.workweargurus.com/products/carhartt-rigby-relaxed-11-inch-stretch-canvas-cargo-shorts-103542?variant=55088986947965",
+  "wx": [
+   "warm"
+  ]
+ },
+ "w8-wg-rigby-trouser": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "fabric": "98% cotton, 2% elastane",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt Rigby straight work trousers, black",
+  "note": "Carhartt canvas work trousers. £69.02. Fabric: 98% cotton, 2% elastane.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 69.02,
+  "rank": 220,
+  "sets": [],
+  "shop": "Workwear Gurus",
+  "sizes": "34W 32L in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.workweargurus.com/products/carhartt-rigby-straight-trousers-102821?variant=55088961945981",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "w8-wl-290bsc": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": false,
+  "kind": "new",
+  "name": "Wide Load 290BSC 6E composite toe safety shoes, black",
+  "note": "6E, the widest safety fitting sold in the UK. Sold out in UK 11 today: the page will flag it when it comes back. £144.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 144.99,
+  "rank": 220,
+  "sets": [],
+  "shop": "Wide Shoes",
+  "sizeNote": "6E: 15mm wider and 8mm deeper in the toe than a standard safety boot.",
+  "sizes": "UK 11 (6E) sold out",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.wideshoes.co.uk/products/wideload-290bsc-extra-wide-composite-toe-safety-shoe-black-6e?variant=45364199588065",
+  "wx": [
+   "mild",
+   "cold",
+   "wet"
+  ]
+ },
+ "w8-wl-490bpo": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": false,
+  "kind": "new",
+  "name": "Wide Load 490BPO 6E steel toe safety dealer boots, black",
+  "note": "6E, the widest safety fitting sold in the UK. Sold out in UK 11 today: the page will flag it when it comes back. £164.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 164.99,
+  "rank": 220,
+  "sets": [],
+  "shop": "Wide Shoes",
+  "sizeNote": "6E: 15mm wider and 8mm deeper in the toe than a standard safety boot.",
+  "sizes": "UK 11 (6E) sold out",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.wideshoes.co.uk/products/wideload-490bpo-wide-fit-safety-dealer-boot-pull-on-black-6e-fit?variant=45364239565025",
+  "wx": [
+   "mild",
+   "cold",
+   "wet"
+  ]
+ },
+ "w8-wl-690blwc": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": false,
+  "kind": "new",
+  "name": "Wide Load 690BLWC 6E composite toe safety boots, black, lace-up",
+  "note": "6E, the widest safety fitting sold in the UK. Sold out in UK 11 today: the page will flag it when it comes back. £174.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 174.99,
+  "rank": 220,
+  "sets": [],
+  "shop": "Wide Shoes",
+  "sizeNote": "6E: 15mm wider and 8mm deeper in the toe than a standard safety boot.",
+  "sizes": "UK 11 (6E) sold out",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.wideshoes.co.uk/products/wideload-690blwc-composite-safety-boot-extra-wide?variant=45364198572257",
+  "wx": [
+   "mild",
+   "cold",
+   "wet"
+  ]
+ },
+ "w8-wl-690szc": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": false,
+  "kind": "new",
+  "name": "Wide Load 690SZC 6E composite toe safety boots, stone",
+  "note": "6E, the widest safety fitting sold in the UK. Sold out in UK 11 today: the page will flag it when it comes back. £174.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 174.99,
+  "rank": 220,
+  "sets": [],
+  "shop": "Wide Shoes",
+  "sizeNote": "6E: 15mm wider and 8mm deeper in the toe than a standard safety boot.",
+  "sizes": "UK 11 (6E) sold out",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.wideshoes.co.uk/products/wide-load-composite-safety-boot-extra-wide-6e-fitting-sand?variant=45364199063777",
+  "wx": [
+   "mild",
+   "cold",
+   "wet"
+  ]
+ },
+ "w8-wl-690wz": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": false,
+  "kind": "new",
+  "name": "Wide Load 690WZ 6E steel toe safety boots, tan",
+  "note": "6E, the widest safety fitting sold in the UK. Sold out in UK 11 today: the page will flag it when it comes back. £164.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 164.99,
+  "rank": 220,
+  "sets": [],
+  "shop": "Wide Shoes",
+  "sizeNote": "6E: 15mm wider and 8mm deeper in the toe than a standard safety boot.",
+  "sizes": "UK 11 (6E) sold out",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.wideshoes.co.uk/products/wide-load-690wz-with-steel-toe-cap-6e-fitting-extra-wide-fitting?variant=45364263485665",
+  "wx": [
+   "mild",
+   "cold",
+   "wet"
+  ]
+ },
  "wk-amblers-as803": {
   "added": "2026-10-05",
   "cat": "shoe",
@@ -30027,6 +32371,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "100% cotton",
   "insize": true,
   "kind": "new",
   "name": "Blaklader 1400 cargo work trousers, black",
@@ -30053,6 +32398,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "100% cotton",
   "insize": true,
   "kind": "new",
   "name": "Carhartt B01 double-front work trousers, black duck",
@@ -30079,6 +32425,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "100% cotton",
   "insize": true,
   "kind": "new",
   "name": "Carhartt B324 washed twill work trousers, black",
@@ -30212,6 +32559,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "100% cotton",
   "insize": true,
   "kind": "new",
   "name": "Cernucci ripstop cargo trousers, charcoal",
@@ -30240,6 +32588,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "100% cotton",
   "insize": true,
   "kind": "new",
   "name": "Cernucci relaxed twill trousers, black",
@@ -30268,6 +32617,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "100% cotton",
   "insize": true,
   "kind": "new",
   "name": "Colorful Standard organic twill shorts, deep black",
@@ -30401,6 +32751,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "100% cotton",
   "insize": true,
   "kind": "new",
   "name": "Hikerdelic Worker trousers, black",
@@ -30453,6 +32804,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "100% cotton",
   "insize": true,
   "kind": "new",
   "name": "Passenger Drifter cotton shorts, charcoal",
@@ -30560,6 +32912,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "100% cotton",
   "insize": true,
   "kind": "new",
   "name": "Stan Ray double-knee work jeans, washed black",
@@ -30639,6 +32992,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "100% cotton",
   "insize": true,
   "kind": "new",
   "name": "Stan Ray 80s painter work trousers, black twill",
@@ -30666,6 +33020,7 @@
   "added": "2026-10-05",
   "cat": "trouser",
   "checked": "2026-10-05",
+  "fabric": "100% cotton",
   "insize": true,
   "kind": "new",
   "name": "Stan Ray Wide 5 shorts, washed black denim",
