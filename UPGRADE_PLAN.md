@@ -208,13 +208,13 @@ people using the page.
   for every category, with a photo, a count and the lowest price. Each list holds one kind of
   thing: jumpers apart from sweatshirts and fleeces, jeans apart from chinos and cargos, trainers
   apart from boots, and so on, 40 categories in all.
-  - The category is worked out from each pick's type and name ( in the page), so no data
+  - The category is worked out from each pick's type and name (`subOf` in the page), so no data
     change was needed. The Friday refresh now names new picks with the garment type in plain words.
   - Search results are split by category too. Filters fold away under "Filter".
   - The sale sections use the same categories.
 - **Two new styles:** Mod and skate, and Holiday and summer. Each has its own guide, sale section
-  and eight outfits. 169 older picks were added to them through 
-  (), and new picks carry the style themselves.
+  and eight outfits. 169 older picks were added to them through `meta/styletags`
+  (`data/styletags.json`), and new picks carry the style themselves.
 - **78 new picks**, most under £40:
   - 42 for the new styles from Original Penguin, Lyle & Scott, Fred Perry (Jean Store), Farah,
     Community Clothing, Base London, Brakeburn, Savile Row Company, T.M. Lewin, Slam City
@@ -225,7 +225,7 @@ people using the page.
   Pull&Bear, Bershka, Mango, Ben Sherman, Jacamo, Shoe Zone, Millets, Blacks, Weird Fish and USC.
   Several of these block cloud servers (Primark, TK Maxx, F&F, Very, New Look, Jacamo, Mango),
   so they are links only.
--  reads price, photo and stock per size from any product page that
+- `tools/ld_reader.py` reads price, photo and stock per size from any product page that
   publishes schema.org data (Matalan, Peacocks and many others).
 - Page version 13. Totals: **964 picks, 156 outfits, 88 shops with picks.**
 
