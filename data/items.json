@@ -17487,6 +17487,2797 @@
    "mild"
   ]
  },
+ "r7-bg-beanie": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Berghaus Inflection beanie, green",
+  "note": "Beanie. £10, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 10.0,
+  "rank": 120,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Berghaus",
+  "style": [
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.berghaus.com/products/unisex-inflection-beanie-green-4x000031lx8",
+  "was": 20.0,
+  "wx": [
+   "cold"
+  ]
+ },
+ "r7-bg-tee": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Berghaus Geo Landscape T-shirt, black",
+  "note": "Graphic tee. £13.50, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 13.5,
+  "rank": 120,
+  "sets": [],
+  "shop": "Berghaus",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "street"
+  ],
+  "url": "https://www.berghaus.com/products/mens-geo-landscape-tee-black-4a100105002?variant=43367894974553",
+  "was": 27.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-bi-milan": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Blue Inc Milan hoodie, burgundy and black",
+  "note": "Hoodie. £19.99, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Blue Inc",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "url": "https://www.blueinc.co.uk/products/milan-hoody-hoody76-098p?variant=43338026320062",
+  "was": 49.99,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-bi-shorts": {
+  "added": "2026-10-05",
+  "cat": "lounge",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Blue Inc embroidered jersey shorts",
+  "note": "Jersey shorts. £14.99, 50% off.",
+  "occ": [
+   "lounge"
+  ],
+  "price": 14.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Blue Inc",
+  "sizes": "L in stock",
+  "style": [
+   "lounge",
+   "casual"
+  ],
+  "url": "https://www.blueinc.co.uk/products/crown-emb-shorts-shorts92-352p?variant=42248158675134",
+  "was": 29.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-bl-bruno": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Bruno loafers, black",
+  "note": "Black leather loafers. £32.50, 50% off.",
+  "occ": [
+   "smart",
+   "event",
+   "party"
+  ],
+  "price": 32.5,
+  "rank": 160,
+  "sets": [
+   "christmas"
+  ],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "minimal",
+   "quiet"
+  ],
+  "url": "https://www.baselondon.com/products/bruno-waxy-black-loafers-shoes?variant=54949095702871",
+  "was": 64.99,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-bl-dalston-brown": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Dalston moc-toe trainers, brown",
+  "note": "Brown moc-toe trainers. £32.50, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 32.5,
+  "rank": 160,
+  "sets": [],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "casual",
+   "quiet"
+  ],
+  "url": "https://www.baselondon.com/products/dalston-moc-toe-trainers-brown?variant=51670761406807",
+  "was": 64.99,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-bl-drake": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Drake Derby shoes, navy",
+  "note": "Navy waxed-leather Derbys. £32.50, 50% off.",
+  "occ": [
+   "smart",
+   "event"
+  ],
+  "price": 32.5,
+  "rank": 160,
+  "sets": [],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "quiet",
+   "mod"
+  ],
+  "url": "https://www.baselondon.com/products/drake-waxy-navy-derby-shoes?variant=54949099045207",
+  "was": 64.99,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-bl-snapper": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Snapper suede loafers, sand",
+  "note": "Sand suede loafers. £32.50, 50% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 32.5,
+  "rank": 160,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "summer",
+   "mod",
+   "quiet"
+  ],
+  "url": "https://www.baselondon.com/products/snapper-suede-sand-loafers-shoes?variant=54949694046551",
+  "was": 64.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-dc-chesser": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Chesser jogger pants, stone",
+  "note": "Smart joggers with a chino look. £19.99, 69% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "34W in stock",
+  "style": [
+   "casual",
+   "street"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/chesser-jog-pants-stone?variant=46585674432762",
+  "was": 65.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-dc-dedham": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Dedham knitted polo, black",
+  "note": "Black knitted polo. £15, 62% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "minimal",
+   "rave"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/dedham-knit-polo-black?variant=56899005186431",
+  "was": 39.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-dc-everett": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Everett chino shorts, stone",
+  "note": "Stone chino shorts. £16, 67% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 16.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Duck and Cover",
+  "sizes": "34W in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/everett-chino-shorts-stone?variant=57007641690495",
+  "was": 49.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-dc-hannings-jog": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Hannings joggers, stone",
+  "note": "Joggers. £14.99, 67% off.",
+  "occ": [
+   "lounge",
+   "everyday"
+  ],
+  "price": 14.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "34W in stock",
+  "style": [
+   "lounge",
+   "casual"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/hannings-joggers-stone?variant=55144412053887",
+  "was": 45.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-dc-hingham": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Hingham shirt and shorts set, black",
+  "note": "Matching black shirt and shorts for summer events. £25, 64% off.",
+  "occ": [
+   "party"
+  ],
+  "price": 25.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "summer"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/hingham-shirt-shorts-set-black?variant=56908140609919",
+  "was": 70.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-dc-moreshore": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Moreshore chino shorts, black",
+  "note": "Black chino shorts. £16, 67% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 16.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Duck and Cover",
+  "sizes": "34W in stock",
+  "style": [
+   "summer",
+   "street",
+   "minimal"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/moreshore-chino-shorts-black?variant=44039092535546",
+  "was": 49.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-dc-optimus-black": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Optimus hoodie, black",
+  "note": "Plain black hoodie. £19.99, 67% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "casual",
+   "rave",
+   "job"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/optimus-hoodie-black?variant=56001082589567",
+  "was": 60.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-dc-randolph-navy": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Randolph hoodie, navy",
+  "note": "Navy hoodie. £22, 63% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 22.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "street",
+   "job"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/randolph-hoodie-navy?variant=56900482859391",
+  "was": 60.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-dc-sherborn-polo": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Sherborn polo shirt, navy",
+  "note": "Navy polo. £12.99, 63% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 12.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "mod",
+   "summer"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/sherborn-polo-navy?variant=56901018157439",
+  "was": 35.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-dc-sherborn-tee": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Sherborn T-shirt, navy",
+  "note": "Plain-ish navy tee. £9.99, 66% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 9.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "street",
+   "summer"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/sherborn-t-shirt-navy?variant=56899110175103",
+  "was": 29.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-dc-slell": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover quarter-zip hoodie, navy",
+  "note": "Quarter-zip hoodie. £19.99, 67% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "outdoor"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/slellmoore-1-4-zip-hoodie-navy?variant=56000957940095",
+  "was": 60.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-dc-stoneham": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Stoneham crew sweatshirt, black",
+  "note": "Black crew-neck sweatshirt. £17.99, 64% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 17.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "casual",
+   "minimal",
+   "job"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/stoneham-crew-sweat-black?variant=56900441670015",
+  "was": 50.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-dc-tames": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Tames zip-through sweatshirt, stone",
+  "note": "Zip sweatshirt. £19.99, 69% off.",
+  "occ": [
+   "everyday",
+   "lounge"
+  ],
+  "price": 19.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "lounge"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/tames-zip-thru-sweat-stone?variant=56001056801151",
+  "was": 65.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-dc-topfield-polo": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Topfield polo shirt, olive",
+  "note": "Olive polo. £14.99, 62% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 14.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "summer"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/topfield-polo-olive?variant=56901133173119",
+  "was": 39.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-dc-walpole-tee": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Duck and Cover Walpole T-shirt, black",
+  "note": "Black tee. £9.99, 66% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 9.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Duck and Cover",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "rave"
+  ],
+  "url": "https://www.duckandcover.co.uk/products/walpole-t-shirt-black?variant=56899238429055",
+  "was": 29.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-el-1959-black": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Ellesse 1959 T-shirt, black",
+  "note": "Logo tee. £15, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Ellesse",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "casual",
+   "rave"
+  ],
+  "url": "https://www.ellesse.com/products/mens-1959-tee-black-633806?variant=44577722269789",
+  "was": 30.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-el-senago": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Ellesse Senago polo shirt, off-white",
+  "note": "Terrace-style polo. £22.50, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 22.5,
+  "rank": 160,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Ellesse",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.ellesse.com/products/mens-senago-polo-off-white-633671?variant=44577727381597",
+  "was": 45.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-el-swim": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Ellesse Stazonia swim shorts, navy",
+  "note": "Navy swim shorts. £20, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 20.0,
+  "rank": 160,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Ellesse",
+  "sizes": "34W in stock",
+  "style": [
+   "summer"
+  ],
+  "url": "https://www.ellesse.com/products/mens-stazonia-swim-short-navy-633599?variant=44577719615581",
+  "was": 40.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-gb-crew": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Gabicci plain crew-neck jumper, peach",
+  "note": "Fine knit crew neck. £39.99, 33% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 39.99,
+  "rank": 160,
+  "sets": [],
+  "shop": "Gabicci",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "summer"
+  ],
+  "url": "https://www.gabicci.com/products/g54k04-mens-plain-crew-kneck-knit-gabicci-classic-peach?variant=55160562811257",
+  "was": 59.95,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-gb-liam": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Gabicci Vintage Liam short-sleeve shirt, azure",
+  "note": "Patterned short-sleeve shirt. £35.96, 40% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 35.96,
+  "rank": 160,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Gabicci",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "summer"
+  ],
+  "url": "https://www.gabicci.com/products/v54gw09-mens-liam-short-sleeve-pattern-shirt-gabicci-vintage-azure?variant=55160592073081",
+  "was": 59.95,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-hs-paris": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Herring Paris rubber-soled shoes, navy calf and suede",
+  "note": "Navy leather and suede shoes on a light rubber sole. £49, 66% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 49.0,
+  "rank": 220,
+  "sets": [],
+  "shop": "Herring Shoes",
+  "sizes": "EU 45 (UK 11) in stock",
+  "style": [
+   "quiet",
+   "mod"
+  ],
+  "url": "https://herringshoes.co.uk/products/herring-paris-mens-rubber-soled-in-navy-calf-and-suede?variant=53409844625737",
+  "was": 145.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-hs-rock": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Herring Rock suede deck shoes, brown",
+  "note": "Suede boat shoes. £49, 61% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 49.0,
+  "rank": 220,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Herring Shoes",
+  "sizes": "EU 45 (UK 11) in stock",
+  "style": [
+   "summer",
+   "quiet"
+  ],
+  "url": "https://herringshoes.co.uk/products/herring-rock-mens-rubber-soled-deck-shoes-in-brown-suede?variant=52812450267465",
+  "was": 125.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-hs-strike": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Herring Strike II suede trainers, camel",
+  "note": "Camel suede trainers. £49, 66% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 49.0,
+  "rank": 220,
+  "sets": [],
+  "shop": "Herring Shoes",
+  "sizes": "EU 45 (UK 11) in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://herringshoes.co.uk/products/herring-strike-ii-suede-mens-rubber-soled-trainers-in-camel-suede?variant=52957026451785",
+  "was": 145.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-hs-taormina": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Herring Taormina suede loafers, brown",
+  "note": "Brown suede loafers. £59, 69% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 59.0,
+  "rank": 220,
+  "sets": [],
+  "shop": "Herring Shoes",
+  "sizes": "EU 45 (UK 11) in stock",
+  "style": [
+   "quiet",
+   "mod"
+  ],
+  "url": "https://herringshoes.co.uk/products/herring-taormina-mens-hybrid-soled-loafers-in-brown-suede?variant=54094080573769",
+  "was": 189.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-lb-belt": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Lambretta leather-lined belt",
+  "note": "Belt. £15, 50% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Lambretta",
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/leather-lined-belt?variant=53478610338140",
+  "was": 30.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-lb-cap": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Lambretta stripe cap",
+  "note": "Cap with a racing stripe. £10, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 10.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Lambretta",
+  "style": [
+   "mod",
+   "summer"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/stripe-cap",
+  "was": 20.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-lb-cargoshort": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta cargo shorts, oatmeal",
+  "note": "Cotton cargo shorts. £15, 62% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Lambretta",
+  "sizes": "34W in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/cargo-short-2?variant=49351138017628",
+  "was": 40.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-lb-check-polo": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta check polo shirt, steel grey",
+  "note": "Prince of Wales check polo. £15, 57% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Lambretta",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/pow-check-polo-1?variant=53967446704476",
+  "was": 35.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-lb-checkshirt": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta short-sleeve check shirt, burgundy/gold",
+  "note": "Short-sleeve button-down check shirt. £20, 56% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 20.0,
+  "rank": 160,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Lambretta",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "summer"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/s-s-check-shirt-5?variant=54137897058652",
+  "was": 45.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-lb-harrington": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta shower-resistant Harrington jacket, mustard",
+  "note": "Harrington with a tartan lining. £30, 62% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 30.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Lambretta",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/shower-resistant-harrington-9?variant=54209538130268",
+  "was": 80.0,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "r7-lb-pinball": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta Pinball trainers, navy",
+  "note": "Retro court trainers. £30, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 30.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Lambretta",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/pinball-2-trainer?variant=54055109460316",
+  "was": 75.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-lb-pinstripe-polo": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta pinstripe polo shirt, khaki/cream",
+  "note": "Fine pinstripe polo. £15, 53% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Lambretta",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/pinstripe-polo-2?variant=49239862116700",
+  "was": 32.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-lb-robbie": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta Robbie trainers, black",
+  "note": "Low-profile trainers. £30, 68% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 30.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Lambretta",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "street"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/robbie-trainer?variant=59051457053020",
+  "was": 95.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-lb-stripe-polo": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta classic stripe polo shirt, white",
+  "note": "Striped polo shirt. £15, 53% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Lambretta",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/classic-stripe-polo-1?variant=49243288273244",
+  "was": 32.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-lb-swim": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta swim shorts, black",
+  "note": "Swim shorts. £17.50, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 17.5,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Lambretta",
+  "sizes": "34W in stock",
+  "style": [
+   "summer",
+   "mod"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/swim-short-1?variant=57034196091228",
+  "was": 35.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-lb-tackle-cb": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta Tackle trainers, charcoal/black",
+  "note": "Suede terrace trainers. £30, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 30.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Lambretta",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/tackle-trainer-copy-1?variant=56750906769756",
+  "was": 75.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-lb-tackle-tan": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta Tackle trainers, tan",
+  "note": "Suede terrace trainers. £30, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 30.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Lambretta",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/tackle-trainer-5?variant=54724804280668",
+  "was": 75.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-lb-tipped-1": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta two-tone tipped polo shirt, black/gold",
+  "note": "Twin-tipped piqué polo, the mod basic. £15, 57% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Lambretta",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/two-tone-tipped-polo-4?variant=53858987606364",
+  "was": 35.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-lb-tipped-2": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta two-tone tipped polo shirt, white/black",
+  "note": "Twin-tipped piqué polo. £15, 57% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Lambretta",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/two-tone-tipped-polo-1?variant=49419828592988",
+  "was": 35.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-lb-tipped-3": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta two-tone tipped polo shirt, khaki/java",
+  "note": "Twin-tipped piqué polo. £15, 53% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Lambretta",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "summer"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/two-tone-tipped-polo-2?variant=49419860181340",
+  "was": 32.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-lb-wallet": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Lambretta punched leather wallet",
+  "note": "Leather wallet, a cheap present. £15, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [
+   "christmas"
+  ],
+  "shop": "Lambretta",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/punched-leather-wallet",
+  "was": 30.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-lb-xmas": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lambretta Christmas pudding jumper, navy",
+  "note": "Christmas jumper with a mod check yoke. £20, 60% off.",
+  "occ": [
+   "party"
+  ],
+  "price": 20.0,
+  "rank": 160,
+  "sets": [
+   "christmas"
+  ],
+  "shop": "Lambretta",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lambrettaclothing.co.uk/products/target-christmas-jumper?variant=55620780491100",
+  "was": 50.0,
+  "wx": [
+   "cold"
+  ]
+ },
+ "r7-mc-judson": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Merc Judson slim cord trousers, navy",
+  "note": "Slim mod cord trousers, 34 waist, 32 leg. £65.",
+  "occ": [
+   "smart",
+   "everyday"
+  ],
+  "price": 65.0,
+  "rank": 220,
+  "sets": [],
+  "shop": "Merc",
+  "sizes": "34W 32L in stock",
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "url": "https://www.merc.co.uk/products/judson-32l?variant=40450123104358",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-ml-gunnar": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Weird Fish Gunnar quarter-zip jumper, cream",
+  "note": "Fine-knit stripe half-zip. £19.97, 67% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.97,
+  "rank": 120,
+  "sets": [],
+  "shop": "Millets",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "outdoor"
+  ],
+  "url": "https://www.millets.co.uk/products/weird-fish-mens-gunnar-1-4-zip-fine-knit-stripe-jumper-light-cream-787167?variant=56582775636316",
+  "was": 60.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-ml-hadlin": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Regatta Hadlin shirt, navy",
+  "note": "Shirt for under £10. £9.97, 64% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 9.97,
+  "rank": 120,
+  "sets": [],
+  "shop": "Millets",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.millets.co.uk/products/regatta-mens-hadlin-shirt-navy-793735?variant=56582875087196",
+  "was": 28.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-ml-jim": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "The North Face Jim beanie, grey",
+  "note": "Beanie. £12.97, 52% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 12.97,
+  "rank": 120,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Millets",
+  "style": [
+   "outdoor",
+   "street"
+  ],
+  "url": "https://www.millets.co.uk/products/the-north-face-mens-jim-beanie-grey-463472",
+  "was": 27.0,
+  "wx": [
+   "cold"
+  ]
+ },
+ "r7-ml-steens": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Columbia Steens Mountain half-snap fleece, mid blue",
+  "note": "Snap-neck fleece. £21.97, 51% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 21.97,
+  "rank": 160,
+  "sets": [],
+  "shop": "Millets",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "street"
+  ],
+  "url": "https://www.millets.co.uk/products/columbia-mens-steens-mountain-ii-half-snap-fleece-mid-blue-794236?variant=58128652632412",
+  "was": 45.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-pg-coach": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Pretty Green Knebworth coach jacket, black",
+  "note": "Coach jacket. £40, 60% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 40.0,
+  "rank": 220,
+  "sets": [],
+  "shop": "Pretty Green",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "street"
+  ],
+  "url": "https://www.prettygreen.com/products/black-knebworth-graphic-coach-jacket?variant=45910674145478",
+  "was": 100.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-pg-hat": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Pretty Green Norbury beanie, stone",
+  "note": "Beanie. £14, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 14.0,
+  "rank": 120,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Pretty Green",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.prettygreen.com/products/stone-norbury-hat",
+  "was": 35.0,
+  "wx": [
+   "cold"
+  ]
+ },
+ "r7-pg-hoody": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Pretty Green Knebworth graphic hoodie, black",
+  "note": "Black graphic hoodie. £38, 60% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 38.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Pretty Green",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "street"
+  ],
+  "url": "https://www.prettygreen.com/products/black-knebworth-graphic-hoody?variant=45910675554502",
+  "was": 95.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-pg-knitpolo": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Pretty Green Starship knitted polo, black zigzag",
+  "note": "Short-sleeve knitted polo. £32, 60% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 32.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Pretty Green",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "rave"
+  ],
+  "url": "https://www.prettygreen.com/products/black-starship-ss-knit-polo?variant=45410209136838",
+  "was": 80.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-pg-polo": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Pretty Green Resonance polo shirt, black",
+  "note": "Black polo shirt. £28, 60% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 28.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Pretty Green",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "street",
+   "rave"
+  ],
+  "url": "https://www.prettygreen.com/products/black-resonance-solid-colour-polo?variant=45410216083654",
+  "was": 70.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-pg-scarf": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Pretty Green Norbury scarf, black",
+  "note": "Wool-mix scarf. £18, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 18.0,
+  "rank": 120,
+  "sets": [
+   "winter",
+   "christmas"
+  ],
+  "shop": "Pretty Green",
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "url": "https://www.prettygreen.com/products/black-norbury-scarf",
+  "was": 45.0,
+  "wx": [
+   "cold"
+  ]
+ },
+ "r7-pg-stripe": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Pretty Green sleeve-stripe polo shirt, white",
+  "note": "White polo with a sleeve stripe. £24, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 24.0,
+  "rank": 160,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Pretty Green",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "summer"
+  ],
+  "url": "https://www.prettygreen.com/products/white-stratosphere-sleeve-stripe-polo?variant=45410212806854",
+  "was": 60.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-sc-nb600": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "New Balance Numeric Tom Knox 600 skate shoes, blue and gum",
+  "note": "Suede skate shoes. £54.99, 39% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 54.99,
+  "rank": 220,
+  "sets": [],
+  "shop": "Slam City Skates",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "street"
+  ],
+  "url": "https://www.slamcity.com/products/new-balance-tom-knox-600-skate-shoes-saltwater-blue-gum?variant=57124896866678",
+  "was": 89.99,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-sp-essential": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Speedo Essential swim shorts, yellow",
+  "note": "Swim shorts. £11.50, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 11.5,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Speedo",
+  "sizes": "34W in stock",
+  "style": [
+   "summer"
+  ],
+  "url": "https://www.speedo.com/products/mens-essential-swim-shorts-yellow-81243317218?variant=52969632924015",
+  "was": 23.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-sp-hoodie": {
+  "added": "2026-10-05",
+  "cat": "sport",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Speedo training hoodie, black",
+  "note": "Training hoodie. £14.50, 50% off.",
+  "occ": [
+   "everyday",
+   "lounge"
+  ],
+  "price": 14.5,
+  "rank": 120,
+  "sets": [],
+  "shop": "Speedo",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "lounge"
+  ],
+  "url": "https://www.speedo.com/products/adult-unisex-v-class-pro-hoodie-black-8005061001?variant=52969410429295",
+  "was": 29.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-sp-lookout": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Speedo Lookout board shorts, grey",
+  "note": "Board shorts. £20, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 20.0,
+  "rank": 160,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Speedo",
+  "sizes": "34W in stock",
+  "style": [
+   "summer"
+  ],
+  "url": "https://www.speedo.com/products/mens-lookout-solid-boardshorts-grey-800496716038?variant=52969652519279",
+  "was": 40.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-sp-redondo": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Speedo Redondo printed swim shorts, blue",
+  "note": "Printed swim shorts. £14.50, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 14.5,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Speedo",
+  "sizes": "34W in stock",
+  "style": [
+   "summer"
+  ],
+  "url": "https://www.speedo.com/products/mens-redondo-edge-printed-swim-shorts-blue-800472518661?variant=53086001070447",
+  "was": 29.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-tg-activate": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Activate ripstop shorts, forage green",
+  "note": "Walking shorts. £12, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 12.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Tog24",
+  "sizes": "34W in stock",
+  "style": [
+   "outdoor",
+   "summer"
+  ],
+  "url": "https://www.tog24.com/products/activate-mens-shorts-forage-green?variant=53514505748857",
+  "was": 40.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-tg-aslan": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Aslan swim shorts, dark indigo",
+  "note": "Swim shorts for a tenner. £10, 72% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 10.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Tog24",
+  "sizes": "34W in stock",
+  "style": [
+   "summer",
+   "outdoor"
+  ],
+  "url": "https://www.tog24.com/products/aslan-mens-shorts-dark-indigo?variant=40452191944794",
+  "was": 36.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-tg-boldon": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Boldon short-sleeve shirt, blue stripe",
+  "note": "Cotton short-sleeve shirt. £12, 76% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 12.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Tog24",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "outdoor"
+  ],
+  "url": "https://www.tog24.com/products/boldon-mens-shirt-light-blue-stripe?variant=56046023606649",
+  "was": 50.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-tg-boltby": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Boltby fleece gilet, green and black",
+  "note": "Fleece gilet for a tenner. £10, 78% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 10.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tog24",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "job"
+  ],
+  "url": "https://www.tog24.com/products/boltby-mens-fleece-gilet-black-light-forest?variant=55099926937977",
+  "was": 45.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tg-cap": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Tog24 Johan cap, khaki",
+  "note": "Cap. £8, 73% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 8.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tog24",
+  "style": [
+   "outdoor",
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.tog24.com/products/johan-baseball-cap-khaki",
+  "was": 30.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-tg-dowson": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Dowson fleece zip-neck, blue",
+  "note": "Zip-neck fleece. £12, 76% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 12.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tog24",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor"
+  ],
+  "url": "https://www.tog24.com/products/dowson-mens-fleece-zip-neck-hydro-blue-dark-turquoise?variant=55099928347001",
+  "was": 50.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tg-jayden": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Jayden short-sleeve shirt, deep slate",
+  "note": "Cotton short-sleeve shirt. £14, 72% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 14.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Tog24",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.tog24.com/products/jayden-mens-shirt-deep-slate?variant=56347519844729",
+  "was": 50.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-tg-lomax": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Lomax padded gilet, graphite",
+  "note": "Padded gilet. £20, 78% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 20.0,
+  "rank": 160,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Tog24",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "casual",
+   "job"
+  ],
+  "url": "https://www.tog24.com/products/lomax-mens-padded-gilet-graphite?variant=41081074417754",
+  "was": 90.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tg-miles": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Miles fleece jacket, inky blue",
+  "note": "Microfleece jacket. £18, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 18.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tog24",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "casual",
+   "lounge"
+  ],
+  "url": "https://www.tog24.com/products/miles-mens-microfleece-jacket-inky-blue?variant=56104382464377",
+  "was": 60.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tg-nelson": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Nelson heavyweight cotton trousers, faded khaki",
+  "note": "100% cotton straight trousers. £15, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tog24",
+  "sizes": "34W in stock",
+  "style": [
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.tog24.com/products/nelson-mens-trousers-faded-khaki?variant=56098540061049",
+  "was": 50.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tg-palisade": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Palisade padded ski jacket, khaki camo",
+  "note": "Waterproof padded jacket, 76% off. £40, 76% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 40.0,
+  "rank": 220,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Tog24",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "street"
+  ],
+  "url": "https://www.tog24.com/products/palisade-mens-ski-jacket-khaki-pixel-camo?variant=41298611339354",
+  "was": 170.0,
+  "wx": [
+   "cold",
+   "wet"
+  ]
+ },
+ "r7-tg-ryle": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Ryle fleece zip-neck, deep slate",
+  "note": "Zip-neck fleece. £18, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 18.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tog24",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "job"
+  ],
+  "url": "https://www.tog24.com/products/ryle-mens-microfleece-zip-neck-deep-slate?variant=56104383218041",
+  "was": 60.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tg-stark": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Stark fleece gilet, deep slate",
+  "note": "Fleece gilet. £15, 67% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tog24",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.tog24.com/products/stark-mens-microfleece-gilet-deep-slate?variant=56104382792057",
+  "was": 45.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tg-sunnie": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Sunnie sweatshirt, deep sea blue",
+  "note": "Soft sweatshirt for a tenner. £10, 78% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 10.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tog24",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "casual",
+   "lounge"
+  ],
+  "url": "https://www.tog24.com/products/sunnie-mens-sweat-deep-sea-blue?variant=53516008620409",
+  "was": 45.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tg-whitley": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tog24 Whitley polo shirt, deep teal",
+  "note": "Cotton polo. £10, 71% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 10.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Tog24",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "outdoor"
+  ],
+  "url": "https://www.tog24.com/products/whitley-mens-polo-shirt-deep-teal?variant=56347530920313",
+  "was": 35.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-tl-aidan": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Kensington Eastside Aidan chino shorts, stone",
+  "note": "Cotton chino shorts. £12.99, 57% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 12.99,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Tokyo Laundry",
+  "sizes": "34W in stock",
+  "style": [
+   "summer",
+   "casual",
+   "quiet"
+  ],
+  "url": "https://www.tokyolaundry.com/products/aidan-cotton-twill-chino-shorts-in-stone-kensington-eastside?variant=40611697131571",
+  "was": 29.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-tl-deen": {
+  "added": "2026-10-05",
+  "cat": "lounge",
+  "checked": "2026-10-05",
+  "gift": true,
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Deen long-sleeve pyjama set, grey marl",
+  "note": "Cotton pyjamas. £19.99, 50% off.",
+  "occ": [
+   "lounge"
+  ],
+  "price": 19.99,
+  "rank": 120,
+  "sets": [
+   "christmas",
+   "winter"
+  ],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "lounge"
+  ],
+  "url": "https://www.tokyolaundry.com/products/deen-2pc-long-sleeve-cotton-loungewear-pyjama-set-in-mid-grey-marl-tokyo-laundry?variant=41570742304819",
+  "was": 39.99,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tl-jax": {
+  "added": "2026-10-05",
+  "cat": "basics",
+  "checked": "2026-10-05",
+  "gift": true,
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Jax 5-pack cotton boxer shorts, black, grey and white",
+  "note": "Five pairs of cotton boxers for £4 each. £19.99, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "lounge",
+   "casual",
+   "job"
+  ],
+  "url": "https://www.tokyolaundry.com/products/jax-5-pack-boxer-shorts-set-in-black-grey-white-tokyo-laundry?variant=42565427986483",
+  "was": 39.99,
+  "wx": [
+   "mild",
+   "cold",
+   "warm"
+  ]
+ },
+ "r7-tl-jayce": {
+  "added": "2026-10-05",
+  "cat": "lounge",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Jayce short-sleeve pyjama set, grey marl",
+  "note": "Summer pyjamas. £19.99, 50% off.",
+  "occ": [
+   "lounge"
+  ],
+  "price": 19.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "lounge",
+   "summer"
+  ],
+  "url": "https://www.tokyolaundry.com/products/jayce-2pc-short-sleeve-cotton-loungewear-pyjama-set-in-mid-grey-marl-tokyo-laundry?variant=41570742632499",
+  "was": 39.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-tl-keir": {
+  "added": "2026-10-05",
+  "cat": "lounge",
+  "checked": "2026-10-05",
+  "gift": true,
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Keir T-shirt and shorts lounge set, black",
+  "note": "Cotton jersey lounge set. £14.99, 50% off.",
+  "occ": [
+   "lounge"
+  ],
+  "price": 14.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "lounge"
+  ],
+  "url": "https://www.tokyolaundry.com/products/keir-2-piece-jersey-cotton-crew-neck-t-shirt-and-shorts-lounge-set-in-jet-black-tokyo-laundry?variant=55503343911288",
+  "was": 29.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-tl-lincoln": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Le Shark Lincoln tipped polo shirt, lime green",
+  "note": "Tipped polo for under £8. £7.99, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 7.99,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "summer"
+  ],
+  "url": "https://www.tokyolaundry.com/products/lincoln-cotton-pique-polo-shirt-with-tipping-in-opaline-green-le-shark?variant=55139641196920",
+  "was": 19.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-tl-lounge-short": {
+  "added": "2026-10-05",
+  "cat": "lounge",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Emre jersey lounge shorts, black",
+  "note": "Cotton jersey lounge shorts. £9.99, 50% off.",
+  "occ": [
+   "lounge"
+  ],
+  "price": 9.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "lounge"
+  ],
+  "url": "https://www.tokyolaundry.com/products/emre-cotton-jersey-lounge-shorts-with-elastic-waist-in-jet-black-tokyo-laundry?variant=55503339782520",
+  "was": 19.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-tl-medi": {
+  "added": "2026-10-05",
+  "cat": "lounge",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Medi check lounge shorts, blue",
+  "note": "Cotton check lounge shorts. £11.99, 40% off.",
+  "occ": [
+   "lounge"
+  ],
+  "price": 11.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "lounge"
+  ],
+  "url": "https://www.tokyolaundry.com/products/medi-yarn-dyed-check-cotton-elastic-wasit-lounge-shorts-in-skipper-blue-tokyo-laundry?variant=55503339618680",
+  "was": 19.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-tl-peric": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Kensington Eastside Fair Isle quarter-zip jumper, camel",
+  "note": "Fair Isle half-zip. £16.99, 58% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 16.99,
+  "rank": 120,
+  "sets": [
+   "winter",
+   "christmas"
+  ],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.tokyolaundry.com/products/peric-quarter-zip-fair-isle-knit-funnel-neck-jumper-in-camel-kensington-eastside?variant=55362915205496",
+  "was": 39.99,
+  "wx": [
+   "cold"
+  ]
+ },
+ "r7-tl-ringer": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Trevor ringer T-shirt, light grey",
+  "note": "Ringer tee. £7.99, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 7.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "mod",
+   "street"
+  ],
+  "url": "https://www.tokyolaundry.com/products/trevor-cotton-rich-grindle-ringer-t-shirt-in-light-grey-tokyo-laundry?variant=41239605051443",
+  "was": 15.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-tl-striker-black": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Kensington Eastside Striker crew-neck jumper, black",
+  "note": "Very cheap black knit. £8.98, 55% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 8.98,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "minimal",
+   "casual",
+   "job"
+  ],
+  "url": "https://www.tokyolaundry.com/products/striker-crew-neck-knitted-jumper-in-jet-black-kensington-eastside?variant=40945622188083",
+  "was": 19.99,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tl-striker-navy": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Kensington Eastside Striker crew-neck jumper, navy",
+  "note": "Very cheap navy knit. £8.98, 55% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 8.98,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.tokyolaundry.com/products/striker-crew-neck-knitted-jumper-in-sky-captain-navy-kensington-eastside?variant=40945622515763",
+  "was": 19.99,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tl-swim1": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Kensington Eastside swim shorts, blue",
+  "note": "Swim shorts for under £9. £8.99, 55% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 8.99,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Tokyo Laundry",
+  "sizes": "34W in stock",
+  "style": [
+   "summer"
+  ],
+  "url": "https://www.tokyolaundry.com/products/evander-2-microfibre-twill-swim-shorts-with-mesh-lining-in-blue-bell-kensington-eastside?variant=55527530561912",
+  "was": 19.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-tl-swim2": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "South Shore swim shorts, sea blue",
+  "note": "Swim shorts. £8.99, 55% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 8.99,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Tokyo Laundry",
+  "sizes": "34W in stock",
+  "style": [
+   "summer"
+  ],
+  "url": "https://www.tokyolaundry.com/products/abyss-4-microfibre-twill-swim-shorts-with-mesh-lining-in-sea-of-belize-south-shore?variant=55527531446648",
+  "was": 19.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "r7-tl-tengen": {
+  "added": "2026-10-05",
+  "cat": "lounge",
+  "checked": "2026-10-05",
+  "gift": true,
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Tengen lounge set with check shorts, navy",
+  "note": "T-shirt and check shorts set. £14.99, 50% off.",
+  "occ": [
+   "lounge"
+  ],
+  "price": 14.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "lounge"
+  ],
+  "url": "https://www.tokyolaundry.com/products/tengen-2-piece-jersey-cotton-crew-neck-t-shirt-and-check-shorts-lounge-set-in-sky-captain-navy-tokyo-laundry?variant=55503343747448",
+  "was": 29.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r7-tl-tona": {
+  "added": "2026-10-05",
+  "cat": "basics",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Tona 5-pack cotton boxer shorts, black",
+  "note": "Five pairs of black cotton boxers. £19.99, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "lounge",
+   "minimal",
+   "job"
+  ],
+  "url": "https://www.tokyolaundry.com/products/tona-5-pack-boxer-shorts-set-in-black-tokyo-laundry?variant=42565427822643",
+  "was": 39.99,
+  "wx": [
+   "mild",
+   "cold",
+   "warm"
+  ]
+ },
+ "r7-tl-tudor": {
+  "added": "2026-10-05",
+  "cat": "lounge",
+  "checked": "2026-10-05",
+  "gift": true,
+  "insize": true,
+  "kind": "new",
+  "name": "Tokyo Laundry Tudor long-sleeve pyjama set, navy",
+  "note": "Cotton pyjamas. £21.99, 45% off.",
+  "occ": [
+   "lounge"
+  ],
+  "price": 21.99,
+  "rank": 160,
+  "sets": [
+   "christmas",
+   "winter"
+  ],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "lounge"
+  ],
+  "url": "https://www.tokyolaundry.com/products/tudor-2pc-long-sleeve-cotton-lounge-set-in-denim-marl-sky-captain-navy-tokyo-laundry?variant=40804914757683",
+  "was": 39.99,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "r7-tl-zeus": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Kensington Eastside polo sweatshirt with cord collar, royal blue",
+  "note": "Collared sweatshirt. £9.99, 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 9.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Tokyo Laundry",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.tokyolaundry.com/products/zeus-brushback-fleece-pullover-polo-sweatshirt-with-corduroy-collar-in-royal-blue-kensington-eastside?variant=55319940497784",
+  "was": 19.99,
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-ws-790bzc": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Wide Load 790BZC 6E composite toe safety boots, black",
+  "note": "6E extra wide fit with a composite toe cap and side zip. £174.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 174.99,
+  "rank": 220,
+  "sets": [],
+  "shop": "Wide Shoes",
+  "sizeNote": "6E is the widest standard fitting.",
+  "sizes": "UK 11 (6E) in stock",
+  "style": [
+   "job"
+  ],
+  "url": "https://www.wideshoes.co.uk/products/wide-load-790bzc-police-army-hiking-6e-fit?variant=46323650855137",
+  "wx": [
+   "mild",
+   "cold",
+   "wet"
+  ]
+ },
  "rg-arec": {
   "cat": "coat",
   "checked": "2026-10-05",

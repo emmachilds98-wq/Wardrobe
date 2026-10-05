@@ -1,6 +1,6 @@
 # Dave's Wardrobe
 
-A personal outfit planner for Dave: clothes picked for his sizes across ten styles (including Workwear for his job), outfits
+A personal outfit planner for Dave: clothes picked for his sizes across eight style tabs (including Workwear for his job), outfits
 drawn on a figure of him, live prices with links, an outfit builder, and a shared shortlist.
 
 The live version runs as a claude.ai artifact:

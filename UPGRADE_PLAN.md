@@ -257,6 +257,35 @@ people using the page.
 - Page version 15. Totals: **1051 picks, 181 outfits, 94 shops with picks.** The two load
   queries hold about 683 and 368 picks (limit 1000 each, aim under 900).
 
+## 2j. Eight tabs, 101 more picks and 30 more outfits (5 Oct 2026, late night)
+
+- **Fewer, clearer style tabs.** Classic and Casual shared about half their picks, Minimal sat
+  mostly inside Classic, and Street mostly inside Casual. The bar now has eight tabs:
+  Classic, Casual and street, Mod and skate, Rave, Outdoors, Holiday, Workwear and Lounge.
+  - Minimal is a "Within" chip under Classic, next to "Tailored and smart" and "Heritage"
+    (renamed from "Heritage and workwear" so it isn't confused with the Workwear tab).
+  - Street is a "Within" chip under Casual and street, next to "Out with friends".
+  - Each chip keeps its own style guide and sale notes, and old links such as #street or
+    #minimal open the right tab and chip.
+  - Nothing was lost: the data keeps the minimal and street tags, and the page folds them in
+    when it loads (`MERGED` and `SUBBY` in the page). Classic now shows 717 picks and Casual
+    and street 725, with every outfit still in place.
+- **101 new picks**, 92 under £40 and 99 reduced, mostly 50 to 80% off. Ten new shops:
+  - Lambretta, Pretty Green, Gabicci and Merc (mod)
+  - Duck and Cover and Tokyo Laundry (cheap basics, lounge sets, boxers)
+  - Tog24 (fleeces, gilets, shirts, swim shorts from £6)
+  - Speedo and Ellesse (swim and terrace polos)
+  - Millets now has picks as well.
+  - More shoes from Herring, Base London and Slam City, and a Wide Load 6E composite toe
+    safety boot for Workwear.
+  - Every photo was checked on a contact sheet. Two that showed the wrong thing were dropped.
+- **30 new outfits**, at least two for every tab:
+  - 8 Holiday, 6 Mod and skate, 4 Workwear (from £86), 2 Rave, 3 Casual and street,
+    3 Classic and minimal, 2 Outdoors and 2 Lounge.
+  - Every tab now has at least 14 outfits.
+- Page version 16. Totals: **1152 picks, 211 outfits, 105 shops with picks.** The two load
+  queries hold about 743 and 409 picks (limit 1000 each).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

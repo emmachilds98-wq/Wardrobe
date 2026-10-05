@@ -243,6 +243,76 @@
    "cold"
   ]
  },
+ "c7-navy-hoodie": {
+  "look": "man navy hoodie dark wash relaxed jeans white trainers",
+  "name": "Navy hoodie and dark jeans",
+  "note": "The easy weekend outfit for £62.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "r7-dc-randolph-navy",
+    "shape": "hoodie",
+    "what": "Hoodie"
+   },
+   {
+    "col": "indigo",
+    "item": "mt-jeans-vintage",
+    "shape": "trousers",
+    "what": "Relaxed jeans"
+   },
+   {
+    "col": "white",
+    "item": "asos-own-white",
+    "shape": "trainers",
+    "what": "White trainers"
+   }
+  ],
+  "rank": 18,
+  "style": [
+   "casual",
+   "street"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "c7-quarter-zip": {
+  "look": "man navy quarter zip hoodie stone chino joggers navy suede trainers",
+  "name": "Quarter-zip and smart joggers",
+  "note": "Quarter-zip, chino-look joggers and suede trainers: £72.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "r7-dc-slell",
+    "shape": "halfzip",
+    "what": "Quarter-zip hoodie"
+   },
+   {
+    "col": "stone",
+    "item": "r7-dc-chesser",
+    "shape": "trousers",
+    "what": "Chino joggers"
+   },
+   {
+    "col": "navy",
+    "item": "p6-bl-banksy",
+    "shape": "trainers",
+    "what": "Suede trainers"
+   }
+  ],
+  "rank": 28,
+  "style": [
+   "casual"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
  "ca-autumn": {
   "look": "men olive chore jacket navy sweatshirt relaxed jeans desert boots beanie outfit",
   "name": "Cold evening out",
@@ -1015,6 +1085,321 @@
    "warm"
   ]
  },
+ "h7-beach-50": {
+  "look": "man navy t-shirt stone chino shorts tan sliders",
+  "name": "Beach day under £50",
+  "note": "The cheapest holiday outfit here: tee, chino shorts and sliders for £49.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "r7-dc-sherborn-tee",
+    "shape": "tee",
+    "what": "T-shirt"
+   },
+   {
+    "col": "stone",
+    "item": "r7-dc-everett",
+    "shape": "shorts",
+    "what": "Chino shorts"
+   },
+   {
+    "col": "tan",
+    "item": "hs-base-webb",
+    "shape": "shoes",
+    "what": "Leather sliders"
+   }
+  ],
+  "rank": 10,
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "h7-black-set": {
+  "look": "man black short sleeve shirt black shorts white trainers black wrap sunglasses",
+  "name": "All-black shirt and shorts",
+  "note": "A matching black set for summer festivals and bars: £57.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r7-dc-hingham",
+    "shape": "sshirt",
+    "what": "Shirt, sold as a set"
+   },
+   {
+    "col": "black",
+    "item": "r7-dc-hingham",
+    "shape": "shorts",
+    "what": "Matching shorts"
+   },
+   {
+    "col": "white",
+    "item": "asos-own-white",
+    "shape": "trainers",
+    "what": "White trainers"
+   },
+   {
+    "col": "black",
+    "item": "rv-wrap-sunglasses",
+    "shape": "sunglasses",
+    "what": "Wrap sunglasses"
+   }
+  ],
+  "rank": 22,
+  "style": [
+   "summer",
+   "rave"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "h7-ellesse-terrace": {
+  "look": "man off white polo shirt stone chino shorts cream suede trainers",
+  "name": "Terrace polo in the sun",
+  "note": "Off-white polo, stone shorts and cream trainers: £62.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "cream",
+    "item": "r7-el-senago",
+    "shape": "polo",
+    "what": "Polo shirt"
+   },
+   {
+    "col": "stone",
+    "item": "r7-tl-aidan",
+    "shape": "shorts",
+    "what": "Chino shorts"
+   },
+   {
+    "col": "cream",
+    "item": "mm-converse-star",
+    "shape": "trainers",
+    "what": "Suede trainers"
+   }
+  ],
+  "rank": 26,
+  "style": [
+   "summer",
+   "mod",
+   "casual"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "h7-gabicci-night": {
+  "look": "man blue patterned short sleeve shirt black linen shorts sand suede loafers",
+  "name": "Patterned shirt for dinner out",
+  "note": "A Gabicci shirt with black linen shorts and suede loafers for evenings abroad: £88.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "r7-gb-liam",
+    "shape": "sshirt",
+    "what": "Patterned short-sleeve shirt"
+   },
+   {
+    "col": "black",
+    "item": "tml-linen-short-black",
+    "shape": "shorts",
+    "what": "Linen shorts"
+   },
+   {
+    "col": "sand",
+    "item": "r7-bl-snapper",
+    "shape": "shoes",
+    "what": "Suede loafers, no socks"
+   }
+  ],
+  "rank": 18,
+  "style": [
+   "summer",
+   "mod"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "h7-lambretta-pool": {
+  "look": "man white striped polo shirt stone chino shorts tan leather sliders navy cap",
+  "name": "Striped polo by the pool",
+  "note": "A £15 Lambretta polo, cheap chino shorts and leather sliders: £61 all in.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "white",
+    "item": "r7-lb-stripe-polo",
+    "shape": "polo",
+    "what": "Striped polo"
+   },
+   {
+    "col": "stone",
+    "item": "r7-tl-aidan",
+    "shape": "shorts",
+    "what": "Chino shorts"
+   },
+   {
+    "col": "tan",
+    "item": "hs-base-webb",
+    "shape": "shoes",
+    "what": "Leather sliders"
+   },
+   {
+    "col": "navy",
+    "item": "r7-lb-cap",
+    "shape": "cap",
+    "what": "Stripe cap"
+   }
+  ],
+  "rank": 12,
+  "style": [
+   "summer",
+   "mod"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "h7-tipped-deck": {
+  "look": "man khaki tipped polo shirt oatmeal cargo shorts brown suede deck shoes",
+  "name": "Tipped polo and deck shoes",
+  "note": "Mod on holiday: a tipped polo, cargo shorts and suede deck shoes, £79.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "olive",
+    "item": "r7-lb-tipped-3",
+    "shape": "polo",
+    "what": "Tipped polo"
+   },
+   {
+    "col": "sand",
+    "item": "r7-lb-cargoshort",
+    "shape": "shorts",
+    "what": "Cargo shorts"
+   },
+   {
+    "col": "brown",
+    "item": "r7-hs-rock",
+    "shape": "shoes",
+    "what": "Suede deck shoes"
+   }
+  ],
+  "rank": 24,
+  "style": [
+   "summer",
+   "mod"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "h7-tog-walk": {
+  "look": "man blue striped short sleeve shirt green walking shorts khaki sandals khaki cap",
+  "name": "Holiday walking day",
+  "note": "Cotton shirt and quick-dry shorts for a day out walking: £57.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "r7-tg-boldon",
+    "shape": "sshirt",
+    "what": "Short-sleeve cotton shirt"
+   },
+   {
+    "col": "green",
+    "item": "r7-tg-activate",
+    "shape": "shorts",
+    "what": "Ripstop shorts"
+   },
+   {
+    "col": "olive",
+    "item": "mw-shandals",
+    "shape": "shoes",
+    "what": "Walking sandals"
+   },
+   {
+    "col": "olive",
+    "item": "r7-tg-cap",
+    "shape": "cap",
+    "what": "Cap"
+   }
+  ],
+  "rank": 20,
+  "style": [
+   "summer",
+   "outdoor"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "h7-whitley-boat": {
+  "look": "man grey blue polo shirt black chino shorts tan boat shoes",
+  "name": "Polo, black shorts and boat shoes",
+  "note": "A £10 polo with black shorts and tan boat shoes: £58.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "r7-tg-whitley",
+    "shape": "polo",
+    "what": "Cotton polo"
+   },
+   {
+    "col": "black",
+    "item": "r7-dc-moreshore",
+    "shape": "shorts",
+    "what": "Chino shorts"
+   },
+   {
+    "col": "tan",
+    "item": "hs-base-stern",
+    "shape": "shoes",
+    "what": "Boat shoes"
+   }
+  ],
+  "rank": 28,
+  "style": [
+   "summer",
+   "quiet"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
  "hoodie-chore": {
   "look": "men brown chore jacket grey hoodie relaxed blue jeans brown work boots workwear outfit",
   "name": "Hoodie under a work jacket",
@@ -1499,6 +1884,162 @@
    "mild"
   ]
  },
+ "jb7-6e-winter": {
+  "look": "man black fleece gilet black crew sweatshirt black cargo work trousers black 6e safety boots",
+  "name": "Winter site, widest boots",
+  "note": "For the coldest days with the most room in the boot (6E): £243.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r7-tg-boltby",
+    "shape": "gilet",
+    "what": "Fleece gilet"
+   },
+   {
+    "col": "black",
+    "item": "r7-dc-stoneham",
+    "shape": "sshirt",
+    "what": "Crew sweatshirt"
+   },
+   {
+    "col": "black",
+    "item": "wk-blaklader-1400",
+    "shape": "trousers",
+    "what": "100% cotton cargo trousers"
+   },
+   {
+    "col": "black",
+    "item": "r7-ws-790bzc",
+    "shape": "boots",
+    "what": "6E composite toe boots"
+   }
+  ],
+  "rank": 14,
+  "style": [
+   "job"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold",
+   "wet"
+  ]
+ },
+ "jb7-cheap-black": {
+  "look": "man grey padded gilet black hoodie black cotton work trousers black safety boots",
+  "name": "Black hoodie, gilet and 4E boots",
+  "note": "The cheapest full work outfit: padded gilet, hoodie, black cotton trousers and 4E safety boots for £114.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "charcoal",
+    "item": "r7-tg-lomax",
+    "shape": "gilet",
+    "what": "Padded gilet"
+   },
+   {
+    "col": "black",
+    "item": "r7-dc-optimus-black",
+    "shape": "hoodie",
+    "what": "Hoodie over the work tee"
+   },
+   {
+    "col": "black",
+    "item": "wk-cernucci-twill",
+    "shape": "trousers",
+    "what": "100% cotton twill trousers"
+   },
+   {
+    "col": "black",
+    "item": "wk-grafters-9502",
+    "shape": "boots",
+    "what": "4E safety boots"
+   }
+  ],
+  "rank": 4,
+  "style": [
+   "job"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "jb7-fleece-shorts": {
+  "look": "man dark grey zip neck fleece charcoal cotton shorts black safety shoes",
+  "name": "Fleece and charcoal shorts",
+  "note": "Warm-day work kit: zip-neck fleece, charcoal cotton shorts and 4E safety shoes, £83.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "charcoal",
+    "item": "r7-tg-ryle",
+    "shape": "halfzip",
+    "what": "Zip-neck fleece"
+   },
+   {
+    "col": "charcoal",
+    "item": "wk-passenger-drifter",
+    "shape": "shorts",
+    "what": "100% cotton shorts"
+   },
+   {
+    "col": "black",
+    "item": "wk-grafters-9504",
+    "shape": "shoes",
+    "what": "4E safety shoes"
+   }
+  ],
+  "rank": 12,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "warm"
+  ]
+ },
+ "jb7-under-90": {
+  "look": "man black crew neck jumper charcoal ripstop cargo trousers black safety boots",
+  "name": "Work outfit under £90",
+  "note": "Jumper, charcoal cotton cargos and 4E steel toe boots for £86.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r7-tl-striker-black",
+    "shape": "jumper",
+    "what": "Crew-neck jumper"
+   },
+   {
+    "col": "charcoal",
+    "item": "wk-cernucci-cargo-charcoal",
+    "shape": "trousers",
+    "what": "100% cotton ripstop cargos"
+   },
+   {
+    "col": "black",
+    "item": "wk-grafters-9503",
+    "shape": "boots",
+    "what": "4E steel toe boots"
+   }
+  ],
+  "rank": 8,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
  "jeans-blazer": {
   "look": "men navy cotton blazer blue striped oxford shirt dark jeans burgundy tassel loafers smart casual outfit",
   "name": "Blazer and jeans",
@@ -1739,6 +2280,78 @@
   "wx": [
    "cold",
    "mild"
+  ]
+ },
+ "l7-sofa": {
+  "look": "man blue sweatshirt stone joggers brown cord slippers",
+  "name": "Sweatshirt, joggers and slippers",
+  "note": "A night in for £35.",
+  "occ": "lounge",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "r7-tg-sunnie",
+    "shape": "sshirt",
+    "what": "Soft sweatshirt"
+   },
+   {
+    "col": "stone",
+    "item": "r7-dc-hannings-jog",
+    "shape": "trousers",
+    "what": "Joggers"
+   },
+   {
+    "col": "brown",
+    "item": "p6-bb-cordslip",
+    "shape": "slippers",
+    "what": "Cord slippers"
+   }
+  ],
+  "rank": 12,
+  "style": [
+   "lounge"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "l7-summer-lounge": {
+  "look": "man black t-shirt black jersey shorts black borg mule slippers",
+  "name": "Tee, lounge shorts and mules",
+  "note": "A cotton lounge set and mules: £28.",
+  "occ": "lounge",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r7-tl-keir",
+    "shape": "tee",
+    "what": "Lounge set tee"
+   },
+   {
+    "col": "black",
+    "item": "r7-tl-keir",
+    "shape": "shorts",
+    "what": "Lounge set shorts"
+   },
+   {
+    "col": "black",
+    "item": "lg-mule-black",
+    "shape": "slippers",
+    "what": "Mule slippers"
+   }
+  ],
+  "rank": 20,
+  "style": [
+   "lounge",
+   "summer"
+  ],
+  "tags": [],
+  "wx": [
+   "warm"
   ]
  },
  "lazy-sunday": {
@@ -2360,6 +2973,245 @@
    "mild"
   ]
  },
+ "m7-check-polo": {
+  "look": "man grey check polo shirt sand chinos navy suede shoes",
+  "name": "Check polo and chinos",
+  "note": "A Prince of Wales check polo with sand chinos and navy Herring shoes: £80.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "r7-lb-check-polo",
+    "shape": "polo",
+    "what": "Check polo"
+   },
+   {
+    "col": "sand",
+    "item": "md-bb-norborton",
+    "shape": "trousers",
+    "what": "Slim chinos"
+   },
+   {
+    "col": "navy",
+    "item": "r7-hs-paris",
+    "shape": "shoes",
+    "what": "Calf and suede shoes"
+   }
+  ],
+  "rank": 30,
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "warm"
+  ]
+ },
+ "m7-christmas": {
+  "look": "man navy christmas jumper dark straight jeans tan suede trainers",
+  "name": "Christmas jumper, mod style",
+  "note": "For the Christmas do: the Lambretta jumper with dark jeans and tan trainers, £66.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "r7-lb-xmas",
+    "shape": "jumper",
+    "what": "Christmas jumper"
+   },
+   {
+    "col": "indigo",
+    "item": "mt-jeans-straight",
+    "shape": "trousers",
+    "what": "Straight jeans"
+   },
+   {
+    "col": "tan",
+    "item": "r7-lb-tackle-tan",
+    "shape": "trainers",
+    "what": "Suede trainers"
+   }
+  ],
+  "rank": 16,
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "tags": [
+   "christmas",
+   "winter"
+  ],
+  "wx": [
+   "cold"
+  ]
+ },
+ "m7-harrington": {
+  "look": "man mustard harrington jacket black tipped polo black 874 trousers charcoal suede trainers",
+  "name": "Harrington and tipped polo",
+  "note": "The mod uniform for £98: Harrington, tipped polo, 874s and terrace trainers.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "camel",
+    "item": "r7-lb-harrington",
+    "shape": "jacket",
+    "what": "Harrington, worn open"
+   },
+   {
+    "col": "black",
+    "item": "r7-lb-tipped-1",
+    "shape": "polo",
+    "what": "Tipped polo"
+   },
+   {
+    "col": "black",
+    "item": "asos-dickies-874-sale",
+    "shape": "trousers",
+    "what": "Dickies 874"
+   },
+   {
+    "col": "charcoal",
+    "item": "r7-lb-tackle-cb",
+    "shape": "trainers",
+    "what": "Suede trainers"
+   }
+  ],
+  "rank": 6,
+  "style": [
+   "mod"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "m7-knit-loafers": {
+  "look": "man black knitted polo navy slim cord trousers black leather loafers black belt",
+  "name": "Knitted polo and loafers",
+  "note": "A black knitted polo with slim navy cords and loafers for a night out: £128.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r7-dc-dedham",
+    "shape": "polo",
+    "what": "Knitted polo"
+   },
+   {
+    "col": "navy",
+    "item": "r7-mc-judson",
+    "shape": "trousers",
+    "what": "Slim cord trousers"
+   },
+   {
+    "col": "black",
+    "item": "r7-bl-bruno",
+    "shape": "shoes",
+    "what": "Leather loafers"
+   },
+   {
+    "col": "black",
+    "item": "r7-lb-belt",
+    "shape": "belt",
+    "what": "Leather belt"
+   }
+  ],
+  "rank": 14,
+  "style": [
+   "mod",
+   "minimal"
+  ],
+  "tags": [
+   "christmas"
+  ],
+  "wx": [
+   "mild"
+  ]
+ },
+ "m7-pretty-green": {
+  "look": "man black coach jacket white polo shirt indigo straight jeans navy trainers",
+  "name": "Coach jacket and sleeve-stripe polo",
+  "note": "Pretty Green at 60% off with £13 jeans: £107.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r7-pg-coach",
+    "shape": "jacket",
+    "what": "Coach jacket, worn open"
+   },
+   {
+    "col": "white",
+    "item": "r7-pg-stripe",
+    "shape": "polo",
+    "what": "Sleeve-stripe polo"
+   },
+   {
+    "col": "indigo",
+    "item": "pc-jeans-indigo",
+    "shape": "trousers",
+    "what": "Straight jeans"
+   },
+   {
+    "col": "navy",
+    "item": "r7-lb-pinball",
+    "shape": "trainers",
+    "what": "Court trainers"
+   }
+  ],
+  "rank": 32,
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "m7-skate": {
+  "look": "man blue collared sweatshirt black work trousers blue suede skate shoes stone beanie",
+  "name": "Collared sweatshirt and skate shoes",
+  "note": "Skate side of mod: a £10 collared sweatshirt, 874s and New Balance skate shoes, £102.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "r7-tl-zeus",
+    "shape": "sshirt",
+    "what": "Collared sweatshirt"
+   },
+   {
+    "col": "black",
+    "item": "asos-dickies-874-sale",
+    "shape": "trousers",
+    "what": "Dickies 874"
+   },
+   {
+    "col": "blue",
+    "item": "r7-sc-nb600",
+    "shape": "trainers",
+    "what": "Suede skate shoes"
+   },
+   {
+    "col": "stone",
+    "item": "r7-pg-hat",
+    "shape": "beanie",
+    "what": "Beanie"
+   }
+  ],
+  "rank": 34,
+  "style": [
+   "mod",
+   "street"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
  "md6-fila": {
   "look": "man navy collared polo t-shirt grey check trousers navy suede loafers",
   "name": "Collared tee and check trousers",
@@ -2764,6 +3616,42 @@
   ],
   "wx": [
    "warm"
+  ]
+ },
+ "mn7-black-knit": {
+  "look": "man black crew neck jumper black straight trousers black leather loafers",
+  "name": "Black knit and loafers",
+  "note": "Plain black crew neck, black trousers and loafers for £64.",
+  "occ": "smart",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r7-tl-striker-black",
+    "shape": "jumper",
+    "what": "Crew-neck jumper"
+   },
+   {
+    "col": "black",
+    "item": "asos-dickies-874-sale",
+    "shape": "trousers",
+    "what": "Straight trousers"
+   },
+   {
+    "col": "black",
+    "item": "r7-bl-bruno",
+    "shape": "shoes",
+    "what": "Leather loafers"
+   }
+  ],
+  "rank": 20,
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
   ]
  },
  "ms-one-shop": {
@@ -4806,6 +5694,91 @@
    "cold"
   ]
  },
+ "o7-fleece-walk": {
+  "look": "man navy fleece jacket olive cotton trousers brown walking boots green beanie",
+  "name": "Fleece jacket and cotton trousers",
+  "note": "Fleece, cotton trousers and waterproof walking boots: £78.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "r7-tg-miles",
+    "shape": "jacket",
+    "what": "Fleece jacket"
+   },
+   {
+    "col": "olive",
+    "item": "r7-tg-nelson",
+    "shape": "trousers",
+    "what": "Cotton trousers"
+   },
+   {
+    "col": "brown",
+    "item": "tp-finley-boots",
+    "shape": "boots",
+    "what": "Waterproof walking boots"
+   },
+   {
+    "col": "green",
+    "item": "r7-bg-beanie",
+    "shape": "beanie",
+    "what": "Beanie"
+   }
+  ],
+  "rank": 18,
+  "style": [
+   "outdoor"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "o7-ski-jacket": {
+  "look": "man camo padded ski jacket blue sweatshirt navy walking trousers brown walking boots",
+  "name": "Padded jacket for winter walks",
+  "note": "A £40 waterproof padded jacket with a £10 sweatshirt: £100.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "olive",
+    "item": "r7-tg-palisade",
+    "shape": "coat",
+    "what": "Padded waterproof jacket"
+   },
+   {
+    "col": "blue",
+    "item": "r7-tg-sunnie",
+    "shape": "sshirt",
+    "what": "Sweatshirt"
+   },
+   {
+    "col": "navy",
+    "item": "mm-regatta-bayfell",
+    "shape": "trousers",
+    "what": "Walking trousers"
+   },
+   {
+    "col": "brown",
+    "item": "tp-finley-boots",
+    "shape": "boots",
+    "what": "Walking boots"
+   }
+  ],
+  "rank": 22,
+  "style": [
+   "outdoor",
+   "street"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold",
+   "wet"
+  ]
+ },
  "od-budget": {
   "look": "men grey waterproof shell jacket brown fleece dark walking trousers brown walking shoes hiking outfit",
   "name": "Wet walk for under £95",
@@ -5475,6 +6448,84 @@
    "mild"
   ]
  },
+ "q7-fairisle": {
+  "look": "man camel fair isle quarter zip jumper rust cord trousers brown suede chelsea boots black scarf",
+  "name": "Fair Isle half-zip and cords",
+  "note": "A £17 Fair Isle half-zip with cords and Chelsea boots: £77.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "camel",
+    "item": "r7-tl-peric",
+    "shape": "halfzip",
+    "what": "Fair Isle half-zip"
+   },
+   {
+    "col": "brown",
+    "item": "p6-bb-banstead",
+    "shape": "trousers",
+    "what": "Cord trousers"
+   },
+   {
+    "col": "brown",
+    "item": "pc-chelsea-brown",
+    "shape": "boots",
+    "what": "Chelsea boots"
+   },
+   {
+    "col": "black",
+    "item": "r7-pg-scarf",
+    "shape": "scarf",
+    "what": "Scarf"
+   }
+  ],
+  "rank": 14,
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "tags": [
+   "winter",
+   "christmas"
+  ],
+  "wx": [
+   "cold"
+  ]
+ },
+ "q7-gunnar": {
+  "look": "man cream striped quarter zip jumper sand chinos camel suede trainers",
+  "name": "Striped half-zip and suede trainers",
+  "note": "Cream half-zip, sand chinos and camel suede trainers: £85.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "cream",
+    "item": "r7-ml-gunnar",
+    "shape": "halfzip",
+    "what": "Striped half-zip"
+   },
+   {
+    "col": "sand",
+    "item": "md-bb-norborton",
+    "shape": "trousers",
+    "what": "Slim chinos"
+   },
+   {
+    "col": "camel",
+    "item": "r7-hs-strike",
+    "shape": "trainers",
+    "what": "Suede trainers"
+   }
+  ],
+  "rank": 26,
+  "style": [
+   "quiet"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
  "r6-polo": {
   "look": "man black polo shirt black trousers black chunky boots wrap sunglasses",
   "name": "Black polo, black boots",
@@ -5549,6 +6600,88 @@
    }
   ],
   "rank": 39,
+  "style": [
+   "rave"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "r7-knitpolo-chain": {
+  "look": "man black zigzag knitted polo black baggy nylon trousers black chunky boots silver chain",
+  "name": "Zigzag knit polo and chain",
+  "note": "A patterned knitted polo with nylon trousers, chunky boots and a chain: £94.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r7-pg-knitpolo",
+    "shape": "polo",
+    "what": "Knitted polo"
+   },
+   {
+    "col": "black",
+    "item": "rv-nylon-baggy",
+    "shape": "trousers",
+    "what": "Baggy nylon trousers"
+   },
+   {
+    "col": "black",
+    "item": "rv-chunky-boot",
+    "shape": "boots",
+    "what": "Chunky boots"
+   },
+   {
+    "col": "silver",
+    "item": "rv-chain-slim",
+    "shape": "chain",
+    "what": "Slim chain"
+   }
+  ],
+  "rank": 24,
+  "style": [
+   "rave",
+   "mod"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "warm"
+  ]
+ },
+ "r7-pg-polo-night": {
+  "look": "man black polo shirt black parachute trousers black combat boots black wrap sunglasses",
+  "name": "Black polo and parachute trousers",
+  "note": "Black polo, parachute trousers and combat boots: £106.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r7-pg-polo",
+    "shape": "polo",
+    "what": "Polo shirt"
+   },
+   {
+    "col": "black",
+    "item": "rv-weekday-parachute",
+    "shape": "trousers",
+    "what": "Parachute trousers"
+   },
+   {
+    "col": "black",
+    "item": "p6-bl-dickson",
+    "shape": "boots",
+    "what": "Combat boots"
+   },
+   {
+    "col": "black",
+    "item": "rv-wrap-sunglasses",
+    "shape": "sunglasses",
+    "what": "Wrap sunglasses"
+   }
+  ],
+  "rank": 20,
   "style": [
    "rave"
   ],
@@ -6603,6 +7736,48 @@
   ],
   "wx": [
    "cold"
+  ]
+ },
+ "s7-black-tee": {
+  "look": "man black t-shirt black relaxed jeans black white vans grey beanie",
+  "name": "Black tee, black jeans, Vans",
+  "note": "All black with Vans: £86.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r7-el-1959-black",
+    "shape": "tee",
+    "what": "Logo tee"
+   },
+   {
+    "col": "black",
+    "item": "pc-jeans-black",
+    "shape": "trousers",
+    "what": "Relaxed jeans"
+   },
+   {
+    "col": "black",
+    "item": "of-vans-oldskool",
+    "shape": "trainers",
+    "what": "Vans Old Skool"
+   },
+   {
+    "col": "grey",
+    "item": "r7-ml-jim",
+    "shape": "beanie",
+    "what": "Beanie"
+   }
+  ],
+  "rank": 30,
+  "style": [
+   "street",
+   "minimal"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "warm"
   ]
  },
  "samba-cord": {
