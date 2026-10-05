@@ -219,8 +219,8 @@ people using the page.
   - 42 for the new styles from Original Penguin, Lyle & Scott, Fred Perry (Jean Store), Farah,
     Community Clothing, Base London, Brakeburn, Savile Row Company, T.M. Lewin, Slam City
     Skates (Last Resort, Polar, Passport), Fila, Albam, howies, Passenger and Uskees.
-  - 36 from high-street and value shops new to the guide: Matalan (14, with its 20% online
-    sale), Peacocks (10), Blue Inc (5) and Mountain Warehouse (7).
+  - 36 from high-street and value shops: Matalan (14, with its 20% online
+    sale), Peacocks (10) and Blue Inc (5), all new to the guide, and 7 more from Mountain Warehouse.
 - **"Where to look"** now lists 134 shops, including Jack & Jones, Burton, boohooMAN, New Look,
   Pull&Bear, Bershka, Mango, Ben Sherman, Jacamo, Shoe Zone, Millets, Blacks, Weird Fish and USC.
   Several of these block cloud servers (Primark, TK Maxx, F&F, Very, New Look, Jacamo, Mango),
