@@ -15,6 +15,7 @@ page source, a copy of its data, the listing photos, and the tools that refresh 
 | `photos/` | Listing photos, shrunk to small WebP files and packed into JSON files the page loads. |
 | `tools/fetch_photos.py` | Downloads and packs the listing photos. `--browser` retries refused shops in headless Chromium. |
 | `tools/shopify_pull.py` | Downloads a whole catalogue (prices, stock by size, photos) from shops that publish a product feed. |
+| `tools/asos_photos.py` | Fetches ASOS photos through wsrv.nl, since ASOS blocks cloud servers. |
 | `tools/browser_fetch.js` | The headless-browser fallback used by `--browser`. |
 | `UPGRADE_PLAN.md` | The review, what has been done, and what is next. |
 

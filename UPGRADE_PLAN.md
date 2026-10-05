@@ -6,7 +6,7 @@ it, so the page and its data can be used or rebuilt outside Claude.
 
 | File | What it is |
 |---|---|
-| `page.html` | The page source as published (version 10, 5 Oct 2026). |
+| `page.html` | The page source as published (version 11, 5 Oct 2026). |
 | `data/items.json` | All 886 picks, keyed by id, as stored in the artifact's `items` collection. |
 | `data/outfits.json` | All 140 outfits from the `outfits` collection. |
 | `tools/fetch_photos.py` | Downloads listing photos and packs them for the page (step 2 below). |
@@ -159,10 +159,30 @@ people using the page.
   checks the new shops' feeds.
 - Totals: **886 picks, 140 outfits, 85 shops; 578 picks with a photo in the packs.**
 
+## 2f. More photos (5 Oct 2026, late)
+
+- ASOS blocks cloud servers, but the public image service wsrv.nl can still fetch its photos.
+  The photo address is built from the product number and a colour code
+  (`tools/asos_photos.py`).
+  - This gave **176 of 195 ASOS picks** a photo.
+  - Each one was checked by eye against the pick's name and colour.
+- Next's image server answers directly, so both Next picks now have photos. So do Rohan's
+  Range jeans and the New Balance 574s from Zalando.
+- **758 of 886 picks now show the shop's photo** (page version 11, pack 5).
+- Still drawings:
+  - 19 ASOS picks whose colour code could not be found
+  - 28 Vinted, eBay and Marrkt searches
+  - 31 M and M Direct picks and a few M&S, H&M and John Lewis picks that link to a brand or
+    category page rather than one product
+  - About 35 picks from shops that hide their photos from every tool tried: Zara, COS,
+    Arket, Decathlon, The North Face, WoolOvers, Schuh, Joules, Hawes & Curtis, Suit Direct
+    and others
+- Giving the M and M Direct picks single-product links would let them have photos too.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
-Most shops are done. The gaps are shops that block cloud servers: ASOS (195 picks), Arket, COS,
+Most shops are done (see 2f). The gaps are shops that block cloud servers: 19 ASOS picks, Arket, COS,
 Zara, Next, Joules, The North Face, Converse, Decathlon, Zalando, H&M, Hawes & Curtis, John
 Lewis, Office and Gymshark. Running `python3 tools/fetch_photos.py --only <ids> --out photos`
 from a home computer usually gets past them. Then add the new pack to the page and to
