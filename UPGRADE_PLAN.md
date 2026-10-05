@@ -339,6 +339,34 @@ people using the page.
     4E and 6E boots).
 - Page version 17. Totals: **1240 picks, 239 outfits, 111 shops with picks.**
 
+## 2l. Cheaper extra wide work boots, and picks across every style (5 Oct 2026, night)
+
+- **Affordable extra wide safety footwear (13 new pairs, UK 11 in stock):**
+  - Grafters 4E (EEEE) at four shops that undercut Wide Shoes:
+    - Hollands Country Clothing: 4-eyelet shoes £21.95, dealer boots £22.90,
+      7-eyelet boots £24.95, water-resistant brown dealers £33.95. EU sizes; EU 46 is UK 11.
+    - Universal Textiles: lace-up shoes £27, dealer boots £30, pull-on dealers £46.
+    - Hirst Footwear: brown M9509B dealer boots £35.95.
+  - The UKD Grafter 4E range at Work+Safety, all £74.95: Bedrock and Latitude (S1P),
+    Expanse (S3 dealer boots) and Grit (S7 waterproof).
+  - Mongrel 461 EEE side-zip boots at Big Boots (£124.99).
+  - No new 6E safety footwear turned up. The Wide Load range and Rock Fall Otus are
+    still the only 6E pairs with a toe cap in the UK.
+- **30 general picks:**
+  - Brakeburn, Closure London, Duck and Cover, Luke 1977, Lambretta, Pretty Green,
+    Weekend Offender, Tog24, T.M. Lewin and Tokyo Laundry.
+  - Most are reduced and under £20: puffer, hybrid jacket, knits, tees, long-sleeve polo,
+    shirts, cord cargo shorts, board and swim shorts, sandals, a cap, a scarf, a tie and a
+    tie slide.
+- **29 new outfits:**
+  - 12 Workwear outfits built on the new 4E boots. They use cotton shorts or trousers and
+    a belt, holster, pouch or apron. Two cost under £60 all in (£45 and £55).
+  - 17 across Classic, Minimal, Casual, Street, Mod, Rave, Holiday, Outdoor and Lounge.
+- The directory lists the five new boot shops, and the Workwear guide names them.
+- The Friday routine now checks these shops for wide boots. It also looks each week for
+  more extra wide safety footwear under £50.
+- Page version 18. Totals: **1283 picks, 268 outfits, 116 shops with picks.**
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

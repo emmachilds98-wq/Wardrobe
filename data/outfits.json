@@ -1559,6 +1559,115 @@
    "warm"
   ]
  },
+ "h9-apricot": {
+  "look": "man apricot twill shirt sleeves rolled stone chino shorts sand suede loafers",
+  "name": "Apricot twill shirt and stone shorts",
+  "note": "A garment-dyed twill shirt with chino shorts and loafers: £74.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "pink",
+    "item": "r9-tm-garment",
+    "shape": "shirt",
+    "what": "Twill shirt, sleeves rolled"
+   },
+   {
+    "col": "stone",
+    "item": "r7-dc-everett",
+    "shape": "shorts",
+    "what": "Chino shorts"
+   },
+   {
+    "col": "sand",
+    "item": "r8-bl-drum",
+    "shape": "shoes",
+    "what": "Suede loafers"
+   }
+  ],
+  "rank": 21,
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "h9-boardshort": {
+  "look": "man blue print short sleeve shirt navy flower board shorts dark grey strap sandals",
+  "name": "Board shorts and sandals",
+  "note": "Print shirt, board shorts and strap sandals: £42.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "r9-tg-strichen",
+    "shape": "sshirt",
+    "what": "Print shirt"
+   },
+   {
+    "col": "navy",
+    "item": "r9-bk-boardshort",
+    "shape": "shorts",
+    "what": "Board shorts"
+   },
+   {
+    "col": "charcoal",
+    "item": "r9-cl-sandal",
+    "shape": "shoes",
+    "what": "Strap sandals"
+   }
+  ],
+  "rank": 17,
+  "style": [
+   "summer"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "h9-swim": {
+  "look": "man blue t-shirt green swim shorts dark grey sandals",
+  "name": "Green swim shorts and a blue tee",
+  "note": "£9 swim shorts, an £8 tee and sandals: £32.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "r9-tg-foran",
+    "shape": "tee",
+    "what": "Cotton tee"
+   },
+   {
+    "col": "green",
+    "item": "r9-tl-swim",
+    "shape": "shorts",
+    "what": "Swim shorts"
+   },
+   {
+    "col": "charcoal",
+    "item": "r9-cl-sandal",
+    "shape": "shoes",
+    "what": "Strap sandals"
+   }
+  ],
+  "rank": 23,
+  "style": [
+   "summer"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
  "hoodie-chore": {
   "look": "men brown chore jacket grey hoodie relaxed blue jeans brown work boots workwear outfit",
   "name": "Hoodie under a work jacket",
@@ -2609,6 +2718,485 @@
    "mild"
   ]
  },
+ "jb9-bedrock": {
+  "look": "man black padded gilet black hoodie black cotton cargo trousers black wide safety boots",
+  "name": "Gilet, cargos and Bedrock 4E boots",
+  "note": "DeWalt gilet, Snickers hoodie, 100% cotton cargos and Bedrock 4E boots: £166.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "w8-dw-force",
+    "shape": "gilet",
+    "what": "Padded gilet"
+   },
+   {
+    "col": "black",
+    "item": "w8-sn-2896",
+    "shape": "hoodie",
+    "what": "Work hoodie"
+   },
+   {
+    "col": "black",
+    "item": "w8-pw-cd111",
+    "shape": "trousers",
+    "what": "100% cotton cargo trousers"
+   },
+   {
+    "col": "black",
+    "item": "r9-ws-bedrock",
+    "shape": "boots",
+    "what": "4E S1P boots"
+   }
+  ],
+  "rank": 12,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "jb9-budget-shorts": {
+  "look": "man black sweatshirt black cotton chino shorts black wide safety shoes",
+  "name": "Under-£45 summer work kit",
+  "note": "A £7 sweatshirt, Duck and Cover cotton shorts and £22 Grafters 4E safety shoes: £45.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "w8-pw-es300",
+    "shape": "jumper",
+    "what": "Plain work sweatshirt"
+   },
+   {
+    "col": "black",
+    "item": "r7-dc-moreshore",
+    "shape": "shorts",
+    "what": "Cotton chino shorts"
+   },
+   {
+    "col": "black",
+    "item": "r9-hc-4eye",
+    "shape": "shoes",
+    "what": "4E safety shoes"
+   }
+  ],
+  "rank": 1,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "warm"
+  ]
+ },
+ "jb9-budget-trousers": {
+  "look": "man black sweatshirt black cotton cargo work trousers black wide safety boots",
+  "name": "Cotton cargos and £25 4E boots",
+  "note": "100% cotton cargo trousers with 7-eyelet Grafters 4E boots at £25: £55 all in.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "w8-pw-ec300",
+    "shape": "jumper",
+    "what": "Organic cotton sweatshirt"
+   },
+   {
+    "col": "black",
+    "item": "w8-pw-cd111",
+    "shape": "trousers",
+    "what": "100% cotton cargo trousers"
+   },
+   {
+    "col": "black",
+    "item": "r9-hc-7eye",
+    "shape": "boots",
+    "what": "4E safety boots"
+   }
+  ],
+  "rank": 2,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "jb9-carpenter-ut": {
+  "look": "man black sweatshirt black carpenter cargo shorts black tool pouch black wide safety shoes",
+  "name": "Carpenter shorts and lace-up 4E shoes",
+  "note": "Cotton carpenter shorts, a clip-on pouch and Universal Textiles 4E shoes: £87.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r7-dc-stoneham",
+    "shape": "jumper",
+    "what": "Crew sweatshirt"
+   },
+   {
+    "col": "black",
+    "item": "r8-lk-molfre",
+    "shape": "shorts",
+    "what": "100% cotton carpenter shorts"
+   },
+   {
+    "col": "black",
+    "item": "w8-tb-cliptech",
+    "shape": "belt",
+    "what": "Clip-on 7-pocket pouch"
+   },
+   {
+    "col": "black",
+    "item": "r9-ut-shoe",
+    "shape": "shoes",
+    "what": "4E safety shoes"
+   }
+  ],
+  "rank": 4,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "warm"
+  ]
+ },
+ "jb9-dealer-holster": {
+  "look": "man black hoodie black work chinos black holster pockets black wide dealer boots",
+  "name": "Dealer boots and holster pockets",
+  "note": "Pull-on Grafters 4E dealer boots, plain cotton work chinos and clip-on holsters: £87.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "w8-sf-tamworth",
+    "shape": "hoodie",
+    "what": "Work hoodie"
+   },
+   {
+    "col": "black",
+    "item": "w8-pw-s232",
+    "shape": "trousers",
+    "what": "Plain work chinos (98% cotton)"
+   },
+   {
+    "col": "black",
+    "item": "w8-sn-9794",
+    "shape": "belt",
+    "what": "Clip-on holster pockets"
+   },
+   {
+    "col": "black",
+    "item": "r9-hc-dealer",
+    "shape": "boots",
+    "what": "4E dealer boots"
+   }
+  ],
+  "rank": 3,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "jb9-grit-winter": {
+  "look": "man black carhartt detroit jacket black hoodie black double front work trousers black wide waterproof safety boots",
+  "name": "Detroit jacket and S7 4E boots",
+  "note": "The black Detroit over a K121 hoodie, duck trousers and waterproof Grit 4E boots: £303.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "w8-ch-detroit-black",
+    "shape": "jacket",
+    "what": "Detroit jacket"
+   },
+   {
+    "col": "black",
+    "item": "w8-ch-k121",
+    "shape": "hoodie",
+    "what": "Midweight hoodie"
+   },
+   {
+    "col": "black",
+    "item": "w8-wg-dbl-front",
+    "shape": "trousers",
+    "what": "Double-front trousers (99% cotton)"
+   },
+   {
+    "col": "black",
+    "item": "r9-ws-grit",
+    "shape": "boots",
+    "what": "4E S7 boots"
+   }
+  ],
+  "rank": 11,
+  "style": [
+   "job"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold",
+   "wet"
+  ]
+ },
+ "jb9-hirst-apron": {
+  "look": "man black sweatshirt black work shorts black half apron brown wide dealer boots",
+  "name": "Half apron and brown 4E dealers",
+  "note": "Plain black shorts, a duck half-apron and Grafters M9509B 4E dealers: £128.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "w8-pw-ec300",
+    "shape": "jumper",
+    "what": "Organic cotton sweatshirt"
+   },
+   {
+    "col": "black",
+    "item": "w8-tml-chino-short",
+    "shape": "shorts",
+    "what": "Cotton chino shorts"
+   },
+   {
+    "col": "black",
+    "item": "w8-ch-apron",
+    "shape": "belt",
+    "what": "Half-apron tool belt"
+   },
+   {
+    "col": "brown",
+    "item": "r9-hf-m9509b",
+    "shape": "boots",
+    "what": "4E dealer boots"
+   }
+  ],
+  "rank": 8,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "jb9-tool-belt-ut": {
+  "look": "man black hoodie black cotton work trousers brown leather tool belt black wide dealer boots",
+  "name": "Tool belt and 4E dealer boots",
+  "note": "A leather tool belt over 100% cotton Fristads trousers with £30 4E dealers: £180.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "w8-dk-rockfield",
+    "shape": "hoodie",
+    "what": "Work hoodie"
+   },
+   {
+    "col": "black",
+    "item": "w8-fr-kansas",
+    "shape": "trousers",
+    "what": "100% cotton work trousers"
+   },
+   {
+    "col": "brown",
+    "item": "w8-fr-snikki",
+    "shape": "belt",
+    "what": "Leather tool belt with pouches"
+   },
+   {
+    "col": "black",
+    "item": "r9-ut-dealer",
+    "shape": "boots",
+    "what": "4E dealer boots"
+   }
+  ],
+  "rank": 6,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "jb9-ukd-shoe": {
+  "look": "man black sweatshirt black twill shorts black holster pockets black wide safety shoes",
+  "name": "Holster shorts and UKD Grafter shoes",
+  "note": "Cotton shorts with clip-on holsters and Latitude 4E safety shoes: £160.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "w8-sn-2892",
+    "shape": "jumper",
+    "what": "Work sweatshirt"
+   },
+   {
+    "col": "black",
+    "item": "w8-lb-cargo-black",
+    "shape": "shorts",
+    "what": "Cargo shorts"
+   },
+   {
+    "col": "black",
+    "item": "w8-sn-9794",
+    "shape": "belt",
+    "what": "Clip-on holster pockets"
+   },
+   {
+    "col": "black",
+    "item": "r9-ws-latitude",
+    "shape": "shoes",
+    "what": "4E S1P safety shoes"
+   }
+  ],
+  "rank": 10,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "warm"
+  ]
+ },
+ "jb9-ukd-softshell": {
+  "look": "man black softshell jacket black hoodie black cotton work trousers black wide safety dealer boots",
+  "name": "Softshell and UKD Grafter S3 dealers",
+  "note": "Waterproof S3 4E dealer boots with a softshell and cotton trousers: £197.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "w8-pw-esk50",
+    "shape": "jacket",
+    "what": "Softshell jacket"
+   },
+   {
+    "col": "black",
+    "item": "w8-sn-2800",
+    "shape": "hoodie",
+    "what": "Work hoodie"
+   },
+   {
+    "col": "black",
+    "item": "w8-fr-kansas",
+    "shape": "trousers",
+    "what": "100% cotton work trousers"
+   },
+   {
+    "col": "black",
+    "item": "r9-ws-expanse",
+    "shape": "boots",
+    "what": "4E S3 dealer boots"
+   }
+  ],
+  "rank": 9,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "jb9-wet-dealer": {
+  "look": "man black waterproof jacket black hoodie black cotton work trousers brown wide dealer boots",
+  "name": "Wet day in water-resistant dealers",
+  "note": "A £12 waterproof, cotton work trousers and water-resistant Grafters 4E dealers: £79.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "w8-rg-stormbreak",
+    "shape": "jacket",
+    "what": "Waterproof jacket"
+   },
+   {
+    "col": "black",
+    "item": "r7-dc-optimus-black",
+    "shape": "hoodie",
+    "what": "Hoodie"
+   },
+   {
+    "col": "black",
+    "item": "w8-pw-cd131",
+    "shape": "trousers",
+    "what": "100% cotton work trousers"
+   },
+   {
+    "col": "brown",
+    "item": "r9-hc-dealer-wr",
+    "shape": "boots",
+    "what": "Water-resistant 4E dealer boots"
+   }
+  ],
+  "rank": 5,
+  "style": [
+   "job"
+  ],
+  "tags": [],
+  "wx": [
+   "wet",
+   "mild"
+  ]
+ },
+ "jb9-winter-pullon": {
+  "look": "man black bodywarmer black sweatshirt black work trousers dark brown pull-on wide safety boots",
+  "name": "Bodywarmer and pull-on 4E boots",
+  "note": "A £12 bodywarmer, sweatshirt, cotton trousers and pull-on 4E dealers: £77.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "w8-pw-s415",
+    "shape": "gilet",
+    "what": "Bodywarmer"
+   },
+   {
+    "col": "black",
+    "item": "w8-pw-es300",
+    "shape": "jumper",
+    "what": "Work sweatshirt"
+   },
+   {
+    "col": "black",
+    "item": "w8-pw-cd131",
+    "shape": "trousers",
+    "what": "100% cotton work trousers"
+   },
+   {
+    "col": "brown",
+    "item": "r9-ut-pullon",
+    "shape": "boots",
+    "what": "Pull-on 4E dealer boots"
+   }
+  ],
+  "rank": 7,
+  "style": [
+   "job"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold"
+  ]
+ },
  "jeans-blazer": {
   "look": "men navy cotton blazer blue striped oxford shirt dark jeans burgundy tassel loafers smart casual outfit",
   "name": "Blazer and jeans",
@@ -2986,6 +3574,41 @@
    }
   ],
   "rank": 18,
+  "style": [
+   "lounge"
+  ],
+  "tags": [],
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "l9-jogshort": {
+  "look": "man black oversized t-shirt stone jogger shorts tan slippers",
+  "name": "Jogger shorts and a tee",
+  "note": "Jogger shorts and an oversized tee for a lazy day: £45.",
+  "occ": "lounge",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r9-lk-dovetail",
+    "shape": "tee",
+    "what": "Oversized tee"
+   },
+   {
+    "col": "stone",
+    "item": "r9-dc-jogshort",
+    "shape": "shorts",
+    "what": "Jogger shorts"
+   },
+   {
+    "col": "tan",
+    "item": "hs-base-webb",
+    "shape": "shoes",
+    "what": "Sliders"
+   }
+  ],
+  "rank": 20,
   "style": [
    "lounge"
   ],
@@ -3967,6 +4590,76 @@
    "mild"
   ]
  },
+ "m9-geo": {
+  "look": "man white geometric print t-shirt black jeans charcoal suede trainers",
+  "name": "Geo tee and black jeans",
+  "note": "Lambretta geo tee with black jeans: £58.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "white",
+    "item": "r9-lb-geo",
+    "shape": "tee",
+    "what": "Geo print tee"
+   },
+   {
+    "col": "black",
+    "item": "pc-jeans-black",
+    "shape": "trousers",
+    "what": "Black jeans"
+   },
+   {
+    "col": "charcoal",
+    "item": "r7-lb-tackle-cb",
+    "shape": "trainers",
+    "what": "Suede trainers"
+   }
+  ],
+  "rank": 27,
+  "style": [
+   "mod",
+   "summer"
+  ],
+  "tags": [],
+  "wx": [
+   "warm"
+  ]
+ },
+ "m9-stadium": {
+  "look": "man white t-shirt navy chinos tan suede trainers",
+  "name": "White tee, navy chinos and tan Robbies",
+  "note": "Pretty Green tee, tapered chinos and tan terrace trainers: £70.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "white",
+    "item": "r9-pg-stadium",
+    "shape": "tee",
+    "what": "Stadium tee"
+   },
+   {
+    "col": "navy",
+    "item": "r8-lk-crantock",
+    "shape": "trousers",
+    "what": "Tapered chinos"
+   },
+   {
+    "col": "tan",
+    "item": "r9-lb-robbie-tan",
+    "shape": "trainers",
+    "what": "Robbie trainers"
+   }
+  ],
+  "rank": 19,
+  "style": [
+   "mod"
+  ],
+  "tags": [],
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
  "md6-fila": {
   "look": "man navy collared polo t-shirt grey check trousers navy suede loafers",
   "name": "Collared tee and check trousers",
@@ -4441,6 +5134,83 @@
    }
   ],
   "rank": 22,
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "mn9-knitzip": {
+  "look": "man grey knit zip overshirt black oversized t-shirt black jeans black trainers",
+  "name": "Grey knit overshirt and black",
+  "note": "A knit zip overshirt over an oversized tee: £75.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "r9-cl-knitzip",
+    "shape": "cardigan",
+    "what": "Knit zip overshirt"
+   },
+   {
+    "col": "black",
+    "item": "r9-lk-dovetail",
+    "shape": "tee",
+    "what": "Oversized tee"
+   },
+   {
+    "col": "black",
+    "item": "pc-jeans-black",
+    "shape": "trousers",
+    "what": "Black jeans"
+   },
+   {
+    "col": "black",
+    "item": "r8-cl-runner",
+    "shape": "trainers",
+    "what": "Runners"
+   }
+  ],
+  "rank": 25,
+  "style": [
+   "minimal",
+   "casual"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "mn9-ribbed": {
+  "look": "man navy ribbed long sleeve t-shirt black straight trousers black leather shoes",
+  "name": "Navy ribbed long-sleeve and black",
+  "note": "Simple and clean: £90.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "r9-lk-trous",
+    "shape": "tee",
+    "what": "Ribbed long-sleeve T-shirt"
+   },
+   {
+    "col": "black",
+    "item": "asos-dickies-874-sale",
+    "shape": "trousers",
+    "what": "Straight trousers"
+   },
+   {
+    "col": "black",
+    "item": "r8-hs-paris-black",
+    "shape": "shoes",
+    "what": "Leather shoes"
+   }
+  ],
+  "rank": 24,
   "style": [
    "minimal",
    "quiet"
@@ -6623,6 +7393,47 @@
    "wet"
   ]
  },
+ "o9-quainton": {
+  "look": "man navy quilted gilet blue t-shirt charcoal walking trousers brown walking boots",
+  "name": "Gilet walk",
+  "note": "A gilet over a tee with walking trousers and boots: £83.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "r9-bk-quainton",
+    "shape": "gilet",
+    "what": "Quilted gilet"
+   },
+   {
+    "col": "blue",
+    "item": "r9-tg-foran",
+    "shape": "tee",
+    "what": "Cotton tee"
+   },
+   {
+    "col": "charcoal",
+    "item": "tp-cherhill",
+    "shape": "trousers",
+    "what": "Walking trousers"
+   },
+   {
+    "col": "brown",
+    "item": "tp-finley-boots",
+    "shape": "boots",
+    "what": "Walking boots"
+   }
+  ],
+  "rank": 22,
+  "style": [
+   "outdoor"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
  "od-budget": {
   "look": "men grey waterproof shell jacket brown fleece dark walking trousers brown walking shoes hiking outfit",
   "name": "Wet walk for under £95",
@@ -7457,6 +8268,136 @@
    "mild"
   ]
  },
+ "q9-beccles": {
+  "look": "man navy quilted gilet grey birdseye crew jumper black trousers black leather shoes",
+  "name": "Navy gilet and black trousers",
+  "note": "A navy gilet over a £9 birdseye knit with Brakeburn trousers: £104.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "r9-bk-quainton",
+    "shape": "gilet",
+    "what": "Quilted gilet"
+   },
+   {
+    "col": "grey",
+    "item": "r9-tl-peaty",
+    "shape": "jumper",
+    "what": "Birdseye jumper"
+   },
+   {
+    "col": "black",
+    "item": "r9-bk-beccles",
+    "shape": "trousers",
+    "what": "Trousers"
+   },
+   {
+    "col": "black",
+    "item": "r8-hs-paris-black",
+    "shape": "shoes",
+    "what": "Leather shoes"
+   }
+  ],
+  "rank": 17,
+  "style": [
+   "quiet"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "q9-hybrid-tie": {
+  "look": "man navy smart jacket stone short sleeve oxford shirt pink slim tie navy chinos black leather shoes",
+  "name": "Hybrid jacket, oxford and slim tie",
+  "note": "A smart hybrid jacket, oxford shirt and pin-spot tie with a tie slide: £123.",
+  "occ": "smart",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "r9-cl-hybrid",
+    "shape": "blazer",
+    "what": "Hybrid jacket"
+   },
+   {
+    "col": "stone",
+    "item": "r9-tm-oxford-ss",
+    "shape": "sshirt",
+    "what": "Oxford shirt"
+   },
+   {
+    "col": "pink",
+    "item": "r9-tm-tie",
+    "shape": "tie",
+    "what": "Slim tie"
+   },
+   {
+    "col": "navy",
+    "item": "r8-lk-crantock",
+    "shape": "trousers",
+    "what": "Tapered chinos"
+   },
+   {
+    "col": "black",
+    "item": "r8-hs-paris-black",
+    "shape": "shoes",
+    "what": "Leather shoes"
+   }
+  ],
+  "rank": 19,
+  "style": [
+   "quiet"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "q9-matagalpa": {
+  "look": "man navy long sleeve polo black trousers black gold scarf black leather shoes",
+  "name": "Long-sleeve polo and scarf",
+  "note": "A long-sleeve knit polo with black trousers and the Rainsford scarf: £104.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "r9-lk-matagalpa",
+    "shape": "polo",
+    "what": "Long-sleeve polo"
+   },
+   {
+    "col": "black",
+    "item": "r9-bk-beccles",
+    "shape": "trousers",
+    "what": "Trousers"
+   },
+   {
+    "col": "black",
+    "item": "r9-pg-rainsford",
+    "shape": "scarf",
+    "what": "Scarf"
+   },
+   {
+    "col": "black",
+    "item": "r8-hs-paris-black",
+    "shape": "shoes",
+    "what": "Leather shoes"
+   }
+  ],
+  "rank": 21,
+  "style": [
+   "quiet",
+   "mod"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold"
+  ]
+ },
  "r6-polo": {
   "look": "man black polo shirt black trousers black chunky boots wrap sunglasses",
   "name": "Black polo, black boots",
@@ -7697,6 +8638,88 @@
   "style": [
    "rave",
    "street"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "r9-camo": {
+  "look": "man black camo t-shirt black parachute trousers black runners wrap sunglasses",
+  "name": "Camo tee and parachute trousers",
+  "note": "£75 for a warm night out.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r9-dc-camo-tee",
+    "shape": "tee",
+    "what": "Camo tee"
+   },
+   {
+    "col": "black",
+    "item": "rv-weekday-parachute",
+    "shape": "trousers",
+    "what": "Parachute trousers"
+   },
+   {
+    "col": "black",
+    "item": "r8-cl-runner",
+    "shape": "trainers",
+    "what": "Runners"
+   },
+   {
+    "col": "black",
+    "item": "rv-wrap-sunglasses",
+    "shape": "sunglasses",
+    "what": "Wrap sunglasses"
+   }
+  ],
+  "rank": 25,
+  "style": [
+   "rave",
+   "street"
+  ],
+  "tags": [],
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "r9-yedra": {
+  "look": "man black pocket shirt grey tech cargo trousers black tech runners silver chain",
+  "name": "Black pocket shirt and tech cargos",
+  "note": "A black pocket shirt, grey tech cargos and runners: £75.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "r9-lk-yedra",
+    "shape": "shirt",
+    "what": "Pocket shirt, worn open"
+   },
+   {
+    "col": "grey",
+    "item": "r9-cl-techcargo",
+    "shape": "trousers",
+    "what": "Tech cargos"
+   },
+   {
+    "col": "black",
+    "item": "r8-cl-tech-runner",
+    "shape": "trainers",
+    "what": "Tech runners"
+   },
+   {
+    "col": "silver",
+    "item": "rv-chain-slim",
+    "shape": "chain",
+    "what": "Slim chain"
+   }
+  ],
+  "rank": 20,
+  "style": [
+   "rave"
   ],
   "tags": [],
   "wx": [
@@ -8923,6 +9946,132 @@
   "tags": [],
   "wx": [
    "mild"
+  ]
+ },
+ "s9-blue-puffer": {
+  "look": "man washed blue quilted puffer jacket black camo t-shirt grey tech cargo trousers black runners black beanie",
+  "name": "Washed blue puffer and camo tee",
+  "note": "£20 puffer, camo tee and tech cargos: £92.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "r9-cl-puffer-blue",
+    "shape": "coat",
+    "what": "Quilted puffer"
+   },
+   {
+    "col": "black",
+    "item": "r9-dc-camo-tee",
+    "shape": "tee",
+    "what": "Camo tee"
+   },
+   {
+    "col": "grey",
+    "item": "r9-cl-techcargo",
+    "shape": "trousers",
+    "what": "Tech cargos"
+   },
+   {
+    "col": "black",
+    "item": "r8-cl-runner",
+    "shape": "trainers",
+    "what": "Runners"
+   },
+   {
+    "col": "black",
+    "item": "r8-js-beanie",
+    "shape": "beanie",
+    "what": "Beanie"
+   }
+  ],
+  "rank": 15,
+  "style": [
+   "street",
+   "casual"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold"
+  ]
+ },
+ "s9-stiniva": {
+  "look": "man grey t-shirt stone cord cargo shorts white trainers cap",
+  "name": "Grey tee and cord cargo shorts",
+  "note": "Weekend Offender tee, cord cargo shorts and a cap: £63.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "r9-wo-stiniva",
+    "shape": "tee",
+    "what": "T-shirt"
+   },
+   {
+    "col": "stone",
+    "item": "r9-lk-omar",
+    "shape": "shorts",
+    "what": "Cord cargo shorts"
+   },
+   {
+    "col": "white",
+    "item": "asos-own-white",
+    "shape": "trainers",
+    "what": "White trainers"
+   },
+   {
+    "col": "stone",
+    "item": "r9-bk-cap",
+    "shape": "cap",
+    "what": "Embroidered cap"
+   }
+  ],
+  "rank": 22,
+  "style": [
+   "casual",
+   "summer"
+  ],
+  "tags": [],
+  "wx": [
+   "warm"
+  ]
+ },
+ "s9-wine-zip": {
+  "look": "man burgundy quarter zip hoodie dark jeans tan suede trainers",
+  "name": "Wine quarter-zip hoodie and jeans",
+  "note": "A wine quarter-zip with relaxed jeans and tan Robbies: £68.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "burgundy",
+    "item": "r9-dc-slell-wine",
+    "shape": "hoodie",
+    "what": "Quarter-zip hoodie"
+   },
+   {
+    "col": "indigo",
+    "item": "mt-jeans-vintage",
+    "shape": "trousers",
+    "what": "Relaxed jeans"
+   },
+   {
+    "col": "tan",
+    "item": "r9-lb-robbie-tan",
+    "shape": "trainers",
+    "what": "Robbie trainers"
+   }
+  ],
+  "rank": 18,
+  "style": [
+   "casual",
+   "mod"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
   ]
  },
  "samba-cord": {
