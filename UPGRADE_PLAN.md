@@ -6,7 +6,7 @@ it, so the page and its data can be used or rebuilt outside Claude.
 
 | File | What it is |
 |---|---|
-| `page.html` | The page source as published (version 11, 5 Oct 2026). |
+| `page.html` | The page source as published (version 12, 5 Oct 2026). |
 | `data/items.json` | All 886 picks, keyed by id, as stored in the artifact's `items` collection. |
 | `data/outfits.json` | All 140 outfits from the `outfits` collection. |
 | `tools/fetch_photos.py` | Downloads listing photos and packs them for the page (step 2 below). |
@@ -178,6 +178,25 @@ people using the page.
     Arket, Decathlon, The North Face, WoolOvers, Schuh, Joules, Hawes & Curtis, Suit Direct
     and others
 - Giving the M and M Direct picks single-product links would let them have photos too.
+
+## 2g. Cheaper first and a sale section for each style (5 Oct 2026, evening)
+
+- **Cheaper first.** In Picks, the recommended order is now half the curated rank and half
+  price within each type, so cheaper picks rise without burying the best ones. Outfits do the
+  same within each occasion. The builder's suggestions lean slightly towards pieces under £50.
+- **A sale section for each style** ("Classic on sale", "Rave on sale" and so on), placed under
+  the style intro:
+  - It has its own advice and a list of the shops with the best sales for that style.
+  - Counts show how many items are reduced, under £20, half price or more, and confirmed in his
+    size.
+  - Filters for type (the style's key types come first) and price (under £20, £40 or £75), and
+    an "only in his size" switch.
+  - It is sorted by best value, which weighs the reduction against the price, so a £12 tee at
+    40% off sits above a £180 coat at 45% off. It can also sort by cheapest or biggest % off.
+  - It shows 12 at a time, with a "Show more" button.
+- **The Friday refresh** now aims for at least half of each week's new items under £40, at least
+  three new reduced items under £25 per style, and an outfit under £60 where possible.
+- Page version 12.
 
 ## 3. Next steps
 
