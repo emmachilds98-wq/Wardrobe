@@ -11,6 +11,7 @@ Check the photos by eye, then shrink and pack them with fetch_photos.shrink.
 Reads missing.json: [[itemId, kind, host, url], ...]. Needs export/items/<id>.json
 for the names. Run from the folder that holds both.
 """
+import json,re,urllib.request,urllib.error,concurrent.futures as cf,os,ssl
 ctx=ssl.create_default_context()
 m=json.load(open('missing.json'))
 a=[x for x in m if 'asos' in x[2]]
