@@ -229,6 +229,34 @@ people using the page.
   publishes schema.org data (Matalan, Peacocks and many others).
 - Page version 13. Totals: **964 picks, 156 outfits, 88 shops with picks.**
 
+## 2i. Workwear for the job, and another round of picks (5 Oct 2026, late night)
+
+- **New style: Workwear** (`job` in the data), for manual work. Emma's rules, which the Friday
+  refresh now follows word for word:
+  - Work trousers and shorts are **100% cotton only** (Dave has sensitive skin). Each one was
+    checked on the product page. Polycotton, stretch and recycled-polyester blends are out, and
+    so is Cordura reinforcement (Blaklader 1556, 1534 and X1500; Uskees ripstop is 60% cotton).
+  - Work trousers and shorts are **black, or very dark grey at most**. Brown, stone, navy and
+    olive pieces that were tagged Workwear went back to their other styles only.
+  - **Safety boots are extra wide only: EE, 4E or 6E**, with a toe cap. The plain "wide fit"
+    Apache, Solid Gear, DeWalt and Buckler boots were removed. What is left: Grafters 4E (from
+    £32.99), Amblers AS803 EE (£49.88), Rock Fall Otus 6E (£99.99) and Wide Load 6E (£174.99).
+  - No T-shirts, since work provides them. Jackets, gilets and jumpers in any dark colour.
+  - The page has a "Safety boots and shoes" category and a Workwear guide, sale section and ten
+    outfits. 32 picks in all.
+  - Gap: no black 100% cotton *cargo* shorts could be found in Dave's size. The shorts on offer
+    are Stan Ray black denim, Colorful Standard black twill and Passenger charcoal.
+- **87 new picks** since version 13, 64 under £40 and 65 reduced, from Brakeburn, Blue Inc,
+  Community Clothing, Fila, Folk, howies, Lyle & Scott, Montirex, Original Penguin, Peregrine,
+  Passenger, Stan Ray, Savile Row Company, T.M. Lewin, Uskees, Workwear Gurus, Wide Shoes,
+  Cernucci and Colorful Standard. **25 new outfits.**
+- **Where to look** gained a "Cheap online, delivered" group: Shein, Temu, Amazon Fashion,
+  Debenhams, eBay and Vinted, with a note that sizes run small. Shein puts up a CAPTCHA and
+  Temu only renders in a browser, so neither is read automatically; they are links only.
+  Wide Shoes (4E and 6E boots) joined the workwear group.
+- Page version 15. Totals: **1051 picks, 181 outfits, 94 shops with picks.** The two load
+  queries hold about 683 and 368 picks (limit 1000 each, aim under 900).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

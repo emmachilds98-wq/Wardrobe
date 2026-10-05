@@ -1,6 +1,6 @@
 # Dave's Wardrobe
 
-A personal outfit planner for Dave: clothes picked for his sizes across seven styles, outfits
+A personal outfit planner for Dave: clothes picked for his sizes across ten styles (including Workwear for his job), outfits
 drawn on a figure of him, live prices with links, an outfit builder, and a shared shortlist.
 
 The live version runs as a claude.ai artifact:
@@ -16,7 +16,7 @@ page source, a copy of its data, the listing photos, and the tools that refresh 
 | `tools/fetch_photos.py` | Downloads and packs the listing photos. `--browser` retries refused shops in headless Chromium. |
 | `tools/shopify_pull.py` | Downloads a whole catalogue (prices, stock by size, photos) from shops that publish a product feed. |
 | `tools/ld_reader.py` | Reads price, photo and stock per size from product pages with schema.org data. |
-| `data/styletags.json` | Older picks that also belong to the Mod and skate or Holiday styles. |
+| `data/styletags.json` | Older picks that also belong to the Mod and skate, Holiday or Workwear styles. |
 | `tools/asos_photos.py` | Fetches ASOS photos through wsrv.nl, since ASOS blocks cloud servers. |
 | `tools/browser_fetch.js` | The headless-browser fallback used by `--browser`. |
 | `UPGRADE_PLAN.md` | The review, what has been done, and what is next. |
