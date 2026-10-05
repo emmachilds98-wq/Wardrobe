@@ -2821,6 +2821,140 @@
    "mild"
   ]
  },
+ "bi-cargo": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brave Soul cargo trousers, brown camo",
+  "note": "Camouflage cargos for £17.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 17.99,
+  "rank": 160,
+  "sets": [],
+  "shop": "Blue Inc",
+  "sizes": "34W in stock",
+  "style": [
+   "street",
+   "rave"
+  ],
+  "url": "https://www.blueinc.co.uk/products/brave-soul-cargo-trousers?variant=42247978778814",
+  "was": 24.99,
+  "wx": [
+   "mild"
+  ]
+ },
+ "bi-fink-qz": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Blue Inc Fink quarter-zip sweatshirt, dark grey",
+  "note": "Quarter-zip sweatshirt for £19.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.99,
+  "rank": 150,
+  "sets": [],
+  "shop": "Blue Inc",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "street"
+  ],
+  "url": "https://www.blueinc.co.uk/products/fink-knitwear?variant=43340039946430",
+  "was": 24.99,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "bi-pocket-tee": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Blue Inc pocket T-shirt, mint",
+  "note": "Pocket tee with rolled sleeves for £6.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 6.99,
+  "rank": 160,
+  "sets": [],
+  "shop": "Blue Inc",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.blueinc.co.uk/products/crew-neck-pocket-roll-tee-tee55-000008p?variant=42248075346110",
+  "wx": [
+   "warm"
+  ]
+ },
+ "bi-rib-tee": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Blue Inc ribbed T-shirt, black",
+  "note": "Fitted ribbed tee for £6.99.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 6.99,
+  "rank": 100,
+  "sets": [],
+  "shop": "Blue Inc",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "street",
+   "minimal"
+  ],
+  "url": "https://www.blueinc.co.uk/products/ribbed-crew-t-shirt-tee55-000009-p?variant=42248078557374",
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "bi-tipped-polo": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Henleys tipped-collar polo, black",
+  "note": "Black polo with a tipped collar for £14.99.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 14.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Blue Inc",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.blueinc.co.uk/products/henleys-tipped-collar-polo-t-shirt?variant=43400964178110",
+  "was": 19.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
  "bl-bloom-chelsea": {
   "added": "2026-10-05",
   "cat": "shoe",
@@ -6540,6 +6674,556 @@
    "warm"
   ]
  },
+ "hs-albam-bowling": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Albam bowling shirt, light grey",
+  "note": "Soft bowling shirt from the Nottingham label. 60% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 46.0,
+  "rank": 140,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Albam",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "mod",
+   "minimal"
+  ],
+  "url": "https://www.albamclothing.com/products/tencel-bowling-shirt-in-light-grey-alm522211t124019",
+  "was": 115.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-base-bracken": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Bracken woven loafers, tan",
+  "note": "Woven leather loafers for holiday dinners. 40% off.",
+  "occ": [
+   "smart",
+   "event",
+   "party"
+  ],
+  "price": 44.99,
+  "rank": 60,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "summer",
+   "quiet",
+   "mod"
+  ],
+  "url": "https://www.baselondon.com/products/bracken-tan-leather-weave-loafer",
+  "was": 74.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-base-stern": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Stern boat shoes, tan",
+  "note": "Leather boat shoes, half price at £32.50.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 32.5,
+  "rank": 50,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "summer",
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.baselondon.com/products/stern-oil-pull-up-tan-boat-shoes-shoes",
+  "was": 64.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-base-webb": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Webb leather sliders, tan",
+  "note": "Leather sliders for the pool and the beach bar. Half price at £22.99.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 22.99,
+  "rank": 30,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.baselondon.com/products/webb-washed-tan-slide-sandal",
+  "was": 44.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-bb-beach-swim": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brakeburn Beach swim shorts",
+  "note": "Second pair of swim shorts for £13.49, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 13.49,
+  "rank": 110,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Brakeburn",
+  "sizes": "34W in stock",
+  "style": [
+   "summer"
+  ],
+  "url": "https://www.brakeburn.com/products/beach-swimshort-ss25",
+  "was": 44.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-bb-check-ss": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brakeburn navy check short-sleeve shirt",
+  "note": "Short-sleeve check shirt for £13.49, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 13.49,
+  "rank": 70,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Brakeburn",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "casual",
+   "mod"
+  ],
+  "url": "https://www.brakeburn.com/products/navy-check-short-sleeve-shirt-ss24",
+  "was": 44.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-bb-coast-swim": {
+  "added": "2026-10-05",
+  "cat": "swim",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brakeburn Coast swim shorts",
+  "note": "Printed swim shorts for £13.49, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 13.49,
+  "rank": 60,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Brakeburn",
+  "sizes": "34W in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.brakeburn.com/products/coast-swimshort-ss25",
+  "was": 44.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-bb-delvin": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brakeburn Delvin textured shorts",
+  "note": "Textured shorts for £18, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 18.0,
+  "rank": 90,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Brakeburn",
+  "sizes": "34W in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.brakeburn.com/products/delvin-textured-shorts",
+  "was": 44.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-bb-mayland": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brakeburn Mayland linen-blend resort shirt",
+  "note": "Camp-collar resort shirt in a linen blend for £20.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 20.0,
+  "rank": 50,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Brakeburn",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.brakeburn.com/products/mayland-shirt",
+  "was": 49.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-bb-scampton": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brakeburn Scampton jacquard polo",
+  "note": "Textured polo for £14, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 14.0,
+  "rank": 110,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Brakeburn",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.brakeburn.com/products/scampton-jacquard-polo",
+  "was": 34.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-bb-shirwell": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brakeburn Shirwell stripe resort shirt",
+  "note": "Striped resort shirt for £18, 60% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 18.0,
+  "rank": 80,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Brakeburn",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.brakeburn.com/products/shirwell-resort-shirt",
+  "was": 44.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-farah-angelo": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Farah Angelo checker short-sleeve shirt, navy",
+  "note": "Checkerboard short-sleeve shirt with a mod feel. 60% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 30.0,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Farah",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.farah.co.uk/products/angelo-checker-print-short-sleeve-shirt-blue-f4wsg012gp-412",
+  "was": 75.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-howies-arian": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "howies Arian short-sleeve shirt, emerald",
+  "note": "Short-sleeve shirt for £9, 80% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 9.0,
+  "rank": 40,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "howies",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.howies.co.uk/products/mens-arian-short-sleeved-shirt-emerald",
+  "was": 45.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-op-dobby": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Original Penguin textured short-sleeve shirt, blue",
+  "note": "Textured short-sleeve shirt, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 28.0,
+  "rank": 130,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Original Penguin",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "url": "https://www.originalpenguin.co.uk/products/textured-dobby-short-sleeve-shirt-blue-opwr2604gp-485",
+  "was": 70.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-ps-trail-short": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Passenger 365 trail shorts, khaki",
+  "note": "Stretch shorts for walking on holiday, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 27.98,
+  "rank": 100,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Passenger",
+  "sizes": "34W in stock",
+  "style": [
+   "summer",
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.passenger-clothing.com/products/foothills-chino-stretch-short-khaki",
+  "was": 69.95,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-sr-pink-ss": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Savile Row Company linen short-sleeve button-down, pink",
+  "note": "Pale pink linen-cotton button-down for £17.95, 64% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 17.95,
+  "rank": 100,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Savile Row Company",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "quiet",
+   "mod"
+  ],
+  "url": "https://www.savilerowco.com/products/pink-linen-cotton-classic-fit-short-sleeve-button-down-casual-shirt-1357bpkmss",
+  "was": 50.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-sr-stripe-ss": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Savile Row Company bold stripe linen short-sleeve shirt, navy and white",
+  "note": "Linen-cotton short-sleeve shirt for £17.95, 64% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 17.95,
+  "rank": 60,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Savile Row Company",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "quiet"
+  ],
+  "url": "https://www.savilerowco.com/products/navy-white-bold-stripe-linen-cotton-classic-fit-short-sleeve-shirt-5010navmss",
+  "was": 50.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-tml-linen-stone": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "T.M. Lewin relaxed linen shirt, stone",
+  "note": "Pure linen shirt for £25, 62% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 25.0,
+  "rank": 50,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "T.M. Lewin",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "quiet",
+   "minimal"
+  ],
+  "url": "https://tmlewin.co.uk/products/slim-fit-stone-linen-shirt-67952",
+  "was": 65.0,
+  "wx": [
+   "warm"
+  ]
+ },
+ "hs-us-cotch": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Uskees cotch shorts, blue",
+  "note": "Loose cotton shorts, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 22.0,
+  "rank": 150,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Uskees",
+  "sizes": "L in stock",
+  "style": [
+   "summer",
+   "casual",
+   "street"
+  ],
+  "url": "https://uskees.com/products/6009-cotch-shorts-blue-gold-blend",
+  "was": 55.0,
+  "wx": [
+   "warm"
+  ]
+ },
  "hw-black-jean": {
   "added": "2026-10-05",
   "cat": "trouser",
@@ -8722,6 +9406,434 @@
    "mild",
    "warm",
    "wet"
+  ]
+ },
+ "md-base-durham-black": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Durham Derby shoes, black",
+  "note": "Black Derbys that suit sta-prest trousers and a suit. 40% off.",
+  "occ": [
+   "smart",
+   "event",
+   "party"
+  ],
+  "price": 44.99,
+  "rank": 130,
+  "sets": [],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "url": "https://www.baselondon.com/products/durham-waxy-derby-shoes-black",
+  "was": 74.99,
+  "wx": [
+   "mild",
+   "cold",
+   "wet"
+  ]
+ },
+ "md-base-lincoln-navy": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Lincoln suede chukka boots, navy",
+  "note": "Navy suede desert-style boots: the mod's other shoe. 40% off.",
+  "occ": [
+   "everyday",
+   "smart",
+   "party"
+  ],
+  "price": 47.99,
+  "rank": 60,
+  "sets": [],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.baselondon.com/products/lincoln-suede-navy-chukka-boots",
+  "was": 79.99,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "md-base-sid-bw": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Sid loafers, black and white",
+  "note": "Two-tone loafers for a night out. 20% off.",
+  "occ": [
+   "party",
+   "smart"
+  ],
+  "price": 55.99,
+  "rank": 140,
+  "sets": [],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod"
+  ],
+  "url": "https://www.baselondon.com/products/sid-combo-black-white-loafers-shoes",
+  "was": 69.99,
+  "wx": [
+   "mild",
+   "warm"
+  ]
+ },
+ "md-base-snapper-navy": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Snapper suede loafers, navy",
+  "note": "Navy suede loafers, half price at £32.50.",
+  "occ": [
+   "everyday",
+   "smart",
+   "party"
+  ],
+  "price": 32.5,
+  "rank": 70,
+  "sets": [],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "quiet",
+   "summer"
+  ],
+  "url": "https://www.baselondon.com/products/snapper-suede-navy-loafers-shoes",
+  "was": 64.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "md-bb-norborton": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brakeburn Norborton chinos, sand",
+  "note": "Slim chinos for £16.49, 70% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 16.49,
+  "rank": 110,
+  "sets": [],
+  "shop": "Brakeburn",
+  "sizes": "34W in stock",
+  "style": [
+   "mod",
+   "casual",
+   "quiet"
+  ],
+  "url": "https://www.brakeburn.com/products/norborton-trousers",
+  "was": 54.99,
+  "wx": [
+   "mild"
+  ]
+ },
+ "md-cc-harrington": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Community Clothing Harrington jacket, stone",
+  "note": "Made in Britain Harrington, half price.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 65.0,
+  "rank": 100,
+  "sets": [],
+  "shop": "Community Clothing",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "quiet",
+   "casual"
+  ],
+  "url": "https://communityclothing.co.uk/products/mens-harrington-jacket-stone",
+  "was": 130.0,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "md-farah-thornley": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Farah Thornley knitted polo, navy",
+  "note": "Knitted polo for nights out, 60% off.",
+  "occ": [
+   "smart",
+   "party"
+  ],
+  "price": 30.0,
+  "rank": 70,
+  "sets": [],
+  "shop": "Farah",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "url": "https://www.farah.co.uk/products/thornley-knitted-polo-shirt-blue-f4gsg024gp-412",
+  "was": 75.0,
+  "wx": [
+   "mild",
+   "warm"
+  ]
+ },
+ "md-fp-twin-tee": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Fred Perry twin tipped T-shirt, navy",
+  "note": "Fred Perry's twin tipping on a plain tee. 40% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 29.4,
+  "rank": 110,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual",
+   "street"
+  ],
+  "url": "https://jeanstore.co.uk/products/fred-perry-twin-tipped-t-shirt-navy-seagrass",
+  "was": 49.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "md-ls-tipped-crew": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lyle & Scott tipped knitted crew, dark navy",
+  "note": "Navy knit with tipped cuffs and hem. Half price.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 45.0,
+  "rank": 150,
+  "sets": [],
+  "shop": "Lyle & Scott",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lyleandscott.com/products/tipped-pique-knitted-crew-neck-jumper-dark-navy",
+  "was": 90.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "md-ls-tipped-navy": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lyle & Scott tipped polo, dark navy",
+  "note": "Navy polo with tipped placket. Half price.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 30.0,
+  "rank": 80,
+  "sets": [],
+  "shop": "Lyle & Scott",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual",
+   "quiet"
+  ],
+  "url": "https://www.lyleandscott.com/products/placket-tipped-polo-shirt-dark-navy",
+  "was": 60.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "md-ls-tipped-white": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lyle & Scott tipped polo, white",
+  "note": "White polo with navy tipping. Half price.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 30.0,
+  "rank": 90,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Lyle & Scott",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.lyleandscott.com/products/placket-tipped-polo-shirt-white",
+  "was": 60.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "md-op-harrington": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Original Penguin Harrington jacket, blue herringbone",
+  "note": "Harrington with a tartan-style lining and stand collar. 60% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 52.0,
+  "rank": 50,
+  "sets": [],
+  "shop": "Original Penguin",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.originalpenguin.co.uk/products/herringbone-stripe-harrington-jacket-blue-oprs2601gp-485",
+  "was": 130.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "md-op-qz-green": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Original Penguin tipped quarter-zip knitted polo, green",
+  "note": "Long-sleeve knitted polo with tipping for autumn. 60% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 32.0,
+  "rank": 120,
+  "sets": [],
+  "shop": "Original Penguin",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.originalpenguin.co.uk/products/tipped-quarter-zip-long-sleeve-sweater-polo-green-opgf2510gp-394",
+  "was": 80.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "md-op-tipped-copen": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Original Penguin tipped piqué polo, copen blue",
+  "note": "Tipped collar and cuffs, the mod staple, for £18. 70% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 18.0,
+  "rank": 60,
+  "sets": [],
+  "shop": "Original Penguin",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.originalpenguin.co.uk/products/birdseye-pique-tipped-polo-shirt-blue-ocksb510gp-443",
+  "was": 60.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "md-tml-sandringham": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "T.M. Lewin slim check trousers, grey melange",
+  "note": "Slim check trousers for £20, 80% off. Get them hemmed to just touch the shoe.",
+  "occ": [
+   "smart",
+   "party",
+   "event"
+  ],
+  "price": 20.0,
+  "rank": 90,
+  "sets": [],
+  "shop": "T.M. Lewin",
+  "sizes": "34in waist in stock",
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "url": "https://tmlewin.co.uk/products/sandringham-infinity-slim-fit-melange-check-trouser-64854",
+  "was": 100.0,
+  "wx": [
+   "mild",
+   "cold"
   ]
  },
  "mm-berghaus-anwick": {
@@ -12046,6 +13158,317 @@
    "mild"
   ]
  },
+ "mt-argyle-grey": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan argyle crew jumper, grey",
+  "note": "Argyle knit with a mod feel, about £18.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 17.6,
+  "rank": 100,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/grey-argyle-crew-neck-jumper/17846238/",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "mt-barn-navy": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan barn jacket, navy",
+  "note": "Cord-collar barn jacket for about £34.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 33.6,
+  "rank": 60,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/navy-barn-jacket/17838215/",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "mt-borg-overshirt": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan borg-lined herringbone overshirt, navy",
+  "note": "Lined overshirt that works as a light jacket.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 25.6,
+  "rank": 120,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "outdoor"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/navy-borg-herringbone-overshirt/17853698/",
+  "wx": [
+   "cold"
+  ]
+ },
+ "mt-cargo-stone": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan loose cargo trousers, stone",
+  "note": "Loose stone cargos for about £21.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 20.8,
+  "rank": 110,
+  "sets": [],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/stone-loose-fit-cargos/17864927/",
+  "wx": [
+   "mild"
+  ]
+ },
+ "mt-chino-navy": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan Lincoln chinos with belt, navy",
+  "note": "Navy chinos with a belt included, about £19.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 19.2,
+  "rank": 90,
+  "sets": [],
+  "shop": "Matalan",
+  "sizes": "34W regular in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/lincoln-navy-belted-regular-fit-chinos/17435849/",
+  "wx": [
+   "mild"
+  ]
+ },
+ "mt-chore-stone": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan canvas chore jacket, stone",
+  "note": "Canvas chore jacket for about £34.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 33.6,
+  "rank": 90,
+  "sets": [],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual",
+   "work"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/stone-canvas-chore-jacket/17838183/",
+  "wx": [
+   "mild"
+  ]
+ },
+ "mt-cord-shacket": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan cord shacket, charcoal",
+  "note": "Cord overshirt for about £26.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 25.6,
+  "rank": 80,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "quiet",
+   "mod"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/charcoal-cord-shacket/17853682/",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "mt-flannel-burg": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan check flannel shirt, burgundy",
+  "note": "Warm check flannel for about £13.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 12.8,
+  "rank": 140,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "street"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/burgundy-check-flannel-shirt/17850140/",
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "mt-fleece-black": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan half-zip fleece, black",
+  "note": "Half-zip fleece for £12.",
+  "occ": [
+   "everyday",
+   "lounge"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 12.0,
+  "rank": 90,
+  "sets": [],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "street",
+   "lounge"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/black-half-zip-fleece/17871939/",
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "mt-jeans-straight": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan straight jeans, dark wash",
+  "note": "Plain dark straight jeans for £16.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 16.0,
+  "rank": 50,
+  "sets": [],
+  "shop": "Matalan",
+  "sizes": "34W regular in stock",
+  "style": [
+   "casual",
+   "quiet",
+   "mod"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/darkwash-straight-jeans/17955833/",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "mt-oxford-blue": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan Oxford shirt, blue",
+  "note": "Blue Oxford shirt for about £13.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 12.8,
+  "rank": 70,
+  "sets": [],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual",
+   "mod"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/blue-regular-fit-oxford-shirt/17837689/",
+  "wx": [
+   "mild"
+  ]
+ },
  "mt-prasos": {
   "added": "2026-10-05",
   "cat": "coat",
@@ -12072,6 +13495,225 @@
    "wet"
   ]
  },
+ "mt-rib-navy": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan ribbed crew jumper, navy",
+  "note": "Plain navy rib knit for about £14.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 14.4,
+  "rank": 60,
+  "sets": [],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual",
+   "minimal"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/navy-smart-ribbed-jumper/17835313/",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "mt-suede-bomber": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan faux suede bomber, grey",
+  "note": "Faux suede bomber for about £30.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 30.4,
+  "rank": 130,
+  "sets": [],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/grey-faux-suede-bomber-jacket/17856887/",
+  "wx": [
+   "mild"
+  ]
+ },
+ "mt-wax-black": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Matalan wax jacket, black",
+  "note": "The wax-jacket look for under £40.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
+  "price": 36.8,
+  "rank": 70,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Matalan",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual",
+   "street"
+  ],
+  "url": "https://www.matalan.co.uk/p/clothing/black-wax-jacket/17856905/",
+  "wx": [
+   "mild",
+   "wet",
+   "cold"
+  ]
+ },
+ "mw-brisk-navy": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Mountain Warehouse Brisk Extreme waterproof jacket, navy",
+  "note": "Fully waterproof shell for £64.99.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Mountain Warehouse is nearly always on sale, so treat the 'was' price lightly.",
+  "price": 64.99,
+  "rank": 140,
+  "sets": [],
+  "shop": "Mountain Warehouse",
+  "style": [
+   "outdoor"
+  ],
+  "url": "https://www.mountainwarehouse.com/p/021284/mw/brisk-extreme-mens-waterproof-jacket/navy/",
+  "was": 129.99,
+  "wx": [
+   "wet",
+   "mild"
+  ]
+ },
+ "mw-cargo-shorts": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Mountain Warehouse Lakeside cargo shorts, navy",
+  "note": "Cargo shorts for £14.99.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Mountain Warehouse is nearly always on sale, so treat the 'was' price lightly.",
+  "price": 14.99,
+  "rank": 120,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Mountain Warehouse",
+  "style": [
+   "summer",
+   "outdoor"
+  ],
+  "url": "https://www.mountainwarehouse.com/p/023815/mw/lakeside-mens-cargo-shorts/navy/",
+  "was": 32.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "mw-flannel-navy": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Mountain Warehouse Trace flannel shirt, navy",
+  "note": "Warm flannel shirt for £16.99.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Mountain Warehouse is nearly always on sale, so treat the 'was' price lightly.",
+  "price": 16.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Mountain Warehouse",
+  "style": [
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.mountainwarehouse.com/p/023314/mw/trace-mens-flannel-long-sleeve-shirt/navy/",
+  "was": 37.99,
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "mw-holiday-shirt": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Mountain Warehouse Holiday short-sleeve shirt, dark grey",
+  "note": "Quick-dry holiday shirt for £9.99.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Mountain Warehouse is nearly always on sale, so treat the 'was' price lightly.",
+  "price": 9.99,
+  "rank": 130,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Mountain Warehouse",
+  "style": [
+   "summer",
+   "outdoor"
+  ],
+  "url": "https://www.mountainwarehouse.com/p/024843/mw/holiday-mens-short-sleeve-shirt/dark-grey/",
+  "was": 37.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "mw-rove-gilet": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Mountain Warehouse Rove fleece gilet, navy",
+  "note": "Fleece gilet for £19.99.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Mountain Warehouse is nearly always on sale, so treat the 'was' price lightly.",
+  "price": 19.99,
+  "rank": 170,
+  "sets": [],
+  "shop": "Mountain Warehouse",
+  "style": [
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.mountainwarehouse.com/p/038357/mw/rove-mens-fleece-gilet/navy/",
+  "was": 39.99,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
  "mw-seasons": {
   "added": "2026-10-05",
   "cat": "coat",
@@ -12094,6 +13736,59 @@
   ],
   "url": "https://www.mountainwarehouse.com/p/053054/mw/seasons-mens-padded-jacket",
   "was": 79.99,
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "mw-shandals": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Mountain Warehouse Trek walking sandals, khaki",
+  "note": "Closed-toe walking sandals for £24.99.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Mountain Warehouse is nearly always on sale, so treat the 'was' price lightly.",
+  "price": 24.99,
+  "rank": 140,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Mountain Warehouse",
+  "style": [
+   "summer",
+   "outdoor"
+  ],
+  "url": "https://www.mountainwarehouse.com/p/018365/mw/trek-mens-shandals/khaki/",
+  "was": 49.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "mw-treston-khaki": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Mountain Warehouse Treston half-zip fleece, khaki",
+  "note": "Thick half-zip fleece for £29.99.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Mountain Warehouse is nearly always on sale, so treat the 'was' price lightly.",
+  "price": 29.99,
+  "rank": 130,
+  "sets": [],
+  "shop": "Mountain Warehouse",
+  "style": [
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.mountainwarehouse.com/p/038562/mw/treston-mens-half-zip-fleece/khaki/",
+  "was": 59.99,
   "wx": [
    "cold",
    "mild"
@@ -12492,6 +14187,37 @@
    "mild"
   ]
  },
+ "pc-argyle": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Peacocks argyle wool-blend jumper, grey",
+  "note": "Wool-blend argyle knit, about £19.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
+  "price": 19.2,
+  "rank": 120,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Peacocks",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "url": "https://www.peacocks.co.uk/4202996-grey-plain.html",
+  "was": 24.0,
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
  "pc-blazer-navy": {
   "cat": "tailor",
   "checked": "2026-10-05",
@@ -12549,6 +14275,35 @@
    "mild"
   ]
  },
+ "pc-chelsea-brown": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Peacocks faux suede Chelsea boots, brown",
+  "note": "Chelsea boots for £24. Faux suede, so keep them out of heavy rain.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
+  "price": 24.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Peacocks",
+  "sizes": "EU 45 (UK 11) in stock",
+  "style": [
+   "casual",
+   "quiet",
+   "mod"
+  ],
+  "url": "https://www.peacocks.co.uk/4202501-brown-plain.html",
+  "was": 30.0,
+  "wx": [
+   "mild"
+  ]
+ },
  "pc-ensign-check": {
   "cat": "shirt",
   "checked": "2026-10-05",
@@ -12580,6 +14335,64 @@
    "wet"
   ]
  },
+ "pc-jeans-black": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Peacocks relaxed straight jeans, black",
+  "note": "Relaxed black jeans for about £18.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
+  "price": 17.6,
+  "rank": 100,
+  "sets": [],
+  "shop": "Peacocks",
+  "sizes": "34W regular in stock",
+  "style": [
+   "street",
+   "rave",
+   "casual"
+  ],
+  "url": "https://www.peacocks.co.uk/4202153-blk-grey-plain.html",
+  "was": 22.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "pc-jeans-indigo": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Peacocks straight jeans, indigo",
+  "note": "Straight indigo jeans for about £13.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
+  "price": 12.8,
+  "rank": 60,
+  "sets": [],
+  "shop": "Peacocks",
+  "sizes": "34W regular in stock",
+  "style": [
+   "casual",
+   "quiet"
+  ],
+  "url": "https://www.peacocks.co.uk/4503335-darkblue-plain.html",
+  "was": 16.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
  "pc-linen-white": {
   "cat": "shirt",
   "checked": "2026-10-05",
@@ -12608,6 +14421,35 @@
    "warm"
   ]
  },
+ "pc-ls-tee-navy": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Peacocks long-sleeve T-shirt, navy",
+  "note": "Long-sleeve tee for about £6.",
+  "occ": [
+   "everyday",
+   "lounge"
+  ],
+  "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
+  "price": 6.4,
+  "rank": 150,
+  "sets": [],
+  "shop": "Peacocks",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "minimal",
+   "lounge"
+  ],
+  "url": "https://www.peacocks.co.uk/4202805-navy-plain.html",
+  "was": 8.0,
+  "wx": [
+   "mild"
+  ]
+ },
  "pc-quilted-coat": {
   "cat": "coat",
   "checked": "2026-10-05",
@@ -12634,6 +14476,95 @@
   "wx": [
    "cold",
    "mild"
+  ]
+ },
+ "pc-sherpa-stone": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Peacocks quarter-zip sherpa sweatshirt, stone",
+  "note": "Fleecy quarter-zip for about £22.",
+  "occ": [
+   "everyday",
+   "lounge"
+  ],
+  "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
+  "price": 22.4,
+  "rank": 140,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Peacocks",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "lounge",
+   "outdoor"
+  ],
+  "url": "https://www.peacocks.co.uk/4202462-stone-plain.html",
+  "was": 28.0,
+  "wx": [
+   "cold"
+  ]
+ },
+ "pc-stripe-knit": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Peacocks stripe knit jumper, cream and navy",
+  "note": "Striped knit for about £18.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
+  "price": 17.6,
+  "rank": 110,
+  "sets": [],
+  "shop": "Peacocks",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.peacocks.co.uk/4202298-navy-plain.html",
+  "was": 22.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "pc-sweat-mocha": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Peacocks cotton sweatshirt, mocha",
+  "note": "Plain brown sweatshirt for £12.",
+  "occ": [
+   "everyday",
+   "lounge"
+  ],
+  "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
+  "price": 12.0,
+  "rank": 90,
+  "sets": [],
+  "shop": "Peacocks",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "lounge",
+   "casual"
+  ],
+  "url": "https://www.peacocks.co.uk/4202407-brown-plain.html",
+  "was": 15.0,
+  "wx": [
+   "mild",
+   "cold"
   ]
  },
  "pc-towelling-polo": {
@@ -12692,6 +14623,66 @@
   "wx": [
    "mild",
    "cold"
+  ]
+ },
+ "pc-wax-green": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Peacocks four-pocket waxed jacket, green",
+  "note": "Green waxed jacket for about £36.",
+  "occ": [
+   "everyday"
+  ],
+  "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
+  "price": 36.0,
+  "rank": 80,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Peacocks",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "outdoor"
+  ],
+  "url": "https://www.peacocks.co.uk/4202416-greendk-plain.html",
+  "was": 45.0,
+  "wx": [
+   "mild",
+   "wet",
+   "cold"
+  ]
+ },
+ "pc-zip-polo": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Peacocks zip-front check polo, navy",
+  "note": "Zip-neck polo in a small check, about £14.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
+  "price": 14.4,
+  "rank": 130,
+  "sets": [],
+  "shop": "Peacocks",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "url": "https://www.peacocks.co.uk/4203244-navy-plain.html",
+  "was": 18.0,
+  "wx": [
+   "mild",
+   "warm"
   ]
  },
  "pe-ford-navy": {
@@ -16812,6 +18803,227 @@
    "mild",
    "warm",
    "wet"
+  ]
+ },
+ "sk-cc-raglan": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Community Clothing raglan sweatshirt, black",
+  "note": "Heavy British-made sweatshirt, half price.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 32.5,
+  "rank": 150,
+  "sets": [],
+  "shop": "Community Clothing",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "street",
+   "minimal"
+  ],
+  "url": "https://communityclothing.co.uk/products/mens-raglan-sweatshirt-plastic-free-black",
+  "was": 65.0,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "sk-dc-worker": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "DC Worker relaxed chinos, lichen green",
+  "note": "Loose skate chinos, half price. Only 34W 34L left, so they will need taking up 2in.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 29.99,
+  "rank": 170,
+  "sets": [],
+  "shop": "Slam City Skates",
+  "sizes": "34W 34L in stock (2in long)",
+  "style": [
+   "mod",
+   "street"
+  ],
+  "url": "https://www.slamcity.com/products/dc-worker-relaxed-chino-pant-deep-lichen-green",
+  "was": 59.99,
+  "wx": [
+   "mild"
+  ]
+ },
+ "sk-farah-danny": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Farah Danny organic T-shirt, stone grey",
+  "note": "Plain tee for £15. Half price.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15.0,
+  "rank": 160,
+  "sets": [],
+  "shop": "Farah",
+  "sizes": "L in stock",
+  "style": [
+   "mod",
+   "street",
+   "casual",
+   "summer"
+  ],
+  "url": "https://www.farah.co.uk/products/danny-regular-fit-organic-cotton-t-shirt-beige-f4kfd040gp-064",
+  "was": 30.0,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "sk-fila-festa": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Fila Festa suede trainers, navy",
+  "note": "Slim navy suede trainers in the terrace style. Half price.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 45.0,
+  "rank": 100,
+  "sets": [],
+  "shop": "Fila",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "casual",
+   "street"
+  ],
+  "url": "https://www.fila.co.uk/products/suede-festa-trainer-1tm02051-422",
+  "was": 90.0,
+  "wx": [
+   "mild"
+  ]
+ },
+ "sk-lr-vm001": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Last Resort AB VM001 Lo skate shoes, blue",
+  "note": "Suede skate shoes in a strong blue. 27% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 54.99,
+  "rank": 120,
+  "sets": [],
+  "shop": "Slam City Skates",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "street"
+  ],
+  "url": "https://www.slamcity.com/products/last-resort-ab-vm001-lo-skate-shoes-reflex-blue-white",
+  "was": 74.99,
+  "wx": [
+   "mild",
+   "warm"
+  ]
+ },
+ "sk-lr-vm005": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Last Resort AB VM005 loafer skate shoes, black",
+  "note": "A loafer built as a skate shoe: the mod and skate halves in one. 34% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 55.99,
+  "rank": 40,
+  "sets": [],
+  "shop": "Slam City Skates",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "mod",
+   "street"
+  ],
+  "url": "https://www.slamcity.com/products/last-resort-ab-vm005-loafer-skate-shoes-black-black-white-stitch",
+  "was": 84.99,
+  "wx": [
+   "mild",
+   "warm"
+  ]
+ },
+ "sk-passport-bucket": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Passport bucket hat, navy",
+  "note": "Australian skate brand's bucket hat for £14, 65% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 13.99,
+  "rank": 180,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Slam City Skates",
+  "style": [
+   "mod",
+   "street",
+   "summer"
+  ],
+  "url": "https://www.slamcity.com/products/passport-fountain-rpet-bucket-hat-navy",
+  "was": 39.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "sk-polar-beanie": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Polar braid beanie, green marl",
+  "note": "Skate beanie, 57% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 19.99,
+  "rank": 200,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Slam City Skates",
+  "style": [
+   "mod",
+   "street"
+  ],
+  "url": "https://www.slamcity.com/products/polar-braid-beanie-green",
+  "was": 45.99,
+  "wx": [
+   "cold"
   ]
  },
  "sl-timberland-6in": {

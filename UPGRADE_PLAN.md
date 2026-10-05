@@ -6,9 +6,9 @@ it, so the page and its data can be used or rebuilt outside Claude.
 
 | File | What it is |
 |---|---|
-| `page.html` | The page source as published (version 12, 5 Oct 2026). |
-| `data/items.json` | All 886 picks, keyed by id, as stored in the artifact's `items` collection. |
-| `data/outfits.json` | All 140 outfits from the `outfits` collection. |
+| `page.html` | The page source as published (version 13, 5 Oct 2026). |
+| `data/items.json` | All 964 picks, keyed by id, as stored in the artifact's `items` collection. |
+| `data/outfits.json` | All 156 outfits from the `outfits` collection. |
 | `tools/fetch_photos.py` | Downloads listing photos and packs them for the page (step 2 below). |
 
 The shared shortlist, Dave's thumbs and saved outfits (`saved`, `votes`,
@@ -197,6 +197,37 @@ people using the page.
 - **The Friday refresh** now aims for at least half of each week's new items under £40, at least
   three new reduced items under £25 per style, and an outfit under £60 where possible.
 - Page version 12.
+
+## 2h. Views, finer categories, two new styles and high-street shops (5 Oct 2026, night)
+
+- **One view at a time.** The bar now switches between Shop, Sale, Outfits, Build, Shortlist and
+  Style guide, instead of one long scrolling page. The choice is kept in the address (#shop,
+  #sale and so on) and remembered on each device.
+- **Finer categories, like ASOS.** Shop opens on departments (Clothing, Shoes, Accessories,
+  Loungewear and nightwear, Sport and swim, Socks and underwear). Each department shows a tile
+  for every category, with a photo, a count and the lowest price. Each list holds one kind of
+  thing: jumpers apart from sweatshirts and fleeces, jeans apart from chinos and cargos, trainers
+  apart from boots, and so on, 40 categories in all.
+  - The category is worked out from each pick's type and name ( in the page), so no data
+    change was needed. The Friday refresh now names new picks with the garment type in plain words.
+  - Search results are split by category too. Filters fold away under "Filter".
+  - The sale sections use the same categories.
+- **Two new styles:** Mod and skate, and Holiday and summer. Each has its own guide, sale section
+  and eight outfits. 169 older picks were added to them through 
+  (), and new picks carry the style themselves.
+- **78 new picks**, most under £40:
+  - 42 for the new styles from Original Penguin, Lyle & Scott, Fred Perry (Jean Store), Farah,
+    Community Clothing, Base London, Brakeburn, Savile Row Company, T.M. Lewin, Slam City
+    Skates (Last Resort, Polar, Passport), Fila, Albam, howies, Passenger and Uskees.
+  - 36 from high-street and value shops new to the guide: Matalan (14, with its 20% online
+    sale), Peacocks (10), Blue Inc (5) and Mountain Warehouse (7).
+- **"Where to look"** now lists 134 shops, including Jack & Jones, Burton, boohooMAN, New Look,
+  Pull&Bear, Bershka, Mango, Ben Sherman, Jacamo, Shoe Zone, Millets, Blacks, Weird Fish and USC.
+  Several of these block cloud servers (Primark, TK Maxx, F&F, Very, New Look, Jacamo, Mango),
+  so they are links only.
+-  reads price, photo and stock per size from any product page that
+  publishes schema.org data (Matalan, Peacocks and many others).
+- Page version 13. Totals: **964 picks, 156 outfits, 88 shops with picks.**
 
 ## 3. Next steps
 

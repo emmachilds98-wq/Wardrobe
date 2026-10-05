@@ -1404,6 +1404,330 @@
    "mild"
   ]
  },
+ "m5-argyle": {
+  "look": "men grey argyle jumper white oxford shirt navy chinos navy suede loafers",
+  "name": "Argyle and Oxford",
+  "note": "Argyle over a white Oxford with navy chinos and loafers. Under £100 at about £97.",
+  "occ": "smart",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "mt-argyle-grey",
+    "shape": "jumper",
+    "what": "Argyle jumper"
+   },
+   {
+    "col": "white",
+    "item": "fa-brewer-white",
+    "shape": "shirt",
+    "what": "Oxford shirt underneath"
+   },
+   {
+    "col": "navy",
+    "item": "mt-chino-navy",
+    "shape": "trousers",
+    "what": "Navy chinos"
+   },
+   {
+    "col": "navy",
+    "item": "md-base-snapper-navy",
+    "shape": "shoes",
+    "what": "Suede loafers"
+   }
+  ],
+  "rank": 6,
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "m5-cold-mod": {
+  "look": "men green knitted half zip polo grey suede bomber dark jeans navy chukka boots",
+  "name": "Cold Saturday mod",
+  "note": "Layers for a cold day: tipped quarter-zip under a bomber, jeans and suede boots. About £126.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "mt-suede-bomber",
+    "shape": "jacket",
+    "what": "Suede-look bomber, worn open"
+   },
+   {
+    "col": "green",
+    "item": "md-op-qz-green",
+    "shape": "halfzip",
+    "what": "Tipped quarter-zip"
+   },
+   {
+    "col": "indigo",
+    "item": "mt-jeans-straight",
+    "shape": "trousers",
+    "what": "Straight jeans"
+   },
+   {
+    "col": "navy",
+    "item": "md-base-lincoln-navy",
+    "shape": "boots",
+    "what": "Suede chukkas"
+   }
+  ],
+  "rank": 8,
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold"
+  ]
+ },
+ "m5-knit-polo-night": {
+  "look": "men navy knitted polo grey check slim trousers black white loafers",
+  "name": "Knitted polo night out",
+  "note": "Knitted polo, check trousers and two-tone loafers for a night out. About £106.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "md-farah-thornley",
+    "shape": "polo",
+    "what": "Knitted polo"
+   },
+   {
+    "col": "grey",
+    "item": "md-tml-sandringham",
+    "shape": "trousers",
+    "what": "Slim check trousers"
+   },
+   {
+    "col": "black",
+    "item": "md-base-sid-bw",
+    "shape": "shoes",
+    "what": "Two-tone loafers"
+   }
+  ],
+  "rank": 4,
+  "style": [
+   "mod",
+   "quiet"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "m5-loafer-skate": {
+  "look": "men white tipped polo navy coach jacket black dickies 874 black loafer skate shoes",
+  "name": "Skate loafers and Dickies",
+  "note": "Mod on top, skate underneath: a tipped polo and coach jacket with Dickies and loafer-style skate shoes. About £139.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "us-coach-navy",
+    "shape": "jacket",
+    "what": "Coach jacket, worn open"
+   },
+   {
+    "col": "white",
+    "item": "md-ls-tipped-white",
+    "shape": "polo",
+    "what": "Tipped polo"
+   },
+   {
+    "col": "black",
+    "item": "asos-dickies-874-sale",
+    "shape": "trousers",
+    "what": "Dickies 874"
+   },
+   {
+    "col": "black",
+    "item": "sk-lr-vm005",
+    "shape": "shoes",
+    "what": "Loafer skate shoes"
+   }
+  ],
+  "rank": 5,
+  "style": [
+   "mod",
+   "street"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "warm"
+  ]
+ },
+ "m5-skate-day": {
+  "look": "men navy tipped t-shirt green work chinos blue suede skate shoes beanie",
+  "name": "Skate day",
+  "note": "Loose chinos and suede skate shoes, with a Fred Perry tee to keep it neat. About £134.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "md-fp-twin-tee",
+    "shape": "tee",
+    "what": "Twin tipped tee"
+   },
+   {
+    "col": "olive",
+    "item": "sk-dc-worker",
+    "shape": "trousers",
+    "what": "Loose work chinos"
+   },
+   {
+    "col": "blue",
+    "item": "sk-lr-vm001",
+    "shape": "trainers",
+    "what": "Suede skate shoes"
+   },
+   {
+    "col": "green",
+    "item": "sk-polar-beanie",
+    "shape": "beanie",
+    "what": "Beanie"
+   }
+  ],
+  "rank": 3,
+  "style": [
+   "mod",
+   "street"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "m5-stone-harrington": {
+  "look": "men stone harrington jacket grey t-shirt dark jeans black vans old skool",
+  "name": "Stone Harrington and Vans",
+  "note": "A British-made Harrington over a plain tee, with jeans and Vans. About £145.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "stone",
+    "item": "md-cc-harrington",
+    "shape": "jacket",
+    "what": "Harrington, worn open"
+   },
+   {
+    "col": "grey",
+    "item": "sk-farah-danny",
+    "shape": "tee",
+    "what": "Plain tee"
+   },
+   {
+    "col": "indigo",
+    "item": "mt-jeans-straight",
+    "shape": "trousers",
+    "what": "Straight jeans"
+   },
+   {
+    "col": "black",
+    "item": "asos-vans",
+    "shape": "trainers",
+    "what": "Vans Old Skool"
+   }
+  ],
+  "rank": 7,
+  "style": [
+   "mod",
+   "casual",
+   "street"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "m5-tipped-harrington": {
+  "look": "men navy tipped polo blue harrington jacket sand chinos navy suede chukka boots",
+  "name": "Tipped polo and Harrington",
+  "note": "The classic mod daytime look: Harrington, tipped polo, slim chinos and suede boots. About £146 all in.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "md-op-harrington",
+    "shape": "jacket",
+    "what": "Harrington, worn open"
+   },
+   {
+    "col": "navy",
+    "item": "md-ls-tipped-navy",
+    "shape": "polo",
+    "what": "Tipped polo"
+   },
+   {
+    "col": "sand",
+    "item": "md-bb-norborton",
+    "shape": "trousers",
+    "what": "Slim chinos"
+   },
+   {
+    "col": "navy",
+    "item": "md-base-lincoln-navy",
+    "shape": "boots",
+    "what": "Suede chukkas"
+   }
+  ],
+  "rank": 1,
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "m5-under-60": {
+  "look": "men blue tipped polo dark straight jeans brown chelsea boots",
+  "name": "Mod for under £60",
+  "note": "An £18 tipped polo, £16 jeans and £24 Chelsea boots: £58 for the whole outfit.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "md-op-tipped-copen",
+    "shape": "polo",
+    "what": "Tipped piqué polo"
+   },
+   {
+    "col": "indigo",
+    "item": "mt-jeans-straight",
+    "shape": "trousers",
+    "what": "Straight dark jeans"
+   },
+   {
+    "col": "brown",
+    "item": "pc-chelsea-brown",
+    "shape": "boots",
+    "what": "Chelsea boots"
+   }
+  ],
+  "rank": 2,
+  "style": [
+   "mod",
+   "casual"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "warm"
+  ]
+ },
  "mn-cold": {
   "look": "men long khaki overcoat grey oversized jumper white mock neck wide charcoal trousers black chelsea boots minimalist outfit",
   "name": "Winter in town",
@@ -4926,6 +5250,343 @@
   ],
   "wx": [
    "cold"
+  ]
+ },
+ "s5-beach-bar": {
+  "look": "men green short sleeve shirt ecru linen shorts tan sliders sunglasses",
+  "name": "Beach bar",
+  "note": "A £9 shirt and £15 linen shorts with sliders and sunglasses. About £69.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "green",
+    "item": "hs-howies-arian",
+    "shape": "sshirt",
+    "what": "Short-sleeve shirt"
+   },
+   {
+    "col": "cream",
+    "item": "sw-linen-shorts-ecru",
+    "shape": "shorts",
+    "what": "Linen shorts"
+   },
+   {
+    "col": "tan",
+    "item": "hs-base-webb",
+    "shape": "shoes",
+    "what": "Leather sliders"
+   },
+   {
+    "col": "black",
+    "item": "ms-sunglasses",
+    "shape": "sunglasses",
+    "what": "Polarised sunglasses"
+   }
+  ],
+  "rank": 3,
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "s5-linen-dinner": {
+  "look": "men stone linen shirt navy linen trousers tan woven loafers",
+  "name": "Linen for dinner",
+  "note": "Linen shirt, linen trousers and woven loafers for holiday dinners. About £90.",
+  "occ": "smart",
+  "pieces": [
+   {
+    "col": "stone",
+    "item": "hs-tml-linen-stone",
+    "shape": "shirt",
+    "what": "Linen shirt"
+   },
+   {
+    "col": "navy",
+    "item": "sw-linen-trousers",
+    "shape": "trousers",
+    "what": "Linen trousers"
+   },
+   {
+    "col": "tan",
+    "item": "hs-base-bracken",
+    "shape": "shoes",
+    "what": "Woven loafers"
+   }
+  ],
+  "rank": 2,
+  "style": [
+   "summer",
+   "quiet"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "s5-pool": {
+  "look": "men navy printed swim shorts white t-shirt tan sliders navy bucket hat",
+  "name": "Pool day",
+  "note": "Swim shorts, a light tee, sliders and a bucket hat. About £65.",
+  "occ": "lounge",
+  "pieces": [
+   {
+    "col": "white",
+    "item": "uq-airism-tee",
+    "shape": "tee",
+    "what": "Light tee"
+   },
+   {
+    "col": "navy",
+    "item": "hs-bb-coast-swim",
+    "shape": "shorts",
+    "what": "Swim shorts"
+   },
+   {
+    "col": "tan",
+    "item": "hs-base-webb",
+    "shape": "shoes",
+    "what": "Sliders"
+   },
+   {
+    "col": "navy",
+    "item": "sk-passport-bucket",
+    "shape": "bucket",
+    "what": "Bucket hat"
+   }
+  ],
+  "rank": 4,
+  "style": [
+   "summer"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "s5-resort-night": {
+  "look": "men striped resort shirt open over white t-shirt navy linen trousers tan boat shoes",
+  "name": "Resort shirt night",
+  "note": "Resort shirt worn open over a tee, linen trousers and boat shoes. Under £100 at about £85.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "stone",
+    "item": "hs-bb-shirwell",
+    "shape": "sshirt",
+    "what": "Stripe resort shirt, worn open"
+   },
+   {
+    "col": "white",
+    "item": "uq-airism-tee",
+    "shape": "tee",
+    "what": "White tee"
+   },
+   {
+    "col": "navy",
+    "item": "sw-linen-trousers",
+    "shape": "trousers",
+    "what": "Linen trousers"
+   },
+   {
+    "col": "tan",
+    "item": "hs-base-stern",
+    "shape": "shoes",
+    "what": "Boat shoes"
+   }
+  ],
+  "rank": 6,
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "s5-summer-mod": {
+  "look": "men white tipped polo sand chino shorts navy suede loafers sunglasses",
+  "name": "Summer mod",
+  "note": "The mod look for hot days: tipped polo, chino shorts and loafers without socks. About £122.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "white",
+    "item": "md-ls-tipped-white",
+    "shape": "polo",
+    "what": "Tipped polo"
+   },
+   {
+    "col": "sand",
+    "item": "tml-chino-short-sand",
+    "shape": "shorts",
+    "what": "Chino shorts"
+   },
+   {
+    "col": "navy",
+    "item": "md-base-snapper-navy",
+    "shape": "shoes",
+    "what": "Suede loafers"
+   },
+   {
+    "col": "black",
+    "item": "uq-sunglasses-wellington",
+    "shape": "sunglasses",
+    "what": "Sunglasses"
+   }
+  ],
+  "rank": 5,
+  "style": [
+   "summer",
+   "mod"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "s5-walk": {
+  "look": "men grey quick dry short sleeve shirt khaki trail shorts walking sandals brown cap",
+  "name": "Walking holiday",
+  "note": "Quick-dry shirt, stretch shorts and walking sandals for hot walks. About £71.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "mw-holiday-shirt",
+    "shape": "sshirt",
+    "what": "Quick-dry shirt"
+   },
+   {
+    "col": "sand",
+    "item": "hs-ps-trail-short",
+    "shape": "shorts",
+    "what": "Trail shorts"
+   },
+   {
+    "col": "olive",
+    "item": "mw-shandals",
+    "shape": "shoes",
+    "what": "Walking sandals"
+   },
+   {
+    "col": "brown",
+    "item": "asos-cap-brown",
+    "shape": "cap",
+    "what": "Cap"
+   }
+  ],
+  "rank": 7,
+  "style": [
+   "summer",
+   "outdoor"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "s5-wedding": {
+  "look": "men neutral linen suit white linen shirt tan woven loafers",
+  "name": "Summer wedding guest",
+  "note": "A linen suit with an open-neck white shirt and woven loafers. About £231.",
+  "occ": "event",
+  "pieces": [
+   {
+    "col": "stone",
+    "item": "moss-linen-suit",
+    "shape": "blazer",
+    "what": "Linen suit jacket"
+   },
+   {
+    "col": "white",
+    "item": "sw-linen",
+    "shape": "shirt",
+    "what": "Linen shirt, open at the neck"
+   },
+   {
+    "col": "stone",
+    "item": "moss-linen-suit",
+    "shape": "trousers",
+    "what": "Linen suit trousers"
+   },
+   {
+    "col": "tan",
+    "item": "hs-base-bracken",
+    "shape": "shoes",
+    "what": "Woven loafers"
+   }
+  ],
+  "rank": 8,
+  "style": [
+   "summer",
+   "quiet"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "s5-week-away": {
+  "look": "men linen blend resort shirt textured shorts tan leather sliders sunglasses",
+  "name": "Holiday for under £100",
+  "note": "Resort shirt, shorts, sliders and sunglasses: £81 for a full holiday outfit.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "stone",
+    "item": "hs-bb-mayland",
+    "shape": "sshirt",
+    "what": "Resort shirt"
+   },
+   {
+    "col": "navy",
+    "item": "hs-bb-delvin",
+    "shape": "shorts",
+    "what": "Textured shorts"
+   },
+   {
+    "col": "tan",
+    "item": "hs-base-webb",
+    "shape": "shoes",
+    "what": "Leather sliders"
+   },
+   {
+    "col": "black",
+    "item": "uq-sunglasses-wellington",
+    "shape": "sunglasses",
+    "what": "Sunglasses"
+   }
+  ],
+  "rank": 1,
+  "style": [
+   "summer",
+   "casual"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
   ]
  },
  "samba-cord": {

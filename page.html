@@ -344,6 +344,40 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
 .sale-stat{background:var(--claret-wash);color:var(--claret);border-radius:3px;padding:6px 10px;font-size:.85rem;font-weight:600;font-variant-numeric:tabular-nums}
 .sale .controls{gap:8px 16px}
 .sale-shops{font-size:.88rem;color:var(--muted);max-width:75ch}
+/* views: one part of the page at a time, chosen from the bar */
+body[data-v] [data-view]{display:none!important}
+body[data-v="shop"] [data-view~="shop"],body[data-v="sale"] [data-view~="sale"],body[data-v="fits"] [data-view~="fits"],body[data-v="build"] [data-view~="build"],body[data-v="list"] [data-view~="list"],body[data-v="guide"] [data-view~="guide"]{display:revert!important}
+body[data-v="shop"] [data-view~="shop"][hidden],body[data-v="sale"] [data-view~="sale"][hidden],body[data-v="fits"] [data-view~="fits"][hidden],body[data-v="guide"] [data-view~="guide"][hidden]{display:none!important}
+.views{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * clamp(16px,4vw,40px));padding-inline:clamp(16px,4vw,40px)}
+.views::-webkit-scrollbar{display:none}
+.vbtn{font:inherit;font-size:.92rem;font-weight:600;padding:8px 12px;border:0;border-bottom:3px solid transparent;background:none;color:var(--muted);cursor:pointer;white-space:nowrap;flex:none}
+.vbtn:hover{color:var(--ink)}
+.vbtn[aria-current="page"]{color:var(--ink);border-bottom-color:var(--claret)}
+.vbtn b{font-variant-numeric:tabular-nums}
+.intro.slim{gap:6px}
+.intro.slim h2{font-size:clamp(1.4rem,3.2vw,1.8rem)}
+.mast{padding-block:18px 0;margin-bottom:-30px}
+.mast h1{font-size:clamp(1.9rem,4.6vw,2.7rem)}
+.wrap{gap:28px}
+.intro.slim .fgroup{grid-template-columns:7.5rem minmax(0,1fr)}
+@media (max-width:560px){.intro.slim .fgroup .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.intro.slim .fgroup .chip{flex:none;white-space:nowrap}}
+/* shop: departments, then one category at a time */
+.dept{display:flex;flex-direction:column;gap:10px}
+.dept-row{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.dept-row::-webkit-scrollbar{display:none}
+.dept-row .chip{white-space:nowrap;flex:none}
+.crumbs{font-size:.88rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
+.crumbs button{font:inherit;background:none;border:0;padding:0;color:var(--green);text-decoration:underline;cursor:pointer}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(46%,190px),1fr));gap:12px}
+.tile{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:0 0 10px;cursor:pointer;text-align:left;font:inherit;color:var(--ink);overflow:hidden}
+.tile:hover{border-color:var(--green)}
+.tile .ph{aspect-ratio:4/3;width:100%;border-radius:0}
+.tile .ph svg{padding:10px 20%}
+.tile b{font-family:var(--f-serif);font-weight:400;font-size:1.05rem;line-height:1.2;padding:0 10px}
+.tile span.t-n{font-size:.8rem;color:var(--muted);padding:0 10px}
+.dept-head{font-family:var(--f-display);font-weight:400;font-size:1.35rem;margin-top:8px}
+details.filt > summary{font-family:var(--f-text);font-size:.95rem;font-weight:600}
+details.filt > summary small{font-weight:400}
 #results.compact .grid{grid-template-columns:repeat(auto-fill,minmax(min(46%,160px),1fr));gap:10px}
 #results.compact .card{padding:10px 11px 10px;gap:5px}
 #results.compact .card .ph{margin:-10px -11px 2px;max-width:calc(100% + 22px)}
@@ -376,31 +410,32 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
     <div class="tabs" id="f-style" role="group" aria-label="Style"></div>
     <div class="bar-row">
       <label class="search" for="q"><span class="vh">Search every style</span><input id="q" type="search" placeholder="Search every style: cord, Vans, navy, M&amp;S…" autocomplete="off"></label>
-      <div class="jump">
-        <button class="linkbtn" type="button" data-jump="sale">Sale</button>
-        <button class="linkbtn" type="button" data-jump="fits">Outfits</button>
-        <button class="linkbtn" type="button" data-jump="picks">Picks</button>
-        <button class="linkbtn" type="button" data-jump="build">Build</button>
-        <button class="linkbtn" type="button" data-jump="list">Shortlist <b id="list-n"></b></button>
-      </div>
+    </div>
+    <div class="views" role="tablist" aria-label="Parts of the page">
+      <button class="vbtn" type="button" data-go="shop">Shop</button>
+      <button class="vbtn" type="button" data-go="sale">Sale</button>
+      <button class="vbtn" type="button" data-go="fits">Outfits</button>
+      <button class="vbtn" type="button" data-go="build">Build</button>
+      <button class="vbtn" type="button" data-go="list">Shortlist <b id="list-n"></b></button>
+      <button class="vbtn" type="button" data-go="guide">Style guide</button>
     </div>
   </nav>
 
-  <section class="week" id="week" aria-labelledby="h-week" hidden>
+  <section class="week" id="week" aria-labelledby="h-week" data-view="sale" hidden>
     <h2 id="h-week">This week</h2>
     <p id="week-sum"></p>
     <div class="cuts-list" id="week-list"></div>
   </section>
 
-  <section class="intro" id="style" aria-labelledby="style-name">
-    <div class="sec-head" style="gap:8px"><h2 id="style-name"></h2><p class="lede" id="style-lede" style="color:var(--ink)"></p><p class="tally" id="style-tally"></p></div>
-    <div class="fgroup" id="g-sub" hidden><span class="label" id="l-sub">Within Classic</span><div class="chips" id="f-sub" role="group" aria-labelledby="l-sub"></div></div>
-    <div class="fgroup"><span class="label" id="l-set">Quick sets</span><div class="chips" id="f-set" role="group" aria-labelledby="l-set"></div></div>
-    <p class="tip" id="style-tip"></p>
-    <details class="fold" id="rules"><summary>How to wear it <small id="rules-sum"></small></summary><div class="fold-body" id="rules-body"></div></details>
+  <section class="intro slim" id="style" aria-labelledby="style-name">
+    <div class="sec-head" style="gap:8px"><h2 id="style-name"></h2><p class="lede" id="style-lede" style="color:var(--ink)" data-view="guide"></p><p class="tally" id="style-tally"></p></div>
+    <div class="fgroup" id="g-sub" data-view="shop fits" hidden><span class="label" id="l-sub">Within Classic</span><div class="chips" id="f-sub" role="group" aria-labelledby="l-sub"></div></div>
+    <div class="fgroup" data-view="shop"><span class="label" id="l-set">Quick sets</span><div class="chips" id="f-set" role="group" aria-labelledby="l-set"></div></div>
+    <p class="tip" id="style-tip" data-view="guide"></p>
+    <details class="fold" id="rules" data-view="guide" open><summary>How to wear it <small id="rules-sum"></small></summary><div class="fold-body" id="rules-body"></div></details>
   </section>
 
-  <section class="sec sale" id="sale" aria-labelledby="h-sale" hidden>
+  <section class="sec sale" id="sale" aria-labelledby="h-sale" data-view="sale" hidden>
     <div class="sec-head">
       <h2 id="h-sale">On sale</h2>
       <p id="sale-lede"></p>
@@ -424,7 +459,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
     <p class="sale-shops" id="sale-shops"></p>
   </section>
 
-  <section class="sec" id="fits" aria-labelledby="h-fits">
+  <section class="sec" id="fits" aria-labelledby="h-fits" data-view="fits">
     <div class="sec-head">
       <h2 id="h-fits">Outfits</h2>
       <p>Each outfit is drawn on Dave, with the pieces numbered, priced and linked. Save one to the shortlist, or change its pieces in the builder.</p>
@@ -448,7 +483,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
     <div class="state" id="fit-state"><b>Loading outfits</b>Outfits with prices and links will appear here in a moment.</div>
   </section>
 
-  <section class="sec" id="build" aria-labelledby="h-build">
+  <section class="sec" id="build" aria-labelledby="h-build" data-view="build">
     <div class="sec-head">
       <h2 id="h-build">Build an outfit</h2>
       <p>Choose a piece for each part and see it on Dave with a running total. Or give a budget and let the page suggest one from this style, using pieces in his size.</p>
@@ -473,7 +508,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
     </div>
   </section>
 
-  <section class="sec" id="mix" aria-labelledby="h-mix" hidden>
+  <section class="sec" id="mix" aria-labelledby="h-mix" data-view="fits" hidden>
     <div class="sec-head">
       <h2 id="h-mix">One piece, many outfits</h2>
       <p>The pieces that earn their place. Choose one to see every outfit that uses it, across all the styles. The number is how many outfits it appears in.</p>
@@ -482,13 +517,14 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
     <div id="mix-body"></div>
   </section>
 
-  <section class="picks" id="picks" aria-labelledby="h-picks">
+  <section class="picks" id="picks" aria-labelledby="h-picks" data-view="shop">
     <div class="sec-head">
-      <h2 id="h-picks">Picks</h2>
-      <p id="picks-sub">Every item for this style with its price, any saving, stock in his size and a link to buy.</p>
+      <h2 id="h-picks">Shop</h2>
+      <p id="picks-sub">Choose a department, then a category. Each list holds one kind of thing.</p>
     </div>
-    <div class="filters">
-      <div class="fgroup"><span class="label" id="l-cat">Type</span><div class="chips" id="f-cat" role="group" aria-labelledby="l-cat"></div></div>
+    <div class="dept" id="dept"></div>
+    <details class="fold filt" id="filt"><summary>Filter <small id="filt-sum"></small></summary>
+    <div class="filters fold-body" style="border:0;padding-block:6px 14px">
       <div class="fgroup"><span class="label" id="l-occ">Occasion</span><div class="chips" id="f-occ" role="group" aria-labelledby="l-occ"></div></div>
       <div class="fgroup"><span class="label" id="l-wx">Weather</span><div class="chips" id="f-wx" role="group" aria-labelledby="l-wx"></div></div>
       <div class="fgroup" id="g-gift" hidden><span class="label" id="l-gift">Gift price</span><div class="chips" id="f-gift" role="group" aria-labelledby="l-gift"></div></div>
@@ -511,6 +547,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
         </div>
       </div>
     </div>
+    </details>
     <p class="msg" id="size-note" hidden>Showing only picks confirmed in stock in his size at the last check. ASOS and a few other shops do not publish stock by size, so their picks are left out of this filter.</p>
 
     <div class="formula" id="formula" hidden></div>
@@ -530,7 +567,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
     <div class="state" id="state"><b>Loading this week's picks</b>Clothes, shoes and accessories with prices and links to buy will appear here in a moment.</div>
   </section>
 
-  <section class="sec" id="list" aria-labelledby="h-list">
+  <section class="sec" id="list" aria-labelledby="h-list" data-view="list">
     <div class="sec-head">
       <h2 id="h-list">Shortlist</h2>
       <p>Everything saved with the heart, shared by everyone who can use this page. Mark things as bought and the outfits show what is left to buy.</p>
@@ -539,7 +576,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
     <div id="list-body"></div>
   </section>
 
-  <details class="fold" id="sizes-fold">
+  <details class="fold" id="sizes-fold" data-view="guide">
     <summary>His sizes <small id="sizes-sum"></small></summary>
     <div class="fold-body">
       <div id="profile" hidden><div class="sizes" id="sizes"></div></div>
@@ -548,7 +585,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
     </div>
   </details>
 
-  <details class="fold" id="shopsec">
+  <details class="fold" id="shopsec" data-view="guide">
     <summary>Where to look <small id="shops-sum"></small></summary>
     <div class="fold-body">
     <div class="shops" id="shops">
@@ -560,6 +597,14 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
         <li><a href="https://www2.hm.com/en_gb/men.html" target="_blank" rel="noopener">H&amp;M</a><small data-shop="H&amp;M"></small></li>
         <li><a href="https://www.asos.com/men/" target="_blank" rel="noopener">ASOS</a><small data-shop="ASOS"></small></li>
         <li><a href="https://www.gap.co.uk/" target="_blank" rel="noopener">Gap</a></li>
+        <li><a href="https://www.jackjones.com/en-gb" target="_blank" rel="noopener">Jack &amp; Jones</a></li>
+        <li><a href="https://www.burton.co.uk/" target="_blank" rel="noopener">Burton</a></li>
+        <li><a href="https://www.boohooman.com/" target="_blank" rel="noopener">boohooMAN</a></li>
+        <li><a href="https://www.newlook.com/uk/mens" target="_blank" rel="noopener">New Look</a></li>
+        <li><a href="https://www.pullandbear.com/gb/" target="_blank" rel="noopener">Pull&amp;Bear</a></li>
+        <li><a href="https://www.bershka.com/gb/" target="_blank" rel="noopener">Bershka</a></li>
+        <li><a href="https://shop.mango.com/gb/en/h/men" target="_blank" rel="noopener">Mango</a></li>
+        <li><a href="https://www.bensherman.com/" target="_blank" rel="noopener">Ben Sherman</a></li>
         <li><a href="https://www.zara.com/uk/" target="_blank" rel="noopener">Zara</a><small data-shop="Zara"></small></li>
         <li><a href="https://www.whitestuff.com/browse/mens" target="_blank" rel="noopener">White Stuff</a><small data-shop="White Stuff"></small></li>
         <li><a href="https://www.seasaltcornwall.com/sale/mens-all-sale" target="_blank" rel="noopener">Seasalt sale</a><small data-shop="Seasalt"></small></li>
@@ -568,7 +613,12 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
         <li><a href="https://tuclothing.sainsburys.co.uk/" target="_blank" rel="noopener">Tu at Sainsbury's</a><small data-shop="Tu at Sainsbury's"></small></li>
         <li><a href="https://direct.asda.com/george/" target="_blank" rel="noopener">George at Asda</a><small data-shop="George at Asda"></small></li>
         <li><a href="https://www.tesco.com/" target="_blank" rel="noopener">F&amp;F at Tesco</a></li>
+        <li><a href="https://www.matalan.co.uk/c/mens/" target="_blank" rel="noopener">Matalan</a><small data-shop="Matalan"></small></li>
+        <li><a href="https://www.peacocks.co.uk/mens" target="_blank" rel="noopener">Peacocks</a><small data-shop="Peacocks"></small></li>
+        <li><a href="https://www.blueinc.co.uk/" target="_blank" rel="noopener">Blue Inc</a><small data-shop="Blue Inc"></small></li>
         <li><a href="https://www.primark.com/en-gb" target="_blank" rel="noopener">Primark (to browse, not online)</a></li>
+        <li><a href="https://www.jacamo.co.uk/" target="_blank" rel="noopener">Jacamo (bigger sizes)</a></li>
+        <li><a href="https://www.shoezone.com/Mens" target="_blank" rel="noopener">Shoe Zone</a></li>
         <li><a href="https://www.sportsdirect.com/" target="_blank" rel="noopener">Sports Direct</a><small data-shop="Sports Direct"></small></li>
       </ul></div>
       <div class="shopgroup"><span class="label">Big multi-brand shops</span><ul>
@@ -609,6 +659,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
       <div class="shopgroup"><span class="label">Outlets and discount</span><ul>
         <li><a href="https://www.mandmdirect.com/" target="_blank" rel="noopener">M and M Direct</a><small data-shop="M and M Direct"></small></li>
         <li><a href="https://www.tkmaxx.com/uk/en/" target="_blank" rel="noopener">TK Maxx</a></li>
+        <li><a href="https://www.usc.co.uk/" target="_blank" rel="noopener">USC</a></li>
         <li><a href="https://www.woolovers.com/outlet" target="_blank" rel="noopener">WoolOvers clearance</a></li>
         <li><a href="https://www.brandalley.co.uk/" target="_blank" rel="noopener">BrandAlley</a></li>
         <li><a href="https://www.secretsales.com/" target="_blank" rel="noopener">Secret Sales</a></li>
@@ -654,6 +705,9 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
         <li><a href="https://www.hikerdelic.com/" target="_blank" rel="noopener">Hikerdelic</a><small data-shop="Hikerdelic"></small></li>
         <li><a href="https://www.mountainwarehouse.com/" target="_blank" rel="noopener">Mountain Warehouse</a><small data-shop="Mountain Warehouse"></small></li>
         <li><a href="https://www.gooutdoors.co.uk/" target="_blank" rel="noopener">Go Outdoors</a></li>
+        <li><a href="https://www.millets.co.uk/" target="_blank" rel="noopener">Millets</a></li>
+        <li><a href="https://www.blacks.co.uk/" target="_blank" rel="noopener">Blacks</a></li>
+        <li><a href="https://www.weirdfish.co.uk/c/men" target="_blank" rel="noopener">Weird Fish</a></li>
         <li><a href="https://www.cotswoldoutdoor.com/" target="_blank" rel="noopener">Cotswold Outdoor</a></li>
         <li><a href="https://www.trespass.com/" target="_blank" rel="noopener">Trespass</a><small data-shop="Trespass"></small></li>
         <li><a href="https://www.rains.com/" target="_blank" rel="noopener">Rains</a></li>
@@ -700,7 +754,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
     </div>
   </details>
 
-  <footer class="foot">
+  <footer class="foot" data-view="guide">
     <p>Prices, sizes and stock change quickly, and sale colours sell out first. Each card shows the date its price was last checked. Open the link to confirm before buying.</p>
     <p>A green size line means his size was in stock at the last check. Where a shop does not publish stock by size, the card shows his usual size to look for.</p>
     <p>Pre-owned cards show the range of asking prices seen in a search on that date, not a single listing.</p>
@@ -970,7 +1024,44 @@ function board(f,nums){
 var OCC=[["all","All"],["everyday","Everyday"],["smart","Smart"],["event","Event"],["party","Party and nights out"],["lounge","At home"]];
 var WX=[["all","Any"],["cold","Cold"],["mild","Mild"],["warm","Warm"],["wet","Wet"]];
 var CAT=[["all","Everything"],["knit","Knitwear and sweatshirts"],["shirt","Shirts and overshirts"],["polo","T-shirts, polos and vests"],["trouser","Trousers and shorts"],["coat","Coats and jackets"],["tailor","Tailoring"],["shoe","Shoes and boots"],["acc","Accessories and watches"],["lounge","Loungewear and slippers"],["sport","Gym and sport"],["swim","Swimwear"],["basics","Socks and underwear"]];
-var STYLE=[["quiet","Classic"],["casual","Casual"],["street","Street"],["minimal","Minimal"],["rave","Rave"],["outdoor","Outdoors"],["lounge","Lounge"]];
+var STYLE=[["quiet","Classic"],["casual","Casual"],["street","Street"],["minimal","Minimal"],["mod","Mod and skate"],["rave","Rave"],["outdoor","Outdoors"],["summer","Holiday"],["lounge","Lounge"]];
+/* Finer categories, worked out from each pick's type and name, so one list never mixes two kinds of thing (jumpers apart from sweatshirts, jeans apart from chinos). */
+var DEPTS=[["clothing","Clothing"],["shoes","Shoes"],["acc","Accessories"],["lounge","Loungewear and nightwear"],["sport","Sport and swim"],["basics","Socks and underwear"]];
+var SUBS=[
+  ["jumpers","Jumpers and cardigans","clothing"],["hoodies","Hoodies and sweatshirts","clothing"],["fleeces","Fleeces","clothing"],
+  ["tees","T-shirts and vests","clothing"],["polos","Polo shirts","clothing"],["shirts","Shirts","clothing"],["overshirts","Overshirts and shackets","clothing"],
+  ["jackets","Jackets","clothing"],["coats","Coats and parkas","clothing"],["puffers","Puffer and padded jackets","clothing"],["waterproofs","Waterproofs and windbreakers","clothing"],["gilets","Gilets","clothing"],
+  ["jeans","Jeans","clothing"],["chinos","Trousers and chinos","clothing"],["cargos","Cargo and work trousers","clothing"],["joggers","Joggers and track pants","clothing"],["shorts","Shorts","clothing"],
+  ["tailoring","Suits and tailoring","clothing"],
+  ["trainers","Trainers","shoes"],["boots","Boots","shoes"],["shoes","Shoes and loafers","shoes"],["sandals","Sandals and sliders","shoes"],
+  ["hats","Hats and caps","acc"],["bags","Bags","acc"],["sunglasses","Sunglasses","acc"],["watches","Watches","acc"],["jewellery","Chains and jewellery","acc"],["belts","Belts","acc"],["ties","Ties and pocket squares","acc"],["wallets","Wallets and card holders","acc"],["scarves","Scarves and gloves","acc"],["otheracc","Other accessories","acc"],
+  ["pyjamas","Pyjamas","lounge"],["gowns","Dressing gowns","lounge"],["slippers","Slippers","lounge"],["loungewear","Loungewear","lounge"],
+  ["sport","Gym and running","sport"],["swim","Swimwear","sport"],
+  ["socks","Socks","basics"],["underwear","Underwear and base layers","basics"]
+];
+var SUBL=SUBS.map(function(x){return [x[0],x[1]];}),SUBDEPT={};SUBS.forEach(function(x){SUBDEPT[x[0]]=x[2];});
+function subOf(it){
+  var n=(it.name+" ").toLowerCase(),c=it.cat;
+  function m(r){return r.test(n);}
+  if(c==="swim")return "swim";
+  if(c==="sport")return "sport";
+  if(c==="basics")return m(/sock|liner/)?"socks":"underwear";
+  if(c==="tailor")return "tailoring";
+  if(c==="lounge"){if(m(/slipper|mule|moccasin|slip /))return "slippers";if(m(/gown/))return "gowns";if(m(/pyjama|\bpj|sleep/))return "pyjamas";return "loungewear";}
+  if(c==="shoe"){if(m(/slipper/))return "slippers";if(m(/sandal|slide|slider|flip|shandal/))return "sandals";if(m(/boot|chukka|chelsea|1460|desert|8-eye|mucker/))return "boots";
+    if(m(/trainer|sneaker|samba|spezial|vans|converse|chuck|old skool|skate|campus|new balance|nb\d|\d{3}|air force|af1|runner|gazelle|plimsoll|cupsole|court|basketball|festa|giovanni|gaz |merrell|salomon|terrex|xt-6|aera|club/))return "trainers";return "shoes";}
+  if(c==="acc"){if(m(/sunglass/))return "sunglasses";if(m(/watch|casio|timex|sekonda|limit /))return "watches";if(m(/cap\b|cap,|beanie|hat\b|hat,|bucket|brimmer/))return "hats";
+    if(m(/bag|backpack|holdall|duffel|sling|tote|rucksack/))return "bags";if(m(/chain|necklace|bracelet|ring\b|jewel/))return "jewellery";if(m(/belt/))return "belts";
+    if(m(/\btie\b|tie,|bow tie|pocket square|square,/))return "ties";if(m(/wallet|card ?holder|coin/))return "wallets";if(m(/scarf|glove/))return "scarves";return "otheracc";}
+  if(c==="knit"){if(m(/fleece/))return "fleeces";if(m(/hood|sweatshirt|\bsweat\b|sweat jacket|track top/))return "hoodies";if(m(/polo/))return "polos";return "jumpers";}
+  if(c==="polo"){if(m(/polo/)&&!m(/polo ralph|t-shirt|tee\b/))return "polos";return "tees";}
+  if(c==="shirt"){if(m(/overshirt|shacket|shirt jacket|chore/))return "overshirts";return "shirts";}
+  if(c==="coat"){if(m(/overshirt|shacket/))return "overshirts";if(m(/gilet|\bvest\b/))return "gilets";if(m(/fleece/)&&!m(/lined/))return "fleeces";if(m(/puffer|puffa|padded|down jacket|insulated|quilted|\bdown\b/))return "puffers";
+    if(m(/waterproof|rain|shell|windbreaker|windproof|wind |windshell|stormwear|stormmax/))return "waterproofs";if(m(/overcoat|\bcoat\b|parka|\bmac\b|trench|duffel|car coat/))return "coats";return "jackets";}
+  if(c==="trouser"){if(m(/short|jorts/))return "shorts";if(m(/jogger|track pant|sweatpant|track bottom/))return "joggers";if(m(/cargo|parachute|utility|carpenter|painter|double.knee|work pant|ripstop|874|work chino/))return "cargos";
+    if(m(/jean|denim|\b50[15]\b|56[89]|57[0-9]|selvedge/))return "jeans";return "chinos";}
+  return "otheracc";
+}
 var SETS=[["all","Everything"],["winter","Winter warmers"],["christmas","Christmas party"],["holiday","Summer holiday"],["gifts","Gifts"]];
 var GIFT=[["all","Any price"],["25","Under £25"],["50","£25 to £50"],["100","£50 to £100"]];
 var SUB=[["all","All of it"],["smart","Tailored and smart"],["heritage","Heritage and workwear"]];
@@ -1050,6 +1141,30 @@ var STYLES={
     money:["Spend on the waterproof jacket and the shoes.","Save on fleeces and walking trousers. Regatta and Berghaus are 60 to 70% off at outlets.","Buy Patagonia, The North Face and Salomon pre-owned.","Reproof a jacket with a wash-in treatment before replacing it."],
     wear:{everyday:"Tee or base layer, fleece, waterproof shell, cargo or walking trousers, and trail shoes or boots.",smart:"Matte rain jacket, a neat fleece over a twill shirt, lined trousers and leather boots.",event:"Down jacket over a wool jumper, cargo trousers or cords, leather boots and a scarf.",party:"Packable shell, plain tee, light joggers or cargo shorts, waterproof shoes, a bucket hat and a zipped bag.",lounge:"Half-zip fleece, a brushed long-sleeve top and fleece joggers."}
   },
+  mod:{
+    name:"Mod and skate",
+    lede:"Two British looks that share a wardrobe: the mod's tipped polos, Harringtons, slim trousers and loafers, and the skater's workwear trousers, plain tees, beanies and canvas shoes. Mix them: a tipped polo with Dickies and Vans is both.",
+    aim:"Neat on top, practical underneath",
+    tip:"Start with a tipped polo, a Harrington and one pair of suede shoes or skate shoes. Those three cover most of the look.",
+    colours:[["#1d2a44","Navy"],["#fbfaf5","White"],["#1b1c1e","Black"],["#cfc6b3","Stone"],["#6d1f2a","Burgundy"],["#4f5a36","Olive"],["#2f6db0","Mod blue"],["#9a9ea1","Grey"]],
+    colourNotes:["Navy, white, black and stone, with one strong colour such as burgundy or a bright blue.","Tipping on a collar or cuff is the detail that makes a polo mod."],
+    keep:["Polos with tipped collars, knitted polos and button-down Oxford shirts.","A Harrington, coach or work jacket that stops at the waist.","Slim or straight trousers that sit on the shoe for mod; straight or loose work trousers for skate.","Loafers, desert boots and Derbys, or suede skate shoes, Vans and Sambas.","A beanie or a plain cap. No big logos."],
+    skip:["Parkas with target patches and full fancy dress.","Skinny jeans with chunky trainers.","Large graphic prints across the chest.","Shiny tracksuits.","Too many brands at once."],
+    money:["Spend on one good Harrington and the shoes.","Save on polos and tees: tipped polos are often £15 to £30 in the sales.","Buy Fred Perry, Ben Sherman and Dickies pre-owned.","Have slim trousers hemmed to just touch the shoe."],
+    wear:{everyday:"Tipped polo or plain tee, a Harrington or coach jacket, Dickies or straight jeans, and Vans or desert boots.",smart:"Button-down Oxford shirt or a knitted polo, slim trousers, loafers and a neat jacket.",event:"Slim suit or check trousers, a knitted polo or button-down shirt, and polished Derbys or loafers.",party:"Knitted polo or tipped polo, slim dark trousers and loafers or suede skate shoes.",lounge:""}
+  },
+  summer:{
+    name:"Holiday and summer",
+    lede:"For holidays, hot weekends and summer evenings: linen and resort shirts, polos, shorts, swim shorts, sliders and sunglasses. Light, loose and easy to pack.",
+    aim:"Cool, light and still put together",
+    tip:"Start with two short-sleeve shirts, a pair of chino or linen shorts, swim shorts and sliders. That covers a week away.",
+    colours:[["#fbfaf5","White"],["#efe7d6","Ecru"],["#a9c4e2","Sky blue"],["#1d2a44","Navy"],["#cfc6b3","Stone"],["#4f5a36","Olive"],["#c2622d","Terracotta"],["#7a9a7e","Sage"]],
+    colourNotes:["Pale and light colours keep cool: white, ecru, sky blue and stone.","One print per outfit: a printed shirt with plain shorts, or printed swim shorts with a plain tee."],
+    keep:["Linen and linen-blend shirts, open at the neck.","Shorts that stop just above the knee.","Leather sliders or boat shoes, and clean trainers for the evening.","Sunglasses and a cap or bucket hat for the sun.","A light layer for the evening: an overshirt or a knitted polo."],
+    skip:["Heavy denim and black jeans in the heat.","Football shirts and slogan vests at dinner.","Socks with sliders.","Swim shorts in town.","New shoes on a walking holiday."],
+    money:["Summer stock is cheapest from August to October, so buy for next year now.","Linen shirts at £15 to £25 are as good as ones at £60.","Spend a little more on sliders and sunglasses, which get the most wear.","Two swim shorts are enough."],
+    wear:{everyday:"Short-sleeve shirt or polo, chino or linen shorts, sliders or trainers, sunglasses and a cap.",smart:"Linen shirt, light chinos or linen trousers, and loafers or boat shoes.",event:"Linen or cotton suit, a white or pale blue shirt open at the neck, and suede loafers.",party:"Resort shirt worn open over a tee, shorts or light trousers, and clean trainers.",lounge:"Pyjama shorts and a soft tee."}
+  },
   lounge:{
     name:"Lounge and nights in",
     lede:"For nights in and slow mornings: pyjamas, joggers, heavy sweatshirts, slippers and a dressing gown.",
@@ -1072,12 +1187,15 @@ var SALE={
   minimal:{lede:"Plain knitwear, heavy tees, tailored wide trousers and clean leather shoes, with no logos. Plain pieces date slowly, so a sale buy lasts.",focus:["knit","polo","trouser","coat","shoe"],shops:"Best sales for this style: Uniqlo, Arket and COS (through ASOS), Community Clothing and M&S."},
   rave:{lede:"Mesh tops, vests, cargo and parachute trousers, chunky boots and wrap sunglasses. Most of these are cheap even at full price, so the sale pieces here are very cheap.",focus:["polo","trouser","shoe","acc","coat"],shops:"Best sales for this style: ASOS, Cernucci, Montirex and Weekday (through ASOS)."},
   outdoor:{lede:"Waterproof shells, fleeces, walking trousers and trail shoes. Last season's colours are often 60 to 70% off at outlets, and work just as well.",focus:["coat","knit","trouser","shoe"],shops:"Best sales for this style: Regatta, Trespass, Montane, Alpkit, Summits and M and M Direct."},
+  mod:{lede:"Tipped polos, Harringtons, knitted polos, loafers, desert boots, work trousers and skate shoes. The mod pieces are often reduced at the heritage brands, and the skate ones at the skate shops.",focus:["polo","coat","shoe","trouser","knit"],shops:"Best sales for this style: Original Penguin, Lyle & Scott, Farah, Base London, Slam City Skates and Jean Store."},
+  summer:{lede:"Linen and resort shirts, polos, shorts, swim shorts, sliders and sunglasses. Summer stock is at its cheapest now, at the end of the season.",focus:["shirt","trouser","swim","shoe","polo"],shops:"Best sales for this style: Brakeburn, Savile Row Company, T.M. Lewin, Mountain Warehouse, Moss and M&S."},
   lounge:{lede:"Pyjamas, joggers, sweatshirts, slippers and dressing gowns. Very little here needs to cost more than £30.",focus:["lounge","knit","shoe"],shops:"Best sales for this style: M&S, Uniqlo, ASOS and Cyberjammies."}
 };
 var SMAX=[["0","Any price"],["20","Under £20"],["40","Under £40"],["75","Under £75"]];
 var SPAGE=12;
 var sale={cat:"all",max:"0",size:false,sort:"deal",n:SPAGE};
-var state={shop:"all",compact:false,style:"quiet",sub:"all",set:"all",gift:"all",mix:"",fit:"all",fitmax:0,fitsort:"rec",occ:"all",wx:"all",cat:"all",src:"all",sale:false,size:false,fresh:false,max:0,sort:"rec",q:"",showNo:false};
+var styleTags={};
+var state={view:"shop",dept:"all",shop:"all",compact:false,style:"quiet",sub:"all",set:"all",gift:"all",mix:"",fit:"all",fitmax:0,fitsort:"rec",occ:"all",wx:"all",cat:"all",src:"all",sale:false,size:false,fresh:false,max:0,sort:"rec",q:"",showNo:false};
 var lim={picks:PAGE,fits:FITPAGE};
 var items=[],fits=[],byId={},fitById={},meta={},profile={},phase="loading",fitsSeen=false;
 var db=null,canShare=true,saved={},votes={},myfits=[],local={saved:{},votes:{},myfits:{}};
@@ -1155,7 +1273,8 @@ function norm(id,d){
     sizeNote:String(d.sizeNote||"").slice(0,140)};
   if(!it.name||!url)return null;
   if(it.kind==="preowned"?!(it.lo>0):!(it.price>0))return null;
-  it.hay=(it.name+" "+it.shop+" "+it.note+" "+label(CAT,it.cat)+" "+it.style.map(function(s){return label(STYLE,s);}).join(" ")+" "+it.occ.join(" ")+(it.work?" heritage workwear":"")+(it.gift?" gift":"")).toLowerCase();
+  it.sub=subOf(it);it.dept=SUBDEPT[it.sub]||"acc";
+  it.hay=(it.name+" "+it.shop+" "+it.note+" "+label(CAT,it.cat)+" "+label(SUBL,it.sub)+" "+it.style.map(function(s){return label(STYLE,s);}).join(" ")+" "+it.occ.join(" ")+(it.work?" heritage workwear":"")+(it.gift?" gift":"")).toLowerCase();
   return it;
 }
 function normPieces(list){
@@ -1256,7 +1375,7 @@ function buildChips(id,list,key,cls,after){
   });
 }
 function syncChips(){
-  [["f-occ","occ"],["f-wx","wx"],["f-cat","cat"],["f-fit","fit"],["f-style","style"],["f-set","set"],["f-gift","gift"],["f-sub","sub"]].forEach(function(p){
+  [["f-occ","occ"],["f-wx","wx"],["f-fit","fit"],["f-style","style"],["f-set","set"],["f-gift","gift"],["f-sub","sub"]].forEach(function(p){
     Array.prototype.forEach.call($(p[0]).children,function(c){c.setAttribute("aria-pressed",String(c.getAttribute("data-v")===state[p[1]]));});
   });
   $("f-sale").checked=state.sale;$("f-size").checked=state.size;$("f-new").checked=state.fresh;$("f-no").checked=state.showNo;
@@ -1282,7 +1401,8 @@ function scope(it,w){
 function narrow(it,skipCat){
   if(state.occ!=="all"&&it.occ.indexOf(state.occ)<0)return false;
   if(state.wx!=="all"&&it.wx.indexOf(state.wx)<0)return false;
-  if(!skipCat&&state.cat!=="all"&&it.cat!==state.cat)return false;
+  if(!skipCat&&state.cat!=="all"&&it.sub!==state.cat)return false;
+  if(!skipCat&&state.dept!=="all"&&it.dept!==state.dept)return false;
   if(state.src==="new"&&it.kind==="preowned")return false;
   if(state.src==="pre"&&it.kind!=="preowned")return false;
   if(state.sale&&pct(it)<=0)return false;
@@ -1418,7 +1538,7 @@ function gotoFit(id){
   var f=fitById[id];if(!f)return;
   state.q="";state.set="all";state.fit="all";state.fitmax=0;state.fitsort="rec";state.sub="all";
   if(f.styles.indexOf(state.style)<0){state.style=f.styles[0];}
-  lim.fits=9999;paintStyle();syncChips();renderAll();showFit(id);
+  lim.fits=9999;paintStyle();syncChips();renderAll();setView("fits",true);showFit(id);
 }
 
 /* ---- one piece, many outfits ---- */
@@ -1619,6 +1739,13 @@ function renderProfile(){
   $("owns").textContent=owns.length?"Already in his wardrobe: "+owns.join(", ")+". The bags and trainers in the outfits are suggestions, and his own will often do.":"";
 }
 
+/* Older picks that also belong to a newer style are listed in meta/styletags ({style: [ids]}); new picks carry the style themselves. */
+function applyTags(){
+  Object.keys(styleTags||{}).forEach(function(k){
+    if(!isStyle(k)||!Array.isArray(styleTags[k]))return;
+    styleTags[k].forEach(function(id){var it=byId[id];if(it&&it.style.indexOf(k)<0){it.style.push(k);it.hay+=" "+label(STYLE,k).toLowerCase();}});
+  });
+}
 /* ---- sale ---- */
 /* Value score: the reduction counts, and so does a low price, so a £12 tee at 40% off sits above a £180 coat at 45% off. */
 function dealScore(it,focus){
@@ -1638,15 +1765,16 @@ function renderSale(){
   $("sale-shops").textContent=S.shops;
   var u20=all.filter(function(it){return cost(it)<20;}).length,half=all.filter(function(it){return pct(it)>=50;}).length,ok=all.filter(function(it){return it.insize===true;}).length;
   $("sale-stats").innerHTML='<span class="sale-stat">'+all.length+' reduced</span><span class="sale-stat">'+u20+' under £20</span><span class="sale-stat">'+half+' half price or more</span><span class="sale-stat">'+ok+' confirmed in his size</span>';
-  var cats={};all.forEach(function(it){cats[it.cat]=(cats[it.cat]||0)+1;});
+  var cats={};all.forEach(function(it){cats[it.sub]=(cats[it.sub]||0)+1;});
   if(sale.cat!=="all"&&!cats[sale.cat])sale.cat="all";
-  var order=focus.concat(CAT.slice(1).map(function(c){return c[0];}).filter(function(c){return focus.indexOf(c)<0;}));
+  var CATOF={};items.forEach(function(it){CATOF[it.sub]=CATOF[it.sub]||it.cat;});
+  var order=SUBS.map(function(x){return x[0];}).filter(function(k){return focus.indexOf(CATOF[k])>=0;}).concat(SUBS.map(function(x){return x[0];}).filter(function(k){return focus.indexOf(CATOF[k])<0;}));
   $("f-scat").innerHTML='<button class="chip" type="button" data-scat="all" aria-pressed="'+(sale.cat==="all")+'">Everything <span class="n">'+all.length+'</span></button>'+
-    order.filter(function(c){return cats[c];}).map(function(c){return '<button class="chip" type="button" data-scat="'+c+'" aria-pressed="'+(sale.cat===c)+'">'+esc(label(CAT,c))+' <span class="n">'+cats[c]+'</span></button>';}).join("");
+    order.filter(function(c){return cats[c];}).map(function(c){return '<button class="chip" type="button" data-scat="'+c+'" aria-pressed="'+(sale.cat===c)+'">'+esc(label(SUBL,c))+' <span class="n">'+cats[c]+'</span></button>';}).join("");
   $("f-smax").innerHTML=SMAX.map(function(m){return '<button class="chip" type="button" data-smax="'+m[0]+'" aria-pressed="'+(sale.max===m[0])+'">'+esc(m[1])+'</button>';}).join("");
   $("s-size").checked=sale.size;$("s-sort").value=sale.sort;
   var max=Number(sale.max)||0;
-  var list=all.filter(function(it){return (sale.cat==="all"||it.cat===sale.cat)&&(!max||cost(it)<max)&&(!sale.size||it.insize===true);});
+  var list=all.filter(function(it){return (sale.cat==="all"||it.sub===sale.cat)&&(!max||cost(it)<max)&&(!sale.size||it.insize===true);});
   if(sale.sort==="price"){list.sort(function(a,b){return cost(a)-cost(b)||pct(b)-pct(a);});}
   else if(sale.sort==="pct"){list.sort(function(a,b){return pct(b)-pct(a)||cost(a)-cost(b);});}
   else{list.sort(function(a,b){return dealScore(b,focus)-dealScore(a,focus)||cost(a)-cost(b);});}
@@ -1655,7 +1783,7 @@ function renderSale(){
   $("sale-list").innerHTML=part.length?part.map(function(it){
     var p=pct(it);
     return '<a class="cut-row has-th" href="'+esc(it.url)+'" target="_blank" rel="noopener"><span class="cut-pct">'+p+'%</span>'+(photoBox(it,"thumb",false)||'<span></span>')+
-      '<span><span class="cut-name">'+esc(it.name)+(isNew(it)?'<span class="wk-tag">New</span>':"")+'</span><span class="cut-shop">'+esc(it.shop)+" · "+esc(label(CAT,it.cat))+(it.insize===true?" · in his size":"")+'</span></span>'+
+      '<span><span class="cut-name">'+esc(it.name)+(isNew(it)?'<span class="wk-tag">New</span>':"")+'</span><span class="cut-shop">'+esc(it.shop)+" · "+esc(label(SUBL,it.sub))+(it.insize===true?" · in his size":"")+'</span></span>'+
       '<span class="cut-price"><b>'+money(it.price)+'</b><s>'+money(it.was)+'</s></span></a>';
   }).join(""):'<div class="state"><b>Nothing matches</b>Try another type or price.</div>';
   var rest=list.length-part.length,more=$("sale-more");
@@ -1682,6 +1810,31 @@ function renderWeek(){
   }).join("");
 }
 
+/* ---- shop: departments and categories ---- */
+function renderDept(counts,dcount,nf){
+  var h='<div class="crumbs">'+(state.q?'<span>Search results, split by category</span>':
+    '<button type="button" data-dept="all">All departments</button>'+(state.dept!=="all"?' › <button type="button" data-dept="'+state.dept+'">'+esc(label(DEPTS,state.dept))+'</button>':"")+(state.cat!=="all"?' › <span>'+esc(label(SUBL,state.cat))+'</span>':""))+'</div>';
+  if(!state.q){
+    h+='<div class="dept-row" role="group" aria-label="Department"><button class="chip" type="button" data-dept="all" aria-pressed="'+(state.dept==="all")+'">Everything <span class="n">'+nf+'</span></button>'+
+      DEPTS.filter(function(d){return dcount[d[0]];}).map(function(d){return '<button class="chip" type="button" data-dept="'+d[0]+'" aria-pressed="'+(state.dept===d[0])+'">'+esc(d[1])+' <span class="n">'+dcount[d[0]]+'</span></button>';}).join("")+'</div>';
+    if(state.dept!=="all"||state.cat!=="all"){
+      var dk=state.dept!=="all"?state.dept:SUBDEPT[state.cat];
+      h+='<div class="dept-row" role="group" aria-label="Category">'+SUBS.filter(function(x){return x[2]===dk&&(counts[x[0]]||state.cat===x[0]);}).map(function(x){return '<button class="chip" type="button" data-tile="'+x[0]+'" aria-pressed="'+(state.cat===x[0])+'">'+esc(x[1])+' <span class="n">'+(counts[x[0]]||0)+'</span></button>';}).join("")+'</div>';
+    }
+  }
+  $("dept").innerHTML=h;
+}
+/* ---- views ---- */
+var VIEWS=["shop","sale","fits","build","list","guide"];
+function setView(v,keep){
+  if(VIEWS.indexOf(v)<0)v="shop";
+  state.view=v;document.body.setAttribute("data-v",v);
+  Array.prototype.forEach.call(document.querySelectorAll("[data-go]"),function(b){if(b.getAttribute("data-go")===v){b.setAttribute("aria-current","page");}else{b.removeAttribute("aria-current");}});
+  try{localStorage.setItem("dw-view",v);}catch(e){}
+  try{if(location.hash!=="#"+v)history.replaceState(null,"","#"+v);}catch(e){}
+  if(!keep){window.scrollTo(0,0);}
+}
+
 /* ---- picks ---- */
 function filtered(){return state.shop!=="all"||state.occ!=="all"||state.wx!=="all"||state.cat!=="all"||state.src!=="all"||state.sale||state.size||state.fresh||state.max>0;}
 /* Shop select lists the shops with picks in the current style or search, busiest first. */
@@ -1704,16 +1857,33 @@ function renderPicks(){
   }
   st.hidden=true;
   var w=words(),mine=items.filter(function(it){return scope(it,w);}),no=0;
-  var counts={};mine.forEach(function(it){if(narrow(it,true)){counts[it.cat]=(counts[it.cat]||0)+1;}});
-  Array.prototype.forEach.call($("f-cat").children,function(c){var v=c.getAttribute("data-v");c.hidden=v!=="all"&&!counts[v]&&state.cat!==v;});
+  var counts={},dcount={},nf=0;mine.forEach(function(it){if(narrow(it,true)&&(state.showNo||voteOf(it.id)!==-1)){counts[it.sub]=(counts[it.sub]||0)+1;dcount[it.dept]=(dcount[it.dept]||0)+1;nf++;}});
+  renderDept(counts,dcount,nf);
   fillShops(mine);
+  var fc=[state.occ!=="all",state.wx!=="all",state.src!=="all",state.sale,state.size,state.fresh,state.max>0,state.shop!=="all"].filter(Boolean).length;
+  $("filt-sum").textContent=fc?fc+(fc===1?" filter on":" filters on"):"occasion, weather, size, price, shop";
   var list=mine.filter(function(it){return narrow(it);});
   list=list.filter(function(it){if(voteOf(it.id)===-1){no++;return state.showNo;}return true;});
   $("l-no").hidden=!no&&!state.showNo;$("no-text").textContent="Show the "+no+" he said no to";
   $("g-gift").hidden=state.set!=="gifts"||!!state.q;
   $("size-note").hidden=!state.size;
   var f=filtered(),gifts=state.set==="gifts"&&!state.q,where=state.q?' for "'+state.q+'" across every style':(state.set!=="all"&&!gifts?" in "+label(SETS,state.set):"");
-  $("picks-sub").textContent=state.q?"Search looks through every style, not only the one chosen above.":(state.set==="gifts"?"Presents at set prices, drawn from every style.":"Every item for this style with its price, any saving, stock in his size and a link to buy. Cheaper picks come first where they are as good.");
+  $("picks-sub").textContent=state.q?"Search looks through every style, not only the one chosen above. Results are split by category.":(state.set==="gifts"?"Presents at set prices, drawn from every style.":"Choose a department, then a category. Each list holds one kind of thing, cheaper picks first where they are as good.");
+  if(state.cat==="all"&&!state.q){
+    /* Landing: one tile per category, as a shop's category page. */
+    $("resultbar").hidden=true;$("formula").hidden=true;more.hidden=true;
+    var subs=SUBS.filter(function(x){return counts[x[0]]&&(state.dept==="all"||x[2]===state.dept);});
+    if(!subs.length){res.innerHTML='<div class="state"><b>Nothing matches</b>Try a different filter, or clear them to see everything.</div>';return;}
+    var best={};mine.forEach(function(it){if(!narrow(it,true)||voteOf(it.id)===-1)return;var b=best[it.sub];var sc=(photoOf(it)?0:1e5)+(it.insize===false?5e4:0)+it.rank;if(!b||sc<b.sc){best[it.sub]={it:it,sc:sc};}});
+    var low={};mine.forEach(function(it){if(narrow(it,true)){var c=cost(it);if(c>0&&(!low[it.sub]||c<low[it.sub]))low[it.sub]=c;}});
+    function tile(x){var b=best[x[0]];return '<button class="tile" type="button" data-tile="'+x[0]+'">'+(b?photoBox(b.it,"",false):"")+'<b>'+esc(x[1])+'</b><span class="t-n">'+counts[x[0]]+(counts[x[0]]===1?" pick":" picks")+(low[x[0]]?" · from "+money(low[x[0]]):"")+'</span></button>';}
+    var h="";
+    DEPTS.forEach(function(d){
+      var ds=subs.filter(function(x){return x[2]===d[0];});if(!ds.length)return;
+      h+=(state.dept==="all"?'<h3 class="dept-head">'+esc(d[1])+'</h3>':"")+'<div class="tiles">'+ds.map(tile).join("")+'</div>';
+    });
+    res.innerHTML=h;res.classList.remove("compact");return;
+  }
 
   var how="";
   if(state.occ!=="all"&&!state.q&&state.set!=="gifts"){how=STYLES[state.style].wear[state.occ]||"";}
@@ -1739,8 +1909,8 @@ function renderPicks(){
   }
 
   var shown=0,html="";
-  if(state.sort==="rec"&&state.cat==="all"){
-    var groups=CAT.slice(1).map(function(c){return {c:c,g:list.filter(function(it){return it.cat===c[0];})};}).filter(function(x){return x.g.length>0;});
+  if(state.cat==="all"){
+    var groups=SUBS.map(function(c){return {c:c,g:list.filter(function(it){return it.sub===c[0];})};}).filter(function(x){return x.g.length>0;});
     groups=groups.filter(function(x){return x.g.length>=3;}).concat(groups.filter(function(x){return x.g.length<3;}));
     groups.forEach(function(x){
       var c=x.c,g=x.g;
@@ -1750,7 +1920,7 @@ function renderPicks(){
     });
   }else{
     var part=list.slice(0,lim.picks);shown=part.length;
-    html='<div class="grid">'+part.map(card).join("")+'</div>';
+    html='<section class="group"><div class="group-head"><h3>'+esc(label(SUBL,state.cat))+'</h3><span>'+list.length+'</span></div><div class="grid">'+part.map(card).join("")+'</div></section>';
   }
   res.innerHTML=html;res.classList.toggle("compact",state.compact);
   var rest=list.length-shown;
@@ -1846,14 +2016,13 @@ function refilter(){lim.picks=PAGE;lim.fits=FITPAGE;sale.n=SPAGE;renderHead();re
   function barh(){document.documentElement.style.setProperty("--barh",bar.offsetHeight+"px");}
   barh();if(window.ResizeObserver){new ResizeObserver(barh).observe(bar);}else{window.addEventListener("resize",barh);}
 })();
-buildChips("f-style",STYLE,"style","tab",function(){derived={};state.fit="all";state.sub="all";state.cat="all";state.q="";state.set="all";state.gift="all";sale.cat="all";sale.n=SPAGE;syncChips();paintStyle();lim.picks=PAGE;lim.fits=FITPAGE;build={};$("b-msg").textContent="";renderAll();});
+buildChips("f-style",STYLE,"style","tab",function(){derived={};state.fit="all";state.sub="all";state.cat="all";state.dept="all";state.q="";state.set="all";state.gift="all";sale.cat="all";sale.n=SPAGE;syncChips();paintStyle();lim.picks=PAGE;lim.fits=FITPAGE;build={};$("b-msg").textContent="";renderAll();});
 buildChips("f-sub",SUB,"sub","chip",refilter);
 buildChips("f-set",SETS,"set","chip",function(){state.q="";state.gift="all";syncChips();refilter();});
 buildChips("f-gift",GIFT,"gift","chip",refilter);
 buildChips("f-fit",OCC,"fit","chip",function(){lim.fits=FITPAGE;renderFits();syncMarks();});
 buildChips("f-occ",OCC,"occ","chip",function(){lim.picks=PAGE;renderPicks();syncMarks();});
 buildChips("f-wx",WX,"wx","chip",function(){lim.picks=PAGE;renderPicks();syncMarks();});
-buildChips("f-cat",CAT,"cat","chip",function(){lim.picks=PAGE;renderPicks();syncMarks();});
 function onPick(id,fn){$(id).addEventListener("change",function(e){fn(e.target);lim.picks=PAGE;renderPicks();syncMarks();});}
 onPick("f-sale",function(t){state.sale=t.checked;});
 onPick("f-size",function(t){state.size=t.checked;});
@@ -1867,8 +2036,8 @@ onPick("f-compact",function(t){state.compact=t.checked;try{localStorage.setItem(
 $("f-fitmax").addEventListener("change",function(e){state.fitmax=Number(e.target.value)||0;lim.fits=FITPAGE;renderFits();syncMarks();});
 $("f-fitsort").addEventListener("change",function(e){state.fitsort=e.target.value;lim.fits=FITPAGE;renderFits();syncMarks();});
 var qTimer=0;
-$("q").addEventListener("input",function(e){clearTimeout(qTimer);var v=e.target.value;qTimer=setTimeout(function(){state.q=v.trim();refilter();},180);});
-$("clear").addEventListener("click",function(){state.occ="all";state.wx="all";state.cat="all";state.src="all";state.sale=false;state.size=false;state.fresh=false;state.max=0;state.shop="all";state.q="";state.set="all";state.gift="all";syncChips();refilter();});
+$("q").addEventListener("input",function(e){clearTimeout(qTimer);var v=e.target.value;qTimer=setTimeout(function(){state.q=v.trim();if(state.q&&state.view!=="shop"){setView("shop");}refilter();},180);});
+$("clear").addEventListener("click",function(){state.occ="all";state.wx="all";state.src="all";state.sale=false;state.size=false;state.fresh=false;state.max=0;state.shop="all";state.q="";state.set="all";state.gift="all";syncChips();refilter();});
 $("more").addEventListener("click",function(){lim.picks+=PAGE;renderPicks();syncMarks();});
 $("sale-more").addEventListener("click",function(){sale.n+=SPAGE;renderSale();});
 $("s-size").addEventListener("change",function(e){sale.size=e.target.checked;sale.n=SPAGE;renderSale();});
@@ -1893,21 +2062,25 @@ $("b-save").addEventListener("click",function(){
 });
 document.addEventListener("click",function(e){
   var t=e.target,b;
-  if((b=t.closest("[data-jump]"))){var el=$(b.getAttribute("data-jump"));if(el){el.scrollIntoView({block:"start"});}return;}
+  if((b=t.closest("[data-go]"))){setView(b.getAttribute("data-go"));return;}
+  if((b=t.closest("[data-dept]"))){state.dept=b.getAttribute("data-dept");state.cat="all";lim.picks=PAGE;renderPicks();syncMarks();$("picks").scrollIntoView({block:"start"});return;}
+  if((b=t.closest("[data-tile]"))){var tk=b.getAttribute("data-tile");state.cat=tk;state.dept=SUBDEPT[tk]||"all";lim.picks=PAGE;renderPicks();syncMarks();$("picks").scrollIntoView({block:"start"});return;}
   if((b=t.closest("[data-save]"))){var k=b.getAttribute("data-save");var si=k.charAt(0)==="i"?byId[k.slice(2)]:null,sd={kind:k.charAt(0)==="o"?"outfit":"item",ref:k.slice(2),state:"want",at:new Date().toISOString()};if(si){sd.price=cost(si);if(si.insize!==null){sd.insize=si.insize;}}setSaved(k,savedOf(k)?null:sd);return;}
   if((b=t.closest("[data-unsave]"))){setSaved(b.getAttribute("data-unsave"),null);renderFits();return;}
   if((b=t.closest("[data-bought]"))){var kb=b.getAttribute("data-bought"),s=savedOf(kb);if(s){var nb={kind:"item",ref:kb.slice(2),state:s.state==="bought"?"want":"bought",at:new Date().toISOString()};if(s.price>0){nb.price=s.price;}if(s.insize===true||s.insize===false){nb.insize=s.insize;}setSaved(kb,nb);renderFits();}return;}
   if((b=t.closest("[data-vote]"))){var id=b.getAttribute("data-vote"),v=Number(b.getAttribute("data-v"));setVote(id,voteOf(id)===v?0:v);if(v===-1||voteOf(id)===0){renderPicks();}return;}
-  if((b=t.closest("[data-mix]"))){state.mix=b.getAttribute("data-mix");renderMix();syncMarks();if(b.classList.contains("mixlink")){$("mix").scrollIntoView({block:"start"});}return;}
+  if((b=t.closest("[data-mix]"))){state.mix=b.getAttribute("data-mix");renderMix();syncMarks();if(b.classList.contains("mixlink")){setView("fits",true);$("mix").scrollIntoView({block:"start"});}return;}
   if((b=t.closest("[data-goto-fit]"))){gotoFit(b.getAttribute("data-goto-fit"));return;}
   if((b=t.closest("[data-edit-fit]"))){var f=fitById[b.getAttribute("data-edit-fit")];if(f){loadIntoBuilder(f.pieces,f.name);}return;}
   if((b=t.closest("[data-edit-mine]"))){var m=mineAll().filter(function(x){return x.id===b.getAttribute("data-edit-mine");})[0];if(m){loadIntoBuilder(m.pieces,"");$("b-name").value=m.name;}return;}
   if((b=t.closest("[data-del-mine]"))){delMine(b.getAttribute("data-del-mine"));return;}
   if((b=t.closest("[data-scat]"))){sale.cat=b.getAttribute("data-scat");sale.n=SPAGE;renderSale();return;}
   if((b=t.closest("[data-smax]"))){sale.max=b.getAttribute("data-smax");sale.n=SPAGE;renderSale();return;}
-  if((b=t.closest("[data-week-new]"))){state.q="";state.set="all";state.fresh=true;state.sort="save";state.cat="all";syncChips();refilter();$("picks").scrollIntoView({block:"start"});return;}
+  if((b=t.closest("[data-week-new]"))){state.q="";state.set="all";state.fresh=true;state.sort="save";state.cat="all";state.dept="all";syncChips();setView("shop");refilter();return;}
 });
-syncChips();paintStyle();renderAll();
+syncChips();paintStyle();
+(function(){var v="";try{v=(location.hash||"").slice(1)||localStorage.getItem("dw-view")||"";}catch(e){}setView(v||"shop",true);})();
+renderAll();
 
 (async function connect(){
   try{if(window.claude&&typeof window.claude.use==="function"){db=await window.claude.use("db");}}catch(e){db=null;}
@@ -1920,7 +2093,7 @@ syncChips();paintStyle();renderAll();
       if(!got.length&&snap.metadata&&snap.metadata.fromCache&&phase==="loading"){return;}
       half[k]=got;
       if(!half.a||!half.b){return;}
-      items=half.a.concat(half.b);byId={};derived={};items.forEach(function(it){byId[it.id]=it;});
+      items=half.a.concat(half.b);byId={};derived={};items.forEach(function(it){byId[it.id]=it;});applyTags();
       phase=items.length?"ready":"empty";schedule();
     };}
     function bad(){if(phase!=="ready"){phase="error";schedule();}}
@@ -1932,6 +2105,7 @@ syncChips();paintStyle();renderAll();
       fits=got;fitById={};fits.forEach(function(f){fitById[f.id]=f;});fitsSeen=true;usage=null;derived={};schedule();
     },function(){fitsSeen=true;schedule();});
     db.doc("meta/status").onSnapshot(function(s){meta=(s&&s.exists&&s.data())||{};schedule();},function(){});
+    db.doc("meta/styletags").onSnapshot(function(s){styleTags=(s&&s.exists&&s.data())||{};applyTags();derived={};schedule();},function(){});
     db.doc("meta/photos").onSnapshot(function(s){var d=(s&&s.exists&&s.data())||{};loadPhotoPacks(d.packs);},function(){});
     db.doc("meta/profile").onSnapshot(function(s){profile=(s&&s.exists&&s.data())||{};schedule();},function(){});
     db.collection("saved").limit(1000).onSnapshot(function(snap){
