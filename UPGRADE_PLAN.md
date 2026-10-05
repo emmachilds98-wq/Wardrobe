@@ -422,7 +422,7 @@ its whole range.
   - Every photo was checked on contact sheets. Women's, kids', mismatched or
     wrong-colour items were dropped, along with sizes that wouldn't fit (suit trousers in
     40 inch, S/M-only hats).
-- **357 new picks** from 86 shops. Most are reduced: 244 have a "was" price and 188
+- **357 new picks** from 78 shops. Most are reduced: 244 have a "was" price and 188
   are under £40.
 - **26 new outfits**, many of them head to toe from one shop: three from Matalan, plus
   Peacocks, Lambretta, Luke 1977, Closure London, Farah, Weekend Offender, Pretty Green,
