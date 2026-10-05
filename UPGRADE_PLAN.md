@@ -478,28 +478,32 @@ pieces that slot into existing outfits.
 
 ## 4. Review of the live page (version 21), and the plan for version 22
 
-Reviewed on 5 Oct 2026 against the live artifact and its database, not the copy in this
-folder. **This folder is one version behind:** the live page has an "All styles" tab, five more
-Workwear shops (Rock Solid Safety, Tiger Safety, Best Workwear, DeWalt Workwear, Timberland PRO)
-and the 97% cotton rule, and the database holds **1,861 picks and 334 outfits** against 1,711 and
-322 here.
+Reviewed on 5 Oct 2026 against the live artifact, its database and the Friday refresh routine,
+not the copy in this folder. Checked twice: the second pass corrected several figures (see 4.8).
+**This folder is one version behind:** the live page has an "All styles" tab, five more Workwear
+shops (Rock Solid Safety, Tiger Safety, Best Workwear, DeWalt Workwear, Timberland PRO) and the
+97% cotton rule, and the database holds **1,861 picks and 334 outfits** against 1,711 and 322
+here.
 
 ### 4.1 What the numbers show
 
 | Area | Now | Problem |
 |---|---|---|
-| Page weight | 948 picks carry their photo inside the database row (8.3 MB of base64), plus 5.6 MB of photo packs | Every visit downloads about 15 MB before anything is filtered. `loading="lazy"` on the images does nothing, because the picture is already inside the data. This is the main reason the page is slow on a phone. |
-| Status line | `meta/status` says 1,781 picks; `meta/photos` says 758 photos | Both are out of date (1,861 picks; about 1,700 with a photo). |
-| "New this week" | 1,288 picks are dated `added: 2026-10-05` | Gap 4 from the first review is worse: the New filter and tag mean nothing. |
-| His size | 1,247 confirmed, 52 not in his size, **562 unknown (30%)** | Mostly ASOS, M and M Direct and pre-owned searches. Shirt and jacket sizes are still "to confirm". |
-| Colour | 521 pick names say black, against 208 navy, 45 stone, 19 olive and 7 burgundy | The profile says swapping black for navy, olive or stone is "the quickest improvement", but the catalogue pushes the other way. |
-| Pick use | **1,028 of 1,861 picks are in no outfit** | Half the catalogue never gets shown worn. |
-| Outfit occasions | 217 everyday, 49 party, 30 smart, 28 lounge, **10 event** | Hardly anything for weddings, christenings, funerals, interviews or a work Christmas do. Only 1 Casual outfit is smart and Workwear has no non-work outfits (by design). |
-| Outfit weather | **41 wet** of 334; Holiday has 0 cold or mild; Lounge has 5 warm | Gaps for rain, winter sun and autumn city breaks, and summer nights in. |
+| Page weight | 948 picks carry their photo inside the database row: 8.5 MB of the 9.4 MB of pick data. The other 755 photos sit in 5.6 MB of photo packs. | About 15 MB arrives on every visit. Without the photos the picks are 0.8 MB. `loading="lazy"` does nothing, because the picture is already inside the data. This is the main reason the page is slow on a phone, and it grows by about 1 MB every Friday, because the refresh adds up to 45 photos a batch inside the rows. |
+| Photo size | The refresh aims for under 25 KB a photo, but rows hold photos of up to 60 KB | Some batches went over the target. |
+| Status line | `meta/status` says 1,781 picks; `meta/photos` says 758 photos | Both are out of date (1,861 picks; 1,703 with a photo). The refresh rewrites `meta/status` each Friday, but the extra rounds since then didn't. |
+| His size | 1,247 confirmed, 52 not in his size, **562 unknown (30%)** | ASOS 195, M and M Direct 31, M&S 30, Vinted 28, Charles Tyrwhitt 18, WoolOvers 13, Moss 13. The card already says "His size: L. The shop does not show stock", so this is about checking more, not labelling. Shirt and jacket sizes are still "to confirm". |
+| Colour | 521 pick names say black, against 208 navy, 45 stone, 19 olive and 7 burgundy | The profile says swapping black for navy, olive or stone is "the quickest improvement", but the catalogue leans the other way. Workwear (black by rule) and Rave explain only part of it. |
+| Pick use | **1,028 of 1,861 picks are in no outfit** | Half the catalogue is never shown worn. |
+| Outfit occasions | 217 everyday, 49 party, 30 smart, 28 lounge, **10 event** | Hardly anything for weddings, christenings, funerals, interviews or a work Christmas do. Casual has 7 smart or party outfits and Street 8. |
+| Outfit weather | **41 wet** of 334; Holiday has 0 cold or mild; Lounge has 5 warm | There are 74 coats tagged for wet weather, so the gap is outfits, not stock. |
 | Outfit cost | Median £122; 25 under £60; 68 over £200 | Not enough cheap outfits for a page whose rule is "cheaper first". |
-| Thin categories | Tailoring 18, Sport 27, Basics 30, Swim 33 | He owns a black suit, but there are few shirts, ties or shoes picked to go with it. |
+| Thin categories | Tailoring 18, Sport 27, Basics 30, Swim 33 | Tailoring already has navy and charcoal suits (Moss, Suit Direct) and blazers. What's missing is shirts with a collar size, ties, dress shoes and smart accessories. |
 | Pieces | 83 outfits have only 3 pieces | Many are missing a layer, belt or bag that would finish them. |
-| Data faults | 14 links point at a brand or category page, not one product (M and M Direct, M&S cashmere); 6 duplicate names; 8 pre-owned picks with no price; `rv-cernucci-cargo` is tagged Workwear with no fabric line | The Cernucci ripstop cargo breaks the 100% cotton rule unless its fabric is checked. |
+| Links | 38 picks link to a brand or category page instead of one product: 31 M and M Direct, 6 M&S, 1 Office | These can't show a single price, photo or stock. (The 28 Vinted, 2 eBay and 1 Marrkt searches are meant to be searches.) |
+| Same product twice | 5 products are listed at two shops each (Grafters M9509B, M9504A and dealer boots, TuffStuff Stanton softshell, Rock Fall Otus); one Vinted Barbour search is in twice | The two-shop pairs are useful for comparing prices, but they show as two cards. Show one card with the cheaper shop and a "also at" line. Remove the repeated Vinted search. |
+| Workwear | 50 of the 51 Workwear trousers and shorts have a `fabric` line | `rv-cernucci-cargo` says "100% cotton" in its note but has no `fabric` field, so the "100% cotton only" filter hides it. |
+| Load groups | The refresh's note for 5 Oct says "everything else" holds 649 picks, with a ceiling of 900 | Adding the 300 picks below (many of them accessories, shoes, tailoring and basics) would push that group over. |
 
 ### 4.2 What already works well (keep it)
 
@@ -507,52 +511,61 @@ and the 97% cotton rule, and the database holds **1,861 picks and 334 outfits** 
   categories, eight style tabs plus All styles.
 - Every outfit is drawn on Dave and every piece is priced and linked. No outfit links to a
   missing pick or to a pick out of his size.
-- The Workwear rules (cotton, black or charcoal, EE to 6E toe-cap boots) are kept carefully: every
-  Workwear boot is marked extra wide.
-- Price-drop and back-in-size notes on the shortlist, old-price warnings and fit tips.
+- The Workwear rules are kept carefully: cotton at 97% or more with the blend shown, black or
+  charcoal, no slim fits, and EE to 6E toe-cap boots. Every Workwear boot is marked extra wide.
+- Price-drop and back-in-size notes on the shortlist, old-price warnings, fit tips, and a size
+  line on every card.
+- The Friday refresh already re-checks every price and size, writes `prev` when a price changes,
+  adds at least 40 picks and 2 to 4 outfits, and follows the votes.
+- "New this week" will sort itself out: it counts picks added in the 7 days before the latest
+  check, so the 1,288 picks dated 5 October drop out after the refresh on 16 October.
 
 ### 4.3 The upgrade, area by area (version 22)
 
 #### A. Speed and data (do first, everything else depends on it)
-1. **Take photos out of the database rows.** Move the 948 inline photos into the artifact's
-   asset store (the `assets` capability) or into new photo packs, and keep only a short `img`
-   address in each row. Load the packs after the first screen has drawn, and load photos only
-   as cards scroll into view. Target: under 2 MB before the first screen shows.
-2. **Fix the counters.** Have the page count picks, outfits, shops and photos itself, so
-   `meta/status` and `meta/photos` can't go stale again.
-3. **Make "New" mean new.** Clear `added` on everything older than the latest refresh. From now
-   on set it only on picks that are actually new.
-4. **Clean the data:** give the 14 brand-page links single-product links (or remove them), merge
-   the 6 duplicates, price or remove the 8 unpriced pre-owned picks, and check the Cernucci cargo's
-   fabric (keep it in Workwear only if it is at least 97% cotton).
+1. **Take photos out of the pick rows, without the asset store.** The refresh can only write
+   database rows (it may not republish the page), and the asset store would end public link
+   sharing (a page that uses it can only be opened inside the organisation). So:
+   - Move each `img` into its own row in a new `photos` collection, keyed by pick id. Pick rows
+     drop to about 0.8 MB in total.
+   - The page fetches a photo row only when its card scrolls into view, and keeps it in the
+     browser cache.
+   - The refresh writes new photos to `photos/<id>` instead of `img`, at 25 KB or less.
+   - The five existing photo packs stay as they are.
+   - Target: under 2 MB before the first screen shows, and growth on Fridays no longer slows
+     the page.
+2. **Count on the page.** The page counts picks, outfits, shops and photos itself, so a stale
+   `meta/status` or `meta/photos` can't mislead.
+3. **Fix the data:** single-product links for the 31 M and M Direct, 6 M&S and 1 Office picks
+   (or remove them); one card for the same product at two shops; remove the repeated Vinted
+   search; add `fabric` to the Cernucci cargo.
+4. **Add a sixth load group** (for example shoes on their own) before the new picks go in.
 5. **Bring this folder up to date:** copy the live page into `page.html` and the live data into
-   `data/` (without the inline photos).
+   `data/` (without photos).
 
 #### B. Shop
 1. **Colour filter:** navy, black, grey, stone, olive, brown, green, burgundy, ecru, blue. Use the
-   same colour words as the builder.
+   same colour words as the outfits.
 2. **"Not black" switch** outside Rave and Workwear, following the profile's own advice.
 3. **"Goes with" on each card:** three picks from other categories that suit it, plus the
    outfits that already use it.
 4. **"Cheaper like this":** the cheapest picks in the same category and colour, shown on the card.
-5. **A "Sizes unknown" label** on picks where the shop doesn't show stock, with a one-tap "check
-   size" link, so the 562 unknowns are visible rather than hidden.
 
 #### C. Sale
-1. **"Ending soon":** for shops that show an end date, or prices that have fallen twice.
-2. **Price history line** on each card ("was £60, £45 on 29 Sep, now £30") using the `prev` field
-   that 5 picks already have. The weekly refresh should fill it in for every pick.
-3. **Delivery threshold note** per shop ("free delivery over £50"), so cheap single items aren't
+1. **Price history line** on each card ("was £60, £45 on 29 Sep, now £30"). The refresh only
+   keeps last week's price in `prev`, so it would also need to keep a short list of earlier
+   prices.
+2. **Delivery threshold note** per shop ("free delivery over £50"), so cheap single items aren't
    cancelled out by postage.
 
 #### D. Outfits
 1. **"What to wear today":** choose occasion and weather (cold, mild, warm, wet) and get three
-   outfits, putting first the ones that use pieces already bought.
+   outfits, putting first those that use pieces already bought.
 2. **Swap a piece:** each piece gets a "swap" button that offers cheaper or different-colour
-   pieces of the same kind and updates the total.
+   picks of the same kind and updates the total.
 3. **Photo strip** under the drawing (open since the first review).
-4. **"£X to finish":** when pieces are marked bought or owned, each outfit shows what is left to
-   buy, and it can be sorted by that.
+4. **"£X to finish":** when pieces are marked bought, each outfit shows what is left to buy, and
+   it can be sorted by that.
 5. **Occasion filter for real events:** wedding guest, christening, funeral, interview, date
    night, gig, football, Christmas party, Sunday lunch, city break.
 
@@ -560,91 +573,118 @@ and the 97% cotton rule, and the database holds **1,861 picks and 334 outfits** 
 1. **Lock a piece and re-suggest the rest:** keep the boots, rebuild everything else to budget.
 2. **Colour check:** warn on three or more black pieces outside Rave and Workwear, black trousers
    with brown shoes, and navy against black. Suggest one swap.
-3. **Owned pieces at £0:** the black suit, New Balance and Nike trainers and his bags can be
-   chosen in any slot.
-4. **Budget split hint:** spend on shoes and coat, save on knit and tees (from the style guides).
+3. **Budget split hint:** spend on shoes and coat, save on knit and tees (from the style guides).
 
 #### F. Shortlist
 1. **Totals per shop** with the delivery threshold, and a single "buy list" total.
-2. **Download the buy list** as a text or CSV file (the `downloads` capability), with links,
-   sizes and prices, to work through on a laptop.
-3. **Who liked it:** record thumbs per person (the `user` capability) so Dave's thumbs and
-   Emma's are told apart. Show "Dave liked" on the card and let the ranking follow Dave's thumbs
-   only.
+2. **Download the buy list** as a text or CSV file, with links, sizes and prices, to work through
+   on a laptop.
+3. **Who liked it:** record thumbs per person, so Dave's and Emma's are told apart, and let the
+   ranking follow Dave's. This works only if Dave opens the page signed in to his own Claude
+   account (question 2).
 
-#### G. His wardrobe (new view)
-- A short list of what Dave already owns. It starts with the profile's list (black suit, New
-  Balance and Nike trainers, crossbody, bum and side bags) and adds anything marked bought.
-- Outfits and the builder can use owned pieces at £0, and a "Uses what he has" filter shows
-  outfits that need two pieces or fewer bought.
+#### G. His wardrobe (only if the owned-clothes rule changes, question 1)
+- A list of what Dave already owns (black suit, New Balance and Nike trainers, crossbody, bum
+  and side bags, plus anything marked bought). Outfits and the builder could use them at £0.
+- **This goes against the current rule.** The Friday refresh says to treat his own clothes as
+  background only and never build outfits around them. Leave this section out unless that rule
+  changes.
 
-#### H. Ask the stylist (new)
+#### H. Ask the stylist (only if wanted, question 3)
 - A box on the Outfits and Build views: "wedding in November, about £120, no tie". The page asks
-  Claude (the `sample` capability) with the pick list as a search tool, and the answer loads
-  straight into the builder as a priced outfit in his size. The viewer is asked to agree the
-  first time, and the box hides if they say no.
+  Claude, with the pick list as a search tool, and the answer loads straight into the builder as
+  a priced outfit in his size.
+- It uses the Claude allowance of whoever types the question, asks their permission the first
+  time, and hides if they say no.
 
 #### I. Style guide and sizes
-- A **measuring card** (neck, chest, inside leg, shoe width) with a form that saves to
-  `meta/profile`. Once filled in, drop the "to confirm" notes.
+- A **measuring card** (neck, chest, inside leg) that saves to `meta/profile`. Once filled in,
+  drop the "to confirm" notes.
 - A **"Dave's colours"** panel: the colours that suit his fair skin, dark hair and ginger-brown
-  moustache (navy, olive, rust, camel, burgundy and ecru work well; mustard and washed-out
-  pastels are harder), linked to the colour filter.
+  moustache (navy, olive, rust, camel, burgundy and ecru; mustard and washed-out pastels are
+  harder), linked to the colour filter.
 - **Care notes** on cards for wool, linen and waxed cotton.
 
 #### J. Drawings
-- Add the shapes the outfits now use but the figure draws plainly: suits with a waistcoat,
-  overcoat over a blazer, knee pads, a neck warmer and a tool backpack (Workwear extras), and
-  swim shorts with a towel or shirt open for Holiday.
+- Shapes the outfits now use but the figure draws plainly: suits with a waistcoat, an overcoat
+  over a blazer, knee pads, a neck warmer and a tool backpack (Workwear extras), and swim shorts
+  with an open shirt for Holiday.
 
-### 4.4 More picks (target: about 300 new, to about 2,150)
+### 4.4 More picks (target: about 300 new on top of the Friday refresh's 40 a week)
 
 Fill the gaps the numbers show, mostly reduced and mostly under £40:
 
 | Gap | Now | Add | What |
 |---|---|---|---|
-| Tailoring | 18 | 30 | Navy and grey suits, a navy blazer, grey wool trousers, white and pale blue shirts in a 15.5 to 16in collar, ties, black Oxford and Derby shoes for the black suit he owns |
-| Event and smart extras | few | 25 | Pocket squares, tie bars, cufflinks, dress belts, a smart overcoat, dress socks |
-| Rainwear | 414 picks are tagged wet, but few are coats | 25 | Packable waterproofs, a smart mac, waterproof trainers and boots, a compact umbrella |
+| Smart shirts and accessories | Tailoring 18 | 30 | White and pale blue shirts in a 15.5 to 16in collar, ties, pocket squares, tie bars, dress belts and socks, black Oxford and Derby shoes, a smart overcoat |
+| Non-black colours | 7 burgundy, 19 olive, 45 stone | 80 | Navy, olive, stone, brown, burgundy and ecru knits, chinos, overshirts and jackets across Classic, Casual, Mod and Outdoors |
 | Basics | 30 | 25 | Thermals, merino socks, multipacks of plain tees, vests and boxers |
 | Sport | 27 | 20 | Gym shorts, training tops and running shoes in UK 11 |
-| Non-black colours | 7 burgundy, 19 olive, 45 stone | 80 | Navy, olive, stone, brown, burgundy and ecru knits, chinos, overshirts and jackets across Classic, Casual, Mod and Outdoors |
-| Winter sun and city break (Holiday) | 0 cold or mild outfits | 20 | Light knits, linen-mix overshirts, a packable jacket, smart trainers and a weekend bag |
+| Rain extras | 74 wet-weather coats already | 10 | Waterproof trainers and boots, a compact umbrella, a smart mac |
+| Winter sun and city break (Holiday) | 0 cold or mild outfits | 20 | Light knits, overshirts, a packable jacket, smart trainers and a weekend bag |
 | Summer lounge | 5 warm Lounge outfits | 10 | Cotton shorts pyjamas, light robes, sliders |
-| Workwear extras | 197 | 25 | Knee pads, base layers, thick socks, a tool backpack and winter gloves, plus black cotton cargo shorts in 34W (still the hardest gap), all checked by hand against the rules |
-| Directory shops with no picks | 14 shops | 40 | Gap, Levi's, Dr Martens, Vans, New Balance, Timberland, Berghaus, Urban Outfitters, Pull&Bear, Bershka, TK Maxx, BrandAlley, Very and F&F: 3 each, sale stock that fits existing outfits |
+| Workwear extras | 197 | 25 | Knee pads, base layers, thick socks, a tool backpack and winter gloves, plus black cotton cargo shorts in 34W (still the hardest gap). All checked by hand against the Workwear rules. |
+| Directory shops with no picks | 14 shops | 40 | Gap, Levi's, Dr Martens, Vans, New Balance, Timberland, Berghaus, Urban Outfitters, Pull&Bear, Bershka, TK Maxx, BrandAlley, Very and F&F, 3 each. Note: the refresh is told not to fetch Gap, New Balance, TK Maxx, F&F or Very (they block cloud servers), so those need a home computer or stay links only. |
+| Size checks | 562 unknown | — | Re-check the size on the ASOS, M&S, Charles Tyrwhitt, WoolOvers and Moss picks where the product page shows it |
 
-Rule for the round: no more than a third of new non-Workwear, non-Rave picks in black.
+Rule for the round: no more than a third of new non-Workwear, non-Rave picks in black
+(question 4).
 
 ### 4.5 More outfits (target: about 120 new, to about 455)
 
 | Gap | Now | Add |
 |---|---|---|
-| Events (wedding guest, christening, funeral, interview, Christmas party, birthday meal) | 10 | 25, five of them built round the black suit he owns |
+| Events (wedding guest, christening, funeral, interview, Christmas party, birthday meal) | 10 | 25 |
 | Smart | 30 | 15 |
 | Wet weather, across every tab | 41 | 25 |
 | Under £60 all in | 25 | 20, at least two per tab |
 | Holiday in cold or mild weather (winter sun, city break) | 0 | 8 |
 | Lounge for warm nights | 5 | 5 |
-| Casual and street, smart or party | 7 | 8 |
-| "Uses what he has" (the suit, the trainers and the bags) | 0 | 10 |
-| Capsule: one 12-piece set that makes 20 outfits, shown together | 0 | 1 set, 20 outfits |
+| Casual and street, smart or party | 7 and 8 | 8 |
+| Capsule: one 12-piece set that makes 20 outfits, shown together | 0 | 1 set, 14 outfits |
 
 Build them from the 1,028 picks in no outfit first, and give every 3-piece outfit a fourth piece
-where a layer, belt or bag would finish it.
+where a layer, belt or bag would finish it. If the owned-clothes rule changes, add 10 outfits
+built round his black suit, trainers and bags.
 
-### 4.6 The weekly refresh, updated
-- Re-check price, link and his size for every pick once a fortnight, and write `prev` when a
-  price changes.
-- Set `added` on new picks only.
-- Put new photos into the asset store or packs, never inside the row.
-- Keep the black share and the occasion and weather gaps above in the weekly report, so each week
-  closes the biggest gap first.
+### 4.6 Changes to the Friday refresh
+- Write photos to `photos/<id>` rows instead of `img`, at 25 KB or less (A1).
+- Keep a short price history per pick, not only `prev` (C1).
+- Respect the sixth load group (A4) and update the group sizes in its notes.
+- Report the black share and the occasion and weather gaps each week, and close the biggest gap
+  first when choosing new outfits.
+- The routine has 12 connectors attached (Gmail, Google Drive, Spotify, Lucid and others) that a
+  clothes refresh never uses. Removing them would be safer, especially Gmail.
 
 ### 4.7 Order of work
-1. Section A (speed and data). One round.
-2. Sections D, E and G together (swap, lock, owned pieces, what to wear today), because they
-   share the "owned or bought" logic.
+1. Section A (speed and data), and the refresh changes in 4.6. One round.
+2. Sections D and E (swap, lock, what to wear today, "£X to finish").
 3. Sections B, C and F (colour filter, price history, buy list download, per-person thumbs).
-4. Sections H, I and J (stylist, measuring card, drawings).
+4. Sections I and J, and G and H if wanted.
 5. Picks (4.4) and outfits (4.5), spread across all four rounds so every release adds some.
+
+### 4.8 Corrections made on the second review
+- Photos: the first draft suggested the asset store. It would end public link sharing, and the
+  refresh can't use it, so A1 now uses a `photos` collection.
+- "New this week" is not broken: it sorts itself out after 16 October.
+- "Size unknown" labels already exist on the cards. The task is to check more sizes.
+- The 8 "unpriced" pre-owned picks were 31 searches that show a price range, as designed. Not a
+  fault.
+- The Cernucci cargo is 100% cotton (it says so in its note). It only lacks the `fabric` field.
+- Brand-page links: 38, not 14.
+- The duplicates are mostly the same product at two shops, which is useful.
+- Tailoring already has navy and charcoal suits, so the gap is shirts, ties and shoes.
+- There are 74 wet-weather coats, so rainwear needs outfits more than picks.
+- Owned clothes: the Friday refresh forbids outfits built round them, so G and those outfits now
+  wait on question 1.
+- The refresh already re-checks prices weekly, so the plan no longer says "once a fortnight".
+
+### 4.9 Open questions for Emma
+1. **His own clothes:** the refresh says never to build outfits round what Dave already owns.
+   Keep that rule, or allow a "His wardrobe" view and outfits using the suit, trainers and bags?
+2. **How Dave uses the page:** does he open it signed in to his own Claude account? Per-person
+   thumbs need that.
+3. **Ask the stylist:** wanted, knowing it uses the Claude allowance of whoever types into it?
+4. **Black:** cap new black picks at a third outside Rave and Workwear, or does Dave want black?
+5. **His measurements** (neck, chest under the arms, inside leg), if you have them, so the
+   "to confirm" sizes can go.
