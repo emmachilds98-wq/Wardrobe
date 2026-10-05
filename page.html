@@ -331,6 +331,8 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
 .lrow.has-th{grid-template-columns:40px minmax(0,1fr) auto}
 .lrow.has-th .acts{grid-column:2/-1}
 .stale{color:var(--tan)}
+.fitnote{color:var(--ink)}
+.backin{color:var(--green);font-weight:600}
 .cut-row.has-th{grid-template-columns:3.4rem 44px minmax(0,1fr) auto}
 .mix-head .mixph{width:min(100%,220px);aspect-ratio:4/3}
 .mix-head .mixph svg{padding:12px 20%}
@@ -583,6 +585,9 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
       <div class="shopgroup"><span class="label">Street, minimal and trainers</span><ul>
         <li><a href="https://www.arket.com/en-gb/men" target="_blank" rel="noopener">Arket</a><small data-shop="Arket"></small></li>
         <li><a href="https://www.cos.com/en-gb/men" target="_blank" rel="noopener">COS</a><small data-shop="COS"></small></li>
+        <li><a href="https://www.folkclothing.com/" target="_blank" rel="noopener">Folk</a><small data-shop="Folk"></small></li>
+        <li><a href="https://www.slamcity.com/" target="_blank" rel="noopener">Slam City Skates</a><small data-shop="Slam City Skates"></small></li>
+        <li><a href="https://www.urbanindustry.co.uk/" target="_blank" rel="noopener">Urban Industry</a><small data-shop="Urban Industry"></small></li>
         <li><a href="https://www.weekday.com/" target="_blank" rel="noopener">Weekday</a></li>
         <li><a href="https://www.urbanoutfitters.com/en-gb/" target="_blank" rel="noopener">Urban Outfitters</a></li>
         <li><a href="https://www.schuh.co.uk/" target="_blank" rel="noopener">Schuh</a><small data-shop="Schuh"></small></li>
@@ -599,6 +604,8 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
         <li><a href="https://www.drmartens.com/uk/en_gb/" target="_blank" rel="noopener">Dr Martens</a></li>
         <li><a href="https://www.timberland.co.uk/" target="_blank" rel="noopener">Timberland</a></li>
         <li><a href="https://www.lyleandscott.com/" target="_blank" rel="noopener">Lyle &amp; Scott</a><small data-shop="Lyle &amp; Scott"></small></li>
+        <li><a href="https://www.universalworks.co.uk/" target="_blank" rel="noopener">Universal Works</a><small data-shop="Universal Works"></small></li>
+        <li><a href="https://www.solovair.co.uk/" target="_blank" rel="noopener">Solovair (made in England)</a><small data-shop="Solovair"></small></li>
         <li><a href="https://www.converse.com/uk" target="_blank" rel="noopener">Converse</a><small data-shop="Converse"></small></li>
       </ul></div>
       <div class="shopgroup"><span class="label">Outdoors</span><ul>
@@ -609,6 +616,11 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
         <li><a href="https://www.rohan.co.uk/" target="_blank" rel="noopener">Rohan</a><small data-shop="Rohan"></small></li>
         <li><a href="https://finisterre.com/collections/mens" target="_blank" rel="noopener">Finisterre</a><small data-shop="Finisterre"></small></li>
         <li><a href="https://summits.co.uk/" target="_blank" rel="noopener">Summits</a><small data-shop="Summits"></small></li>
+        <li><a href="https://www.alpkit.com/" target="_blank" rel="noopener">Alpkit</a><small data-shop="Alpkit"></small></li>
+        <li><a href="https://www.montane.com/" target="_blank" rel="noopener">Montane outlet</a><small data-shop="Montane"></small></li>
+        <li><a href="https://www.passenger-clothing.com/" target="_blank" rel="noopener">Passenger</a><small data-shop="Passenger"></small></li>
+        <li><a href="https://www.howies.co.uk/" target="_blank" rel="noopener">howies</a><small data-shop="howies"></small></li>
+        <li><a href="https://www.hikerdelic.com/" target="_blank" rel="noopener">Hikerdelic</a><small data-shop="Hikerdelic"></small></li>
         <li><a href="https://www.mountainwarehouse.com/" target="_blank" rel="noopener">Mountain Warehouse</a><small data-shop="Mountain Warehouse"></small></li>
         <li><a href="https://www.gooutdoors.co.uk/" target="_blank" rel="noopener">Go Outdoors</a></li>
         <li><a href="https://www.cotswoldoutdoor.com/" target="_blank" rel="noopener">Cotswold Outdoor</a></li>
@@ -1095,7 +1107,8 @@ function norm(id,d){
     price:Number(d.price)||0,was:Number(d.was)||0,prev:Number(d.prev)||0,lo:Number(d.lo)||0,hi:Number(d.hi)||0,typ:Number(d.typ)||0,
     offer:String(d.offer||""),note:String(d.note||""),url:url,checked:String(d.checked||""),added:String(d.added||""),rank:Number(d.rank)||9999,
     insize:d.insize===true?true:(d.insize===false?false:null),sizes:String(d.sizes||""),gift:d.gift===true,
-    sets:Array.isArray(d.sets)?d.sets.filter(function(s){return typeof s==="string";}):[],img:okImg(d.img)};
+    sets:Array.isArray(d.sets)?d.sets.filter(function(s){return typeof s==="string";}):[],img:okImg(d.img),
+    sizeNote:String(d.sizeNote||"").slice(0,140)};
   if(!it.name||!url)return null;
   if(it.kind==="preowned"?!(it.lo>0):!(it.price>0))return null;
   it.hay=(it.name+" "+it.shop+" "+it.note+" "+label(CAT,it.cat)+" "+it.style.map(function(s){return label(STYLE,s);}).join(" ")+" "+it.occ.join(" ")+(it.work?" heritage workwear":"")+(it.gift?" gift":"")).toLowerCase();
@@ -1261,7 +1274,7 @@ function card(it){
     (it.note?'<p class="note">'+esc(it.note)+'</p>':"")+
     '<div class="price">'+price+'</div>'+
     (it.offer?'<p class="offer">'+esc(it.offer)+'</p>':"")+
-    '<p class="meta">'+(sz?sz+'<br>':"")+esc(where)+(wide?'<br>'+esc(it.style.map(function(s){return label(STYLE,s);}).join(", ")):"")+(chk?'<br>'+(old?'<span class="stale">Price seen '+esc(chk)+', over a month ago. Check before buying.</span>':'Checked '+esc(chk)):"")+'</p>'+
+    '<p class="meta">'+(sz?sz+'<br>':"")+(it.sizeNote?'<span class="fitnote">Fit tip: '+esc(it.sizeNote)+'</span><br>':"")+esc(where)+(wide?'<br>'+esc(it.style.map(function(s){return label(STYLE,s);}).join(", ")):"")+(chk?'<br>'+(old?'<span class="stale">Price seen '+esc(chk)+', over a month ago. Check before buying.</span>':'Checked '+esc(chk)):"")+'</p>'+
     '<a class="buy" href="'+esc(it.url)+'" target="_blank" rel="noopener">'+(pre?"Search ":"View at ")+esc(it.shop)+' <span aria-hidden="true">↗</span></a>'+
     (heroCount[it.id]?'<button class="linkbtn mixlink" type="button" data-mix="'+esc(it.id)+'">See it in '+heroCount[it.id]+' outfits</button>':"")+
     '<div class="acts">'+saveBtn("i_"+it.id)+voteBtns(it.id)+'</div>'+
@@ -1659,7 +1672,7 @@ function renderList(){
   function row(k,bought){
     var id=k.slice(2),it=byId[id],sv=savedOf(k),fell=it&&!bought&&sv&&sv.price>0?Math.round((sv.price-cost(it))*100)/100:0;
     if(!it){return '<div class="lrow"><span><span class="nm">'+esc(id)+'</span><span class="sub">No longer listed</span></span><span class="pr"></span><div class="acts"><button class="act" type="button" data-unsave="'+esc(k)+'">Remove</button></div></div>';}
-    return '<div class="lrow has-th">'+(photoBox(it,"thumb",false)||'<span></span>')+'<span><a class="nm" href="'+esc(it.url)+'" target="_blank" rel="noopener">'+esc(it.name)+' <span aria-hidden="true">↗</span></a><span class="sub">'+esc(it.shop)+(pct(it)>0?" · "+pct(it)+"% off":"")+'</span><span class="sub">'+sizeLine(it)+'</span>'+(fell>0?'<span class="sub pdrop">Down '+money(fell)+' since it was saved</span>':"")+'</span>'+
+    return '<div class="lrow has-th">'+(photoBox(it,"thumb",false)||'<span></span>')+'<span><a class="nm" href="'+esc(it.url)+'" target="_blank" rel="noopener">'+esc(it.name)+' <span aria-hidden="true">↗</span></a><span class="sub">'+esc(it.shop)+(pct(it)>0?" · "+pct(it)+"% off":"")+'</span><span class="sub">'+sizeLine(it)+'</span>'+(fell>0?'<span class="sub pdrop">Down '+money(fell)+' since it was saved</span>':"")+(!bought&&sv&&sv.insize===false&&it.insize===true?'<span class="sub backin">Back in his size since it was saved</span>':"")+'</span>'+
       '<span class="pr">'+money(cost(it))+'</span>'+
       '<div class="acts"><button class="act" type="button" data-bought="'+esc(k)+'" aria-pressed="'+bought+'">'+ICON.tick+'<span>'+(bought?"Bought":"Mark as bought")+'</span></button><button class="act" type="button" data-unsave="'+esc(k)+'">Remove</button></div></div>';
   }
@@ -1780,9 +1793,9 @@ $("b-save").addEventListener("click",function(){
 document.addEventListener("click",function(e){
   var t=e.target,b;
   if((b=t.closest("[data-jump]"))){var el=$(b.getAttribute("data-jump"));if(el){el.scrollIntoView({block:"start"});}return;}
-  if((b=t.closest("[data-save]"))){var k=b.getAttribute("data-save");var si=k.charAt(0)==="i"?byId[k.slice(2)]:null,sd={kind:k.charAt(0)==="o"?"outfit":"item",ref:k.slice(2),state:"want",at:new Date().toISOString()};if(si){sd.price=cost(si);}setSaved(k,savedOf(k)?null:sd);return;}
+  if((b=t.closest("[data-save]"))){var k=b.getAttribute("data-save");var si=k.charAt(0)==="i"?byId[k.slice(2)]:null,sd={kind:k.charAt(0)==="o"?"outfit":"item",ref:k.slice(2),state:"want",at:new Date().toISOString()};if(si){sd.price=cost(si);if(si.insize!==null){sd.insize=si.insize;}}setSaved(k,savedOf(k)?null:sd);return;}
   if((b=t.closest("[data-unsave]"))){setSaved(b.getAttribute("data-unsave"),null);renderFits();return;}
-  if((b=t.closest("[data-bought]"))){var kb=b.getAttribute("data-bought"),s=savedOf(kb);if(s){var nb={kind:"item",ref:kb.slice(2),state:s.state==="bought"?"want":"bought",at:new Date().toISOString()};if(s.price>0){nb.price=s.price;}setSaved(kb,nb);renderFits();}return;}
+  if((b=t.closest("[data-bought]"))){var kb=b.getAttribute("data-bought"),s=savedOf(kb);if(s){var nb={kind:"item",ref:kb.slice(2),state:s.state==="bought"?"want":"bought",at:new Date().toISOString()};if(s.price>0){nb.price=s.price;}if(s.insize===true||s.insize===false){nb.insize=s.insize;}setSaved(kb,nb);renderFits();}return;}
   if((b=t.closest("[data-vote]"))){var id=b.getAttribute("data-vote"),v=Number(b.getAttribute("data-v"));setVote(id,voteOf(id)===v?0:v);if(v===-1||voteOf(id)===0){renderPicks();}return;}
   if((b=t.closest("[data-mix]"))){state.mix=b.getAttribute("data-mix");renderMix();syncMarks();if(b.classList.contains("mixlink")){$("mix").scrollIntoView({block:"start"});}return;}
   if((b=t.closest("[data-goto-fit]"))){gotoFit(b.getAttribute("data-goto-fit"));return;}
@@ -1819,7 +1832,7 @@ syncChips();paintStyle();renderAll();
     db.doc("meta/photos").onSnapshot(function(s){var d=(s&&s.exists&&s.data())||{};loadPhotoPacks(d.packs);},function(){});
     db.doc("meta/profile").onSnapshot(function(s){profile=(s&&s.exists&&s.data())||{};schedule();},function(){});
     db.collection("saved").limit(1000).onSnapshot(function(snap){
-      var m={};snap.docs.forEach(function(doc){var d=doc.data()||{};m[doc.id]={kind:d.kind==="outfit"?"outfit":"item",ref:String(d.ref||""),state:d.state==="bought"?"bought":"want",price:Number(d.price)||0};});
+      var m={};snap.docs.forEach(function(doc){var d=doc.data()||{};m[doc.id]={kind:d.kind==="outfit"?"outfit":"item",ref:String(d.ref||""),state:d.state==="bought"?"bought":"want",price:Number(d.price)||0,insize:d.insize===true?true:(d.insize===false?false:null)};});
       saved=m;schedule();
     },function(){});
     db.collection("votes").limit(1000).onSnapshot(function(snap){

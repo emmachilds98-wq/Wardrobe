@@ -6,9 +6,9 @@ it, so the page and its data can be used or rebuilt outside Claude.
 
 | File | What it is |
 |---|---|
-| `page.html` | The page source as published (version 9, 5 Oct 2026). |
-| `data/items.json` | All 843 picks, keyed by id, as stored in the artifact's `items` collection. |
-| `data/outfits.json` | All 120 outfits from the `outfits` collection. |
+| `page.html` | The page source as published (version 10, 5 Oct 2026). |
+| `data/items.json` | All 886 picks, keyed by id, as stored in the artifact's `items` collection. |
+| `data/outfits.json` | All 140 outfits from the `outfits` collection. |
 | `tools/fetch_photos.py` | Downloads listing photos and packs them for the page (step 2 below). |
 
 The shared shortlist, Dave's thumbs and saved outfits (`saved`, `votes`,
@@ -134,32 +134,39 @@ people using the page.
   Albam, Sunspel, Finisterre, Colorful Standard, Base London, Farah, Original Penguin, Lyle & Scott,
   Peregrine and Oliver Spencer.
 
+## 2e. Done in round four (5 Oct 2026, night)
+
+- **Data fixes.**
+  - The two dead M&S dressing-gown links now point to live gowns (Fleece Supersoft, midnight navy,
+    £35, and Pure Cotton Polka Dot, navy, £35).
+  - Five picks with no style got one.
+  - Prices re-checked where the shop allows it: Seasalt, END. (YMC, now £74), White Stuff and
+    Peregrine.
+  - Three picks removed: two Gymshark links that are gone, and a Berghaus fleece that sold out.
+    The outfit that used the fleece now uses a Stan Ray fleece.
+- **Page (version 10).**
+  - A pick can carry a fit tip (`sizeNote`), shown on its card, for example "Timberland boots
+    run large: try a UK 10.5".
+  - Saving a pick now also stores whether it was in his size. The shortlist says "Back in his
+    size since it was saved" when that changes.
+  - The "Where to look" directory now lists 117 shops.
+- **46 new picks with photos and stock in his size**, from Universal Works, Solovair, Slam City
+  Skates, Urban Industry, Hikerdelic, Folk, howies, Passenger, Alpkit and Montane (all new shops),
+  plus Cernucci, Montirex, Original Penguin, Lyle & Scott and Uskees. Most of them are Street, Rave
+  and Outdoor pieces, the styles with the fewest picks.
+- **20 new outfits**, including a whole outfit for £57 (Under £60) and a smart one at about £150.
+- **The Friday refresh** now adds the shop's photo to new picks (as `img`), sets fit tips, and
+  checks the new shops' feeds.
+- Totals: **886 picks, 140 outfits, 85 shops; 578 picks with a photo in the packs.**
+
 ## 3. Next steps
 
-### Step 1: Fill in the photos (the main one left)
-The page is ready for photos; it is waiting on downloads. This session's cloud environment could
-not reach any shop site because of its network policy, so the photo files have not been made yet.
-
-1. Give a session network access to the shops. Either:
-   - choose **Full** network access in the cloud environment settings (environment menu in the
-     session title bar, then Edit), or
-   - choose **Custom** and add the shop domains plus their image hosts. The shop domains are
-     listed by `python3 -c "import json,re;print(sorted({re.sub(r'^https://([^/]+)/.*',r'\1',v['url']) for v in json.load(open('data/items.json')).values()}))"`.
-     Image hosts seen so far include `images.asos-media.com`, `asset1.cxnmarksandspencer.com`,
-     `image.uniqlo.com`, `cdn.shopify.com`, `img01.ztat.net`, `contents.mediadecathlon.com` and
-     `cdn.media.amplience.net`. After a run, `report.json` lists anything still blocked.
-2. Run `pip install pillow && python3 tools/fetch_photos.py --out photos`. It writes
-   `photos/pack-NN.json` (about 3 MB each, roughly 120 to 150 photos per pack) and
-   `photos/meta-photos.json`.
-3. Republish the page with the packs as supporting files (`photos/pack-01.json` and so on).
-   Then write `meta/photos` = the contents of `meta-photos.json`. Open pages pick the photos up
-   live.
-4. Expect about 85 to 90% coverage. Pre-owned picks and links to category pages (FatFace cords,
-   for example) keep their drawings.
-
-Alternative if network access stays off: ask Claude in a normal chat to save the photos one shop
-at a time, or upload them yourself into the artifact (it would need the `assets` capability, and
-that makes the page organisation-only, so not shareable by public link).
+### Step 1: Photos still missing
+Most shops are done. The gaps are shops that block cloud servers: ASOS (195 picks), Arket, COS,
+Zara, Next, Joules, The North Face, Converse, Decathlon, Zalando, H&M, Hawes & Curtis, John
+Lewis, Office and Gymshark. Running `python3 tools/fetch_photos.py --only <ids> --out photos`
+from a home computer usually gets past them. Then add the new pack to the page and to
+`meta/photos`.
 
 ### Step 2: Data hygiene (each weekly refresh)
 - Re-check every pick whose `checked` date is over 30 days old: prices, links and his size.
@@ -173,8 +180,8 @@ that makes the page organisation-only, so not shareable by public link).
 ### Step 3: Fit and sizes
 - Measure Dave: neck plus half an inch, chest under the arms, inside leg. Then update
   `meta/profile` and drop the "to confirm" notes.
-- Add a per-shop size note (for example, "Gymshark runs large: M" and "Timberland: UK 10.5"),
-  stored as `sizeNote` on the pick, so the card can show it next to his usual size.
+- ~~Add a per-shop size note (`sizeNote`).~~ Done in round four. More can be added as fit tips
+  turn up.
 
 ### Step 4: Page features worth adding
 1. ~~**Photo-first view.**~~ Done in round two as the compact grid.

@@ -25,57 +25,111 @@
    "warm"
   ]
  },
- "al-fenton-stripe": {
-  "name": "Albam Fenton Oxford stripe shirt, pale blue",
-  "shop": "Albam",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 46.0,
-  "url": "https://www.albamclothing.com/products/oxford-stripe-fenton-shirt-in-pale-blue-alb2211ox073",
-  "checked": "2026-10-05",
+ "ak-cwtch-beanie": {
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "minimal"
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Alpkit Cwtch bobble beanie",
+  "note": "Chunky bobble beanie from the Nottingham outdoor brand.",
+  "occ": [
+   "everyday"
   ],
+  "price": 36.99,
+  "rank": 430,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Alpkit",
+  "style": [
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.alpkit.com/products/cwtch-bobble-beanie",
+  "wx": [
+   "cold"
+  ]
+ },
+ "ak-filoment": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Alpkit Filoment down vest",
+  "note": "Light down gilet from the Nottingham outdoor brand. Half price.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 59.97,
+  "rank": 280,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Alpkit",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor"
+  ],
+  "url": "https://www.alpkit.com/products/filoment-vest-mens",
+  "was": 119.99,
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "al-fenton-stripe": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Albam Fenton Oxford stripe shirt, pale blue",
+  "note": "British label's Oxford stripe, 60% off.",
   "occ": [
    "everyday",
    "smart"
   ],
-  "wx": [
-   "mild"
-  ],
-  "note": "British label's Oxford stripe, 60% off.",
+  "price": 46,
   "rank": 380,
   "sets": [],
-  "was": 115.0,
-  "insize": true,
-  "sizes": "L in stock"
+  "shop": "Albam",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "minimal"
+  ],
+  "url": "https://www.albamclothing.com/products/oxford-stripe-fenton-shirt-in-pale-blue-alb2211ox073",
+  "was": 115,
+  "wx": [
+   "mild"
+  ]
  },
  "ar-heavy-tee-grey": {
-  "name": "Arket 270 GSM oversized T-shirt, grey",
-  "shop": "Arket",
-  "cat": "polo",
-  "kind": "new",
-  "price": 16.65,
-  "url": "https://www.arket.com/en-gb/product/heavy-weight-t-shirt-grey-1248995005",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Arket 270 GSM oversized T-shirt, grey",
+  "note": "Arket's heaviest tee, slightly boxy with longer sleeves. It hangs properly instead of clinging. L for the loose fit.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 16.65,
+  "rank": 210,
+  "sets": [],
+  "shop": "Arket",
   "style": [
    "street",
    "minimal",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.arket.com/en-gb/product/heavy-weight-t-shirt-grey-1248995005",
   "wx": [
    "mild",
    "warm"
-  ],
-  "note": "Arket's heaviest tee, slightly boxy with longer sleeves. It hangs properly instead of clinging. L for the loose fit.",
-  "rank": 210,
-  "sets": []
+  ]
  },
  "asos-adidas-sweat": {
   "cat": "knit",
@@ -1234,6 +1288,11 @@
   "price": 39.99,
   "rank": 82,
   "shop": "ASOS",
+  "style": [
+   "quiet",
+   "minimal",
+   "casual"
+  ],
   "url": "https://www.asos.com/jack-jones/jack-jones-premium-mac-coat-in-beige/prd/210225961",
   "was": 80,
   "wx": [
@@ -2425,31 +2484,31 @@
   ]
  },
  "bb-atworth-crew": {
-  "name": "Brakeburn Atworth crew-neck jumper, navy",
-  "shop": "Brakeburn",
-  "cat": "knit",
-  "kind": "new",
-  "price": 16.49,
-  "url": "https://www.brakeburn.com/products/atworth-crew-neck-jumper-aw25",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brakeburn Atworth crew-neck jumper, navy",
+  "note": "£16.49 knit, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 16.49,
+  "rank": 100,
+  "sets": [],
+  "shop": "Brakeburn",
+  "sizes": "L in stock",
   "style": [
    "quiet",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.brakeburn.com/products/atworth-crew-neck-jumper-aw25",
+  "was": 54.99,
   "wx": [
    "cold",
    "mild"
-  ],
-  "note": "£16.49 knit, 70% off.",
-  "rank": 100,
-  "sets": [],
-  "was": 54.99,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "bb-babcary": {
   "cat": "coat",
@@ -2594,62 +2653,62 @@
   ]
  },
  "bb-heritage-gilet": {
-  "name": "Brakeburn heritage quilted gilet, navy",
-  "shop": "Brakeburn",
-  "cat": "coat",
-  "kind": "new",
-  "price": 25.49,
-  "url": "https://www.brakeburn.com/products/heritage-gilet-aw23",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brakeburn heritage quilted gilet, navy",
+  "note": "Quilted gilet for £25.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 25.49,
+  "rank": 290,
+  "sets": [],
+  "shop": "Brakeburn",
+  "sizes": "L in stock",
   "style": [
    "quiet",
    "outdoor"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.brakeburn.com/products/heritage-gilet-aw23",
+  "was": 84.99,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Quilted gilet for £25.",
-  "rank": 290,
-  "sets": [],
-  "was": 84.99,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "bb-kempsford-cord": {
-  "name": "Brakeburn Kempsford corduroy puffer jacket, navy",
-  "shop": "Brakeburn",
-  "cat": "coat",
-  "kind": "new",
-  "price": 32.99,
-  "url": "https://www.brakeburn.com/products/kempsford-corduroy-jacket-aw25",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "casual"
-  ],
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Brakeburn Kempsford corduroy puffer jacket, navy",
+  "note": "Navy corduroy padded jacket with a detachable hood. £33, 70% off.",
   "occ": [
    "everyday",
    "smart"
   ],
-  "wx": [
-   "cold",
-   "wet",
-   "mild"
-  ],
-  "note": "Navy corduroy padded jacket with a detachable hood. £33, 70% off.",
+  "price": 32.99,
   "rank": 80,
   "sets": [
    "winter"
   ],
+  "shop": "Brakeburn",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.brakeburn.com/products/kempsford-corduroy-jacket-aw25",
   "was": 109.99,
-  "insize": true,
-  "sizes": "L in stock"
+  "wx": [
+   "cold",
+   "wet",
+   "mild"
+  ]
  },
  "bb-tadnoll": {
   "cat": "knit",
@@ -2763,89 +2822,89 @@
   ]
  },
  "bl-bloom-chelsea": {
-  "name": "Base London Bloom Chelsea boots, navy",
-  "shop": "Base London",
-  "cat": "shoe",
-  "kind": "new",
-  "price": 39.99,
-  "url": "https://www.baselondon.com/products/bloom-burnished-navy-chelsea-boots",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "minimal"
-  ],
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Bloom Chelsea boots, navy",
+  "note": "Burnished navy leather Chelsea boots, half price.",
   "occ": [
    "smart",
    "everyday"
   ],
+  "price": 39.99,
+  "rank": 260,
+  "sets": [],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "quiet",
+   "minimal"
+  ],
+  "url": "https://www.baselondon.com/products/bloom-burnished-navy-chelsea-boots",
+  "was": 79.99,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Burnished navy leather Chelsea boots, half price.",
-  "rank": 260,
-  "sets": [],
-  "was": 79.99,
-  "insize": true,
-  "sizes": "UK 11 in stock"
+  ]
  },
  "bl-bradley-combat": {
-  "name": "Base London Bradley combat boots, black",
-  "shop": "Base London",
-  "cat": "shoe",
-  "kind": "new",
-  "price": 40.0,
-  "url": "https://www.baselondon.com/products/bradley-waxy-black-combat-boots",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "street",
-   "rave"
-  ],
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Bradley combat boots, black",
+  "note": "Chunky black boots for £40, half price.",
   "occ": [
    "everyday",
    "party"
   ],
+  "price": 40,
+  "rank": 160,
+  "sets": [],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "street",
+   "rave"
+  ],
+  "url": "https://www.baselondon.com/products/bradley-waxy-black-combat-boots",
+  "was": 79.99,
   "wx": [
    "cold",
    "wet",
    "mild"
-  ],
-  "note": "Chunky black boots for £40, half price.",
-  "rank": 160,
-  "sets": [],
-  "was": 79.99,
-  "insize": true,
-  "sizes": "UK 11 in stock"
+  ]
  },
  "bl-dime-derby": {
-  "name": "Base London Dime derby shoes, black",
-  "shop": "Base London",
-  "cat": "shoe",
-  "kind": "new",
-  "price": 37.49,
-  "url": "https://www.baselondon.com/products/dime-waxy-black-derby-shoes",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "minimal",
-   "quiet"
-  ],
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Base London Dime derby shoes, black",
+  "note": "Black derbies for the black suit, at £37.",
   "occ": [
    "smart",
    "event"
   ],
+  "price": 37.49,
+  "rank": 280,
+  "sets": [],
+  "shop": "Base London",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "url": "https://www.baselondon.com/products/dime-waxy-black-derby-shoes",
+  "was": 74.99,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Black derbies for the black suit, at £37.",
-  "rank": 280,
-  "sets": [],
-  "was": 74.99,
-  "insize": true,
-  "sizes": "UK 11 in stock"
+  ]
  },
  "bl-foster": {
   "cat": "shoe",
@@ -3501,112 +3560,112 @@
   ]
  },
  "cc-chore-putty": {
-  "name": "Community Clothing chore jacket, putty",
-  "shop": "Community Clothing",
-  "cat": "coat",
-  "kind": "new",
-  "price": 42.0,
-  "url": "https://communityclothing.co.uk/products/mens-chore-jacket-putty",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Community Clothing chore jacket, putty",
+  "note": "Made in a British factory. 70% off, which is as cheap as these get.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 42,
+  "rank": 70,
+  "sets": [],
+  "shop": "Community Clothing",
+  "sizes": "L in stock",
   "style": [
    "quiet",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://communityclothing.co.uk/products/mens-chore-jacket-putty",
+  "was": 140,
   "wx": [
    "mild"
-  ],
-  "note": "Made in a British factory. 70% off, which is as cheap as these get.",
-  "rank": 70,
-  "sets": [],
-  "was": 140.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "cc-george-overshirt": {
-  "name": "Community Clothing collarless overshirt, navy",
-  "shop": "Community Clothing",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 59.5,
-  "url": "https://communityclothing.co.uk/products/mens-george-lightweight-collarless-overshirt-navy",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "minimal",
-   "casual"
-  ],
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Community Clothing collarless overshirt, navy",
+  "note": "Collarless, so it looks clean under a coat or on its own.",
   "occ": [
    "everyday",
    "smart"
   ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Collarless, so it looks clean under a coat or on its own.",
+  "price": 59.5,
   "rank": 360,
   "sets": [],
-  "was": 119.0,
-  "insize": true,
-  "sizes": "L in stock"
+  "shop": "Community Clothing",
+  "sizes": "L in stock",
+  "style": [
+   "minimal",
+   "casual"
+  ],
+  "url": "https://communityclothing.co.uk/products/mens-george-lightweight-collarless-overshirt-navy",
+  "was": 119,
+  "wx": [
+   "mild"
+  ]
  },
  "cc-joe-denim": {
-  "name": "Community Clothing Joe denim jacket, indigo",
-  "shop": "Community Clothing",
-  "cat": "coat",
-  "kind": "new",
-  "price": 44.7,
-  "url": "https://communityclothing.co.uk/products/mens-joe-denim-jacket-indigo",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Community Clothing Joe denim jacket, indigo",
+  "note": "British-made denim jacket, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 44.7,
+  "rank": 120,
+  "sets": [],
+  "shop": "Community Clothing",
+  "sizes": "L in stock",
   "style": [
    "casual",
    "street"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://communityclothing.co.uk/products/mens-joe-denim-jacket-indigo",
+  "was": 149,
   "wx": [
    "mild"
-  ],
-  "note": "British-made denim jacket, 70% off.",
-  "rank": 120,
-  "sets": [],
-  "was": 149.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "cc-parka-olive": {
-  "name": "Community Clothing parka, olive",
-  "shop": "Community Clothing",
-  "cat": "coat",
-  "kind": "new",
-  "price": 99.0,
-  "url": "https://communityclothing.co.uk/products/mens-parka-olive",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "outdoor",
-   "quiet"
-  ],
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Community Clothing parka, olive",
+  "note": "Long olive parka, made in Britain. Half price.",
   "occ": [
    "everyday"
   ],
-  "wx": [
-   "cold",
-   "wet"
-  ],
-  "note": "Long olive parka, made in Britain. Half price.",
+  "price": 99,
   "rank": 160,
   "sets": [
    "winter"
   ],
-  "was": 198.0,
-  "insize": true,
-  "sizes": "L in stock"
+  "shop": "Community Clothing",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "quiet"
+  ],
+  "url": "https://communityclothing.co.uk/products/mens-parka-olive",
+  "was": 198,
+  "wx": [
+   "cold",
+   "wet"
+  ]
  },
  "cc-polo": {
   "cat": "polo",
@@ -3688,31 +3747,85 @@
   ]
  },
  "ce-knit-jogger": {
-  "name": "Cernucci embroidered knitted joggers, chocolate brown",
-  "shop": "Cernucci",
-  "cat": "lounge",
-  "kind": "new",
-  "price": 20.99,
-  "url": "https://cernucci.com/products/embroidered-knitted-jogger-chocolate",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "lounge",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Cernucci embroidered knitted joggers, chocolate brown",
+  "note": "Brown knitted joggers, 70% off.",
+  "occ": [
+   "lounge"
+  ],
+  "price": 20.99,
+  "rank": 410,
+  "sets": [],
+  "shop": "Cernucci",
+  "sizes": "L in stock",
   "style": [
    "lounge",
    "street"
   ],
-  "occ": [
-   "lounge"
-  ],
+  "url": "https://cernucci.com/products/embroidered-knitted-jogger-chocolate",
+  "was": 69.99,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Brown knitted joggers, 70% off.",
-  "rank": 410,
-  "sets": [],
-  "was": 69.99,
+  ]
+ },
+ "ce-mesh-short": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
   "insize": true,
-  "sizes": "L in stock"
+  "kind": "new",
+  "name": "Cernucci relaxed mesh shorts, black",
+  "note": "Black mesh shorts for hot warehouse nights, 70% off.",
+  "occ": [
+   "party"
+  ],
+  "price": 13.49,
+  "rank": 340,
+  "sets": [
+   "holiday"
+  ],
+  "shop": "Cernucci",
+  "sizes": "L in stock",
+  "style": [
+   "rave"
+  ],
+  "url": "https://cernucci.com/products/mesh-logo-short-black",
+  "was": 44.99,
+  "wx": [
+   "warm"
+  ]
+ },
+ "ce-track-pant": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Cernucci relaxed taped track pants, charcoal",
+  "note": "Loose track pants with side taping, half price.",
+  "occ": [
+   "party",
+   "lounge"
+  ],
+  "price": 32.49,
+  "rank": 220,
+  "sets": [],
+  "shop": "Cernucci",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "street"
+  ],
+  "url": "https://cernucci.com/products/mens-relaxed-poly-smooth-taping-track-pant-charcoal",
+  "was": 64.99,
+  "wx": [
+   "mild"
+  ]
  },
  "clarks-banbury": {
   "cat": "shoe",
@@ -3892,54 +4005,54 @@
   ]
  },
  "cos-ladder-cream": {
-  "name": "COS ladder-stitch wool jumper, cream",
-  "shop": "COS",
-  "cat": "knit",
-  "kind": "new",
-  "price": 109,
-  "url": "https://www.cos.com/en-gb/men/menswear/knitwear/jumpers/wool/product/ladder-stitch-wool-jumper-cream-1314507001",
-  "checked": "2026-06-05",
   "added": "2026-10-05",
-  "style": [
-   "minimal",
-   "quiet"
-  ],
+  "cat": "knit",
+  "checked": "2026-06-05",
+  "gift": true,
+  "kind": "new",
+  "name": "COS ladder-stitch wool jumper, cream",
+  "note": "Textured cream wool, relaxed fit. The one change of texture a plain outfit needs.",
   "occ": [
    "everyday",
    "smart"
   ],
-  "wx": [
-   "cold"
-  ],
-  "note": "Textured cream wool, relaxed fit. The one change of texture a plain outfit needs.",
+  "price": 109,
   "rank": 420,
   "sets": [],
-  "gift": true
- },
- "cos-tipped-merino": {
-  "name": "COS contrast-tipped merino jumper, charcoal",
   "shop": "COS",
-  "cat": "knit",
-  "kind": "new",
-  "price": 95,
-  "url": "https://www.cos.com/en-gb/men/menswear/knitwear/jumpers/merino/product/layered-merino-wool-jumper-charcoal-1293211001",
-  "checked": "2026-06-01",
-  "added": "2026-10-05",
   "style": [
    "minimal",
    "quiet"
   ],
+  "url": "https://www.cos.com/en-gb/men/menswear/knitwear/jumpers/wool/product/ladder-stitch-wool-jumper-cream-1314507001",
+  "wx": [
+   "cold"
+  ]
+ },
+ "cos-tipped-merino": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-06-01",
+  "kind": "new",
+  "name": "COS contrast-tipped merino jumper, charcoal",
+  "note": "Relaxed merino crew with a double-edged neck and cuffs. Plain enough for the Minimal tab, soft enough to wear every day.",
   "occ": [
    "smart",
    "everyday"
   ],
+  "price": 95,
+  "rank": 330,
+  "sets": [],
+  "shop": "COS",
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "url": "https://www.cos.com/en-gb/men/menswear/knitwear/jumpers/merino/product/layered-merino-wool-jumper-charcoal-1293211001",
   "wx": [
    "cold",
    "mild"
-  ],
-  "note": "Relaxed merino crew with a double-edged neck and cuffs. Plain enough for the Minimal tab, soft enough to wear every day.",
-  "rank": 330,
-  "sets": []
+  ]
  },
  "ct-belt-black": {
   "cat": "acc",
@@ -4882,31 +4995,31 @@
   ]
  },
  "cv-chuck70": {
-  "name": "Converse Chuck 70 high tops, black",
-  "shop": "Converse",
-  "cat": "shoe",
-  "kind": "new",
-  "price": 58.99,
-  "url": "https://www.converse.com/uk/en/products/men/mens-collections/mens-chuck-70",
-  "checked": "2026-09-20",
   "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-09-20",
+  "kind": "new",
+  "name": "Converse Chuck 70 high tops, black",
+  "note": "Thicker canvas and more cushioning than the standard All Star. The link opens the Chuck 70 range; pick the black high top. From £58.99 depending on colour.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 58.99,
+  "rank": 290,
+  "sets": [],
+  "shop": "Converse",
   "style": [
    "street",
    "casual",
    "rave"
   ],
-  "occ": [
-   "everyday",
-   "party"
-  ],
+  "url": "https://www.converse.com/uk/en/products/men/mens-collections/mens-chuck-70",
+  "was": 90,
   "wx": [
    "mild",
    "warm"
-  ],
-  "note": "Thicker canvas and more cushioning than the standard All Star. The link opens the Chuck 70 range; pick the black high top. From £58.99 depending on colour.",
-  "rank": 290,
-  "sets": [],
-  "was": 90
+  ]
  },
  "cw-belmar": {
   "cat": "coat",
@@ -5010,106 +5123,107 @@
   ]
  },
  "dc-3in1-green": {
-  "name": "Quechua MH500 3-in-1 waterproof jacket, green",
-  "shop": "Decathlon",
-  "cat": "coat",
-  "kind": "new",
-  "price": 79.99,
-  "url": "https://www.decathlon.co.uk/p/mens-3in1-waterproof-hiking-jacket-10degc-mh500-mountain-green/147553/c277c328m8929276",
-  "checked": "2026-07-04",
   "added": "2026-10-05",
-  "style": [
-   "outdoor"
-  ],
+  "cat": "coat",
+  "checked": "2026-07-04",
+  "kind": "new",
+  "name": "Quechua MH500 3-in-1 waterproof jacket, green",
+  "note": "Waterproof shell with a zip-out warm layer, rated to -10°C. Three jackets for the price of one.",
   "occ": [
    "everyday"
   ],
-  "wx": [
-   "wet",
-   "cold",
-   "mild"
-  ],
-  "note": "Waterproof shell with a zip-out warm layer, rated to -10°C. Three jackets for the price of one.",
+  "price": 79.99,
   "rank": 150,
   "sets": [
    "winter"
   ],
-  "was": 99.99
+  "shop": "Decathlon",
+  "style": [
+   "outdoor"
+  ],
+  "url": "https://www.decathlon.co.uk/p/mens-3in1-waterproof-hiking-jacket-10degc-mh500-mountain-green/147553/c277c328m8929276",
+  "was": 99.99,
+  "wx": [
+   "wet",
+   "cold",
+   "mild"
+  ]
  },
  "dc-mh100-brown": {
-  "name": "Quechua MH100 half-zip fleece, brown",
-  "shop": "Decathlon",
-  "cat": "knit",
-  "kind": "new",
-  "price": 9.99,
-  "url": "https://www.decathlon.co.uk/p/men-s-mountain-hiking-fleece-mh100-half-zip-brown/312360/c101m8947503",
-  "checked": "2026-07-04",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-07-04",
+  "kind": "new",
+  "name": "Quechua MH100 half-zip fleece, brown",
+  "note": "£10 fleece with more than 21,000 reviews. Brown looks less like hiking kit than black or blue.",
+  "occ": [
+   "everyday",
+   "lounge"
+  ],
+  "price": 9.99,
+  "rank": 140,
+  "sets": [],
+  "shop": "Decathlon",
   "style": [
    "outdoor",
    "casual",
    "lounge"
   ],
-  "occ": [
-   "everyday",
-   "lounge"
-  ],
+  "url": "https://www.decathlon.co.uk/p/men-s-mountain-hiking-fleece-mh100-half-zip-brown/312360/c101m8947503",
   "wx": [
    "cold",
    "mild"
-  ],
-  "note": "£10 fleece with more than 21,000 reviews. Brown looks less like hiking kit than black or blue.",
-  "rank": 140,
-  "sets": []
+  ]
  },
  "dc-mh500-grey": {
-  "name": "Quechua MH500 full-zip hiking fleece, grey",
-  "shop": "Decathlon",
-  "cat": "knit",
-  "kind": "new",
-  "price": 24.99,
-  "url": "https://www.decathlon.co.uk/p/mens-mountain-hiking-fleece-jacket-mh500-full-zip-grey/341204/c33m8758029",
-  "checked": "2026-07-20",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-07-20",
+  "kind": "new",
+  "name": "Quechua MH500 full-zip hiking fleece, grey",
+  "note": "Over 2,800 reviews. Warm, plain grey, and cheap enough to keep one in the car.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 24.99,
+  "rank": 180,
+  "sets": [],
+  "shop": "Decathlon",
   "style": [
    "outdoor",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.decathlon.co.uk/p/mens-mountain-hiking-fleece-jacket-mh500-full-zip-grey/341204/c33m8758029",
   "wx": [
    "cold",
    "mild"
-  ],
-  "note": "Over 2,800 reviews. Warm, plain grey, and cheap enough to keep one in the car.",
-  "rank": 180,
-  "sets": []
+  ]
  },
  "end-ymc-waffle": {
-  "name": "YMC Almost Grown waffle sweatshirt, off white",
-  "shop": "END.",
-  "cat": "knit",
-  "kind": "new",
-  "price": 81,
-  "url": "https://www.endclothing.com/gb/ymc-almost-grown-waffle-sweatshirt-p7yma-10.html",
-  "checked": "2026-05-31",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "YMC Almost Grown waffle sweatshirt, off white",
+  "note": "Waffle texture in off white, 45% off. One textured piece against plain trousers.",
+  "occ": [
+   "everyday"
+  ],
+  "prev": 81,
+  "price": 74,
+  "rank": 500,
+  "sets": [],
+  "shop": "END.",
   "style": [
    "minimal",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.endclothing.com/gb/ymc-almost-grown-waffle-sweatshirt-p7yma-10.html",
+  "was": 135,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Waffle texture in off white, 40% off. One textured piece against plain trousers.",
-  "rank": 500,
-  "sets": [],
-  "was": 135
+  ]
  },
  "fa-boxworth": {
   "cat": "shirt",
@@ -5370,56 +5484,56 @@
   ]
  },
  "fa-netherton-cord": {
-  "name": "Farah Netherton cord shirt, ecru",
-  "shop": "Farah",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 34.0,
-  "url": "https://www.farah.co.uk/products/netherton-corduroy-shirt-beige-f4whf004gp-280",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Farah Netherton cord shirt, ecru",
+  "note": "Bedford cord shirt in ecru. 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 34,
+  "rank": 220,
+  "sets": [],
+  "shop": "Farah",
+  "sizes": "L in stock",
   "style": [
    "quiet",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.farah.co.uk/products/netherton-corduroy-shirt-beige-f4whf004gp-280",
+  "was": 85,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Bedford cord shirt in ecru. 60% off.",
-  "rank": 220,
-  "sets": [],
-  "was": 85.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "fa-ralph-overshirt": {
-  "name": "Farah Ralph overshirt, green",
-  "shop": "Farah",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 38.0,
-  "url": "https://www.farah.co.uk/products/ralph-overshirt-green-f4wsg035gp-328",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "casual"
-  ],
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Farah Ralph overshirt, green",
+  "note": "Green overshirt, 60% off.",
   "occ": [
    "everyday"
   ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Green overshirt, 60% off.",
+  "price": 38,
   "rank": 350,
   "sets": [],
-  "was": 95.0,
-  "insize": true,
-  "sizes": "L in stock"
+  "shop": "Farah",
+  "sizes": "L in stock",
+  "style": [
+   "casual"
+  ],
+  "url": "https://www.farah.co.uk/products/ralph-overshirt-green-f4wsg035gp-328",
+  "was": 95,
+  "wx": [
+   "mild"
+  ]
  },
  "fa-ramsey-navy": {
   "cat": "coat",
@@ -5479,31 +5593,31 @@
   ]
  },
  "fa-sands-check": {
-  "name": "Farah Sands check shirt, navy",
-  "shop": "Farah",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 36.0,
-  "url": "https://www.farah.co.uk/products/sands-check-shirt-blue-f4wsg034gp-412",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Farah Sands check shirt, navy",
+  "note": "Navy check shirt, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 36,
+  "rank": 370,
+  "sets": [],
+  "shop": "Farah",
+  "sizes": "L in stock",
   "style": [
    "casual",
    "quiet"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.farah.co.uk/products/sands-check-shirt-blue-f4wsg034gp-412",
+  "was": 90,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Navy check shirt, 60% off.",
-  "rank": 370,
-  "sets": [],
-  "was": 90.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "fa-spencer-cord": {
   "cat": "shirt",
@@ -5561,210 +5675,291 @@
   ]
  },
  "fat-cord-green": {
-  "name": "FatFace straight cord chinos, dusky green",
-  "shop": "FatFace",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 32,
-  "url": "https://www.fatface.com/shop/mens/clothing/all-trousers/trousers/f/style-cord",
-  "checked": "2026-08-10",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "casual"
-  ],
+  "cat": "trouser",
+  "checked": "2026-08-10",
+  "kind": "new",
+  "name": "FatFace straight cord chinos, dusky green",
+  "note": "Straight-leg needlecord in a muted green. The link opens FatFace's cord trousers; pick dusky green, 34W 32L.",
   "occ": [
    "everyday",
    "smart"
   ],
-  "wx": [
-   "cold",
-   "mild"
-  ],
-  "note": "Straight-leg needlecord in a muted green. The link opens FatFace's cord trousers; pick dusky green, 34W 32L.",
+  "price": 32,
   "rank": 230,
   "sets": [
    "winter"
   ],
-  "was": 55
+  "shop": "FatFace",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.fatface.com/shop/mens/clothing/all-trousers/trousers/f/style-cord",
+  "was": 55,
+  "wx": [
+   "cold",
+   "mild"
+  ]
  },
  "fi-coho-sweat": {
-  "name": "Finisterre Surf Club sweatshirt, royal blue",
-  "shop": "Finisterre",
-  "cat": "knit",
-  "kind": "new",
-  "price": 40.0,
-  "url": "https://finisterre.com/products/mens-organic-cotton-surf-club-coho-sweatshirt-royal-blue",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Finisterre Surf Club sweatshirt, royal blue",
+  "note": "One colourful piece. Half price.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 40,
+  "rank": 430,
+  "sets": [],
+  "shop": "Finisterre",
+  "sizes": "L in stock",
   "style": [
    "casual"
   ],
+  "url": "https://finisterre.com/products/mens-organic-cotton-surf-club-coho-sweatshirt-royal-blue",
+  "was": 80,
+  "wx": [
+   "mild"
+  ]
+ },
+ "fi-petrel-check": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Finisterre Petrel check shirt, blue",
+  "note": "Brushed check shirt, 40% off.",
   "occ": [
    "everyday"
   ],
-  "wx": [
-   "mild"
-  ],
-  "note": "One colourful piece. Half price.",
-  "rank": 430,
+  "price": 57,
+  "rank": 440,
   "sets": [],
-  "was": 80.0,
-  "insize": true,
-  "sizes": "L in stock"
- },
- "fi-petrel-check": {
-  "name": "Finisterre Petrel check shirt, blue",
   "shop": "Finisterre",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 57.0,
-  "url": "https://finisterre.com/products/mens-organic-cotton-petrel-check-shirt-bay-blue-check-shirt",
-  "checked": "2026-10-05",
-  "added": "2026-10-05",
+  "sizes": "L in stock",
   "style": [
    "quiet",
    "outdoor"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://finisterre.com/products/mens-organic-cotton-petrel-check-shirt-bay-blue-check-shirt",
+  "was": 95,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Brushed check shirt, 40% off.",
-  "rank": 440,
-  "sets": [],
-  "was": 95.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "fi-rincon-chino": {
-  "name": "Finisterre Rincon straight chinos, flint",
-  "shop": "Finisterre",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 57.0,
-  "url": "https://finisterre.com/products/mens-organic-cotton-rincon-straight-fit-chino-flint",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Finisterre Rincon straight chinos, flint",
+  "note": "Organic cotton chinos from the Cornish surf brand. 40% off in 34W 32L.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 57,
+  "rank": 320,
+  "sets": [],
+  "shop": "Finisterre",
+  "sizes": "34W 32L in stock",
   "style": [
    "quiet",
    "outdoor"
   ],
+  "url": "https://finisterre.com/products/mens-organic-cotton-rincon-straight-fit-chino-flint",
+  "was": 95,
+  "wx": [
+   "mild"
+  ]
+ },
+ "fk-relaxed-black": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Folk relaxed fit shirt, charcoal melange",
+  "note": "Plain soft charcoal shirt from the London label. 57% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 60,
+  "rank": 140,
+  "sets": [],
+  "shop": "Folk",
+  "sizes": "L in stock",
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "url": "https://www.folkclothing.com/products/folk-relaxed-fit-shirt-black-melange",
+  "was": 140,
+  "wx": [
+   "mild"
+  ]
+ },
+ "fk-relaxed-blue": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Folk relaxed fit shirt, brushed blue",
+  "note": "Brushed blue cotton, 57% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 60,
+  "rank": 290,
+  "sets": [],
+  "shop": "Folk",
+  "sizes": "L in stock",
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "url": "https://www.folkclothing.com/products/folk-relaxed-fit-shirt-brushed-blue",
+  "was": 140,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "fk-zaki-black": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Folk Zaki jacket, soft black waffle check",
+  "note": "Textured black jacket: the one interesting piece in a plain outfit. 57% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 100,
+  "rank": 370,
+  "sets": [],
+  "shop": "Folk",
+  "sizes": "L in stock",
+  "style": [
+   "minimal"
+  ],
+  "url": "https://www.folkclothing.com/products/zaki-jacket-soft-black-waffle-check",
+  "was": 230,
+  "wx": [
+   "mild"
+  ]
+ },
+ "fl-nb740": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-08-09",
+  "kind": "new",
+  "name": "New Balance 740, brown and green",
+  "note": "Chunky 2000s runner, £39 off at the last check. Earthy colours that go with olive and stone.",
   "occ": [
    "everyday"
   ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Organic cotton chinos from the Cornish surf brand. 40% off in 34W 32L.",
-  "rank": 320,
-  "sets": [],
-  "was": 95.0,
-  "insize": true,
-  "sizes": "34W 32L in stock"
- },
- "fl-nb740": {
-  "name": "New Balance 740, brown and green",
-  "shop": "Foot Locker",
-  "cat": "shoe",
-  "kind": "new",
   "price": 60,
-  "url": "https://www.footlocker.co.uk/en/product/new-balance-740-men-shoes/314209948604.html",
-  "checked": "2026-08-09",
-  "added": "2026-10-05",
+  "rank": 300,
+  "sets": [],
+  "shop": "Foot Locker",
   "style": [
    "street",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.footlocker.co.uk/en/product/new-balance-740-men-shoes/314209948604.html",
+  "was": 99.99,
   "wx": [
    "mild",
    "warm"
-  ],
-  "note": "Chunky 2000s runner, £39 off at the last check. Earthy colours that go with olive and stone.",
-  "rank": 300,
-  "sets": [],
-  "was": 99.99
+  ]
  },
  "ga-check-shacket": {
-  "name": "George micro-check shacket, brown",
-  "shop": "George at Asda",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 35,
-  "url": "https://direct.asda.com/george/men/coats-jackets/brown-micro-check-shacket/GEM1435149,default,pd.html",
-  "checked": "2026-09-29",
   "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-09-29",
+  "kind": "new",
+  "name": "George micro-check shacket, brown",
+  "note": "Heavy overshirt in a small brown check. Wear it open as a light jacket.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 35,
+  "rank": 170,
+  "sets": [],
+  "shop": "George at Asda",
   "style": [
    "casual",
    "street"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://direct.asda.com/george/men/coats-jackets/brown-micro-check-shacket/GEM1435149,default,pd.html",
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Heavy overshirt in a small brown check. Wear it open as a light jacket.",
-  "rank": 170,
-  "sets": []
+  ]
  },
  "ga-ribbed-olive": {
-  "name": "George ribbed crew-neck jumper, olive",
-  "shop": "George at Asda",
-  "cat": "knit",
-  "kind": "new",
-  "price": 16,
-  "url": "https://direct.asda.com/george/men/jumpers/olive-green-ribbed-crew-neck-jumper/GEM1439841,default,pd.html",
-  "checked": "2026-09-29",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-09-29",
+  "kind": "new",
+  "name": "George ribbed crew-neck jumper, olive",
+  "note": "From the Micah Richards range. A Yahoo test in September said it passes for far more than £16.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 16,
+  "rank": 100,
+  "sets": [],
+  "shop": "George at Asda",
   "style": [
    "casual",
    "quiet",
    "street"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://direct.asda.com/george/men/jumpers/olive-green-ribbed-crew-neck-jumper/GEM1439841,default,pd.html",
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "From the Micah Richards range. A Yahoo test in September said it passes for far more than £16.",
-  "rank": 100,
-  "sets": []
+  ]
  },
  "ga-shearling-jacket": {
-  "name": "George faux-leather jacket with shearling-style collar, brown",
-  "shop": "George at Asda",
-  "cat": "coat",
-  "kind": "new",
-  "price": 50,
-  "url": "https://direct.asda.com/george/men/coats-jackets/brown-shearling-collar-faux-leather-jacket/GEM1435256,default,pd.html",
-  "checked": "2026-09-29",
   "added": "2026-10-05",
-  "style": [
-   "street",
-   "casual"
-  ],
+  "cat": "coat",
+  "checked": "2026-09-29",
+  "kind": "new",
+  "name": "George faux-leather jacket with shearling-style collar, brown",
+  "note": "A £50 take on the aviator jacket. One strong piece; keep the rest plain.",
   "occ": [
    "everyday",
    "party"
   ],
-  "wx": [
-   "cold",
-   "mild"
-  ],
-  "note": "A £50 take on the aviator jacket. One strong piece; keep the rest plain.",
+  "price": 50,
   "rank": 320,
   "sets": [
    "winter"
+  ],
+  "shop": "George at Asda",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "url": "https://direct.asda.com/george/men/coats-jackets/brown-shearling-collar-faux-leather-jacket/GEM1435256,default,pd.html",
+  "wx": [
+   "cold",
+   "mild"
   ]
  },
  "gf-barneys-card": {
@@ -5912,136 +6107,84 @@
    "wet"
   ]
  },
- "gs-crest-navy": {
-  "name": "Gymshark Crest straight-leg joggers, navy",
-  "shop": "Gymshark",
-  "cat": "lounge",
-  "kind": "new",
-  "price": 28,
-  "url": "https://uk.gymshark.com/products/gymshark-crest-straight-leg-joggers-navy-ss24",
-  "checked": "2026-05-26",
-  "added": "2026-10-05",
-  "style": [
-   "lounge",
-   "casual"
-  ],
-  "occ": [
-   "lounge",
-   "everyday"
-  ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "Straight leg, so they look like trousers rather than gym kit.",
-  "rank": 480,
-  "sets": [],
-  "was": 40
- },
  "gs-restday-indigo": {
-  "name": "Gymshark Rest Day Sweats joggers, indigo blue marl",
-  "shop": "Gymshark",
-  "cat": "lounge",
-  "kind": "new",
-  "price": 22.5,
-  "url": "https://uk.gymshark.com/products/gymshark-rest-day-sweats-joggers-bros-indigo-blue-marl-aw24",
-  "checked": "2026-09-15",
   "added": "2026-10-05",
-  "style": [
-   "lounge",
-   "street"
-  ],
+  "cat": "lounge",
+  "checked": "2026-09-15",
+  "kind": "new",
+  "name": "Gymshark Rest Day Sweats joggers, indigo blue marl",
+  "note": "Half price. 345 reviewers say they run large, so M rather than L.",
   "occ": [
    "lounge"
   ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "Half price. 345 reviewers say they run large, so M rather than L.",
+  "price": 22.5,
   "rank": 250,
   "sets": [],
-  "was": 45
- },
- "gs-restday-qz": {
-  "name": "Gymshark Rest Day Sweats quarter-zip, black",
   "shop": "Gymshark",
-  "cat": "knit",
-  "kind": "new",
-  "price": 35,
-  "url": "https://uk.gymshark.com/products/gymshark-rest-day-sweats-1-4-zip-black-aw22",
-  "checked": "2026-05-25",
-  "added": "2026-10-05",
   "style": [
    "lounge",
    "street"
   ],
-  "occ": [
-   "lounge",
-   "everyday"
-  ],
+  "url": "https://uk.gymshark.com/products/gymshark-rest-day-sweats-joggers-bros-indigo-blue-marl-aw24",
+  "was": 45,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Oversized quarter-zip sweat.",
-  "rank": 600,
-  "sets": [],
-  "was": 50
+  ]
  },
  "hc-stripe-oxford": {
-  "name": "Hawes & Curtis washed Oxford shirt, blue and white stripe",
-  "shop": "Hawes & Curtis",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 25,
-  "url": "https://www.hawesandcurtis.co.uk/blue-and-white-stripe-oxford-shirt-button-down-collar-wesfa003-b04",
-  "checked": "2026-08-26",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "casual"
-  ],
+  "cat": "shirt",
+  "checked": "2026-08-26",
+  "kind": "new",
+  "name": "Hawes & Curtis washed Oxford shirt, blue and white stripe",
+  "note": "Washed, button-down and regular fit, so it does not need ironing. A Jermyn Street shirt at high-street money.",
   "occ": [
    "everyday",
    "smart"
   ],
+  "price": 25,
+  "rank": 120,
+  "sets": [],
+  "shop": "Hawes & Curtis",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.hawesandcurtis.co.uk/blue-and-white-stripe-oxford-shirt-button-down-collar-wesfa003-b04",
+  "was": 65,
   "wx": [
    "mild",
    "cold",
    "warm"
-  ],
-  "note": "Washed, button-down and regular fit, so it does not need ironing. A Jermyn Street shirt at high-street money.",
-  "rank": 120,
-  "sets": [],
-  "was": 65
+  ]
  },
  "hc-white-oxford": {
-  "name": "Hawes & Curtis easy-iron white Oxford shirt, relaxed slim fit",
-  "shop": "Hawes & Curtis",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 55,
-  "url": "https://www.hawesandcurtis.co.uk/easy-iron-white-relaxed-slim-fit-oxford-shirt-button-down-collar-sspzb303-n01",
-  "checked": "2026-05-24",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "minimal"
-  ],
+  "cat": "shirt",
+  "checked": "2026-05-24",
+  "kind": "new",
+  "name": "Hawes & Curtis easy-iron white Oxford shirt, relaxed slim fit",
+  "note": "Two-ply cotton Oxford with a button-down collar. Relaxed slim is their roomiest cut.",
   "occ": [
    "smart",
    "event"
   ],
+  "offer": "4 for £139 across their shirts",
+  "price": 55,
+  "rank": 360,
+  "sets": [],
+  "shop": "Hawes & Curtis",
+  "style": [
+   "quiet",
+   "minimal"
+  ],
+  "url": "https://www.hawesandcurtis.co.uk/easy-iron-white-relaxed-slim-fit-oxford-shirt-button-down-collar-sspzb303-n01",
   "wx": [
    "mild",
    "cold",
    "warm"
-  ],
-  "note": "Two-ply cotton Oxford with a button-down collar. Relaxed slim is their roomiest cut.",
-  "rank": 360,
-  "sets": [],
-  "offer": "4 for £139 across their shirts"
+  ]
  },
  "herring-amalfi": {
   "cat": "shoe",
@@ -6184,6 +6327,116 @@
    "warm"
   ]
  },
+ "hk-coterie-black": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Hikerdelic Coterie quilted jacket, black",
+  "note": "Black quilted jacket, 31% off.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 90,
+  "rank": 420,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Hikerdelic",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "rave"
+  ],
+  "url": "https://www.hikerdelic.com/products/hikerdelic-coterie-quilted-jacket-black",
+  "was": 130,
+  "wx": [
+   "cold"
+  ]
+ },
+ "hk-drifter": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Hikerdelic Drifter fleece, blue and lime",
+  "note": "Two-tone fleece for festivals, half price.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 35,
+  "rank": 410,
+  "sets": [],
+  "shop": "Hikerdelic",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "street"
+  ],
+  "url": "https://www.hikerdelic.com/products/hikerdelic-drifter-fleece-blue-lime",
+  "was": 70,
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "hk-libero-navy": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Hikerdelic Libero jacket, navy",
+  "note": "Northern outdoor-casual brand. Navy shell, 38% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 50,
+  "rank": 310,
+  "sets": [],
+  "shop": "Hikerdelic",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "outdoor"
+  ],
+  "url": "https://www.hikerdelic.com/products/hikerdelic-libero-jacket-peacoat-navy",
+  "was": 80,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "hk-petroglyph": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Hikerdelic Petroglyph print trousers, khaki green",
+  "note": "Loose walking trousers with an all-over print: the one loud piece in a plain outfit. 46% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 35,
+  "rank": 400,
+  "sets": [],
+  "shop": "Hikerdelic",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "street"
+  ],
+  "url": "https://www.hikerdelic.com/products/hikerdelic-petroglyph-pant-khaki",
+  "was": 65,
+  "wx": [
+   "mild"
+  ]
+ },
  "hm-knit-polo": {
   "cat": "polo",
   "checked": "2026-10-05",
@@ -6285,6 +6538,171 @@
   "url": "https://www2.hm.com/en_gb/men/shop-by-product/shirts.html",
   "wx": [
    "warm"
+  ]
+ },
+ "hw-black-jean": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "howies regular organic jeans, black rinse",
+  "note": "Black organic denim in 34R for £29, 63% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 29,
+  "rank": 140,
+  "sets": [],
+  "shop": "howies",
+  "sizes": "34R in stock",
+  "style": [
+   "minimal",
+   "street",
+   "casual"
+  ],
+  "url": "https://www.howies.co.uk/products/mens-regular-organic-jean-rinse-black",
+  "was": 79,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "hw-escly-green": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "howies Escly trousers, rifle green",
+  "note": "Tough green trousers in 34R, 54% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 39,
+  "rank": 330,
+  "sets": [],
+  "shop": "howies",
+  "sizes": "34R in stock",
+  "style": [
+   "quiet",
+   "outdoor"
+  ],
+  "url": "https://www.howies.co.uk/products/mens-escly-trouser-rifle-green",
+  "was": 85,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "hw-frankie-hoody": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "howies Frankie organic hoodie, pale green",
+  "note": "Organic terry hoodie for £25.",
+  "occ": [
+   "everyday",
+   "lounge"
+  ],
+  "price": 25,
+  "rank": 350,
+  "sets": [],
+  "shop": "howies",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "lounge"
+  ],
+  "url": "https://www.howies.co.uk/products/mens-frankie-organic-terry-hoody-iceberg-green",
+  "was": 65,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "hw-hickory-sweat": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "howies Hickory organic sweatshirt, faded blue",
+  "note": "Plain organic sweatshirt for £25.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 25,
+  "rank": 380,
+  "sets": [],
+  "shop": "howies",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "lounge"
+  ],
+  "url": "https://www.howies.co.uk/products/mens-hickory-organic-crew-sweatshirt-faded-denim",
+  "was": 55,
+  "wx": [
+   "mild"
+  ]
+ },
+ "hw-loki-polo": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "howies Loki long-sleeve polo, burgundy",
+  "note": "Long-sleeve organic polo for £15, 67% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 15,
+  "rank": 360,
+  "sets": [],
+  "shop": "howies",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "quiet"
+  ],
+  "url": "https://www.howies.co.uk/products/loki-long-sleeved-organic-polo-shirt-port-royale",
+  "was": 45,
+  "wx": [
+   "mild"
+  ]
+ },
+ "hw-walterston-cord": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "howies Walterston cord trousers, fudge (dark red-brown)",
+  "note": "Welsh brand's cord trousers in 34R, 56% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 39,
+  "rank": 190,
+  "sets": [
+   "winter"
+  ],
+  "shop": "howies",
+  "sizes": "34R in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.howies.co.uk/products/mens-walterston-corduroy-trouser-fudge",
+  "was": 89,
+  "wx": [
+   "cold",
+   "mild"
   ]
  },
  "jb-marsden": {
@@ -6403,559 +6821,563 @@
   "price": 35,
   "rank": 137,
   "shop": "John Lewis",
+  "style": [
+   "quiet",
+   "work"
+  ],
   "url": "https://www.johnlewis.com/browse/men/mens-hats-gloves-scarves/wool/_/N-7l1qZord1",
   "wx": [
    "cold"
   ]
  },
  "jo-hillside-2pk": {
-  "name": "Joules Hillside quarter-zip jumpers, blue and navy, 2-pack",
-  "shop": "Joules",
-  "cat": "knit",
-  "kind": "new",
-  "price": 51,
-  "url": "https://www.joules.com/style/su658558/f65827",
-  "checked": "2026-06-14",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "casual"
-  ],
+  "cat": "knit",
+  "checked": "2026-06-14",
+  "kind": "new",
+  "name": "Joules Hillside quarter-zip jumpers, blue and navy, 2-pack",
+  "note": "Two cotton quarter-zips for about £25 each.",
   "occ": [
    "everyday",
    "smart"
   ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "Two cotton quarter-zips for about £25 each.",
+  "price": 51,
   "rank": 200,
   "sets": [],
-  "was": 85
- },
- "jo-hillside-khaki": {
-  "name": "Joules Hillside quarter-zip cotton jumper, khaki green",
   "shop": "Joules",
-  "cat": "knit",
-  "kind": "new",
-  "price": 49.5,
-  "url": "https://www.joules.com/style/su224413/g48072",
-  "checked": "2026-08-23",
-  "added": "2026-10-05",
   "style": [
    "quiet",
    "casual"
   ],
+  "url": "https://www.joules.com/style/su658558/f65827",
+  "was": 85,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "jo-hillside-khaki": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-08-23",
+  "kind": "new",
+  "name": "Joules Hillside quarter-zip cotton jumper, khaki green",
+  "note": "Their best-selling knit: substantial cotton, quarter zip, pulls on over a shirt.",
   "occ": [
    "everyday",
    "smart"
   ],
+  "offer": "2 for £89 with other knits and sweats",
+  "price": 49.5,
+  "rank": 390,
+  "sets": [],
+  "shop": "Joules",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.joules.com/style/su224413/g48072",
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Their best-selling knit: substantial cotton, quarter zip, pulls on over a shirt.",
-  "rank": 390,
-  "sets": [],
-  "offer": "2 for £89 with other knits and sweats"
+  ]
  },
  "js-carhartt-singleknee": {
-  "name": "Carhartt WIP Single Knee canvas trousers, stone",
-  "shop": "Jean Store",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 81.0,
-  "url": "https://jeanstore.co.uk/products/carhartt-wip-single-knee-pant-relaxed-fit-canvas-trousers-shale-stone-canvas",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "street",
-   "casual"
-  ],
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt WIP Single Knee canvas trousers, stone",
+  "note": "Heavy canvas work trousers that soften with wear. Stone goes with every top here.",
   "occ": [
    "everyday"
   ],
+  "price": 81,
+  "rank": 230,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "34W 32L in stock",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "url": "https://jeanstore.co.uk/products/carhartt-wip-single-knee-pant-relaxed-fit-canvas-trousers-shale-stone-canvas",
+  "was": 135,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Heavy canvas work trousers that soften with wear. Stone goes with every top here.",
-  "rank": 230,
-  "sets": [],
-  "was": 135.0,
-  "insize": true,
-  "sizes": "34W 32L in stock"
+  ]
  },
  "js-carhartt-sweatjkt": {
-  "name": "Carhartt WIP Active sweat jacket, washed black",
-  "shop": "Jean Store",
-  "cat": "knit",
-  "kind": "new",
-  "price": 82.5,
-  "url": "https://jeanstore.co.uk/products/carhartt-wip-active-sweat-jacket-black-stone-washed",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "street",
-   "rave"
-  ],
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt WIP Active sweat jacket, washed black",
+  "note": "Zip hoodie in washed black, which looks softer than jet black.",
   "occ": [
    "everyday",
    "party"
   ],
+  "price": 82.5,
+  "rank": 330,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "rave"
+  ],
+  "url": "https://jeanstore.co.uk/products/carhartt-wip-active-sweat-jacket-black-stone-washed",
+  "was": 165,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Zip hoodie in washed black, which looks softer than jet black.",
-  "rank": 330,
-  "sets": [],
-  "was": 165.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "js-cs-beanie": {
-  "name": "Colorful Standard merino beanie, light grey",
-  "shop": "Jean Store",
-  "cat": "acc",
-  "kind": "new",
-  "price": 16.0,
-  "url": "https://jeanstore.co.uk/products/colorful-standard-merino-wool-beanie-snow-melange",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "minimal",
-   "quiet",
-   "street"
-  ],
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Colorful Standard merino beanie, light grey",
+  "note": "Plain merino beanie. Half price.",
   "occ": [
    "everyday"
   ],
-  "wx": [
-   "cold"
-  ],
-  "note": "Plain merino beanie. Half price.",
+  "price": 16,
   "rank": 380,
   "sets": [
    "winter"
   ],
-  "was": 32.0,
-  "gift": true
+  "shop": "Jean Store",
+  "style": [
+   "minimal",
+   "quiet",
+   "street"
+  ],
+  "url": "https://jeanstore.co.uk/products/colorful-standard-merino-wool-beanie-snow-melange",
+  "was": 32,
+  "wx": [
+   "cold"
+  ]
  },
  "js-cs-merino-qz": {
-  "name": "Colorful Standard merino quarter-zip, navy",
-  "shop": "Jean Store",
-  "cat": "knit",
-  "kind": "new",
-  "price": 77.5,
-  "url": "https://jeanstore.co.uk/products/colorful-standard-merino-wool-quarter-zip-sweater-navy-blue",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "gift": true,
+  "insize": true,
+  "kind": "new",
+  "name": "Colorful Standard merino quarter-zip, navy",
+  "note": "Plain merino quarter-zip with no logo. Half price.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 77.5,
+  "rank": 200,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "L in stock",
   "style": [
    "minimal",
    "quiet"
   ],
-  "occ": [
-   "everyday",
-   "smart"
-  ],
+  "url": "https://jeanstore.co.uk/products/colorful-standard-merino-wool-quarter-zip-sweater-navy-blue",
+  "was": 155,
   "wx": [
    "cold",
    "mild"
-  ],
-  "note": "Plain merino quarter-zip with no logo. Half price.",
-  "rank": 200,
-  "sets": [],
-  "was": 155.0,
-  "gift": true,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "js-dm-1460": {
-  "name": "Dr Martens 1460 smooth leather boots, black",
-  "shop": "Jean Store",
-  "cat": "shoe",
-  "kind": "new",
-  "price": 169,
-  "url": "https://jeanstore.co.uk/products/dr-martens-1460-smooth-leather-boots-black",
-  "checked": "2026-09-18",
   "added": "2026-10-05",
-  "style": [
-   "street",
-   "rave"
-  ],
+  "cat": "shoe",
+  "checked": "2026-09-18",
+  "kind": "new",
+  "name": "Dr Martens 1460 smooth leather boots, black",
+  "note": "The original 8-eye boot. Stiff for the first few weeks, then lasts for years. Survives a warehouse floor.",
   "occ": [
    "everyday",
    "party"
   ],
+  "price": 169,
+  "rank": 300,
+  "sets": [],
+  "shop": "Jean Store",
+  "style": [
+   "street",
+   "rave"
+  ],
+  "url": "https://jeanstore.co.uk/products/dr-martens-1460-smooth-leather-boots-black",
   "wx": [
    "cold",
    "wet",
    "mild"
-  ],
-  "note": "The original 8-eye boot. Stiff for the first few weeks, then lasts for years. Survives a warehouse floor.",
-  "rank": 300,
-  "sets": []
+  ]
  },
  "js-fp-bomber": {
-  "name": "Fred Perry folded-rib-collar bomber, navy",
-  "shop": "Jean Store",
-  "cat": "coat",
-  "kind": "new",
-  "price": 97.5,
-  "url": "https://jeanstore.co.uk/products/fred-perry-folded-rib-collar-bomber-jacket-navy",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "casual"
-  ],
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Fred Perry folded-rib-collar bomber, navy",
+  "note": "Neat navy bomber with a knitted collar. Half price.",
   "occ": [
    "everyday",
    "smart"
   ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Neat navy bomber with a knitted collar. Half price.",
+  "price": 97.5,
   "rank": 260,
   "sets": [],
-  "was": 195.0,
-  "insize": true,
-  "sizes": "L in stock"
- },
- "js-fp-pique-navy": {
-  "name": "Fred Perry crepe piqué polo, navy",
   "shop": "Jean Store",
-  "cat": "polo",
-  "kind": "new",
-  "price": 53.4,
-  "url": "https://jeanstore.co.uk/products/fred-perry-crepe-pique-polo-shirt-navy",
-  "checked": "2026-10-05",
-  "added": "2026-10-05",
+  "sizes": "L in stock",
   "style": [
    "quiet",
    "casual"
   ],
+  "url": "https://jeanstore.co.uk/products/fred-perry-folded-rib-collar-bomber-jacket-navy",
+  "was": 195,
+  "wx": [
+   "mild"
+  ]
+ },
+ "js-fp-pique-navy": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Fred Perry crepe piqué polo, navy",
+  "note": "Textured piqué polo with a small laurel logo.",
   "occ": [
    "everyday",
    "smart"
   ],
+  "price": 53.4,
+  "rank": 300,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://jeanstore.co.uk/products/fred-perry-crepe-pique-polo-shirt-navy",
+  "was": 89,
   "wx": [
    "warm",
    "mild"
-  ],
-  "note": "Textured piqué polo with a small laurel logo.",
-  "rank": 300,
-  "sets": [],
-  "was": 89.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "js-lee-boxy-tee": {
-  "name": "Lee Workwear boxy tee, washed black",
-  "shop": "Jean Store",
-  "cat": "polo",
-  "kind": "new",
-  "price": 17.4,
-  "url": "https://jeanstore.co.uk/products/lee-workwear-relaxed-boxy-tee-washed-black",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lee Workwear boxy tee, washed black",
+  "note": "Boxy heavy tee for £17.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 17.4,
+  "rank": 190,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "L in stock",
   "style": [
    "street",
    "rave"
   ],
-  "occ": [
-   "everyday",
-   "party"
-  ],
+  "url": "https://jeanstore.co.uk/products/lee-workwear-relaxed-boxy-tee-washed-black",
+  "was": 29,
   "wx": [
    "warm",
    "mild"
-  ],
-  "note": "Boxy heavy tee for £17.",
-  "rank": 190,
-  "sets": [],
-  "was": 29.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "js-lee-brooklyn": {
-  "name": "Lee Brooklyn straight jeans, dark wash",
-  "shop": "Jean Store",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 57.0,
-  "url": "https://jeanstore.co.uk/products/lee-brooklyn-straight-regular-fit-mens-jeans-jasper",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "casual"
-  ],
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lee Brooklyn straight jeans, dark wash",
+  "note": "Regular rise, straight leg, dark enough for a dinner out.",
   "occ": [
    "everyday",
    "smart"
   ],
+  "price": 57,
+  "rank": 170,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "34W 32L in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://jeanstore.co.uk/products/lee-brooklyn-straight-regular-fit-mens-jeans-jasper",
+  "was": 95,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Regular rise, straight leg, dark enough for a dinner out.",
-  "rank": 170,
-  "sets": [],
-  "was": 95.0,
-  "insize": true,
-  "sizes": "34W 32L in stock"
+  ]
  },
  "js-lee-overshirt": {
-  "name": "Lee relaxed overshirt, brown plaid",
-  "shop": "Jean Store",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 49.5,
-  "url": "https://jeanstore.co.uk/products/lee-relaxed-overshirt-arabica-plaid",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lee relaxed overshirt, brown plaid",
+  "note": "Brown check overshirt to wear open over a tee. Half price.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 49.5,
+  "rank": 250,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "L in stock",
   "style": [
    "casual",
    "street"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://jeanstore.co.uk/products/lee-relaxed-overshirt-arabica-plaid",
+  "was": 99,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Brown check overshirt to wear open over a tee. Half price.",
-  "rank": 250,
-  "sets": [],
-  "was": 99.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "js-levis-501": {
-  "name": "Levi's 501 Original jeans, light wash",
-  "shop": "Jean Store",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 60.0,
-  "url": "https://jeanstore.co.uk/products/levis®-501-original-regular-fit-mens-jeans-texas-rides",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Levi's 501 Original jeans, light wash",
+  "note": "The straight-leg classic, button fly, in a light wash. Non-stretch, so they mould to him. 40% off in his exact size.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 60,
+  "rank": 60,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "34W 32L in stock",
   "style": [
    "quiet",
    "casual",
    "street"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://jeanstore.co.uk/products/levis®-501-original-regular-fit-mens-jeans-texas-rides",
+  "was": 100,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "The straight-leg classic, button fly, in a light wash. Non-stretch, so they mould to him. 40% off in his exact size.",
-  "rank": 60,
-  "sets": [],
-  "was": 100.0,
-  "insize": true,
-  "sizes": "34W 32L in stock"
+  ]
  },
  "js-levis-568-ecru": {
-  "name": "Levi's 568 loose carpenter trousers, ecru",
-  "shop": "Jean Store",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 54.0,
-  "url": "https://jeanstore.co.uk/products/levis®-568-loose-straight-carpenter-pants-undyed-ecru-greige",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Levi's 568 loose carpenter trousers, ecru",
+  "note": "Undyed ecru denim with a hammer loop. An easy swap for black jeans.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 54,
+  "rank": 150,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "34W 32L in stock",
   "style": [
    "street",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://jeanstore.co.uk/products/levis®-568-loose-straight-carpenter-pants-undyed-ecru-greige",
+  "was": 90,
   "wx": [
    "mild",
    "warm"
-  ],
-  "note": "Undyed ecru denim with a hammer loop. An easy swap for black jeans.",
-  "rank": 150,
-  "sets": [],
-  "was": 90.0,
-  "insize": true,
-  "sizes": "34W 32L in stock"
+  ]
  },
  "js-levis-578": {
-  "name": "Levi's 578 baggy jeans, washed olive",
-  "shop": "Jean Store",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 60.0,
-  "url": "https://jeanstore.co.uk/products/levis®-578-baggy-fit-mens-jeans-long-drive-home-od",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "street"
-  ],
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Levi's 578 baggy jeans, washed olive",
+  "note": "Baggy fit in an over-dyed olive wash, without dragging. Fits the Street tab's wide-bottom, boxy-top shape.",
   "occ": [
    "everyday",
    "party"
   ],
+  "price": 60,
+  "rank": 90,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "34W 32L in stock",
+  "style": [
+   "street"
+  ],
+  "url": "https://jeanstore.co.uk/products/levis®-578-baggy-fit-mens-jeans-long-drive-home-od",
+  "was": 100,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Baggy fit in an over-dyed olive wash, without dragging. Fits the Street tab's wide-bottom, boxy-top shape.",
-  "rank": 90,
-  "sets": [],
-  "was": 100.0,
-  "insize": true,
-  "sizes": "34W 32L in stock"
+  ]
  },
  "js-levis-bayview": {
-  "name": "Levi's Bayview worker shirt, green",
-  "shop": "Jean Store",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 45.0,
-  "url": "https://jeanstore.co.uk/products/levis®-bayview-soft-worker-shirt-garment-dye-kombu-green",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Levi's Bayview worker shirt, green",
+  "note": "Garment-dyed soft twill shirt. Wear it buttoned or open over a tee.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 45,
+  "rank": 320,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "L in stock",
   "style": [
    "casual",
    "quiet"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://jeanstore.co.uk/products/levis®-bayview-soft-worker-shirt-garment-dye-kombu-green",
+  "was": 75,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Garment-dyed soft twill shirt. Wear it buttoned or open over a tee.",
-  "rank": 320,
-  "sets": [],
-  "was": 75.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "js-levis-trucker-ecru": {
-  "name": "Levi's Workwear trucker jacket, ecru",
-  "shop": "Jean Store",
-  "cat": "coat",
-  "kind": "new",
-  "price": 57.0,
-  "url": "https://jeanstore.co.uk/products/levis®-workwear-sunrise-trucker-jacket-undyed-ecru-greige",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Levi's Workwear trucker jacket, ecru",
+  "note": "Undyed denim jacket. Pair it with dark jeans, not ecru trousers.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 57,
+  "rank": 340,
+  "sets": [],
+  "shop": "Jean Store",
+  "sizes": "L in stock",
   "style": [
    "street",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://jeanstore.co.uk/products/levis®-workwear-sunrise-trucker-jacket-undyed-ecru-greige",
+  "was": 95,
   "wx": [
    "mild",
    "warm"
-  ],
-  "note": "Undyed denim jacket. Pair it with dark jeans, not ecru trousers.",
-  "rank": 340,
-  "sets": [],
-  "was": 95.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "js-stanray-fleece": {
-  "name": "Stan Ray wool fleece jacket, navy",
-  "shop": "Jean Store",
-  "cat": "coat",
-  "kind": "new",
-  "price": 79.5,
-  "url": "https://jeanstore.co.uk/products/stan-ray-wool-fleece-jacket-navy-heather",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Stan Ray wool fleece jacket, navy",
+  "note": "Wool fleece shirt-jacket: warmer than an overshirt, smarter than a fleece. 50% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 79.5,
+  "rank": 240,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Jean Store",
+  "sizes": "L in stock",
   "style": [
    "quiet",
    "street",
    "outdoor"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://jeanstore.co.uk/products/stan-ray-wool-fleece-jacket-navy-heather",
+  "was": 159,
   "wx": [
    "cold",
    "mild"
-  ],
-  "note": "Wool fleece shirt-jacket: warmer than an overshirt, smarter than a fleece. 50% off.",
-  "rank": 240,
-  "sets": [
-   "winter"
-  ],
-  "was": 159.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "js-stanray-hoodie": {
-  "name": "Stan Ray OG hoodie, washed navy",
-  "shop": "Jean Store",
-  "cat": "knit",
-  "kind": "new",
-  "price": 39.5,
-  "url": "https://jeanstore.co.uk/products/stan-ray-og-hoodie-washed-navy",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "street",
-   "casual"
-  ],
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Stan Ray OG hoodie, washed navy",
+  "note": "Heavy loopback cotton, made to last. Half price.",
   "occ": [
    "everyday",
    "lounge"
   ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "Heavy loopback cotton, made to last. Half price.",
+  "price": 39.5,
   "rank": 180,
   "sets": [],
-  "was": 79.0,
-  "insize": true,
-  "sizes": "L in stock"
- },
- "js-stanray-painter": {
-  "name": "Stan Ray OG painter jeans, stonewash",
   "shop": "Jean Store",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 47.5,
-  "url": "https://jeanstore.co.uk/products/stan-ray-og-painter-relaxed-fit-jeans-70s-stone-denim",
-  "checked": "2026-10-05",
-  "added": "2026-10-05",
+  "sizes": "L in stock",
   "style": [
    "street",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://jeanstore.co.uk/products/stan-ray-og-hoodie-washed-navy",
+  "was": 79,
   "wx": [
    "mild",
    "cold"
-  ],
+  ]
+ },
+ "js-stanray-painter": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Stan Ray OG painter jeans, stonewash",
   "note": "American workwear cut: relaxed, with a hammer loop and rule pocket. Half price.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 47.5,
   "rank": 210,
   "sets": [],
-  "was": 95.0,
-  "insize": true,
-  "sizes": "34W 32L in stock"
+  "shop": "Jean Store",
+  "sizes": "34W 32L in stock",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "url": "https://jeanstore.co.uk/products/stan-ray-og-painter-relaxed-fit-jeans-70s-stone-denim",
+  "was": 95,
+  "wx": [
+   "mild",
+   "cold"
+  ]
  },
  "jt-lambswool-green": {
   "cat": "knit",
@@ -7879,58 +8301,86 @@
   ]
  },
  "lk-sahara-navy": {
-  "name": "Loake Sahara suede desert boots, navy",
-  "shop": "Loake",
-  "cat": "shoe",
-  "kind": "new",
-  "price": 70,
-  "url": "https://outlet.loake.com/product/sahara-navy-suede-2",
-  "checked": "2026-09-15",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "casual"
-  ],
+  "cat": "shoe",
+  "checked": "2026-09-15",
+  "kind": "new",
+  "name": "Loake Sahara suede desert boots, navy",
+  "note": "From Loake's factory outlet. Stitched-down rubber sole, F fitting. Navy suede goes with grey, stone and denim.",
   "occ": [
    "everyday",
    "smart"
   ],
+  "price": 70,
+  "rank": 95,
+  "sets": [],
+  "shop": "Loake",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://outlet.loake.com/product/sahara-navy-suede-2",
+  "was": 125,
   "wx": [
    "mild",
    "cold"
+  ]
+ },
+ "ls-cargo-tee": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lyle & Scott cargo pocket T-shirt, black",
+  "note": "Black tee with a zipped cargo pocket for cards. Half price.",
+  "occ": [
+   "party",
+   "everyday"
   ],
-  "note": "From Loake's factory outlet. Stitched-down rubber sole, F fitting. Navy suede goes with grey, stone and denim.",
-  "rank": 95,
+  "price": 22,
+  "rank": 180,
   "sets": [],
-  "was": 125
+  "shop": "Lyle & Scott",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "street"
+  ],
+  "url": "https://www.lyleandscott.com/products/cargo-pocket-t-shirt-jet-black",
+  "was": 45,
+  "wx": [
+   "warm",
+   "mild"
+  ]
  },
  "ls-collar-puffer": {
-  "name": "Lyle & Scott collared puffer jacket, black",
-  "shop": "Lyle & Scott",
-  "cat": "coat",
-  "kind": "new",
-  "price": 56.0,
-  "url": "https://www.lyleandscott.com/products/collared-puffer-jacket-jet-black",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "street",
-   "minimal"
-  ],
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lyle & Scott collared puffer jacket, black",
+  "note": "Short black puffer with a shirt collar. 60% off.",
   "occ": [
    "everyday"
   ],
-  "wx": [
-   "cold"
-  ],
-  "note": "Short black puffer with a shirt collar. 60% off.",
+  "price": 56,
   "rank": 300,
   "sets": [
    "winter"
   ],
-  "was": 140.0,
-  "insize": true,
-  "sizes": "L in stock"
+  "shop": "Lyle & Scott",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "minimal"
+  ],
+  "url": "https://www.lyleandscott.com/products/collared-puffer-jacket-jet-black",
+  "was": 140,
+  "wx": [
+   "cold"
+  ]
  },
  "ls-funnel-puffer": {
   "cat": "coat",
@@ -7962,31 +8412,31 @@
   ]
  },
  "ls-insulated-gilet": {
-  "name": "Lyle & Scott insulated gilet, navy",
-  "shop": "Lyle & Scott",
-  "cat": "coat",
-  "kind": "new",
-  "price": 48.0,
-  "url": "https://www.lyleandscott.com/products/water-resistant-insulated-gilet-dark-navy",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lyle & Scott insulated gilet, navy",
+  "note": "Water-resistant gilet, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 48,
+  "rank": 420,
+  "sets": [],
+  "shop": "Lyle & Scott",
+  "sizes": "L in stock",
   "style": [
    "outdoor",
    "quiet"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.lyleandscott.com/products/water-resistant-insulated-gilet-dark-navy",
+  "was": 120,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Water-resistant gilet, 60% off.",
-  "rank": 420,
-  "sets": [],
-  "was": 120.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "ls-jacquard-tee": {
   "cat": "polo",
@@ -8018,31 +8468,31 @@
   ]
  },
  "ls-marl-crew": {
-  "name": "Lyle & Scott marl crew jumper, navy",
-  "shop": "Lyle & Scott",
-  "cat": "knit",
-  "kind": "new",
-  "price": 44.0,
-  "url": "https://www.lyleandscott.com/products/knitted-marl-crew-neck-jumper-dark-navy-marl",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Lyle & Scott marl crew jumper, navy",
+  "note": "Navy marl knit, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 44,
+  "rank": 280,
+  "sets": [],
+  "shop": "Lyle & Scott",
+  "sizes": "L in stock",
   "style": [
    "quiet",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.lyleandscott.com/products/knitted-marl-crew-neck-jumper-dark-navy-marl",
+  "was": 110,
   "wx": [
    "cold",
    "mild"
-  ],
-  "note": "Navy marl knit, 60% off.",
-  "rank": 280,
-  "sets": [],
-  "was": 110.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "ls-merino-crew": {
   "cat": "knit",
@@ -10155,21 +10605,24 @@
  "ms-dressing-gown": {
   "cat": "lounge",
   "checked": "2026-10-05",
+  "img": "data:image/webp;base64,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",
+  "insize": true,
   "kind": "new",
-  "name": "Pure Cotton Lightweight Dressing Gown",
+  "name": "Pure Cotton Polka Dot Dressing Gown, navy",
   "note": "A light cotton gown for most of the year.",
   "occ": [
    "lounge"
   ],
   "offer": "Price seen on the M&S dressing gowns listing",
-  "price": 27.5,
+  "price": 35,
   "rank": 146,
   "shop": "M&S",
+  "sizes": "L in stock",
   "style": [
    "quiet",
    "lounge"
   ],
-  "url": "https://www.marksandspencer.com/l/men/nightwear-and-pyjamas/dressing-gowns",
+  "url": "https://www.marksandspencer.com/pure-cotton-polka-dot-dressing-gown/p/clp60705401?color=NAVYMIX",
   "wx": [
    "mild",
    "warm"
@@ -10226,8 +10679,10 @@
   "cat": "lounge",
   "checked": "2026-10-05",
   "gift": true,
+  "img": "data:image/webp;base64,UklGRpogAABXRUJQVlA4II4gAACQ2ACdASrgAWgBPqFMoEumJCalJ3OKWNAUCWc//q43wPA74A9oUQXQ04A10Iujve4fqQVa4mK4rd3/AUf/uIdAdbP4Ls9ZDJHRb7Q4W6qIQA0Hr/NkXd4OwQsx/3fldl0ykyzhg/XXXADKcrvhrjhkjoph5klZ92JY7ynasc4/xMfAvzTGGot+YWDlxhqbsvfjLwDUWZFKB+Y37aqmF9b4iH2ZWYXCWO7HPWi5h6jyKnzhFxFCdZPvFYabGFynOKRWmAfoWg6LOifRtiANrQO/+NzrXY95zdxmXot94sb8cEt+O+PnZBqcbeXiV3B2M14/faO7iq4BJBQP3Bj+7puzz6ThHfst0R9y/u+kWGuhBGqLnjWhR+BEyMfu2cQ+p+9ND2sf/4gnnNHglHs8ploGnsyTT6NYJKvD3UPf6u+S/TKBJhs6Hl9KHuMjK/n2SOgBJv4dHuWZnlDOU3LIfsWJWaFnyjpIUvRGS/P7EgEKAJJBPWTZc6nkjn3aKTGiJZbEqqHmJSfNRWZRFRX485uRZxHfQqSUAaWfgbWExdsZKwgztfiHLlmSD4uekSn7SsNccJYVVYla1lhgixWSSpu2ESdQmwbfngKMRrlMKLqPmQLQ+PqC7feROfgVdeDFYZI6LelcNXZN/QP449FC3Troq57dfGfO1IqH8KllwCVglE3cyLlEeKeffecs9+LMNeLQclRuSyfYDx+mv8bpDupoARwd22RA2mnlj/kzBSUStdbpSn7hCELXeALQFkcF8yZ/5edx0I8wcNznhfifoJlXO/3jhSm+3/aMn2HjWR/1xNy/bGFUV+t6ZXZz9NaxNs3wB3Ifso0Sp3u358cxBs0TSZgD5DbaRcw3lMSrCjL1FvEGwU5LlHClPkz8P1wdVBOLWmNDRIY5Svo5DVcRIA+KNDZfiSHWyqnSQ6WF570EPTDOzWYcLEsduMsjZKg3riNnJk/k6fN5ZEhIF7RketMGAvGLbfHS3s0dwbRYypku3X7HJKZSy3X6TPRQngklWTWDqJcrYExBGJjGPWO4RmJhVzD1C9vkyf6o8nto/v9LDAdyhZ0Wr7Xphsn2E2KdLlZV4gM7U284Vou9x3f2c6tiZPxa0sf8y0QsbAEqYHYKAA2FXnok4+k5GWSdUdw/ZPEf2WvimHSD13CREOAgoAdCpUj+8ol3yciSJVRkRVwwCYVSefPRvNu6PPhJRH6oHW6Sn2OvmGbWdMyDoQ3f+euhuZ/37nz6ggHerOu/gWCa7ymr1sNFyBk79ofbq+pUYM/0JdqdIeFRMlatrKAzL9C4X4NkCiOPjACs35PpV6HYhK3EHc2yR+hko8XEVevFdin69qrtMXMOEfcBZazK+cyMmYjjRvnx2eYlQv0nVbUcX/qfDFVmOVBGfcCuKwcrZQeScj+TxVgefUiLNx3Qj5Iaxi6UcxXJ+gil9mUtmKE+XMnXXkpYQTnN1srcqt/qxaNSsvkaU8Z+qQsr/BOZ8Tw9jS9piESDQyts9JGXrJ9Y6z/3gyedXJYf9a3BQ61n5BxcI0rtP6m1eCClSpRNBnhAiliySuRmKbMBPFR2O+MFqZ6uANNFbqw7D6Ma0XahRFT371kXeoKifQW8Yiv/k9nGjYnMvduS6NDzOazC8Fh7/zm7j532sZiqvKtUDO8HUsz3OwtnCgZyEnQN2OIQjfu7ZjEwVZeKxytlqXStxpgBFvvLA/0F/4USaEpSzdR7QAeiUgxWYuWNm2vCU3yjziams2UpEMMSI29y8TK9wo79veEfwGRr//qfxF6hlGLPa9OTh5sEH3D4pEJKJlvk7oWpJBK809xCJDwhDesIvzEXpdYoQR+BjgaOTJVpZ467yeChEszpjHn343O4wQ+KB5WEEMNVdY3j7MfZ7IRWFPCBMlpxL8ZjsCRGOlTqt+PwPx4ZJrJ+TMz6k50y5pmDSm0QFEjSkvJ6n/ffOx6iUBLYbzs0BHdReRQU75EySWtHZOBGP3WGzbH2I72zp1yq1FERBtpLwTgvZMLTkVMWA9EG1luKqhpUs3sGZpLpD1QEEfd9bV3HqfjdhjT3eGxZ1FVu05yFzyQ75GQOgA/GCSejWghQQeJ11/NX7v3L3vHiTxZEivaJyjJsiRz64yoY9U1ApBUgYG9dLY+/sWcINb60q1n6Fo0JQ9Zr3UVQB3UB+/PqQNuofsr5SrK52JgzNJCByOxvgGVZBJHUq6sCp8nvD8oJ+vLM7zQEByWReOVOcqUJR269EMTb70IBkXIRZpvJs1l+85a27G/zy6P18Rxxvez6cBFmPK93M6uJxCfPQuZW8bi0r724DGMhcvzwAP73sxAOenVucBDT0te/CX9804xpOkV6v0onYyBXWQ8kpqTseJ3kjJ0NdMf1wGVaA5c92vvplrNgG6/ZfnNey78ArCC7WaPgHYKM0Wv/Z+gpajDDtOAhPYbyB1CpEphlmwLTygCReWw45pao7XjkkUN2LmBAczO6j1tILrkw7Kw+CUF5RgepwROwQTvHRLqz6DYcLSwhi9funPpTs9OdE9U4D0+/2PN53uWkVe4Ne2vHfgJFC3LhWcYg5Vv4iVhzJ76jk93b1lGjOc/vZm0r47cl9292I5LLLbWypjhQ7CqHGDQTGCa92KHxOIAEMTiO77Yh9sZMufcdLlc68suyRUGkkP6f0ETE/5yIJBvE60hswHz0i0Fznl3FIYya+ZIpnGPk8XOMQCr63799rNXZlBr2MaEcnpyFZzygh8JfBSh6Y3S3JFHnPzPR1eHkPLz8m7sTObvIRBgy2Vv8cCKqThTBsPCHN+DWSGnF7Nt1wl52/Wyv3Efm9hM6sSorBrJ2xR6arJb/PN74M3gcBZfqRH969UKHgCYAACNUAA2rOWGW4hjN0yWlYJBO0CsIni1DOv1mfjCKeoZr8h1577u29R3HZCNAFNE55LUVK41XU4KSjxQnEyJupO/72mClR4wobbwb1s+4tfVMOSaMI4V+H81N21c7WBrG8B4CFWQrEYKAnkUKd3luXlNeeWvOKqnsSrlTotSpdrmbriOA9+MD7BYYy1JcW5LSGT6loxTVRgVNDHwftSIG1Id/AAiR0tBBYhyp6GLeg2n2SDj49+ht2dc6eRtAJdPB/ySaCzQTkr/3ruq5o9PbBv4ECOEgeVgk+vIK4f6bWqW7Muq/reWjK3JRmiqli9xtpqrSM9ZmFDTnRDaS7iRpQrutK7Xu08LxdYeCCSbBWoOh1SIszyarNAJkoUsyfqN88+1hkL7zZ0is5rPtaS2KtU7b/rnGXAOKUU6wO0X/4f3ziOHhntljA0wAAAHPM+QiqklI137nvVTV9/I5y+fxkJqneFivvH39Z4+vGb9NSANkp5+iAHG2R9qqXF+5uYre1aqBWdgH3BG9VtIeXb/jd3d1jmQKVBE6+N6DFZdS8vl/wcSgwEF+wtfPDucBwhrbbxco8ky3lKZHN89XAQNcS8Kw8ws8LSdE3ked5B1VTEbvLXFCk9532Ghz6cLT2EOVDO6EnbNeay1v1/cIJoWmexIPQu/cypS309PKp91ZFJddGAL8AzLDo/i/kcVGC2H2EQX0hx3pUUTApABHUqj8T73dbmXbJ6fgWE0R7NLgccE+86AGDbTvONXHKmmoNwSKSuqQl+5X6ngtom0DIyVyeDJ2vBJhAy339qg1lOOvOUaqEQQfgf41HkaoqKbwXWX75MYu9NIhKPTKIn5a0hnBbHAiLHQsHkEjYbTUTybE7gJOw8arOJoAqHujXu/YYycqgQEtKfDH6gkqxuf8aogJ8c5Nf5afNl8g1tqetmICZeXAJ7jOArr5titKF4N3gyuEfM7DK7x2URNTWhxkObbIjodpu2LPE3MsES3h4PMnhAQkZYRGyv9m4QnyMe7s/KZUIIa3eZfd2uTkr/sj7k5bf/oyTncvN7ossJSNvsczpv3RlCSQhDO1/KI+i2N4RmseJsxNgZ1xMu2bBcMAzxfTuR6gh5+o91nXp/hDofhSffnq2hAqB4eC4tHJntSBIsBU1OkIS0eTuLSmxWV0NibfHjvJYUhtT5A1RswgxMpAqjhdbffQRmsxrLmBKKFTS47mRmuUeATmDXwAYyb87Kel28sIq874Q96jVHf3ybdpGbaGrWfVCpTCbCamyTS+AaxOFsdPgA8lwVjT7btogxZPfbvQMyr0IphPS6ZjBAdQZV8J5qBaTshzHluUXNKzpO+oBsv7JKz7wNPaG89o3sFqxKzx4/pfJNWpHXPQuCK+lPAvOjTzLHutE51bA8yuOj1cbJhKFkvuT+AxemHjyI+td0ue83fLRhcwr35pJZYEGyM3ziD0BrayqmoAnXSg0hlIQlcQAAAIOC6Lvoi3nrOWJgRjxn7JH3tumNe4S30GrGXGlwhCVojM6Y7wwmBC/uNT/OxnpgH/9M4AmoegMFKd15DW7S24+pdI3jnCJmEQJUx3ggLo71HnI2/HTPdcucN10hewZ6JBmNJG8EyoGSaiLkaDPDTnlvH5RLMKU7Nd4WMKIKMS+EZkpqIITnt0fKRT0u3DsbuLDHpGSLRt+eGN/LJFWP+SVnS9Ah8j//eBlwvjvcrwV8UE9tVAROalGI+WTgGIobpmZzF5tMXyI8YJiHGHshvYxSkI8Z1JqsxfO6U0TPKOAyRPyFiIAArjzmDj38oBTOl+qndCmcQP0TTwIbcsd1EAAjkQDu8aeMXB8jkWZ/GailFccXBBY7xOLiTWL9i/mGSK/irasv5J92PxFwvD9lPhwTueMtsfOSBXfttNHrH/wrMy3NCazxn/QmsXuza2mev/RzWtoVdMhN3OKmBdFLrCnGk4GhggDmK+g8pFWw6XewReqD7VCDlO/FtbY60FBK4bg32uPRvWsKe4P8/PG99HS929cA2GvuXy3wLVbj4TGr/lZ78QipMfeTG6cU1Mry+NqHb9u56FMb/HXUatBJKHTspbp877PQ5J3wGYpPnGgqmIXsDISw2aAyK0jKg6L2BzWYYg0l3uoSsuNA04W2sVCONe5RwPVPyHMaAT5HPFOiF92zS0kXXEJvpalEdux/ddydb1R1lWL6iyNiJjcaYtnIqiszeETFRbeT4dIY/2409jXSgWKq80W3u5g//9GiC/OJAC+xfk9YeQj9yHJj802ebQWH94b5YZNXOmWMRk65Cm/lHnVcc5Gh/Bckt+PL6qnqCtm6HhIsNRFeQuOHF4EYeKtAe+4idwG9HeJ4ZpLH0y1PctRzIP5N9hpHcRm8p9uTrvKs1mzheikur3TeUsEIqTw9kEfoS0yN3hu7uCFchkEMZNEuHQESvWdU/PG6sCIixCtUw9gLqVSdvulZuYI051Rvzl8YHRSgblOH2O0gx3iSPg6RwaxsmA6/aBEvczVhCH9J1mwJ2DOHaP0yG3b0oRFYMQC1Jh/cWVhveDoX5I/RdNvgthIGrYzw3leTKnsOEOr+tuSq7FOMBiWDQcnKIfp+OgtsKQcKeminQevlkQkrVkRVN8FpmAqxIfsNPiaaBhso6igGX6JtUDiN6AAaZKm71Ni2B+buamFTSvzz9okdHs/JQ9T2DrWlai6FcnTINa9mzGzR0TDljJamWIjy45IAurDrB9Qz+s7NUVL6ZDlpXQO/P/yfenYzKPRZZyaiP3sav10e8kJQfUICbxwNvK0/p6EQhRKxclM26fNbjX2yEleYo/UKMHve6Atp0zxR0rOqcy/e6oL/2RDKT2RLenJdFtWR3oatZaPFGIkv3aXXezbvv0oZN8PTV1pEPoF3sribox9X6GzXwJKAfsx0ULyePILqEg1HpFkn4RkAC60kakwzY8wtnTDkc+yLhTG+7pSCPHRBZwxycVGGoOVubdn3xyxbQ7B3UkBJhh67xsmcMPx2DIvbJj/mn+VUC2XGnDAy2o2X0QSJK4WW6f3mOmfFS9+I7J0DwKZ6xqcCYbCYCP0R+ezioV0rfmjtOJiTglYxN/41MzVADLbRde2EcyHchET6R48yWDOrYMZv4U/qcQiWwaoj6+WnmSBnOTHLl2fl/qgTrNFUrCVqYJi87VVoaudTbKEhKfTwHBxZF7JSVodCxT6KkwlESNjK5H16jzZ7r00eX6cPtJ/gzzAInGY1ZmxclOQFLaDAN3yvINZGiQ8B2UyWO0UJcAisqaNYgvMFxNxx23a8wcA5f4/gu607XwWUDMvrsg7mFIAxdVJqpprEJK1kKqb4hPVnEJOORu+Lh3vtAlgJNDxZZf0ht3J5OW899R3Yw0miR8q98rxqeIGUePznD4bkDd3sJW6d+nNV3CZBEc4hTB8Uk/vdYppiOU2fXn6sw+fYzsLq4NkYslj0nlwrpc7t+DeeI6XtzIgYmcdvEPsA/Daa7DrX2GKqY6ikDrcxr1K52rVqGHlcK2MRv0BeUqbRdwdbmiwNjnewSrmtlhV2yVwxN9UFBbfoDeg9GPFwrMbzNRx8sEA7F6D9Hr/YBGZnNkdn3WPJSM3bDnKmkr08YOOsmdxCeLitsK0ZuiKwsLPH6XiNs6Ofb4fcCYzf/DUCwYyt/43Kl/41rqjRa+y7fiMZo1h96NWGLe5atp7CypEcNXHN9MH6+avd0W6fR35GEehw58BVjSZPU3uMWVNAGitL5iXxkMxN4Dq2VKnCXruzT5MYPFvnprXzOuaMVd3lsCQiJnUdu8UHmfOUQnNlznQciuW+nw172LBQc4EtdA7IP+C5W9QLbZlSbEZDs/zdkNG0fOqCuJ1ZVslZFqV+TYgcQ8/6aLjvJML6XM4HfVwykiEwn7QMSQf/8874i2m2IBJHXhkDoOEkClXxDZZ13wdIu8MYGwD0wUreoWmJ+1XUvG35qIpALva8o8kSVT3g0lXzYnCExtq3csEpMo9GrTRp3odRIYPgSWZIqL+YJ72EDxofa7aTnoE1p44L1Rfs9ASX1XVif6KT9JnU8TJknnxReee1sv23J0ExhDRzY0Picuz/x61KMOYvJtjohbcMv0QMzZO72ZDIekZkqqA35f7cSddyytnasTBAW1Mrp72yXxbumRQJUocTkkuqS3qSN3fT5+/2WuGcrPBvAHgiJAmnTlF3u7wAgEPeKMq3NdEzpqK2OJy9PYCPKb1OHLlYPoBJG94oxgI7Xs2f/rVhk4lBTxDiC1b8vdM/xSLeydeYoLbVjI0GzLtX5zgtOWsRnzKsho7InydML4TVX4ew47qz3aZrlfo39D++SFnX5wzl6VDuY61PWCxzLA6C+xI0ulzlnnGWsL5KupjqMwEibO0NLA9skOsrFq62ygiZYylrau6mhNKDafHPBR2YNajfjpeTcF5TAfoLB/Clu/1tZZAXp6i/9Hs64n++7Z3Uot2nNnHycX8PSYo4voN04id8vIRLJaf0nqs/AAo7hixncP7/8Ei6HHYwb8N8Ggq9eW1pS5xulBNqGGshalmlgLoCT4KewPyYg5EA+5TYCLymjb44L9ZbrrzFELNWS64Fum2c59rlxEbXtfHXI44HEMSKxCOh4bZdvhz4wDae3EEVNdC12v4Fw1OoTI4/bKhAX8n4xyODrUIdqa583bqmS57PCq287ErKR6tXsuFZEO01VIb00BejpABOfYfsWT3xZOyJC9uNBUgz6+v7sSL+vtOpnLasvf1OELNi5ayG4szDltV9YXj05RxBBeUW7XJBfRuibRptJmWP6hGnWS+2Onv/7ZtBMItYx5D7MyehNv7tbzWJzRj/qnoix6SFcdI68n7mYTz828hKfMbcH5tSj6ZNCvrBcCJMIudT5ZZubjW3qfYDb9UsDtnWUjvlJTuPKjAmUSioXgZK0w2PuQtX6grB+XN2tZKRPG4c5tvEn2NXY4bRIwGd5+xIY6OdshGJfxhZnwarE99vlmHBBTY44WOy7RJLcoKE9Ct1kaEwgb7FlGEGC+8UzQOfFU8wLyFmXcT6+B+sQNtLFaKpM+cHDods84G6CAl4VKhrntPJPyht0AOW6C8VAcvCOXG/oxGdL6zScDm0C8Vm3WRIAVFmJd9HC+DcU0NhuQxdapoliJmzHTnNcNdHBNjbLMPB/v6hfGJxn3av07IzCiMtJK5h0wAQo+7utG1libba4JbW/7D9TsrNJJY+hqyFcHXHlardOnZOt0Z5sk/Qmxe1TGgKmiIUiVg5F9e3XRfu1+djCAV94TM/camvoGmpFXBkWxSlb6EDou/S2OnFpQulJwLHDfEbCwdo4J4duf69HKlin7FdfbjiGmAY2WVpxnQx1j6wMqg8Lxl/igOvxJNYW0ovat6T+YJAAiu9gBlrSG586LGaEJ/ECn+bsxDPtJcDh9xAnXR9ji5tTQmcJB5ZP6DoEdh/FLXMlknRtcaLjP8Th49iKMW9Ddh5W1MoPt7ZSTvsPaSJVXJVU0e74P3+JFoux+rPCAJqKqhM0DCZE2JiUUQY/A4nhwgCeOoElZPYl8EbjmKMbo8kRl+Z1SvoGQnVyIVkFHjEqyvavDjgTFvTsah3C7IQGaSBnEyAC9+4I7l6GdjAWXnyZ/XH6BOC5DVf/wPPUXEmtuJ1xfkPumK0vg8+zR5/OAlacNtAzwJGbfT+O3l1vC6Zf91+g8ofOWhYKZuKe51gJ3z9pWeQvK/Fg7OJcL+5Tq/1/mz+HZgqC6v/nVPWjp2uYg5A2C2ociLYApYM1s8AAvV4cWg/BFhN1HhQ8E72qE259xpyCTgE77rodxR0KlFBJ/rBnzwYyNvMwvZ0UCl8TDOYK00cAZ5KL/HMci98wqAD0G/DNHW5hrvKuvy9s9s43CEgJ96XKc4NpSOB6Dh8m60cUk9xG0N/fnLc77utfZ1McTFMlfupCDWQve7q+C8XWawwOigCwSvD5XL+kH69vplqkpeo6/xRtmslCwZK/dMxWxEtC7LvuC4CJVknSX4Abo3gbz/XegfXSxZ7uGTWM8GJkb2BNP6s4HZUNQFXbPU2cBz2EphxOQuC7bHex71MJQIHjPdlpXlQWadmrSa5Q5b3YCi1ewyJpdSrX4mcOdP4p4SD9T/pgzIKq5JfFyA2aCAY8oTkzw/TU6j/mIhdJmVdU91BjUZzfM8I5F73au0K5+QfB9R4pX6ZDUTnB3EdlMBmhLNps2jRhq+tL5StBc9/eFbIhMWtuD/l1LnlUHwS/tdPVQO7TXO9Ax3MZTfxT7jTcHfhzYAC/8rp7e8BnumcFkms8QzSjHrT2/C16N7mqG/LZpspMjgDxJYDvdXmekU+9iEQu4TAQ0Xyj9LphMaZESaNMNt9aqgvNzJL0Xr1Dpdgxb4nzH+99M+AHB8wnhGr3x2J0lSTq8M3YaY4ZU5W8wDEHTIQ2riAnwfvu5n69sdY+izhB4HaPjaK9ffkwmm0LIQnFHEJX/EJvhy9h6zMM7KPSigcDno2bl7tCQRfQs7+DFuilbU6lSBOngnY57zm8aMoymkYzmUoRPMR+kAXd0PtgpB5/CCdEaDLIFqBR2+XlTEZsm18z4w+8nsk1kLXavqvjTFAqvCtukOsIWkDe9aSB9N4UgxqHhnAFf8FipWK/rTyrXE9ODFod6ggRhuE2cxxlwoL4ECMs7ycfFyK7vtFbbCLgRh8JcpnzdCFhMwae496MhQhkckIsfn1QqnaD2Q/AxUkX+rJMUvPZHxrf43nRM7/v3ah6UZucEkCpigdt/cdafi8gTezVARlWYuEMK1IQGDEGkEcynjNIO+HO0kqm41F4hlchstaEi7J/lDaNaSa8oAhUqRkjp4ETP+8jEpglymAiMPUoXpJ0kQgjYgkMHOBowYpHq8u83/1fcgJ0qtfG5yIrf80K4+WrL/7HFngDKb+f9K45Wx9aYrTWbsqOe3bmkz1bLhVx6iM1QFGQSTX8joehW+tR3WjXHf1rxQ8iuWTaO5UyEvGvN/3CcrvIknfxpblIPyrLYeLfC5kpcTWuogqjDrFmhWPYwRD5RebwTRc1xDl3uUiNe2idJfu9eSr/kpLySRz/0lgFCta4zhupyuFRXQ8AojLwv8E3N9TmA/9lC41cC0PFK8MpKKhsnVYbSkIrFG2+1vGAA+iYJqHTGcRv0BV/DpZKK9XqFPbJFqAumjiNYg/JdwZF9bm00kEuaxefxFxhwr/0HeE6Z1pmKKcDaorQBuC6uXo69Lr7Dm3vlXTaoAYwnJdfCT3sgSHTFK5iXKEil373w7Fr++A7ZBky9I0VQ7UiDumWE1z7ch0q8oIbLVN/bQgtM78PvGl9AN/tvv46ORZNZSl7V1dS0oMmrPsZzt6rQsM/zPUU5SjhCNsoAjWW7UAXRhBbkb3ib1OqxtP5f4UGMNLiVOlF9TC9Sch8zQniFs3AtcV2eSQ9Qi/iyEuzaR3YQCImicgec1B74ByF6610mdUxAKrRUWfV52cwJTBkJayodX28TO+eeasurQ/l7JrG4/Hjgd1ymhSRcIbClsg7m43ixqByw2iXNs99GC5sPXx/ct5G5Vvf4sCTmv43mpODbzpOlmr1ca8HmvwnMAkyQagmq90zyMspLwkoa4zto94Fk+X5OYbokEW3HeNMbOtTJi+0YfUfWpX7ltXBt1xRbQK4oVR6mec7ZXanoxl4hVLrkMp8gtymN39Om+FX3uW/pSN04Vrp8bKkgJjJdZczED/VYDNNMIpjxoivkYJWyHMX4RhVC52EfCGACbgryjrBUNOzAT24obK5BN0IZ5Z3M/bam62fnoSCYvXiZOA5IPR0hgMmo2wHlW/Q0PykQl11xUaIx7VRh2kwyw1g7Hwqzruz+v6TQF6fXF1XfBuAcvU4geE6SJZ8K14d5DPsnSyYxznZ9vvm6ck/QYQzWs7UBwKfBCXyDak1GxvpnECT1bYzQWlVBKJWauwRiSL1KlIViZL5ywbUdHIN0XoNKaNlYGOvuxnRqr1imMkuLhfPtSAVFa2W3Kk+INSeyfbNTv9j0LDxFfnOxnCQElKuZL80F3hIgAX+m1J6Yncmf8p6wx356XoLtp9wuKkJdKxgKVeT8QfRIKGBf6PDQM8sGlfPQGVJyNwfqU8xhPII6agOTAOtZptEtVJ6ZStpoDoecK+XUl4Ao/DUla9aigSd2b+yE73ZkV9LcvfAJywJfyK4vHCprWh7VtULXizFr6BvZUDkPFiJ9vjHm1bYOzG8aBh1NnKMwNa9WEgopS627aKkAAAA=",
+  "insize": true,
   "kind": "new",
-  "name": "2in Longer Supersoft Fleece Dressing Gown",
+  "name": "Fleece Supersoft Dressing Gown, midnight navy",
   "note": "The warm option for winter mornings.",
   "occ": [
    "lounge"
@@ -10239,11 +10694,12 @@
    "winter"
   ],
   "shop": "M&S",
+  "sizes": "L in stock",
   "style": [
    "quiet",
    "lounge"
   ],
-  "url": "https://www.marksandspencer.com/l/men/nightwear-and-pyjamas/dressing-gowns",
+  "url": "https://www.marksandspencer.com/fleece-supersoft-dressing-gown/p/clp60559231?color=MIDNIGHTNAVY",
   "wx": [
    "cold"
   ]
@@ -11590,59 +12046,114 @@
    "mild"
   ]
  },
- "mw-seasons": {
-  "name": "Mountain Warehouse Seasons padded jacket",
-  "shop": "Mountain Warehouse",
-  "cat": "coat",
-  "kind": "new",
-  "price": 39.99,
-  "url": "https://www.mountainwarehouse.com/p/053054/mw/seasons-mens-padded-jacket",
-  "checked": "2026-10-03",
+ "mt-prasos": {
   "added": "2026-10-05",
-  "style": [
-   "outdoor",
-   "casual"
-  ],
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Montane Prasos hooded windproof jacket",
+  "note": "Light windproof for walks, from the outlet. 40% off.",
   "occ": [
    "everyday"
   ],
-  "wx": [
-   "cold",
-   "mild"
+  "price": 72,
+  "rank": 440,
+  "sets": [],
+  "shop": "Montane",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor"
   ],
+  "url": "https://www.montane.com/products/montane-mens-prasos-hooded-windproof-jacket",
+  "was": 120,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "mw-seasons": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-03",
+  "kind": "new",
+  "name": "Mountain Warehouse Seasons padded jacket",
   "note": "Light, water-resistant padded jacket that rolls into its hood. A review on 3 October saw it at £39.99 in the sale.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 39.99,
   "rank": 105,
   "sets": [
    "winter"
   ],
-  "was": 79.99
- },
- "mx-golf-qz": {
-  "name": "Montirex quarter-zip, black",
-  "shop": "Montirex",
-  "cat": "knit",
-  "kind": "new",
-  "price": 24.99,
-  "url": "https://montirex.com/products/golf-1-4-zip-black-onyx-mtx1213-199",
-  "checked": "2026-10-05",
-  "added": "2026-10-05",
+  "shop": "Mountain Warehouse",
   "style": [
-   "rave",
-   "street"
+   "outdoor",
+   "casual"
   ],
+  "url": "https://www.mountainwarehouse.com/p/053054/mw/seasons-mens-padded-jacket",
+  "was": 79.99,
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "mx-disperse-wind": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Montirex Disperse windbreaker, midnight blue",
+  "note": "Thin windbreaker to tie round the waist at a festival. 53% off.",
   "occ": [
    "party",
    "everyday"
   ],
-  "wx": [
-   "mild"
+  "price": 34.99,
+  "rank": 200,
+  "sets": [],
+  "shop": "Montirex",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "outdoor",
+   "street"
   ],
+  "url": "https://montirex.com/products/mtx-run-disperse-windbreaker-midnight-blue-mtx1554-415",
+  "was": 74.99,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "mx-golf-qz": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Montirex quarter-zip, black",
   "note": "Light technical quarter-zip, 62% off.",
+  "occ": [
+   "party",
+   "everyday"
+  ],
+  "price": 24.99,
   "rank": 290,
   "sets": [],
+  "shop": "Montirex",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "street"
+  ],
+  "url": "https://montirex.com/products/golf-1-4-zip-black-onyx-mtx1213-199",
   "was": 64.99,
-  "insize": true,
-  "sizes": "L in stock"
+  "wx": [
+   "mild"
+  ]
  },
  "next-epsom": {
   "cat": "coat",
@@ -11670,56 +12181,56 @@
   ]
  },
  "nx-heavy-tee": {
-  "name": "Next relaxed fit heavyweight T-shirt, white",
-  "shop": "Next",
-  "cat": "polo",
-  "kind": "new",
-  "price": 16,
-  "url": "https://www.next.co.uk/style/st958848/m75036",
-  "checked": "2026-07-12",
   "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-07-12",
+  "kind": "new",
+  "name": "Next relaxed fit heavyweight T-shirt, white",
+  "note": "Heavyweight cotton, relaxed fit. Also sold in a 5-pack for £75.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 16,
+  "rank": 280,
+  "sets": [],
+  "shop": "Next",
   "style": [
    "casual",
    "street",
    "minimal"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.next.co.uk/style/st958848/m75036",
   "wx": [
    "mild",
    "warm"
-  ],
-  "note": "Heavyweight cotton, relaxed fit. Also sold in a 5-pack for £75.",
-  "rank": 280,
-  "sets": []
+  ]
  },
  "of-vans-oldskool": {
-  "name": "Vans Old Skool trainers, black and white",
-  "shop": "Office",
-  "cat": "shoe",
-  "kind": "new",
-  "price": 40,
-  "url": "https://www.office.co.uk/view/product/office_catalog/2,20/2421801158",
-  "checked": "2026-05-17",
   "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-05-17",
+  "kind": "new",
+  "name": "Vans Old Skool trainers, black and white",
+  "note": "47% off at Office when last checked. Classic skate shoe that goes with wide trousers.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 40,
+  "rank": 160,
+  "sets": [],
+  "shop": "Office",
   "style": [
    "street",
    "casual",
    "rave"
   ],
-  "occ": [
-   "everyday",
-   "party"
-  ],
+  "url": "https://www.office.co.uk/view/product/office_catalog/2,20/2421801158",
+  "was": 74.99,
   "wx": [
    "mild",
    "warm"
-  ],
-  "note": "47% off at Office when last checked. Classic skate shoe that goes with wide trousers.",
-  "rank": 160,
-  "sets": [],
-  "was": 74.99
+  ]
  },
  "op-gaz": {
   "cat": "shoe",
@@ -11871,31 +12382,31 @@
   ]
  },
  "op-polo-neck": {
-  "name": "Original Penguin long-sleeve knitted polo, sapphire",
-  "shop": "Original Penguin",
-  "cat": "knit",
-  "kind": "new",
-  "price": 30.0,
-  "url": "https://www.originalpenguin.co.uk/products/long-sleeve-cotton-polo-sweater-blue-opgm9c07ou-413",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "casual"
-  ],
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Original Penguin long-sleeve knitted polo, sapphire",
+  "note": "Knitted polo, 60% off.",
   "occ": [
    "everyday",
    "smart"
   ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Knitted polo, 60% off.",
+  "price": 30,
   "rank": 400,
   "sets": [],
-  "was": 75.0,
-  "insize": true,
-  "sizes": "L in stock"
+  "shop": "Original Penguin",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.originalpenguin.co.uk/products/long-sleeve-cotton-polo-sweater-blue-opgm9c07ou-413",
+  "was": 75,
+  "wx": [
+   "mild"
+  ]
  },
  "op-qz-sweater": {
   "cat": "knit",
@@ -11951,6 +12462,33 @@
   "was": 70,
   "wx": [
    "warm",
+   "mild"
+  ]
+ },
+ "op-track-black": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Original Penguin double-knit track jacket, black",
+  "note": "Black track jacket, 60% off.",
+  "occ": [
+   "party",
+   "everyday"
+  ],
+  "price": 40,
+  "rank": 260,
+  "sets": [],
+  "shop": "Original Penguin",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "street"
+  ],
+  "url": "https://www.originalpenguin.co.uk/products/double-knit-track-jacket-black-opkf2524gp-010",
+  "was": 100,
+  "wx": [
    "mild"
   ]
  },
@@ -12157,88 +12695,90 @@
   ]
  },
  "pe-ford-navy": {
-  "name": "Peregrine Ford merino crew jumper, navy",
-  "shop": "Peregrine",
-  "cat": "knit",
-  "kind": "new",
-  "price": 110,
-  "url": "https://peregrineclothing.co.uk/products/ford-crew?colour=Navy",
-  "checked": "2026-05-20",
   "added": "2026-10-05",
-  "style": [
-   "quiet"
-  ],
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "gift": true,
+  "insize": true,
+  "kind": "new",
+  "name": "Peregrine Ford merino crew jumper, navy",
+  "note": "Knitted in Peregrine's own Manchester factory from merino. A jumper to keep for ten years. Also in olive, oatmeal and wheat.",
   "occ": [
    "everyday",
    "smart"
   ],
-  "wx": [
-   "cold",
-   "mild"
-  ],
-  "note": "Knitted in Peregrine's own Manchester factory from merino. A jumper to keep for ten years. Also in olive, oatmeal and wheat.",
+  "price": 110,
   "rank": 260,
   "sets": [
    "winter"
   ],
-  "gift": true
+  "shop": "Peregrine",
+  "sizes": "L in stock",
+  "style": [
+   "quiet"
+  ],
+  "url": "https://peregrineclothing.co.uk/products/ford-crew?colour=Navy",
+  "wx": [
+   "cold",
+   "mild"
+  ]
  },
  "pe-harry-crew": {
-  "name": "Peregrine Harry crew jumper, washed denim",
-  "shop": "Peregrine",
-  "cat": "knit",
-  "kind": "new",
-  "price": 33.0,
-  "url": "https://peregrineclothing.co.uk/products/harry-sweater",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "gift": true,
+  "insize": true,
+  "kind": "new",
+  "name": "Peregrine Harry crew jumper, washed denim",
+  "note": "Made in Britain, 70% off: £33 for a £110 knit.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 33,
+  "rank": 50,
+  "sets": [],
+  "shop": "Peregrine",
+  "sizes": "L in stock",
   "style": [
    "quiet",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://peregrineclothing.co.uk/products/harry-sweater",
+  "was": 110,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Made in Britain, 70% off: £33 for a £110 knit.",
-  "rank": 50,
-  "sets": [],
-  "was": 110.0,
-  "gift": true,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "pe-moore-rollneck": {
-  "name": "Peregrine Moore roll neck, ecru",
-  "shop": "Peregrine",
-  "cat": "knit",
-  "kind": "new",
-  "price": 60.0,
-  "url": "https://peregrineclothing.co.uk/products/moore-polo-neck",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "minimal"
-  ],
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Peregrine Moore roll neck, ecru",
+  "note": "Ecru roll neck, made in Britain. Half price.",
   "occ": [
    "smart",
    "everyday"
   ],
-  "wx": [
-   "cold"
-  ],
-  "note": "Ecru roll neck, made in Britain. Half price.",
+  "price": 60,
   "rank": 190,
   "sets": [
    "winter"
   ],
-  "was": 120.0,
-  "insize": true,
-  "sizes": "L in stock"
+  "shop": "Peregrine",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "minimal"
+  ],
+  "url": "https://peregrineclothing.co.uk/products/moore-polo-neck",
+  "was": 120,
+  "wx": [
+   "cold"
+  ]
  },
  "po-arket": {
   "cat": "knit",
@@ -12604,6 +13144,10 @@
   ],
   "rank": 100,
   "shop": "Vinted",
+  "style": [
+   "quiet",
+   "work"
+  ],
   "typ": 60,
   "url": "https://www.vinted.co.uk/catalog?search_text=harris%20tweed%20jacket%20mens",
   "wx": [
@@ -13066,6 +13610,91 @@
    "wet"
   ]
  },
+ "ps-boundless-hoodie": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Passenger Boundless hoodie, caramel brown",
+  "note": "Relaxed hoodie, 60% off.",
+  "occ": [
+   "everyday",
+   "lounge"
+  ],
+  "price": 31.98,
+  "rank": 390,
+  "sets": [],
+  "shop": "Passenger",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "casual",
+   "lounge"
+  ],
+  "url": "https://www.passenger-clothing.com/products/boundless-relaxed-fit-hoodie-caramel-brown",
+  "was": 79.95,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "ps-dylan": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Passenger Dylan insulated jacket, fig brown",
+  "note": "Light insulated jacket, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 53.98,
+  "rank": 210,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Passenger",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.passenger-clothing.com/products/dylan-recycled-insulated-full-zip-jacket-fig",
+  "was": 134.95,
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "ps-odyssey-duffel": {
+  "added": "2026-10-05",
+  "cat": "acc",
+  "checked": "2026-10-05",
+  "gift": true,
+  "kind": "new",
+  "name": "Passenger Odyssey backpack duffel, black and orange",
+  "note": "Carry it as a backpack or a holdall. A good weekend bag, 60% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 47.98,
+  "rank": 420,
+  "sets": [],
+  "shop": "Passenger",
+  "style": [
+   "outdoor",
+   "rave",
+   "casual"
+  ],
+  "url": "https://www.passenger-clothing.com/products/odyssey-recycled-backpack-duffel-black",
+  "was": 119.95,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
  "pv-lace-smart": {
   "cat": "shoe",
   "checked": "2026-10-05",
@@ -13149,56 +13778,56 @@
   ]
  },
  "r1-campus-adv": {
-  "name": "adidas Campus ADV skate shoes, black",
-  "shop": "Route One",
-  "cat": "shoe",
-  "kind": "new",
-  "price": 54.95,
-  "url": "https://www.routeone.co.uk/products/adidas-campus-adv-skate-shoes-core-black-white-white",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "adidas Campus ADV skate shoes, black",
+  "note": "Suede Campus with a skate sole. 35% off in UK 11.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 54.95,
+  "rank": 210,
+  "sets": [],
+  "shop": "Route One",
+  "sizes": "UK 11 in stock",
   "style": [
    "street",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.routeone.co.uk/products/adidas-campus-adv-skate-shoes-core-black-white-white",
+  "was": 84.95,
   "wx": [
    "mild",
    "warm"
-  ],
-  "note": "Suede Campus with a skate sole. 35% off in UK 11.",
-  "rank": 210,
-  "sets": [],
-  "was": 84.95,
-  "insize": true,
-  "sizes": "UK 11 in stock"
+  ]
  },
  "r1-pleated-olive": {
-  "name": "Route One wide-leg pleated chinos, olive",
-  "shop": "Route One",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 54.95,
-  "url": "https://www.routeone.co.uk/products/route-one-wide-leg-pleated-chino-olive-001194564",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Route One wide-leg pleated chinos, olive",
+  "note": "Wide pleated chinos in olive, a replacement for black.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 54.95,
+  "rank": 310,
+  "sets": [],
+  "shop": "Route One",
+  "sizes": "34R in stock",
   "style": [
    "street",
    "minimal"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.routeone.co.uk/products/route-one-wide-leg-pleated-chino-olive-001194564",
   "wx": [
    "mild"
-  ],
-  "note": "Wide pleated chinos in olive, a replacement for black.",
-  "rank": 310,
-  "sets": [],
-  "insize": true,
-  "sizes": "34R in stock"
+  ]
  },
  "rg-arec": {
   "cat": "coat",
@@ -13499,30 +14128,30 @@
   ]
  },
  "rh-range-jeans": {
-  "name": "Rohan Range jeans, dark denim",
-  "shop": "Rohan",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 60,
-  "url": "https://www.rohan.co.uk/men-s-range-jeans-dark-denim/",
-  "checked": "2026-08-02",
   "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-08-02",
+  "kind": "new",
+  "name": "Rohan Range jeans, dark denim",
+  "note": "Tough stretch denim with zipped pockets. Normal-looking jeans for walks and festivals.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 60,
+  "rank": 410,
+  "sets": [],
+  "shop": "Rohan",
   "style": [
    "outdoor",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.rohan.co.uk/men-s-range-jeans-dark-denim/",
+  "was": 100,
   "wx": [
    "mild",
    "cold",
    "wet"
-  ],
-  "note": "Tough stretch denim with zipped pockets. Normal-looking jeans for walks and festivals.",
-  "rank": 410,
-  "sets": [],
-  "was": 100
+  ]
  },
  "ri-pocket-tee": {
   "cat": "polo",
@@ -15542,6 +16171,10 @@
   "price": 27.99,
   "rank": 129,
   "shop": "Rydale",
+  "style": [
+   "quiet",
+   "work"
+  ],
   "url": "https://www.rydale.com/products/tweed-flat-cap-terrington?variant=38279",
   "wx": [
    "cold",
@@ -15638,6 +16271,86 @@
    "mild"
   ]
  },
+ "sc-huf-cargo": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "HUF double-knee cargo trousers, stone",
+  "note": "Double-knee work cargos at £28, 73% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 27.99,
+  "rank": 110,
+  "sets": [],
+  "shop": "Slam City Skates",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "url": "https://www.slamcity.com/products/huf-double-knee-cargo-pant-stone",
+  "was": 103.99,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "sc-huf-denim": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "HUF original denim trousers, light blue",
+  "note": "Loose light-wash skate jeans, 55% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 49.99,
+  "rank": 350,
+  "sets": [],
+  "shop": "Slam City Skates",
+  "sizes": "34W in stock",
+  "style": [
+   "street"
+  ],
+  "url": "https://www.slamcity.com/products/huf-huf-original-denim-pant-light-blue",
+  "was": 109.99,
+  "wx": [
+   "mild",
+   "warm"
+  ]
+ },
+ "sc-huf-henley": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "HUF Harlan baseball henley, green",
+  "note": "£15 henley, 69% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 14.99,
+  "rank": 380,
+  "sets": [],
+  "shop": "Slam City Skates",
+  "sizes": "L in stock",
+  "style": [
+   "casual",
+   "street"
+  ],
+  "url": "https://www.slamcity.com/products/huf-harlan-baseball-henley-clover",
+  "was": 47.99,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
  "sc-kickers": {
   "cat": "shoe",
   "checked": "2026-10-05",
@@ -15661,6 +16374,87 @@
    "rave"
   ],
   "url": "https://www.schuh.co.uk/mens/kickers-tovni-hi-mono-black-boots/3229547020/",
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "sc-polar-ezra": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Polar Ezra jacket, blue-grey",
+  "note": "Boxy work jacket in blue-grey. 54% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 89.99,
+  "rank": 330,
+  "sets": [],
+  "shop": "Slam City Skates",
+  "sizes": "L in stock",
+  "style": [
+   "street"
+  ],
+  "url": "https://www.slamcity.com/products/polar-ezra-jacket-blueish-grey",
+  "was": 194.99,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "sc-polar-scott-brown": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Polar Scott crew sweater, brown",
+  "note": "Plain brown knit from the Swedish skate brand. Half price.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 34.99,
+  "rank": 240,
+  "sets": [],
+  "shop": "Slam City Skates",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "casual",
+   "quiet"
+  ],
+  "url": "https://www.slamcity.com/products/polar-scott-sweater-crew-brown",
+  "was": 74.99,
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "sc-polar-scott-green": {
+  "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Polar Scott V-neck sweater, army green",
+  "note": "Army green knit, half price.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 34.99,
+  "rank": 320,
+  "sets": [],
+  "shop": "Slam City Skates",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "casual"
+  ],
+  "url": "https://www.slamcity.com/products/polar-scott-sweater-army-green",
+  "was": 71.99,
   "wx": [
    "cold",
    "mild"
@@ -15817,30 +16611,30 @@
   ]
  },
  "sd-firetrap-wind": {
-  "name": "Firetrap hooded windbreaker",
-  "shop": "Sports Direct",
-  "cat": "coat",
-  "kind": "new",
-  "price": 11,
-  "url": "https://www.sportsdirect.com/firetrap-mens-windproof-hooded-long-sleeve-windbreaker-601376#colcode=60137601",
-  "checked": "2026-06-20",
   "added": "2026-10-05",
-  "style": [
-   "rave",
-   "outdoor"
-  ],
+  "cat": "coat",
+  "checked": "2026-06-20",
+  "kind": "new",
+  "name": "Firetrap hooded windbreaker",
+  "note": "An £11 layer to tie round the waist at a festival or warehouse night. You won't mind losing it.",
   "occ": [
    "party",
    "everyday"
   ],
+  "price": 11,
+  "rank": 190,
+  "sets": [],
+  "shop": "Sports Direct",
+  "style": [
+   "rave",
+   "outdoor"
+  ],
+  "url": "https://www.sportsdirect.com/firetrap-mens-windproof-hooded-long-sleeve-windbreaker-601376#colcode=60137601",
+  "was": 54.99,
   "wx": [
    "mild",
    "wet"
-  ],
-  "note": "An £11 layer to tie round the waist at a festival or warehouse night. You won't mind losing it.",
-  "rank": 190,
-  "sets": [],
-  "was": 54.99
+  ]
  },
  "sd-harrington": {
   "cat": "coat",
@@ -16021,56 +16815,33 @@
   ]
  },
  "sl-timberland-6in": {
-  "name": "Timberland 6-inch premium waterproof boots, wheat",
-  "shop": "Stuarts London",
-  "cat": "shoe",
-  "kind": "new",
-  "price": 76,
-  "url": "https://stuartslondon.com/timberland-premium-6-inch-waterproof-boot-wheat-p52919",
-  "checked": "2026-05-22",
   "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-05-22",
+  "kind": "new",
+  "name": "Timberland 6-inch premium waterproof boots, wheat",
+  "note": "60% off the £190 price when last checked. Timberland sizes run large; try a UK 10.5.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 76,
+  "rank": 130,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Stuarts London",
+  "sizeNote": "Timberland boots run large: try a UK 10.5.",
   "style": [
    "street",
    "outdoor",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://stuartslondon.com/timberland-premium-6-inch-waterproof-boot-wheat-p52919",
+  "was": 190,
   "wx": [
    "cold",
    "wet"
-  ],
-  "note": "60% off the £190 price when last checked. Timberland sizes run large; try a UK 10.5.",
-  "rank": 130,
-  "sets": [
-   "winter"
-  ],
-  "was": 190
- },
- "sm-berghaus-prism": {
-  "name": "Berghaus Prism InterActive Polartec fleece, black",
-  "shop": "Summits",
-  "cat": "knit",
-  "kind": "new",
-  "price": 62.99,
-  "url": "https://summits.co.uk/products/berghaus-mens-prism-interactive-polartec-fleece-jacket-black",
-  "checked": "2026-06-17",
-  "added": "2026-10-05",
-  "style": [
-   "outdoor"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "cold",
-   "mild"
-  ],
-  "note": "The classic Berghaus fleece. Zips into any Berghaus InterActive waterproof.",
-  "rank": 450,
-  "sets": [],
-  "was": 80
+  ]
  },
  "sp-4505-10in": {
   "added": "2026-10-05",
@@ -16981,130 +17752,216 @@
   ]
  },
  "sr-tan-merino-polo": {
-  "name": "Savile Row Company merino knitted polo, tan",
-  "shop": "Savile Row Company",
-  "cat": "knit",
-  "kind": "new",
-  "price": 27.95,
-  "url": "https://www.savilerowco.com/products/tan-merino-wool-knitted-polo-shirt-mkw527tan",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "quiet"
-  ],
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Savile Row Company merino knitted polo, tan",
+  "note": "Merino knitted polo for £28, 65% off.",
   "occ": [
    "smart",
    "everyday"
   ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Merino knitted polo for £28, 65% off.",
+  "price": 27.95,
   "rank": 230,
   "sets": [],
-  "was": 80.0,
-  "insize": true,
-  "sizes": "L in stock"
+  "shop": "Savile Row Company",
+  "sizes": "L in stock",
+  "style": [
+   "quiet"
+  ],
+  "url": "https://www.savilerowco.com/products/tan-merino-wool-knitted-polo-shirt-mkw527tan",
+  "was": 80,
+  "wx": [
+   "mild"
+  ]
  },
  "ss-balefire": {
-  "name": "Seasalt Balefire organic cotton polo",
-  "shop": "Seasalt",
-  "cat": "polo",
-  "kind": "new",
-  "price": 19.95,
-  "url": "https://www.seasaltcornwall.com/mens-balefire-organic-cotton-jersey-polo",
-  "checked": "2026-05-10",
   "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Seasalt Balefire organic cotton polo",
+  "note": "Plain jersey polo with no big logo.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 25.95,
+  "rank": 560,
+  "sets": [],
+  "shop": "Seasalt",
   "style": [
    "quiet",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.seasaltcornwall.com/mens-balefire-organic-cotton-jersey-polo",
+  "was": 35.95,
   "wx": [
    "warm",
    "mild"
-  ],
-  "note": "Plain jersey polo with no big logo.",
-  "rank": 560,
-  "sets": [],
-  "was": 35.95
+  ]
  },
  "ss-banyan": {
-  "name": "Seasalt Banyan checked cotton shirt",
-  "shop": "Seasalt",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 39.95,
-  "url": "https://www.seasaltcornwall.com/mens-banyan-organic-cotton-check-shirt",
-  "checked": "2026-05-10",
   "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Seasalt Banyan checked cotton shirt",
+  "note": "Soft organic cotton check. Wear it open over a tee or buttoned under a jumper.",
+  "occ": [
+   "everyday"
+  ],
+  "prev": 39.95,
+  "price": 35.95,
+  "rank": 440,
+  "sets": [],
+  "shop": "Seasalt",
   "style": [
    "quiet",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.seasaltcornwall.com/mens-banyan-organic-cotton-check-shirt",
+  "was": 69.95,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Soft organic cotton check. Wear it open over a tee or buttoned under a jumper.",
-  "rank": 440,
-  "sets": [],
-  "was": 69.95
+  ]
  },
  "ss-jackline": {
-  "name": "Seasalt Jackline waffle jersey top",
-  "shop": "Seasalt",
-  "cat": "knit",
-  "kind": "new",
-  "price": 22.95,
-  "url": "https://www.seasaltcornwall.com/mens-jackline-crew-neck-jersey-jumper",
-  "checked": "2026-05-10",
   "added": "2026-10-05",
-  "style": [
-   "casual",
-   "lounge"
-  ],
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "Seasalt Jackline waffle jersey top",
+  "note": "Waffle-knit long sleeve. Works under an overshirt or on its own at home. Back to full price at the last check.",
   "occ": [
    "everyday",
    "lounge"
   ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Waffle-knit long sleeve. Works under an overshirt or on its own at home.",
+  "price": 45.95,
   "rank": 520,
   "sets": [],
-  "was": 45.95
+  "shop": "Seasalt",
+  "style": [
+   "casual",
+   "lounge"
+  ],
+  "url": "https://www.seasaltcornwall.com/mens-jackline-crew-neck-jersey-jumper",
+  "wx": [
+   "mild"
+  ]
  },
  "ss-mizzen": {
-  "name": "Seasalt Mizzen organic cotton jumper",
-  "shop": "Seasalt",
-  "cat": "knit",
-  "kind": "new",
-  "price": 35.95,
-  "url": "https://www.seasaltcornwall.com/mens-mizzen-organic-cotton-knitted-jumper",
-  "checked": "2026-05-10",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-05-10",
+  "kind": "new",
+  "name": "Seasalt Mizzen organic cotton jumper",
+  "note": "Chunky cotton crew from the Cornish brand. More than half off at the last check.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 35.95,
+  "rank": 380,
+  "sets": [],
+  "shop": "Seasalt",
   "style": [
    "quiet",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.seasaltcornwall.com/mens-mizzen-organic-cotton-knitted-jumper",
+  "was": 75.95,
   "wx": [
    "mild",
    "cold"
+  ]
+ },
+ "sv-8eye-black": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Solovair 8-eye Derby boots, black greasy",
+  "note": "The classic English 8-eye boot. Greasy leather hides scuffs. Resoleable.",
+  "occ": [
+   "everyday",
+   "party"
   ],
-  "note": "Chunky cotton crew from the Cornish brand. More than half off at the last check.",
-  "rank": 380,
+  "price": 179,
+  "rank": 150,
+  "sets": [
+   "winter"
+  ],
+  "shop": "Solovair",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "rave",
+   "street",
+   "quiet"
+  ],
+  "url": "https://www.solovair.co.uk/products/s8-551-bg-g",
+  "wx": [
+   "cold",
+   "wet",
+   "mild"
+  ]
+ },
+ "sv-chukka": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Solovair 3-eye chukka boots, crazy horse brown",
+  "note": "Brown crazy horse leather chukkas, made in England.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 169,
+  "rank": 210,
   "sets": [],
-  "was": 75.95
+  "shop": "Solovair",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.solovair.co.uk/products/s3-080-ch-g",
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "sv-platform-gibson": {
+  "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Solovair 3-eye platform Gibson shoes, black",
+  "note": "Made in England by the Northamptonshire factory behind the original air-cushioned sole. Chunky enough for the dancefloor.",
+  "occ": [
+   "party",
+   "everyday"
+  ],
+  "price": 159,
+  "rank": 190,
+  "sets": [],
+  "shop": "Solovair",
+  "sizes": "UK 11 in stock",
+  "style": [
+   "rave",
+   "street"
+  ],
+  "url": "https://www.solovair.co.uk/products/pl-s3-995-bg-g",
+  "wx": [
+   "mild",
+   "cold",
+   "wet"
+  ]
  },
  "sw-belt": {
   "cat": "acc",
@@ -17118,6 +17975,10 @@
   "price": 20,
   "rank": 138,
   "shop": "Samuel Windsor",
+  "style": [
+   "quiet",
+   "casual"
+  ],
   "url": "https://www.samuel-windsor.co.uk/collections/belts/products/casual-leather-belt-dark-brown",
   "wx": [
    "cold",
@@ -18770,30 +19631,30 @@
   ]
  },
  "tml-ringer-navy": {
-  "name": "T.M. Lewin ringer T-shirt, navy",
-  "shop": "T.M. Lewin",
-  "cat": "polo",
-  "kind": "new",
-  "price": 7.0,
-  "url": "https://tmlewin.co.uk/products/the-ringer-t-shirt-navy-68235",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
-  "style": [
-   "casual"
-  ],
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "T.M. Lewin ringer T-shirt, navy",
+  "note": "£7 tee, 72% off.",
   "occ": [
    "everyday"
   ],
+  "price": 7,
+  "rank": 310,
+  "sets": [],
+  "shop": "T.M. Lewin",
+  "sizes": "L in stock",
+  "style": [
+   "casual"
+  ],
+  "url": "https://tmlewin.co.uk/products/the-ringer-t-shirt-navy-68235",
+  "was": 25,
   "wx": [
    "warm",
    "mild"
-  ],
-  "note": "£7 tee, 72% off.",
-  "rank": 310,
-  "sets": [],
-  "was": 25.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "tml-rugby": {
   "cat": "polo",
@@ -18850,55 +19711,55 @@
   ]
  },
  "tnf-glacier": {
-  "name": "The North Face Glacier fleece",
-  "shop": "The North Face",
-  "cat": "knit",
-  "kind": "new",
-  "price": 48,
-  "url": "https://www.thenorthface.com/en-gb/p/men-211701/men-s-glacier-fleece-NF0A8D0R?color=8K2",
-  "checked": "2026-07-24",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-07-24",
+  "kind": "new",
+  "name": "The North Face Glacier fleece",
+  "note": "Light full-zip fleece. £48 in some colours, up to £80 in others.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 48,
+  "rank": 270,
+  "sets": [],
+  "shop": "The North Face",
   "style": [
    "outdoor",
    "street"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.thenorthface.com/en-gb/p/men-211701/men-s-glacier-fleece-NF0A8D0R?color=8K2",
+  "was": 80,
   "wx": [
    "cold",
    "mild"
-  ],
-  "note": "Light full-zip fleece. £48 in some colours, up to £80 in others.",
-  "rank": 270,
-  "sets": [],
-  "was": 80
+  ]
  },
  "tnf-yumiori-qz": {
-  "name": "The North Face Yumiori quarter-zip fleece",
-  "shop": "The North Face",
-  "cat": "knit",
-  "kind": "new",
-  "price": 56,
-  "url": "https://www.thenorthface.com/en-gb/p/men-211701/men-s-yumiori-1-4-zip-fleece-jacket-NF0A883S?color=M0F",
-  "checked": "2026-06-19",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-06-19",
+  "kind": "new",
+  "name": "The North Face Yumiori quarter-zip fleece",
+  "note": "Soft quarter-zip fleece that looks fine in town. From £56 depending on colour.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 56,
+  "rank": 350,
+  "sets": [],
+  "shop": "The North Face",
   "style": [
    "outdoor",
    "casual",
    "street"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.thenorthface.com/en-gb/p/men-211701/men-s-yumiori-1-4-zip-fleece-jacket-NF0A883S?color=M0F",
+  "was": 80,
   "wx": [
    "cold",
    "mild"
-  ],
-  "note": "Soft quarter-zip fleece that looks fine in town. From £56 depending on colour.",
-  "rank": 350,
-  "sets": [],
-  "was": 80
+  ]
  },
  "tp-cherhill": {
   "cat": "trouser",
@@ -19272,113 +20133,279 @@
   ]
  },
  "tu-birdseye-polo": {
-  "name": "Tu birdseye tipped jersey polo, blue",
-  "shop": "Tu at Sainsbury's",
-  "cat": "polo",
-  "kind": "new",
-  "price": 10.62,
-  "url": "https://tuclothing.sainsburys.co.uk/product/tuc148393912",
-  "checked": "2026-09-24",
   "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-09-24",
+  "kind": "new",
+  "name": "Tu birdseye tipped jersey polo, blue",
+  "note": "Textured jersey polo with a tipped collar for about a tenner.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 10.62,
+  "rank": 310,
+  "sets": [],
+  "shop": "Tu at Sainsbury's",
   "style": [
    "casual",
    "quiet"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://tuclothing.sainsburys.co.uk/product/tuc148393912",
+  "was": 12.5,
   "wx": [
    "warm",
    "mild"
-  ],
-  "note": "Textured jersey polo with a tipped collar for about a tenner.",
-  "rank": 310,
-  "sets": [],
-  "was": 12.5
+  ]
  },
  "tu-lambswool-high": {
-  "name": "Tu pure lambswool high-neck jumper",
-  "shop": "Tu at Sainsbury's",
-  "cat": "knit",
-  "kind": "new",
-  "price": 35,
-  "url": "https://tuclothing.sainsburys.co.uk/product/tuc148474579",
-  "checked": "2026-10-04",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "minimal"
-  ],
+  "cat": "knit",
+  "checked": "2026-10-04",
+  "gift": true,
+  "kind": "new",
+  "name": "Tu pure lambswool high-neck jumper",
+  "note": "100% lambswool for £35, with a slightly high crew neck. Three colours. Buy it in the supermarket with the shopping.",
   "occ": [
    "everyday",
    "smart"
   ],
-  "wx": [
-   "cold",
-   "mild"
-  ],
-  "note": "100% lambswool for £35, with a slightly high crew neck. Three colours. Buy it in the supermarket with the shopping.",
+  "price": 35,
   "rank": 70,
   "sets": [
    "winter"
   ],
-  "gift": true
+  "shop": "Tu at Sainsbury's",
+  "style": [
+   "quiet",
+   "minimal"
+  ],
+  "url": "https://tuclothing.sainsburys.co.uk/product/tuc148474579",
+  "wx": [
+   "cold",
+   "mild"
+  ]
  },
  "tu-merino-hz-black": {
-  "name": "Tu merino wool half-zip jumper, black",
-  "shop": "Tu at Sainsbury's",
-  "cat": "knit",
-  "kind": "new",
-  "price": 29.75,
-  "url": "https://tuclothing.sainsburys.co.uk/product/tuc148197532",
-  "checked": "2026-09-24",
   "added": "2026-10-05",
-  "style": [
-   "minimal",
-   "street",
-   "quiet"
-  ],
+  "cat": "knit",
+  "checked": "2026-09-24",
+  "kind": "new",
+  "name": "Tu merino wool half-zip jumper, black",
+  "note": "Fine merino half-zip for under £30. Smart enough for a dinner out.",
   "occ": [
    "everyday",
    "smart",
    "party"
   ],
+  "price": 29.75,
+  "rank": 110,
+  "sets": [],
+  "shop": "Tu at Sainsbury's",
+  "style": [
+   "minimal",
+   "street",
+   "quiet"
+  ],
+  "url": "https://tuclothing.sainsburys.co.uk/product/tuc148197532",
+  "was": 35,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Fine merino half-zip for under £30. Smart enough for a dinner out.",
-  "rank": 110,
-  "sets": [],
-  "was": 35
+  ]
  },
  "tu-merino-hz-red": {
-  "name": "Tu merino wool half-zip jumper, dark red",
-  "shop": "Tu at Sainsbury's",
-  "cat": "knit",
-  "kind": "new",
-  "price": 29.75,
-  "url": "https://tuclothing.sainsburys.co.uk/product/tuc148197401",
-  "checked": "2026-09-24",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "casual"
-  ],
+  "cat": "knit",
+  "checked": "2026-09-24",
+  "kind": "new",
+  "name": "Tu merino wool half-zip jumper, dark red",
+  "note": "The same jumper in a dark red. Good with navy and stone.",
   "occ": [
    "everyday",
    "smart"
   ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "The same jumper in a dark red. Good with navy and stone.",
+  "price": 29.75,
   "rank": 260,
   "sets": [
    "christmas"
   ],
-  "was": 35
+  "shop": "Tu at Sainsbury's",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://tuclothing.sainsburys.co.uk/product/tuc148197401",
+  "was": 35,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "ui-carhartt-ravon": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Carhartt WIP Ravon jacket, washed black",
+  "note": "Washed black denim work jacket, half price.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 89.95,
+  "rank": 230,
+  "sets": [],
+  "shop": "Urban Industry",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "rave"
+  ],
+  "url": "https://www.urbanindustry.co.uk/products/carhartt-wip-ravon-jacket-black-heavy-stone-wash",
+  "was": 179.95,
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "ui-columbia-overshirt": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Columbia Landroamer half-zip overshirt, stone",
+  "note": "Half-zip overshirt in a stone colour, 44% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 44.95,
+  "rank": 390,
+  "sets": [],
+  "shop": "Urban Industry",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.urbanindustry.co.uk/products/columbia-landroamer-half-zip-overshirt-ancient-fossil",
+  "was": 79.95,
+  "wx": [
+   "mild"
+  ]
+ },
+ "ui-columbia-tee": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Columbia heavyweight T-shirt, moss green",
+  "note": "Heavyweight tee for £15.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 14.95,
+  "rank": 280,
+  "sets": [],
+  "shop": "Urban Industry",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "outdoor",
+   "casual"
+  ],
+  "url": "https://www.urbanindustry.co.uk/products/columbia-csc-heavyweight-t-shirt-mossy-green",
+  "was": 29.95,
+  "wx": [
+   "warm",
+   "mild"
+  ]
+ },
+ "ui-columbia-wind": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Columbia Street Heights windbreaker, moss green",
+  "note": "Light windbreaker, 44% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 44.95,
+  "rank": 360,
+  "sets": [],
+  "shop": "Urban Industry",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "outdoor"
+  ],
+  "url": "https://www.urbanindustry.co.uk/products/columbia-street-heights-windbreaker-jacket-mossy-green",
+  "was": 79.95,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "ui-patagonia-isthmus": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Patagonia Isthmus unlined jacket, khaki",
+  "note": "Water-repellent jacket that looks fine in town. 40% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 89.95,
+  "rank": 250,
+  "sets": [],
+  "shop": "Urban Industry",
+  "sizes": "L in stock",
+  "style": [
+   "outdoor",
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.urbanindustry.co.uk/products/patagonia-isthmus-unlined-jacket-slab-khaki-20455-slkh",
+  "was": 149.95,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "ui-tnf-tee": {
+  "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "The North Face relaxed T-shirt, black",
+  "note": "Relaxed black tee, half price.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 22.45,
+  "rank": 270,
+  "sets": [],
+  "shop": "Urban Industry",
+  "sizes": "L in stock",
+  "style": [
+   "street",
+   "outdoor",
+   "rave"
+  ],
+  "url": "https://www.urbanindustry.co.uk/products/the-north-face-1966-tnf-relaxed-t-shirt-tnf-black",
+  "was": 44.95,
+  "wx": [
+   "warm",
+   "mild"
+  ]
  },
  "uq-3d-knit": {
   "cat": "knit",
@@ -21726,31 +22753,31 @@
   ]
  },
  "us-coach-navy": {
-  "name": "Uskees coach jacket, navy",
-  "shop": "Uskees",
-  "cat": "coat",
-  "kind": "new",
-  "price": 30.0,
-  "url": "https://uskees.com/products/3052-coach-jacket-navy",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Uskees coach jacket, navy",
+  "note": "Snap-front coach jacket at £30, 70% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 30,
+  "rank": 110,
+  "sets": [],
+  "shop": "Uskees",
+  "sizes": "L in stock",
   "style": [
    "street",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://uskees.com/products/3052-coach-jacket-navy",
+  "was": 100,
   "wx": [
    "mild",
    "wet"
-  ],
-  "note": "Snap-front coach jacket at £30, 70% off.",
-  "rank": 110,
-  "sets": [],
-  "was": 100.0,
-  "insize": true,
-  "sizes": "L in stock"
+  ]
  },
  "us-drill-charcoal": {
   "cat": "coat",
@@ -21781,32 +22808,61 @@
   ]
  },
  "us-ripstop-black": {
-  "name": "Uskees ripstop utility trousers, black",
-  "shop": "Uskees",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 45.0,
-  "url": "https://uskees.com/products/5020-ripstop-utility-pants-old-black",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Uskees ripstop utility trousers, black",
+  "note": "Ripstop with pockets that close: built for warehouse nights.",
+  "occ": [
+   "party",
+   "everyday"
+  ],
+  "price": 45,
+  "rank": 200,
+  "sets": [],
+  "shop": "Uskees",
+  "sizes": "L in stock",
   "style": [
    "rave",
    "street",
    "outdoor"
   ],
+  "url": "https://uskees.com/products/5020-ripstop-utility-pants-old-black",
+  "was": 90,
+  "wx": [
+   "mild"
+  ]
+ },
+ "us-ripstop-shorts": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Uskees ripstop utility shorts, black",
+  "note": "Black ripstop shorts for summer festivals, 60% off.",
   "occ": [
    "party",
    "everyday"
   ],
-  "wx": [
-   "mild"
+  "price": 28,
+  "rank": 300,
+  "sets": [
+   "holiday"
   ],
-  "note": "Ripstop with pockets that close: built for warehouse nights.",
-  "rank": 200,
-  "sets": [],
-  "was": 90.0,
-  "insize": true,
-  "sizes": "L in stock"
+  "shop": "Uskees",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "street"
+  ],
+  "url": "https://uskees.com/products/5024-ripstop-utility-shorts-old-black",
+  "was": 70,
+  "wx": [
+   "warm"
+  ]
  },
  "us-taupe": {
   "cat": "coat",
@@ -21839,31 +22895,197 @@
   ]
  },
  "us-tee-lichen": {
-  "name": "Uskees plain T-shirt, lichen green",
-  "shop": "Uskees",
-  "cat": "polo",
-  "kind": "new",
-  "price": 14.0,
-  "url": "https://uskees.com/products/7006-plain-t-shirt-lichen",
-  "checked": "2026-10-05",
   "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Uskees plain T-shirt, lichen green",
+  "note": "Heavy organic cotton tee for £14.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 14,
+  "rank": 270,
+  "sets": [],
+  "shop": "Uskees",
+  "sizes": "L in stock",
   "style": [
    "casual",
    "street"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://uskees.com/products/7006-plain-t-shirt-lichen",
+  "was": 35,
   "wx": [
    "warm",
    "mild"
-  ],
-  "note": "Heavy organic cotton tee for £14.",
-  "rank": 270,
-  "sets": [],
-  "was": 35.0,
+  ]
+ },
+ "uw-aston-stone": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
   "insize": true,
-  "sizes": "L in stock"
+  "kind": "new",
+  "name": "Universal Works Aston trousers, stone twill",
+  "note": "Relaxed tapered trousers in stone twill, 61% off.",
+  "occ": [
+   "everyday",
+   "smart"
+  ],
+  "price": 59,
+  "rank": 230,
+  "sets": [],
+  "shop": "Universal Works",
+  "sizes": "34W in stock",
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "url": "https://www.universalworks.co.uk/products/universal-works-aston-pant-in-stone-twill",
+  "was": 150,
+  "wx": [
+   "mild"
+  ]
+ },
+ "uw-capitol-black": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Universal Works Capitol jacket, black",
+  "note": "Light black technical jacket. It packs down, so there is no cloakroom queue. 58% off.",
+  "occ": [
+   "party",
+   "everyday"
+  ],
+  "price": 75,
+  "rank": 170,
+  "sets": [],
+  "shop": "Universal Works",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "minimal"
+  ],
+  "url": "https://www.universalworks.co.uk/products/black-recycled-poly-tech-capitol-jacket",
+  "was": 180,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "uw-capitol-navy": {
+  "added": "2026-10-05",
+  "cat": "coat",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Universal Works Capitol jacket, navy",
+  "note": "Clean navy technical jacket, 62% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 69,
+  "rank": 300,
+  "sets": [],
+  "shop": "Universal Works",
+  "sizes": "L in stock",
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "url": "https://www.universalworks.co.uk/products/navy-recycled-poly-tech-capitol-jacket",
+  "was": 180,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "uw-dockside-sand": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Universal Works Dockside overshirt, sand",
+  "note": "British workwear label. Sand military-cotton overshirt, 61% off.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 55,
+  "rank": 260,
+  "sets": [],
+  "shop": "Universal Works",
+  "sizes": "L in stock",
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "url": "https://www.universalworks.co.uk/products/universal-works-dockside-overshirt-in-sand-military-cotton",
+  "was": 140,
+  "wx": [
+   "mild"
+  ]
+ },
+ "uw-military-black": {
+  "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Universal Works polytech military trousers, black",
+  "note": "Black technical trousers that look like chinos and dry fast. 57% off.",
+  "occ": [
+   "party",
+   "everyday"
+  ],
+  "price": 65,
+  "rank": 130,
+  "sets": [],
+  "shop": "Universal Works",
+  "sizes": "34W in stock",
+  "style": [
+   "rave",
+   "minimal",
+   "street"
+  ],
+  "url": "https://www.universalworks.co.uk/products/black-recycled-poly-tech-military-chino",
+  "was": 150,
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "uw-ztech-black": {
+  "added": "2026-10-05",
+  "cat": "shirt",
+  "checked": "2026-10-05",
+  "insize": true,
+  "kind": "new",
+  "name": "Universal Works Z Tech overshirt, black",
+  "note": "Recycled technical fabric in black: a shirt shape that works as a light jacket. 59% off.",
+  "occ": [
+   "party",
+   "everyday"
+  ],
+  "price": 55,
+  "rank": 120,
+  "sets": [],
+  "shop": "Universal Works",
+  "sizes": "L in stock",
+  "style": [
+   "rave",
+   "minimal",
+   "street"
+  ],
+  "url": "https://www.universalworks.co.uk/products/black-recycled-poly-tech-z-tech-overshirt",
+  "was": 135,
+  "wx": [
+   "mild",
+   "wet"
+  ]
  },
  "w-casio-a158": {
   "added": "2026-10-05",
@@ -22427,227 +23649,228 @@
   ]
  },
  "ws-attadale-stripe": {
-  "name": "White Stuff Attadale crew-neck stripe jumper, navy",
-  "shop": "White Stuff",
-  "cat": "knit",
-  "kind": "new",
-  "price": 28,
-  "url": "https://www.whitestuff.com/p/7007/attadale-crew-neck-stripe/NAVY_MULTI",
-  "checked": "2026-06-19",
   "added": "2026-10-05",
+  "cat": "knit",
+  "checked": "2026-10-05",
+  "kind": "new",
+  "name": "White Stuff Attadale crew-neck stripe jumper, navy",
+  "note": "Soft cotton knit with a navy stripe, 58% off at the last check.",
+  "occ": [
+   "everyday"
+  ],
+  "prev": 28,
+  "price": 23,
+  "rank": 370,
+  "sets": [],
+  "shop": "White Stuff",
   "style": [
    "quiet",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.whitestuff.com/p/7007/attadale-crew-neck-stripe/NAVY_MULTI",
+  "was": 55,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Soft cotton knit with a navy stripe. Half price at the last check.",
-  "rank": 370,
-  "sets": [],
-  "was": 55
+  ]
  },
  "ws-newport-merino": {
-  "name": "White Stuff Newport merino jumper, dark navy",
-  "shop": "White Stuff",
-  "cat": "knit",
-  "kind": "new",
-  "price": 59,
-  "url": "https://www.whitestuff.com/p/2519/newport-wool-merino-jumper/DARK_NAVY",
-  "checked": "2026-08-01",
   "added": "2026-10-05",
-  "style": [
-   "quiet",
-   "minimal"
-  ],
+  "cat": "knit",
+  "checked": "2026-08-01",
+  "gift": true,
+  "kind": "new",
+  "name": "White Stuff Newport merino jumper, dark navy",
+  "note": "Fine merino crew in dark navy. Goes over a shirt or a tee.",
   "occ": [
    "everyday",
    "smart"
   ],
+  "price": 59,
+  "rank": 430,
+  "sets": [],
+  "shop": "White Stuff",
+  "style": [
+   "quiet",
+   "minimal"
+  ],
+  "url": "https://www.whitestuff.com/p/2519/newport-wool-merino-jumper/DARK_NAVY",
   "wx": [
    "cold",
    "mild"
-  ],
-  "note": "Fine merino crew in dark navy. Goes over a shirt or a tee.",
-  "rank": 430,
-  "sets": [],
-  "gift": true
+  ]
  },
  "za-heavy-tee": {
-  "name": "Zara basic heavyweight T-shirt, white",
-  "shop": "Zara",
-  "cat": "polo",
-  "kind": "new",
-  "price": 17.99,
-  "url": "https://www.zara.com/uk/en/basic-heavyweight-t-shirt--03-p01887410.html",
-  "checked": "2026-09-05",
   "added": "2026-10-05",
+  "cat": "polo",
+  "checked": "2026-09-05",
+  "kind": "new",
+  "name": "Zara basic heavyweight T-shirt, white",
+  "note": "Thick white tee that keeps its shape. Size up to L for a boxy fit.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 17.99,
+  "rank": 240,
+  "sets": [],
+  "shop": "Zara",
   "style": [
    "minimal",
    "street",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.zara.com/uk/en/basic-heavyweight-t-shirt--03-p01887410.html",
   "wx": [
    "mild",
    "warm"
-  ],
-  "note": "Thick white tee that keeps its shape. Size up to L for a boxy fit.",
-  "rank": 240,
-  "sets": []
+  ]
  },
  "za-straight-jeans": {
-  "name": "Zara straight fit jeans",
-  "shop": "Zara",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 49.99,
-  "url": "https://www.zara.com/uk/en/straight-fit-jeans-p00840515.html",
-  "checked": "2026-06-05",
   "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-06-05",
+  "kind": "new",
+  "name": "Zara straight fit jeans",
+  "note": "Plain mid-blue straight leg. Check the inside leg against 32in.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 49.99,
+  "rank": 460,
+  "sets": [],
+  "shop": "Zara",
   "style": [
    "casual",
    "minimal"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.zara.com/uk/en/straight-fit-jeans-p00840515.html",
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Plain mid-blue straight leg. Check the inside leg against 32in.",
-  "rank": 460,
-  "sets": []
+  ]
  },
  "za-tech-bomber": {
-  "name": "Zara regular fit technical bomber jacket",
-  "shop": "Zara",
-  "cat": "coat",
-  "kind": "new",
-  "price": 79.99,
-  "url": "https://www.zara.com/uk/en/regular-fit-technical-bomber-jacket-p03046316.html",
-  "checked": "2026-06-14",
   "added": "2026-10-05",
-  "style": [
-   "street",
-   "minimal"
-  ],
+  "cat": "coat",
+  "checked": "2026-06-14",
+  "kind": "new",
+  "name": "Zara regular fit technical bomber jacket",
+  "note": "Clean nylon bomber with no big branding. Works over a hoodie or a tee.",
   "occ": [
    "everyday",
    "party"
   ],
+  "price": 79.99,
+  "rank": 410,
+  "sets": [],
+  "shop": "Zara",
+  "style": [
+   "street",
+   "minimal"
+  ],
+  "url": "https://www.zara.com/uk/en/regular-fit-technical-bomber-jacket-p03046316.html",
   "wx": [
    "mild"
-  ],
-  "note": "Clean nylon bomber with no big branding. Works over a hoodie or a tee.",
-  "rank": 410,
-  "sets": []
+  ]
  },
  "za-twill-shirt": {
-  "name": "Zara regular fit cotton twill shirt",
-  "shop": "Zara",
-  "cat": "shirt",
-  "kind": "new",
-  "price": 35.99,
-  "url": "https://www.zara.com/uk/en/regular-fit-cotton-twill-shirt-p00975480.html",
-  "checked": "2026-06-12",
   "added": "2026-10-05",
-  "style": [
-   "minimal",
-   "casual"
-  ],
+  "cat": "shirt",
+  "checked": "2026-06-12",
+  "kind": "new",
+  "name": "Zara regular fit cotton twill shirt",
+  "note": "Heavier than a poplin shirt, so it can be worn open as a layer.",
   "occ": [
    "everyday",
    "smart"
   ],
+  "price": 35.99,
+  "rank": 490,
+  "sets": [],
+  "shop": "Zara",
+  "style": [
+   "minimal",
+   "casual"
+  ],
+  "url": "https://www.zara.com/uk/en/regular-fit-cotton-twill-shirt-p00975480.html",
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Heavier than a poplin shirt, so it can be worn open as a layer.",
-  "rank": 490,
-  "sets": []
+  ]
  },
  "zl-bdg-jack-black": {
-  "name": "BDG Jack straight-leg jeans, black",
-  "shop": "Zalando",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 49,
-  "url": "https://www.zalando.co.uk/bdg-urban-outfitters-jack-relaxed-fit-jeans-black-qx722g01g-q11.html",
-  "checked": "2026-05-19",
   "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-05-19",
+  "kind": "new",
+  "name": "BDG Jack straight-leg jeans, black",
+  "note": "Urban Outfitters' own relaxed straight jean. Washed black reads softer than jet black.",
+  "occ": [
+   "everyday",
+   "party"
+  ],
+  "price": 49,
+  "rank": 340,
+  "sets": [],
+  "shop": "Zalando",
   "style": [
    "street",
    "rave"
   ],
-  "occ": [
-   "everyday",
-   "party"
-  ],
+  "url": "https://www.zalando.co.uk/bdg-urban-outfitters-jack-relaxed-fit-jeans-black-qx722g01g-q11.html",
+  "was": 54.99,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Urban Outfitters' own relaxed straight jean. Washed black reads softer than jet black.",
-  "rank": 340,
-  "sets": [],
-  "was": 54.99
+  ]
  },
  "zl-bdg-vintage": {
-  "name": "BDG relaxed straight jeans, dark vintage",
-  "shop": "Zalando",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 36,
-  "url": "https://www.zalando.co.uk/bdg-urban-outfitters-relaxed-fit-jeans-dark-vintage-qx722g01k-k11.html",
-  "checked": "2026-07-18",
   "added": "2026-10-05",
+  "cat": "trouser",
+  "checked": "2026-07-18",
+  "kind": "new",
+  "name": "BDG relaxed straight jeans, dark vintage",
+  "note": "Dark wash, relaxed through the leg. 40% off at the last check.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 36,
+  "rank": 190,
+  "sets": [],
+  "shop": "Zalando",
   "style": [
    "street",
    "casual"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.zalando.co.uk/bdg-urban-outfitters-relaxed-fit-jeans-dark-vintage-qx722g01k-k11.html",
+  "was": 59.99,
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Dark wash, relaxed through the leg. 40% off at the last check.",
-  "rank": 190,
-  "sets": [],
-  "was": 59.99
+  ]
  },
  "zl-nb574-grey": {
-  "name": "New Balance ML574 trainers, grey",
-  "shop": "Zalando",
-  "cat": "shoe",
-  "kind": "new",
-  "price": 99.99,
-  "url": "https://www.zalando.co.uk/new-balance-ml574-unisex-trainers-grey-ne215o00i-c11.html",
-  "checked": "2026-08-06",
   "added": "2026-10-05",
+  "cat": "shoe",
+  "checked": "2026-08-06",
+  "kind": "new",
+  "name": "New Balance ML574 trainers, grey",
+  "note": "Grey suede and mesh. He already wears New Balance, and the grey goes with everything here.",
+  "occ": [
+   "everyday"
+  ],
+  "price": 99.99,
+  "rank": 470,
+  "sets": [],
+  "shop": "Zalando",
   "style": [
    "casual",
    "street"
   ],
-  "occ": [
-   "everyday"
-  ],
+  "url": "https://www.zalando.co.uk/new-balance-ml574-unisex-trainers-grey-ne215o00i-c11.html",
   "wx": [
    "mild",
    "warm"
-  ],
-  "note": "Grey suede and mesh. He already wears New Balance, and the grey goes with everything here.",
-  "rank": 470,
-  "sets": []
+  ]
  }
 }

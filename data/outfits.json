@@ -1790,414 +1790,1235 @@
   ]
  },
  "n3-baggy-578": {
-  "name": "Baggy 578s and a coach jacket",
-  "occ": "everyday",
-  "style": [
-   "street"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Washed-olive baggy jeans, a boxy black tee, a navy coach jacket and Old Skools.",
   "look": "men navy coach jacket black boxy t-shirt olive baggy jeans vans old skool",
-  "rank": 6,
-  "tags": [],
+  "name": "Baggy 578s and a coach jacket",
+  "note": "Washed-olive baggy jeans, a boxy black tee, a navy coach jacket and Old Skools.",
+  "occ": "everyday",
   "pieces": [
    {
+    "col": "navy",
     "item": "us-coach-navy",
     "shape": "jacket",
-    "col": "navy",
     "what": "Coach jacket"
    },
    {
+    "col": "black",
     "item": "js-lee-boxy-tee",
     "shape": "tee",
-    "col": "black",
     "what": "Boxy tee"
    },
    {
+    "col": "olive",
     "item": "js-levis-578",
     "shape": "trousers",
-    "col": "olive",
     "what": "Levi's 578 baggy"
    },
    {
+    "col": "black",
     "item": "of-vans-oldskool",
     "shape": "trainers",
-    "col": "black",
     "what": "Vans Old Skool"
    }
+  ],
+  "rank": 6,
+  "style": [
+   "street"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
   ]
  },
  "n3-black-utility": {
-  "name": "Black utility",
-  "occ": "party",
-  "style": [
-   "rave"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Everything black in three textures: a technical quarter-zip, ripstop trousers with closing pockets, waxy combat boots.",
   "look": "men black technical quarter zip black ripstop utility trousers black combat boots wrap sunglasses rave",
-  "rank": 4,
-  "tags": [],
+  "name": "Black utility",
+  "note": "Everything black in three textures: a technical quarter-zip, ripstop trousers with closing pockets, waxy combat boots.",
+  "occ": "party",
   "pieces": [
    {
+    "col": "black",
     "item": "mx-golf-qz",
     "shape": "halfzip",
-    "col": "black",
     "what": "Quarter-zip"
    },
    {
+    "col": "black",
     "item": "us-ripstop-black",
     "shape": "trousers",
-    "col": "black",
     "what": "Ripstop utility trousers"
    },
    {
+    "col": "black",
     "item": "bl-bradley-combat",
     "shape": "boots",
-    "col": "black",
     "what": "Combat boots"
    },
    {
+    "col": "black",
     "item": "rv-wrap-sunglasses",
     "shape": "sunglasses",
-    "col": "black",
     "what": "Wrap sunglasses"
    }
+  ],
+  "rank": 4,
+  "style": [
+   "rave"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
   ]
  },
  "n3-bomber-ecru": {
+  "look": "men navy bomber jacket white t-shirt ecru carpenter jeans black adidas campus",
   "name": "Navy bomber, ecru denim",
+  "note": "A Fred Perry bomber over a white tee, ecru carpenter trousers and black Campus.",
   "occ": "party",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "js-fp-bomber",
+    "shape": "jacket",
+    "what": "Fred Perry bomber"
+   },
+   {
+    "col": "white",
+    "item": "uq-airism-tee",
+    "shape": "tee",
+    "what": "White tee"
+   },
+   {
+    "col": "cream",
+    "item": "js-levis-568-ecru",
+    "shape": "trousers",
+    "what": "Ecru carpenter trousers"
+   },
+   {
+    "col": "black",
+    "item": "r1-campus-adv",
+    "shape": "trainers",
+    "what": "adidas Campus ADV"
+   }
+  ],
+  "rank": 11,
   "style": [
    "casual",
    "quiet"
   ],
+  "tags": [],
   "wx": [
    "mild"
-  ],
-  "note": "A Fred Perry bomber over a white tee, ecru carpenter trousers and black Campus.",
-  "look": "men navy bomber jacket white t-shirt ecru carpenter jeans black adidas campus",
-  "rank": 11,
-  "tags": [],
-  "pieces": [
-   {
-    "item": "js-fp-bomber",
-    "shape": "jacket",
-    "col": "navy",
-    "what": "Fred Perry bomber"
-   },
-   {
-    "item": "uq-airism-tee",
-    "shape": "tee",
-    "col": "white",
-    "what": "White tee"
-   },
-   {
-    "item": "js-levis-568-ecru",
-    "shape": "trousers",
-    "col": "cream",
-    "what": "Ecru carpenter trousers"
-   },
-   {
-    "item": "r1-campus-adv",
-    "shape": "trainers",
-    "col": "black",
-    "what": "adidas Campus ADV"
-   }
   ]
  },
  "n3-british-knit": {
+  "look": "men blue crew neck jumper white oxford collar stone chinos navy chelsea boots",
   "name": "Made in Britain knit",
+  "note": "A £33 Peregrine knit over a white Oxford, Finisterre chinos and navy Chelsea boots.",
   "occ": "smart",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "pe-harry-crew",
+    "shape": "jumper",
+    "what": "Peregrine knit"
+   },
+   {
+    "col": "white",
+    "item": "ms-oxford",
+    "shape": "shirt",
+    "what": "Oxford shirt"
+   },
+   {
+    "col": "stone",
+    "item": "fi-rincon-chino",
+    "shape": "trousers",
+    "what": "Straight chinos"
+   },
+   {
+    "col": "navy",
+    "item": "bl-bloom-chelsea",
+    "shape": "boots",
+    "what": "Navy Chelsea boots"
+   }
+  ],
+  "rank": 9,
   "style": [
    "quiet"
+  ],
+  "tags": [
+   "winter"
   ],
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "A £33 Peregrine knit over a white Oxford, Finisterre chinos and navy Chelsea boots.",
-  "look": "men blue crew neck jumper white oxford collar stone chinos navy chelsea boots",
-  "rank": 9,
-  "tags": [
-   "winter"
-  ],
-  "pieces": [
-   {
-    "item": "pe-harry-crew",
-    "shape": "jumper",
-    "col": "blue",
-    "what": "Peregrine knit"
-   },
-   {
-    "item": "ms-oxford",
-    "shape": "shirt",
-    "col": "white",
-    "what": "Oxford shirt"
-   },
-   {
-    "item": "fi-rincon-chino",
-    "shape": "trousers",
-    "col": "stone",
-    "what": "Straight chinos"
-   },
-   {
-    "item": "bl-bloom-chelsea",
-    "shape": "boots",
-    "col": "navy",
-    "what": "Navy Chelsea boots"
-   }
   ]
  },
  "n3-chore-501": {
-  "name": "501s and a chore jacket",
-  "occ": "everyday",
-  "style": [
-   "quiet",
-   "casual"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Light-wash 501s, a putty chore jacket from a British factory, a white tee and black Campus trainers.",
   "look": "men putty chore jacket white t-shirt light wash levis 501 black adidas campus",
-  "rank": 7,
-  "tags": [],
+  "name": "501s and a chore jacket",
+  "note": "Light-wash 501s, a putty chore jacket from a British factory, a white tee and black Campus trainers.",
+  "occ": "everyday",
   "pieces": [
    {
+    "col": "stone",
     "item": "cc-chore-putty",
     "shape": "jacket",
-    "col": "stone",
     "what": "Chore jacket"
    },
    {
+    "col": "white",
     "item": "uq-airism-tee",
     "shape": "tee",
-    "col": "white",
     "what": "White tee"
    },
    {
+    "col": "blue",
     "item": "js-levis-501",
     "shape": "trousers",
-    "col": "blue",
     "what": "Levi's 501"
    },
    {
+    "col": "black",
     "item": "r1-campus-adv",
     "shape": "trainers",
-    "col": "black",
     "what": "adidas Campus ADV"
    }
-  ]
- },
- "n3-cord-puffer": {
-  "name": "Cold Saturday in cord",
-  "occ": "everyday",
+  ],
+  "rank": 7,
   "style": [
    "quiet",
    "casual"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "n3-cord-puffer": {
+  "look": "men navy corduroy puffer jacket ecru roll neck dark straight jeans navy chelsea boots",
+  "name": "Cold Saturday in cord",
+  "note": "A navy cord puffer over an ecru roll neck, dark jeans and navy Chelsea boots.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "bb-kempsford-cord",
+    "shape": "jacket",
+    "what": "Cord puffer"
+   },
+   {
+    "col": "cream",
+    "item": "pe-moore-rollneck",
+    "shape": "rollneck",
+    "what": "Roll neck"
+   },
+   {
+    "col": "indigo",
+    "item": "js-lee-brooklyn",
+    "shape": "trousers",
+    "what": "Dark jeans"
+   },
+   {
+    "col": "navy",
+    "item": "bl-bloom-chelsea",
+    "shape": "boots",
+    "what": "Navy Chelsea boots"
+   }
+  ],
+  "rank": 10,
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "tags": [
+   "winter"
   ],
   "wx": [
    "cold",
    "wet"
-  ],
-  "note": "A navy cord puffer over an ecru roll neck, dark jeans and navy Chelsea boots.",
-  "look": "men navy corduroy puffer jacket ecru roll neck dark straight jeans navy chelsea boots",
-  "rank": 10,
-  "tags": [
-   "winter"
-  ],
-  "pieces": [
-   {
-    "item": "bb-kempsford-cord",
-    "shape": "jacket",
-    "col": "navy",
-    "what": "Cord puffer"
-   },
-   {
-    "item": "pe-moore-rollneck",
-    "shape": "rollneck",
-    "col": "cream",
-    "what": "Roll neck"
-   },
-   {
-    "item": "js-lee-brooklyn",
-    "shape": "trousers",
-    "col": "indigo",
-    "what": "Dark jeans"
-   },
-   {
-    "item": "bl-bloom-chelsea",
-    "shape": "boots",
-    "col": "navy",
-    "what": "Navy Chelsea boots"
-   }
   ]
  },
  "n3-merino-derby": {
-  "name": "Merino and derbies",
-  "occ": "smart",
-  "style": [
-   "minimal"
-  ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "A navy merino quarter-zip over a white Oxford, olive wide pleated chinos and black derbies.",
   "look": "men navy merino quarter zip white shirt collar olive wide pleated chinos black derby shoes minimal",
-  "rank": 8,
-  "tags": [],
+  "name": "Merino and derbies",
+  "note": "A navy merino quarter-zip over a white Oxford, olive wide pleated chinos and black derbies.",
+  "occ": "smart",
   "pieces": [
    {
+    "col": "navy",
     "item": "js-cs-merino-qz",
     "shape": "halfzip",
-    "col": "navy",
     "what": "Merino quarter-zip"
    },
    {
+    "col": "white",
     "item": "hc-white-oxford",
     "shape": "shirt",
-    "col": "white",
     "what": "White Oxford"
    },
    {
+    "col": "olive",
     "item": "r1-pleated-olive",
     "shape": "trousers",
-    "col": "olive",
     "what": "Wide pleated chinos"
    },
    {
+    "col": "black",
     "item": "bl-dime-derby",
     "shape": "shoes",
-    "col": "black",
     "what": "Black derbies"
    }
+  ],
+  "rank": 8,
+  "style": [
+   "minimal"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
   ]
  },
  "n3-parka": {
+  "look": "men olive parka blue check shirt stone chinos wheat timberland boots",
   "name": "Parka and checks",
+  "note": "A long olive parka over a brushed blue check shirt, stone chinos and wheat Timberlands.",
   "occ": "everyday",
+  "pieces": [
+   {
+    "col": "olive",
+    "item": "cc-parka-olive",
+    "shape": "coat",
+    "what": "Parka"
+   },
+   {
+    "col": "blue",
+    "item": "fi-petrel-check",
+    "shape": "shirt",
+    "what": "Check shirt"
+   },
+   {
+    "col": "stone",
+    "item": "fi-rincon-chino",
+    "shape": "trousers",
+    "what": "Chinos"
+   },
+   {
+    "col": "tan",
+    "item": "sl-timberland-6in",
+    "shape": "boots",
+    "what": "Timberland boots"
+   }
+  ],
+  "rank": 14,
   "style": [
    "outdoor",
    "quiet"
   ],
-  "wx": [
-   "cold",
-   "wet"
-  ],
-  "note": "A long olive parka over a brushed blue check shirt, stone chinos and wheat Timberlands.",
-  "look": "men olive parka blue check shirt stone chinos wheat timberland boots",
-  "rank": 14,
   "tags": [
    "winter"
   ],
-  "pieces": [
-   {
-    "item": "cc-parka-olive",
-    "shape": "coat",
-    "col": "olive",
-    "what": "Parka"
-   },
-   {
-    "item": "fi-petrel-check",
-    "shape": "shirt",
-    "col": "blue",
-    "what": "Check shirt"
-   },
-   {
-    "item": "fi-rincon-chino",
-    "shape": "trousers",
-    "col": "stone",
-    "what": "Chinos"
-   },
-   {
-    "item": "sl-timberland-6in",
-    "shape": "boots",
-    "col": "tan",
-    "what": "Timberland boots"
-   }
+  "wx": [
+   "cold",
+   "wet"
   ]
  },
  "n3-sofa": {
-  "name": "Sofa, brown and navy",
-  "occ": "lounge",
-  "style": [
-   "lounge"
-  ],
-  "wx": [
-   "cold",
-   "mild"
-  ],
-  "note": "A heavy navy hoodie, knitted brown joggers and suede moccasins.",
   "look": "men navy hoodie brown knitted joggers suede moccasin slippers loungewear",
-  "rank": 5,
-  "tags": [],
+  "name": "Sofa, brown and navy",
+  "note": "A heavy navy hoodie, knitted brown joggers and suede moccasins.",
+  "occ": "lounge",
   "pieces": [
    {
+    "col": "navy",
     "item": "js-stanray-hoodie",
     "shape": "hoodie",
-    "col": "navy",
     "what": "Heavy hoodie"
    },
    {
+    "col": "brown",
     "item": "ce-knit-jogger",
     "shape": "trousers",
-    "col": "brown",
     "what": "Knitted joggers"
    },
    {
+    "col": "tan",
     "item": "ms-moccasin-tan",
     "shape": "slippers",
-    "col": "tan",
     "what": "Moccasin slippers"
    }
+  ],
+  "rank": 5,
+  "style": [
+   "lounge"
+  ],
+  "tags": [],
+  "wx": [
+   "cold",
+   "mild"
   ]
  },
  "n3-workwear": {
+  "look": "men brown plaid overshirt open green t-shirt stone carhartt single knee pants black combat boots",
   "name": "Workwear weekend",
+  "note": "Carhartt Single Knee trousers, a brown check overshirt worn open over a green tee, and black boots.",
   "occ": "everyday",
+  "pieces": [
+   {
+    "col": "brown",
+    "item": "js-lee-overshirt",
+    "shape": "shirt",
+    "what": "Check overshirt, worn open"
+   },
+   {
+    "col": "olive",
+    "item": "us-tee-lichen",
+    "shape": "tee",
+    "what": "Green tee"
+   },
+   {
+    "col": "stone",
+    "item": "js-carhartt-singleknee",
+    "shape": "trousers",
+    "what": "Single Knee trousers"
+   },
+   {
+    "col": "black",
+    "item": "bl-bradley-combat",
+    "shape": "boots",
+    "what": "Combat boots"
+   }
+  ],
+  "rank": 12,
   "style": [
    "street",
    "casual"
   ],
+  "tags": [],
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Carhartt Single Knee trousers, a brown check overshirt worn open over a green tee, and black boots.",
-  "look": "men brown plaid overshirt open green t-shirt stone carhartt single knee pants black combat boots",
-  "rank": 12,
-  "tags": [],
+  ]
+ },
+ "n4-8eye-501": {
+  "look": "men navy wool fleece jacket blue oxford shirt light wash levis 501 black 8 eye derby boots",
+  "name": "Eight-eye boots and 501s",
+  "note": "A wool fleece shirt-jacket over an Oxford, light-wash 501s and English 8-eye boots.",
+  "occ": "everyday",
   "pieces": [
    {
-    "item": "js-lee-overshirt",
+    "col": "navy",
+    "item": "js-stanray-fleece",
+    "shape": "jacket",
+    "what": "Wool fleece jacket"
+   },
+   {
+    "col": "blue",
+    "item": "uq-oxford",
     "shape": "shirt",
-    "col": "brown",
-    "what": "Check overshirt, worn open"
+    "what": "Oxford shirt"
    },
    {
-    "item": "us-tee-lichen",
-    "shape": "tee",
-    "col": "olive",
-    "what": "Green tee"
-   },
-   {
-    "item": "js-carhartt-singleknee",
+    "col": "blue",
+    "item": "js-levis-501",
     "shape": "trousers",
-    "col": "stone",
-    "what": "Single Knee trousers"
+    "what": "Levi's 501"
    },
    {
+    "col": "black",
+    "item": "sv-8eye-black",
+    "shape": "boots",
+    "what": "8-eye boots"
+   }
+  ],
+  "rank": 14,
+  "style": [
+   "quiet",
+   "street"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold",
+   "wet"
+  ]
+ },
+ "n4-check-jacket": {
+  "look": "men charcoal waffle check jacket white t-shirt black jeans black derby shoes",
+  "name": "Charcoal check",
+  "note": "A textured charcoal jacket over a white tee, black jeans and black derbies.",
+  "occ": "smart",
+  "pieces": [
+   {
+    "col": "charcoal",
+    "item": "fk-zaki-black",
+    "shape": "jacket",
+    "what": "Waffle check jacket"
+   },
+   {
+    "col": "white",
+    "item": "za-heavy-tee",
+    "shape": "tee",
+    "what": "White tee"
+   },
+   {
+    "col": "black",
+    "item": "hw-black-jean",
+    "shape": "trousers",
+    "what": "Black jeans"
+   },
+   {
+    "col": "black",
+    "item": "bl-dime-derby",
+    "shape": "shoes",
+    "what": "Black derbies"
+   }
+  ],
+  "rank": 11,
+  "style": [
+   "minimal"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "n4-cord-chukka": {
+  "look": "men blue crew neck jumper white oxford collar burgundy corduroy trousers brown suede chukka boots",
+  "name": "Cord, chukkas and an Oxford",
+  "note": "A Peregrine knit over a white Oxford, red-brown cords and brown chukkas.",
+  "occ": "smart",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "pe-harry-crew",
+    "shape": "jumper",
+    "what": "Peregrine knit"
+   },
+   {
+    "col": "white",
+    "item": "ms-oxford",
+    "shape": "shirt",
+    "what": "Oxford shirt"
+   },
+   {
+    "col": "burgundy",
+    "item": "hw-walterston-cord",
+    "shape": "trousers",
+    "what": "Cord trousers"
+   },
+   {
+    "col": "brown",
+    "item": "sv-chukka",
+    "shape": "boots",
+    "what": "Chukka boots"
+   }
+  ],
+  "rank": 10,
+  "style": [
+   "quiet"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "n4-double-knee": {
+  "look": "men brown crew neck sweater stone double knee cargo pants black adidas campus",
+  "name": "Double knee and a brown knit",
+  "note": "A plain brown knit, stone double-knee cargos at £28 and black Campus.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "brown",
+    "item": "sc-polar-scott-brown",
+    "shape": "jumper",
+    "what": "Brown knit"
+   },
+   {
+    "col": "stone",
+    "item": "sc-huf-cargo",
+    "shape": "trousers",
+    "what": "Double-knee cargos"
+   },
+   {
+    "col": "black",
+    "item": "r1-campus-adv",
+    "shape": "trainers",
+    "what": "adidas Campus ADV"
+   }
+  ],
+  "rank": 9,
+  "style": [
+   "street",
+   "casual"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "n4-down-vest": {
+  "look": "men navy down vest caramel hoodie olive cargo trousers black trail shoes bobble beanie",
+  "name": "Down vest walk",
+  "note": "A down vest over a caramel hoodie, olive cargos, trail shoes and a bobble hat.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "ak-filoment",
+    "shape": "gilet",
+    "what": "Down vest"
+   },
+   {
+    "col": "tan",
+    "item": "ps-boundless-hoodie",
+    "shape": "hoodie",
+    "what": "Caramel hoodie"
+   },
+   {
+    "col": "olive",
+    "item": "uq-cargo",
+    "shape": "trousers",
+    "what": "Cargo trousers"
+   },
+   {
+    "col": "black",
+    "item": "asos-salomon",
+    "shape": "trainers",
+    "what": "Trail shoes"
+   },
+   {
+    "col": "blue",
+    "item": "ak-cwtch-beanie",
+    "shape": "beanie",
+    "what": "Bobble beanie"
+   }
+  ],
+  "rank": 16,
+  "style": [
+   "outdoor"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "n4-dylan-dockside": {
+  "look": "men brown insulated jacket sand overshirt dark jeans brown chukka boots",
+  "name": "Dockside and Dylan",
+  "note": "A fig insulated jacket over a sand overshirt, dark jeans and brown chukkas.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "brown",
+    "item": "ps-dylan",
+    "shape": "jacket",
+    "what": "Insulated jacket"
+   },
+   {
+    "col": "sand",
+    "item": "uw-dockside-sand",
+    "shape": "shirt",
+    "what": "Sand overshirt"
+   },
+   {
+    "col": "indigo",
+    "item": "js-lee-brooklyn",
+    "shape": "trousers",
+    "what": "Dark jeans"
+   },
+   {
+    "col": "brown",
+    "item": "sv-chukka",
+    "shape": "boots",
+    "what": "Chukka boots"
+   }
+  ],
+  "rank": 17,
+  "style": [
+   "casual",
+   "outdoor"
+  ],
+  "tags": [
+   "winter"
+  ],
+  "wx": [
+   "cold",
+   "mild"
+  ]
+ },
+ "n4-howies-100": {
+  "look": "men light blue crew sweatshirt black jeans vans old skool",
+  "name": "howies weekend, under £100",
+  "note": "An organic sweatshirt, black jeans in 34R and Old Skools for £94.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "hw-hickory-sweat",
+    "shape": "jumper",
+    "what": "Organic sweatshirt"
+   },
+   {
+    "col": "black",
+    "item": "hw-black-jean",
+    "shape": "trousers",
+    "what": "Black jeans"
+   },
+   {
+    "col": "black",
+    "item": "of-vans-oldskool",
+    "shape": "trainers",
+    "what": "Vans Old Skool"
+   }
+  ],
+  "rank": 5,
+  "style": [
+   "casual"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "n4-isthmus": {
+  "look": "men khaki jacket burgundy long sleeve polo green trousers brown chukka boots",
+  "name": "Isthmus and green trousers",
+  "note": "A khaki Patagonia jacket, a burgundy long-sleeve polo, green trousers and brown chukkas.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "sand",
+    "item": "ui-patagonia-isthmus",
+    "shape": "jacket",
+    "what": "Isthmus jacket"
+   },
+   {
+    "col": "burgundy",
+    "item": "hw-loki-polo",
+    "shape": "polo",
+    "what": "Long-sleeve polo"
+   },
+   {
+    "col": "green",
+    "item": "hw-escly-green",
+    "shape": "trousers",
+    "what": "Green trousers"
+   },
+   {
+    "col": "brown",
+    "item": "sv-chukka",
+    "shape": "boots",
+    "what": "Chukka boots"
+   }
+  ],
+  "rank": 13,
+  "style": [
+   "outdoor",
+   "quiet"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "n4-print-trousers": {
+  "look": "men navy shell jacket black t-shirt green printed trousers brown new balance 740",
+  "name": "One loud piece",
+  "note": "Printed walking trousers with everything else plain: navy shell, black tee, brown New Balance.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "hk-libero-navy",
+    "shape": "jacket",
+    "what": "Shell jacket"
+   },
+   {
+    "col": "black",
+    "item": "ui-tnf-tee",
+    "shape": "tee",
+    "what": "Black tee"
+   },
+   {
+    "col": "olive",
+    "item": "hk-petroglyph",
+    "shape": "trousers",
+    "what": "Printed trousers"
+   },
+   {
+    "col": "brown",
+    "item": "fl-nb740",
+    "shape": "trainers",
+    "what": "New Balance 740"
+   }
+  ],
+  "rank": 18,
+  "style": [
+   "street",
+   "outdoor"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "n4-ravon": {
+  "look": "men washed black denim work jacket navy hoodie light blue baggy jeans vans old skool",
+  "name": "Washed black and light denim",
+  "note": "A washed black Carhartt jacket over a navy hoodie, light skate jeans and Old Skools.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "ui-carhartt-ravon",
+    "shape": "jacket",
+    "what": "Work jacket"
+   },
+   {
+    "col": "navy",
+    "item": "js-stanray-hoodie",
+    "shape": "hoodie",
+    "what": "Navy hoodie"
+   },
+   {
+    "col": "blue",
+    "item": "sc-huf-denim",
+    "shape": "trousers",
+    "what": "Light skate jeans"
+   },
+   {
+    "col": "black",
+    "item": "of-vans-oldskool",
+    "shape": "trainers",
+    "what": "Vans Old Skool"
+   }
+  ],
+  "rank": 12,
+  "style": [
+   "street"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "n4-skate-ezra": {
+  "look": "men blue grey work jacket green t-shirt light blue loose jeans black converse chuck 70",
+  "name": "Skate shop Saturday",
+  "note": "A blue-grey work jacket, a moss green tee, light denim and Chuck 70s.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "sc-polar-ezra",
+    "shape": "jacket",
+    "what": "Work jacket"
+   },
+   {
+    "col": "olive",
+    "item": "ui-columbia-tee",
+    "shape": "tee",
+    "what": "Heavy tee"
+   },
+   {
+    "col": "blue",
+    "item": "sc-huf-denim",
+    "shape": "trousers",
+    "what": "Light skate jeans"
+   },
+   {
+    "col": "black",
+    "item": "cv-chuck70",
+    "shape": "trainers",
+    "what": "Chuck 70"
+   }
+  ],
+  "rank": 15,
+  "style": [
+   "street"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "n4-smart-150": {
+  "look": "men blue crew neck jumper blue striped oxford collar stone chinos black derby shoes",
+  "name": "Smart under £150",
+  "note": "A Peregrine knit over a striped Oxford, twill chinos and black derbies: about £140.",
+  "occ": "smart",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "pe-harry-crew",
+    "shape": "jumper",
+    "what": "Peregrine knit"
+   },
+   {
+    "col": "blue",
+    "item": "hc-stripe-oxford",
+    "shape": "shirt",
+    "what": "Striped Oxford"
+   },
+   {
+    "col": "stone",
+    "item": "ms-twill-chino",
+    "shape": "trousers",
+    "what": "Twill chinos"
+   },
+   {
+    "col": "black",
+    "item": "bl-dime-derby",
+    "shape": "shoes",
+    "what": "Black derbies"
+   }
+  ],
+  "rank": 6,
+  "style": [
+   "quiet"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "n4-stone-navy": {
+  "look": "men navy technical jacket light blue shirt stone tapered trousers white leather trainers minimal",
+  "name": "Stone and navy",
+  "note": "A clean navy technical jacket, a brushed blue shirt, stone trousers and white leather trainers.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "uw-capitol-navy",
+    "shape": "jacket",
+    "what": "Navy jacket"
+   },
+   {
+    "col": "blue",
+    "item": "fk-relaxed-blue",
+    "shape": "shirt",
+    "what": "Brushed blue shirt"
+   },
+   {
+    "col": "stone",
+    "item": "uw-aston-stone",
+    "shape": "trousers",
+    "what": "Stone trousers"
+   },
+   {
+    "col": "white",
+    "item": "ms-cupsole",
+    "shape": "trainers",
+    "what": "Leather trainers"
+   }
+  ],
+  "rank": 7,
+  "style": [
+   "minimal",
+   "quiet"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "n4-summer-warehouse": {
+  "look": "men black mesh vest black mesh shorts black combat boots crossbody bag summer rave",
+  "name": "Summer warehouse",
+  "note": "Black mesh shorts and a ribbed vest for a hot room, with combat boots and a bag that zips shut.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "rv-mesh-vest",
+    "shape": "vest",
+    "what": "Mesh vest"
+   },
+   {
+    "col": "black",
+    "item": "ce-mesh-short",
+    "shape": "shorts",
+    "what": "Mesh shorts"
+   },
+   {
+    "col": "black",
     "item": "bl-bradley-combat",
     "shape": "boots",
-    "col": "black",
     "what": "Combat boots"
+   },
+   {
+    "col": "black",
+    "item": "asos-bum-bag",
+    "shape": "bag",
+    "what": "Crossbody bag"
    }
+  ],
+  "rank": 6,
+  "style": [
+   "rave"
+  ],
+  "tags": [
+   "holiday"
+  ],
+  "wx": [
+   "warm"
+  ]
+ },
+ "n4-sunday-hoodie": {
+  "look": "men pale green hoodie charcoal track pants suede moccasin slippers",
+  "name": "Sunday hoodie",
+  "note": "A pale green organic hoodie, charcoal track pants and suede moccasins.",
+  "occ": "lounge",
+  "pieces": [
+   {
+    "col": "green",
+    "item": "hw-frankie-hoody",
+    "shape": "hoodie",
+    "what": "Organic hoodie"
+   },
+   {
+    "col": "charcoal",
+    "item": "ce-track-pant",
+    "shape": "trousers",
+    "what": "Track pants"
+   },
+   {
+    "col": "tan",
+    "item": "ms-moccasin-tan",
+    "shape": "slippers",
+    "what": "Moccasin slippers"
+   }
+  ],
+  "rank": 7,
+  "style": [
+   "lounge"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
+  ]
+ },
+ "n4-tech-black": {
+  "look": "men black technical jacket black pocket t-shirt black technical trousers black platform derby shoes techno",
+  "name": "Technical black",
+  "note": "All black in technical fabrics: a packable jacket, a pocket tee, fast-drying trousers and platform Gibsons.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "uw-capitol-black",
+    "shape": "jacket",
+    "what": "Technical jacket"
+   },
+   {
+    "col": "black",
+    "item": "ls-cargo-tee",
+    "shape": "tee",
+    "what": "Pocket tee"
+   },
+   {
+    "col": "black",
+    "item": "uw-military-black",
+    "shape": "trousers",
+    "what": "Technical trousers"
+   },
+   {
+    "col": "black",
+    "item": "sv-platform-gibson",
+    "shape": "shoes",
+    "what": "Platform Gibsons"
+   },
+   {
+    "col": "black",
+    "item": "rv-wrap-sunglasses",
+    "shape": "sunglasses",
+    "what": "Wrap sunglasses"
+   }
+  ],
+  "rank": 3,
+  "style": [
+   "rave"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "n4-track-night": {
+  "look": "men black track jacket black t-shirt charcoal track pants vans old skool",
+  "name": "Track night",
+  "note": "A black track jacket over a black tee, charcoal taped track pants and Old Skools.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "op-track-black",
+    "shape": "jacket",
+    "what": "Track jacket"
+   },
+   {
+    "col": "black",
+    "item": "ui-tnf-tee",
+    "shape": "tee",
+    "what": "Black tee"
+   },
+   {
+    "col": "charcoal",
+    "item": "ce-track-pant",
+    "shape": "trousers",
+    "what": "Track pants"
+   },
+   {
+    "col": "black",
+    "item": "of-vans-oldskool",
+    "shape": "trainers",
+    "what": "Vans Old Skool"
+   }
+  ],
+  "rank": 8,
+  "style": [
+   "rave",
+   "street"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "n4-under-60": {
+  "look": "men navy ringer t-shirt stone cargo trousers white trainers",
+  "name": "Whole outfit under £60",
+  "note": "A £7 ringer tee, £28 double-knee cargos and £22 white trainers: £57 all in.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "tml-ringer-navy",
+    "shape": "tee",
+    "what": "Ringer tee"
+   },
+   {
+    "col": "stone",
+    "item": "sc-huf-cargo",
+    "shape": "trousers",
+    "what": "Double-knee cargos"
+   },
+   {
+    "col": "white",
+    "item": "asos-own-white",
+    "shape": "trainers",
+    "what": "White trainers"
+   }
+  ],
+  "rank": 4,
+  "style": [
+   "casual",
+   "street"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "warm"
+  ]
+ },
+ "n4-windbreaker-ripstop": {
+  "look": "men navy windbreaker black mesh t-shirt black ripstop utility trousers black 8 eye boots festival",
+  "name": "Windbreaker and ripstop",
+  "note": "A navy windbreaker to tie round the waist, a mesh tee, black ripstop trousers and 8-eye boots.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "mx-disperse-wind",
+    "shape": "jacket",
+    "what": "Windbreaker"
+   },
+   {
+    "col": "black",
+    "item": "rv-mesh-tee",
+    "shape": "tee",
+    "what": "Mesh tee"
+   },
+   {
+    "col": "black",
+    "item": "us-ripstop-black",
+    "shape": "trousers",
+    "what": "Ripstop trousers"
+   },
+   {
+    "col": "black",
+    "item": "sv-8eye-black",
+    "shape": "boots",
+    "what": "8-eye boots"
+   }
+  ],
+  "rank": 10,
+  "style": [
+   "rave",
+   "outdoor"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "wet"
+  ]
+ },
+ "n4-ztech": {
+  "look": "men black technical overshirt black t-shirt black jeans black 8 eye boots",
+  "name": "Black shirt, black boots",
+  "note": "A boxy black tech overshirt over a black tee, black jeans and 8-eye boots.",
+  "occ": "party",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "uw-ztech-black",
+    "shape": "shirt",
+    "what": "Tech overshirt, worn open"
+   },
+   {
+    "col": "black",
+    "item": "ls-cargo-tee",
+    "shape": "tee",
+    "what": "Pocket tee"
+   },
+   {
+    "col": "black",
+    "item": "hw-black-jean",
+    "shape": "trousers",
+    "what": "Black jeans"
+   },
+   {
+    "col": "black",
+    "item": "sv-8eye-black",
+    "shape": "boots",
+    "what": "8-eye boots"
+   }
+  ],
+  "rank": 9,
+  "style": [
+   "rave",
+   "minimal"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
   ]
  },
  "night-out": {
@@ -2244,664 +3065,664 @@
   ]
  },
  "nw-charcoal": {
-  "name": "Charcoal and navy",
-  "occ": "smart",
-  "style": [
-   "minimal"
-  ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "Tones of one colour: charcoal merino, navy wide trousers and white leather trainers.",
   "look": "men charcoal merino crew jumper navy wide leg trousers white leather trainers minimal",
-  "rank": 10,
-  "tags": [],
+  "name": "Charcoal and navy",
+  "note": "Tones of one colour: charcoal merino, navy wide trousers and white leather trainers.",
+  "occ": "smart",
   "pieces": [
    {
+    "col": "charcoal",
     "item": "cos-tipped-merino",
     "shape": "jumper",
-    "col": "charcoal",
     "what": "Merino jumper"
    },
    {
+    "col": "navy",
     "item": "asos-arket-trouser",
     "shape": "trousers",
-    "col": "navy",
     "what": "Wide trousers"
    },
    {
+    "col": "white",
     "item": "ms-cupsole",
     "shape": "trainers",
-    "col": "white",
     "what": "Leather trainers"
    }
+  ],
+  "rank": 10,
+  "style": [
+   "minimal"
+  ],
+  "tags": [],
+  "wx": [
+   "mild",
+   "cold"
   ]
  },
  "nw-chuck": {
+  "look": "men brown check overshirt open white t-shirt black straight jeans black converse chuck 70 high tops",
   "name": "Chucks and black denim",
+  "note": "Black jeans and Chuck 70s, with a brown check shacket worn open over a white tee.",
   "occ": "everyday",
+  "pieces": [
+   {
+    "col": "brown",
+    "item": "ga-check-shacket",
+    "shape": "shirt",
+    "what": "Check shacket, worn open"
+   },
+   {
+    "col": "white",
+    "item": "nx-heavy-tee",
+    "shape": "tee",
+    "what": "Heavyweight tee"
+   },
+   {
+    "col": "black",
+    "item": "zl-bdg-jack-black",
+    "shape": "trousers",
+    "what": "Black jeans"
+   },
+   {
+    "col": "black",
+    "item": "cv-chuck70",
+    "shape": "trainers",
+    "what": "Chuck 70 high tops"
+   }
+  ],
+  "rank": 19,
   "style": [
    "street",
    "casual"
   ],
+  "tags": [],
   "wx": [
    "mild"
-  ],
-  "note": "Black jeans and Chuck 70s, with a brown check shacket worn open over a white tee.",
-  "look": "men brown check overshirt open white t-shirt black straight jeans black converse chuck 70 high tops",
-  "rank": 19,
-  "tags": [],
-  "pieces": [
-   {
-    "item": "ga-check-shacket",
-    "shape": "shirt",
-    "col": "brown",
-    "what": "Check shacket, worn open"
-   },
-   {
-    "item": "nx-heavy-tee",
-    "shape": "tee",
-    "col": "white",
-    "what": "Heavyweight tee"
-   },
-   {
-    "item": "zl-bdg-jack-black",
-    "shape": "trousers",
-    "col": "black",
-    "what": "Black jeans"
-   },
-   {
-    "item": "cv-chuck70",
-    "shape": "trainers",
-    "col": "black",
-    "what": "Chuck 70 high tops"
-   }
   ]
  },
  "nw-country-cord": {
+  "look": "men navy merino jumper white oxford collar green corduroy trousers sand suede desert boots",
   "name": "Green cord and navy",
+  "note": "Dusky green cords, a navy merino over a white Oxford, and sand desert boots.",
   "occ": "smart",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "ws-newport-merino",
+    "shape": "jumper",
+    "what": "Merino jumper"
+   },
+   {
+    "col": "white",
+    "item": "hc-white-oxford",
+    "shape": "shirt",
+    "what": "White Oxford"
+   },
+   {
+    "col": "green",
+    "item": "fat-cord-green",
+    "shape": "trousers",
+    "what": "Cord trousers"
+   },
+   {
+    "col": "sand",
+    "item": "clarks-desert",
+    "shape": "boots",
+    "what": "Desert boots"
+   }
+  ],
+  "rank": 20,
   "style": [
    "quiet"
   ],
-  "wx": [
-   "cold",
-   "mild"
-  ],
-  "note": "Dusky green cords, a navy merino over a white Oxford, and sand desert boots.",
-  "look": "men navy merino jumper white oxford collar green corduroy trousers sand suede desert boots",
-  "rank": 20,
   "tags": [
    "winter",
    "christmas"
   ],
-  "pieces": [
-   {
-    "item": "ws-newport-merino",
-    "shape": "jumper",
-    "col": "navy",
-    "what": "Merino jumper"
-   },
-   {
-    "item": "hc-white-oxford",
-    "shape": "shirt",
-    "col": "white",
-    "what": "White Oxford"
-   },
-   {
-    "item": "fat-cord-green",
-    "shape": "trousers",
-    "col": "green",
-    "what": "Cord trousers"
-   },
-   {
-    "item": "clarks-desert",
-    "shape": "boots",
-    "col": "sand",
-    "what": "Desert boots"
-   }
+  "wx": [
+   "cold",
+   "mild"
   ]
  },
  "nw-docs": {
+  "look": "men brown faux leather aviator jacket grey t-shirt black straight jeans black dr martens boots",
   "name": "Docs and black denim",
+  "note": "Washed black jeans, a grey heavy tee and the brown collar jacket, on proper boots.",
   "occ": "party",
+  "pieces": [
+   {
+    "col": "brown",
+    "item": "ga-shearling-jacket",
+    "shape": "jacket",
+    "what": "Collar jacket"
+   },
+   {
+    "col": "grey",
+    "item": "ar-heavy-tee-grey",
+    "shape": "tee",
+    "what": "Heavy tee"
+   },
+   {
+    "col": "black",
+    "item": "zl-bdg-jack-black",
+    "shape": "trousers",
+    "what": "Black jeans"
+   },
+   {
+    "col": "black",
+    "item": "js-dm-1460",
+    "shape": "boots",
+    "what": "Dr Martens 1460"
+   }
+  ],
+  "rank": 14,
   "style": [
    "street",
    "rave"
   ],
-  "wx": [
-   "cold",
-   "mild"
-  ],
-  "note": "Washed black jeans, a grey heavy tee and the brown collar jacket, on proper boots.",
-  "look": "men brown faux leather aviator jacket grey t-shirt black straight jeans black dr martens boots",
-  "rank": 14,
   "tags": [
    "winter"
   ],
-  "pieces": [
-   {
-    "item": "ga-shearling-jacket",
-    "shape": "jacket",
-    "col": "brown",
-    "what": "Collar jacket"
-   },
-   {
-    "item": "ar-heavy-tee-grey",
-    "shape": "tee",
-    "col": "grey",
-    "what": "Heavy tee"
-   },
-   {
-    "item": "zl-bdg-jack-black",
-    "shape": "trousers",
-    "col": "black",
-    "what": "Black jeans"
-   },
-   {
-    "item": "js-dm-1460",
-    "shape": "boots",
-    "col": "black",
-    "what": "Dr Martens 1460"
-   }
+  "wx": [
+   "cold",
+   "mild"
   ]
  },
  "nw-film": {
-  "name": "Film night",
-  "occ": "lounge",
-  "style": [
-   "lounge"
-  ],
-  "wx": [
-   "cold",
-   "mild"
-  ],
-  "note": "Half-price joggers, a soft hoodie and suede slippers.",
   "look": "men grey hoodie indigo joggers suede moccasin slippers loungewear",
-  "rank": 6,
-  "tags": [],
+  "name": "Film night",
+  "note": "Half-price joggers, a soft hoodie and suede slippers.",
+  "occ": "lounge",
   "pieces": [
    {
+    "col": "grey",
     "item": "lg-ms-scuba-hoodie",
     "shape": "hoodie",
-    "col": "grey",
     "what": "Soft hoodie"
    },
    {
+    "col": "indigo",
     "item": "gs-restday-indigo",
     "shape": "trousers",
-    "col": "indigo",
     "what": "Joggers"
    },
    {
+    "col": "tan",
     "item": "ms-moccasin-tan",
     "shape": "slippers",
-    "col": "tan",
     "what": "Moccasin slippers"
    }
+  ],
+  "rank": 6,
+  "style": [
+   "lounge"
+  ],
+  "tags": [],
+  "wx": [
+   "cold",
+   "mild"
   ]
  },
  "nw-made-england": {
+  "look": "men navy merino crew jumper blue striped oxford collar stone chinos sand suede desert boots",
   "name": "Made in England",
+  "note": "A Manchester-knitted merino over a striped Oxford, with chinos and desert boots.",
   "occ": "smart",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "pe-ford-navy",
+    "shape": "jumper",
+    "what": "Merino jumper"
+   },
+   {
+    "col": "blue",
+    "item": "hc-stripe-oxford",
+    "shape": "shirt",
+    "what": "Striped Oxford"
+   },
+   {
+    "col": "stone",
+    "item": "ms-twill-chino",
+    "shape": "trousers",
+    "what": "Chinos"
+   },
+   {
+    "col": "sand",
+    "item": "clarks-desert",
+    "shape": "boots",
+    "what": "Desert boots"
+   }
+  ],
+  "rank": 13,
   "style": [
    "quiet"
+  ],
+  "tags": [
+   "winter"
   ],
   "wx": [
    "cold",
    "mild"
-  ],
-  "note": "A Manchester-knitted merino over a striped Oxford, with chinos and desert boots.",
-  "look": "men navy merino crew jumper blue striped oxford collar stone chinos sand suede desert boots",
-  "rank": 13,
-  "tags": [
-   "winter"
-  ],
-  "pieces": [
-   {
-    "item": "pe-ford-navy",
-    "shape": "jumper",
-    "col": "navy",
-    "what": "Merino jumper"
-   },
-   {
-    "item": "hc-stripe-oxford",
-    "shape": "shirt",
-    "col": "blue",
-    "what": "Striped Oxford"
-   },
-   {
-    "item": "ms-twill-chino",
-    "shape": "trousers",
-    "col": "stone",
-    "what": "Chinos"
-   },
-   {
-    "item": "clarks-desert",
-    "shape": "boots",
-    "col": "sand",
-    "what": "Desert boots"
-   }
   ]
  },
  "nw-oldskool": {
+  "look": "men olive zip jacket grey heavy t-shirt dark relaxed jeans vans old skool",
   "name": "Old Skool Saturday",
+  "note": "Dark vintage denim, an olive zip jacket and Old Skools.",
   "occ": "everyday",
+  "pieces": [
+   {
+    "col": "olive",
+    "item": "uq-zip-blouson",
+    "shape": "jacket",
+    "what": "Zip jacket"
+   },
+   {
+    "col": "grey",
+    "item": "ar-heavy-tee-grey",
+    "shape": "tee",
+    "what": "Heavy tee"
+   },
+   {
+    "col": "indigo",
+    "item": "zl-bdg-vintage",
+    "shape": "trousers",
+    "what": "Relaxed jeans"
+   },
+   {
+    "col": "black",
+    "item": "of-vans-oldskool",
+    "shape": "trainers",
+    "what": "Vans Old Skool"
+   }
+  ],
+  "rank": 18,
   "style": [
    "street",
    "casual"
   ],
+  "tags": [],
   "wx": [
    "mild"
-  ],
-  "note": "Dark vintage denim, an olive zip jacket and Old Skools.",
-  "look": "men olive zip jacket grey heavy t-shirt dark relaxed jeans vans old skool",
-  "rank": 18,
-  "tags": [],
-  "pieces": [
-   {
-    "item": "uq-zip-blouson",
-    "shape": "jacket",
-    "col": "olive",
-    "what": "Zip jacket"
-   },
-   {
-    "item": "ar-heavy-tee-grey",
-    "shape": "tee",
-    "col": "grey",
-    "what": "Heavy tee"
-   },
-   {
-    "item": "zl-bdg-vintage",
-    "shape": "trousers",
-    "col": "indigo",
-    "what": "Relaxed jeans"
-   },
-   {
-    "item": "of-vans-oldskool",
-    "shape": "trainers",
-    "col": "black",
-    "what": "Vans Old Skool"
-   }
   ]
  },
  "nw-quarterzip": {
+  "look": "men khaki quarter zip jumper oxford shirt collar straight jeans grey new balance 574",
   "name": "Quarter-zip pub",
+  "note": "A khaki quarter-zip over an Oxford, straight jeans and grey New Balance.",
   "occ": "everyday",
+  "pieces": [
+   {
+    "col": "olive",
+    "item": "jo-hillside-khaki",
+    "shape": "halfzip",
+    "what": "Quarter-zip jumper"
+   },
+   {
+    "col": "blue",
+    "item": "uq-oxford",
+    "shape": "shirt",
+    "what": "Oxford shirt"
+   },
+   {
+    "col": "indigo",
+    "item": "ms-straight-jeans",
+    "shape": "trousers",
+    "what": "Straight jeans"
+   },
+   {
+    "col": "grey",
+    "item": "zl-nb574-grey",
+    "shape": "trainers",
+    "what": "New Balance 574"
+   }
+  ],
+  "rank": 24,
   "style": [
    "casual",
    "quiet"
   ],
+  "tags": [],
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "A khaki quarter-zip over an Oxford, straight jeans and grey New Balance.",
-  "look": "men khaki quarter zip jumper oxford shirt collar straight jeans grey new balance 574",
-  "rank": 24,
-  "tags": [],
-  "pieces": [
-   {
-    "item": "jo-hillside-khaki",
-    "shape": "halfzip",
-    "col": "olive",
-    "what": "Quarter-zip jumper"
-   },
-   {
-    "item": "uq-oxford",
-    "shape": "shirt",
-    "col": "blue",
-    "what": "Oxford shirt"
-   },
-   {
-    "item": "ms-straight-jeans",
-    "shape": "trousers",
-    "col": "indigo",
-    "what": "Straight jeans"
-   },
-   {
-    "item": "zl-nb574-grey",
-    "shape": "trainers",
-    "col": "grey",
-    "what": "New Balance 574"
-   }
   ]
  },
  "nw-queue": {
+  "look": "men black padded jacket grey fleece quarter zip olive cargo trousers black dr martens boots winter",
   "name": "Cold festival queue",
+  "note": "A £40 padded jacket over a fleece quarter-zip, cargos and Docs.",
   "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "mw-seasons",
+    "shape": "jacket",
+    "what": "Padded jacket"
+   },
+   {
+    "col": "grey",
+    "item": "tnf-yumiori-qz",
+    "shape": "halfzip",
+    "what": "Fleece quarter-zip"
+   },
+   {
+    "col": "olive",
+    "item": "uq-cargo",
+    "shape": "trousers",
+    "what": "Cargo trousers"
+   },
+   {
+    "col": "black",
+    "item": "js-dm-1460",
+    "shape": "boots",
+    "what": "Dr Martens 1460"
+   }
+  ],
+  "rank": 15,
   "style": [
    "outdoor",
    "street"
   ],
-  "wx": [
-   "cold"
-  ],
-  "note": "A £40 padded jacket over a fleece quarter-zip, cargos and Docs.",
-  "look": "men black padded jacket grey fleece quarter zip olive cargo trousers black dr martens boots winter",
-  "rank": 15,
   "tags": [
    "winter"
   ],
-  "pieces": [
-   {
-    "item": "mw-seasons",
-    "shape": "jacket",
-    "col": "black",
-    "what": "Padded jacket"
-   },
-   {
-    "item": "tnf-yumiori-qz",
-    "shape": "halfzip",
-    "col": "grey",
-    "what": "Fleece quarter-zip"
-   },
-   {
-    "item": "uq-cargo",
-    "shape": "trousers",
-    "col": "olive",
-    "what": "Cargo trousers"
-   },
-   {
-    "item": "js-dm-1460",
-    "shape": "boots",
-    "col": "black",
-    "what": "Dr Martens 1460"
-   }
+  "wx": [
+   "cold"
   ]
  },
  "nw-seasalt": {
-  "name": "Coastal weekend",
-  "occ": "everyday",
-  "style": [
-   "quiet",
-   "casual"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "A chunky cotton jumper over a soft check shirt, with sand desert boots.",
   "look": "men cream cotton jumper check shirt collar navy chinos sand desert boots",
-  "rank": 30,
-  "tags": [],
+  "name": "Coastal weekend",
+  "note": "A chunky cotton jumper over a soft check shirt, with sand desert boots.",
+  "occ": "everyday",
   "pieces": [
    {
+    "col": "cream",
     "item": "ss-mizzen",
     "shape": "jumper",
-    "col": "cream",
     "what": "Cotton jumper"
    },
    {
+    "col": "blue",
     "item": "ss-banyan",
     "shape": "shirt",
-    "col": "blue",
     "what": "Check shirt"
    },
    {
+    "col": "navy",
     "item": "ms-twill-chino",
     "shape": "trousers",
-    "col": "navy",
     "what": "Chinos"
    },
    {
+    "col": "sand",
     "item": "clarks-desert",
     "shape": "boots",
-    "col": "sand",
     "what": "Desert boots"
    }
-  ]
- },
- "nw-sixty": {
-  "name": "About £100, all new",
-  "occ": "everyday",
-  "style": [
-   "casual"
   ],
-  "wx": [
-   "mild"
-  ],
-  "note": "A £16 olive knit over a £10 polo, with dark jeans and Old Skools: about £103 all in.",
-  "look": "men olive ribbed jumper blue polo collar dark jeans vans old skool",
-  "rank": 9,
-  "tags": [],
-  "pieces": [
-   {
-    "item": "ga-ribbed-olive",
-    "shape": "jumper",
-    "col": "olive",
-    "what": "Ribbed jumper"
-   },
-   {
-    "item": "tu-birdseye-polo",
-    "shape": "polo",
-    "col": "blue",
-    "what": "Jersey polo"
-   },
-   {
-    "item": "zl-bdg-vintage",
-    "shape": "trousers",
-    "col": "indigo",
-    "what": "Relaxed jeans"
-   },
-   {
-    "item": "of-vans-oldskool",
-    "shape": "trainers",
-    "col": "black",
-    "what": "Vans Old Skool"
-   }
-  ]
- },
- "nw-supermarket": {
-  "name": "The supermarket upgrade",
-  "occ": "everyday",
+  "rank": 30,
   "style": [
    "quiet",
    "casual"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "nw-sixty": {
+  "look": "men olive ribbed jumper blue polo collar dark jeans vans old skool",
+  "name": "About £100, all new",
+  "note": "A £16 olive knit over a £10 polo, with dark jeans and Old Skools: about £103 all in.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "olive",
+    "item": "ga-ribbed-olive",
+    "shape": "jumper",
+    "what": "Ribbed jumper"
+   },
+   {
+    "col": "blue",
+    "item": "tu-birdseye-polo",
+    "shape": "polo",
+    "what": "Jersey polo"
+   },
+   {
+    "col": "indigo",
+    "item": "zl-bdg-vintage",
+    "shape": "trousers",
+    "what": "Relaxed jeans"
+   },
+   {
+    "col": "black",
+    "item": "of-vans-oldskool",
+    "shape": "trainers",
+    "what": "Vans Old Skool"
+   }
+  ],
+  "rank": 9,
+  "style": [
+   "casual"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
+  ]
+ },
+ "nw-supermarket": {
+  "look": "men grey lambswool jumper blue striped oxford shirt stone chinos navy suede desert boots",
+  "name": "The supermarket upgrade",
+  "note": "Lambswool from Sainsbury's and a striped Oxford for £25, finished with navy suede desert boots.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "tu-lambswool-high",
+    "shape": "jumper",
+    "what": "Lambswool jumper"
+   },
+   {
+    "col": "blue",
+    "item": "hc-stripe-oxford",
+    "shape": "shirt",
+    "what": "Striped Oxford shirt"
+   },
+   {
+    "col": "stone",
+    "item": "ms-twill-chino",
+    "shape": "trousers",
+    "what": "Chinos"
+   },
+   {
+    "col": "navy",
+    "item": "lk-sahara-navy",
+    "shape": "boots",
+    "what": "Navy suede desert boots"
+   }
+  ],
+  "rank": 8,
+  "style": [
+   "quiet",
+   "casual"
+  ],
+  "tags": [
+   "winter"
   ],
   "wx": [
    "mild",
    "cold"
-  ],
-  "note": "Lambswool from Sainsbury's and a striped Oxford for £25, finished with navy suede desert boots.",
-  "look": "men grey lambswool jumper blue striped oxford shirt stone chinos navy suede desert boots",
-  "rank": 8,
-  "tags": [
-   "winter"
-  ],
-  "pieces": [
-   {
-    "item": "tu-lambswool-high",
-    "shape": "jumper",
-    "col": "grey",
-    "what": "Lambswool jumper"
-   },
-   {
-    "item": "hc-stripe-oxford",
-    "shape": "shirt",
-    "col": "blue",
-    "what": "Striped Oxford shirt"
-   },
-   {
-    "item": "ms-twill-chino",
-    "shape": "trousers",
-    "col": "stone",
-    "what": "Chinos"
-   },
-   {
-    "item": "lk-sahara-navy",
-    "shape": "boots",
-    "col": "navy",
-    "what": "Navy suede desert boots"
-   }
   ]
  },
  "nw-timberland": {
+  "look": "men navy wool fleece jacket white tee olive cargo trousers wheat timberland boots",
   "name": "Wet weekend",
+  "note": "Wheat Timberlands with olive cargos, a navy wool fleece jacket and a plain tee.",
   "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "js-stanray-fleece",
+    "shape": "jacket",
+    "what": "Wool fleece jacket"
+   },
+   {
+    "col": "white",
+    "item": "uq-airism-tee",
+    "shape": "tee",
+    "what": "Plain tee"
+   },
+   {
+    "col": "olive",
+    "item": "uq-cargo",
+    "shape": "trousers",
+    "what": "Cargo trousers"
+   },
+   {
+    "col": "tan",
+    "item": "sl-timberland-6in",
+    "shape": "boots",
+    "what": "Timberland boots"
+   }
+  ],
+  "rank": 16,
   "style": [
    "street",
    "outdoor"
   ],
-  "wx": [
-   "wet",
-   "cold"
-  ],
-  "note": "Wheat Timberlands with olive cargos, a black fleece and a plain tee.",
-  "look": "men black fleece jacket white tee olive cargo trousers wheat timberland boots",
-  "rank": 16,
   "tags": [
    "winter"
   ],
-  "pieces": [
-   {
-    "item": "sm-berghaus-prism",
-    "shape": "jacket",
-    "col": "black",
-    "what": "Polartec fleece"
-   },
-   {
-    "item": "uq-airism-tee",
-    "shape": "tee",
-    "col": "white",
-    "what": "Plain tee"
-   },
-   {
-    "item": "uq-cargo",
-    "shape": "trousers",
-    "col": "olive",
-    "what": "Cargo trousers"
-   },
-   {
-    "item": "sl-timberland-6in",
-    "shape": "boots",
-    "col": "tan",
-    "what": "Timberland boots"
-   }
+  "wx": [
+   "wet",
+   "cold"
   ]
  },
  "nw-trail": {
+  "look": "men green waterproof jacket brown fleece dark jeans black trail shoes autumn walk",
   "name": "Three-in-one walk",
+  "note": "A 3-in-1 waterproof over a £10 fleece, tough jeans and trail shoes.",
   "occ": "everyday",
+  "pieces": [
+   {
+    "col": "green",
+    "item": "dc-3in1-green",
+    "shape": "coat",
+    "what": "3-in-1 waterproof"
+   },
+   {
+    "col": "brown",
+    "item": "dc-mh100-brown",
+    "shape": "halfzip",
+    "what": "Half-zip fleece"
+   },
+   {
+    "col": "indigo",
+    "item": "rh-range-jeans",
+    "shape": "trousers",
+    "what": "Walking jeans"
+   },
+   {
+    "col": "black",
+    "item": "asos-salomon",
+    "shape": "trainers",
+    "what": "Trail shoes"
+   }
+  ],
+  "rank": 12,
   "style": [
    "outdoor"
+  ],
+  "tags": [
+   "winter"
   ],
   "wx": [
    "wet",
    "cold"
-  ],
-  "note": "A 3-in-1 waterproof over a £10 fleece, tough jeans and trail shoes.",
-  "look": "men green waterproof jacket brown fleece dark jeans black trail shoes autumn walk",
-  "rank": 12,
-  "tags": [
-   "winter"
-  ],
-  "pieces": [
-   {
-    "item": "dc-3in1-green",
-    "shape": "coat",
-    "col": "green",
-    "what": "3-in-1 waterproof"
-   },
-   {
-    "item": "dc-mh100-brown",
-    "shape": "halfzip",
-    "col": "brown",
-    "what": "Half-zip fleece"
-   },
-   {
-    "item": "rh-range-jeans",
-    "shape": "trousers",
-    "col": "indigo",
-    "what": "Walking jeans"
-   },
-   {
-    "item": "asos-salomon",
-    "shape": "trainers",
-    "col": "black",
-    "what": "Trail shoes"
-   }
   ]
  },
  "nw-windbreaker": {
-  "name": "Warehouse night under £100",
-  "occ": "party",
-  "style": [
-   "rave"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Mesh tee, baggy cargos, Old Skools and an £11 windbreaker to tie round the waist. Add a pair of earplugs.",
   "look": "men black mesh t-shirt black baggy cargo trousers black windbreaker vans rave warehouse outfit",
-  "rank": 5,
-  "tags": [],
+  "name": "Warehouse night under £100",
+  "note": "Mesh tee, baggy cargos, Old Skools and an £11 windbreaker to tie round the waist. Add a pair of earplugs.",
+  "occ": "party",
   "pieces": [
    {
+    "col": "black",
     "item": "sd-firetrap-wind",
     "shape": "jacket",
-    "col": "black",
     "what": "Windbreaker"
    },
    {
+    "col": "black",
     "item": "rv-mesh-tee",
     "shape": "tee",
-    "col": "black",
     "what": "Mesh tee"
    },
    {
+    "col": "black",
     "item": "rv-jj-cargo-black",
     "shape": "trousers",
-    "col": "black",
     "what": "Baggy cargos"
    },
    {
+    "col": "black",
     "item": "of-vans-oldskool",
     "shape": "trainers",
-    "col": "black",
     "what": "Vans Old Skool"
    }
+  ],
+  "rank": 5,
+  "style": [
+   "rave"
+  ],
+  "tags": [],
+  "wx": [
+   "mild"
   ]
  },
  "nw-zara": {
+  "look": "men black nylon bomber jacket white heavyweight t-shirt straight blue jeans white leather trainers minimal",
   "name": "Black bomber, white tee",
+  "note": "Three plain pieces from Zara and white leather trainers. Nothing competes for attention.",
   "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "za-tech-bomber",
+    "shape": "jacket",
+    "what": "Technical bomber"
+   },
+   {
+    "col": "white",
+    "item": "za-heavy-tee",
+    "shape": "tee",
+    "what": "Heavyweight tee"
+   },
+   {
+    "col": "indigo",
+    "item": "za-straight-jeans",
+    "shape": "trousers",
+    "what": "Straight jeans"
+   },
+   {
+    "col": "white",
+    "item": "ms-cupsole",
+    "shape": "trainers",
+    "what": "Leather trainers"
+   }
+  ],
+  "rank": 11,
   "style": [
    "minimal",
    "street"
   ],
+  "tags": [],
   "wx": [
    "mild"
-  ],
-  "note": "Three plain pieces from Zara and white leather trainers. Nothing competes for attention.",
-  "look": "men black nylon bomber jacket white heavyweight t-shirt straight blue jeans white leather trainers minimal",
-  "rank": 11,
-  "tags": [],
-  "pieces": [
-   {
-    "item": "za-tech-bomber",
-    "shape": "jacket",
-    "col": "black",
-    "what": "Technical bomber"
-   },
-   {
-    "item": "za-heavy-tee",
-    "shape": "tee",
-    "col": "white",
-    "what": "Heavyweight tee"
-   },
-   {
-    "item": "za-straight-jeans",
-    "shape": "trousers",
-    "col": "indigo",
-    "what": "Straight jeans"
-   },
-   {
-    "item": "ms-cupsole",
-    "shape": "trainers",
-    "col": "white",
-    "what": "Leather trainers"
-   }
   ]
  },
  "od-budget": {
