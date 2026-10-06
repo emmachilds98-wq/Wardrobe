@@ -894,6 +894,30 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   - A touch of warmth in the shadows, faint shadow under the eyes, and slight natural colour
     variation.
 
+## 2zg. Precise body and face sliders in Edit Dave (6 Oct 2026)
+
+- **Slimmer default:** the default build is a little slimmer: less added chest and waist, a flatter
+  belly, slightly less cheek volume. Tops on the real body no longer have the old minimum widths
+  below the waist, so they follow a slim body.
+- **Sliders:** every shape option is now a slider from -1 to 1, blending real MakeHuman shape
+  targets. `tools/build_body.py` bakes a pair of targets for each.
+  - **Body:** weight, muscle, shoulders, chest, waist, belly, hips, arms, legs and neck, plus height
+    and skin.
+  - **Face:** face width, jaw, chin, nose, lips, ears, eye size and expression (serious to bigger
+    smile).
+- **Editor:**
+  - Each slider shows its value in words ("Slimmer 50%") with a Reset link.
+  - Quick body types: Dave, Slim, Average, Athletic, Heavier.
+  - A live line gives his estimated chest, waist and hips in inches from the model, as a rough
+    sizing guide.
+- **Fitting to the sliders:**
+  - Clothes re-measure for every slider position.
+  - Each slider also moves the face landmarks (eyes, ears, skull, mouth).
+  - The page re-measures the front of the face for the current shape, so brows, lashes and the
+    moustache stay on the skin.
+- **Older saves:** the earlier fixed choices (build, shoulders, middle, face, nose) are converted to
+  slider positions automatically, including the copy shared in the page's data.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

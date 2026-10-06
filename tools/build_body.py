@@ -29,6 +29,7 @@ TARGETS = {
     "male_minw": "macrodetails/universal-male-young-averagemuscle-minweight.target",
     "male_maxw": "macrodetails/universal-male-young-averagemuscle-maxweight.target",
     "male_maxm": "macrodetails/universal-male-young-maxmuscle-averageweight.target",
+    "male_minm": "macrodetails/universal-male-young-minmuscle-averageweight.target",
     "cauc": "macrodetails/caucasian-male-young.target",
     "tall": "macrodetails/height/male-young-averagemuscle-averageweight-maxheight.target",
     "ideal": "macrodetails/proportions/male-young-averagemuscle-averageweight-idealproportions.target",
@@ -46,6 +47,21 @@ TARGETS = {
     # a man's torso: a little more chest and a straighter waist, narrower hips
     "vshape": "torso/torso-vshape-incr.target", "bust_incr": "measure/measure-bust-circ-incr.target",
     "waist_c_incr": "measure/measure-waist-circ-incr.target", "hips_decr": "measure/measure-hips-circ-decr.target",
+    "bust_decr": "measure/measure-bust-circ-decr.target", "waist_c_decr": "measure/measure-waist-circ-decr.target",
+    "uarm_incr": "measure/measure-upperarm-circ-incr.target", "uarm_decr": "measure/measure-upperarm-circ-decr.target",
+    "thigh_incr": "measure/measure-thigh-circ-incr.target", "thigh_decr": "measure/measure-thigh-circ-decr.target",
+    "calf_incr": "measure/measure-calf-circ-incr.target", "calf_decr": "measure/measure-calf-circ-decr.target",
+    "neck_incr": "measure/measure-neck-circ-incr.target", "neck_decr": "measure/measure-neck-circ-decr.target",
+    "chinw_incr": "chin/chin-width-incr.target", "chinw_decr": "chin/chin-width-decr.target",
+    "chinb_incr": "chin/chin-bones-incr.target", "chinb_decr": "chin/chin-bones-decr.target",
+    "chinp_incr": "chin/chin-prominent-incr.target", "chinp_decr": "chin/chin-prominent-decr.target",
+    "ulip_incr": "mouth/mouth-upperlip-volume-incr.target", "ulip_decr": "mouth/mouth-upperlip-volume-decr.target",
+    "llip_incr": "mouth/mouth-lowerlip-volume-incr.target", "llip_decr": "mouth/mouth-lowerlip-volume-decr.target",
+    "earl_incr": "ears/l-ear-scale-incr.target", "earl_decr": "ears/l-ear-scale-decr.target",
+    "earr_incr": "ears/r-ear-scale-incr.target", "earr_decr": "ears/r-ear-scale-decr.target",
+    "eyel_incr": "eyes/l-eye-scale-incr.target", "eyel_decr": "eyes/l-eye-scale-decr.target",
+    "eyer_incr": "eyes/r-eye-scale-incr.target", "eyer_decr": "eyes/r-eye-scale-decr.target",
+    "smile_down": "mouth/mouth-angles-down.target",
     # a relaxed, friendly expression
     "smile": "mouth/mouth-angles-up.target", "laugh": "mouth/mouth-laugh-lines-in.target",
     "cheek_l": "cheek/l-cheek-volume-incr.target", "cheek_r": "cheek/r-cheek-volume-incr.target",
@@ -334,20 +350,32 @@ def b64(a):
 
 
 BASE_MIX = {"male": 1, "male_minw": 0.25, "cauc": 1, "tall": 0.45, "ideal": 0.5,
-            "vshape": 0.25, "bust_incr": 0.25, "waist_c_incr": 0.3, "hips_decr": 0.4,
-            "smile": 0.55, "laugh": 0.3, "cheek_l": 0.2, "cheek_r": 0.2, "fold_l": 0.3, "fold_r": 0.3, "lid_l": 0.2, "lid_r": 0.2}
-MORPHS = {
-    "slim": {"male_minw": 0.45},
-    "broad": {"male_maxm": 0.55, "male_minw": -0.2},
-    "shNarrow": {"sh_decr": 0.7},
-    "shBroad": {"sh_incr": 0.8},
-    "midFlat": {"belly_decr": 0.6},
-    "midFuller": {"belly_incr": 0.45, "waist_incr": 0.35, "hips_incr": 0.2},
-    "faceNarrow": {"head_w_decr": 0.5},
-    "faceWide": {"head_w_incr": 0.5},
-    "noseSmall": {"nose_v_decr": 0.5, "nose_h_decr": 0.4, "nose_d_decr": 0.5},
-    "noseLarge": {"nose_v_incr": 0.5, "nose_h_incr": 0.45, "nose_d_incr": 0.55},
+            "vshape": 0.2, "bust_incr": 0.12, "waist_c_incr": 0.05, "hips_decr": 0.35,
+            "smile": 0.55, "laugh": 0.3, "cheek_l": 0.1, "cheek_r": 0.1, "fold_l": 0.3, "fold_r": 0.3, "lid_l": 0.2, "lid_r": 0.2}
+# Edit Dave's sliders: each runs from -1 to 1, using the "_n" morph below zero and the "_p" morph above it.
+SLIDERS = {
+    "weight": ({"male_minw": 0.75}, {"male_maxw": 0.8}),
+    "muscle": ({"male_minm": 0.8}, {"male_maxm": 0.8}),
+    "shoulderW": ({"sh_decr": 1}, {"sh_incr": 1}),
+    "chest": ({"bust_decr": 0.8}, {"bust_incr": 0.8}),
+    "waistW": ({"waist_c_decr": 0.8}, {"waist_c_incr": 0.8}),
+    "belly": ({"belly_decr": 0.8}, {"belly_incr": 0.8}),
+    "hips": ({"hips_decr": 0.6}, {"hips_incr": 0.8}),
+    "arms": ({"uarm_decr": 0.8}, {"uarm_incr": 0.8}),
+    "legs": ({"thigh_decr": 0.8, "calf_decr": 0.6}, {"thigh_incr": 0.8, "calf_incr": 0.6}),
+    "neckW": ({"neck_decr": 0.8}, {"neck_incr": 0.8}),
+    "faceW": ({"head_w_decr": 0.6}, {"head_w_incr": 0.6}),
+    "jaw": ({"chinw_decr": 0.7, "chinb_decr": 0.4}, {"chinw_incr": 0.7, "chinb_incr": 0.4}),
+    "chin": ({"chinp_decr": 0.7}, {"chinp_incr": 0.7}),
+    "noseSize": ({"nose_v_decr": 0.5, "nose_h_decr": 0.4, "nose_d_decr": 0.5}, {"nose_v_incr": 0.5, "nose_h_incr": 0.45, "nose_d_incr": 0.55}),
+    "lips": ({"ulip_decr": 0.7, "llip_decr": 0.7}, {"ulip_incr": 0.7, "llip_incr": 0.7}),
+    "ears": ({"earl_decr": 0.6, "earr_decr": 0.6}, {"earl_incr": 0.6, "earr_incr": 0.6}),
+    "eyeSize": ({"eyel_decr": 0.5, "eyer_decr": 0.5}, {"eyel_incr": 0.5, "eyer_incr": 0.5}),
+    "smile": ({"smile_down": 0.5}, {"smile": 0.45}),
 }
+MORPHS = {}
+for _k, (_n, _p) in SLIDERS.items():
+    MORPHS[_k + "_n"] = _n; MORPHS[_k + "_p"] = _p
 CROWN = 1.79   # top of the skull in the clothes' frame (the hair adds the rest of his height)
 
 
@@ -379,7 +407,7 @@ def main():
     treg = np.array([np.bincount(vreg[t], minlength=len(REGIONS)).argmax() for t in tris])
 
     # Edit Dave options as morphs, carried into the pose by the bones' rotations
-    morphs, msec = {}, {}
+    morphs, msec, morph_d = {}, {}, {}
     ur = vreg[used]
     def measure(X):
         X = X[used]
@@ -394,7 +422,8 @@ def main():
     for name, mix in MORPHS.items():
         D = sum(w * mesh.target(k) for k, w in mix.items())
         Dp = skin_fast(V, M, skin, D) * s
-        idx = np.where(np.abs(Dp[used]).max(1) > 2e-5)[0]
+        morph_d[name] = Dp
+        idx = np.where(np.abs(Dp[used]).max(1) > 1.2e-4)[0]
         morphs[name] = {"i": b64(idx.astype(np.uint16)), "d": b64(np.round(Dp[used][idx] * 1e4).astype(np.int16))}
         ms = measure(Pf + Dp)
         msec[name] = {k: [[round(m[j] - b[j], 4) for j in range(1, 5)] for m, b in zip(ms[k], base_sec[k])] for k in ms}
@@ -403,65 +432,73 @@ def main():
     def grp(name):
         fs = [f for f, g in zip(mesh.F, mesh.G) if g == name]
         return np.unique(np.concatenate([np.array(f) for f in fs]))
-    eyev = grp("helper-l-eye"); E = Pf[eyev]; ec = E.mean(0); er = float(np.linalg.norm(E - ec, axis=1).mean())
-    head = used[vreg[used] == REGIONS.index("head")]; H = Pf[head]
-    crown = float(H[:, 1].max())
-    # face depth map over the front of the head
-    fx0, fx1, fy0, fy1, st = -0.08, 0.08, ec[1] - 0.115, ec[1] + 0.075, 0.0025
+    eyev = grp("helper-l-eye")
+    ec0 = Pf[eyev].mean(0)
+    fx0, fx1, fy0, fy1, st = -0.08, 0.08, ec0[1] - 0.115, ec0[1] + 0.075, 0.0025
     hsel = (treg == REGIONS.index("head")) | (treg == REGIONS.index("neck"))
-    Z = face_depth(Pf, tris, hsel, fx0, fx1, fy0, fy1, st)
-    def zat(x, y):
-        i = int(round((x - fx0) / st)); j = int(round((y - fy0) / st)); return Z[j, i]
-    prof = [(fy0 + j * st, float(Z[j, int(round(-fx0 / st))])) for j in range(Z.shape[0])]
-    prof = [p for p in prof if not np.isnan(p[1])]
-    def pick(lo, hi, f): return f((p for p in prof if lo < p[0] < hi), key=lambda p: p[1])
-    tip = pick(ec[1] - 0.09, ec[1] - 0.015, max)               # nose tip: furthest forward below the eyes
-    down = [p for p in sorted(prof, key=lambda p: -p[0]) if p[0] < tip[0]]
-    def turn(seq, want_min):
-        """the first local minimum (or maximum) walking down the profile, ignoring flat steps"""
-        best = seq[0]
-        for p in seq[1:]:
-            if (p[1] < best[1] - 1e-5) if want_min else (p[1] > best[1] + 1e-5): best = p
-            elif (p[1] > best[1] + 0.0008) if want_min else (p[1] < best[1] - 0.0008): break
-        return best
-    sn = turn(down, True)                                       # under the nose
-    ul = turn([p for p in down if p[0] < sn[0]], False)         # upper lip
-    mo = turn([p for p in down if p[0] < ul[0]], True)          # the line between the lips
-    mouth_y = mo[0]
-    # mouth half-width: the lips' corners, where the front surface steps back at mouth height
-    mw = 0.024
-    cranium = H[H[:, 1] > ec[1] + 0.03]
-    # the skull as an ellipsoid in the hair's unit frame: the eyes sit at y=0.1 and the crown at 0.95
-    ax = float(np.abs(cranium[:, 0]).max()) * 1.08; zf, zb = float(cranium[:, 2].max()), float(cranium[:, 2].min())
-    ay = (crown - ec[1]) / 0.85; cy = ec[1] - 0.1 * ay
-    earband = H[(H[:, 1] > ec[1] - 0.035) & (H[:, 1] < ec[1] + 0.005)]
-    ear = earband[np.argmax(earband[:, 0])]
+    def face_lm(PX):
+        """eyes, nose, mouth, chin, crown, skull and ear from positions PX (all vertices), and the face depth map"""
+        E = PX[eyev]; ec = E.mean(0); er = float(np.linalg.norm(E - ec, axis=1).mean())
+        head = used[vreg[used] == REGIONS.index("head")]; H = PX[head]
+        crown = float(H[:, 1].max())
+        Z = face_depth(PX, tris, hsel, fx0, fx1, fy0, fy1, st)
+        prof = [(fy0 + j * st, float(Z[j, int(round(-fx0 / st))])) for j in range(Z.shape[0])]
+        prof = [p for p in prof if not np.isnan(p[1])]
+        tip = max((p for p in prof if ec[1] - 0.09 < p[0] < ec[1] - 0.015), key=lambda p: p[1])   # nose tip
+        down = [p for p in sorted(prof, key=lambda p: -p[0]) if p[0] < tip[0]]
+        def turn(seq, want_min):
+            """the first local minimum (or maximum) walking down the profile, ignoring flat steps"""
+            best = seq[0]
+            for p in seq[1:]:
+                if (p[1] < best[1] - 1e-5) if want_min else (p[1] > best[1] + 1e-5): best = p
+                elif (p[1] > best[1] + 0.0008) if want_min else (p[1] < best[1] - 0.0008): break
+            return best
+        sn = turn(down, True)                                       # under the nose
+        ul = turn([p for p in down if p[0] < sn[0]], False)         # upper lip
+        mo = turn([p for p in down if p[0] < ul[0]], True)          # the line between the lips
+        cranium = H[H[:, 1] > ec[1] + 0.03]
+        # the skull as an ellipsoid in the hair's unit frame: the eyes sit at y=0.1 and the crown at 0.95
+        ax = float(np.abs(cranium[:, 0]).max()) * 1.08; zf, zb = float(cranium[:, 2].max()), float(cranium[:, 2].min())
+        ay = (crown - ec[1]) / 0.85; cy = ec[1] - 0.1 * ay
+        earband = H[(H[:, 1] > ec[1] - 0.035) & (H[:, 1] < ec[1] + 0.005)]
+        ear = earband[np.argmax(earband[:, 0])]
+        r4 = lambda v: round(float(v), 4)
+        return {"eye": [r4(v) for v in ec] + [r4(er)], "noseTip": [r4(tip[0]), r4(tip[1])], "noseBase": [r4(sn[0]), r4(sn[1])],
+                "mouth": [r4(mo[0]), r4(mo[1]), 0.024], "chin": r4(H[H[:, 2] > ec[2] - 0.02][:, 1].min()), "crown": r4(crown),
+                "skull": [r4(cy), r4((zf + zb) / 2), r4(ax / 0.94), r4(ay), r4((zf - zb) / 2 / 0.94)], "ear": [r4(v) for v in ear]}, Z
+    flm, Z = face_lm(Pf)
+    # how each Edit Dave slider moves those landmarks (the page adds these, weighted)
+    lmd = {}
+    for name, Dp in morph_d.items():
+        m_lm, _ = face_lm(Pf + Dp)
+        d = {}
+        for k in ("eye", "noseTip", "noseBase", "mouth", "skull", "ear"):
+            dv = [round(x - y, 4) for x, y in zip(m_lm[k], flm[k])]
+            if any(abs(v) > 2e-4 for v in dv): d[k] = dv
+        for k in ("chin", "crown"):
+            if abs(m_lm[k] - flm[k]) > 2e-4: d[k] = round(m_lm[k] - flm[k], 4)
+        if d: lmd[name] = d
     feet = Pf[used[(vreg[used] == REGIONS.index("foot")) & (Pf[used, 0] > 0)]]
     hands = Pf[used[(vreg[used] == REGIONS.index("hand")) & (Pf[used, 0] > 0)]]
     hipsv = Pf[used[np.isin(vreg[used], [REGIONS.index("hips"), REGIONS.index("thigh")]) & (np.abs(Pf[used, 0]) < 0.012)]]
     tor = base_sec["torso"]; waist = min((t for t in tor if 0.95 < t[0] < 1.25), key=lambda t: t[1])
     wrist = (M["wrist.L"] @ np.r_[rig.head(V, "wrist.L"), 1])[:3]
-    lm = {
-        "eye": [round(float(v), 4) for v in ec] + [round(er, 4)],
-        "noseTip": [round(tip[0], 4), round(float(tip[1]), 4)], "noseBase": [round(sn[0], 4), round(float(sn[1]), 4)],
-        "mouth": [round(mouth_y, 4), round(float(zat(0, mouth_y)), 4), mw],
-        "chin": round(float(H[H[:, 2] > ec[2] - 0.02][:, 1].min()), 4), "crown": round(crown, 4),
-        "skull": [round(cy, 4), round((zf + zb) / 2, 4), round(ax / 0.94, 4), round(ay, 4), round((zf - zb) / 2 / 0.94, 4)],
-        "ear": [round(float(v), 4) for v in ear],
+    lm = dict(flm)
+    lm.update({
         "wrist": [round(float(v), 4) for v in frame(wrist[None])[0]],
         "foot": {"x": round(float(feet[:, 0].mean()), 4), "heel": round(float(feet[:, 2].min()), 4), "toe": round(float(feet[:, 2].max()), 4),
                  "w": round(float(feet[:, 0].max() - feet[:, 0].min()) / 2, 4), "top": round(float(feet[:, 1].max()), 4)},
         "hand": {"bottom": round(float(hands[:, 1].min()), 4), "top": round(float(hands[:, 1].max()), 4)},
         "crotch": round(float(hipsv[:, 1].min()), 4) if len(hipsv) else 0.84,
         "waist": round(waist[0], 4), "shoulder": base_sec["arm"][-1][:4],
-    }
+    })
     zq = np.where(np.isnan(Z), -32768, np.round(Z * 1e4)).astype(np.int16)
     ao = bake_ao(Pf[used], remap[tris], vreg[used], len(used))
     out = {
         "v": 1, "license": "Body from the MakeHuman base mesh, targets, skeleton and weights (CC0, makehumancommunity.org); shaped, posed and measured by tools/build_body.py.",
         "n": int(len(used)), "pos": b64(Pf[used].astype(np.float32)), "idx": b64(remap[tris].astype(np.uint16)),
         "treg": b64(treg.astype(np.uint8)), "ao": b64(np.round(ao * 255).astype(np.uint8)), "regions": REGIONS, "morphs": morphs,
-        "sec": base_sec, "secd": msec, "lm": lm,
+        "sec": base_sec, "secd": msec, "lm": lm, "lmd": lmd, "sliders": list(SLIDERS),
         "face": {"x0": fx0, "y0": round(float(fy0), 4), "st": st, "nx": int(Z.shape[1]), "ny": int(Z.shape[0]), "z": b64(zq)},
     }
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
