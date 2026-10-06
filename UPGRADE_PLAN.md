@@ -1344,6 +1344,29 @@ in Emma's doc "Dave's Wardrobe: product review and upgrade plan":
 <https://claude.ai/artifact/Ltsoegoei9Yj6XSf6NhgQV>. This section is the working copy for the
 sessions that carry it out. Line numbers are `page.html` at commit 9e3f504.
 
+### Status after the 6 October 3D update (pull request 7)
+
+That update landed during the review: a real CC0 human body with the Edit Dave editor, listings read for
+collar, neckline, zips, pockets, fit and material (`descOf`), photos read for stripes, checks and chest prints
+(`readLook`), the shop photo's front laid over flat-lay tops, trouser cuts from the listing, zip up or
+unzip, flat hoods, and listing colours winning over bad photo reads. Re-rendering the same 12 outfits on
+it (main at 517a37e):
+- **Now right:** brown trainers, a closed hip-length Harrington, the tie, no skin gap under hoodies, and a
+  natural body.
+- **Still wrong:**
+  - Denim jacket sky blue; stone trousers near white; tan trainers pale yellow.
+  - Every boot still a low shoe.
+  - Gilets still forced to quilt (`texOf`, `sh==="gilet"` gives "diamond").
+  - "button-down" still matches `down` in `texOf`, the loft rule, the material rule and the care text.
+  - Oxford weave read as stripes.
+  - Belts hidden under untucked tops; no rib bands or cord collars on blousons; sunglasses one shape;
+    one wrong photo (the Timberland boots).
+
+So phases 1, 2, 4 and 5 below are partly done. The work that remains is the core: specs stored once
+per item rather than read on every visit, draped templates per archetype, shoe lasts and boots, a fabric
+library, ease-driven layering, and the weekly check. The line numbers in the rest of this section are
+for commit 9e3f504, before that update.
+
 ### What the review found
 - **3D clothes:** 12 fully photographed outfits were rendered beside their shop photos. Every one
   had at least one piece a shopper would not recognise. The repeating faults:
