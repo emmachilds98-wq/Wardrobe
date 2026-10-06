@@ -834,6 +834,39 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
     neck still meets it.
   - The face itself is unchanged.
 
+## 2ze. A real human body for the 3D model (6 Oct 2026)
+
+- **The body:**
+  - Dave's 3D body is now the MakeHuman base mesh, a professionally sculpted body released under
+    CC0 by the MakeHuman project.
+  - `tools/build_body.py` reads the asset files itself (no MakeHuman program code) and makes him a
+    tall, slim young man.
+  - It poses him relaxed: arms by his sides, elbows soft, backs of the hands out with the fingers
+    loosely curled, feet under the hips.
+  - It writes `data/body.json` (about 770 KB). `build_site.py` copies it next to the page.
+  - Re-run with `python3 tools/build_body.py`; it downloads the assets on first use.
+- **Edit Dave on the real body:**
+  - Build, shoulders, middle, face width and nose size are now real shape targets on the mesh.
+  - Height still scales the whole figure.
+- **Face:**
+  - The detailed MakeHuman head, with real ears, eyelids, lips and nose, and a slight lift at the
+    corners of the mouth.
+  - His eyes sit in the sockets: white, iris and pupil in his eye colour, a clear wet cornea that
+    catches the light, and a lash line.
+  - The brows, moustache, glasses and sunglasses are placed from a depth map of his face.
+  - The curls and hats hang from his measured skull.
+  - Skin is coloured per vertex: warmer cheeks, nose tip and ears, lips, the stubble or beard
+    option, and the scalp tinted under his hair.
+- **Clothes:**
+  - Built through cross-sections measured from the real body, so they follow his shape.
+  - Tops hang straight from the chest rather than pinching in at the waist.
+  - Collars and necklines sit on his real neck.
+  - Skin under clothes is left out by body region (chest, arms, hips, thighs, shins, feet), so
+    nothing pokes through.
+- **Fallback:** if `data/body.json` cannot load, the page uses the older hand-built body.
+- **Removed:** the "What to wear today" section of Outfits. The rest of the Outfits area is
+  unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
