@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build photo packs for Dave's Wardrobe.
+"""Build photo packs for The Wardrobe.
 
 The wardrobe page runs as a claude.ai artifact, and the artifact sandbox blocks
 images from other websites. So listing photos have to be downloaded once,

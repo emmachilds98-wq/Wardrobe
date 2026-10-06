@@ -1,4 +1,4 @@
-# Dave's Wardrobe: review and upgrade plan
+# The Wardrobe: review and upgrade plan
 
 The live version is the claude.ai artifact
 <https://claude.ai/artifact/8uqcGr2eNmzbQv8UVBshY2>. This folder is a backup of
@@ -11,7 +11,7 @@ it, so the page and its data can be used or rebuilt outside Claude.
 | `data/outfits.json` | All 156 outfits from the `outfits` collection. |
 | `tools/fetch_photos.py` | Downloads listing photos and packs them for the page (step 2 below). |
 
-The shared shortlist, Dave's thumbs and saved outfits (`saved`, `votes`,
+The shared shortlist, his thumbs and saved outfits (`saved`, `votes`,
 `myfits`) are not copied here. They change from day to day and belong to the
 people using the page.
 
@@ -22,11 +22,11 @@ people using the page.
 **Works well**
 - Seven styles (Classic, Casual, Street, Minimal, Rave, Outdoors, Lounge). Each one has its own
   guidance on colours, what to wear, what to avoid and where to spend.
-- Outfits are drawn on a figure of Dave, and each piece is numbered, priced and linked. Running
+- Outfits are drawn on a figure, and each piece is numbered, priced and linked. Running
   totals show the saving against full price.
 - The builder has slots, a colour for each piece and a "suggest under £X" search. The
   "one piece, many outfits" view shows cost per wear.
-- The shortlist is shared and tracks what has been bought, and Dave's thumbs feed back into the
+- The shortlist is shared and tracks what has been bought, and his thumbs feed back into the
   ranking.
 - The size data is honest: an "in his size" line where the shop shows stock, and his usual size
   where it doesn't.
@@ -44,7 +44,7 @@ people using the page.
    big refresh, but the weekly refresh should only set `added` on picks that are actually new, or
    the New filter stops meaning much.
 5. **Sizes are still estimates.** The shirt collar and jacket chest are marked "to confirm". Until
-   Dave is measured, "in his size" is only as good as the guess.
+   he is measured, "in his size" is only as good as the guess.
 6. **Some pages are near their load limit.** Picks load as two queries of up to 1,000 each
    (clothes: 466, everything else: 315). That leaves room for about 500 more clothes picks before
    the split needs a third query.
@@ -231,9 +231,9 @@ people using the page.
 
 ## 2i. Workwear for the job, and another round of picks (5 Oct 2026, late night)
 
-- **New style: Workwear** (`job` in the data), for manual work. Emma's rules, which the Friday
+- **New style: Workwear** (`job` in the data), for manual work. The owner's rules, which the Friday
   refresh now follows word for word:
-  - Work trousers and shorts are **100% cotton only** (Dave has sensitive skin). Each one was
+  - Work trousers and shorts are **100% cotton only** (softer on the skin). Each one was
     checked on the product page. Polycotton, stretch and recycled-polyester blends are out, and
     so is Cordura reinforcement (Blaklader 1556, 1534 and X1500; Uskees ripstop is 60% cotton).
   - Work trousers and shorts are **black, or very dark grey at most**. Brown, stone, navy and
@@ -244,7 +244,7 @@ people using the page.
   - No T-shirts, since work provides them. Jackets, gilets and jumpers in any dark colour.
   - The page has a "Safety boots and shoes" category and a Workwear guide, sale section and ten
     outfits. 32 picks in all.
-  - Gap: no black 100% cotton *cargo* shorts could be found in Dave's size. The shorts on offer
+  - Gap: no black 100% cotton *cargo* shorts could be found in his size. The shorts on offer
     are Stan Ray black denim, Colorful Standard black twill and Passenger charcoal.
 - **87 new picks** since version 13, 64 under £40 and 65 reduced, from Brakeburn, Blue Inc,
   Community Clothing, Fila, Folk, howies, Lyle & Scott, Montirex, Original Penguin, Peregrine,
@@ -286,9 +286,9 @@ people using the page.
 - Page version 16. Totals: **1152 picks, 211 outfits, 105 shops with picks.** The two load
   queries hold about 743 and 409 picks (limit 1000 each).
 
-## 2k. Workwear rebuild, a more lifelike Dave, and dropdowns instead of chips (5 Oct 2026, late)
+## 2k. Workwear rebuild, a more lifelike figure, and dropdowns instead of chips (5 Oct 2026, late)
 
-- **Workwear, rebuilt around Emma's answers:**
+- **Workwear, rebuilt around the owner's answers:**
   - **6E boots:** every 6E safety boot that could be found is listed. Only the Wide Load range
     (Wide Shoes) and Rock Fall Otus make 6E with a toe cap in the UK. Four are in stock in
     UK 11; five more Wide Load models (690BLWC, 290BSC, 690SZC, 490BPO, 690WZ) are sold out in
@@ -313,7 +313,7 @@ people using the page.
     shows 6E boots only, 4E and 6E boots, cargo or plain shorts, belts and holsters, or
     100% cotton only.
 - **Style options tidied:**
-  - The "Within" chips and "Quick sets" chips are gone (Emma prefers dropdowns). Look
+  - The "Within" chips and "Quick sets" chips are gone (The owner prefers dropdowns). Look
     (Clean minimal, Relaxed street, Heritage and so on) is a dropdown in the Shop, Sale and
     Outfits filters, and Collection (Winter, Christmas, Holiday, Gifts) is a dropdown in the
     Shop filter.
@@ -322,10 +322,8 @@ people using the page.
   - Items now count towards at most three tabs.
   - Picks load in five groups (knit, polo, trouser, shirt and coat, everything else), so the
     old 1000-item ceiling no longer limits the collection.
-- **A more lifelike Dave in the outfit drawings:**
-  - A slimmer, taller build, a mop of dark curls, a ginger-brown moustache, light stubble
-    and fairer skin, all taken from photos Emma shared. The photos themselves are not
-    stored anywhere.
+- **A more lifelike figure in the outfit drawings:**
+  - A slimmer, taller build with hair and a face. No photos are stored anywhere.
   - Light and shade on every garment, elbow and knee creases, a trouser break, thumbs,
     laces, and toe caps on safety boots. Tool belts and holster pockets are drawn on the
     hips.
@@ -401,7 +399,7 @@ people using the page.
 
 ## 2n. Every shop searched for every kind of item (5 Oct 2026, night)
 
-Emma noticed that a shop was often used for one kind of thing only (one shop for shoes,
+The owner noticed that a shop was often used for one kind of thing only (one shop for shoes,
 another for jumpers) and never checked for anything else. So every shop was swept across
 its whole range.
 
@@ -413,7 +411,7 @@ its whole range.
     overshirts, jackets, gilets, jeans, trousers, joggers, shorts, swim, loungewear,
     slippers, trainers, shoes, boots, sandals, hats, bags, belts, small accessories and
     socks.
-  - For each shop, listed the kinds it sells in Dave's size that had no picks yet (about
+  - For each shop, listed the kinds it sells in his size that had no picks yet (about
     900 gaps). Then added the best reduced pick for up to six kinds per shop.
   - Matalan and Peacocks aren't on Shopify, so they were read from their own product
     data. Matalan gained hoodies, joggers, shorts, a knitted polo, brogues, trainers,
@@ -453,7 +451,7 @@ from a home computer usually gets past them. Then add the new pack to the page a
 - ~~Add a "price seen over a month ago" note to old cards.~~ Done in round two.
 
 ### Step 3: Fit and sizes
-- Measure Dave: neck plus half an inch, chest under the arms, inside leg. Then update
+- Measure him: neck plus half an inch, chest under the arms, inside leg. Then update
   `meta/profile` and drop the "to confirm" notes.
 - ~~Add a per-shop size note (`sizeNote`).~~ Done in round four. More can be added as fit tips
   turn up.
@@ -493,7 +491,7 @@ here.
 | Photo size | The refresh aims for under 25 KB a photo, but rows hold photos of up to 60 KB | Some batches went over the target. |
 | Status line | `meta/status` says 1,781 picks; `meta/photos` says 758 photos | Both are out of date (1,861 picks; 1,703 with a photo). The refresh rewrites `meta/status` each Friday, but the extra rounds since then didn't. |
 | His size | 1,247 confirmed, 52 not in his size, **562 unknown (30%)** | ASOS 195, M and M Direct 31, M&S 30, Vinted 28, Charles Tyrwhitt 18, WoolOvers 13, Moss 13. The card already says "His size: L. The shop does not show stock", so this is about checking more, not labelling. Shirt and jacket sizes are still "to confirm". |
-| Colour | 521 pick names say black, against 208 navy, 45 stone, 19 olive and 7 burgundy | No cap on any colour (Emma, 5 Oct). A colour filter makes the other colours easier to find. |
+| Colour | 521 pick names say black, against 208 navy, 45 stone, 19 olive and 7 burgundy | No cap on any colour (The owner, 5 Oct). A colour filter makes the other colours easier to find. |
 | Pick use | **1,028 of 1,861 picks are in no outfit** | Half the catalogue is never shown worn. |
 | Outfit occasions | 217 everyday, 49 party, 30 smart, 28 lounge, **10 event** | Hardly anything for weddings, christenings, funerals, interviews or a work Christmas do. Casual has 7 smart or party outfits and Street 8. |
 | Outfit weather | **41 wet** of 334; Holiday has 0 cold or mild; Lounge has 5 warm | There are 74 coats tagged for wet weather, so the gap is outfits, not stock. |
@@ -509,7 +507,7 @@ here.
 
 - The structure: one view at a time (Shop, Sale, Outfits, Build, Shortlist, Style guide), 40
   categories, eight style tabs plus All styles.
-- Every outfit is drawn on Dave and every piece is priced and linked. No outfit links to a
+- Every outfit is drawn on the figure and every piece is priced and linked. No outfit links to a
   missing pick or to a pick out of his size.
 - The Workwear rules are kept carefully: cotton at 97% or more with the blend shown, black or
   charcoal, no slim fits, and EE to 6E toe-cap boots. Every Workwear boot is marked extra wide.
@@ -583,17 +581,16 @@ here.
   carry on exactly as now and never use owned pieces.
 - **A "His wardrobe" view, last in the bar:** everything marked, plus his own things typed in by
   hand (black suit, New Balance and Nike trainers, crossbody, bum and side bags to start). Here,
-  and only here, the page puts together outfits from what he owns, drawn on Dave like the others,
+  and only here, the page puts together outfits from what he owns, drawn on the figure like the others,
   by occasion and weather.
 - Storage: in the artifact, a new `owned` collection (it needs a new database rule, so the page
-  is republished once). In Dave's GitHub copy, his marks stay in his browser (section J).
+  is republished once). In his GitHub copy, his marks stay in his browser (section J).
 
 #### H. Style guide and sizes
 - A **measuring card** (neck, chest, inside leg) that saves to `meta/profile`. Once filled in,
   drop the "to confirm" notes.
-- A **"Dave's colours"** panel: the colours that suit his fair skin, dark hair and ginger-brown
-  moustache (navy, olive, rust, camel, burgundy and ecru; mustard and washed-out pastels are
-  harder), linked to the colour filter.
+- A **colours** panel: the colours that suit him and the harder ones, kept in the artifact's
+  profile only (never exported), linked to the colour filter.
 - **Care notes** on cards for wool, linen and waxed cotton.
 
 #### I. Drawings
@@ -601,8 +598,8 @@ here.
   over a blazer, knee pads, a neck warmer and a tool backpack (Workwear extras), and swim shorts
   with an open shirt for Holiday.
 
-#### J. Dave's copy on GitHub Pages
-Dave will use a copy served from this repo, not the artifact. The repo is public, so GitHub
+#### J. His copy on GitHub Pages
+He will use a copy served from this repo, not the artifact. The repo is public, so GitHub
 Pages is free. It is not switched on yet: Settings, Pages, deploy from `main`, root folder.
 - **Same page, no database.** When the artifact's database isn't there, the page loads
   `data/items.json`, `data/outfits.json`, `data/meta.json` and the photo files from the repo
@@ -612,15 +609,15 @@ Pages is free. It is not switched on yet: Settings, Pages, deploy from `main`, r
   device-only mode for the shortlist, so this extends it.
 - **Photos as files.** The export writes photos into pack files grouped by category, loaded
   only when that category is opened.
-- **Updated only when Emma asks.** A Claude session reads the artifact's database, writes the
-  JSON and photo files, and opens a pull request. Merging it updates Dave's site. The page shows
+- **Updated only when the owner asks.** A Claude session reads the artifact's database, writes the
+  JSON and photo files, and opens a pull request. Merging it updates his site. The page shows
   the export date ("Prices checked 9 Oct") so he knows how fresh it is, and the card's
   "Check before buying" warning appears after 30 days as now.
 - Never part of the export: the artifact's shared shortlist, votes, saved outfits and `owned`
   marks (they belong to the people using the artifact).
-- **Public by default.** A Pages site from a public repo can be found by anyone. The export would
-  publish Dave's first name, sizes and profile notes. Leave the name out of the public copy, or
-  make the repo private (Pages on a private repo needs a paid GitHub plan).
+- **Public by default.** A Pages site from a public repo can be found by anyone. The export leaves
+  out the name, the owned list, the colour notes and measurements; only sizes and general
+  notes are published.
 
 ### 4.4 More picks (target: about 260 new on top of the Friday refresh's 40 a week)
 
@@ -668,11 +665,11 @@ in "His wardrobe" are put together by the page from what is marked there.
 
 ### 4.7 Order of work
 1. Section A (speed and data), and the refresh changes in 4.6. One round.
-2. Section J (Dave's GitHub Pages copy), with the first export, so he has it early.
+2. Section J (His GitHub Pages copy), with the first export, so he has it early.
 3. Sections D and E (swap, lock, what to wear today, "£X to finish").
 4. Sections B, C and F (colour filter, price history, buy list download).
-5. Sections G, H and I (his wardrobe, measuring card, drawings).
-6. Picks (4.4) and outfits (4.5), spread across every round. Export to Dave's copy when asked.
+5. Sections G, H and I (His wardrobe, measuring card, drawings).
+6. Picks (4.4) and outfits (4.5), spread across every round. Export to his copy when asked.
 
 ### 4.8 Corrections made on the second review
 - Photos: the first draft suggested the asset store. It would end public link sharing, and the
@@ -690,12 +687,12 @@ in "His wardrobe" are put together by the page from what is marked there.
   that never touches the main views.
 - The refresh already re-checks prices weekly, so the plan no longer says "once a fortnight".
 
-### 4.9 Emma's answers (5 Oct 2026)
+### 4.9 The owner's answers (5 Oct 2026)
 1. **His own clothes:** don't use them in the existing sections. Add a "he has this, or something
    like it" mark, and a separate "His wardrobe" section at the back that styles outfits from them
    (G).
-2. **How Dave uses it:** through the GitHub version (J), with his thumbs and shortlist on his
-   device only. It is updated only when Emma asks, and served as a GitHub Pages site.
+2. **How he uses it:** through the GitHub version (J), with his thumbs and shortlist on his
+   device only. It is updated only when the owner asks, and served as a GitHub Pages site.
 3. **Ask the stylist:** left out.
 4. **Colours:** no cap on any colour. The "not black" switch and the builder's colour warning
    are removed. The colour filter stays.
@@ -703,5 +700,57 @@ in "His wardrobe" are put together by the page from what is marked there.
 Still open:
 - **His measurements** (neck, chest under the arms, inside leg), so the "to confirm" sizes can
   go.
-- **Switching on GitHub Pages** in the repo settings (Emma's step, once the page is ready).
-- **Privacy of the Pages copy:** is it fine for his sizes and first name to be on a public site?
+- **Switching on GitHub Pages** in the repo settings (the owner's step, once the page is ready).
+- **Privacy of the Pages copy:** settled: the name, owned list, colour notes and measurements are
+  left out; sizes and general notes stay so the size checks work.
+
+## 5. Version 23: what was done (6 Oct 2026)
+
+Published to the artifact as version 23, and exported to `index.html` and `data/` for GitHub Pages.
+
+**Page**
+- Personal details off the page: the title is "The Wardrobe" (the name comes from the private
+  profile, never from the code), no health or appearance notes, no owned list in the copy.
+- Photos moved out of the item rows into 63 chunk documents plus one document per new photo, and
+  load lazily as cards scroll into view. The rows went from about 9.4 MB to about 0.8 MB, so the
+  page opens much faster.
+- Multi-select type filters in Shop and Sale, and multi-select Workwear chips (13 of them:
+  trousers, shorts, cargo, cargo shorts, plain shorts, 100% cotton, all safety footwear, safety
+  footwear under £50, 6E, 4E and 6E, belts and holsters, tops, site extras).
+- Colour filter; "What goes with it, and cheaper like this" on every card; care notes; price
+  history; "What to wear today"; piece swaps on outfits; an Event dropdown on Outfits; Keep locks
+  and a budget split in the builder; the shortlist grouped by shop with delivery notes and a CSV
+  download.
+- "He has this" and "He has something like it" marks on every card, kept apart from the main
+  views, and a "His wardrobe" section that styles outfits from what he owns.
+- Measuring card and colours panel in the Style guide. New drawn shapes: waistcoat, knee pads
+  and snood. Picks load in six groups (shoes now separate).
+- Static mode: with no artifact database the page loads `data/*.json` and keeps marks in the
+  browser, which is how the GitHub Pages copy works.
+
+**Data**
+- 83 new outfits, from 343 to 426:
+  - 50 Workwear outfits, all on site (winter layers, wet days, kneeling with knee pads, hot-day
+    shorts with holsters, gilet days, tool-belt days, 6E boot days, budget kits, shorts with a
+    fleece, softshell and holsters). Every one uses black or charcoal cotton work bottoms and
+    extra wide safety footwear.
+  - 33 event outfits, about three each for weddings, christenings, funerals, interviews, date
+    nights, birthday meals, gigs and clubs, football and rugby, Christmas parties, Sunday lunch,
+    city breaks and festivals.
+- 83 existing outfits tagged with an event (all 58 Workwear outfits as "On site").
+- Removed one dead Vinted row; fixed one fabric field; status counts updated.
+
+**Not done, and why**
+- **New picks.** This session's network policy blocks the shop sites (403 from the egress proxy
+  for Workwear Gurus, Wide Shoes, M&S, M and M Direct, Jean Store, Military Kit and others), and
+  search results only carry old cached prices. Picks need a price seen on the day, so none were
+  added. The Friday refresh now checks the network first and says plainly if shops are blocked.
+  Allowing those domains in the environment's Network access setting fixes it.
+- The 31 M and M Direct brand-page links and the 6 M&S and 1 Office category links: same reason.
+- `meta/shops` delivery figures: left empty until they can be read from the shops' own pages.
+
+**Friday refresh**
+- Photos now go in `photos/<id>` documents with `ph: 1` on the row (no `img` on rows), price
+  history in `hist`, six load groups, `ev` on outfits (every Workwear outfit "site"), the new
+  shapes, never touch `owned`, a network check first, and two or more new Workwear outfits plus
+  one event outfit a week.
