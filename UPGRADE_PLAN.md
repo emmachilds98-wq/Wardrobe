@@ -1235,6 +1235,56 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   - yokes, seams, pockets and prints on the back;
   - shoe colours.
 
+## 2zt. Shoulders, collars, vests, hoods, hems and colours (7 Oct 2026)
+
+- **Shoulder clipping.**
+  - *Cause:* the round sleeve tube met the body-shaped cloth over the shoulder in a zigzag, poking through it.
+  - *Fix:* round the top of the arm the cloth now settles exactly onto the sleeve's own line, so the two meet in a
+    clean seam on every top.
+  - A vest's high back no longer shows through jackets and shirts worn over it.
+- **Collars.**
+  - Done-up shirts and polos have a real collar: a leaf that folds down from the stand all the way round the neck,
+    shows at the back, and comes to its two points on the chest.
+  - Open collars lie on the cloth point by point, instead of standing off the shoulder as flat fins.
+  - Zip-up jackets, fleeces and track tops have a stand collar, lower and turned down when open, instead of a
+    shirt collar.
+- **Vests:**
+  - **Built from the body.** They are cut from his body surface like the other tops, not from slices that rose into
+    a high neck. The cut is read from the listing:
+    - classic tank: narrow straps and a low scoop;
+    - muscle or training vest: broad straps and deep armholes;
+    - racerback: straps that meet behind;
+    - vest top or sleeveless tee: crew neck, straps out to the shoulder.
+  - **Knitted vests** (sweater vests, slipovers) have no sleeves and a V neck, in 3D and 2D, so the polo or shirt
+    under them shows at the arms.
+- **Hoods** worn down are soft cloth lying flat on the upper back:
+  - thickest where they gather at the neck, thinning to the point at the shoulder blades, with a centre seam and a
+    gathered rim round the neck;
+  - under a jacket they lie out over it.
+  - The rigid dome is gone, and hooded jackets use the same hood.
+- **Shoes and trouser hems.**
+  - Below the ankle bone the trouser leg falls straight on, instead of being stretched along the foot.
+  - The hem rests on the shoe: higher at the front, falling to the heel, a little fuller and set back. The shoe no
+    longer pokes through.
+  - Cuffed joggers gather at the ankle, above the shoe.
+- **Colours:**
+  - **Named colours win.** The colour the listing names (the colourway after the comma or dash is read first; brand
+    names like Pretty Green don't count) now wins when the photo reading is clearly off. Typical causes were a model
+    in shot, another colourway photographed, or skin and background seen through a mesh.
+    - Hue families agree at any depth (green covers olive and khaki greens; blue covers navy to sky).
+    - Grey agrees at any shade.
+    - Patterned pieces are left to the photo.
+  - **Outfit colour as fallback.** With no colour in the name, the colour the outfit records for the piece stands
+    in.
+  - **Other photo-reading fixes:**
+    - Trousers are read lower in the photo, where the legs are (a model's top is above), and caps near the top.
+    - A shop's placeholder (a logo on a coloured card) is ignored.
+    - A face at the top of the photo marks a model shot, so its front is not projected.
+  - **Result:** over 300 listings, about 40 readings were corrected, among them the black mesh vest (it read as
+    white), black bags and overcoats, the ASOS storm jacket and a blue cap that read as white.
+- **2D:** shoulders on sleeveless pieces are rounded, not pointed. Knitted vests and done-up gilets are drawn without
+  sleeves.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
