@@ -966,6 +966,17 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   skin that ran out over the shoulders is removed at any height. Behind the neck, skin is removed
   only below the collar line, so the back no longer shows gaps or jagged edges.
 
+## 2zj. Moustache placement (6 Oct 2026)
+
+- The nose-base landmark sits about 4mm below where the nose meets the lip, so the moustache started
+  low and its hairs hung over the mouth.
+- The roots now start right under the nose and fill the upper lip. Each hair falls to about the lip
+  line (the walrus a little past it), and the hairs lie along the curve of the lip instead of
+  standing out from it.
+- The pencil style is now short and trimmed, from under the nose to just above the lip.
+- This is the starting position. Placement saved against the old position (up/down and depth) is
+  reset once, so it starts from the new one.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

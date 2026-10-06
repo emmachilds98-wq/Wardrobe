@@ -2308,7 +2308,7 @@ function figMode(){return FIG.allow2d?FIG.mode:"3d";}
 /* Dave's look for the 3D model, set in "Edit Dave". The page owner's choice is shared through the database
    (meta/character); anyone else's stays on their device. Defaults match his photos: no beard, a moustache. */
 var CHAR_DEF={height:183,skin:"#eec3aa",hair:"#3e2a1e",hairVol:1,tache:"chevron",tacheCol:"#93582f",beard:"none",eyes:"#7896b8",brows:"normal",glasses:"none",glassCol:"#2b2622",weight:-0.15,muscle:0,shoulderW:0,chest:0,waistW:0,belly:-0.2,hips:0,arms:0,legs:0,neckW:0,faceW:0,jaw:0,chin:0,noseSize:0,lips:0,ears:0,eyeSize:0,smile:0.3,
-  tacheY:0,tacheZ:0,tacheW:0,tacheLen:0.15,tacheDen:0.2,tacheDroop:0,browCol:"",browThick:0.35,browY:0,browArch:-0.3,browTilt:0,browLen:0,
+  tacheY:0,tacheZ:0,tacheV:2,tacheW:0,tacheLen:0.15,tacheDen:0.2,tacheDroop:0,browCol:"",browThick:0.35,browY:0,browArch:-0.3,browTilt:0,browLen:0,
   hairStyle:"short",hairShade:0.32,hairLight:0.55,curlK:0,hairLenK:0,fringe:0,freckles:0.3,legLen:0,torsoLen:0,armLen:0,neckLen:0,headSize:0};
 /* older saves used fixed choices (build, shoulders, middle, face, nose): turn them into slider positions */
 function migrateChar(o){if(!o||typeof o!=="object")return o;
@@ -2322,6 +2322,8 @@ function migrateChar(o){if(!o||typeof o!=="object")return o;
   /* hair: only cuts his curls can take; the base is his current short cut, in his brown */
   if(o.hairStyle&&["short","tidy","crop","swept","grown","long"].indexOf(o.hairStyle)<0)o.hairStyle="short";
   if(o.hairShade==null&&Object.keys(o).length){o.hairShade=0.32;o.hairLight=0.55;o.hairVol=1;delete o.hair;if(!o.hairStyle)o.hairStyle="short";}
+  /* the moustache's starting place moved up to sit under the nose: placement saved against the old one starts again from there */
+  if(Object.keys(o).length&&o.tacheV!==2){o.tacheY=0;o.tacheZ=0;o.tacheV=2;}
   ["build","shoulders","waist","face","nose","hairline","grey","highlights","curl","hairLen"].forEach(function(k){delete o[k];});return o;}
 var CHAR=Object.assign({},CHAR_DEF);try{var cj0=JSON.parse(localStorage.getItem("dw-char")||"null");if(cj0&&typeof cj0==="object")Object.assign(CHAR,migrateChar(cj0));}catch(e){}
 function charKey(){return Object.keys(CHAR_DEF).map(function(k){return CHAR[k];}).join(",");}
@@ -2791,21 +2793,25 @@ function make3Dcore(pieces){
   if(TS&&bodyOn){
     /* the moustache as hundreds of short hairs rooted on his upper lip, falling down and out over the
        lip line, in three shades of his moustache colour; each style changes the root area and how the hairs lie */
-    var tY=0.004*(Number(CHAR.tacheY)||0),tZ=0.0016*(Number(CHAR.tacheZ)||0),tWk=1+0.3*(Number(CHAR.tacheW)||0),tLk=1+0.6*(Number(CHAR.tacheLen)||0),tDk=Math.max(0.35,1+0.6*(Number(CHAR.tacheDen)||0)),tDr=Number(CHAR.tacheDroop)||0;
+    var tY=0.004*(Number(CHAR.tacheY)||0),tZ=0.0016*(Number(CHAR.tacheZ)||0),tWk=1+0.3*(Number(CHAR.tacheW)||0),tDk=Math.max(0.35,1+0.6*(Number(CHAR.tacheDen)||0)),tDr=Number(CHAR.tacheDroop)||0;
     tgt=man;var NT=Math.round(({chevron:1500,walrus:2100,handlebar:1200,pencil:900}[CHAR.tache]||1500)*tDk),hG=new T.CylinderGeometry(0.0001,0.00028,1,3,1);
     var tc=CHAR.tacheCol,TMS=[mat(shade(tc,0.82),0.75),mat(tc,0.72),mat(toneMul(tc,1.18),0.7)].map(function(mm){var im=new T.InstancedMesh(hG,mm,NT);im.count=0;return im;});
     var to=new T.Object3D(),tu=new T.Vector3(0,1,0),td=new T.Vector3(),seedT=7;function rt(){seedT=(seedT*16807)%2147483647;return seedT/2147483647;}
-    var lipY=BL.mouth[0],top0=MY0+0.0006+tY,span=Math.max(0.006,top0-lipY-tY*0.5);
+    /* the roots fill the upper lip from right under the nose down to just above the lip, and each hair falls to
+       about the line of the mouth (the walrus a little past it), so the moustache sits on the upper lip, not over the mouth */
+    /* (the nose-base landmark sits about 4mm under where the nose actually meets the lip, so the roots start above it) */
+    var lipY=BL.mouth[0]+0.0028,top0=MY0+0.0048+tY,span=Math.max(0.004,top0-(BL.mouth[0]+0.0095)-tY*0.5),reachX={walrus:0.0035,handlebar:0,pencil:0}[CHAR.tache]||0.0006;
     var LEN={chevron:0.0095,walrus:0.014,handlebar:0.008,pencil:0.0052}[CHAR.tache]||0.0095;
     for(var ti=0;ti<NT;ti++){var u=rt()*2-1,au=Math.abs(u),v=rt(),pencil=CHAR.tache==="pencil";
-      var rootV=pencil?0.65+v*0.3:v*0.8,wd=(0.0175+rootV*0.011)*TS.w*MW*tWk;if(pencil)wd*=1.05;
+      var rootV=pencil?0.05+v*0.55:v*0.8,wd=(0.0175+rootV*0.011)*TS.w*MW*tWk;if(pencil)wd*=1.05;
       var rx=u*wd,ry=top0-rootV*span*(pencil?1:0.85)-0.002*Math.pow(au,2)*Math.max(0,TS.droop+tDr);
       var rz=HZF(rx,ry)+0.0004+tZ;
-      var out=Math.sign(u)*(0.12+0.55*au)+(rt()-0.5)*0.35,dn=-1,fw=0.18+0.25*rt();
+      var out=Math.sign(u)*(0.12+0.55*au)+(rt()-0.5)*0.35,dn=-1,fw=Math.max(0,Math.min(0.3,(HZF(rx,ry-0.004)-HZF(rx,ry))/0.004))+0.04+0.1*rt();   /* lying along the lip, lifted a little */
       if(CHAR.tache==="handlebar"&&au>0.72){out=Math.sign(u)*1.1;dn=0.55*(au-0.72)/0.28;}
       if(tDr<0){out+=Math.sign(u)*au*(-tDr)*0.8;dn+=au*au*(-tDr)*1.3;}else if(tDr>0){out*=1-0.4*tDr*au;dn-=au*tDr*0.4;}
       td.set(out+(rt()-0.5)*0.25,dn,fw).normalize();
-      var L=LEN*tLk*(0.7+0.5*rt())*(1-0.25*au)*(CHAR.tache==="handlebar"&&au>0.72?1.5:1);
+      var reach=Math.max(0.0025,ry-lipY+reachX+0.0012*au)/Math.max(0.5,-td.y);
+      var L=Math.min(LEN*1.6,reach)*(0.85+0.25*rt())*(1+0.6*((Number(CHAR.tacheLen)||0)-0.15))*(CHAR.tache==="handlebar"&&au>0.72?1.5:1);if(CHAR.tache==="pencil")L=Math.min(reach*0.8,LEN*1.5)*(0.85+0.3*rt());   /* short and trimmed: from under the nose to just above the lip */
       to.position.set(rx+td.x*L*0.5,ry+td.y*L*0.5,rz+td.z*L*0.5);to.quaternion.setFromUnitVectors(tu,td);to.scale.set(1,L,1);to.updateMatrix();
       var tm=TMS[(rt()*3)|0];tm.setMatrixAt(tm.count++,to.matrix);}
     TMS.forEach(function(im){im.castShadow=true;man.add(im);});
