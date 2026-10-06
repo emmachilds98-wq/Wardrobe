@@ -763,6 +763,528 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
     the curls below the brim show.
   - A slight closed-mouth smile, and warmer skin to match.
 
+## 2zb. Edit Dave, no beard, and a better fit (6 Oct 2026)
+
+- **Edit Dave:** a character editor with a live 3D preview. Open it from Page settings, from the 3D
+  view of any outfit, or from the builder. It sets:
+  - Height (160 to 200 cm) and build (slim, regular, broad).
+  - Skin tone.
+  - Hair colour, length (short, ear, collar), curl (loose, curly, tight) and volume.
+  - Moustache style (chevron, walrus, handlebar, pencil or none) and colour.
+  - Beard (none, stubble, full).
+  - Eye colour and brows.
+
+  Saving re-renders every 3D figure. Emma's saves are stored in the page's shared data, so
+  everyone sees the same Dave. Other viewers keep their changes in their own browser only.
+  "Back to his defaults" resets everything.
+- **Defaults:** no beard; the ginger-brown chevron moustache stays.
+- **Fit:**
+  - Sleeves have a rounded head that runs into the shoulder seam, so no square shoulders,
+    pads or gaps.
+  - Sleeves are less baggy. Short sleeves sit just off the arm.
+  - The trouser rise covers the seat and crotch.
+  - Knit hem ribs follow the body's shape.
+  - Collars sit lower and lean in.
+  - A belt under an untucked top is hidden.
+  - The hair stays inside the jawline, so nothing reads as a beard.
+  - The lighter curls are a warm chestnut, not grey.
+
+## 2zc. 3D views that keep working, a fuller Edit Dave, and clothes that sit better (6 Oct 2026)
+
+- **Fix: the outfit view's 3D model stopped loading after editing Dave.**
+  - Each turnable view (outfit view, builder, Edit Dave) made its own WebGL context and never freed it.
+  - Phones allow only a few per page, so after some views (or Edit Dave opened over an outfit) the next
+    one failed and stayed on "Loading the 3D model…".
+  - Now all of them share one renderer. Edit Dave borrows it from the outfit view and hands it back
+    when it closes, and a hidden view does not draw.
+  - If the browser drops the 3D context anyway, the view says so and offers "Try again". The card
+    renderer recovers on its own.
+- **3D views:**
+  - Front, Side, Back and Turn buttons, and Full, Top and Face framing.
+  - Scroll or pinch to zoom, and arrow keys to turn.
+  - Tap a garment to see what it is and its price. In the outfit view, the matching photo card is
+    picked out too.
+- **Edit Dave:**
+  - Body, Face and Hair tabs. The preview frames the part being changed (whole figure, face, hair).
+  - New options:
+    - shoulders (narrow, average, broad) and middle (flat, average, fuller), which the clothes follow
+    - face shape and nose size
+    - glasses (none, round, square) with frame colours
+  - Undo, one step per change, and "Try another outfit" to check the look on other clothes.
+- **Clothes on the model:**
+  - Trousers fold in soft rings above the shoe and crease behind the knee. Long sleeves bunch at the
+    wrist and crease at the elbow.
+  - Untucked shirts have a curved hem, and polos have short side vents.
+  - Shirts worn with a blazer, waistcoat, tie or suit trousers are tucked in, with the belt showing.
+  - Shirt cuffs with a button, and a cuff edge on blazers and coats.
+  - Belt loops on trousers, back pockets, a coin pocket on jeans, and a drawcord, ribbed waist and
+    cuffed ankles on joggers.
+  - Sleeves under a long-sleeved layer are left out, so they never poke through.
+  - Shoulders slope naturally under clothes instead of puffing.
+  - Leg shading blends into the hips, so no light patch shows at the crotch.
+
+## 2zd. 2D drawing fixes (6 Oct 2026)
+
+- **Fixed: 2D clothes had lost their colours and textures.** A helper added for the 3D hair colour
+  shared its name with the 2D drawing's colour function and replaced it, so every garment was drawn
+  in plain near-black. It is renamed, and no other function names clash.
+- **2D head:**
+  - The curls on top sit lower, closer to his head as in his photos.
+  - The head, hair and hats are drawn 8% smaller against his body, scaled about the chin so the
+    neck still meets it.
+  - The face itself is unchanged.
+
+## 2ze. A real human body for the 3D model (6 Oct 2026)
+
+- **The body:**
+  - Dave's 3D body is now the MakeHuman base mesh, a professionally sculpted body released under
+    CC0 by the MakeHuman project.
+  - `tools/build_body.py` reads the asset files itself (no MakeHuman program code) and makes him a
+    tall, slim young man.
+  - It poses him relaxed: arms by his sides, elbows soft, backs of the hands out with the fingers
+    loosely curled, feet under the hips.
+  - It writes `data/body.json` (about 770 KB). `build_site.py` copies it next to the page.
+  - Re-run with `python3 tools/build_body.py`; it downloads the assets on first use.
+- **Edit Dave on the real body:**
+  - Build, shoulders, middle, face width and nose size are now real shape targets on the mesh.
+  - Height still scales the whole figure.
+- **Face:**
+  - The detailed MakeHuman head, with real ears, eyelids, lips and nose, and a slight lift at the
+    corners of the mouth.
+  - His eyes sit in the sockets: white, iris and pupil in his eye colour, a clear wet cornea that
+    catches the light, and a lash line.
+  - The brows, moustache, glasses and sunglasses are placed from a depth map of his face.
+  - The curls and hats hang from his measured skull.
+  - Skin is coloured per vertex: warmer cheeks, nose tip and ears, lips, the stubble or beard
+    option, and the scalp tinted under his hair.
+- **Clothes:**
+  - Built through cross-sections measured from the real body, so they follow his shape.
+  - Tops hang straight from the chest rather than pinching in at the waist.
+  - Collars and necklines sit on his real neck.
+  - Skin under clothes is left out by body region (chest, arms, hips, thighs, shins, feet), so
+    nothing pokes through.
+- **Fallback:** if `data/body.json` cannot load, the page uses the older hand-built body.
+- **Removed:** the "What to wear today" section of Outfits. The rest of the Outfits area is
+  unchanged.
+
+## 2zf. A more natural, more human 3D Dave (6 Oct 2026)
+
+- **Moustache fixed:** it sat below the mouth because the face measurements picked each feature one
+  step too low. The script now walks down the face profile feature by feature (nose tip, under the
+  nose, upper lip, the line between the lips), so the moustache and lip colour sit in the right
+  place.
+- **Moustache and brows as hair:**
+  - The moustache is now about 1,500 fine hairs rooted on the upper lip, in three shades of his
+    moustache colour. Each style changes the root area and how the hairs lie: chevron, walrus,
+    handlebar (ends turned out and up) and pencil.
+  - Brows are about 150 short hairs, thicker and pointing up at the inner end, lying outwards along
+    the rest.
+  - Real eyelashes along the upper lids.
+- **Expression:** a relaxed, friendly face from MakeHuman shape targets:
+  - mouth corners lifted, soft laugh lines, slightly fuller cheeks;
+  - a little more upper-lid fold, so he looks relaxed rather than staring.
+- **Shape:** a more masculine torso (a little more chest, a straighter waist, narrower hips).
+  - Tops hang straight down from the widest part of the chest with a slight taper, never following
+    the waist in, so there is no hourglass.
+  - Necklines follow his shoulder line up to the neck, crew necks dip at the front, and collars sit
+    on top. Nothing pokes through and nothing rides up the back of the neck.
+- **Skin:**
+  - Contact shading baked into the body: creases, eye sockets, nostrils, ears, between the fingers,
+    armpits and inner thighs.
+  - A touch of warmth in the shadows, faint shadow under the eyes, and slight natural colour
+    variation.
+
+## 2zg. Precise body and face sliders in Edit Dave (6 Oct 2026)
+
+- **Slimmer default:** the default build is a little slimmer: less added chest and waist, a flatter
+  belly, slightly less cheek volume. Tops on the real body no longer have the old minimum widths
+  below the waist, so they follow a slim body.
+- **Sliders:** every shape option is now a slider from -1 to 1, blending real MakeHuman shape
+  targets. `tools/build_body.py` bakes a pair of targets for each.
+  - **Body:** weight, muscle, shoulders, chest, waist, belly, hips, arms, legs and neck, plus height
+    and skin.
+  - **Face:** face width, jaw, chin, nose, lips, ears, eye size and expression (serious to bigger
+    smile).
+- **Editor:**
+  - Each slider shows its value in words ("Slimmer 50%") with a Reset link.
+  - Quick body types: Dave, Slim, Average, Athletic, Heavier.
+  - A live line gives his estimated chest, waist and hips in inches from the model, as a rough
+    sizing guide.
+- **Fitting to the sliders:**
+  - Clothes re-measure for every slider position.
+  - Each slider also moves the face landmarks (eyes, ears, skull, mouth).
+  - The page re-measures the front of the face for the current shape, so brows, lashes and the
+    moustache stay on the skin.
+- **Older saves:** the earlier fixed choices (build, shoulders, middle, face, nose) are converted to
+  slider positions automatically, including the copy shared in the page's data.
+
+## 2zh. Moustache, brow and hair controls, proportions, face detail, layering (6 Oct 2026)
+
+- **Moustache sliders:** position (up or down), depth (closer to or further from the skin), width,
+  hair length, thickness and ends (turned up or drooping), for any style, to fix placement by eye.
+- **Brows:** a colour (match his hair, swatches or any colour), thickness, height, arch, angle and
+  length.
+- **Hair:**
+  - Styles: his curls, a short crop, straight and swept back, a buzz cut, or bald.
+  - Highlights and grey (salt and pepper).
+  - Hairline (lower to receding) and the curls over his forehead.
+  - Length, curl and volume where they apply.
+- **Proportions:** leg, body, arm and neck length, and head size.
+  - His total height stays the same, and the size line now includes his inside leg.
+  - The model is built at standard proportions, then one pass stretches heights band by band (feet
+    unchanged) and re-hangs the arms from the shoulder. Body and clothes go through the same pass,
+    so they always line up.
+- **Face detail:**
+  - Fine skin pores from a bump pattern in the skin shader.
+  - Real irises: fibres, a lighter ring by the pupil and a darker rim, on a curved cap.
+  - Eyeballs shaded under the upper lid and at the corners.
+  - A crisper lip edge and a mouth line.
+  - Deeper shading in the face's creases, and a little more contrast in the light.
+- **Layering:**
+  - The skin at the base of the neck is hidden by direction: it stays at the front, where necklines
+    dip, and goes at the sides and back, where it showed through.
+  - Under sleeveless tops the shoulders stay bare, and gilets, vests and waistcoats slope at the
+    shoulders instead of forming a flat shelf.
+  - A hoodie's hood lies outside an open coat or jacket worn over it.
+  - Overshirts, chore jackets, shackets and flannels layer over a tee or polo rather than under it.
+
+## 2zi. Hair for his curl type, face from his photos, neck layering (6 Oct 2026)
+
+- **Hair editor, his hair type only:** loose curls with ringlets. The bald, buzz, straight,
+  receding-hairline and grey options are gone; saved settings that used them fall back to his cut.
+  - Base style: his short cut from the photos, with curls over the forehead to just above the
+    brows and fuller sides above the ears.
+  - Other styles he could grow: short sides with a curly top, a closer crop, curls swept back,
+    grown out, and longer curls.
+  - A brown scale (dark to light brown), sun-lightened ends, length, volume, curl (looser waves to
+    tighter ringlets) and how far the curls fall over the forehead.
+  - Each curl is a small clump of fine strands, darker at the root and lighter at the tip.
+- **Face, from his photos:** blue eyes, straighter brows, a ginger-brown moustache only (no
+  beard), a friendlier smile and light freckles over the nose and cheeks (with a slider). The
+  scalp tint follows the hair shade.
+- **Layering at the neck:** skin is hidden only where the clothes cover it. Neck and shoulder
+  skin that ran out over the shoulders is removed at any height. Behind the neck, skin is removed
+  only below the collar line, so the back no longer shows gaps or jagged edges.
+
+## 2zj. Moustache placement (6 Oct 2026)
+
+- The nose-base landmark sits about 4mm below where the nose meets the lip, so the moustache started
+  low and its hairs hung over the mouth.
+- The roots now start right under the nose and fill the upper lip. Each hair falls to about the lip
+  line (the walrus a little past it), and the hairs lie along the curve of the lip instead of
+  standing out from it.
+- The pencil style is now short and trimmed, from under the nose to just above the lip.
+- This is the starting position. Placement saved against the old position (up/down and depth) is
+  reset once, so it starts from the new one.
+
+## 2zk. His saved look as the base, more hair and cut options, hairline fix (6 Oct 2026)
+
+- **Base model:** the look the owner saved in Edit Dave is now Dave's built-in default (`CHAR_DEF`), and "Back
+  to his defaults" returns to it.
+- **Sliders centred on him:** every slider has his saved value in the middle.
+  - Each end still reaches the slider's full range. Where his value sat near one end, that end reaches a little
+    further, for example leg length now goes from -1.6 to 1.
+  - The stored value is the real one, so existing saves load unchanged.
+- **Cut:**
+  - Two new styles: short back and sides (tapered), and curly top with faded sides.
+  - Sliders for the top, sides and back.
+  - Sides and back can be natural, tapered or faded.
+  - Hair cut close shows as a short tint on the scalp, fading to skin for a fade.
+  - Sideburns stay short in every cut.
+- **Curls:**
+  - Curl size and finish (defined ringlets to softer and fluffier).
+  - Which way the curls fall.
+  - Length of the curls over the forehead.
+- **Hairline:**
+  - The short cuts keep his own hairline. The old short hairline was high at the temples and read as receding.
+  - His hairline now has short sideburns in front of the ears and a proper temple line.
+- **Forehead clipping:**
+  - The hair now sits on a map of his real head shape (`headRad`), measured from the body mesh, instead of a
+    fitted egg, so the hairline meets the forehead cleanly.
+  - The curls over his forehead root on the hair at the hairline. The old ones took their depth from a face map
+    that stops below the hairline, so some floated or sank.
+  - Any curl that would pass through bare skin is tipped outward, or left out.
+
+## 2zl. His current look as the base, defined curls, more curls on the forehead (6 Oct 2026)
+
+- **Base:** the owner's second save is now Dave's built-in default (his "current" look). Every slider has it in
+  the middle, as before.
+- **Defined curls:**
+  - Each curl is now a lock: a bundle of fine hairs following one spiral, full at the root and gathering to a
+    point at the tip.
+  - This matches the loose but defined ringlets in his photos, where the old version had two or three wiry
+    strands.
+  - "Finish" runs from tight, defined locks to splayed, fluffy ones.
+  - The spiral is smoothly sampled, and the hair has about twice the old vertex count (about 770k), so it still
+    builds in well under 0.1 seconds.
+- **Forehead curls:**
+  - Gentler S-shaped locks lie along the forehead, flattened against it, and fall toward the brows.
+  - Their slope comes from his real head shape, not the fitted egg, which tipped them forward.
+  - They start a lock's thickness off the skin.
+  - The "Curls over the forehead" slider now allows up to about 50.
+- **Sliders:** with his current values in the middle, the curl, curl size, finish, length, top and forehead-curl
+  sliders reach further than before.
+- **Hair base:**
+  - It now includes the nape (the head-shape map takes in the top of the neck).
+  - It rises out of the skin more gently, so a bare hairline (curls pushed back) has a smooth edge.
+
+## 2zm. Hair that matches top to forehead, stronger sliders, clothes on his real shape, scarves (6 Oct 2026)
+
+- **Base:** the owner's save (unchanged since 2zl) stays the base, with every slider centred on it.
+- **Forehead curls:**
+  - They are now the same ringlets as the rest of his hair, not a separate flatter lock.
+  - They hang down the forehead's own slope toward the brows and stop above them.
+  - Each is turned so its spiral swings away from the skin.
+- **Top of the head:** curls on top tumble forward over the head (and down over the crown) instead of standing
+  straight out.
+- **Sliders:**
+  - Curl runs from waves (under a turn) to tight ringlets (about three turns, narrower).
+  - Curl size changes each lock's width, its hair thickness and the number of hairs in it.
+  - Finish runs from defined (tight bundle) to fluffy (splayed).
+  - Every hair slider keeps a full step either side of his base.
+- **Clothes:**
+  - The chest, shoulders and upper back of every top now follow his own body shape, pushed out by the cloth's
+    thickness. Below the chest they blend into the straight hang.
+  - The hollows (between the pecs, under the arms) are bridged.
+  - The neckline is cut cleanly along a line, open fronts line up with the opening below, and stripes and knit
+    run on without a seam.
+  - Collars stand round the neck with a flared foot. Shirt collar points lie on the chest. Blazers and coats get a
+    collar round the back of the neck.
+  - Pockets, plackets, zips and lapels are placed on the clothes as built (by casting rays), not on a guess.
+  - Gilets, vests and waistcoats keep their sloped shape.
+- **Scarves:**
+  - The loop sits on the outermost collar, measured from the clothes around the neck.
+  - The two ends lie down his front over whatever he wears, one longer, with fringed ends.
+  - Shirt collar points tuck away under a scarf.
+
+## 2zn. Proportions from his photos, body controls, tops that fit (7 Oct 2026)
+
+- **Proportions:**
+  - The saved base had his legs at 44.9% of his height (shorter than nearly all men) and a large head.
+  - His photos show a slightly long body, nothing marked, so the base is now legs at 46.6% of his height (most men
+    are 46 to 49%) and 7.8 heads tall.
+  - Older saves take these new proportions once (`propV`).
+- **Proportion sliders:** they keep a set span either side of him (legs 45.5% to 47.6%), so they adjust him
+  without throwing him out of proportion.
+  - Leg length trades against the body, so his height stays the same.
+  - A line under them gives his leg-to-height share and head count against the usual range.
+  - "His proportions" and "Average man" buttons set all five lengths at once.
+- **New body sliders:**
+  - shoulder slope (squarer to more sloped, with the arms following);
+  - body depth front to back;
+  - how clothes fit, from slimmer and closer to looser and straighter.
+- **Tops:**
+  - Hems are set from his crotch, as real ones are: a tee or polo covers the waistband, a shirt is a little
+    longer, and a blazer covers the seat. Before, they ran below the crotch.
+  - Below the chest they take in toward the waist by the fit slider.
+  - Sleeves stop under the shoulder cover, so the shoulder rounds over the arm instead of forming a square pad.
+
+## 2zo. Lean build from his photos, legwear on his real legs, cloth that drapes (7 Oct 2026)
+
+- **Build:** his photos show a tall, lean man, with a slim chest and arms, moderate slightly sloped shoulders, a
+  flat stomach and slim legs.
+  - The base is now: weight -0.35, muscle -0.25, shoulders -0.15, chest -0.35, waist -0.1, belly -0.25, hips
+    -0.15, arms -0.3, legs -0.3, neck -0.15, shoulder slope 0.3, body depth -0.15.
+  - Older saves take this build once (`propV` 3).
+- **Shorts and trousers:**
+  - Each leg follows his own thigh, knee and calf (centre and size). The old fixed legs sat 3cm behind his thighs.
+  - Below the thigh the leg hangs nearly straight; shorts flare slightly to the hem.
+  - The seat rounds under at the crotch, so there is no flat panel or bump.
+  - Ankle folds are softer.
+- **Tops:**
+  - The chest and shoulders lie like a sheet: pec and rib shapes are smoothed out, but the cloth never comes
+    closer to the skin than a few millimetres.
+  - The lower edge and the arm edge are cut cleanly, with no jagged lines.
+  - Thick layers stand off the body less than their full thickness, and less again over the shoulders, so coats
+    and jumpers no longer look padded. Each layer still sits outside the one under it.
+
+## 2zp. His saved dimensions as the base; socks, shoes, lapels, cleaner openings (7 Oct 2026)
+
+- **Base:** every value the owner saved (body, proportions, face, moustache, hair) is now Dave's built-in default,
+  and every slider is centred on it.
+- **Socks:** with shorts he wears ribbed crew socks with a cuff a little way up the calf. They are white, or black
+  with dark shoes, and the skin under them is hidden.
+- **Shoes:**
+  - Trainers: a two-tone sole (midsole and outsole), a toe bumper, a heel tab, a padded collar and a side panel.
+  - Dress shoes: a slimmer, lower toe, a thin sole with a heel block, and a welt.
+  - Boots: a lugged sole, a shaft sized to his ankle, and a pull tab.
+- **Lapels:**
+  - Blazers and coats have real lapels lying on the jacket, widening from the top button to the notch under the
+    collar.
+  - The outer edge is rolled and has a darker edge line.
+- **Open fronts:** jackets, cardigans and coats are cut cleanly along the opening, as the neckline is, with no
+  ragged notches by the collar.
+- **Shoulders:** the sleeve top sits fully under the shoulder cover, so the seam is a clean line.
+
+## 2zq. Drag along him when zoomed; trousers as one piece; product details (7 Oct 2026)
+
+- **Drag when zoomed:**
+  - In every 3D view (the outfit view, the builder and Edit Dave), once zoomed in, dragging up or down moves along
+    his body, from face to feet in a stroke or two. Dragging across still turns him.
+  - The direction is decided by the first few pixels of the drag.
+  - The view stays within his height, and recentres when zooming out or pressing Full, Top or Face.
+  - Up and down arrow keys also work.
+- **Trousers and shorts:**
+  - The hips, seat and tops of the thighs are now one piece of cloth draped over him (`lowerWrap`).
+  - Across the front of the crotch it lies flat from thigh to thigh.
+  - The crotch seam hangs a little below his body.
+  - Each leg carries on from it with no seam. Before, the separate rounded "rise" read as an underwear layer.
+- **Product details from the photos:**
+  - Jeans: gold topstitching down the outside seams, scooped front pockets and copper rivets.
+  - Chinos and tailored trousers: slanted front pockets.
+  - All trousers: the fly stitching lies on the cloth.
+
+## 2zr. Clothes drawn from the shop photos and listings, in 2D and 3D (7 Oct 2026)
+
+- **Reading the photo (`readLook`):** each piece's shop photo (already published with the page as a data URI, so it
+  can be read pixel by pixel) is read once, when it loads, for the following.
+  - Its main and second colour: the same method as before, with white-on-white photos and orange or rust cloth (once
+    taken for skin) now handled.
+  - Stripes (across or down) at their real spacing and colours, from how the brightness repeats down the rows and
+    across the columns. They are trusted when the listing says stripe, or when they are very strong.
+  - Checks and all-over prints, kept as a swatch of the cloth itself:
+    - the square of the garment with the least skin or background in it;
+    - lighting evened out so folds and shadows don't repeat;
+    - mirrored into a tile so it repeats without seams.
+  - The print, graphic or logo on the chest, cut out of the photo:
+    - the cloth around it made clear;
+    - its place and size on the garment recorded;
+    - hands, bag straps, plackets and side folds left out.
+- **Reading the listing (`descOf`):**
+  - collar (button-down, band or grandad, camp or Cuban), neckline (henley...), zip, pockets, fit;
+  - tipping, rugby stripes, pleats, turn-ups;
+  - pattern words, print or logo words, the material, a second colour named in the name, and the brand.
+- **3D:**
+  - The cloth uses the real stripes, check or print, sized to the real garment; material sets the shine.
+  - Graphics and logos sit on the chest as a patch following the cloth; known brands without one found get a small
+    chest logo.
+  - Twin tipping on collars, neckbands and sleeve ends.
+  - Camp, band and button-down collars; henley plackets; full zips; chest pockets.
+  - Oversized and slim fits (an inner loose piece never pokes through a closed outer one).
+  - Pleats and turn-ups.
+  - Three stripes on adidas trainers in the photo's second colour.
+- **2D:**
+  - The same photo stripes, checks and prints.
+  - The real chest print in place of the old stand-in block.
+  - The collar types and pockets.
+  - From the 3D work:
+    - crew socks with shorts (trainers and lace-ups only, not loafers, sliders or sandals);
+    - three stripes on adidas trainers;
+    - jeans' gold topstitching, scooped pockets and rivets;
+    - chinos' slanted pockets;
+    - pleats and turn-ups.
+- **Trousers:** the crotch front lies flat across (no hollow "cup").
+
+## 2zs. Never shirtless; zip up or unzip; the shop photo's own front; collar, layer and seam fixes (7 Oct 2026)
+
+- **Never shirtless.** Six outfits put a jacket, fleece or gilet straight on his skin, and four had a lone shirt
+  "worn open". Each now has a top under it:
+  - The six Workwear outfits use **his work T-shirt**. That is a new kind of piece (`"own": "work"`) that he already
+    has: the card says "Already his, nothing to buy", it adds nothing to the price and it never shows as "no longer
+    listed". This follows the Workwear rule that work supplies his T-shirts.
+  - The others get real picks. The fleece walk gets a Tog24 grey marl tee (£8), the Montirex outfit a Montirex black
+    tee (£13.99), and the resort shirt a Saltrock white tee (£8). The crinkle shirt gets a Blue Inc ribbed tee (£6.99),
+    the Yedra shirt a Luke 1977 Dovetail tee (£12) and the Luke 1977 outfit a Luke 1977 Ellison waffle tee (£13).
+  - Notes and totals were updated.
+  - The builder adds a plain white tee to the figure whenever a jacket, gilet, cardigan or waistcoat has nothing
+    under it. It also says so, and an "Add a T-shirt" button picks a plain tee in his size and the chosen styles.
+  - Suggest never leaves a cardigan on its own.
+  - The weekly refresh adds a tee to any outfit that ends up bare: his work tee for Workwear, otherwise the cheapest
+    plain neutral tee in style. It also leaves "own" pieces alone.
+- **Zip up / Unzip** on the 3D model's view bar, whenever the outfit has a jacket, coat, blazer, gilet, cardigan or
+  overshirt:
+  - Done up, the piece shows a zip down the middle or a row of buttons (a blazer's one or two at the waist).
+  - Coil zips take the cloth's colour; metal is kept for workwear, denim, leather, Harringtons and bombers.
+  - A hoodie under a done-up jacket keeps its hood out over the collar. A hooded jacket (parka, "active" jacket,
+    anorak) has its own hood on his back.
+- **Gilets** are built like a jacket's body:
+  - They cover his shoulders, with clean armholes cut at the point of the shoulder (no more zigzag where the top
+    underneath poked through).
+  - A zipped stand collar on bodywarmers.
+  - In 2D a done-up gilet is drawn without sleeves, so the top under it shows at the arms.
+- **Overshirts** (shackets, chore and work shirts, flannels) are worn open over a shirt or tee, as jackets are.
+- **The shop photo's own front (3D).**
+  - When the photo is a flat or ghost-mannequin shot of a closed top, the garment's front is cut out of it, from just
+    under the collar to the hem. Background is made clear, the edges are feathered and the lighting is evened out
+    smoothly.
+  - The cut-out is laid over the front, so pockets, panels, plackets, prints and logos are as sold. Examples: the
+    Luke 1977 Thor tee's ecru chest panel, the Admiral and Weekend Offender prints, and the Pacaya shirt's buttons.
+  - The drawn pockets, plackets and logos then stand down, so nothing is doubled.
+  - A photo is not used when:
+    - it is worn by a model (his neck above the collar, a chin at the top middle, hands, or other clothes in the
+      cut-out);
+    - it is a folded shirt in its packaging (holes where the background shows through);
+    - much of it is far from the garment's own colours.
+  - A maker's neck label is no longer taken for a logo.
+- **Sleeves** take their own colour where the photo shows them in another (raglan, colour-block). A
+  "sleeve-stripe" polo gets stripes round the sleeves only, not across the body.
+- **Colour:**
+  - Charcoal and grey pieces are no longer crushed to near black (that pull-down is now kept for things the listing
+    calls black or that read very dark).
+  - A strong, even stripe is read from the photo even when the listing doesn't say stripe.
+- **Trousers:**
+  - Cut from the listing: slim, skinny, tapered (and cuffed joggers) narrow to the ankle; barrel legs are fuller at
+    the knee; bootcut and flares widen at the hem; cropped and ankle-length end higher.
+  - Where the legs meet the one-piece top, the cloth now runs on in one line: no shading step, specks or broken
+    check across the thigh. Wide legs widen gradually from the hip.
+- **Checked again** (the fixes from the last two rounds):
+  - open shirts' collars at the sides;
+  - no inner collar under a closed shirt;
+  - hoodie under an open or done-up jacket;
+  - the crotch;
+  - yokes, seams, pockets and prints on the back;
+  - shoe colours.
+
+## 2zt. Shoulders, collars, vests, hoods, hems and colours (7 Oct 2026)
+
+- **Shoulder clipping.**
+  - *Cause:* the round sleeve tube met the body-shaped cloth over the shoulder in a zigzag, poking through it.
+  - *Fix:* round the top of the arm the cloth now settles exactly onto the sleeve's own line, so the two meet in a
+    clean seam on every top.
+  - A vest's high back no longer shows through jackets and shirts worn over it.
+- **Collars.**
+  - Done-up shirts and polos have a real collar: a leaf that folds down from the stand all the way round the neck,
+    shows at the back, and comes to its two points on the chest.
+  - Open collars lie on the cloth point by point, instead of standing off the shoulder as flat fins.
+  - Zip-up jackets, fleeces and track tops have a stand collar, lower and turned down when open, instead of a
+    shirt collar.
+- **Vests:**
+  - **Built from the body.** They are cut from his body surface like the other tops, not from slices that rose into
+    a high neck. The cut is read from the listing:
+    - classic tank: narrow straps and a low scoop;
+    - muscle or training vest: broad straps and deep armholes;
+    - racerback: straps that meet behind;
+    - vest top or sleeveless tee: crew neck, straps out to the shoulder.
+  - **Knitted vests** (sweater vests, slipovers) have no sleeves and a V neck, in 3D and 2D, so the polo or shirt
+    under them shows at the arms.
+- **Hoods** worn down are soft cloth lying flat on the upper back:
+  - thickest where they gather at the neck, thinning to the point at the shoulder blades, with a centre seam and a
+    gathered rim round the neck;
+  - under a jacket they lie out over it.
+  - The rigid dome is gone, and hooded jackets use the same hood.
+- **Shoes and trouser hems.**
+  - Below the ankle bone the trouser leg falls straight on, instead of being stretched along the foot.
+  - The hem rests on the shoe: higher at the front, falling to the heel, a little fuller and set back. The shoe no
+    longer pokes through.
+  - Cuffed joggers gather at the ankle, above the shoe.
+- **Colours:**
+  - **Named colours win.** The colour the listing names (the colourway after the comma or dash is read first; brand
+    names like Pretty Green don't count) now wins when the photo reading is clearly off. Typical causes were a model
+    in shot, another colourway photographed, or skin and background seen through a mesh.
+    - Hue families agree at any depth (green covers olive and khaki greens; blue covers navy to sky).
+    - Grey agrees at any shade.
+    - Patterned pieces are left to the photo.
+  - **Outfit colour as fallback.** With no colour in the name, the colour the outfit records for the piece stands
+    in.
+  - **Other photo-reading fixes:**
+    - Trousers are read lower in the photo, where the legs are (a model's top is above), and caps near the top.
+    - A shop's placeholder (a logo on a coloured card) is ignored.
+    - A face at the top of the photo marks a model shot, so its front is not projected.
+  - **Result:** over 300 listings, about 40 readings were corrected, among them the black mesh vest (it read as
+    white), black bags and overcoats, the ASOS storm jacket and a blue cap that read as white.
+- **2D:** shoulders on sleeveless pieces are rounded, not pointed. Knitted vests and done-up gilets are drawn without
+  sleeves.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
