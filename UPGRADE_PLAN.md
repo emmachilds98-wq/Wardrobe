@@ -1134,6 +1134,47 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   - Chinos and tailored trousers: slanted front pockets.
   - All trousers: the fly stitching lies on the cloth.
 
+## 2zr. Clothes drawn from the shop photos and listings, in 2D and 3D (7 Oct 2026)
+
+- **Reading the photo (`readLook`):** each piece's shop photo (already published with the page as a data URI, so it
+  can be read pixel by pixel) is read once, when it loads, for the following.
+  - Its main and second colour: the same method as before, with white-on-white photos and orange or rust cloth (once
+    taken for skin) now handled.
+  - Stripes (across or down) at their real spacing and colours, from how the brightness repeats down the rows and
+    across the columns. They are trusted when the listing says stripe, or when they are very strong.
+  - Checks and all-over prints, kept as a swatch of the cloth itself:
+    - the square of the garment with the least skin or background in it;
+    - lighting evened out so folds and shadows don't repeat;
+    - mirrored into a tile so it repeats without seams.
+  - The print, graphic or logo on the chest, cut out of the photo:
+    - the cloth around it made clear;
+    - its place and size on the garment recorded;
+    - hands, bag straps, plackets and side folds left out.
+- **Reading the listing (`descOf`):**
+  - collar (button-down, band or grandad, camp or Cuban), neckline (henley...), zip, pockets, fit;
+  - tipping, rugby stripes, pleats, turn-ups;
+  - pattern words, print or logo words, the material, a second colour named in the name, and the brand.
+- **3D:**
+  - The cloth uses the real stripes, check or print, sized to the real garment; material sets the shine.
+  - Graphics and logos sit on the chest as a patch following the cloth; known brands without one found get a small
+    chest logo.
+  - Twin tipping on collars, neckbands and sleeve ends.
+  - Camp, band and button-down collars; henley plackets; full zips; chest pockets.
+  - Oversized and slim fits (an inner loose piece never pokes through a closed outer one).
+  - Pleats and turn-ups.
+  - Three stripes on adidas trainers in the photo's second colour.
+- **2D:**
+  - The same photo stripes, checks and prints.
+  - The real chest print in place of the old stand-in block.
+  - The collar types and pockets.
+  - From the 3D work:
+    - crew socks with shorts (trainers and lace-ups only, not loafers, sliders or sandals);
+    - three stripes on adidas trainers;
+    - jeans' gold topstitching, scooped pockets and rivets;
+    - chinos' slanted pockets;
+    - pleats and turn-ups.
+- **Trousers:** the crotch front lies flat across (no hollow "cup").
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
