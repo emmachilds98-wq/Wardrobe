@@ -31,6 +31,10 @@ Use today's date as `D` (YYYY-MM-DD). Work on a branch, then merge to `main` so 
    - Prices are only trusted in pounds: requests ask for the UK market, other currencies are
      retried, and a shop whose prices all move by one shared factor is left alone.
    - The Workwear rules are applied (`weekly_refresh.py rules` does the same on its own).
+   - Trouser fit: Dave likes trousers that do not grip. Slim, skinny and tapered trousers and shorts
+     are removed (by name, our note, or the shop's description; a "relaxed taper" stays, and cuffed
+     joggers only go if they are slim), and regular, straight, relaxed and wide fits get a `fit` label
+     and rank higher. `weekly_refresh.py fit` does the same on its own.
    - The results are in `data/refresh-report.json`.
 
 3. **Find new picks** that fit (his sizes, style rules, Workwear rules, reduced first):

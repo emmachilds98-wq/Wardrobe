@@ -450,6 +450,7 @@ def cmd_check(a):
     report["removed_items"] = {k: items[k] for k in removed}  # so `outfits` can find a like-for-like swap
 
     enforce_workwear(files, report)
+    enforce_fit(files, report, a.cat)
 
     # "New this week" is for this week's picks only.
     for f, d in files.items():
@@ -549,7 +550,85 @@ def cmd_rules(a):
     print(len(report["workwear_untagged"]), "picks lost the Workwear tag")
 
 
+# ---------------------------------------------------------------- trouser fit
+
+# Dave likes trousers that do not grip: regular, straight, relaxed or wide. Slim, skinny and tapered
+# fits come out (a "relaxed taper" is loose enough to stay); the looser fits rank higher.
+def trouser_like(v):
+    n = v.get("name", "")
+    return v.get("cat") == "trouser" or (v.get("cat") == "tailor" and re.search(r"trouser", n, re.I)) or \
+        (v.get("cat") in ("lounge", "sport") and re.search(r"jogger|pant|bottom|trouser", n, re.I))
+
+
+def descriptions(catdir, files):
+    """handle -> plain description, from the downloaded Shopify catalogues, for trouser picks only."""
+    want = collections.defaultdict(set)
+    for d in files.values():
+        for v in d.values():
+            if trouser_like(v) and handle_of(v["url"]):
+                want[host_of(v["url"])].add(handle_of(v["url"]))
+    out = {}
+    for h, hs in want.items():
+        path = os.path.join(catdir, h + ".json")
+        if not os.path.exists(path):
+            continue
+        try:
+            for p in json.load(open(path)):
+                if p.get("handle") in hs:
+                    out[(h, p["handle"])] = sf.strip_tags(p.get("body_html"))[:2000]
+        except Exception:
+            continue
+    return out
+
+
+def enforce_fit(files, report, catdir):
+    desc = descriptions(catdir, files) if catdir and os.path.isdir(catdir) else {}
+    for f, d in files.items():
+        for k in list(d):
+            v = d[k]
+            if not trouser_like(v) or sf.NOT_TROUSERS.search(v["name"]):
+                continue
+            body = desc.get((host_of(v["url"]), handle_of(v["url"]) or ""), "")
+            verdict = sf.fit_verdict(v["name"], body, v.get("note", "") + " " + v.get("sizeNote", ""))
+            if verdict == "tight":
+                report["removed_tight_fit"].append([k, v["shop"], v["name"]])
+                report.setdefault("removed_items", {})[k] = v
+                del d[k]
+                continue
+            lab = verdict
+            if lab and v.get("fit") != lab:
+                v["fit"] = lab
+            if lab and not v.get("fitRank"):
+                v["rank"] = max(1, int(v.get("rank", 300)) - 60)
+                v["fitRank"] = 1
+
+
+def cmd_fit(a):
+    files = load_items()
+    report = collections.defaultdict(list)
+    enforce_fit(files, report, a.cat)
+    save_items(files)
+    rp = os.path.join(ROOT, "data", "refresh-report.json")
+    r = json.load(open(rp)) if os.path.exists(rp) else {}
+    r["removed_tight_fit"] = r.get("removed_tight_fit", []) + report["removed_tight_fit"]
+    r.setdefault("removed_items", {}).update(report.get("removed_items", {}))
+    with open(rp, "w", encoding="utf-8") as f:
+        json.dump(r, f, ensure_ascii=False, indent=1)
+    n = sum(1 for d in files.values() for v in d.values() if v.get("fit"))
+    print(len(report["removed_tight_fit"]), "slim, skinny or tapered trousers removed;", n, "picks labelled with a loose fit")
+
+
 # ---------------------------------------------------------------- outfits
+
+def bkind(n):
+    """The kind of bottoms, so a swap keeps jeans as jeans and chinos as chinos."""
+    n = n.lower()
+    for k, rx in (("bib", r"\bbib\b|overall|dungaree"), ("shorts", r"\bshorts?\b"), ("jog", r"jogger|track ?pant|sweatpant|jogging"), ("cargo", r"cargo|combat|utility"),
+                  ("jean", r"jean|denim"), ("cord", r"\bcords?\b|corduroy"), ("suit", r"suit|tailored|wool|check")):
+        if re.search(rx, n):
+            return k
+    return "chino"
+
 
 def cmd_outfits(a):
     """Outfits that lost a piece get the closest live pick of the same shape and colour, or are
@@ -602,8 +681,11 @@ def cmd_outfits(a):
                         continue
                     if sh != p.get("shape") and not (p.get("shape") == "tee" and "job" in styles and sh == "polo"):
                         continue
+                    if not lounge and re.search(r"pyjama|pajama|sleep|lounge|chef|base ?layer|thermal|onesie", v["name"], re.I):
+                        continue
                     col = mo.colour(v["name"])
-                    score = (0 if col == p.get("col") else 2 if col in mo.NEUTRAL and p.get("col") in mo.NEUTRAL
+                    score = (0 if not was or bkind(v["name"]) == bkind(was.get("name", "")) else 2) + (0 if v.get("fit") else 0.6) + \
+                        (0 if col == p.get("col") else 2 if col in mo.NEUTRAL and p.get("col") in mo.NEUTRAL
                              else 3 if col in mo.NEUTRAL else 5) + \
                         (0 if not was or v["cat"] == was.get("cat") else 3) + \
                         (0 if was and v["shop"] == was.get("shop") else 1) + \
@@ -650,14 +732,14 @@ def cmd_outfits(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["pull", "check", "rules", "outfits"])
+    ap.add_argument("cmd", choices=["pull", "check", "rules", "fit", "outfits"])
     ap.add_argument("--cat", default=os.path.join(ROOT, "cat"))
     ap.add_argument("--date", default=datetime.date.today().isoformat())
     ap.add_argument("--pages", type=int, default=60)
     ap.add_argument("--workers", type=int, default=12)
     ap.add_argument("--browser", action="store_true")
     a = ap.parse_args()
-    {"pull": cmd_pull, "check": cmd_check, "rules": cmd_rules, "outfits": cmd_outfits}[a.cmd](a)
+    {"pull": cmd_pull, "check": cmd_check, "rules": cmd_rules, "fit": cmd_fit, "outfits": cmd_outfits}[a.cmd](a)
 
 
 if __name__ == "__main__":

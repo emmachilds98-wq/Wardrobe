@@ -720,6 +720,32 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   the shoulders, belts with a buckle, a watch on the wrist.
 - **Light:** filmic tone mapping and softer shadows.
 
+## 2z. Shorter neck, more lifelike 3D model, and trousers that do not grip (6 Oct 2026)
+
+- **3D model:**
+  - A shorter neck: the head sits 2 cm lower and the neck is shorter and thicker, so the chin
+    meets the collar as it should.
+  - Hands have four fingers and a thumb.
+  - Face tones are baked into the skin: light stubble on the jaw and upper lip, warmer cheeks and
+    shade round the eyes.
+  - Lash lines, ears with a rim and lobe, and a thin upper and fuller lower lip.
+  - Soft contact shading on the body and every garment: inside the arms and legs, the sides of the
+    chest, between the legs.
+  - Jacket and coat shoulders sit lower and look natural, not padded.
+  - Wide-leg and relaxed trousers are drawn with more room.
+- **Trouser fit (Emma: Dave prefers trousers that do not grip):**
+  - 51 slim, skinny and tapered trousers, jeans, joggers and shorts were removed, judged by name,
+    our note or the shop's own description. "Tapered" only counts when nothing says the cut is
+    loose (Stan Ray, Polar and Dickies loose cuts with a tapered leg stay), and cuffed joggers
+    only go when they are slim.
+  - 490 picks now carry a fit (wide leg, relaxed, straight or regular), shown on the card. They
+    rank higher, the builder's suggestions prefer them, and new outfits use them first.
+  - A "Trouser fit" filter under Filter shows regular, relaxed or wide only, or wide leg only.
+  - 52 outfit pieces were swapped like for like (jeans for jeans, chinos for chinos, cords for
+    cords), and one outfit with slim suit trousers was dropped.
+  - The weekly refresh applies the same rule (`weekly_refresh.py fit`, and in `check`), and
+    `sweep_filter.py` leaves tight fits out of new picks and labels the loose ones.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

@@ -334,7 +334,7 @@
    "everyday"
   ],
   "price": 85,
-  "rank": 300,
+  "rank": 240,
   "sets": [
    "christmas"
   ],
@@ -348,7 +348,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "asos-arket-wool": {
   "cat": "knit",
@@ -383,7 +385,7 @@
   ],
   "offer": "Also light wash blue",
   "price": 28,
-  "rank": 251,
+  "rank": 191,
   "sets": [
    "christmas"
   ],
@@ -399,7 +401,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "asos-beanie": {
   "cat": "acc",
@@ -695,7 +699,7 @@
    "party"
   ],
   "price": 39.99,
-  "rank": 255,
+  "rank": 195,
   "shop": "ASOS",
   "style": [
    "street",
@@ -707,7 +711,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "asos-collusion-jogger": {
   "cat": "lounge",
@@ -719,7 +725,7 @@
    "lounge"
   ],
   "price": 22.99,
-  "rank": 280,
+  "rank": 220,
   "shop": "ASOS",
   "style": [
    "street",
@@ -729,7 +735,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "asos-collusion-ls": {
   "cat": "polo",
@@ -816,7 +824,7 @@
    "smart"
   ],
   "price": 39.99,
-  "rank": 330,
+  "rank": 270,
   "shop": "ASOS",
   "style": [
    "work",
@@ -830,7 +838,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "asos-dickies-874-sale": {
   "cat": "trouser",
@@ -844,7 +854,7 @@
   ],
   "offer": "Check which sizes are left",
   "price": 22.75,
-  "rank": 331,
+  "rank": 271,
   "shop": "ASOS",
   "style": [
    "work",
@@ -858,7 +868,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "asos-dickies-cable": {
   "cat": "knit",
@@ -885,36 +897,6 @@
   "was": 105,
   "wx": [
    "cold"
-  ]
- },
- "asos-dickies-carpenter": {
-  "cat": "trouser",
-  "checked": "2026-10-05",
-  "kind": "new",
-  "name": "Dickies 993 regular tapered carpenter jeans, classic blue",
-  "note": "Carpenter jeans at half price.",
-  "occ": [
-   "everyday",
-   "party"
-  ],
-  "price": 37.99,
-  "rank": 332,
-  "sets": [
-   "christmas"
-  ],
-  "shop": "ASOS",
-  "style": [
-   "work",
-   "street",
-   "casual"
-  ],
-  "url": "https://www.asos.com/dickies/dickies-993-regular-tapered-carpenter-jeans-in-classic-blue/prd/210082999",
-  "was": 75,
-  "wx": [
-   "cold",
-   "mild",
-   "warm",
-   "wet"
   ]
  },
  "asos-dickies-coach": {
@@ -978,7 +960,7 @@
    "party"
   ],
   "price": 36.99,
-  "rank": 261,
+  "rank": 201,
   "sets": [
    "holiday"
   ],
@@ -992,7 +974,9 @@
   "was": 65,
   "wx": [
    "warm"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "asos-dickies-painter": {
   "cat": "coat",
@@ -1164,7 +1148,7 @@
   ],
   "offer": "Also khaki and black",
   "price": 35,
-  "rank": 254,
+  "rank": 194,
   "shop": "ASOS",
   "style": [
    "street",
@@ -1177,7 +1161,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "asos-jj-fine-rib": {
   "cat": "knit",
@@ -1258,7 +1244,7 @@
    "everyday"
   ],
   "price": 27,
-  "rank": 252,
+  "rank": 192,
   "shop": "ASOS",
   "style": [
    "street",
@@ -1271,7 +1257,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "asos-jj-mac": {
   "cat": "coat",
@@ -1383,7 +1371,7 @@
    "everyday"
   ],
   "price": 30,
-  "rank": 336,
+  "rank": 276,
   "shop": "ASOS",
   "style": [
    "work",
@@ -1396,7 +1384,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "asos-mango-knit": {
   "cat": "knit",
@@ -1592,7 +1582,7 @@
    "party"
   ],
   "price": 32,
-  "rank": 301,
+  "rank": 241,
   "sets": [
    "holiday"
   ],
@@ -1604,7 +1594,9 @@
   "url": "https://www.asos.com/only-sons/only-sons-linen-mix-loose-fit-trousers-in-beige/prd/206195681",
   "wx": [
    "warm"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "asos-only-tailored": {
   "cat": "trouser",
@@ -1618,7 +1610,7 @@
    "party"
   ],
   "price": 45,
-  "rank": 256,
+  "rank": 196,
   "sets": [
    "christmas"
   ],
@@ -1634,7 +1626,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "asos-overcoat-tobacco": {
   "cat": "coat",
@@ -1777,7 +1771,7 @@
    "smart"
   ],
   "price": 18.99,
-  "rank": 65,
+  "rank": 5,
   "sets": [
    "christmas"
   ],
@@ -1793,7 +1787,9 @@
   "wx": [
    "mild",
    "warm"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "asos-qz-sweat": {
   "cat": "knit",
@@ -2269,7 +2265,7 @@
    "party"
   ],
   "price": 31.99,
-  "rank": 253,
+  "rank": 193,
   "sets": [
    "christmas"
   ],
@@ -2284,7 +2280,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "asos-weekday-bomber": {
   "cat": "coat",
@@ -2416,7 +2414,7 @@
    "everyday"
   ],
   "price": 26,
-  "rank": 279,
+  "rank": 219,
   "shop": "ASOS",
   "style": [
    "street",
@@ -2426,7 +2424,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "asos-wool-overcoat-black": {
   "cat": "coat",
@@ -2545,7 +2545,7 @@
    "party"
   ],
   "price": 18,
-  "rank": 745,
+  "rank": 685,
   "sets": [
    "holiday"
   ],
@@ -2559,7 +2559,9 @@
   "was": 44.99,
   "wx": [
    "warm"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "bb-didbrook": {
   "cat": "trouser",
@@ -2574,7 +2576,7 @@
   ],
   "offer": "Check the waist and leg sizes left",
   "price": 16.49,
-  "rank": 549,
+  "rank": 489,
   "shop": "Brakeburn",
   "sizes": "34W (leg not listed) in stock",
   "style": [
@@ -2588,7 +2590,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "bb-dodworth": {
   "cat": "trouser",
@@ -2603,7 +2607,7 @@
   ],
   "offer": "Check the waist and leg sizes left",
   "price": 16.49,
-  "rank": 548,
+  "rank": 488,
   "shop": "Brakeburn",
   "sizes": "34W (leg not listed) in stock",
   "style": [
@@ -2617,7 +2621,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "bb-field-jacket": {
   "cat": "coat",
@@ -2834,13 +2840,15 @@
    "mild"
   ],
   "note": "Camouflage cargos for £17.99.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "was": 24.99,
   "insize": true,
   "sizes": "34W (leg not listed) in stock",
   "kind": "new",
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "bi-fink-qz": {
   "name": "Blue Inc Fink quarter-zip sweatshirt, dark grey",
@@ -3590,7 +3598,7 @@
    "party"
   ],
   "price": 44.99,
-  "rank": 737,
+  "rank": 677,
   "sets": [
    "christmas"
   ],
@@ -3608,7 +3616,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "ca-ms-textured-halfzip": {
   "cat": "knit",
@@ -3830,7 +3840,7 @@
    "lounge"
   ],
   "price": 20.99,
-  "rank": 410,
+  "rank": 350,
   "sets": [],
   "shop": "Cernucci",
   "sizes": "L in stock",
@@ -3843,7 +3853,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "ce-mesh-short": {
   "cat": "trouser",
@@ -3856,7 +3868,7 @@
    "party"
   ],
   "price": 13.49,
-  "rank": 340,
+  "rank": 280,
   "sets": [
    "holiday"
   ],
@@ -3869,7 +3881,9 @@
   "was": 44.99,
   "wx": [
    "warm"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "ce-track-pant": {
   "cat": "trouser",
@@ -3883,7 +3897,7 @@
    "lounge"
   ],
   "price": 32.49,
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "shop": "Cernucci",
   "sizes": "L in stock",
@@ -3895,7 +3909,9 @@
   "was": 64.99,
   "wx": [
    "mild"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "clarks-banbury": {
   "cat": "shoe",
@@ -5608,7 +5624,7 @@
    "smart"
   ],
   "price": 32,
-  "rank": 230,
+  "rank": 170,
   "sets": [
    "winter"
   ],
@@ -5622,7 +5638,9 @@
   "wx": [
    "cold",
    "mild"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "fi-coho-sweat": {
   "cat": "knit",
@@ -5685,7 +5703,7 @@
    "everyday"
   ],
   "price": 57,
-  "rank": 320,
+  "rank": 260,
   "sets": [],
   "shop": "Finisterre",
   "sizes": "34W 32L in stock",
@@ -5697,7 +5715,9 @@
   "was": 95,
   "wx": [
    "mild"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "fk-relaxed-black": {
   "cat": "shirt",
@@ -6306,7 +6326,7 @@
    "everyday"
   ],
   "price": 35,
-  "rank": 400,
+  "rank": 340,
   "sets": [],
   "shop": "Hikerdelic",
   "sizes": "L in stock",
@@ -6318,7 +6338,9 @@
   "was": 65,
   "wx": [
    "mild"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "hm-knit-polo": {
   "cat": "polo",
@@ -6638,13 +6660,15 @@
    "warm"
   ],
   "note": "Textured shorts for £18, 60% off.",
-  "rank": 90,
+  "rank": 30,
   "sets": [
    "holiday"
   ],
   "was": 44.99,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "hs-bb-mayland": {
   "name": "Brakeburn Mayland linen-blend resort shirt",
@@ -6965,7 +6989,7 @@
    "everyday"
   ],
   "price": 29,
-  "rank": 140,
+  "rank": 80,
   "sets": [],
   "shop": "howies",
   "sizes": "34W in stock",
@@ -6979,7 +7003,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "hw-escly-green": {
   "cat": "trouser",
@@ -6992,7 +7018,7 @@
    "everyday"
   ],
   "price": 39,
-  "rank": 330,
+  "rank": 270,
   "sets": [],
   "shop": "howies",
   "sizes": "34W 32L in stock",
@@ -7005,7 +7031,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "hw-frankie-hoody": {
   "cat": "knit",
@@ -7096,7 +7124,7 @@
    "smart"
   ],
   "price": 39,
-  "rank": 190,
+  "rank": 130,
   "sets": [
    "winter"
   ],
@@ -7111,7 +7139,9 @@
   "wx": [
    "cold",
    "mild"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "jb-marsden": {
   "cat": "shoe",
@@ -7296,7 +7326,7 @@
    "everyday"
   ],
   "price": 81,
-  "rank": 230,
+  "rank": 170,
   "sets": [],
   "shop": "Jean Store",
   "sizes": "34W 32L in stock",
@@ -7309,7 +7339,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "js-carhartt-sweatjkt": {
   "cat": "knit",
@@ -7487,7 +7519,7 @@
    "smart"
   ],
   "price": 57,
-  "rank": 170,
+  "rank": 110,
   "sets": [],
   "shop": "Jean Store",
   "sizes": "34W 32L in stock",
@@ -7500,7 +7532,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "js-lee-overshirt": {
   "cat": "shirt",
@@ -7539,7 +7573,7 @@
    "everyday"
   ],
   "price": 60,
-  "rank": 60,
+  "rank": 1,
   "sets": [],
   "shop": "Jean Store",
   "sizes": "34W 32L in stock",
@@ -7553,7 +7587,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "js-levis-568-ecru": {
   "cat": "trouser",
@@ -7566,7 +7602,7 @@
    "everyday"
   ],
   "price": 54,
-  "rank": 150,
+  "rank": 90,
   "sets": [],
   "shop": "Jean Store",
   "sizes": "34W 32L in stock",
@@ -7579,7 +7615,9 @@
   "wx": [
    "mild",
    "warm"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "js-levis-578": {
   "cat": "trouser",
@@ -7593,7 +7631,7 @@
    "party"
   ],
   "price": 60,
-  "rank": 90,
+  "rank": 30,
   "sets": [],
   "shop": "Jean Store",
   "sizes": "34W 32L in stock",
@@ -7605,7 +7643,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "js-levis-bayview": {
   "cat": "shirt",
@@ -7726,7 +7766,7 @@
    "everyday"
   ],
   "price": 47.5,
-  "rank": 210,
+  "rank": 150,
   "sets": [],
   "shop": "Jean Store",
   "sizes": "34W 32L in stock",
@@ -7739,7 +7779,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "jt-lambswool-green": {
   "cat": "knit",
@@ -7899,7 +7941,7 @@
    "lounge"
   ],
   "price": 26,
-  "rank": 703,
+  "rank": 643,
   "sets": [
    "winter"
   ],
@@ -7912,7 +7954,9 @@
   "url": "https://cyberjammies.co.uk/products/mens-blue-brushed-check-pyjama-bottoms",
   "wx": [
    "cold"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "lg-cj-check-top": {
   "cat": "lounge",
@@ -7951,7 +7995,7 @@
    "lounge"
   ],
   "price": 26,
-  "rank": 700,
+  "rank": 640,
   "shop": "Cyberjammies",
   "sizes": "L in stock",
   "style": [
@@ -7961,7 +8005,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "lg-cj-navy-ls": {
   "cat": "lounge",
@@ -8259,7 +8305,7 @@
    "everyday"
   ],
   "price": 35,
-  "rank": 697,
+  "rank": 637,
   "shop": "M&S",
   "sizes": "M and L in stock",
   "style": [
@@ -8271,7 +8317,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "lg-ms-slipper-socks": {
   "cat": "lounge",
@@ -9072,33 +9120,6 @@
   "insize": true,
   "sizes": "UK 11 in stock"
  },
- "md-bb-norborton": {
-  "name": "Brakeburn Norborton chinos, sand",
-  "shop": "Brakeburn",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 16.49,
-  "url": "https://www.brakeburn.com/products/norborton-trousers",
-  "checked": "2026-10-06",
-  "style": [
-   "mod",
-   "casual",
-   "quiet"
-  ],
-  "occ": [
-   "everyday",
-   "smart"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Slim chinos for £16.49, 70% off.",
-  "rank": 110,
-  "sets": [],
-  "was": 54.99,
-  "insize": true,
-  "sizes": "34W (leg not listed) in stock"
- },
  "md-cc-harrington": {
   "name": "Community Clothing Harrington jacket, stone",
   "shop": "Community Clothing",
@@ -9343,34 +9364,6 @@
   "was": 60.0,
   "insize": true,
   "sizes": "L in stock"
- },
- "md-tml-sandringham": {
-  "name": "T.M. Lewin slim check trousers, grey melange",
-  "shop": "T.M. Lewin",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 20.0,
-  "url": "https://tmlewin.co.uk/products/sandringham-infinity-slim-fit-melange-check-trouser-64854",
-  "checked": "2026-10-06",
-  "style": [
-   "mod",
-   "quiet"
-  ],
-  "occ": [
-   "smart",
-   "party",
-   "event"
-  ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "Slim check trousers for £20, 80% off. Get them hemmed to just touch the shoe.",
-  "rank": 90,
-  "sets": [],
-  "was": 100.0,
-  "insize": true,
-  "sizes": "34W (leg not listed) in stock"
  },
  "mm-berghaus-anwick": {
   "cat": "knit",
@@ -9749,7 +9742,7 @@
   ],
   "offer": "Was price is the RRP. Find it on this listing",
   "price": 49.99,
-  "rank": 333,
+  "rank": 273,
   "shop": "M and M Direct",
   "style": [
    "work",
@@ -9762,7 +9755,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "mm-levis-555": {
   "cat": "trouser",
@@ -9775,7 +9770,7 @@
   ],
   "offer": "Was price is the RRP. Find it on this listing",
   "price": 49.99,
-  "rank": 334,
+  "rank": 274,
   "shop": "M and M Direct",
   "style": [
    "work",
@@ -9789,7 +9784,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "mm-levis-569": {
   "cat": "trouser",
@@ -9802,7 +9799,7 @@
   ],
   "offer": "Was price is the RRP. Find it on this listing",
   "price": 34.99,
-  "rank": 257,
+  "rank": 197,
   "shop": "M and M Direct",
   "style": [
    "street",
@@ -9816,7 +9813,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "mm-levis-cargo": {
   "cat": "trouser",
@@ -9830,7 +9829,7 @@
   ],
   "offer": "Was price is the RRP. Find it on this listing",
   "price": 39.99,
-  "rank": 364,
+  "rank": 304,
   "shop": "M and M Direct",
   "style": [
    "outdoor",
@@ -9844,7 +9843,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "mm-ls-gown": {
   "cat": "lounge",
@@ -10687,7 +10688,7 @@
    "party"
   ],
   "price": 30,
-  "rank": 740,
+  "rank": 680,
   "sets": [
    "holiday"
   ],
@@ -10702,7 +10703,9 @@
   "url": "https://www.marksandspencer.com/straight-fit-stretch-cargo-shorts/p/clp60778516?color=BLACK",
   "wx": [
    "warm"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "ms-cashmere-crew": {
   "cat": "knit",
@@ -10906,7 +10909,7 @@
    "smart"
   ],
   "price": 38,
-  "rank": 416,
+  "rank": 356,
   "shop": "M&S",
   "sizes": "34in waist in stock",
   "style": [
@@ -10918,7 +10921,9 @@
   "wx": [
    "cold",
    "mild"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "ms-cord-overshirt": {
   "cat": "shirt",
@@ -10957,7 +10962,7 @@
    "smart"
   ],
   "price": 45,
-  "rank": 413,
+  "rank": 353,
   "shop": "M&S",
   "sizes": "L in stock (fits a 34in waist)",
   "style": [
@@ -10970,7 +10975,9 @@
   "wx": [
    "cold",
    "mild"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "ms-cotton-crew": {
   "cat": "knit",
@@ -11747,7 +11754,7 @@
    "smart"
   ],
   "price": 49,
-  "rank": 417,
+  "rank": 357,
   "shop": "M&S",
   "sizes": "34in waist in stock",
   "style": [
@@ -11757,7 +11764,9 @@
   "url": "https://www.marksandspencer.com/straight-fit-italian-moleskin-5-pocket-trousers/p/clp60683172?color=DARKNAVY",
   "wx": [
    "cold"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "ms-non-iron-white": {
   "cat": "shirt",
@@ -12027,7 +12036,7 @@
    "everyday"
   ],
   "price": 35,
-  "rank": 420,
+  "rank": 360,
   "shop": "M&S",
   "sizes": "34in waist in stock",
   "style": [
@@ -12042,7 +12051,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "ms-rib-halfzip": {
   "cat": "knit",
@@ -12109,7 +12120,7 @@
    "smart"
   ],
   "price": 65,
-  "rank": 421,
+  "rank": 361,
   "shop": "M&S",
   "sizes": "34in waist in stock",
   "style": [
@@ -12124,7 +12135,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "ms-silk-tie": {
   "cat": "acc",
@@ -12192,7 +12205,7 @@
    "event"
   ],
   "price": 28,
-  "rank": 414,
+  "rank": 354,
   "sets": [
    "christmas"
   ],
@@ -12209,7 +12222,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "ms-stitch-belt": {
   "cat": "acc",
@@ -12268,7 +12283,7 @@
    "everyday"
   ],
   "price": 28,
-  "rank": 419,
+  "rank": 359,
   "shop": "M&S",
   "sizes": "34in waist in stock",
   "style": [
@@ -12283,7 +12298,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "ms-stretch-chino": {
   "cat": "trouser",
@@ -12297,7 +12314,7 @@
    "smart"
   ],
   "price": 26,
-  "rank": 415,
+  "rank": 355,
   "shop": "M&S",
   "sizes": "34in waist in stock",
   "style": [
@@ -12310,7 +12327,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "ms-suede-belt": {
   "cat": "acc",
@@ -12406,7 +12425,7 @@
    "everyday"
   ],
   "price": 45,
-  "rank": 418,
+  "rank": 358,
   "shop": "M&S",
   "sizes": "34in waist in stock",
   "style": [
@@ -12419,7 +12438,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "ms-twill-overshirt": {
   "cat": "shirt",
@@ -12759,7 +12780,7 @@
    "mild"
   ],
   "note": "Loose stone cargos for about £21.",
-  "rank": 110,
+  "rank": 50,
   "sets": [],
   "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
   "insize": true,
@@ -12772,7 +12793,9 @@
     20.8
    ]
   ],
-  "prev": 20.8
+  "prev": 20.8,
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "mt-chino-navy": {
   "name": "Matalan Lincoln chinos with belt, navy",
@@ -12965,7 +12988,7 @@
    "cold"
   ],
   "note": "Plain dark straight jeans for £16.",
-  "rank": 50,
+  "rank": 1,
   "sets": [],
   "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
   "insize": true,
@@ -12978,7 +13001,9 @@
     16.0
    ]
   ],
-  "prev": 16
+  "prev": 16,
+  "fit": "Straight",
+  "fitRank": 1
  },
  "mt-jeans-vintage": {
   "name": "Matalan relaxed vintage jeans, dark wash",
@@ -12998,7 +13023,7 @@
    "cold"
   ],
   "note": "Relaxed dark jeans for about £18.",
-  "rank": 110,
+  "rank": 50,
   "sets": [],
   "offer": "Online sale price: Matalan has 20% off almost everything online at the moment.",
   "insize": true,
@@ -13011,7 +13036,9 @@
     17.6
    ]
   ],
-  "prev": 17.6
+  "prev": 17.6,
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "mt-oxford-blue": {
   "name": "Matalan Oxford shirt, blue",
@@ -13868,14 +13895,16 @@
    "mild"
   ],
   "note": "Cord trousers for £17.99, 70% off.",
-  "rank": 200,
+  "rank": 140,
   "sets": [
    "winter"
   ],
   "checked": "2026-10-06",
   "was": 59.99,
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "p6-bb-bellingham": {
   "name": "Brakeburn Bellingham denim jeans",
@@ -13896,12 +13925,14 @@
    "cold"
   ],
   "note": "Jeans for £19.49, 70% off.",
-  "rank": 200,
+  "rank": 140,
   "sets": [],
   "checked": "2026-10-06",
   "was": 64.99,
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "p6-bb-bexwell": {
   "name": "Brakeburn Bexwell shirt",
@@ -15002,34 +15033,6 @@
   "insize": true,
   "sizes": "L in stock"
  },
- "p6-tml-highgrove": {
-  "name": "T.M. Lewin Highgrove slim check trousers, grey",
-  "shop": "T.M. Lewin",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 25.0,
-  "url": "https://tmlewin.co.uk/products/highgrove-woven-in-italy-slim-fit-grey-check-trousers-64866?variant=40248977653897",
-  "style": [
-   "quiet",
-   "mod"
-  ],
-  "occ": [
-   "smart",
-   "event",
-   "party"
-  ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "Italian-woven check trousers for £25, 80% off.",
-  "rank": 200,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 125.0,
-  "insize": true,
-  "sizes": "34W (leg not listed) in stock"
- },
  "p6-tml-polosweat": {
   "name": "T.M. Lewin polo sweatshirt, stone",
   "shop": "T.M. Lewin",
@@ -15392,14 +15395,16 @@
    "cold"
   ],
   "note": "Relaxed black jeans for about £18.",
-  "rank": 100,
+  "rank": 40,
   "sets": [],
   "was": 22.0,
   "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
   "insize": true,
   "sizes": "34W regular in stock",
   "kind": "new",
-  "checked": "2026-10-05"
+  "checked": "2026-10-05",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "pc-jeans-indigo": {
   "name": "Peacocks straight jeans, indigo",
@@ -15419,14 +15424,16 @@
    "cold"
   ],
   "note": "Straight indigo jeans for about £13.",
-  "rank": 60,
+  "rank": 1,
   "sets": [],
   "was": 16.0,
   "offer": "Online sale price: Peacocks has 20% off everything at the moment.",
   "insize": true,
   "sizes": "34W regular in stock",
   "kind": "new",
-  "checked": "2026-10-05"
+  "checked": "2026-10-05",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "pc-khaki-jacket": {
   "name": "Peacocks lightweight jacket, khaki",
@@ -16289,7 +16296,7 @@
   "occ": [
    "everyday"
   ],
-  "rank": 343,
+  "rank": 283,
   "shop": "Vinted",
   "style": [
    "work",
@@ -16303,7 +16310,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "po-levis-trucker": {
   "cat": "coat",
@@ -16879,7 +16888,7 @@
    "everyday"
   ],
   "price": 54.95,
-  "rank": 310,
+  "rank": 250,
   "sets": [],
   "shop": "Route One",
   "sizes": "34W 32L in stock",
@@ -16890,7 +16899,9 @@
   "url": "https://www.routeone.co.uk/products/route-one-wide-leg-pleated-chino-olive-001194564",
   "wx": [
    "mild"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "r10-ad-apollo": {
   "name": "Admiral Apollo panel hoodie, navy",
@@ -17349,11 +17360,13 @@
    "cold"
   ],
   "note": "Camo cargos for a night out. £75.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r10-cd-london": {
   "name": "Criminal Damage London's Calling T-shirt, washed black",
@@ -18357,7 +18370,7 @@
    "wet"
   ],
   "note": "Quick-dry cargo walking trousers. £25.95, 60% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 65.0,
@@ -18369,7 +18382,9 @@
     25.95
    ]
   ],
-  "prev": 25.95
+  "prev": 25.95,
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r10-wg-fristads-nail": {
   "name": "Fristads holster nail pockets, clip-on, black",
@@ -19088,31 +19103,6 @@
   "insize": true,
   "sizes": "L in stock"
  },
- "r11-bamboocl-trousers": {
-  "name": "Bamboo Clothing Cole heavyweight trousers",
-  "shop": "Bamboo Clothing",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 62.3,
-  "url": "https://www.bambooclothing.co.uk/products/cole-heavyweight-adventure-trousers-moss-green?variant=58201383567624",
-  "style": [
-   "casual",
-   "lounge"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Trousers from Bamboo Clothing. £62.30, 30% off.",
-  "rank": 220,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 89.0,
-  "insize": true,
-  "sizes": "34W (leg not listed) in stock"
- },
  "r11-berghaus-coat": {
   "name": "Berghaus Greenbank Hooded Jacket, northern storm",
   "shop": "Berghaus",
@@ -19253,12 +19243,14 @@
    "mild"
   ],
   "note": "Trousers from Berghaus. £35, 50% off. Half price or more.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 70.0,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r11-bigboots-coat": {
   "name": "Rainbird STOWaway Rain Jacket, navy",
@@ -19302,11 +19294,13 @@
    "mild"
   ],
   "note": "Trousers from Big Boots. £69.99.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-blacks-coat": {
   "name": "Ronhill Tech All-Terrain Jacket, white",
@@ -19523,11 +19517,13 @@
    "mild"
   ],
   "note": "Jeans from Blue Inc. £29.99.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W 32L in stock"
+  "sizes": "34W 32L in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r11-blueinc-knit": {
   "name": "Blue Inc Cardigan Zip Corsac, black",
@@ -19724,11 +19720,13 @@
    "mild"
   ],
   "note": "Jeans from Brave Soul. £30.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W 32L in stock"
+  "sizes": "34W 32L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-bravesou-knit": {
   "name": "Brave Soul Revere Collar Knitted Short Sleeve Shirt, light stone",
@@ -19779,30 +19777,6 @@
   "checked": "2026-10-06",
   "insize": true,
   "sizes": "L in stock"
- },
- "r11-bravesou-trousers": {
-  "name": "Brave Soul Cotton Twill Cargo Style Chino Trousers, khaki",
-  "shop": "Brave Soul",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 28.0,
-  "url": "https://www.bravesoul.co.uk/products/brave-soul-khaki-trousers-mtr-clarksonkhk?variant=58102156329263",
-  "style": [
-   "casual",
-   "street"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Trousers from Brave Soul. £28.",
-  "rank": 160,
-  "sets": [],
-  "checked": "2026-10-06",
-  "insize": true,
-  "sizes": "34W (leg not listed) in stock"
  },
  "r11-cernucci-coat": {
   "name": "Cernucci Oversized Nylon Check Funnel Neck Jacket, light grey",
@@ -20005,12 +19979,14 @@
    "mild"
   ],
   "note": "Joggers from Closure London. £15.99, 68% off. Half price or more.",
-  "rank": 120,
+  "rank": 60,
   "sets": [],
   "checked": "2026-10-06",
   "was": 50.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-closurel-knit": {
   "name": "Closure London Interlock 1/4 Zip, stone",
@@ -20223,11 +20199,13 @@
    "warm"
   ],
   "note": "Shorts from Cyberjammies. £20.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-duckandc-coat": {
   "name": "Duck and Cover Blensons Padded Jacket Dark Olive",
@@ -20502,12 +20480,14 @@
    "mild"
   ],
   "note": "Trousers from Ellesse. £30, 50% off. Half price or more.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 60.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-farah-coat": {
   "name": "Farah Montoya Archive Trucker Jacket, ecru",
@@ -20553,11 +20533,13 @@
    "mild"
   ],
   "note": "Jeans from Farah. £70.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-farah-joggers": {
   "name": "Farah Mossley Jogger, true navy",
@@ -20577,12 +20559,14 @@
    "mild"
   ],
   "note": "Joggers from Farah. £40, 50% off. Half price or more.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 80.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "r11-farah-knit": {
   "name": "Farah Mullen Cotton Crew Neck Sweater, blue tide marl",
@@ -20628,12 +20612,14 @@
    "warm"
   ],
   "note": "Shorts from Farah. £30, 50% off. Half price or more.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 60.0,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-fila-coat": {
   "name": "Fila Stefan Archive Cut And Sew Track Top",
@@ -20761,31 +20747,6 @@
   "was": 60.0,
   "insize": true,
   "sizes": "34W in stock"
- },
- "r11-fila-trousers": {
-  "name": "Fila Pale Pink Molveno Pin Tuck Slim Leg Pants",
-  "shop": "Fila",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 33.0,
-  "url": "https://www.fila.co.uk/products/molveno-pin-tuck-slim-leg-pants-fw24mh035-581?variant=56286645223810",
-  "style": [
-   "casual",
-   "street"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Trousers from Fila. £33, 40% off.",
-  "rank": 160,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 55.0,
-  "insize": true,
-  "sizes": "L in stock"
  },
  "r11-finister-belt": {
   "name": "Finisterre Bowline Belt, flame",
@@ -21007,12 +20968,14 @@
    "mild"
   ],
   "note": "Trousers from Flatspot. £49, 25% off.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 65.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-folk-bag": {
   "name": "Folk Wadded Tote, rust",
@@ -21109,12 +21072,14 @@
    "mild"
   ],
   "note": "Jeans from Folk. £75, 48% off.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 145.0,
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r11-folk-shirt": {
   "name": "Folk Short Sleeve Soft Collar Shirt, flaming eye grid",
@@ -21161,12 +21126,14 @@
    "mild"
   ],
   "note": "Trousers from Folk. £75, 52% off. Half price or more.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 155.0,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-gabicci-coat": {
   "name": "Gabicci canvas workwear jacket, delft",
@@ -21259,12 +21226,14 @@
    "warm"
   ],
   "note": "Shorts from Gabicci. £39.99, 33% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 59.95,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-gabicci-trousers": {
   "name": "Gabicci Mayfield corduroy trousers, navy",
@@ -21550,11 +21519,13 @@
    "mild"
   ],
   "note": "Jeans from Hikerdelic. £60.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "r11-hikerdel-shirt": {
   "name": "Hikerdelic Imbolc Short Sleeve Shirt, black",
@@ -21974,12 +21945,14 @@
    "warm"
   ],
   "note": "Shorts from howies. £30, 57% off. Half price or more.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 69.0,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-jeanstor-belt": {
   "name": "Carhartt WIP Clip Belt Chrome, wip hamilton brown",
@@ -22048,12 +22021,14 @@
    "warm"
   ],
   "note": "Shorts from Jean Store. £35.40, 40% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 59.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-jeanstor-trainers": {
   "name": "Adidas Terrex Agravic TT trainers, cloud white / core black",
@@ -22256,31 +22231,6 @@
   "insize": true,
   "sizes": "L in stock"
  },
- "r11-lambrett-joggers": {
-  "name": "Lambretta Logo Jogger, navy",
-  "shop": "Lambretta",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 20.0,
-  "url": "https://www.lambrettaclothing.co.uk/products/logo-jogger-copy?variant=56840988557660",
-  "style": [
-   "mod",
-   "casual"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Joggers from Lambretta. £20, 50% off. Half price or more.",
-  "rank": 160,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 40.0,
-  "insize": true,
-  "sizes": "L in stock"
- },
  "r11-lambrett-shoes": {
   "name": "Lambretta Stanley Shoe, tan",
   "shop": "Lambretta",
@@ -22324,12 +22274,14 @@
    "mild"
   ],
   "note": "Trousers from Lambretta. £30, 40% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 50.0,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-londonso-socks": {
   "name": "London Sock Company Marl Trainer Socks, Casual, stone grey",
@@ -22433,31 +22385,6 @@
   "insize": true,
   "sizes": "L in stock"
  },
- "r11-luke1977-jeans": {
-  "name": "Luke 1977 Vac slim fit jeans, black",
-  "shop": "Luke 1977",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 18.0,
-  "url": "https://www.luke1977.com/products/vac-black-midnight?variant=44022447702269",
-  "style": [
-   "casual",
-   "street"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Jeans from Luke 1977. £18, 70% off. Half price or more.",
-  "rank": 120,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 60.0,
-  "insize": true,
-  "sizes": "34W 32L in stock"
- },
  "r11-luke1977-overshirt": {
   "name": "Luke 1977 Hawich Overshirt, black",
   "shop": "Luke 1977",
@@ -22534,31 +22461,6 @@
   "insize": true,
   "sizes": "L in stock"
  },
- "r11-lylescot-jeans": {
-  "name": "Lyle & Scott Regular Fit Tapered Denim Jeans",
-  "shop": "Lyle & Scott",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 36.0,
-  "url": "https://www.lyleandscott.com/products/tapered-denim-jeans-stone-wash-blue?variant=45066933174522",
-  "style": [
-   "casual",
-   "quiet"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Jeans from Lyle & Scott. £36, 60% off. Half price or more.",
-  "rank": 160,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 90.0,
-  "insize": true,
-  "sizes": "34W in stock"
- },
  "r11-lylescot-overshirt": {
   "name": "Lyle & Scott Lightweight Quilted Overshirt",
   "shop": "Lyle & Scott",
@@ -22629,12 +22531,14 @@
    "warm"
   ],
   "note": "Shorts from Lyle & Scott. £32, 51% off. Half price or more.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 65.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-lylescot-trousers": {
   "name": "Lyle & Scott Five Pockets Chino",
@@ -22654,12 +22558,14 @@
    "mild"
   ],
   "note": "Trousers from Lyle & Scott. £52, 31% off.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 75.0,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-matalan-boots": {
   "name": "Matalan leather Chelsea boots, black",
@@ -22807,7 +22713,7 @@
    "cold"
   ],
   "note": "Straight-leg joggers. £12.8, 20% off.",
-  "rank": 120,
+  "rank": 60,
   "sets": [],
   "insize": true,
   "sizes": "L in stock",
@@ -22819,7 +22725,9 @@
     12.8
    ]
   ],
-  "prev": 12.8
+  "prev": 12.8,
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-matalan-lounge": {
   "name": "Matalan twill stripe pyjama set, blue",
@@ -22962,13 +22870,15 @@
    "warm"
   ],
   "note": "Chino shorts. £9, 40% off.",
-  "rank": 120,
+  "rank": 60,
   "sets": [],
   "insize": true,
   "sizes": "34W in stock",
   "kind": "new",
   "checked": "2026-10-06",
-  "was": 15.0
+  "was": 15.0,
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-matalan-slippers": {
   "name": "Matalan suede fur-lined slippers, tan",
@@ -23125,11 +23035,13 @@
    "mild"
   ],
   "note": "Jeans from Merc. £70.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r11-merc-smallacc": {
   "name": "Merc Dam Tie, white",
@@ -23489,11 +23401,13 @@
    "mild"
   ],
   "note": "Joggers from Montirex. £39.99.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r11-mrsbowti-belt": {
   "name": "Mrs Bow Tie textured belt, petrol blue",
@@ -23681,12 +23595,14 @@
    "mild"
   ],
   "note": "Trousers from Oliver Brown. £60, 69% off. Half price or more.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 195.0,
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-original-fleece": {
   "name": "Original Penguin Colour Block Fleece Full Zip Golf Jacket, dark caviar heather",
@@ -23741,31 +23657,6 @@
   "insize": true,
   "sizes": "L in stock"
  },
- "r11-original-jeans": {
-  "name": "Original Penguin dyed stretch denim trousers, black",
-  "shop": "Original Penguin",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 52.5,
-  "url": "https://www.originalpenguin.co.uk/products/over-dyed-stretch-denim-trousers-gray-opbf7c44ou-027?variant=42417910513853",
-  "style": [
-   "casual",
-   "quiet"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Jeans from Original Penguin. £52.50, 30% off.",
-  "rank": 220,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 75.0,
-  "insize": true,
-  "sizes": "34W in stock"
- },
  "r11-original-knit": {
   "name": "Original Penguin Technical Earl 1/4 Zip Golf Sweater, black iris",
   "shop": "Original Penguin",
@@ -23791,55 +23682,6 @@
   "was": 75.0,
   "insize": true,
   "sizes": "L in stock"
- },
- "r11-original-shorts": {
-  "name": "Original Penguin Pull On 8\" Cargo Shorts, dark sapphire",
-  "shop": "Original Penguin",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 38.0,
-  "url": "https://www.originalpenguin.co.uk/products/pull-on-8-cargo-shorts-blue-ochs2203ou-413?variant=43671901274301",
-  "style": [
-   "casual",
-   "quiet"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "warm"
-  ],
-  "note": "Shorts from Original Penguin. £38, 31% off.",
-  "rank": 160,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 55.0,
-  "insize": true,
-  "sizes": "34W in stock"
- },
- "r11-original-trousers": {
-  "name": "Original Penguin Slim Fit Chinos, true black",
-  "shop": "Original Penguin",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 70.0,
-  "url": "https://www.originalpenguin.co.uk/products/flat-front-core-chino-pants-black-opbb0022gp-010?variant=62225140187523",
-  "style": [
-   "casual",
-   "quiet"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Trousers from Original Penguin. £70.",
-  "rank": 220,
-  "sets": [],
-  "checked": "2026-10-06",
-  "insize": true,
-  "sizes": "34W in stock"
  },
  "r11-passenge-jeans": {
   "name": "Passenger 365 cotton denim trousers, dark",
@@ -24114,13 +23956,15 @@
    "cold"
   ],
   "note": "Relaxed joggers. £11.20, 20% off.",
-  "rank": 120,
+  "rank": 60,
   "sets": [],
   "kind": "new",
   "checked": "2026-10-05",
   "was": 14,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-peacocks-shirt": {
   "name": "Peacocks check long-sleeve shirt, stone",
@@ -24294,12 +24138,14 @@
    "mild"
   ],
   "note": "Trousers from Percival. £70, 50% off. Half price or more.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 140.0,
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-peregrin-coat": {
   "name": "Peregrine Windsor Linen Bomber Jacket, navy stripe",
@@ -24417,12 +24263,14 @@
    "mild"
   ],
   "note": "Jeans from Philip Morris Direct. £52.95, 10% off.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 59.0,
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r11-philipmo-knit": {
   "name": "Albert and Maurice Netherton Zip Neck Lambswool Jumper, thyme",
@@ -24503,31 +24351,6 @@
   "insize": true,
   "sizes": "UK 11 in stock"
  },
- "r11-philipmo-trousers": {
-  "name": "Spoke Sharps Chino, dark navy",
-  "shop": "Philip Morris Direct",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 74.95,
-  "url": "https://philipmorrisdirect.co.uk/products/spoke-mens-sharps-chino?variant=56762680705364",
-  "style": [
-   "quiet",
-   "outdoor"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Trousers from Philip Morris Direct. £74.95, 40% off.",
-  "rank": 220,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 125.0,
-  "insize": true,
-  "sizes": "34W in stock"
- },
  "r11-prettygr-boots": {
   "name": "Pretty Green Brown Murray Boot",
   "shop": "Pretty Green",
@@ -24572,11 +24395,13 @@
    "mild"
   ],
   "note": "Jeans from Pretty Green. £75.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-prettygr-joggers": {
   "name": "Pretty Green Orange Lounge Joggers",
@@ -24596,12 +24421,14 @@
    "mild"
   ],
   "note": "Joggers from Pretty Green. £45.50, 30% off.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 65.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-prettygr-knit": {
   "name": "Pretty Green Stone Merino Blend Crew",
@@ -24671,12 +24498,14 @@
    "warm"
   ],
   "note": "Shorts from Pretty Green. £30, 60% off. Half price or more.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 75.0,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r11-routeone-coat": {
   "name": "Columbia Challenger™ II Windbreaker, red oxide/shark",
@@ -24773,11 +24602,13 @@
    "mild"
   ],
   "note": "Jeans from Route One. £64.95.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W 32L in stock"
+  "sizes": "34W 32L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-routeone-knit": {
   "name": "Santa Cruz Podium 1/4 Zip Crew, black/sapphire",
@@ -24975,11 +24806,13 @@
    "mild"
   ],
   "note": "Trousers from Saltrock. £45.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r11-samuelwi-overshirt": {
   "name": "Samuel Windsor Moleskin Overshirt, dark brown",
@@ -25269,12 +25102,14 @@
    "mild"
   ],
   "note": "Jeans from SikSilk. £27, 46% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 50.0,
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r11-siksilk-knit": {
   "name": "SikSilk Navy Essentials Sweater",
@@ -25346,12 +25181,14 @@
    "warm"
   ],
   "note": "Shorts from SikSilk. £26, 42% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 45.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-siksilk-trousers": {
   "name": "SikSilk Khaki Green Regular Fit Cargos",
@@ -25371,12 +25208,14 @@
    "mild"
   ],
   "note": "Trousers from SikSilk. £30, 33% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 45.0,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-slamcity-bag": {
   "name": "Polar Liquid Man Tote Bag Ecru",
@@ -25951,12 +25790,14 @@
    "mild"
   ],
   "note": "Trousers from Stuarts London. £49, 57% off. Half price or more.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 115.0,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-summits-coat": {
   "name": "Rab Nexus Jacket",
@@ -26472,12 +26313,14 @@
    "mild"
   ],
   "note": "Trousers from Tokyo Laundry. £17.99, 40% off.",
-  "rank": 120,
+  "rank": 60,
   "sets": [],
   "checked": "2026-10-06",
   "was": 29.99,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r11-trueface-coat": {
   "name": "Trueface Hooded Winter Bomber Jacket, black",
@@ -26597,11 +26440,13 @@
    "warm"
   ],
   "note": "Shorts from Trueface. £14.99.",
-  "rank": 120,
+  "rank": 60,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-trueface-tee": {
   "name": "Trueface Firetrap Short Sleeve Polo Collar T-shirt, charcoal",
@@ -26771,11 +26616,13 @@
    "mild"
   ],
   "note": "Jeans from Universal Textiles. £26.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W 32L in stock"
+  "sizes": "34W 32L in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r11-universa-jeansx": {
   "name": "Universal Works Washed Indigo 8oz Slub Denim Dutch Pant",
@@ -26922,12 +26769,14 @@
    "warm"
   ],
   "note": "Shorts from Universal Works. £59, 61% off. Half price or more.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 150.0,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "r11-urbanexc-hoodie": {
   "name": "No Problemo SIDD Hoodie, black",
@@ -26980,12 +26829,14 @@
    "mild"
   ],
   "note": "Jeans from Urban Excess. £49.95, 50% off. Half price or more.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 100.0,
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r11-urbanexc-knit": {
   "name": "Bhode Japan Cardigan, green",
@@ -27268,12 +27119,14 @@
    "mild"
   ],
   "note": "Joggers from Uskees. £40, 50% off. Half price or more.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 80.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "r11-uskees-knit": {
   "name": "Uskees 3043 Collared cardigan, foam green",
@@ -27446,11 +27299,13 @@
    "mild"
   ],
   "note": "Jeans from Weekend Offender. £70.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "insize": true,
-  "sizes": "34W 32L in stock"
+  "sizes": "34W 32L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r11-weekendo-shorts": {
   "name": "Weekend Offender Senia Summer Short, navy",
@@ -27814,13 +27669,15 @@
    "warm"
   ],
   "note": "Charcoal twill cargo shorts at half price. £24.99, 50% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 50.0,
   "fabric": "98% cotton, 2% elastane",
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r12-cl-icon-short": {
   "name": "Closure London Icon shorts, washed black",
@@ -27840,13 +27697,15 @@
    "warm"
   ],
   "note": "Plain cotton shorts at 60% off. £19.99, 60% off.",
-  "rank": 120,
+  "rank": 60,
   "sets": [],
   "checked": "2026-10-06",
   "was": 50.0,
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r12-cl-openhem-cargo": {
   "name": "Closure London twill cargo trousers, charcoal",
@@ -28095,13 +27954,15 @@
    "cold"
   ],
   "note": "Black cotton cargos, nearly half price. £35, 46% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 65.0,
   "fabric": "98% cotton, 2% elastane",
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r12-ms-jj-cargo": {
   "name": "Jack & Jones pure cotton cargo shorts, 2 pack, black and beige",
@@ -28202,7 +28063,7 @@
    "cold"
   ],
   "note": "Plain black chinos for £14.40. £14.4, 20% off.",
-  "rank": 110,
+  "rank": 50,
   "sets": [],
   "kind": "new",
   "checked": "2026-10-06",
@@ -28215,7 +28076,9 @@
     14.4
    ]
   ],
-  "prev": 14.4
+  "prev": 14.4,
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r12-op-flint": {
   "name": "Carhartt WIP Flint shorts, black",
@@ -28235,12 +28098,14 @@
    "warm"
   ],
   "note": "Plain heavy cotton shorts. £80.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r12-rp-season-cargo": {
   "name": "Represent Season cargo shorts, jet black",
@@ -28386,13 +28251,15 @@
    "cold"
   ],
   "note": "Loose 100% cotton skate work pants. £39.99, 38% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 64.99,
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "r12-sf-baselayer": {
   "name": "Scruffs Pro base layer bottoms, black",
@@ -28607,13 +28474,15 @@
    "warm"
   ],
   "note": "Washed black cotton shorts. £25, 38% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 40.0,
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r12-tb-denim-short": {
   "name": "Threadbare baggy fit denim shorts, black",
@@ -28633,13 +28502,15 @@
    "warm"
   ],
   "note": "£18 plain black cotton shorts. £18, 31% off.",
-  "rank": 120,
+  "rank": 60,
   "sets": [],
   "checked": "2026-10-06",
   "was": 26.0,
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "r12-tf-cargo": {
   "name": "True Face cotton cargo shorts, black",
@@ -28659,12 +28530,14 @@
    "warm"
   ],
   "note": "100% cotton knee-length cargo shorts, about £21. £20.99.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Straight",
+  "fitRank": 1
  },
  "r12-tf-firetrap": {
   "name": "Firetrap chino cargo shorts, black",
@@ -28684,12 +28557,14 @@
    "warm"
   ],
   "note": "Cotton chino cargo shorts. £25.99.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "98% cotton",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r12-tg-m9503a": {
   "name": "Grafters M9503A 4E super wide safety boots, black",
@@ -28784,12 +28659,14 @@
    "warm"
   ],
   "note": "Smart cotton shorts. £40.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "98% cotton, 2% elastane",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r12-tp-socks": {
   "name": "Timberland PRO half cushion work socks, 3 pack",
@@ -29146,13 +29023,15 @@
    "warm"
   ],
   "note": "Duck canvas fatigue shorts in a very dark grey. £48, 20% off.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 60.0,
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r12-wg-bl4034": {
   "name": "Blaklader 4034 adjustable work belt, black",
@@ -29222,12 +29101,14 @@
    "cold"
   ],
   "note": "100% cotton work trousers with built-in holster pockets, so no clip-ons needed. £37.08.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "34W 32L in stock"
+  "sizes": "34W 32L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r12-wo-pianemo": {
   "name": "Weekend Offender Pianemo cargo trousers, black",
@@ -29410,30 +29291,6 @@
   "insize": true,
   "sizes": "L in stock"
  },
- "r13-gk-jogger": {
-  "name": "Gym King fleece joggers, forest green",
-  "shop": "Gym King",
-  "cat": "lounge",
-  "kind": "new",
-  "price": 11.25,
-  "url": "https://www.gymking.com/products/gym-king-aventus-fleece-jogger-deep-forest-green?variant=55170877915519",
-  "style": [
-   "lounge"
-  ],
-  "occ": [
-   "lounge"
-  ],
-  "wx": [
-   "cold"
-  ],
-  "note": "Fleece joggers at 75% off. £11.25, 75% off.",
-  "rank": 120,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 45.0,
-  "insize": true,
-  "sizes": "L in stock"
- },
  "r13-gk-polo": {
   "name": "Gym King knitted polo shirt, black",
   "shop": "Gym King",
@@ -29479,12 +29336,14 @@
    "cold"
   ],
   "note": "Roomy 100% cotton climbing trousers with a built-in belt. £95.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "UK L in stock"
+  "sizes": "UK L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r13-hl-beanie": {
   "name": "Henri Lloyd watch beanie, light grey",
@@ -30123,12 +29982,14 @@
    "warm"
   ],
   "note": "Washed 100% cotton cargo shorts with six pockets. £32.95.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "M (34in waist) in stock"
+  "sizes": "M (34in waist) in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r13-mk-backpack": {
   "name": "Highlander canvas backpack, black",
@@ -30176,13 +30037,15 @@
    "cold"
   ],
   "note": "Loose fit 100% cotton cargo trousers with drawcord hems. £54.95.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "sizeNote": "Size L is a 34in waist with a 34in leg, 2in longer than usual; the hems have drawcords.",
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "L (W34 L34) in stock"
+  "sizes": "L (W34 L34) in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r13-mk-commando": {
   "name": "Army-style commando jumper, black",
@@ -30923,12 +30786,14 @@
    "cold"
   ],
   "note": "100% cotton carpenter trousers with a hammer loop. £84.99.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r13-on-flannel": {
   "name": "O'Neill flannel shirt, black check",
@@ -31052,12 +30917,14 @@
    "cold"
   ],
   "note": "Soft joggers at half price. £31.50, 50% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 62.99,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r13-pd-ankle": {
   "name": "Padders extra wide leather ankle boots, black",
@@ -31295,12 +31162,14 @@
    "cold"
   ],
   "note": "Black jeans. £59.50, 30% off.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "was": 85.0,
   "insize": true,
-  "sizes": "34W 32L in stock"
+  "sizes": "34W 32L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r13-vc-hoodie": {
   "name": "Volcom Vital hoodie, black",
@@ -31402,31 +31271,6 @@
   "was": 55.0,
   "insize": true,
   "sizes": "L in stock"
- },
- "r13-vj-chi": {
-  "name": "Voi Chi chino trousers, black",
-  "shop": "Voi Jeans",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 45.0,
-  "url": "https://www.voijeans.com/products/chi-pants-black?variant=58300442345817",
-  "style": [
-   "casual",
-   "street"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "Plain black chinos. £45.",
-  "rank": 220,
-  "sets": [],
-  "checked": "2026-10-06",
-  "insize": true,
-  "sizes": "34W in stock"
  },
  "r13-vj-rigger": {
   "name": "Voi Rigger hoodie, black",
@@ -31798,33 +31642,6 @@
   "insize": true,
   "sizes": "L in stock"
  },
- "r7-dc-everett": {
-  "name": "Duck and Cover Everett chino shorts, stone",
-  "shop": "Duck and Cover",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 16.0,
-  "url": "https://www.duckandcover.co.uk/products/everett-chino-shorts-stone?variant=57007641690495",
-  "style": [
-   "summer",
-   "casual"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "warm"
-  ],
-  "note": "Stone chino shorts. £16, 67% off.",
-  "rank": 120,
-  "sets": [
-   "holiday"
-  ],
-  "checked": "2026-10-06",
-  "was": 49.0,
-  "insize": true,
-  "sizes": "34W (leg not listed) in stock"
- },
  "r7-dc-hannings-jog": {
   "name": "Duck and Cover Hannings joggers, stone",
   "shop": "Duck and Cover",
@@ -31845,12 +31662,14 @@
    "cold"
   ],
   "note": "Joggers. £14.99, 67% off.",
-  "rank": 120,
+  "rank": 60,
   "sets": [],
   "checked": "2026-10-06",
   "was": 45.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r7-dc-hingham": {
   "name": "Duck and Cover Hingham shirt and shorts set, black",
@@ -32869,32 +32688,6 @@
   "was": 50.0,
   "insize": true,
   "sizes": "L in stock"
- },
- "r7-mc-judson": {
-  "name": "Merc Judson slim cord trousers, navy",
-  "shop": "Merc",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 65.0,
-  "url": "https://www.merc.co.uk/products/judson-32l?variant=40450123104358",
-  "style": [
-   "mod",
-   "quiet"
-  ],
-  "occ": [
-   "smart",
-   "everyday"
-  ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "Slim mod cord trousers, 34 waist, 32 leg. £65.",
-  "rank": 220,
-  "sets": [],
-  "checked": "2026-10-06",
-  "insize": true,
-  "sizes": "34W 32L in stock"
  },
  "r7-ml-gunnar": {
   "name": "Weird Fish Gunnar quarter-zip jumper, cream",
@@ -34371,32 +34164,6 @@
   "insize": true,
   "sizes": "L in stock"
  },
- "r8-cl-cargo": {
-  "name": "Closure London smart utility cargo trousers, grey",
-  "shop": "Closure London",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 14.99,
-  "url": "https://www.closurelondon.com/products/smart-utility-cargo-pant-charcoal-copy?variant=56526302052730",
-  "style": [
-   "street",
-   "rave"
-  ],
-  "occ": [
-   "everyday",
-   "party"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "Smart cargo trousers. £14.99, 77% off.",
-  "rank": 120,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 65.0,
-  "insize": true,
-  "sizes": "L in stock"
- },
  "r8-cl-crinkle": {
   "name": "Closure London crinkle shirt, black",
   "shop": "Closure London",
@@ -34467,14 +34234,16 @@
    "warm"
   ],
   "note": "Pleated tailored shorts. £13.99, 72% off.",
-  "rank": 120,
+  "rank": 60,
   "sets": [
    "holiday"
   ],
   "checked": "2026-10-06",
   "was": 50.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r8-cl-puffer": {
   "name": "Closure London diamond quilted puffer jacket, black",
@@ -34743,33 +34512,6 @@
   "insize": true,
   "sizes": "One size"
  },
- "r8-lk-crantock": {
-  "name": "Luke 1977 Crantock tapered chinos, navy",
-  "shop": "Luke 1977",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 22.0,
-  "url": "https://www.luke1977.com/products/crantock-tapered-trouser-navy?variant=55562332438907",
-  "style": [
-   "quiet",
-   "casual"
-  ],
-  "occ": [
-   "everyday",
-   "smart"
-  ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "Tapered navy chinos. £22, 71% off.",
-  "rank": 160,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 75.0,
-  "insize": true,
-  "sizes": "34W (leg not listed) in stock"
- },
  "r8-lk-ellison": {
   "name": "Luke 1977 Ellison waffle T-shirt, black",
   "shop": "Luke 1977",
@@ -34923,13 +34665,15 @@
    "warm"
   ],
   "note": "Black canvas carpenter shorts with cargo pockets and a hammer loop. £19, 71% off.",
-  "rank": 120,
+  "rank": 60,
   "sets": [],
   "checked": "2026-10-06",
   "was": 65.0,
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r8-lk-morden": {
   "name": "Luke 1977 Morden knitted jumper, mid grey",
@@ -35218,12 +34962,14 @@
    "mild"
   ],
   "note": "Tricot track pants. £28, 60% off.",
-  "rank": 160,
+  "rank": 100,
   "sets": [],
   "checked": "2026-10-06",
   "was": 70.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "r8-wo-tote": {
   "name": "Weekend Offender Perryman tote bag, black",
@@ -35303,33 +35049,6 @@
   "checked": "2026-10-06",
   "insize": true,
   "sizes": "UK 11 (EEE) in stock"
- },
- "r9-bk-beccles": {
-  "name": "Brakeburn Beccles trousers, black",
-  "shop": "Brakeburn",
-  "cat": "trouser",
-  "kind": "new",
-  "price": 19.49,
-  "url": "https://www.brakeburn.com/products/beccles-trouser-aw25?variant=42485221883965",
-  "style": [
-   "quiet",
-   "casual"
-  ],
-  "occ": [
-   "everyday",
-   "smart"
-  ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "Smart trousers, 70% off. £19.49, 70% off.",
-  "rank": 120,
-  "sets": [],
-  "checked": "2026-10-06",
-  "was": 64.99,
-  "insize": true,
-  "sizes": "34W (leg not listed) in stock"
  },
  "r9-bk-boardshort": {
   "name": "Brakeburn flowers board shorts",
@@ -35535,12 +35254,14 @@
    "mild"
   ],
   "note": "Tech cargo trousers. £17.99, 72% off.",
-  "rank": 120,
+  "rank": 60,
   "sets": [],
   "checked": "2026-10-06",
   "was": 65.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r9-dc-camo-tee": {
   "name": "Duck and Cover Camostack T-shirt, black",
@@ -35873,14 +35594,16 @@
    "warm"
   ],
   "note": "Cord cargo shorts. £16, 71% off.",
-  "rank": 120,
+  "rank": 60,
   "sets": [
    "holiday"
   ],
   "checked": "2026-10-06",
   "was": 55.0,
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Regular",
+  "fitRank": 1
  },
  "r9-lk-trous": {
   "name": "Luke 1977 ribbed-neck long-sleeve T-shirt, navy",
@@ -36969,7 +36692,7 @@
    "event"
   ],
   "price": 29.99,
-  "rank": 593,
+  "rank": 533,
   "sets": [
    "christmas"
   ],
@@ -36984,7 +36707,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "rv-cap-black": {
   "cat": "acc",
@@ -37051,7 +36776,7 @@
    "everyday"
   ],
   "price": 38,
-  "rank": 603,
+  "rank": 543,
   "shop": "ASOS",
   "style": [
    "rave",
@@ -37063,7 +36788,9 @@
   "was": 100,
   "wx": [
    "warm"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "rv-carhartt-ray": {
   "cat": "trouser",
@@ -37076,7 +36803,7 @@
    "everyday"
   ],
   "price": 69.99,
-  "rank": 594,
+  "rank": 534,
   "sets": [
    "christmas"
   ],
@@ -37094,7 +36821,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "rv-cernucci-cargo": {
   "cat": "trouser",
@@ -37108,7 +36837,7 @@
    "everyday"
   ],
   "price": 45.49,
-  "rank": 599,
+  "rank": 539,
   "shop": "Cernucci",
   "sizes": "L in stock (fits a 34in waist)",
   "style": [
@@ -37123,7 +36852,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "rv-cernucci-rope": {
   "cat": "acc",
@@ -37372,7 +37103,7 @@
    "everyday"
   ],
   "price": 67.5,
-  "rank": 597,
+  "rank": 537,
   "shop": "ASOS",
   "style": [
    "rave",
@@ -37386,7 +37117,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "rv-dickies-pelican": {
   "cat": "trouser",
@@ -37615,7 +37348,7 @@
    "everyday"
   ],
   "price": 31.99,
-  "rank": 592,
+  "rank": 532,
   "shop": "ASOS",
   "style": [
    "rave",
@@ -37629,7 +37362,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "rv-jj-cargo-short": {
   "cat": "trouser",
@@ -37852,7 +37587,7 @@
    "everyday"
   ],
   "price": 64.99,
-  "rank": 600,
+  "rank": 540,
   "shop": "Montirex",
   "sizes": "L in stock (fits a 34in waist)",
   "style": [
@@ -37865,7 +37600,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "rv-mtx-void-jacket": {
   "cat": "coat",
@@ -37907,7 +37644,7 @@
    "everyday"
   ],
   "price": 12.5,
-  "rank": 601,
+  "rank": 541,
   "shop": "ASOS",
   "style": [
    "rave",
@@ -37917,7 +37654,9 @@
   "was": 25,
   "wx": [
    "warm"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "rv-nylon-baggy": {
   "cat": "trouser",
@@ -37930,7 +37669,7 @@
    "everyday"
   ],
   "price": 19.2,
-  "rank": 591,
+  "rank": 531,
   "shop": "ASOS",
   "style": [
    "rave",
@@ -37943,7 +37682,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "rv-quilted-gilet": {
   "cat": "coat",
@@ -38012,7 +37753,7 @@
    "everyday"
   ],
   "price": 46,
-  "rank": 596,
+  "rank": 536,
   "shop": "ASOS",
   "style": [
    "rave",
@@ -38025,7 +37766,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "rv-rib-ls": {
   "cat": "polo",
@@ -38217,31 +37960,6 @@
    "cold"
   ]
  },
- "rv-tapered-cargo": {
-  "cat": "trouser",
-  "checked": "2026-10-05",
-  "kind": "new",
-  "name": "ASOS DESIGN tapered cargo trousers, black",
-  "note": "Tapered at the ankle, so they sit cleanly on a boot.",
-  "occ": [
-   "party",
-   "everyday"
-  ],
-  "price": 32,
-  "rank": 595,
-  "shop": "ASOS",
-  "style": [
-   "rave",
-   "casual"
-  ],
-  "url": "https://www.asos.com/prd/209020359",
-  "wx": [
-   "cold",
-   "mild",
-   "warm",
-   "wet"
-  ]
- },
  "rv-tommy-parachute": {
   "cat": "trouser",
   "checked": "2026-10-05",
@@ -38253,7 +37971,7 @@
    "everyday"
   ],
   "price": 47.99,
-  "rank": 598,
+  "rank": 538,
   "sets": [
    "christmas"
   ],
@@ -38270,7 +37988,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "rv-tt-studded": {
   "cat": "shirt",
@@ -38395,7 +38115,7 @@
    "everyday"
   ],
   "price": 27.99,
-  "rank": 590,
+  "rank": 530,
   "shop": "ASOS",
   "style": [
    "rave",
@@ -38408,7 +38128,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "rv-weekday-vest": {
   "cat": "polo",
@@ -38815,7 +38537,7 @@
    "everyday"
   ],
   "price": 27.99,
-  "rank": 110,
+  "rank": 50,
   "sets": [],
   "shop": "Slam City Skates",
   "sizes": "L in stock",
@@ -38828,7 +38550,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "sc-huf-denim": {
   "cat": "trouser",
@@ -38841,7 +38565,7 @@
    "everyday"
   ],
   "price": 49.99,
-  "rank": 350,
+  "rank": 290,
   "sets": [],
   "shop": "Slam City Skates",
   "sizes": "34W in stock",
@@ -38853,7 +38577,9 @@
   "wx": [
    "mild",
    "warm"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "sc-huf-henley": {
   "cat": "polo",
@@ -39393,11 +39119,13 @@
    "mild"
   ],
   "note": "Loose skate chinos, half price. Only 34W 34L left, so they will need taking up 2in.",
-  "rank": 170,
+  "rank": 110,
   "sets": [],
   "was": 59.99,
   "insize": true,
-  "sizes": "34W 34L in stock (2in long)"
+  "sizes": "34W 34L in stock (2in long)",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "sk-farah-danny": {
   "name": "Farah Danny organic T-shirt, stone grey",
@@ -40848,7 +40576,7 @@
   ],
   "offer": "2 for £60. Also khaki, taupe, sage and mocca",
   "price": 35,
-  "rank": 68,
+  "rank": 8,
   "shop": "Samuel Windsor",
   "sizes": "34W in stock, 33in leg",
   "style": [
@@ -40861,7 +40589,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "sw-chino-stone": {
   "cat": "trouser",
@@ -40876,7 +40606,7 @@
   ],
   "offer": "Also white and French blue at £20",
   "price": 20,
-  "rank": 60,
+  "rank": 1,
   "shop": "Samuel Windsor",
   "sizes": "34in waist sold out",
   "style": [
@@ -40888,7 +40618,9 @@
   "wx": [
    "mild",
    "warm"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "sw-chukka": {
   "cat": "shoe",
@@ -41376,7 +41108,7 @@
   ],
   "offer": "Any 2 for £40. Also grey and black",
   "price": 25,
-  "rank": 62.5,
+  "rank": 2,
   "sets": [
    "christmas"
   ],
@@ -41393,7 +41125,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "sw-tailored-grey": {
   "cat": "trouser",
@@ -41407,7 +41141,7 @@
    "event"
   ],
   "price": 25,
-  "rank": 195,
+  "rank": 135,
   "sets": [
    "christmas"
   ],
@@ -41424,7 +41158,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "sw-tattersall": {
   "cat": "shirt",
@@ -41804,35 +41540,6 @@
    "wet"
   ]
  },
- "tml-5pocket": {
-  "cat": "trouser",
-  "checked": "2026-10-06",
-  "insize": true,
-  "kind": "new",
-  "name": "The 5 Pocket Jean, Navy",
-  "note": "Cut like jeans, in smart cotton.",
-  "occ": [
-   "everyday",
-   "smart"
-  ],
-  "offer": "Also khaki, olive and black",
-  "price": 40,
-  "rank": 199,
-  "shop": "T.M. Lewin",
-  "sizes": "34W 32L in stock",
-  "style": [
-   "quiet",
-   "casual"
-  ],
-  "url": "https://tmlewin.co.uk/products/carter-5-pocket-stretch-slim-trouser-navy-68195",
-  "was": 60,
-  "wx": [
-   "cold",
-   "mild",
-   "warm",
-   "wet"
-  ]
- },
  "tml-bomber-navy": {
   "cat": "coat",
   "checked": "2026-10-06",
@@ -41888,33 +41595,6 @@
    "cold"
   ]
  },
- "tml-chino-sand": {
-  "cat": "trouser",
-  "checked": "2026-10-06",
-  "insize": true,
-  "kind": "new",
-  "name": "The Lightweight Chino, Sand",
-  "note": "A lighter cloth for spring and summer.",
-  "occ": [
-   "everyday",
-   "smart"
-  ],
-  "offer": "Eight colours at this price",
-  "price": 40,
-  "rank": 66,
-  "shop": "T.M. Lewin",
-  "sizes": "34W (leg not listed) in stock",
-  "style": [
-   "quiet",
-   "casual"
-  ],
-  "url": "https://tmlewin.co.uk/products/the-lightweight-chino-sand",
-  "was": 60,
-  "wx": [
-   "warm",
-   "mild"
-  ]
- },
  "tml-chino-short-sand": {
   "cat": "trouser",
   "checked": "2026-10-06",
@@ -41927,7 +41607,7 @@
    "party"
   ],
   "price": 40,
-  "rank": 742,
+  "rank": 682,
   "sets": [
    "holiday"
   ],
@@ -41940,60 +41620,9 @@
   "url": "https://tmlewin.co.uk/products/the-cotton-stretch-chino-short-sand",
   "wx": [
    "warm"
-  ]
- },
- "tml-chino-stone": {
-  "cat": "trouser",
-  "checked": "2026-10-06",
-  "insize": true,
-  "kind": "new",
-  "name": "The Non-Iron Chino, Stone",
-  "note": "A non-iron chino for work.",
-  "occ": [
-   "smart",
-   "everyday"
   ],
-  "offer": "Also sand, navy and olive",
-  "price": 60,
-  "rank": 200,
-  "shop": "T.M. Lewin",
-  "sizes": "34W (leg not listed) in stock",
-  "style": [
-   "quiet"
-  ],
-  "url": "https://tmlewin.co.uk/products/non-iron-radcliffe-stone-chino",
-  "was": 80,
-  "wx": [
-   "cold",
-   "mild",
-   "warm",
-   "wet"
-  ]
- },
- "tml-cord": {
-  "cat": "trouser",
-  "checked": "2026-10-06",
-  "insize": true,
-  "kind": "new",
-  "name": "The Corduroy 5 Pocket Trouser, Kangaroo",
-  "note": "Cords cut like jeans, in a tan brown.",
-  "occ": [
-   "everyday"
-  ],
-  "offer": "2 for £80",
-  "price": 60,
-  "rank": 71,
-  "shop": "T.M. Lewin",
-  "sizes": "34W 32L in stock",
-  "style": [
-   "quiet",
-   "casual"
-  ],
-  "url": "https://tmlewin.co.uk/products/corduroy-kangaroo-5-pocket-trouser",
-  "wx": [
-   "cold",
-   "mild"
-  ]
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "tml-cord-shirt": {
   "cat": "shirt",
@@ -42084,7 +41713,7 @@
    "party"
   ],
   "price": 20,
-  "rank": 743,
+  "rank": 683,
   "sets": [
    "holiday"
   ],
@@ -42099,7 +41728,9 @@
   "was": 40,
   "wx": [
    "warm"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "tml-merino-roll": {
   "cat": "knit",
@@ -43112,7 +42743,7 @@
    "party"
   ],
   "price": 39.9,
-  "rank": 196,
+  "rank": 136,
   "sets": [
    "christmas"
   ],
@@ -43131,7 +42762,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "uq-barrel-jeans": {
   "cat": "trouser",
@@ -43145,7 +42778,7 @@
    "party"
   ],
   "price": 39.9,
-  "rank": 249,
+  "rank": 189,
   "sets": [
    "christmas"
   ],
@@ -43161,7 +42794,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "uq-belt": {
   "cat": "acc",
@@ -43751,7 +43386,7 @@
    "everyday"
   ],
   "price": 24.9,
-  "rank": 234,
+  "rank": 174,
   "shop": "Uniqlo",
   "sizes": "M and L in stock",
   "style": [
@@ -43763,7 +43398,9 @@
   "url": "https://www.uniqlo.com/uk/en/products/E488739-000/00?colorDisplayCode=57",
   "wx": [
    "mild"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "uq-jersey-jacket": {
   "cat": "tailor",
@@ -44202,7 +43839,7 @@
    "smart"
   ],
   "price": 24.9,
-  "rank": 61,
+  "rank": 1,
   "shop": "Uniqlo",
   "sizes": "34in waist sold out in Olive",
   "style": [
@@ -44216,7 +43853,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Regular",
+  "fitRank": 1
  },
  "uq-seamless-down": {
   "cat": "coat",
@@ -44264,7 +43903,7 @@
    "party"
   ],
   "price": 39.9,
-  "rank": 69,
+  "rank": 9,
   "sets": [
    "christmas"
   ],
@@ -44282,7 +43921,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "uq-single-blouson": {
   "cat": "coat",
@@ -44336,33 +43977,6 @@
   "url": "https://www.uniqlo.com/uk/en/products/E482325-000/00?colorDisplayCode=69",
   "wx": [
    "mild"
-  ]
- },
- "uq-slim-chino": {
-  "cat": "trouser",
-  "checked": "2026-10-06",
-  "insize": true,
-  "kind": "new",
-  "name": "Slim Chino Trousers",
-  "note": "The slimmer cut of the Uniqlo chino.",
-  "occ": [
-   "everyday",
-   "smart"
-  ],
-  "price": 24.9,
-  "rank": 67,
-  "shop": "Uniqlo",
-  "sizes": "34W in stock, 31in leg",
-  "style": [
-   "quiet",
-   "casual"
-  ],
-  "url": "https://www.uniqlo.com/uk/en/products/E450251-000/00?colorDisplayCode=57",
-  "wx": [
-   "cold",
-   "mild",
-   "warm",
-   "wet"
   ]
  },
  "uq-slim-oxford": {
@@ -44460,7 +44074,7 @@
    "everyday"
   ],
   "price": 12.9,
-  "rank": 335,
+  "rank": 275,
   "shop": "Uniqlo",
   "sizes": "34in waist sold out in Blue",
   "style": [
@@ -44474,7 +44088,9 @@
    "mild",
    "warm",
    "wet"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "uq-stripe-ls": {
   "cat": "polo",
@@ -44571,7 +44187,7 @@
    "everyday"
   ],
   "price": 34.9,
-  "rank": 154,
+  "rank": 94,
   "shop": "Uniqlo",
   "sizes": "M and L in stock",
   "style": [
@@ -44584,7 +44200,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "uq-ultra-stretch": {
   "cat": "trouser",
@@ -44947,7 +44565,7 @@
    "everyday"
   ],
   "price": 45,
-  "rank": 200,
+  "rank": 140,
   "sets": [],
   "shop": "Uskees",
   "sizes": "L in stock",
@@ -44960,7 +44578,9 @@
   "was": 90,
   "wx": [
    "mild"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "us-ripstop-shorts": {
   "cat": "trouser",
@@ -44974,7 +44594,7 @@
    "everyday"
   ],
   "price": 28,
-  "rank": 300,
+  "rank": 240,
   "sets": [
    "holiday"
   ],
@@ -44988,7 +44608,9 @@
   "was": 70,
   "wx": [
    "warm"
-  ]
+  ],
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "us-tee-lichen": {
   "cat": "polo",
@@ -45028,7 +44650,7 @@
    "smart"
   ],
   "price": 59,
-  "rank": 230,
+  "rank": 170,
   "sets": [],
   "shop": "Universal Works",
   "sizes": "34W in stock",
@@ -45040,7 +44662,9 @@
   "was": 150,
   "wx": [
    "mild"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "uw-capitol-black": {
   "cat": "coat",
@@ -46025,12 +45649,14 @@
    "warm"
   ],
   "note": "Heavy canvas workshop shorts with cargo pockets. £84.95. Fabric: 100% cotton.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "L in stock"
+  "sizes": "L in stock",
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "w8-ro-stanray-a": {
   "name": "Stan Ray A shorts, black",
@@ -46050,12 +45676,14 @@
    "warm"
   ],
   "note": "Plain work shorts from Stan Ray. £84.95. Fabric: 100% cotton.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "100% cotton",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "w8-sc-jiro": {
   "name": "Polar Jiro cargo shorts, aged black",
@@ -46329,12 +45957,14 @@
    "warm"
   ],
   "note": "Plain black chino shorts. £40. Fabric: 98% cotton, 2% elastane.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "98% cotton, 2% elastane",
   "insize": true,
-  "sizes": "34W in stock"
+  "sizes": "34W in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "w8-ts-stanton": {
   "name": "TuffStuff Stanton softshell jacket, black",
@@ -46378,12 +46008,14 @@
    "warm"
   ],
   "note": "Carhartt cargo work shorts. £60.38. Fabric: 98% cotton, 2% elastane.",
-  "rank": 220,
+  "rank": 160,
   "sets": [],
   "checked": "2026-10-06",
   "fabric": "98% cotton, 2% elastane",
   "insize": true,
-  "sizes": "34W (leg not listed) in stock"
+  "sizes": "34W (leg not listed) in stock",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "w8-wl-290bsc": {
   "name": "Wide Load 290BSC 6E composite toe safety shoes, black",
@@ -46558,14 +46190,16 @@
    "cold"
   ],
   "note": "100% cotton heavy twill (370g) with plenty of cargo pockets. No nylon reinforcement.",
-  "rank": 10,
+  "rank": 1,
   "sets": [],
   "insize": true,
   "sizes": "34W 32L in stock",
   "sizeNote": "Blaklader sizes by waist and leg: 34 regular.",
   "kind": "new",
   "checked": "2026-10-06",
-  "fabric": "100% cotton"
+  "fabric": "100% cotton",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-carhartt-b01-black": {
   "name": "Carhartt B01 double-front work trousers, black duck",
@@ -46585,13 +46219,15 @@
    "wet"
   ],
   "note": "100% cotton 12oz firm duck, double front for kneeling, hammer loop.",
-  "rank": 20,
+  "rank": 1,
   "sets": [],
   "insize": true,
   "sizes": "34W 32L in stock",
   "kind": "new",
   "checked": "2026-10-06",
-  "fabric": "100% cotton"
+  "fabric": "100% cotton",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-carhartt-b324": {
   "name": "Carhartt B324 washed twill work trousers, black",
@@ -46610,13 +46246,15 @@
    "cold"
   ],
   "note": "100% cotton peached twill, softer than duck from the first wear.",
-  "rank": 30,
+  "rank": 1,
   "sets": [],
   "insize": true,
   "sizes": "34W 32L in stock",
   "kind": "new",
   "checked": "2026-10-06",
-  "fabric": "100% cotton"
+  "fabric": "100% cotton",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-carhartt-detroit": {
   "name": "Carhartt Detroit blanket-lined duck jacket, brown",
@@ -46689,12 +46327,14 @@
    "wet"
   ],
   "note": "100% cotton 12oz firm duck with a double front for kneeling. Hammer loop and tool pockets.",
-  "rank": 20,
+  "rank": 1,
   "sets": [],
   "insize": true,
   "sizes": "34W 32L in stock",
   "kind": "new",
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-cc-combat": {
   "name": "Community Clothing combat cargo trousers, putty",
@@ -46714,13 +46354,15 @@
    "cold"
   ],
   "note": "Heavyweight 100% cotton twill cargo trousers made in Britain, half price.",
-  "rank": 50,
+  "rank": 1,
   "sets": [],
   "was": 130.0,
   "insize": true,
   "sizes": "34W 32L in stock",
   "kind": "new",
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-cernucci-cargo-charcoal": {
   "name": "Cernucci ripstop cargo trousers, charcoal",
@@ -46740,7 +46382,7 @@
    "mild"
   ],
   "note": "100% cotton ripstop cargos for £38.99, 40% off.",
-  "rank": 30,
+  "rank": 1,
   "sets": [],
   "was": 64.99,
   "insize": true,
@@ -46748,7 +46390,9 @@
   "sizeNote": "Sized S to L: take the L for a 34in waist.",
   "kind": "new",
   "checked": "2026-10-06",
-  "fabric": "100% cotton"
+  "fabric": "100% cotton",
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "wk-cernucci-twill": {
   "name": "Cernucci relaxed twill trousers, black",
@@ -46768,7 +46412,7 @@
    "mild"
   ],
   "note": "100% cotton twill trousers for £38.99, 40% off.",
-  "rank": 50,
+  "rank": 1,
   "sets": [],
   "was": 64.99,
   "insize": true,
@@ -46776,7 +46420,9 @@
   "sizeNote": "Sized S to L: take the L for a 34in waist.",
   "kind": "new",
   "checked": "2026-10-06",
-  "fabric": "100% cotton"
+  "fabric": "100% cotton",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-cs-shorts-black": {
   "name": "Colorful Standard organic twill shorts, deep black",
@@ -46925,14 +46571,16 @@
    "mild"
   ],
   "note": "100% cotton work trousers with an adjustable waist.",
-  "rank": 40,
+  "rank": 1,
   "sets": [],
   "was": 70.0,
   "insize": true,
   "sizes": "L in stock",
   "kind": "new",
   "checked": "2026-10-06",
-  "fabric": "100% cotton"
+  "fabric": "100% cotton",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-hikerdelic-worker": {
   "name": "Hikerdelic Worker shorts 2.0, stone",
@@ -46951,12 +46599,14 @@
    "warm"
   ],
   "note": "100% cotton worker shorts with cargo pockets.",
-  "rank": 50,
+  "rank": 1,
   "sets": [],
   "insize": true,
   "sizes": "L in stock",
   "kind": "new",
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-passenger-drifter": {
   "name": "Passenger Drifter cotton shorts, charcoal",
@@ -46976,14 +46626,16 @@
    "warm"
   ],
   "note": "100% organic cotton shorts for £32, half price.",
-  "rank": 40,
+  "rank": 1,
   "sets": [],
   "was": 64.95,
   "insize": true,
   "sizes": "L in stock",
   "kind": "new",
   "checked": "2026-10-06",
-  "fabric": "100% cotton"
+  "fabric": "100% cotton",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-rockfall-otus": {
   "name": "Rock Fall Otus 6E ultra wide safety boots, black",
@@ -47052,7 +46704,7 @@
    "warm"
   ],
   "note": "100% cotton work shorts with utility pockets and a hammer loop. Half price.",
-  "rank": 30,
+  "rank": 1,
   "sets": [
    "holiday"
   ],
@@ -47060,7 +46712,9 @@
   "insize": true,
   "sizes": "34W in stock",
   "kind": "new",
-  "checked": "2026-10-06"
+  "checked": "2026-10-06",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-stanray-dk-black": {
   "name": "Stan Ray double-knee work jeans, washed black",
@@ -47080,39 +46734,16 @@
    "cold"
   ],
   "note": "100% cotton denim with a double knee for kneeling work. 40% off.",
-  "rank": 70,
+  "rank": 10,
   "sets": [],
   "was": 110.0,
   "insize": true,
   "sizes": "34W in stock",
   "kind": "new",
   "checked": "2026-10-06",
-  "fabric": "100% cotton"
- },
- "wk-stanray-fatigue": {
-  "name": "Stan Ray taper fatigue trousers, navy ripstop",
-  "shop": "Stan Ray",
-  "cat": "trouser",
-  "price": 63.0,
-  "url": "https://www.stanray.com/products/taper-fatigue-navy-ripstop?variant=37794491728054",
-  "style": [
-   "street",
-   "casual"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "note": "100% cotton ripstop work trousers made by the American workwear maker.",
-  "rank": 70,
-  "sets": [],
-  "was": 90.0,
-  "insize": true,
-  "sizes": "34W in stock",
-  "kind": "new",
-  "checked": "2026-10-06"
+  "fabric": "100% cotton",
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-stanray-fatigue-short": {
   "name": "Stan Ray fatigue shorts, olive",
@@ -47131,40 +46762,15 @@
    "warm"
   ],
   "note": "100% cotton sateen shorts with deep patch pockets.",
-  "rank": 60,
+  "rank": 1,
   "sets": [],
   "was": 85.0,
   "insize": true,
   "sizes": "34W in stock",
   "kind": "new",
-  "checked": "2026-10-06"
- },
- "wk-stanray-painter-black": {
-  "name": "Stan Ray 80s painter work trousers, black twill",
-  "shop": "Stan Ray",
-  "cat": "trouser",
-  "price": 66.5,
-  "url": "https://www.stanray.com/products/80s-painter-pant-black-twill?variant=31857709416545",
-  "style": [
-   "job",
-   "street"
-  ],
-  "occ": [
-   "everyday"
-  ],
-  "wx": [
-   "mild",
-   "cold"
-  ],
-  "note": "100% cotton twill painter trousers with a hammer loop.",
-  "rank": 60,
-  "sets": [],
-  "was": 95.0,
-  "insize": true,
-  "sizes": "34W in stock",
-  "kind": "new",
   "checked": "2026-10-06",
-  "fabric": "100% cotton"
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "wk-stanray-short-black": {
   "name": "Stan Ray Wide 5 shorts, washed black denim",
@@ -47184,7 +46790,7 @@
    "warm"
   ],
   "note": "100% cotton denim work shorts, 40% off.",
-  "rank": 20,
+  "rank": 1,
   "sets": [
    "holiday"
   ],
@@ -47193,7 +46799,9 @@
   "sizes": "34W in stock",
   "kind": "new",
   "checked": "2026-10-06",
-  "fabric": "100% cotton"
+  "fabric": "100% cotton",
+  "fit": "Wide leg",
+  "fitRank": 1
  },
  "wk-wideload-690bz": {
   "name": "Wide Load 690BZ 6E safety boots with side zip, black",
@@ -47658,7 +47266,7 @@
    "everyday"
   ],
   "price": 49.99,
-  "rank": 460,
+  "rank": 400,
   "sets": [],
   "shop": "Zara",
   "style": [
@@ -47669,7 +47277,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "za-tech-bomber": {
   "cat": "coat",
@@ -47729,7 +47339,7 @@
    "party"
   ],
   "price": 49,
-  "rank": 340,
+  "rank": 280,
   "sets": [],
   "shop": "Zalando",
   "style": [
@@ -47741,7 +47351,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Straight",
+  "fitRank": 1
  },
  "zl-bdg-vintage": {
   "cat": "trouser",
@@ -47753,7 +47365,7 @@
    "everyday"
   ],
   "price": 36,
-  "rank": 190,
+  "rank": 130,
   "sets": [],
   "shop": "Zalando",
   "style": [
@@ -47765,7 +47377,9 @@
   "wx": [
    "mild",
    "cold"
-  ]
+  ],
+  "fit": "Relaxed",
+  "fitRank": 1
  },
  "zl-nb574-grey": {
   "cat": "shoe",

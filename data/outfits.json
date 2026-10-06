@@ -801,55 +801,6 @@
    "cold"
   ]
  },
- "dinner-out": {
-  "look": "men navy overcoat grey roll neck jumper navy trousers brown suede chelsea boots outfit",
-  "name": "Dinner out in winter",
-  "note": "A fine roll neck under a navy overcoat is smart without a shirt or tie.",
-  "occ": "smart",
-  "pieces": [
-   {
-    "col": "navy",
-    "item": "next-epsom",
-    "shape": "coat",
-    "what": "Overcoat"
-   },
-   {
-    "col": "grey",
-    "item": "uq-merino-turtle",
-    "shape": "rollneck",
-    "what": "Merino roll neck"
-   },
-   {
-    "col": "navy",
-    "item": "tmlewin-ronnie-infinity-active-slim-fit-charcoal-trousers-58728",
-    "shape": "trousers",
-    "what": "trousers"
-   },
-   {
-    "col": "brown",
-    "item": "sw-chelsea",
-    "shape": "boots",
-    "what": "Chelsea boots"
-   },
-   {
-    "col": "black",
-    "item": "timex-35",
-    "shape": "watch",
-    "what": "Watch"
-   }
-  ],
-  "rank": 7,
-  "style": [
-   "quiet"
-  ],
-  "tags": [
-   "christmas",
-   "winter"
-  ],
-  "wx": [
-   "cold"
-  ]
- },
  "errands": {
   "look": "men olive quilted gilet camel jumper white oxford shirt dark jeans suede chukka boots outfit",
   "name": "Out and about",
@@ -1085,7 +1036,7 @@
   ]
  },
  "h10-cuban": {
-  "name": "Mint Cuban shirt and stone shorts",
+  "name": "Green short-sleeve shirt and stone shorts",
   "occ": "party",
   "style": [
    "summer"
@@ -1107,10 +1058,10 @@
     "what": "Cuban-collar shirt"
    },
    {
-    "item": "r7-dc-everett",
+    "item": "wk-hikerdelic-worker",
     "shape": "shorts",
     "col": "stone",
-    "what": "Chino shorts"
+    "what": "Stone shorts"
    },
    {
     "item": "r8-bl-drum",
@@ -1157,7 +1108,7 @@
   ]
  },
  "h10-rust": {
-  "name": "Rust pocket tee and chino shorts",
+  "name": "Brown T-shirt and stone shorts",
   "occ": "everyday",
   "style": [
    "summer",
@@ -1178,10 +1129,10 @@
     "what": "Pocket tee"
    },
    {
-    "item": "r7-dc-everett",
+    "item": "duckandcov-sherborn-shorts-stone",
     "shape": "shorts",
     "col": "stone",
-    "what": "Chino shorts"
+    "what": "Stone shorts"
    },
    {
     "item": "asos-own-white",
@@ -1300,10 +1251,10 @@
     "what": "T-shirt"
    },
    {
-    "item": "r7-dc-everett",
+    "item": "duckandcov-randolph-shorts-light-stone",
     "shape": "shorts",
     "col": "stone",
-    "what": "Chino shorts"
+    "what": "Stone shorts"
    },
    {
     "item": "hs-base-webb",
@@ -1615,10 +1566,10 @@
     "what": "Polo shirt"
    },
    {
-    "item": "r7-dc-everett",
+    "item": "luke1977-tecshort-cargo-short-stone",
     "shape": "shorts",
     "col": "stone",
-    "what": "Chino shorts"
+    "what": "Stone shorts"
    },
    {
     "item": "r8-bl-drum",
@@ -1751,7 +1702,7 @@
   ]
  },
  "h9-apricot": {
-  "name": "Apricot twill shirt and stone shorts",
+  "name": "Pink shirt and stone shorts",
   "occ": "everyday",
   "style": [
    "summer",
@@ -1774,10 +1725,10 @@
     "what": "Twill shirt, sleeves rolled"
    },
    {
-    "item": "r7-dc-everett",
+    "item": "duckandcov-medford-polo-shorts-set-taupe",
     "shape": "shorts",
     "col": "stone",
-    "what": "Chino shorts"
+    "what": "Stone shorts"
    },
    {
     "item": "r8-bl-drum",
@@ -2071,7 +2022,7 @@
   ]
  },
  "jb-painter-6e": {
-  "name": "Painter trousers and 6E boots",
+  "name": "Black gilet and black trousers",
   "occ": "everyday",
   "style": [
    "job"
@@ -2099,10 +2050,10 @@
     "what": "Organic cotton hoodie"
    },
    {
-    "item": "wk-stanray-painter-black",
+    "item": "r13-on-carpenter",
     "shape": "trousers",
     "col": "black",
-    "what": "Painter trousers, 100% cotton"
+    "what": "Black trousers"
    },
    {
     "item": "wk-wideload-690bz",
@@ -5082,10 +5033,10 @@
     "what": "Quarter-zip fleece"
    },
    {
-    "item": "r13-gk-jogger",
+    "item": "r13-on-sweatpants",
     "shape": "trousers",
-    "col": "green",
-    "what": "Fleece joggers"
+    "col": "black",
+    "what": "Black trousers"
    }
   ]
  },
@@ -5162,10 +5113,10 @@
     "what": "Stripe tee"
    },
    {
-    "item": "r8-lk-crantock",
+    "item": "r11-ellesse-trousers",
     "shape": "trousers",
     "col": "navy",
-    "what": "Tapered chinos"
+    "what": "Navy trousers"
    },
    {
     "item": "r9-lb-robbie-tan",
@@ -5210,10 +5161,10 @@
     "what": "Tie bar"
    },
    {
-    "item": "r8-lk-crantock",
+    "item": "communityc-mens-relaxed-chinos-navy-01",
     "shape": "trousers",
     "col": "navy",
-    "what": "Tapered chinos"
+    "what": "Navy trousers"
    },
    {
     "item": "r8-hs-paris-black",
@@ -5408,10 +5359,10 @@
     "what": "Knitted polo"
    },
    {
-    "item": "md-tml-sandringham",
+    "item": "r11-lambrett-trousers",
     "shape": "trousers",
     "col": "grey",
-    "what": "Slim check trousers"
+    "what": "Grey trousers"
    },
    {
     "item": "md-base-sid-bw",
@@ -5574,10 +5525,10 @@
     "what": "Tipped polo"
    },
    {
-    "item": "md-bb-norborton",
+    "item": "hufworldwi-mason-pant-pt00335",
     "shape": "trousers",
     "col": "sand",
-    "what": "Slim chinos"
+    "what": "Sand trousers"
    },
    {
     "item": "md-base-lincoln-navy",
@@ -5680,10 +5631,10 @@
     "what": "Check polo"
    },
    {
-    "item": "md-bb-norborton",
+    "item": "bb-didbrook",
     "shape": "trousers",
     "col": "sand",
-    "what": "Slim chinos"
+    "what": "trousers"
    },
    {
     "item": "r7-hs-paris",
@@ -5795,10 +5746,10 @@
     "what": "Knitted polo"
    },
    {
-    "item": "r7-mc-judson",
+    "item": "r11-gabicci-trousers",
     "shape": "trousers",
     "col": "navy",
-    "what": "Slim cord trousers"
+    "what": "Navy trousers"
    },
    {
     "item": "r7-bl-bruno",
@@ -5919,10 +5870,10 @@
     "what": "Polo shirt"
    },
    {
-    "item": "r8-lk-crantock",
+    "item": "percivalcl-linen-everyday-trousers-navy",
     "shape": "trousers",
     "col": "navy",
-    "what": "Tapered chinos"
+    "what": "Navy trousers"
    },
    {
     "item": "r8-bl-drum",
@@ -5959,10 +5910,10 @@
     "what": "Check zip-neck polo"
    },
    {
-    "item": "r7-mc-judson",
+    "item": "r11-gabicci-trousers",
     "shape": "trousers",
     "col": "navy",
-    "what": "Slim cords"
+    "what": "Navy trousers"
    },
    {
     "item": "r7-hs-paris",
@@ -6067,10 +6018,10 @@
     "what": "Stadium tee"
    },
    {
-    "item": "r8-lk-crantock",
+    "item": "r11-ellesse-trousers",
     "shape": "trousers",
     "col": "navy",
-    "what": "Tapered chinos"
+    "what": "Navy trousers"
    },
    {
     "item": "r9-lb-robbie-tan",
@@ -6081,7 +6032,7 @@
   ]
  },
  "md6-fila": {
-  "name": "Collared tee and check trousers",
+  "name": "Navy polo and grey trousers",
   "occ": "party",
   "style": [
    "mod"
@@ -6102,10 +6053,10 @@
     "what": "Collared tee"
    },
    {
-    "item": "p6-tml-highgrove",
+    "item": "r11-lambrett-trousers",
     "shape": "trousers",
     "col": "grey",
-    "what": "Slim check trousers"
+    "what": "Grey trousers"
    },
    {
     "item": "md-base-snapper-navy",
@@ -6137,10 +6088,10 @@
     "what": "Ringer tee"
    },
    {
-    "item": "md-bb-norborton",
+    "item": "stanray-a-pant-natural-25-1",
     "shape": "trousers",
     "col": "sand",
-    "what": "Slim chinos"
+    "what": "Sand trousers"
    },
    {
     "item": "sk-fila-festa",
@@ -9554,10 +9505,10 @@
     "what": "Cosy jumper"
    },
    {
-    "item": "r8-lk-crantock",
+    "item": "r11-oliverbr-trousers",
     "shape": "trousers",
     "col": "navy",
-    "what": "Tapered chinos"
+    "what": "Navy trousers"
    },
    {
     "item": "r10-wy-sabre",
@@ -9603,10 +9554,10 @@
     "what": "Oxford shirt, collar out"
    },
    {
-    "item": "r9-bk-beccles",
+    "item": "routeone-dickies-unionville-pleated-work-pants-black-001191207",
     "shape": "trousers",
     "col": "black",
-    "what": "Trousers"
+    "what": "Black trousers"
    },
    {
     "item": "r8-hs-paris-black",
@@ -9638,10 +9589,10 @@
     "what": "Quarter-zip polo"
    },
    {
-    "item": "md-bb-norborton",
+    "item": "hufworldwi-mason-pant-pt00335",
     "shape": "trousers",
     "col": "sand",
-    "what": "Slim chinos"
+    "what": "Sand trousers"
    },
    {
     "item": "r10-wy-sabre",
@@ -9678,10 +9629,10 @@
     "what": "Padded gilet"
    },
    {
-    "item": "r13-vj-chi",
+    "item": "routeone-volcom-chillow-pleat-elasticated-waist-pant-antique-black-001",
     "shape": "trousers",
     "col": "black",
-    "what": "Black chinos"
+    "what": "Black trousers"
    },
    {
     "item": "r13-db-belt",
@@ -9727,10 +9678,10 @@
     "what": "Velvet bow tie"
    },
    {
-    "item": "p6-tml-highgrove",
+    "item": "sw-tailored-grey",
     "shape": "trousers",
     "col": "grey",
-    "what": "Slim check trousers"
+    "what": "Grey trousers"
    },
    {
     "item": "p6-bl-ashland",
@@ -9828,7 +9779,7 @@
   ]
  },
  "q7-gunnar": {
-  "name": "Striped half-zip and suede trainers",
+  "name": "Cream half-zip and sand trousers",
   "occ": "everyday",
   "style": [
    "quiet"
@@ -9848,10 +9799,10 @@
     "what": "Striped half-zip"
    },
    {
-    "item": "md-bb-norborton",
+    "item": "bb-didbrook",
     "shape": "trousers",
     "col": "sand",
-    "what": "Slim chinos"
+    "what": "trousers"
    },
    {
     "item": "r7-hs-strike",
@@ -9885,10 +9836,10 @@
     "what": "Knitted jumper"
    },
    {
-    "item": "r8-lk-crantock",
+    "item": "universalw-navy-kennedy-stripe-duke-pant",
     "shape": "trousers",
     "col": "navy",
-    "what": "Tapered chinos"
+    "what": "Navy trousers"
    },
    {
     "item": "r8-hs-paris-black",
@@ -9905,7 +9856,7 @@
   ]
  },
  "q8-wool-jacket": {
-  "name": "Brown wool-look jacket and sand chinos",
+  "name": "Brown jacket and sand trousers",
   "occ": "everyday",
   "style": [
    "quiet",
@@ -9935,10 +9886,10 @@
     "what": "Crew-neck jumper"
    },
    {
-    "item": "md-bb-norborton",
+    "item": "stanray-a-pant-natural-25-1",
     "shape": "trousers",
     "col": "sand",
-    "what": "Slim chinos"
+    "what": "Sand trousers"
    },
    {
     "item": "pc-chelsea-brown",
@@ -9976,10 +9927,10 @@
     "what": "Birdseye jumper"
    },
    {
-    "item": "r9-bk-beccles",
+    "item": "universalw-black-merida-seersucker-military-chino",
     "shape": "trousers",
     "col": "black",
-    "what": "Trousers"
+    "what": "Black trousers"
    },
    {
     "item": "r8-hs-paris-black",
@@ -10022,10 +9973,10 @@
     "what": "Slim tie"
    },
    {
-    "item": "r8-lk-crantock",
+    "item": "universalw-navy-recycled-poly-tech-military-chino",
     "shape": "trousers",
     "col": "navy",
-    "what": "Tapered chinos"
+    "what": "Navy trousers"
    },
    {
     "item": "r8-hs-paris-black",
@@ -10059,10 +10010,10 @@
     "what": "Long-sleeve polo"
    },
    {
-    "item": "r9-bk-beccles",
+    "item": "routeone-carhartt-wip-snake-landon-pant-snake-camo-black-heavy-stone-w",
     "shape": "trousers",
     "col": "black",
-    "what": "Trousers"
+    "what": "Black trousers"
    },
    {
     "item": "r9-pg-rainsford",
@@ -11289,10 +11240,10 @@
     "what": "Varsity sweatshirt"
    },
    {
-    "item": "md-bb-norborton",
+    "item": "hufworldwi-mason-pant-pt00335",
     "shape": "trousers",
     "col": "sand",
-    "what": "Slim chinos"
+    "what": "Sand trousers"
    },
    {
     "item": "asos-own-white",
@@ -11865,7 +11816,7 @@
   ]
  },
  "s8-puffer": {
-  "name": "Black puffer and tech cargos",
+  "name": "Black jacket and grey trousers",
   "occ": "everyday",
   "style": [
    "street"
@@ -11893,10 +11844,10 @@
     "what": "Tech hoodie"
    },
    {
-    "item": "r8-cl-cargo",
+    "item": "r9-cl-techcargo",
     "shape": "trousers",
     "col": "grey",
-    "what": "Utility cargos"
+    "what": "Grey trousers"
    },
    {
     "item": "r8-cl-runner",
@@ -12690,9 +12641,9 @@
    },
    {
     "col": "sand",
-    "item": "tml-chino-sand",
+    "item": "tmlewin-the-linen-blend-pull-on-trouser-navy",
     "shape": "trousers",
-    "what": "Light chinos"
+    "what": "trousers"
    },
    {
     "col": "brown",
@@ -13654,7 +13605,7 @@
   ]
  },
  "x11-herring": {
-  "name": "Lambswool crew and capped Derbys",
+  "name": "Grey jumper and navy trousers",
   "occ": "smart",
   "style": [
    "quiet"
@@ -13675,10 +13626,10 @@
     "what": "Crew jumper"
    },
    {
-    "item": "r11-philipmo-trousers",
+    "item": "sw-chino-navy",
     "shape": "trousers",
     "col": "navy",
-    "what": "Sharps chinos"
+    "what": "Navy trousers"
    },
    {
     "item": "r11-savilero-shoes",
@@ -13830,10 +13781,10 @@
     "what": "Overshirt, worn open"
    },
    {
-    "item": "r11-luke1977-jeans",
+    "item": "r12-lk-future-cargo",
     "shape": "trousers",
     "col": "black",
-    "what": "Slim jeans"
+    "what": "Black trousers"
    },
    {
     "item": "r11-luke1977-boots",
@@ -14225,7 +14176,7 @@
   ]
  },
  "x11-quilted": {
-  "name": "Quilted jacket and lambswool zip-neck",
+  "name": "Navy jacket and black trousers",
   "occ": "everyday",
   "style": [
    "quiet"
@@ -14253,10 +14204,10 @@
     "what": "Lambswool zip-neck"
    },
    {
-    "item": "r11-original-trousers",
+    "item": "routeone-dickies-unionville-pleated-work-pants-black-001191207",
     "shape": "trousers",
     "col": "black",
-    "what": "Slim chinos"
+    "what": "Black trousers"
    },
    {
     "item": "r11-matalan-boots",

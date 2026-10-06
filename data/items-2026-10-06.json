@@ -50,7 +50,7 @@
 "cold"
 ],
 "note": "Down from £64.99 to £38.99 (40% off). 100% Nyl. L in stock at the last check.",
-"rank": 245,
+"rank": 185,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
@@ -59,7 +59,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/2269/6193/files/SH-TRANSNYLJOG-M-LK_SH-FBNY01DH-M-LK-7.jpg?v=1729866771",
 "was": 64.99,
-"fabric": "100% Nyl"
+"fabric": "100% Nyl",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "cernucci-nylon-panelled-track-joggers-light-grey": {
 "name": "Cernucci Nylon Panelled Track Joggers - Light Grey",
@@ -80,7 +82,7 @@
 "cold"
 ],
 "note": "Down from £64.99 to £38.99 (40% off). 100% Nyl. L in stock at the last check.",
-"rank": 245,
+"rank": 185,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
@@ -89,7 +91,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/2269/6193/files/SH-CTRACK-01-M-T_SH-CTRACK02-M-T_6.jpg?v=1715958044",
 "was": 64.99,
-"fabric": "100% Nyl"
+"fabric": "100% Nyl",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "cernucci-ottoman-rib-zip-through-hoodie-black": {
 "name": "Cernucci Ottoman Rib Zip Through Hoodie - Black",
@@ -295,14 +299,16 @@
 "cold"
 ],
 "note": "£26, full price. L in stock at the last check.",
-"rank": 306,
+"rank": 246,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
 "kind": "new",
 "checked": "2026-10-06",
 "added": "2026-10-06",
-"img_src": "https://cdn.shopify.com/s/files/1/0632/8716/5140/files/3291_1.jpg?v=1785752180"
+"img_src": "https://cdn.shopify.com/s/files/1/0632/8716/5140/files/3291_1.jpg?v=1785752180",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "finisterre-mens-organic-cotton-dylan-printed-shirt-ocean-folk-galactic": {
 "name": "Finisterre Dylan Printed Shirt, ocean folk/galactic",
@@ -596,7 +602,7 @@
 "warm"
 ],
 "note": "Down from £75 to £45 (40% off). 100% cot. 34W in stock at the last check.",
-"rank": 247,
+"rank": 187,
 "sets": [
 "holiday"
 ],
@@ -607,7 +613,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/2577/9994/files/SS26021625WIDE5SHORTICESTONEDENIM-3_1.jpg?v=1774459832",
 "was": 75,
-"fabric": "100% cot"
+"fabric": "100% cot",
+"fit": "Wide leg",
+"fitRank": 1
 },
 "jeanstore-wrangler-x-stranger-things-mike-lucas-vest-camo": {
 "name": "Wrangler ® x Stranger Things™ Mike Lucas Vest - Camo",
@@ -1926,7 +1934,7 @@
 "warm"
 ],
 "note": "Down from £54.99 to £27.50 (50% off). L in stock at the last check.",
-"rank": 226,
+"rank": 166,
 "sets": [
 "holiday"
 ],
@@ -1936,7 +1944,9 @@
 "checked": "2026-10-06",
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/0492/6252/6632/files/2700087_16048_01_MODEL.jpg?v=1769600765",
-"was": 54.99
+"was": 54.99,
+"fit": "Relaxed",
+"fitRank": 1
 },
 "uk-o-neill-uni-flower-t-shirt-black-out": {
 "name": "ONeill Uni Flower T-Shirt - Black Out",
@@ -2969,7 +2979,7 @@
 "warm"
 ],
 "note": "£48.99, full price. 34W in stock at the last check.",
-"rank": 312,
+"rank": 252,
 "sets": [
 "holiday"
 ],
@@ -2978,7 +2988,9 @@
 "kind": "new",
 "checked": "2026-10-06",
 "added": "2026-10-06",
-"img_src": "https://cdn.shopify.com/s/files/1/0276/2981/3803/products/elwood-mens-elastic-waist-shorts-coming-soon-265812.jpg?v=1672787280"
+"img_src": "https://cdn.shopify.com/s/files/1/0276/2981/3803/products/elwood-mens-elastic-waist-shorts-coming-soon-265812.jpg?v=1672787280",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "blacks-oex-halley-mountain-cap-unisex-black-319600": {
 "name": "OEX Halley Mountain Cap, black",
@@ -3581,7 +3593,7 @@
 "cold"
 ],
 "note": "Down from £54.99 to £38.49 (30% off). 100% Cot. L in stock at the last check.",
-"rank": 261,
+"rank": 201,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
@@ -3590,7 +3602,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/2269/6193/files/ta-mcore02-m-gm_ta-mcore04-m-gm-21.jpg?v=1761749453",
 "was": 54.99,
-"fabric": "100% Cot"
+"fabric": "100% Cot",
+"fit": "Wide leg",
+"fitRank": 1
 },
 "cernucci-washed-applique-embroidered-relaxed-jogger-taupe": {
 "name": "Cernucci Washed Embroidered Relaxed Jogger - Taupe",
@@ -3611,7 +3625,7 @@
 "cold"
 ],
 "note": "Down from £59.99 to £41.99 (30% off). 100% Cot. L in stock at the last check.",
-"rank": 262,
+"rank": 202,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
@@ -3620,7 +3634,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/2269/6193/files/ta-marca14-bl-_ta-marca15-bl-2_1.jpg?v=1775826454",
 "was": 59.99,
-"fabric": "100% Cot"
+"fabric": "100% Cot",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "corgisocks-mens-luxury-micro-stripe-cotton-cashmere-socks": {
 "name": "Corgi Micro Striped Cashmere Blend Socks, wine",
@@ -3816,14 +3832,16 @@
 "cold"
 ],
 "note": "£26, full price. L in stock at the last check.",
-"rank": 306,
+"rank": 246,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
 "kind": "new",
 "checked": "2026-10-06",
 "added": "2026-10-06",
-"img_src": "https://cdn.shopify.com/s/files/1/0632/8716/5140/files/3295_1.jpg?v=1787119062"
+"img_src": "https://cdn.shopify.com/s/files/1/0632/8716/5140/files/3295_1.jpg?v=1787119062",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "dubarry-kilmurray-mens-three-button-polo-navy": {
 "name": "EOL Kilmurray Three-Button Polo - Navy",
@@ -4166,14 +4184,16 @@
 "cold"
 ],
 "note": "£60, full price. L in stock at the last check.",
-"rank": 315,
+"rank": 255,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
 "kind": "new",
 "checked": "2026-10-06",
 "added": "2026-10-06",
-"img_src": "https://cdn.shopify.com/s/files/1/0733/8085/5901/files/6-34645-Y1.jpg?v=1789127380"
+"img_src": "https://cdn.shopify.com/s/files/1/0733/8085/5901/files/6-34645-Y1.jpg?v=1789127380",
+"fit": "Regular",
+"fitRank": 1
 },
 "ellesse-mens-rossanti-sweatshirt-black-634608": {
 "name": "Ellesse Rossanti Sweatshirt Black",
@@ -4769,7 +4789,7 @@
 "cold"
 ],
 "note": "Down from £145 to £85 (41% off). 100% Cot. 34W (leg not listed) in stock at the last check.",
-"rank": 255,
+"rank": 195,
 "sets": [],
 "insize": true,
 "sizes": "34W in stock",
@@ -4779,7 +4799,9 @@
 "img_src": "https://cdn.shopify.com/s/files/1/1010/6206/files/FOLK-5POCKETJEAN-SLUBDENIM266.jpg?v=1762788003",
 "was": 145,
 "fabric": "100% Cot",
-"sizeNote": "Leg length not listed: check it is a 32in (regular) leg."
+"sizeNote": "Leg length not listed: check it is a 32in (regular) leg.",
+"fit": "Straight",
+"fitRank": 1
 },
 "folkclothi-folk-signal-pant-irregular-block-jacquard-navy": {
 "name": "Folk Signal Pant - Irregular Block Jacquard Navy",
@@ -4800,7 +4822,7 @@
 "cold"
 ],
 "note": "Down from £220 to £130 (41% off). 98% cot. 34W in stock at the last check.",
-"rank": 267,
+"rank": 207,
 "sets": [],
 "insize": true,
 "sizes": "34W in stock",
@@ -4809,7 +4831,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/1010/6206/files/FOLK-SIGNAL-PANT-IRR-BLOCK-JACQUARD-NAVY210.jpg?v=1771416780",
 "was": 220,
-"fabric": "98% cot"
+"fabric": "98% cot",
+"fit": "Regular",
+"fitRank": 1
 },
 "folkclothi-folk-duffle-coat-navy-wool": {
 "name": "Folk Duffle Coat - Navy Wool",
@@ -5095,7 +5119,7 @@
 "cold"
 ],
 "note": "Down from £160 to £48 (70% off). 100% cot. L in stock at the last check.",
-"rank": 200,
+"rank": 140,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
@@ -5104,7 +5128,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/0321/4373/6963/files/Levels_14-001_f50e2e28-d13d-498b-993c-75abb929248b.jpg?v=1759317235",
 "was": 160,
-"fabric": "100% cot"
+"fabric": "100% cot",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "goodhoodst-no-problemo-no-limits-cap-black": {
 "name": "No Problemo No Limits Cap - Black",
@@ -5150,7 +5176,7 @@
 "cold"
 ],
 "note": "Down from £65 to £20 (69% off). 100% Nyl. L in stock at the last check.",
-"rank": 194,
+"rank": 134,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
@@ -5159,7 +5185,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/0321/4373/6963/files/ZipOffLooseFitPants-BlackFront.jpg?v=1758625660",
 "was": 65,
-"fabric": "100% Nyl"
+"fabric": "100% Nyl",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "goodhoodst-daiwa-pier39-tech-ventilation-hat-charcoal": {
 "name": "Goodhood Tech Ventilation Hat - Charcoal",
@@ -5422,64 +5450,6 @@
 "img_src": "https://cdn.shopify.com/s/files/1/1659/8997/files/MOMENTUMCREW_MOMENTUMJOGGER-GREYMARLSWT-EOFJFTSB-EOFJH_150.jpg?v=1773081136",
 "was": 50
 },
-"gymking-gym-king-fundamental-jogger-storm-teal": {
-"name": "Gym King Fundamental Jogger - Storm Teal",
-"shop": "Gym King",
-"cat": "trouser",
-"price": 27,
-"url": "https://www.gymking.com/products/gym-king-fundamental-jogger-storm-teal?variant=56271631974783",
-"style": [
-"casual",
-"lounge"
-],
-"occ": [
-"everyday",
-"lounge"
-],
-"wx": [
-"mild",
-"cold"
-],
-"note": "Down from £45 to £27 (40% off). L in stock at the last check.",
-"rank": 242,
-"sets": [],
-"insize": true,
-"sizes": "L in stock",
-"kind": "new",
-"checked": "2026-10-06",
-"added": "2026-10-06",
-"img_src": "https://cdn.shopify.com/s/files/1/1659/8997/files/FUNDAMENTALCREW_FUNDAMENTALJOGGER-STORMTEALSWT-EOFFRTSB-EOFFT3.jpg?v=1770412458",
-"was": 45
-},
-"gymking-gym-king-fundamental-jogger-blue-surge": {
-"name": "Gym King Fundamental Jogger - Blue Surge",
-"shop": "Gym King",
-"cat": "trouser",
-"price": 27,
-"url": "https://www.gymking.com/products/gym-king-fundamental-jogger-blue-surge?variant=56271633613183",
-"style": [
-"casual",
-"lounge"
-],
-"occ": [
-"everyday",
-"lounge"
-],
-"wx": [
-"mild",
-"cold"
-],
-"note": "Down from £45 to £27 (40% off). L in stock at the last check.",
-"rank": 242,
-"sets": [],
-"insize": true,
-"sizes": "L in stock",
-"kind": "new",
-"checked": "2026-10-06",
-"added": "2026-10-06",
-"img_src": "https://cdn.shopify.com/s/files/1/1659/8997/files/FUNDAMENTALHOOD_FUNDAMENTALJOGGER-BLUESURGEHDE-EOFFPTSB-BOGF03.jpg?v=1770411496",
-"was": 45
-},
 "henrilloyd-mens-dynamic-dri-fast-ss-tee-caribbean-sea": {
 "name": "Henri Lloyd Dynamic Dri Fast Tee - Caribbean Sea",
 "shop": "Henri Lloyd",
@@ -5690,7 +5660,7 @@
 "warm"
 ],
 "note": "£29.95, full price. L in stock at the last check.",
-"rank": 307,
+"rank": 247,
 "sets": [
 "holiday"
 ],
@@ -5699,7 +5669,9 @@
 "kind": "new",
 "checked": "2026-10-06",
 "added": "2026-10-06",
-"img_src": "https://cdn.shopify.com/s/files/1/0667/2698/5971/files/image482860760.jpg?v=1765980404"
+"img_src": "https://cdn.shopify.com/s/files/1/0667/2698/5971/files/image482860760.jpg?v=1765980404",
+"fit": "Regular",
+"fitRank": 1
 },
 "hollandsco-craghoppers-mens-national-trust-sabden-short-sleeved-t-shir": {
 "name": "Craghoppers National Trust Sabden Short Sleeved T-Shirt, atlas red",
@@ -6367,7 +6339,7 @@
 "cold"
 ],
 "note": "Down from £85 to £51 (40% off). 98% cot. 34W 32L in stock at the last check.",
-"rank": 248,
+"rank": 188,
 "sets": [],
 "insize": true,
 "sizes": "34W 32L in stock",
@@ -6376,7 +6348,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/2577/9994/files/112361073_3.jpg?v=1744902445",
 "was": 85,
-"fabric": "98% cot"
+"fabric": "98% cot",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "jeanstore-levis-workwear-sunrise-trucker-jacket-undyed-ecru-greige": {
 "name": "Levi's® Workwear Sunrise Trucker Jacket - Undyed Ecru Greige",
@@ -7251,37 +7225,6 @@
 "img_src": "https://cdn.shopify.com/s/files/1/0653/9404/9274/files/mens-jackets-1478728.jpg?v=1776131851",
 "was": 70
 },
-"lyleandsco-sports-tape-sweat-shorts-mercury-grey": {
-"name": "Lyle & Scott Sports Tape Sweat Shorts",
-"shop": "Lyle & Scott",
-"cat": "trouser",
-"price": 45,
-"url": "https://www.lyleandscott.com/products/sports-tape-sweat-shorts-mercury-grey?variant=57158721503612",
-"style": [
-"quiet",
-"work",
-"casual"
-],
-"occ": [
-"everyday",
-"lounge"
-],
-"wx": [
-"warm"
-],
-"note": "Down from £65 to £45 (31% off). L in stock at the last check.",
-"rank": 262,
-"sets": [
-"holiday"
-],
-"insize": true,
-"sizes": "L in stock",
-"kind": "new",
-"checked": "2026-10-06",
-"added": "2026-10-06",
-"img_src": "https://cdn.shopify.com/s/files/1/0653/9404/9274/files/mens-jackets-8743056.jpg?v=1784779068",
-"was": 65
-},
 "merc-reuben-london-calling-graphic-print-t-shirt": {
 "name": "Merc Clothing Reuben T-Shirt, white",
 "shop": "Merc",
@@ -7493,7 +7436,7 @@
 "warm"
 ],
 "note": "Down from £25 to £9.99 (60% off). 65% pol. 34W in stock at the last check.",
-"rank": 206,
+"rank": 146,
 "sets": [
 "holiday"
 ],
@@ -7504,7 +7447,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/0039/4490/6801/files/bdu-shorts-militarymart.png?v=1762255500",
 "was": 25,
-"fabric": "65% pol"
+"fabric": "65% pol",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "militaryma-highlander-short-sleeve-t-shirt-tree-deep-camo-small": {
 "name": "Highlander Tree Deep Camo Short-Sleeve T-Shirt",
@@ -9026,7 +8971,7 @@
 "cold"
 ],
 "note": "Down from £64.95 to £14.95 (77% off). 100% cot. L in stock at the last check.",
-"rank": 180,
+"rank": 120,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
@@ -9035,7 +8980,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/0274/4293/7933/files/001160639.jpg?v=1734880098",
 "was": 64.95,
-"fabric": "100% cot"
+"fabric": "100% cot",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "routeone-route-one-classic-pique-polo-shirt-argyle-001166391": {
 "name": "Route One Classic Pique Polo Shirt - Argyle",
@@ -9088,7 +9035,7 @@
 "cold"
 ],
 "note": "Down from £79.95 to £24.95 (69% off). 100% cot. 34W in stock at the last check.",
-"rank": 196,
+"rank": 136,
 "sets": [],
 "insize": true,
 "sizes": "34W in stock",
@@ -9097,7 +9044,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/0274/4293/7933/files/001170926.jpg?v=1734355718",
 "was": 79.95,
-"fabric": "100% cot"
+"fabric": "100% cot",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "routeone-dickies-scobey-puffer-jacket-plum-perfect-001178755": {
 "name": "Dickies Scobey Puffer Jacket - Plum Perfect",
@@ -9754,7 +9703,7 @@
 "cold"
 ],
 "note": "Down from £48 to £27 (44% off). 100% Cot. 34W (leg not listed) in stock at the last check.",
-"rank": 236,
+"rank": 176,
 "sets": [],
 "insize": true,
 "sizes": "34W in stock",
@@ -9764,7 +9713,9 @@
 "img_src": "https://cdn.shopify.com/s/files/1/0280/2529/0841/files/SS-28670_1.jpg?v=1761576034",
 "was": 48,
 "fabric": "100% Cot",
-"sizeNote": "Leg length not listed: check it is a 32in (regular) leg."
+"sizeNote": "Leg length not listed: check it is a 32in (regular) leg.",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "siksilk-loose-fit-jeans-ss-28669": {
 "name": "SikSilk Loose Fit Jeans Washed Light Blue",
@@ -9785,7 +9736,7 @@
 "cold"
 ],
 "note": "Down from £48 to £27 (44% off). 100% Cot. 34W (leg not listed) in stock at the last check.",
-"rank": 236,
+"rank": 176,
 "sets": [],
 "insize": true,
 "sizes": "34W in stock",
@@ -9795,7 +9746,9 @@
 "img_src": "https://cdn.shopify.com/s/files/1/0280/2529/0841/files/SS-28669_1.jpg?v=1758727773",
 "was": 48,
 "fabric": "100% Cot",
-"sizeNote": "Leg length not listed: check it is a 32in (regular) leg."
+"sizeNote": "Leg length not listed: check it is a 32in (regular) leg.",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "siksilk-siksilk-ls-zip-polo-t-shirt-ss-29283": {
 "name": "SikSilk Ecru LS Zip Polo T-Shirt",
@@ -10245,7 +10198,7 @@
 "cold"
 ],
 "note": "Down from £90 to £45 (50% off). L in stock at the last check.",
-"rank": 231,
+"rank": 171,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
@@ -10253,7 +10206,9 @@
 "checked": "2026-10-06",
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/2425/1015/files/APANT_NATURAL-1_1_fc2e378d-5709-49d0-a802-47bb230c1aa0.jpg?v=1742311622",
-"was": 90
+"was": 90,
+"fit": "Relaxed",
+"fitRank": 1
 },
 "stanray-standard-5-single-stone-25-1": {
 "name": "Stan Ray Standard 5 (Single Stone)",
@@ -10272,7 +10227,7 @@
 "cold"
 ],
 "note": "Down from £95 to £47.50 (50% off). L in stock at the last check.",
-"rank": 231,
+"rank": 171,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
@@ -10280,7 +10235,9 @@
 "checked": "2026-10-06",
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/2425/1015/files/STANDARD5_SINGLESTONE-1_1_cdf92f4f-32b7-44e4-9d7b-b14fca56a67e.jpg?v=1742389685",
-"was": 95
+"was": 95,
+"fit": "Wide leg",
+"fitRank": 1
 },
 "stanray-stan-ray-tour-shirt-denim-mega-mix-ss24": {
 "name": "Stan Ray Tour Shirt (Denim Mega Mix)",
@@ -11213,7 +11170,7 @@
 "cold"
 ],
 "note": "Down from £150 to £75 (50% off). 65% Rec. 34W (leg not listed) in stock at the last check.",
-"rank": 238,
+"rank": 178,
 "sets": [],
 "insize": true,
 "sizes": "34W in stock",
@@ -11223,7 +11180,9 @@
 "img_src": "https://cdn.shopify.com/s/files/1/1831/8429/files/34140_recycled-poly-tech-navy_1_35a5658d-1f3e-481f-9430-af6d2840253a.jpg?v=1771848702",
 "was": 150,
 "fabric": "65% Rec",
-"sizeNote": "Leg length not listed: check it is a 32in (regular) leg."
+"sizeNote": "Leg length not listed: check it is a 32in (regular) leg.",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "universalw-navy-tropical-suiting-military-chino": {
 "name": "Universal Works Navy Tropical Suiting Military Chino",
@@ -11244,7 +11203,7 @@
 "cold"
 ],
 "note": "Down from £195 to £99 (49% off). 34W (leg not listed) in stock at the last check.",
-"rank": 245,
+"rank": 185,
 "sets": [],
 "insize": true,
 "sizes": "34W in stock",
@@ -11253,7 +11212,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/1831/8429/files/34137_tropical-suiting-navy_1_16fd4bb3-4eb4-4021-b67f-dc61da895fb9.jpg?v=1771848115",
 "was": 195,
-"sizeNote": "Leg length not listed: check it is a 32in (regular) leg."
+"sizeNote": "Leg length not listed: check it is a 32in (regular) leg.",
+"fit": "Relaxed",
+"fitRank": 1
 },
 "urbanexces-no-problemo-mini-problemo-beanie-black": {
 "name": "No Problemo Mini Problemo Beanie - Black",
@@ -11480,7 +11441,7 @@
 "cold"
 ],
 "note": "Down from £109.95 to £64.95 (41% off). L in stock at the last check.",
-"rank": 250,
+"rank": 190,
 "sets": [],
 "insize": true,
 "sizes": "L in stock",
@@ -11488,7 +11449,9 @@
 "checked": "2026-10-06",
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/1213/2346/files/CarharttWIP_OGSingleKneePant_BlueBlackBlueFog_GarmentDyed__01.jpg?v=1755617462",
-"was": 109.95
+"was": 109.95,
+"fit": "Relaxed",
+"fitRank": 1
 },
 "urbanindus-element-esp-work-jacket-seersucker-natural": {
 "name": "Element ESP Work Jacket, cream",
@@ -11749,7 +11712,7 @@
 "cold"
 ],
 "note": "Down from £70 to £49 (30% off). 39% Rep. 34W 32L in stock at the last check.",
-"rank": 264,
+"rank": 204,
 "sets": [],
 "insize": true,
 "sizes": "34W 32L in stock",
@@ -11758,7 +11721,9 @@
 "added": "2026-10-06",
 "img_src": "https://cdn.shopify.com/s/files/1/0046/5492/3889/files/A1132501_SCB_1.jpg?v=1750689443",
 "was": 70,
-"fabric": "39% Rep"
+"fabric": "39% Rep",
+"fit": "Regular",
+"fitRank": 1
 },
 "volcom-caden-solid-ls-6": {
 "name": "Volcom Caden Solid Shirt - Scarab",
