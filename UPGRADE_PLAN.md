@@ -746,6 +746,23 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   - The weekly refresh applies the same rule (`weekly_refresh.py fit`, and in `check`), and
     `sweep_filter.py` leaves tight fits out of new picks and labels the loose ones.
 
+## 2za. Dave's face from his photos (6 Oct 2026)
+
+- **3D face, matched to the photos Emma shared:**
+  - The skin, beard and hairline are painted onto the head as a texture: fair skin with warm
+    cheeks, and his short ginger-brown beard drawn as hairs along the jaw, chin and sideburns,
+    with clear cheeks above it. The beard adds a little depth to the jaw.
+  - A brow ridge and a fuller mouth area give the face its depth from the side.
+  - Blue-grey eyes with a pupil and a darker rim, slightly hooded lids and a lower lid, under
+    straight, thick dark-brown brows.
+  - A longer, straight nose with a narrow bridge, a rounded tip and nostrils.
+  - The moustache is one full ginger-brown chevron drawn as hairs, covering the upper lip, its ends
+    drooping just past the corners of the mouth.
+  - His curls are corkscrew ringlets in two browns over a dark-brown base: more volume on top, a
+    few curls over the forehead, over the tops of the ears and short at the nape. Under a hat, only
+    the curls below the brim show.
+  - A slight closed-mouth smile, and warmer skin to match.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
