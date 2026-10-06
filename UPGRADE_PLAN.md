@@ -823,6 +823,17 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   - Shoulders slope naturally under clothes instead of puffing.
   - Leg shading blends into the hips, so no light patch shows at the crotch.
 
+## 2zd. 2D drawing fixes (6 Oct 2026)
+
+- **Fixed: 2D clothes had lost their colours and textures.** A helper added for the 3D hair colour
+  shared its name with the 2D drawing's colour function and replaced it, so every garment was drawn
+  in plain near-black. It is renamed, and no other function names clash.
+- **2D head:**
+  - The curls on top sit lower, closer to his head as in his photos.
+  - The head, hair and hats are drawn 8% smaller against his body, scaled about the chin so the
+    neck still meets it.
+  - The face itself is unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
