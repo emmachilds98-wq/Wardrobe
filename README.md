@@ -25,6 +25,7 @@ that refresh them every week (see `REFRESH.md`).
 | `tools/browser_fetch.js` | The headless-browser fallback used by `--browser`. |
 | `tools/weekly_refresh.py` | The weekly refresh: downloads catalogues, re-checks every pick (price, his size, still sold), applies the Workwear rules and mends outfits. |
 | `tools/browser_check.js` | Headless-Chromium fallback for product pages that refuse a plain request. |
+| `tools/check_3d.js` | Automatic 3D checks: renders outfits from the front, side and back and flags inner layers or skin showing through, holes, floating parts and colours that drift from the listing (`node tools/check_3d.js --site docs --sample 80 --out qa`). |
 | `data/items-YYYY-MM-DD*.json`, `data/outfits-YYYY-MM-DD.json` | Each week's new picks and outfits. |
 | `data/refresh-report.json` | What the last refresh changed: price moves, removals, renames, Workwear changes, shops not checked. |
 | `docs/` | The built site (page plus data and photo files), served by GitHub Pages and published to the artifact. |
