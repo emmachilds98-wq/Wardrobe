@@ -8,7 +8,7 @@ marks still live in the artifact's database.
 
     python3 tools/build_site.py [--out site]
 """
-import argparse, glob, json, os, shutil
+import argparse, glob, json, os, re, shutil
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -41,6 +41,7 @@ def load(p):
 
 
 GROUP_MAX = 899
+PHOTO_CHUNK = 150
 OWN_GROUP = ("shirt", "coat")
 
 
@@ -100,17 +101,27 @@ def main():
         with open(p, encoding="utf-8") as f:
             photos.update(json.load(f))
     bycat = {}
+    # Tidy before publishing: an old price more than six times the current one is a data error,
+    # not a sale, and a few feeds leave a trademark sign at the start of a name.
+    for v in items.values():
+        if v.get("was") and v.get("price") and v["was"] > v["price"] * 6:
+            v.pop("was")
+        v["name"] = re.sub(r"\s{2,}", " ", re.sub(r"^[^\w(]+", "", v.get("name", ""))).strip()
     groups = load_groups(items)
     for g, ids in groups.items():
         for k in ids:
             items[k]["pg"] = g
             items[k].pop("img_src", None)
-    for k, src in photos.items():
-        it = items.get(k)
-        if not it or not isinstance(src, str) or not src.startswith("data:image/"):
-            continue
-        bycat.setdefault(it["pg"], {})[k] = src
-        it["ph"] = True
+    # Photos go in files of at most PHOTO_CHUNK per load group, so opening one category on a phone
+    # fetches about a megabyte rather than the whole group's photos. "pg" names an item's photo file.
+    for g, ids in groups.items():
+        have = [k for k in ids if isinstance(photos.get(k), str) and photos[k].startswith("data:image/")]
+        for n in range(0, len(have), PHOTO_CHUNK):
+            name = "%s-p%d" % (g, n // PHOTO_CHUNK + 1)
+            for k in have[n:n + PHOTO_CHUNK]:
+                bycat.setdefault(name, {})[k] = photos[k]
+                items[k]["pg"] = name
+                items[k]["ph"] = True
     for g, m in bycat.items():
         with open(os.path.join(out, "data", "photos", g + ".json"), "w", encoding="utf-8") as f:
             json.dump(m, f, separators=(",", ":"))

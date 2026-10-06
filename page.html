@@ -492,6 +492,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 .figmode button{font:inherit;font-size:.82rem;font-weight:600;padding:7px 12px;border:0;border-left:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
 .figmode button[aria-pressed="true"]{background:var(--green);color:var(--on-green)}
 .figmode.no2d button[data-figmode="2d"]{display:none}
+@media (max-width:560px){.bar .bar-row{flex-wrap:nowrap;gap:8px}.figmode .label,.figmode .fm-long{display:none}.figmode button{padding:7px 10px}}
 .b-3d{width:100%;max-width:300px;aspect-ratio:240/490;align-self:center;background:var(--board);border-radius:3px;touch-action:none;cursor:grab}
 .b-3d canvas{display:block;width:100%!important;height:100%!important}
 .zoom-tabs .act[aria-pressed="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
@@ -528,7 +529,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
     <div class="tabs" id="f-style" role="group" aria-label="Style"></div>
     <div class="bar-row">
       <label class="search" for="q"><span class="vh">Search every style</span><input id="q" type="search" placeholder="Search every style: cord, Vans, navy, M&amp;S…" autocomplete="off"></label>
-      <div class="figmode" id="figmode" role="group" aria-label="How Dave is shown"><span class="label">Dave</span><button type="button" data-figmode="2d">2D drawing</button><button type="button" data-figmode="3d">3D model</button></div>
+      <div class="figmode" id="figmode" role="group" aria-label="How Dave is shown"><span class="label">Dave</span><button type="button" data-figmode="2d">2D<span class="fm-long"> drawing</span></button><button type="button" data-figmode="3d">3D<span class="fm-long"> model</span></button></div>
     </div>
     <div class="views" role="tablist" aria-label="Parts of the page">
       <button class="vbtn" type="button" data-go="shop">Shop</button>

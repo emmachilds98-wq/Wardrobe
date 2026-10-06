@@ -617,6 +617,47 @@ its whole range.
   Chromium) is written, but Fred Perry and John Lewis still refused it from this cloud server. The
   shops in the "links only" list stay links for now.
 
+## 2w. A 2D/3D switch, a better 3D model, and a review of the whole page (version 30, 6 Oct 2026)
+
+- **2D or 3D, page-wide:** a "Dave: 2D drawing / 3D model" switch in the top bar. In 3D, outfit cards,
+  "What to wear today", "One piece, many outfits" and saved outfits show still 3D renders (one hidden
+  renderer, cached by outfit and colours, so the page never opens more than three 3D views); the
+  builder and the large outfit view show the live model you can turn. The choice is remembered.
+- **Turning 2D off later:** Style guide > Page settings > "Offer the 2D drawings". Off, Dave is shown
+  only in 3D everywhere and the 2D buttons disappear. The page owner's choice is saved for everyone
+  (database `meta/settings`); anyone else's stays on their device. It is on until changed.
+- **Better 3D model:** a chin and jaw, eyes with whites, brows, a nose, a single curved moustache;
+  ringlet curls (small tori and beads) over a dark cap that stops at the hairline in front and at
+  the bottom of the ears behind; shoulders, hands with thumbs; cloth with a fine weave that catches
+  the light; ribbed hems and cuffs on knits, crew necks, roll necks, hoods with drawcords, shirt and
+  polo collars with plackets and buttons, blazer lapels, zips on zip jackets and half-zips, chest and
+  cargo pockets, waistbands and flies; trainers with white or gum soles and laces, boots with shafts;
+  beanie, cap, bucket hat, sunglasses, watch, bag, backpack, scarf, chain and tie.
+- **Review of the rest of the page** (desktop and phone, every view): no errors, no sideways scroll,
+  data loads in about a second. Fixed now:
+  - an old price more than six times the current one is treated as a data error and dropped (one
+    beanie showed 89% off);
+  - names that began with a stray trademark sign are cleaned;
+  - photo files are split into files of at most 150 photos (51 files, the largest 1.5 MB, was 3 to
+    5 MB per category), so opening a category on a phone loads far less;
+  - on phones the 2D/3D switch sits beside the search box with short labels, so the sticky bar is one
+    line shorter.
+
+### Further upgrades found in the review (not done yet)
+1. **"New this week" has lost its meaning:** after the big sweeps almost every pick was added this
+   week (6,582). From the next weekly refresh, only picks first seen that week should carry it.
+2. **Weekly price refresh:** re-run `shopify_pull.py`, `sitemap_sweep.py` and `sweep_filter.py` weekly
+   to update prices, stock in his size and `hist`, so "Price drop" tags and the shortlist's
+   "Down £x since saved" work across all 7,155 picks; drop picks no longer listed.
+3. **Shop-by-budget sets:** £60, £100 and £150 buttons on Outfits using the builder's suggester.
+4. **Size check per shop:** store size charts for the main shops and show what L means at each.
+5. **Fit filters for the new shops:** about half the new-shop picks have no stock-by-size data; a
+   browser pass over just those product pages could confirm his size.
+6. **Duplicate colourways:** 53 shop-and-name pairs repeat (same product, colour not in the name); the
+   lists already show at most two, but the sweep could add the colour from the variant.
+7. **Blocked shops:** about 30 shops still refuse automated requests from the cloud; running
+   `tools/browser_sweep.js` from a home computer would add them.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
