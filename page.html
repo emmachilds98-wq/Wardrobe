@@ -2306,12 +2306,12 @@ var FIG={mode:"2d",allow2d:true};
 try{FIG.mode=localStorage.getItem("dw-fig")==="3d"?"3d":"2d";FIG.allow2d=localStorage.getItem("dw-allow2d")!=="0";}catch(e){}
 function figMode(){return FIG.allow2d?FIG.mode:"3d";}
 /* Dave's look for the 3D model, set in "Edit Dave". The page owner's choice is shared through the database
-   (meta/character); anyone else's stays on their device. The defaults are the look the owner saved as his base
-   (6 Oct 2026): no beard, a moustache. Every Edit Dave slider has this base in the middle. */
+   (meta/character); anyone else's stays on their device. The defaults are the look the owner saved as his current
+   base (6 Oct 2026, second save): no beard, a moustache. Every Edit Dave slider has this base in the middle. */
 var CHAR_DEF={height:183,skin:"#e2b08f",hair:"#38261b",hairVol:0.6,tache:"pencil",tacheCol:"#7a4a2c",beard:"none",eyes:"#5d86b5",brows:"thin",glasses:"none",glassCol:"#2b2622",weight:0,muscle:0,shoulderW:0,chest:0,waistW:0,belly:0,hips:0,arms:0,legs:0,neckW:0,faceW:0,jaw:0,chin:0,noseSize:0,lips:0,ears:0,eyeSize:0,smile:0.3,
   tacheY:0,tacheZ:0,tacheV:2,tacheW:1,tacheLen:0,tacheDen:1,tacheDroop:0.45,browCol:"",browThick:-0.4,browY:-0.25,browArch:-0.1,browTilt:-0.25,browLen:-0.05,
-  hairStyle:"short",hairShade:0.26,hairLight:0.4,curlK:0,hairLenK:-0.05,fringe:-0.5,freckles:0.3,legLen:-1,torsoLen:0.35,armLen:0,neckLen:-0.45,headSize:0.3,
-  hairTop:0,hairSides:0,hairBack:0,hairFinish:"auto",curlSize:0,frizz:0,hairDir:0,fringeLen:0};
+  hairStyle:"short",hairShade:0.26,hairLight:0.4,curlK:1,hairLenK:1,fringe:1,freckles:0.3,legLen:-1,torsoLen:0.35,armLen:0,neckLen:-0.45,headSize:0.3,
+  hairTop:-1,hairSides:-0.14,hairBack:0,hairFinish:"natural",curlSize:1,frizz:-1,hairDir:-0.63,fringeLen:-0.37};
 /* older saves used fixed choices (build, shoulders, middle, face, nose): turn them into slider positions */
 function migrateChar(o){if(!o||typeof o!=="object")return o;
   function set(k,v){if(o[k]==null)o[k]=v;}
@@ -2554,10 +2554,10 @@ function hzN(x,y){var F=BODY.face,ZL=BODY.cache.face,fx=(x-F.x0)/F.st,fy=(y-F.y0
 /* the real head's distance from the skull centre in every direction (in skull units), so his hair sits on his
    scalp rather than on a fitted egg: the hairline then meets the forehead cleanly instead of poking through in places */
 function headRad(){var c=BODY.cache,k=bodyKey();if(c.hrad&&c.hradK===k)return c.hrad;
-  var P=bodyPos().pos,SK=bodyLM().skull,I=BODY.idx,hR=BODY.regions.indexOf("head"),NL=64,NA=32,G=new Float32Array(NL*NA),seen=new Uint8Array(BODY.n),a,o;
-  for(var t=0;t<I.length/3;t++){if(BODY.treg[t]!==hR)continue;for(var j=0;j<3;j++){var v=I[t*3+j];if(seen[v])continue;seen[v]=1;
+  var P=bodyPos().pos,SK=bodyLM().skull,I=BODY.idx,hR=BODY.regions.indexOf("head"),nR=BODY.regions.indexOf("neck"),NL=64,NA=32,G=new Float32Array(NL*NA),seen=new Uint8Array(BODY.n),a,o;
+  for(var t=0;t<I.length/3;t++){if(BODY.treg[t]!==hR&&BODY.treg[t]!==nR)continue;for(var j=0;j<3;j++){var v=I[t*3+j];if(seen[v])continue;seen[v]=1;
     var ux=P[v*3]/SK[2],uy=(P[v*3+1]-SK[0])/SK[3],uz=(P[v*3+2]-SK[1])/SK[4],r=Math.sqrt(ux*ux+uy*uy+uz*uz);
-    if(r<0.3||(Math.abs(ux)>0.98&&uy<0.5&&uy>-0.6))continue;   /* (the ears stand off the head: leave them out) */
+    if(r<0.3||uy/r<-0.75||(Math.abs(ux)>0.98&&uy<0.5&&uy>-0.6))continue;   /* (the ears stand off the head: leave them out) */
     var g=Math.min(NA-1,Math.floor((Math.asin(uy/r)+Math.PI/2)/Math.PI*NA))*NL+Math.floor((Math.atan2(ux,uz)+Math.PI)/(2*Math.PI)*NL)%NL;if(r>G[g])G[g]=r;}}
   /* fill the directions no point landed in from their neighbours, then soften */
   for(var it=0;it<8;it++){var F=G.slice();for(a=0;a<NA;a++)for(o=0;o<NL;o++){if(G[a*NL+o])continue;var sm=0,n=0;
@@ -2869,56 +2869,79 @@ function make3Dcore(pieces){
   var TPk=Number(CHAR.hairTop)||0,CSZ=Number(CHAR.curlSize)||0,FZ=Number(CHAR.frizz)||0,DIR=Number(CHAR.hairDir)||0,FLk=Number(CHAR.fringeLen)||0;
   var hcol=CHAR.hairShade!=null?brownAt(CHAR.hairShade):CHAR.hair,tipCol=mixHex(hcol,"#a07a50",0.1+0.45*(CHAR.hairLight==null?0.55:Number(CHAR.hairLight)));
   /* on the real body the hair sits on his scalp (headRad); the drawn-only head keeps its fitted egg */
-  var HRAD=bodyOn?headRad():null,topF=HS.top*(1+0.55*TPk);
+  var HRAD=bodyOn?headRad():null,topF=HS.top*Math.max(0.15,1+0.55*TPk);
   function hairR(x,y,z){var sc=scalpAt(x,y,z),ck=hairCut(x,y,z)[0],
       vol=hatOn?0.06:((0.045+0.13*Math.pow(Math.max(0,y),1.5))*topF*hv+0.03*(1+0.8*FZ)*lump(x,y,z)+(Math.abs(x)>0.6&&y>0&&y<0.5?0.035*HS.side*hv:0))*ck;
     if(!HRAD)return 0.8+0.14*Math.min(1,sc*2)+sc*vol;
     var rs=HRAD(x,y,z);
     /* where no hair grows the mass stays well inside the head; at the hairline it slides out from just under the skin */
     /* hair cut close to the head (clipper sides, a taper or fade) tucks under the skin, where the scalp tint shows it */
-    var kk=sstep(0.3,0.6,ck);return sc>0?rs*(0.9+0.05*kk+0.04*Math.min(1,sc*2)*kk)+sc*vol:Math.min(0.8,rs*0.85);}
+    /* (a wide, gentle rise out of the skin keeps the hairline edge smooth rather than stepped) */
+    var kk=sstep(0.3,0.6,ck),s2=Math.max(0,Math.min(1,(y-lerpT(hairLow(),z))/0.18));return sc>0?rs*(0.9+0.05*kk+0.04*s2*kk)+s2*vol:Math.min(0.8,rs*0.85);}
   var hm=new T.SphereGeometry(1,96,72),mp=hm.attributes.position;
   for(vi=0;vi<mp.count;vi++){x=mp.getX(vi);y=mp.getY(vi);z=mp.getZ(vi);var hr=hairR(x,y,z);mp.setXYZ(vi,x*0.084*hr,HY+y*0.12*hr,z*0.106*hr);}
   hm.computeVertexNormals();add(hm,mat(shade(hcol,0.7),0.9));
-  /* a curl: two or three fine strands twisting round each other along a loose spiral */
+  /* a lock: a bundle of fine hairs following one spiral, full at the root and gathering to a point at the tip, so each
+     curl reads as a defined ringlet even when it is loose, as in his photos. Defined curls keep the hairs together;
+     softer, fluffier ones splay them. 'flat' squashes the spiral's depth, for the locks lying on his forehead. */
   function lin3(h){var c=new T.Color(h).convertSRGBToLinear();return [c.r,c.g,c.b];}
   var rootL=lin3(shade(hcol,0.9)),tipL=lin3(tipCol);
-  function curl(rh,len,turns,nStr){var pos=[],nrm=[],col=[],idx=[],base=0,fj=0.0014*(1+1.2*Math.max(0,FZ));
-    for(var k=0;k<nStr;k++){var ph=k/nStr*Math.PI*2,pts=[];for(var i=0;i<=20;i++){var f=i/20,a=f*turns*Math.PI*2+ph*0.25,rr=rh*(1-0.2*f)+0.0016*Math.sin(f*9+ph);pts.push(new T.Vector3(rr*Math.cos(a)+fj*Math.cos(ph+f*12),-f*len,rr*Math.sin(a)+fj*Math.sin(ph+f*12)));}
-      var tg=new T.TubeGeometry(new T.CatmullRomCurve3(pts),18,0.0012,3,false),tp=tg.attributes.position,tn=tg.attributes.normal,ti=tg.index.array,ring=4;
-      for(var v=0;v<tp.count;v++){pos.push(tp.getX(v),tp.getY(v),tp.getZ(v));nrm.push(tn.getX(v),tn.getY(v),tn.getZ(v));var f2=Math.floor(v/ring)/18,w=Math.pow(f2,2.4);col.push(rootL[0]/tipL[0]*(1-w)+w,rootL[1]/tipL[1]*(1-w)+w,rootL[2]/tipL[2]*(1-w)+w);}
+  var spread=0.0026*(1+0.9*Math.max(0,FZ))*(1-0.3*Math.min(1,Math.max(0,-FZ))),fj=0.0012*(1+1.5*Math.max(0,FZ))*Math.max(0.15,1+0.6*Math.min(0,FZ));
+  function lock(rh,len,turns,nStr,flat,ph0){var pos=[],nrm=[],col=[],idx=[],base=0,ring=4,NP=Math.max(10,Math.round(turns*11)),SEG=NP;
+    for(var k=0;k<nStr;k++){var ps=k/nStr*Math.PI*2+ph0,so=k%2?0.55:1,pts=[];
+      for(var i=0;i<=NP;i++){var f=i/NP,a=f*turns*Math.PI*2,rr=rh*(1-0.3*f),sp=spread*so*(1-0.75*f)+0.0004,tw=ps+f*2.2;
+        pts.push(new T.Vector3(rr*Math.cos(a)-rh+sp*Math.cos(tw)+fj*Math.sin(f*11+ps*3),-f*len,(rr*Math.sin(a)+sp*Math.sin(tw)+fj*Math.cos(f*13+ps*2))*flat));}
+      var tg=new T.TubeGeometry(new T.CatmullRomCurve3(pts),SEG,0.0009,3,false),tp=tg.attributes.position,tn=tg.attributes.normal,ti=tg.index.array;
+      for(var v=0;v<tp.count;v++){pos.push(tp.getX(v),tp.getY(v),tp.getZ(v));nrm.push(tn.getX(v),tn.getY(v),tn.getZ(v));var f2=Math.floor(v/ring)/SEG,w=Math.pow(f2,2.4);col.push(rootL[0]/tipL[0]*(1-w)+w,rootL[1]/tipL[1]*(1-w)+w,rootL[2]/tipL[2]*(1-w)+w);}
       for(var q=0;q<ti.length;q++)idx.push(ti[q]+base);base+=tp.count;tg.dispose();}
     var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setAttribute("normal",new T.Float32BufferAttribute(nrm,3));g.setAttribute("color",new T.Float32BufferAttribute(col.map(function(c){return Math.min(1,c);}),3));g.setIndex(idx);return g;}
-  /* curl shape: loose waves at -1, his loose curls with ringlets at 0, tighter ringlets at +1; the curl size
-     makes each ringlet narrower or wider; softer, fluffier curls add more strands and a looser spiral */
-  var cr=0.013*(1-0.32*CK)*(1+0.35*CSZ),cl=0.036*HS.len*(1+0.3*LK)*(1-0.12*CK)*(1+0.12*CSZ),ct=1.45*(1+0.5*CK)*(1-0.15*CSZ),nS=FZ>0.3?4:(FZ<-0.3?2:3);
-  var geos=[curl(cr,cl,ct,nS),curl(cr*1.25,cl*0.85,ct*0.85,Math.max(2,nS-1)),curl(cr*0.8,cl*1.15,ct*1.2,nS)];
-  var HMs=[new T.MeshStandardMaterial({color:C(tipCol),vertexColors:true,roughness:0.68,metalness:0}),new T.MeshStandardMaterial({color:C(shade(tipCol,0.8)),vertexColors:true,roughness:0.72,metalness:0})];
+  /* curl shape: loose waves at the low end, ringlets at the high end; the curl size makes each lock narrower or wider */
+  var cr=0.013*Math.max(0.3,1-0.32*CK)*Math.max(0.4,1+0.35*CSZ),cl=0.036*HS.len*Math.max(0.4,1+0.3*LK)*Math.max(0.5,1-0.12*CK)*(1+0.12*CSZ),ct=1.45*Math.max(0.3,1+0.5*CK)*Math.max(0.5,1-0.15*CSZ),nS=FZ<-0.3?5:4;
+  var geos=[lock(cr,cl,ct,nS,1,0),lock(cr*1.2,cl*0.85,ct*0.85,nS,1,1),lock(cr*0.8,cl*1.15,ct*1.2,nS,1,2)];
+  /* the forehead locks: gentler S-curves (about one turn, half the swing) so they read as curls lying on the skin */
+  var fgeos=[lock(cr*0.5,cl*1.0,Math.min(1.1,ct*0.6),nS,0.3,3),lock(cr*0.6,cl*1.1,Math.min(1.2,ct*0.65),nS,0.3,4),lock(cr*0.45,cl*0.9,Math.min(1,ct*0.55),nS,0.3,5)];
+  var HMs=[new T.MeshStandardMaterial({color:C(tipCol),vertexColors:true,roughness:0.62,metalness:0}),new T.MeshStandardMaterial({color:C(shade(tipCol,0.8)),vertexColors:true,roughness:0.68,metalness:0})];
   var NI=hatOn?150:280,ims=geos.map(function(g){return HMs.map(function(hm2){var m=new T.InstancedMesh(g,hm2,NI);m.count=0;return m;});});
-  var dm=new T.Object3D(),q0=new T.Vector3(0,-1,0),dv=new T.Vector3(),jit=1+0.6*FZ;
+  var NIF=90,fims=fgeos.map(function(g){return HMs.map(function(hm2){var m=new T.InstancedMesh(g,hm2,NIF);m.count=0;return m;});});
+  var dm=new T.Object3D(),q0=new T.Vector3(0,-1,0),dv=new T.Vector3(),jit=Math.max(0.2,1+0.6*FZ);
   function pickM(){return ims[(rnd()*ims.length)|0][rnd()<0.55?0:1];}
-  /* a ringlet at a root on the hair, hanging between its outward direction and straight down (droop); the curls fall
+  /* would a lock from (px,py,pz) along d, this long and this wide, pass through bare skin (forehead, temples)? */
+  function hitsSkin(px,py,pz,d,Lh,Rh){if(!HRAD)return false;for(var tt=0.25;tt<=1.01;tt+=0.25){var X=(px+d.x*Lh*tt)/0.084,Y=(py+d.y*Lh*tt-HY)/0.12,Z=(pz+d.z*Lh*tt)/0.106,r=Math.sqrt(X*X+Y*Y+Z*Z);
+      if(scalpAt(X/r,Y/r,Z/r)<0.8&&r<HRAD(X,Y,Z)+Rh)return true;}return false;}
+  /* a lock at a root on the hair, hanging between its outward direction and straight down (droop); the curls fall
      a little toward one side when Edit Dave says so */
   function ringlet(px,py,pz,nx,ny,nz,droop,sc,jt){var m=pickM();if(m.count>=NI)return;var l=Math.hypot(nx,ny,nz);nx/=l;ny/=l;nz/=l;jt=(jt==null?1:jt)*jit;
     dv.set(nx*(1-droop)+DIR*0.45*droop+(rnd()-0.5)*0.7*jt,ny*(1-droop)-droop+(rnd()-0.5)*0.6*jt,nz*(1-droop)+(rnd()-0.5)*0.7*jt).normalize();
-    /* a curl must not pass through bare skin (forehead, temples): tip it outward until it clears, or leave it out */
-    if(HRAD){var Lh=cl*1.15*sc*HS.size,Rh=cr*1.25*sc*HS.size/0.1,ok=false;
-      for(var at=0;at<4&&!ok;at++){ok=true;for(var tt=0.25;tt<=1.01;tt+=0.25){var X=(px+dv.x*Lh*tt)/0.084,Y=(py+dv.y*Lh*tt-HY)/0.12,Z=(pz+dv.z*Lh*tt)/0.106,r=Math.sqrt(X*X+Y*Y+Z*Z);
-          if(scalpAt(X/r,Y/r,Z/r)<0.8&&r<HRAD(X,Y,Z)+Rh){ok=false;break;}}
-        if(!ok){dv.x+=nx*0.7;dv.y+=ny*0.7;dv.z+=nz*0.7;dv.normalize();}}
-      if(!ok)return;}
+    /* tip it outward until it clears the skin, or leave it out */
+    var Lh=cl*1.15*sc*HS.size,Rh=(cr*1.2+spread)*sc*HS.size/0.1,ok=!hitsSkin(px,py,pz,dv,Lh,Rh);
+    for(var at=0;at<3&&!ok;at++){dv.x+=nx*0.7;dv.y+=ny*0.7;dv.z+=nz*0.7;dv.normalize();ok=!hitsSkin(px,py,pz,dv,Lh,Rh);}
+    if(!ok)return;
     dm.position.set(px,py,pz);dm.quaternion.setFromUnitVectors(q0,dv);dm.rotateY(rnd()*6.28);dm.scale.setScalar(sc*HS.size);dm.updateMatrix();
     m.setMatrixAt(m.count,dm.matrix);m.count++;}
+  function skinAt(ux,uy,uz){var l=Math.sqrt(ux*ux+uy*uy+uz*uz);ux/=l;uy/=l;uz/=l;var r=HRAD?HRAD(ux,uy,uz):1;return [ux*0.084*r,HY+uy*0.12*r,uz*0.106*r];}
   function onHair(ux,uy,uz,lift){var r=hairR(ux,uy,uz)+(lift||0);return [ux*0.084*r,HY+uy*0.12*r,uz*0.106*r];}
-  /* curls over his forehead, from the front hairline down to just above the brows (none when the curls are pushed
-     back). They root on the hair at the hairline, lifted clear of the skin, and hang forward of the forehead. */
-  var nF=Math.round(18*HS.fringe*(1+0.8*FR)),fLow=lerpT(hairLow(),0.85);
-  if(!hatOn&&nF>0){for(var fi=0;fi<nF;fi++){var fux=(rnd()*2-1)*0.6,fuy=fLow+0.05+rnd()*0.06,fuz=Math.sqrt(Math.max(0.02,1-fux*fux-fuy*fuy));
-    var fp=onHair(fux,fuy,fuz,0.03);ringlet(fp[0],fp[1],fp[2],fux/0.084,fuy/0.12*0.3,fuz/0.106,0.72,(0.9+rnd()*0.3)*Math.min(1,1.05/HS.len)*(1+0.35*FLk),0.45);}}
+  /* locks falling onto his forehead from the front hairline, toward the brows (none when the curls are pushed back).
+     Each lies along the forehead, its spiral flattened against it, so it can sit close without cutting into the skin. */
+  var nF=Math.round(18*HS.fringe*Math.max(0,1+1.1*FR)),fLow=lerpT(hairLow(),0.85);
+  var fn=new T.Vector3(),ft=new T.Vector3(),fs=new T.Vector3(),fd=new T.Vector3(),fX=new T.Vector3(),fY=new T.Vector3(),fZ=new T.Vector3(),fM=new T.Matrix4();
+  if(!hatOn&&nF>0){for(var fi=0;fi<nF*2&&fi<400;fi++){if(fims.reduce(function(a,r){return a+r[0].count+r[1].count;},0)>=nF)break;
+    var fux=(rnd()*2-1)*0.68,fuy=fLow+0.01+rnd()*0.08,fuz=Math.sqrt(Math.max(0.02,1-fux*fux-fuy*fuy)),frr=0,fp=null;
+    /* the forehead's own slope there, from his real head shape: down it, across it, and out from it */
+    var S0=skinAt(fux,fuy,fuz),S1=skinAt(fux,fuy-0.06,fuz),S2=skinAt(fux+0.05,fuy,fuz);ft.set(S1[0]-S0[0],S1[1]-S0[1],S1[2]-S0[2]).normalize();fs.set(S2[0]-S0[0],S2[1]-S0[1],S2[2]-S0[2]);
+    fn.crossVectors(fs,ft).normalize();if(fn.x*fux+fn.z*fuz+fn.y*fuy<0)fn.negate();fs.crossVectors(ft,fn).normalize();
+    var fsc=(0.85+rnd()*0.3)*Math.min(1,1.05/HS.len)*Math.max(0.3,1+0.35*FLk),fL=cl*fsc*HS.size,fR=(cr*0.6*0.3+spread)*fsc*HS.size/0.1,lift=0.06,hit=true;
+    frr=Math.max(hairR(fux,fuy,fuz),HRAD?HRAD(fux,fuy,fuz):0.95)+fR+0.01;fp=[fux*0.084*frr,HY+fuy*0.12*frr,fuz*0.106*frr];   /* a lock's thickness off the skin */
+    for(var fa=0;fa<4&&hit;fa++){fd.copy(ft).addScaledVector(fn,lift).addScaledVector(fs,DIR*0.35+(rnd()-0.5)*0.35).normalize();hit=hitsSkin(fp[0],fp[1],fp[2],fd,fL,fR*0.8);lift+=0.1;}
+    if(hit)continue;
+    var fm=fims[(rnd()*fims.length)|0][rnd()<0.55?0:1];if(fm.count>=NIF)continue;
+    fY.copy(fd).negate();fZ.copy(fn).addScaledVector(fY,-fn.dot(fY)).normalize();fX.crossVectors(fY,fZ);
+    var k3=fsc*HS.size;fM.makeBasis(fX.multiplyScalar(k3),fY.multiplyScalar(k3),fZ.multiplyScalar(k3));fM.setPosition(fp[0],fp[1],fp[2]);
+    fm.setMatrixAt(fm.count,fM);fm.count++;}}
+  fims.forEach(function(row){row.forEach(function(m){if(m.count){m.castShadow=true;headG.add(m);}});});
   for(var ci=0;ci<9000;ci++){var th=rnd()*Math.PI*2,uy=1-2*rnd(),sn=Math.sqrt(1-uy*uy),ux=sn*Math.cos(th),uz=sn*Math.sin(th);
     if(scalpAt(ux,uy,uz)<0.5||(hatOn&&uy>0.3))continue;
     var ck=hairCut(ux,uy,uz)[0];if(ck<0.3)continue;   /* hair cut short shows as the scalp tint, with no curls */
-    var rr2=hairR(ux,uy,uz)+(rnd()-0.4)*0.04,cS=Math.min(1,0.3+0.7*ck)*(uy>0.3?1+0.3*TPk:1);
+    var rr2=hairR(ux,uy,uz)+(rnd()-0.4)*0.04,cS=Math.min(1,0.3+0.7*ck)*(uy>0.3?Math.max(0.3,1+0.3*TPk):1);
     var dr=0.35+0.45*(1-Math.max(0,uy)),kb=hairCut(ux,uy-0.3,uz)[0];
     if(kb<1){cS*=0.45+0.55*kb;dr*=0.6+0.4*kb;}   /* above short sides the curls stay on top instead of hanging over them */
     if(HS.swept&&uz>0.3&&uy>0.2){ringlet(ux*0.084*rr2,HY+uy*0.12*rr2,uz*0.106*rr2,ux*0.3,1,-0.9,0.1,(0.85+rnd()*0.3)*cS);continue;}

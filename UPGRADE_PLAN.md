@@ -1005,6 +1005,29 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
     that stops below the hairline, so some floated or sank.
   - Any curl that would pass through bare skin is tipped outward, or left out.
 
+## 2zl. His current look as the base, defined curls, more curls on the forehead (6 Oct 2026)
+
+- **Base:** the owner's second save is now Dave's built-in default (his "current" look). Every slider has it in
+  the middle, as before.
+- **Defined curls:**
+  - Each curl is now a lock: a bundle of fine hairs following one spiral, full at the root and gathering to a
+    point at the tip.
+  - This matches the loose but defined ringlets in his photos, where the old version had two or three wiry
+    strands.
+  - "Finish" runs from tight, defined locks to splayed, fluffy ones.
+  - The spiral is smoothly sampled, and the hair has about twice the old vertex count (about 770k), so it still
+    builds in well under 0.1 seconds.
+- **Forehead curls:**
+  - Gentler S-shaped locks lie along the forehead, flattened against it, and fall toward the brows.
+  - Their slope comes from his real head shape, not the fitted egg, which tipped them forward.
+  - They start a lock's thickness off the skin.
+  - The "Curls over the forehead" slider now allows up to about 50.
+- **Sliders:** with his current values in the middle, the curl, curl size, finish, length, top and forehead-curl
+  sliders reach further than before.
+- **Hair base:**
+  - It now includes the nape (the head-shape map takes in the top of the neck).
+  - It rises out of the skin more gently, so a bare hairline (curls pushed back) has a smooth edge.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
