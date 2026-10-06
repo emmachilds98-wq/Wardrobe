@@ -79,11 +79,13 @@ def main():
     os.makedirs(os.path.join(out, "data", "photos"), exist_ok=True)
 
     items = load("data/items.json")
-    extra = os.path.join(ROOT, "data", "items-new.json")
-    if os.path.exists(extra):
-        for k, v in load("data/items-new.json").items():
+    for extra in sorted(glob.glob(os.path.join(ROOT, "data", "items-*.json"))):
+        for k, v in load(os.path.relpath(extra, ROOT)).items():
             items.setdefault(k, v)
     outfits = load("data/outfits.json")
+    if os.path.exists(os.path.join(ROOT, "data", "outfits-new.json")):
+        for k, v in load("data/outfits-new.json").items():
+            outfits.setdefault(k, v)
     tags = load("data/styletags.json")
     checked = max((v.get("checked", "") for v in items.values()), default="")
     meta = {

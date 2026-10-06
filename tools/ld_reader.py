@@ -44,7 +44,7 @@ def parse(u):
   if not sizes:
     for m in re.finditer(r'class="availability">(\w+)</span>\s*<span class="custom_fields">\s*<span class="size">([^<]+)</span>',s):
       sizes[m.group(2).strip()]=sizes.get(m.group(2).strip(),False) or m.group(1)=='InStock'
-  if isinstance(img,list): img=img[0]
+  if isinstance(img,list): img=img[0] if img else None
   if isinstance(img,dict): img=img.get('url') or img.get('contentUrl')
   og=re.findall(r'property="og:image"\s+content="([^"]+)"',s)
   was=None

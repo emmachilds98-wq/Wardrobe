@@ -6,7 +6,7 @@
   "occ": "everyday",
   "pieces": [
    {
-    "col": "sand",
+    "col": "stone",
     "item": "asos-jj-harrington",
     "shape": "jacket",
     "what": "Harrington jacket"
@@ -48,7 +48,7 @@
    {
     "col": "brown",
     "item": "us-brown",
-    "shape": "jacket",
+    "shape": "shirt",
     "what": "Chore jacket"
    },
    {
@@ -219,8 +219,8 @@
   "pieces": [
    {
     "item": "p6-bb-puffa",
-    "shape": "coat",
-    "col": "navy",
+    "shape": "jacket",
+    "col": "charcoal",
     "what": "Puffer jacket"
    },
    {
@@ -322,7 +322,7 @@
    {
     "col": "olive",
     "item": "us-army",
-    "shape": "jacket",
+    "shape": "shirt",
     "what": "Chore overshirt"
    },
    {
@@ -518,7 +518,7 @@
     "what": "Dark jeans"
    },
    {
-    "col": "stone",
+    "col": "navy",
     "item": "op-gaz",
     "shape": "trainers",
     "what": "Trainers"
@@ -760,7 +760,7 @@
   "occ": "everyday",
   "pieces": [
    {
-    "col": "tan",
+    "col": "brown",
     "item": "asos-overcoat-tobacco",
     "shape": "coat",
     "what": "Overcoat"
@@ -972,7 +972,7 @@
    {
     "col": "black",
     "item": "tp-fisk",
-    "shape": "trainers",
+    "shape": "shoes",
     "what": "Walking shoes"
    }
   ],
@@ -997,7 +997,7 @@
    {
     "col": "olive",
     "item": "uq-blocktech-parka",
-    "shape": "jacket",
+    "shape": "coat",
     "what": "Rain jacket"
    },
    {
@@ -1377,7 +1377,7 @@
    {
     "item": "r7-el-senago",
     "shape": "polo",
-    "col": "cream",
+    "col": "white",
     "what": "Polo shirt"
    },
    {
@@ -1389,7 +1389,7 @@
    {
     "item": "mm-converse-star",
     "shape": "trainers",
-    "col": "cream",
+    "col": "sand",
     "what": "Suede trainers"
    }
   ]
@@ -1500,7 +1500,7 @@
    {
     "item": "r7-lb-cargoshort",
     "shape": "shorts",
-    "col": "sand",
+    "col": "cream",
     "what": "Cargo shorts"
    },
    {
@@ -1733,7 +1733,7 @@
    {
     "item": "r8-el-sylbio",
     "shape": "shorts",
-    "col": "blue",
+    "col": "white",
     "what": "Swim shorts"
    },
    {
@@ -1818,7 +1818,7 @@
    {
     "item": "r9-cl-sandal",
     "shape": "shoes",
-    "col": "charcoal",
+    "col": "grey",
     "what": "Strap sandals"
    }
   ]
@@ -1854,7 +1854,7 @@
    {
     "item": "r9-cl-sandal",
     "shape": "shoes",
-    "col": "charcoal",
+    "col": "grey",
     "what": "Strap sandals"
    }
   ]
@@ -1921,7 +1921,7 @@
     "what": "Boxy hoodie"
    },
    {
-    "col": "charcoal",
+    "col": "black",
     "item": "asos-weekday-baggy",
     "shape": "trousers",
     "what": "Wide trousers"
@@ -2003,7 +2003,7 @@
   "pieces": [
    {
     "item": "p6-bb-newchurch",
-    "shape": "jacket",
+    "shape": "shirt",
     "col": "tan",
     "what": "Canvas shacket, worn open"
    },
@@ -4954,7 +4954,7 @@
   "occ": "lounge",
   "pieces": [
    {
-    "col": "burgundy",
+    "col": "navy",
     "item": "ms-fleece-gown",
     "shape": "gown",
     "what": "Fleece dressing gown"
@@ -5158,7 +5158,7 @@
    {
     "item": "r10-jg-ivy",
     "shape": "tee",
-    "col": "green",
+    "col": "navy",
     "what": "Stripe tee"
    },
    {
@@ -5487,7 +5487,7 @@
    {
     "item": "sk-dc-worker",
     "shape": "trousers",
-    "col": "olive",
+    "col": "green",
     "what": "Loose work chinos"
    },
    {
@@ -5766,7 +5766,7 @@
    {
     "item": "r7-lb-tackle-cb",
     "shape": "trainers",
-    "col": "charcoal",
+    "col": "black",
     "what": "Suede trainers"
    }
   ]
@@ -5955,7 +5955,7 @@
    {
     "item": "r8-lk-fort",
     "shape": "polo",
-    "col": "sand",
+    "col": "stone",
     "what": "Check zip-neck polo"
    },
    {
@@ -6005,7 +6005,7 @@
    {
     "item": "r7-lb-tackle-cb",
     "shape": "trainers",
-    "col": "charcoal",
+    "col": "black",
     "what": "Suede trainers"
    }
   ]
@@ -6040,7 +6040,7 @@
    {
     "item": "r7-lb-tackle-cb",
     "shape": "trainers",
-    "col": "charcoal",
+    "col": "black",
     "what": "Suede trainers"
    }
   ]
@@ -6181,7 +6181,7 @@
     "what": "Mock-neck top"
    },
    {
-    "col": "charcoal",
+    "col": "black",
     "item": "asos-weekday-baggy",
     "shape": "trousers",
     "what": "Wide trousers"
@@ -6353,7 +6353,7 @@
   "occ": "party",
   "pieces": [
    {
-    "col": "navy",
+    "col": "blue",
     "item": "asos-arket-polo",
     "shape": "polo",
     "what": "Long-sleeve polo"
@@ -6451,13 +6451,13 @@
     "what": "Heavy tee"
    },
    {
-    "col": "sand",
+    "col": "stone",
     "item": "asos-only-linen",
     "shape": "trousers",
     "what": "Linen-mix trousers"
    },
    {
-    "col": "cream",
+    "col": "sand",
     "item": "mm-converse-star",
     "shape": "trainers",
     "what": "Suede trainers"
@@ -6823,7 +6823,7 @@
   "occ": "smart",
   "pieces": [
    {
-    "col": "blue",
+    "col": "indigo",
     "item": "pe-harry-crew",
     "shape": "jumper",
     "what": "Peregrine knit"
@@ -7077,7 +7077,7 @@
     "what": "Check overshirt, worn open"
    },
    {
-    "col": "olive",
+    "col": "green",
     "item": "us-tee-lichen",
     "shape": "tee",
     "what": "Green tee"
@@ -7157,7 +7157,7 @@
   "occ": "smart",
   "pieces": [
    {
-    "col": "charcoal",
+    "col": "black",
     "item": "fk-zaki-black",
     "shape": "jacket",
     "what": "Waffle check jacket"
@@ -7197,7 +7197,7 @@
   "occ": "smart",
   "pieces": [
    {
-    "col": "blue",
+    "col": "indigo",
     "item": "pe-harry-crew",
     "shape": "jumper",
     "what": "Peregrine knit"
@@ -7209,7 +7209,7 @@
     "what": "Oxford shirt"
    },
    {
-    "col": "burgundy",
+    "col": "brown",
     "item": "hw-walterston-cord",
     "shape": "trousers",
     "what": "Cord trousers"
@@ -7282,7 +7282,7 @@
     "what": "Down vest"
    },
    {
-    "col": "tan",
+    "col": "brown",
     "item": "ps-boundless-hoodie",
     "shape": "hoodie",
     "what": "Caramel hoodie"
@@ -7403,7 +7403,7 @@
   "occ": "everyday",
   "pieces": [
    {
-    "col": "sand",
+    "col": "olive",
     "item": "ui-patagonia-isthmus",
     "shape": "jacket",
     "what": "Isthmus jacket"
@@ -7463,7 +7463,7 @@
     "what": "Printed trousers"
    },
    {
-    "col": "brown",
+    "col": "green",
     "item": "fl-nb740",
     "shape": "trainers",
     "what": "New Balance 740"
@@ -7533,7 +7533,7 @@
     "what": "Work jacket"
    },
    {
-    "col": "olive",
+    "col": "green",
     "item": "ui-columbia-tee",
     "shape": "tee",
     "what": "Heavy tee"
@@ -7567,13 +7567,13 @@
   "occ": "smart",
   "pieces": [
    {
-    "col": "blue",
+    "col": "indigo",
     "item": "pe-harry-crew",
     "shape": "jumper",
     "what": "Peregrine knit"
    },
    {
-    "col": "blue",
+    "col": "white",
     "item": "hc-stripe-oxford",
     "shape": "shirt",
     "what": "Striped Oxford"
@@ -7946,7 +7946,7 @@
     "what": "Pleated trousers"
    },
    {
-    "col": "white",
+    "col": "black",
     "item": "adidas-samba",
     "shape": "trainers",
     "what": "Trainers"
@@ -8147,7 +8147,7 @@
     "what": "Soft hoodie"
    },
    {
-    "col": "indigo",
+    "col": "grey",
     "item": "gs-restday-indigo",
     "shape": "trousers",
     "what": "Joggers"
@@ -8182,7 +8182,7 @@
     "what": "Merino jumper"
    },
    {
-    "col": "blue",
+    "col": "white",
     "item": "hc-stripe-oxford",
     "shape": "shirt",
     "what": "Striped Oxford"
@@ -8432,7 +8432,7 @@
     "what": "Lambswool jumper"
    },
    {
-    "col": "blue",
+    "col": "white",
     "item": "hc-stripe-oxford",
     "shape": "shirt",
     "what": "Striped Oxford shirt"
@@ -8516,7 +8516,7 @@
    {
     "col": "green",
     "item": "dc-3in1-green",
-    "shape": "coat",
+    "shape": "jacket",
     "what": "3-in-1 waterproof"
    },
    {
@@ -8739,7 +8739,7 @@
   "pieces": [
    {
     "item": "p6-bb-landcross",
-    "shape": "coat",
+    "shape": "jacket",
     "col": "burgundy",
     "what": "Padded jacket"
    },
@@ -8787,7 +8787,7 @@
    {
     "item": "r7-tg-miles",
     "shape": "jacket",
-    "col": "navy",
+    "col": "blue",
     "what": "Fleece jacket"
    },
    {
@@ -8830,7 +8830,7 @@
   "pieces": [
    {
     "item": "r7-tg-palisade",
-    "shape": "coat",
+    "shape": "jacket",
     "col": "olive",
     "what": "Padded waterproof jacket"
    },
@@ -8950,7 +8950,7 @@
   "occ": "everyday",
   "pieces": [
    {
-    "col": "grey",
+    "col": "black",
     "item": "rg-freesdale",
     "shape": "jacket",
     "what": "Waterproof shell"
@@ -9041,7 +9041,7 @@
   "occ": "party",
   "pieces": [
    {
-    "col": "olive",
+    "col": "black",
     "item": "asos-regatta-matt",
     "shape": "jacket",
     "what": "Packable shell"
@@ -9106,7 +9106,7 @@
     "what": "Waterproof jacket"
    },
    {
-    "col": "charcoal",
+    "col": "grey",
     "item": "mm-berghaus-anwick",
     "shape": "halfzip",
     "what": "Full-zip fleece"
@@ -9345,7 +9345,7 @@
    {
     "col": "charcoal",
     "item": "ms-milano-overshirt",
-    "shape": "jacket",
+    "shape": "shirt",
     "what": "Knitted overshirt"
    },
    {
@@ -9355,7 +9355,7 @@
     "what": "Boxy Oxford"
    },
    {
-    "col": "charcoal",
+    "col": "black",
     "item": "asos-weekday-baggy",
     "shape": "trousers",
     "what": "Wide trousers"
@@ -9674,7 +9674,7 @@
    {
     "item": "r13-lj-gilet",
     "shape": "gilet",
-    "col": "navy",
+    "col": "blue",
     "what": "Padded gilet"
    },
    {
@@ -10550,7 +10550,7 @@
    {
     "col": "navy",
     "item": "fa-ramsey-navy",
-    "shape": "jacket",
+    "shape": "shirt",
     "what": "Light overshirt"
    },
    {
@@ -10592,7 +10592,7 @@
    {
     "col": "navy",
     "item": "fa-ramsey-navy",
-    "shape": "jacket",
+    "shape": "shirt",
     "what": "Light overshirt"
    },
    {
@@ -10602,7 +10602,7 @@
     "what": "Boxy hoodie"
    },
    {
-    "col": "charcoal",
+    "col": "black",
     "item": "asos-baggy-jeans",
     "shape": "trousers",
     "what": "Baggy jeans"
@@ -10636,7 +10636,7 @@
    {
     "col": "navy",
     "item": "fa-ramsey-navy",
-    "shape": "jacket",
+    "shape": "shirt",
     "what": "Light overshirt"
    },
    {
@@ -11072,7 +11072,7 @@
     "what": "Mesh tee"
    },
    {
-    "col": "charcoal",
+    "col": "black",
     "item": "rv-weekday-parachute",
     "shape": "trousers",
     "what": "Parachute trousers"
@@ -11321,7 +11321,7 @@
   "pieces": [
    {
     "item": "r10-an-volt",
-    "shape": "coat",
+    "shape": "jacket",
     "col": "black",
     "what": "Padded jacket"
    },
@@ -11585,7 +11585,7 @@
    {
     "item": "hs-ps-trail-short",
     "shape": "shorts",
-    "col": "sand",
+    "col": "olive",
     "what": "Trail shorts"
    },
    {
@@ -11882,7 +11882,7 @@
   "pieces": [
    {
     "item": "r8-cl-puffer",
-    "shape": "coat",
+    "shape": "jacket",
     "col": "black",
     "what": "Quilted puffer"
    },
@@ -11972,7 +11972,7 @@
   "pieces": [
    {
     "item": "r9-cl-puffer-blue",
-    "shape": "coat",
+    "shape": "jacket",
     "col": "blue",
     "what": "Quilted puffer"
    },
@@ -12061,7 +12061,7 @@
   "pieces": [
    {
     "item": "r9-dc-slell-wine",
-    "shape": "hoodie",
+    "shape": "halfzip",
     "col": "burgundy",
     "what": "Quarter-zip hoodie"
    },
@@ -12123,7 +12123,7 @@
    {
     "col": "navy",
     "item": "fa-ramsey-navy",
-    "shape": "jacket",
+    "shape": "shirt",
     "what": "Light overshirt"
    },
    {
@@ -12217,7 +12217,7 @@
     "what": "Linen shirt"
    },
    {
-    "col": "sand",
+    "col": "tan",
     "item": "ct-chino-tan",
     "shape": "trousers",
     "what": "Light chinos"
@@ -12769,7 +12769,7 @@
    {
     "col": "sand",
     "item": "fa-ramsey-sand",
-    "shape": "jacket",
+    "shape": "shirt",
     "what": "Light overshirt"
    },
    {
@@ -13074,7 +13074,7 @@
    {
     "col": "olive",
     "item": "us-army",
-    "shape": "jacket",
+    "shape": "shirt",
     "what": "Chore jacket"
    },
    {
@@ -13310,9 +13310,9 @@
   "occ": "smart",
   "pieces": [
    {
-    "col": "charcoal",
+    "col": "grey",
     "item": "asos-jj-brushed-overshirt",
-    "shape": "jacket",
+    "shape": "shirt",
     "what": "Brushed overshirt"
    },
    {
@@ -13418,7 +13418,7 @@
   "pieces": [
    {
     "item": "r11-berghaus-coat",
-    "shape": "coat",
+    "shape": "jacket",
     "col": "blue",
     "what": "Hooded jacket"
    },
@@ -13431,7 +13431,7 @@
    {
     "item": "r11-berghaus-trousers",
     "shape": "trousers",
-    "col": "stone",
+    "col": "sand",
     "what": "Everyday pant"
    },
    {
@@ -13571,7 +13571,7 @@
    {
     "item": "r11-farah-knit",
     "shape": "jumper",
-    "col": "blue",
+    "col": "grey",
     "what": "Cotton crew"
    },
    {
@@ -14115,7 +14115,7 @@
    {
     "item": "r11-passenge-tee",
     "shape": "tee",
-    "col": "green",
+    "col": "grey",
     "what": "Tee"
    },
    {
@@ -14399,7 +14399,7 @@
   "pieces": [
    {
     "item": "r11-weekendo-coat",
-    "shape": "coat",
+    "shape": "jacket",
     "col": "blue",
     "what": "Down jacket"
    },

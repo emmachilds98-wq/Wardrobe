@@ -82,7 +82,7 @@ GROUP_STYLE = {
     "Mod and terrace": ["mod"], "Street, minimal and trainers": ["casual", "street", "minimal"],
     "Heritage and workwear": ["quiet", "work", "casual"], "Workwear and safety boots": ["job"],
     "Outdoors": ["outdoor"], "More brands and sales": ["quiet", "casual"], "Pre-owned": ["casual"],
-    "Rave, gym and lounge": ["rave", "lounge"],
+    "Rave, gym and lounge": ["rave", "lounge"], "Premium brands (buy in the sales)": ["quiet", "casual"],
 }
 # Shops in the workwear list that are fashion brands, not work clothing.
 NOT_JOB = {"threadbare.com", "uk.representclo.com", "dubarry.com", "goodhoodstore.com", "gramicci.co.uk",
@@ -279,6 +279,9 @@ def category(title, ptype, tags):
     t = re.sub(r"\bpolo shirt\b", " polo ", t, flags=re.I)
     t = re.sub(r"\b(t-?shirt|tshirt|sweatshirt|overshirt|rugby shirt|football shirt|shirt jacket|shirt-jacket)\b",
                lambda m: {"overshirt": "overshirt", "shirt jacket": "overshirt", "shirt-jacket": "overshirt"}.get(m.group(1).lower(), m.group(1)), t, flags=re.I)
+    # Shorts (also "jersey short", "cargo short") are trousers, whatever else the title says.
+    if re.search(r"\bshorts?\b", t, re.I) and not re.search(r"\b(swim|board|trunks?|pyjama|lounge|sleep)\b", t, re.I):
+        return "trouser"
     for c, rx in CATS:
         if c == "shirt" and re.search(r"\b(t-?shirt|tshirt|sweatshirt)\b", t, re.I):
             continue
@@ -549,6 +552,8 @@ def main():
                 if sz:
                     hit = (v, sz)
                     break
+            if not hit and p.get("nosizes") and p.get("variants"):
+                hit = (p["variants"][0], "")  # the shop does not publish stock by size
             if not hit:
                 stats["not in his size"] += 1
                 continue
@@ -562,8 +567,8 @@ def main():
                 continue
             if was <= price * 1.04:
                 was = 0
-            url = "https://%s/products/%s" % (host, p["handle"])
-            if url.lower() in old_urls:
+            url = p.get("url") or "https://%s/products/%s" % (host, p["handle"])
+            if re.sub(r"[?#].*", "", url).rstrip("/").lower() in old_urls:
                 stats["already a pick"] += 1
                 continue
             colour = colour_of(p, v)
@@ -582,12 +587,12 @@ def main():
             fab = fabric_of(body) if cot is not None or "%" in body[:400] else ""
             it = {
                 "name": nm, "shop": name, "cat": cat, "price": round(price, 2),
-                "url": url + ("?variant=%s" % v["id"] if v.get("id") else ""),
+                "url": url + ("?variant=%s" % v["id"] if v.get("id") and not p.get("url") else ""),
                 "style": st, "occ": occ, "wx": wx,
                 "note": note_for(cat, price, was, fab, sz, wide, job),
                 "rank": int(300 - 160 * disc + min(price, 200) / 4),
-                "sets": sets_for(cat, wx, title), "insize": True,
-                "sizes": ("%s in stock" % sz) if sz not in ("One size",) else "One size",
+                "sets": sets_for(cat, wx, title), "insize": True if sz else None,
+                "sizes": ("%s in stock" % sz) if sz and sz not in ("One size",) else ("One size" if sz else ""),
                 "kind": "new", "checked": a.date, "added": a.date, "img_src": img,
             }
             if was:
