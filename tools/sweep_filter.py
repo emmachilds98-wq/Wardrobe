@@ -477,6 +477,9 @@ def main():
 
     shops = shop_directory()
     old = json.load(open(os.path.join(ROOT, "data", "items.json"), encoding="utf-8"))
+    for extra in glob.glob(os.path.join(ROOT, "data", "items-*.json")):
+        if os.path.abspath(extra) != os.path.abspath(a.out):
+            old.update(json.load(open(extra, encoding="utf-8")))
     old_urls = {re.sub(r"[?#].*", "", v["url"]).rstrip("/").lower() for v in old.values()}
     old_names = {re.sub(r"\W", "", v["name"].lower()) for v in old.values()}
 
