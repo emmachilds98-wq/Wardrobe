@@ -948,6 +948,24 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   - A hoodie's hood lies outside an open coat or jacket worn over it.
   - Overshirts, chore jackets, shackets and flannels layer over a tee or polo rather than under it.
 
+## 2zi. Hair for his curl type, face from his photos, neck layering (6 Oct 2026)
+
+- **Hair editor, his hair type only:** loose curls with ringlets. The bald, buzz, straight,
+  receding-hairline and grey options are gone; saved settings that used them fall back to his cut.
+  - Base style: his short cut from the photos, with curls over the forehead to just above the
+    brows and fuller sides above the ears.
+  - Other styles he could grow: short sides with a curly top, a closer crop, curls swept back,
+    grown out, and longer curls.
+  - A brown scale (dark to light brown), sun-lightened ends, length, volume, curl (looser waves to
+    tighter ringlets) and how far the curls fall over the forehead.
+  - Each curl is a small clump of fine strands, darker at the root and lighter at the tip.
+- **Face, from his photos:** blue eyes, straighter brows, a ginger-brown moustache only (no
+  beard), a friendlier smile and light freckles over the nose and cheeks (with a slider). The
+  scalp tint follows the hair shade.
+- **Layering at the neck:** skin is hidden only where the clothes cover it. Neck and shoulder
+  skin that ran out over the shoulders is removed at any height. Behind the neck, skin is removed
+  only below the collar line, so the back no longer shows gaps or jagged edges.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
