@@ -25,12 +25,25 @@ NOT_CLOTHES = re.compile(r"\b(gift ?card|gift ?voucher|voucher|e-?gift|sticker|p
                          r"carabiner|dog|lead|collar for|cleaner|spray|wax tin|proofer|laces?|insoles?|"
                          r"shoe care|polish|brush|sample|deposit|shipping|insurance|warranty|repair|"
                          r"magazine|book|print|art|puzzle|patch|badge|pin badge|lanyard|towel|blanket|"
-                         r"cushion|bottle|flask|helmet|novelty|fancy dress|costume|kigurumi|goggles?|ear ?plugs?|hearing|mask|test|do not use)\b", re.I)
+                         r"cushion|bottle|flask|helmet|novelty|fancy dress|costume|kigurumi|goggles?|ear ?plugs?|hearing|mask|test|do not use|"
+                         r"deodorant|compression bag|sleep bag|polishing|gaiter straps?|swim cap|silicone cap|sold individually|"
+                         r"swim briefs?|endurance\+? (logo )?briefs?|expdn)\b", re.I)
 BRAND_JUNK = re.compile(r"\b(tommy jeans|calvin klein jeans|armani jeans|guess jeans|ck jeans|"
                         r"jean ?store|voi jeans|true religion|replay jeans|pepe jeans|lee jeans|"
                         r"g-star raw|jack ?& ?jones|polo ralph lauren|ralph lauren polo|u\.s\. polo assn\.?|"
                         r"us polo assn|polo sport|beverly hills polo club)\b", re.I)
-SKINNY = re.compile(r"\b(skinny|super ?slim|spray[- ]on|extreme slim)\b", re.I)
+SKINNY = re.compile(r"\b(skinny|super ?slim|spray[- ]on|extreme slim|muscle fit)\b", re.I)
+# Shops and brands that make real work clothing. At a country or fashion shop in the workwear
+# list, only these count as Workwear (a Boss blazer from a workwear shop is not work clothing).
+WORK_SHOPS = {"workweargurus.com", "tradeworkwear.co.uk", "tuffstuffworkwear.co.uk", "workwearhub.co.uk",
+              "workwearexpress.com", "bestworkwear.co.uk", "dewaltworkwear.co.uk", "snickersworkwear.com",
+              "engelbert-strauss.co.uk", "screwfix.com", "toolstation.com", "arco.co.uk", "apachesafety.co.uk",
+              "safetyfootwearstore.co.uk", "amblerssafety.com", "scruffs.com", "liftingequipmentstore.com"}
+WORK_BRAND = re.compile(r"\b(snickers|portwest|bl[aå]kl[aä]der|dickies|carhartt|scruffs|tuffstuff|caterpillar|"
+                        r"dewalt|regatta professional|jcb|apache|fristads|mascot|helly hansen workwear|toughbuilt|"
+                        r"grafters|ukd|amblers|cofra|rock ?fall|wide load|steitz|mongrel|buckler|engelbert|"
+                        r"hard yakka|workwear|work|hi[- ]?vis|kneepads?|rigger)\b", re.I)
+DARK = re.compile(r"\b(black|charcoal|graphite|dark grey|anthracite|carbon|jet)\b", re.I)
 SLIM = re.compile(r"\b(slim|tapered|taper|muscle fit|carrot)\b", re.I)
 SAFETY = re.compile(r"\b(safety|s1p?|s3|sb ?p|steel toe|composite toe|toe ?cap|midsole)\b", re.I)
 WIDE = re.compile(r"\b(4e|6e|5e|eeee|eeeeee|extra wide|xw|wide fit|wide)\b", re.I)
@@ -310,6 +323,7 @@ def clean_title(title, vendor, shop):
     t = re.sub(r"\b(wholesale|adults?|unisex|gents?)\b\s*", "", t, flags=re.I)
     t = re.sub(r"\[[^\]]*\]|\(\s*\)", "", t)
     t = re.sub(r"\b[A-Z]{1,3}\d{2,}[A-Z0-9]{2,}\b\s*", "", t)
+    t = re.sub(r"^(?:[A-Z]{2,}(?:-[A-Z0-9]{2,})+|lsc-\w+|open)\s+", "", t)  # feed codes such as CLO-TOP-TEE
     t = re.sub(r"^\s*(special offer|sale|clearance|offer|new|last chance|bargain|outlet|archive|"
                r"reduced|limited edition|exclusive|pre-?order|web exclusive)\s*[:!\-–|]*\s*", "", t, flags=re.I)
     t = re.sub(r"\s*[-–|:]\s*(special offer|sale|clearance|last chance|reduced|online exclusive)\s*$", "", t, flags=re.I)
@@ -349,7 +363,9 @@ def clean_title(title, vendor, shop):
 
 def make_name(title, vendor, shop, colour):
     t = clean_title(title, vendor, shop)
-    vendor = re.sub(r"\s+(clothing|apparel|europe|uk|ltd|accessories|footwear|cap|store)$", "", (vendor or "").strip(), flags=re.I)
+    vendor = re.sub(r"\s+(clothing|apparel|europe|uk|us|ltd|accessories|footwear|cap|store)$", "", (vendor or "").strip(), flags=re.I)
+    vendor = re.sub(r"^(lsc-\w+|open|[A-Z]{2,}(?:-[A-Z0-9]{2,})+)$", "", vendor)
+    vendor = re.sub(r"^Corgi Socks$", "Corgi", vendor)
     brand = vendor if vendor and not JUNK_VENDOR.match(vendor) and vendor.lower() != shop.lower() and len(vendor) < 30 and not re.search(r"\d", vendor) else shop
     if re.sub(r"\s*(&|and)\s*", " ", brand.lower()) in re.sub(r"\s*(&|and)\s*", " ", t.lower()):
         name = t
@@ -512,7 +528,7 @@ def main():
             if re.search(r"\b\d{1,2}(-\d{1,2})? ?(years?|yrs)\b|\bage \d|school ?(uniform|shirt|trouser|jumper)|\bkids?\b", title, re.I):
                 stats["children's"] += 1
                 continue
-            if WOMEN.search(title + " " + ptype + " " + p.get("handle", "").replace("-", " ")):
+            if WOMEN.search(title + " " + ptype + " " + p.get("handle", "").replace("-", " ")) or re.search(r"\sW(\s|$)|\bwnba\b", title.strip(), re.I):
                 stats["women"] += 1
                 continue
             if need_men and not MEN.search(hay.replace("-", " ")):
@@ -539,6 +555,28 @@ def main():
                 cat != "shoe" or bool(is_safety) or re.search(r"\b(work|rigger|dealer|wellington)\b", title, re.I))
             if not job and re.search(r"\b(work ?wear|work trousers?|safety|hi[- ]?vis|kneepad|knee pad|rigger)\b", title, re.I):
                 job = True
+            # Workwear rules: safety footwear only; real work clothing; no T-shirts (work gives
+            # him those); trousers and shorts black or charcoal, no stretch; no tailoring.
+            if job and cat == "shoe" and not is_safety:
+                job = False
+            if job and cat != "shoe" and bare(host) not in WORK_SHOPS and not WORK_BRAND.search(
+                    " ".join([title, p.get("vendor") or "", ptype, " ".join(tags[:20])])):
+                job = False
+            if job and cat == "tailor":
+                job = False
+            if job and cat == "polo" and re.search(r"\b(t-?shirts?|tees?|t|vests?|tank|singlet)\b", title, re.I):
+                stats["job T-shirt"] += 1
+                continue
+            if job and cat == "trouser" and (not DARK.search(title + " " + " ".join(str(v.get("option1") or "") for v in p.get("variants", [])[:1]))
+                                             or re.search(r"stretch", title, re.I)):
+                stats["job trousers not black or stretch"] += 1
+                continue
+            if job and cat == "trouser" and (re.search(r"cordura", body, re.I) or re.search(r"\bpack\b", title, re.I)):
+                stats["job Cordura or bundle"] += 1
+                continue
+            if job and cat in ("coat", "knit", "shirt") and re.search(
+                    r"\b(ecru|white|cream|stone|beige|sand|natural|greige|oatmeal|undyed|light)\b", title, re.I):
+                job = False
             if job and SLIM.search(title + " " + " ".join(tags)):
                 stats["slim job"] += 1
                 continue
@@ -638,6 +676,9 @@ def main():
                 if full >= a.per_shop // 3:
                     continue
                 full += 1
+            if it["name"].lower() in seen_names:
+                continue
+            seen_names.add(it["name"].lower())
             key = re.sub(r",.*$", "", it["name"].lower())
             if (key, it["cat"]) in seen_names and bycat[it["cat"]] >= 3:
                 continue

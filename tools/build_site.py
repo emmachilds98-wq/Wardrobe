@@ -84,13 +84,15 @@ def main():
         for k, v in load(os.path.relpath(extra, ROOT)).items():
             items.setdefault(k, v)
     outfits = load("data/outfits.json")
-    if os.path.exists(os.path.join(ROOT, "data", "outfits-new.json")):
-        for k, v in load("data/outfits-new.json").items():
+    for extra in sorted(glob.glob(os.path.join(ROOT, "data", "outfits-*.json"))):
+        for k, v in load(os.path.relpath(extra, ROOT)).items():
             outfits.setdefault(k, v)
     tags = load("data/styletags.json")
     checked = max((v.get("checked", "") for v in items.values()), default="")
+    sp = os.path.join(ROOT, "data", "status.json")
+    prev = load("data/status.json").get("prev", "") if os.path.exists(sp) else ""
     meta = {
-        "status": {"checked": checked, "prev": "", "cadence": "Prices are checked weekly"},
+        "status": {"checked": checked, "prev": prev, "cadence": "Prices are checked weekly"},
         "profile": PROFILE,
         "shops": {},
         "styletags": tags,

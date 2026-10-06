@@ -1,0 +1,502 @@
+{
+"uk-products-gymshark-trucker-cap-headwear-black-ss25": {
+"name": "Gymshark Trucker Cap",
+"shop": "Gymshark",
+"cat": "acc",
+"price": 25,
+"url": "https://uk.gymshark.com/products/gymshark-trucker-cap-headwear-black-ss25",
+"style": [
+"rave",
+"lounge"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£25, full price.",
+"rank": 306,
+"sets": [],
+"insize": true,
+"sizes": "One size",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://cdn.shopify.com/s/files/1/0098/8822/files/images-HighFrontTruckerGSBlackI1B7D_BB2J_0109_0046.jpg?v=1746521264"
+},
+"allsaints-menswear-oakes-leather-belt-m154xf-5-html": {
+"name": "AllSaints Oakes Leather Belt",
+"shop": "AllSaints",
+"cat": "acc",
+"price": 69,
+"url": "https://www.allsaints.com/menswear/oakes-leather-belt/M154XF-5.html",
+"style": [
+"quiet",
+"casual"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£69, full price.",
+"rank": 317,
+"sets": [],
+"insize": true,
+"sizes": "One size",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://media.i.allsaints.com/image/list/fn_select:jq:first%28.%5B%5D%7Cif%20has%28%22metadata%22%29%20then%20select%28any%28.metadata%5B%5D%3B%20.external_id%20%3D%3D%20%22sfcc_pdp_gallery_position_prod%22%20and%20.value%20%3D%3D%201%29%29%20else%20empty%20end%29/f_auto,q_auto,dpr_auto,w_837,h_1046,c_fit/M154XF-5.json?_i=AG"
+},
+"barbour-gb-barlow-cap-mha0968ny15-html": {
+"name": "Barbour Barlow Cap",
+"shop": "Barbour",
+"cat": "acc",
+"price": 29.95,
+"url": "https://www.barbour.com/gb/barlow-cap-MHA0968NY15.html",
+"style": [
+"quiet"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£29.95, full price.",
+"rank": 307,
+"sets": [],
+"insize": true,
+"sizes": "One size",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://www.barbour.com/dw/image/v2/blcl_prd/on/demandware.static/-/Sites-master-catalog/default/dw32bef05b/images/MHA0968NY15/MHA0968NY15_01front.jpg?sw=1500&q=70&strip=false"
+},
+"brooktaver-black-plain-rib-socks-1908a-html": {
+"name": "Brook Taverner Black Plain Rib Socks",
+"shop": "Brook Taverner",
+"cat": "basics",
+"price": 9.95,
+"url": "https://www.brooktaverner.co.uk/black-plain-rib-socks-1908a.html",
+"style": [
+"quiet",
+"work"
+],
+"occ": [
+"lounge"
+],
+"wx": [
+"mild",
+"cold"
+],
+"note": "£9.95, full price.",
+"rank": 302,
+"sets": [],
+"insize": null,
+"sizes": "",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://www.brooktaverner.co.uk/media/catalog/product/cache/2a0ac265dfc531bf6ae1611f67ca9e35/1/9/1908a_01_socks_plain_rt_web_grey.jpg"
+},
+"cottontrad-accessories-men-belts-smart-leather-belt-ah12177tan-html": {
+"name": "Cotton Traders Smart Leather Belt",
+"shop": "Cotton Traders",
+"cat": "acc",
+"price": 20,
+"url": "https://www.cottontraders.com/accessories/men/belts/smart-leather-belt/AH12177Tan.html",
+"style": [
+"casual"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£20, full price.",
+"rank": 305,
+"sets": [],
+"insize": true,
+"sizes": "One size",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://www.cottontraders.com/on/demandware.static/-/Sites-cotton-master-catalog/default/dw6d328a47/images/original/AH12177W_original_neutral_black_057172.jpg"
+},
+"cottontrad-men-shorts-pleat-front-ultimate-chino-shorts-af10480-html": {
+"name": "Cotton Traders Pleat Front Ultimate Chino Shorts",
+"shop": "Cotton Traders",
+"cat": "trouser",
+"price": 20,
+"url": "https://www.cottontraders.com/men/shorts/pleat-front-ultimate-chino-shorts/AF10480.html",
+"style": [
+"casual"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"warm"
+],
+"note": "£20, full price. 34W (leg not listed) in stock at the last check.",
+"rank": 305,
+"sets": [
+"holiday"
+],
+"insize": true,
+"sizes": "34W in stock",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://www.cottontraders.com/on/demandware.static/-/Sites-cotton-master-catalog/default/dw0dd12388/images/original/AF10480W_original_neutral_classic-navy_116677.jpg",
+"sizeNote": "Leg length not listed: check it is a 32in (regular) leg."
+},
+"crewclothi-mens-mens-accessories-cotton-crew-cap-navy-mxu009": {
+"name": "Crew Clothing Cotton Crew Cap in Navy",
+"shop": "Crew Clothing",
+"cat": "acc",
+"price": 9,
+"url": "https://www.crewclothing.co.uk/mens/mens-accessories/cotton-crew-cap-navy-mxu009/",
+"style": [
+"quiet"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£9, full price.",
+"rank": 302,
+"sets": [],
+"insize": true,
+"sizes": "One size",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://www.crewclothing.co.uk/images/products/large/MXU009_NAVY.jpg"
+},
+"hackett-intl-en-pd-flannel-cap-hm0400101595-html": {
+"name": "Hackett Flannel Cap",
+"shop": "Hackett",
+"cat": "acc",
+"price": 55,
+"url": "https://www.hackett.com/intl/en/pd/flannel-cap-HM0400101595.html",
+"style": [
+"quiet",
+"casual"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£55, full price.",
+"rank": 313,
+"sets": [],
+"insize": true,
+"sizes": "One size",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://images.hackett.com/dw/image/v2/BLRQ_PRD//on/demandware.static/-/Sites-hkt-master-catalog/default/dw1ba37555/images/hi-res/HM0400101_595_01_MO.jpg"
+},
+"mandmdirec-gb-en-product-3o30190-gap-mens-connor-shoes-falcon": {
+"name": "M and M Direct Connor Shoes Falcon",
+"shop": "M and M Direct",
+"cat": "shoe",
+"price": 27.99,
+"url": "https://www.mandmdirect.com/gb/en/product/3o30190/gap-mens-connor-shoes-falcon",
+"style": [
+"casual"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£27.99, full price. UK 11 in stock at the last check.",
+"rank": 306,
+"sets": [],
+"insize": true,
+"sizes": "UK 11 in stock",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://resources.mandm.com/images/_default/3/o/3/3o30190_1_cloudzoom.jpg"
+},
+"mandmdirec-gb-en-product-3o30231-gap-mens-connor-shoes-praline": {
+"name": "M and M Direct Connor Shoes Praline",
+"shop": "M and M Direct",
+"cat": "shoe",
+"price": 27.99,
+"url": "https://www.mandmdirect.com/gb/en/product/3o30231/gap-mens-connor-shoes-praline",
+"style": [
+"casual"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£27.99, full price. UK 11 in stock at the last check.",
+"rank": 306,
+"sets": [],
+"insize": true,
+"sizes": "UK 11 in stock",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://resources.mandm.com/images/_default/3/o/3/3o30231_1_cloudzoom.jpg"
+},
+"matalan-p-clothing-black-carbon-belt-17860345": {
+"name": "Matalan Black Carbon Belt",
+"shop": "Matalan",
+"cat": "acc",
+"price": 10,
+"url": "https://www.matalan.co.uk/p/clothing/black-carbon-belt/17860345/",
+"style": [
+"casual"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£10, full price. L in stock at the last check.",
+"rank": 302,
+"sets": [],
+"insize": true,
+"sizes": "L in stock",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://main.thgimages.com/?url=https://ml.thcdn.com/productimg/original/17860345-6615363557821987.jpg&format=webp&width=1500&height=1500&fit=cover"
+},
+"moss-black-wool-pleated-short-967092215": {
+"name": "Moss Black Wool Pleated Shorts",
+"shop": "Moss",
+"cat": "trouser",
+"price": 24.95,
+"url": "https://www.moss.co.uk/black-wool-pleated-short-967092215",
+"style": [
+"quiet",
+"work"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"warm"
+],
+"note": "£24.95, full price. 34W in stock at the last check.",
+"rank": 306,
+"sets": [
+"holiday"
+],
+"insize": true,
+"sizes": "34W in stock",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://content.moss.co.uk/images/extraextralarge/967092215_01.jpg"
+},
+"moss-navy-pique-polo-shirt-967010509": {
+"name": "Moss Navy Cotton Piqué Polo Shirt",
+"shop": "Moss",
+"cat": "polo",
+"price": 29.95,
+"url": "https://www.moss.co.uk/navy-pique-polo-shirt-967010509",
+"style": [
+"quiet",
+"work",
+"mod"
+],
+"occ": [
+"everyday",
+"party"
+],
+"wx": [
+"mild",
+"warm"
+],
+"note": "£29.95, full price. L in stock at the last check.",
+"rank": 307,
+"sets": [
+"holiday"
+],
+"insize": true,
+"sizes": "L in stock",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://content.moss.co.uk/images/extraextralarge/967010509_01.jpg"
+},
+"peterchris-product-olive-wax-bucket-hat": {
+"name": "Peter Christian Olive Wax Bucket Hat",
+"shop": "Peter Christian",
+"cat": "acc",
+"price": 32,
+"url": "https://www.peterchristian.co.uk/product/olive-wax-bucket-hat/",
+"style": [
+"quiet"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£32, full price. L in stock at the last check.",
+"rank": 308,
+"sets": [],
+"insize": true,
+"sizes": "L in stock",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://cdn11.bigcommerce.com/s-2fhihzl616/images/stencil/720w/products/7394/29940/Mens-Olive-Green-Wax-Bucket-Hat-MH102-Model__88782.1762174055.jpg"
+},
+"peterchris-product-wax-flat-cap": {
+"name": "Peter Christian Wax Flat Cap",
+"shop": "Peter Christian",
+"cat": "acc",
+"price": 35,
+"url": "https://www.peterchristian.co.uk/product/wax-flat-cap/",
+"style": [
+"quiet"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£35, full price.",
+"rank": 308,
+"sets": [],
+"insize": true,
+"sizes": "One size",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://cdn11.bigcommerce.com/s-2fhihzl616/images/stencil/720w/products/7044/27898/Mens-Olive-Green-Wax-Flat-Cap-MH102-Side__71505.1728566793.jpg"
+},
+"rydale-products-mens-walking-pheasant-socks": {
+"name": "Rydale Walking Pheasant Socks",
+"shop": "Rydale",
+"cat": "basics",
+"price": 5.99,
+"url": "https://www.rydale.com/products/mens-walking-pheasant-socks",
+"style": [
+"quiet",
+"outdoor"
+],
+"occ": [
+"lounge"
+],
+"wx": [
+"mild",
+"cold"
+],
+"note": "£5.99, full price.",
+"rank": 301,
+"sets": [],
+"insize": null,
+"sizes": "",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://imagedelivery.net/qQVYSIvyXiV4MHZje7HLkA/KOx9hLoYc4HxUusF-/Full"
+},
+"seasaltcor-mens-tiek-cap": {
+"name": "Seasalt Tiek Cap",
+"shop": "Seasalt",
+"cat": "acc",
+"price": 15.95,
+"url": "https://www.seasaltcornwall.com/mens-tiek-cap",
+"style": [
+"casual"
+],
+"occ": [
+"everyday"
+],
+"wx": [
+"mild"
+],
+"note": "£15.95, full price.",
+"rank": 303,
+"sets": [],
+"insize": true,
+"sizes": "One size",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://res.cloudinary.com/seasalt-production/image/upload/c_lpad,dpr_1.0,f_auto,q_auto/v1/media/catalog/product/b/_/b_ac38961_8535_1_1.jpg?_i=AB"
+},
+"skechers-3-pack-mens-half-terry-quarter-crew-socks-z114662h-html": {
+"name": "Skechers 3 Pack Half Terry Quarter Crew Socks",
+"shop": "Skechers",
+"cat": "basics",
+"price": 20,
+"url": "https://www.skechers.co.uk/3-pack-mens-half-terry-quarter-crew-socks/Z114662H.html",
+"style": [
+"quiet"
+],
+"occ": [
+"lounge"
+],
+"wx": [
+"mild",
+"cold"
+],
+"note": "£20, full price.",
+"rank": 305,
+"sets": [],
+"insize": null,
+"sizes": "",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://images.skechers.com/image;width=auto%2Cformat=auto/Z114662H_BLK"
+},
+"weirdfish-p-men-i-indy-slub-polo-shirt-coal-204016": {
+"name": "Weird Fish Indy Slub Polo Shirt Coal",
+"shop": "Weird Fish",
+"cat": "polo",
+"price": 18.82,
+"url": "https://www.weirdfish.co.uk/p/men/i/indy-slub-polo-shirt-coal-204016",
+"style": [
+"outdoor",
+"mod"
+],
+"occ": [
+"everyday",
+"party"
+],
+"wx": [
+"mild",
+"warm"
+],
+"note": "£18.82, full price.",
+"rank": 304,
+"sets": [
+"holiday"
+],
+"insize": null,
+"sizes": "",
+"kind": "new",
+"checked": "2026-10-06",
+"added": "2026-10-06",
+"img_src": "https://img.weirdfish.co.uk/cdn-cgi/image/w=700,q=80,f=auto/original/135997.jpg"
+}
+}

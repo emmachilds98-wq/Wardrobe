@@ -821,9 +821,9 @@
    },
    {
     "col": "navy",
-    "item": "moss-navy-trousers",
+    "item": "tmlewin-ronnie-infinity-active-slim-fit-charcoal-trousers-58728",
     "shape": "trousers",
-    "what": "Smart trousers"
+    "what": "trousers"
    },
    {
     "col": "brown",
@@ -870,9 +870,9 @@
    },
    {
     "col": "white",
-    "item": "fa-brewer-white",
+    "item": "farah-castlefield-waffle-overshirt-grey-f4whf008gp-031",
     "shape": "shirt",
-    "what": "Oxford shirt"
+    "what": "White shirt"
    },
    {
     "col": "indigo",
@@ -4852,9 +4852,9 @@
   "pieces": [
    {
     "col": "cream",
-    "item": "uq-souffle-crew",
+    "item": "moss-cuban-ecru",
     "shape": "jumper",
-    "what": "Soft knit jumper"
+    "what": "Cream jumper"
    },
    {
     "col": "grey",
@@ -5324,10 +5324,10 @@
     "what": "Argyle jumper"
    },
    {
-    "item": "fa-brewer-white",
+    "item": "farah-castlefield-waffle-overshirt-grey-f4whf008gp-031",
     "shape": "shirt",
     "col": "white",
-    "what": "Oxford shirt underneath"
+    "what": "White shirt"
    },
    {
     "item": "mt-chino-navy",
@@ -6360,9 +6360,9 @@
    },
    {
     "col": "cream",
-    "item": "uq-jersey-barrel",
+    "item": "folkclothi-barrel-leg-trouser-ecru-twill",
     "shape": "trousers",
-    "what": "Wide jersey trousers"
+    "what": "Cream trousers"
    },
    {
     "col": "white",
@@ -7740,9 +7740,9 @@
    },
    {
     "col": "black",
-    "item": "uw-military-black",
+    "item": "montirex-haze-pant-black-asphalt-platinum-grey-mtx1377-2481",
     "shape": "trousers",
-    "what": "Technical trousers"
+    "what": "Black trousers"
    },
    {
     "col": "black",
@@ -8116,9 +8116,9 @@
    },
    {
     "col": "black",
-    "item": "js-dm-1460",
+    "item": "r13-mk-patrol-boot",
     "shape": "boots",
-    "what": "Dr Martens 1460"
+    "what": "Black boots"
    }
   ],
   "rank": 14,
@@ -8148,9 +8148,9 @@
    },
    {
     "col": "grey",
-    "item": "gs-restday-indigo",
+    "item": "lg-loungeable-grey",
     "shape": "trousers",
-    "what": "Joggers"
+    "what": "Grey trousers"
    },
    {
     "col": "tan",
@@ -8321,9 +8321,9 @@
    },
    {
     "col": "black",
-    "item": "js-dm-1460",
+    "item": "universalt-original-penguin-mens-atlas-hiking-boots",
     "shape": "boots",
-    "what": "Dr Martens 1460"
+    "what": "Black boots"
    }
   ],
   "rank": 15,
@@ -8427,9 +8427,9 @@
   "pieces": [
    {
     "col": "grey",
-    "item": "tu-lambswool-high",
+    "item": "tokyolaund-striker-crew-neck-knitted-jumper-in-mid-grey-marl-kensingto",
     "shape": "jumper",
-    "what": "Lambswool jumper"
+    "what": "Grey jumper"
    },
    {
     "col": "white",
@@ -9310,9 +9310,9 @@
    },
    {
     "col": "white",
-    "item": "fa-brewer-white",
+    "item": "samuelwind-linen-mix-shirt-trad-white",
     "shape": "shirt",
-    "what": "Boxy Oxford"
+    "what": "White shirt"
    },
    {
     "col": "indigo",
@@ -9350,9 +9350,9 @@
    },
    {
     "col": "white",
-    "item": "fa-brewer-white",
+    "item": "slamcity-huf-arch-mesh-button-up-white",
     "shape": "shirt",
-    "what": "Boxy Oxford"
+    "what": "White shirt"
    },
    {
     "col": "black",
@@ -9388,9 +9388,9 @@
   "pieces": [
    {
     "col": "white",
-    "item": "fa-brewer-white",
+    "item": "savilerowc-white-cotton-classic-fit-printed-casual-shirt-5011whn",
     "shape": "shirt",
-    "what": "Boxy Oxford, worn open"
+    "what": "White shirt"
    },
    {
     "col": "black",
@@ -9435,9 +9435,9 @@
    },
    {
     "col": "white",
-    "item": "fa-brewer-white",
+    "item": "savilerowc-blue-white-linen-cotton-random-stripe-classic-fit-button-do",
     "shape": "shirt",
-    "what": "Boxy Oxford"
+    "what": "White shirt"
    },
    {
     "col": "navy",
@@ -9764,10 +9764,10 @@
     "what": "Quilted jacket"
    },
    {
-    "item": "p6-bb-alderley",
+    "item": "jeanstore-fred-perry-pique-stitch-knitted-tee-ecru",
     "shape": "jumper",
     "col": "cream",
-    "what": "Textured jumper"
+    "what": "Cream jumper"
    },
    {
     "item": "p6-bb-banstead",
@@ -12128,9 +12128,9 @@
    },
    {
     "col": "white",
-    "item": "fa-brewer-white",
+    "item": "savilerowc-pink-white-cotton-prince-of-wales-check-slim-fit-formal-shi",
     "shape": "shirt",
-    "what": "Boxy Oxford"
+    "what": "White shirt"
    },
    {
     "col": "grey",
@@ -12969,9 +12969,9 @@
    },
    {
     "col": "stone",
-    "item": "moss-merino-zip",
+    "item": "philipmorr-albert-and-maurice-netherton-zip-neck-lambswool-jumper-taup",
     "shape": "halfzip",
-    "what": "Merino zip-neck"
+    "what": "Stone half-zip"
    },
    {
     "col": "white",
@@ -13575,10 +13575,10 @@
     "what": "Cotton crew"
    },
    {
-    "item": "fa-hawtin",
+    "item": "farah-sambrano-archive-canvas-trousers-beige-f4bsg048gp-280",
     "shape": "trousers",
-    "col": "navy",
-    "what": "Relaxed tapered trousers"
+    "col": "cream",
+    "what": "Cream trousers"
    }
   ]
  },
@@ -14107,10 +14107,10 @@
   "tags": [],
   "pieces": [
    {
-    "item": "r11-passenge-overshirt",
+    "item": "r11-passenge-shirt",
     "shape": "shirt",
-    "col": "brown",
-    "what": "Cord overshirt, worn open"
+    "col": "black",
+    "what": "Black shirt"
    },
    {
     "item": "r11-passenge-tee",

@@ -57,7 +57,7 @@
    },
    {
     "col": "black",
-    "item": "uw-military-black",
+    "item": "universalw-black-tropical-suiting-military-chino",
     "shape": "trousers",
     "what": "Black trousers"
    },
@@ -936,7 +936,7 @@
    },
    {
     "col": "navy",
-    "item": "fa-hawtin",
+    "item": "sw-chino-navy",
     "shape": "trousers",
     "what": "Navy trousers"
    },
@@ -6651,21 +6651,21 @@
   "look": "men navy short-sleeve shirt stone shorts brown shoes outfit"
  },
  "g-job-01": {
-  "name": "Olive jacket and navy trousers",
+  "name": "Olive jacket and black trousers",
   "note": "5 pieces for £209.99, £285 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "blue",
-    "item": "universalt-crosshatch-mens-transflate-t-shirt-1",
-    "shape": "tee",
-    "what": "Blue T-shirt"
+    "item": "bestworkwe-fruit-of-the-loom-ss029-original-polo",
+    "shape": "polo",
+    "what": "Blue polo"
    },
    {
-    "col": "navy",
-    "item": "stanray-earls-bib-navy-ripstop-fw23",
+    "col": "black",
+    "item": "r12-sr-painter-denim",
     "shape": "trousers",
-    "what": "Navy trousers"
+    "what": "Black trousers"
    },
    {
     "col": "olive",
@@ -6675,7 +6675,7 @@
    },
    {
     "col": "brown",
-    "item": "amblerssaf-24022-brown",
+    "item": "r9-ut-pullon",
     "shape": "boots",
     "what": "Brown boots"
    },
@@ -6737,15 +6737,15 @@
   "ev": "site"
  },
  "g-job-03": {
-  "name": "Navy T-shirt and charcoal trousers",
+  "name": "Charcoal polo and charcoal trousers",
   "note": "4 pieces for £102.38, £102 below full price.",
   "occ": "everyday",
   "pieces": [
    {
-    "col": "navy",
-    "item": "hollandsco-ridgeline-mens-signature-t-shirt",
-    "shape": "tee",
-    "what": "Navy T-shirt"
+    "col": "charcoal",
+    "item": "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
+    "shape": "polo",
+    "what": "Charcoal polo"
    },
    {
     "col": "charcoal",
@@ -6755,7 +6755,7 @@
    },
    {
     "col": "brown",
-    "item": "amblerssaf-24022-brown",
+    "item": "r9-hc-dealer-wr",
     "shape": "boots",
     "what": "Brown boots"
    },
@@ -6777,21 +6777,21 @@
   "ev": "site"
  },
  "g-job-04": {
-  "name": "Navy hoodie and green trousers",
+  "name": "Navy hoodie and black trousers",
   "note": "4 pieces for £133.35, £121 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "black",
-    "item": "jeanstore-lee-workwear-relaxed-boxy-tee-washed-black",
-    "shape": "tee",
-    "what": "Black T-shirt"
+    "item": "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "shape": "polo",
+    "what": "Black polo"
    },
    {
-    "col": "green",
-    "item": "stanray-og-painter-pant-quiet-green-hickory-25-1",
+    "col": "black",
+    "item": "wk-stanray-dk-black",
     "shape": "trousers",
-    "what": "Green trousers"
+    "what": "Black trousers"
    },
    {
     "col": "navy",
@@ -6817,21 +6817,21 @@
   "ev": "site"
  },
  "g-job-05": {
-  "name": "Blue T-shirt and olive trousers",
+  "name": "Blue polo and black trousers",
   "note": "3 pieces for £105.99, £67 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "blue",
-    "item": "universalt-crosshatch-mens-transflate-t-shirt-1",
-    "shape": "tee",
-    "what": "Blue T-shirt"
+    "item": "bestworkwe-fruit-of-the-loom-ss029-original-polo",
+    "shape": "polo",
+    "what": "Blue polo"
    },
    {
-    "col": "olive",
-    "item": "stanray-fat-pant-olive-cord-fw22",
+    "col": "black",
+    "item": "wk-stanray-painter-black",
     "shape": "trousers",
-    "what": "Olive trousers"
+    "what": "Black trousers"
    },
    {
     "col": "brown",
@@ -6857,9 +6857,9 @@
   "pieces": [
    {
     "col": "green",
-    "item": "stanray-heatwave-tee-island-green",
-    "shape": "tee",
-    "what": "Green T-shirt"
+    "item": "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
+    "shape": "polo",
+    "what": "polo"
    },
    {
     "col": "black",
@@ -6891,21 +6891,21 @@
   "ev": "site"
  },
  "g-job-07": {
-  "name": "Olive jacket and olive trousers",
+  "name": "Olive jacket and black trousers",
   "note": "5 pieces for £193.39, £203 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "black",
-    "item": "jeanstore-lee-workwear-relaxed-boxy-tee-washed-black",
-    "shape": "tee",
-    "what": "Black T-shirt"
+    "item": "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "shape": "polo",
+    "what": "Black polo"
    },
    {
-    "col": "olive",
-    "item": "stanray-fat-pant-olive-cord-fw22",
+    "col": "black",
+    "item": "r12-wo-pianemo",
     "shape": "trousers",
-    "what": "Olive trousers"
+    "what": "Black trousers"
    },
    {
     "col": "olive",
@@ -6937,21 +6937,21 @@
   "ev": "site"
  },
  "g-job-08": {
-  "name": "Navy T-shirt and stone trousers",
+  "name": "Charcoal polo and black trousers",
   "note": "3 pieces for £117.94, £41 below full price.",
   "occ": "everyday",
   "pieces": [
    {
-    "col": "navy",
-    "item": "hollandsco-hard-yakka-heritage-long-sleeve-t-shirt",
-    "shape": "tee",
-    "what": "Navy T-shirt"
+    "col": "charcoal",
+    "item": "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
+    "shape": "polo",
+    "what": "Charcoal polo"
    },
    {
-    "col": "stone",
-    "item": "stanray-standard-5-70s-stone-denim-aw25",
+    "col": "black",
+    "item": "r13-on-carpenter",
     "shape": "trousers",
-    "what": "Stone trousers"
+    "what": "Black trousers"
    },
    {
     "col": "brown",
@@ -6971,21 +6971,21 @@
   "ev": "site"
  },
  "g-job-09": {
-  "name": "Black gilet and stone trousers",
+  "name": "Black gilet and black trousers",
   "note": "5 pieces for £142.89, £79 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "black",
-    "item": "universalt-marduk-unisex-adult-opus-nocturne-b-t-shirt",
-    "shape": "tee",
-    "what": "Black T-shirt"
+    "item": "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "shape": "polo",
+    "what": "Black polo"
    },
    {
-    "col": "stone",
-    "item": "stanray-stan-ray-double-knee-pant-heavy-stone-wash-denim-24-2",
+    "col": "black",
+    "item": "r13-mk-magnum",
     "shape": "trousers",
-    "what": "Stone trousers"
+    "what": "Black trousers"
    },
    {
     "col": "black",
@@ -7017,15 +7017,15 @@
   "ev": "site"
  },
  "g-job-10": {
-  "name": "Navy T-shirt and black trousers",
+  "name": "Navy polo and black trousers",
   "note": "4 pieces for £140.89, £68 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "navy",
-    "item": "hollandsco-hard-yakka-heritage-long-sleeve-t-shirt",
-    "shape": "tee",
-    "what": "Navy T-shirt"
+    "item": "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
+    "shape": "polo",
+    "what": "polo"
    },
    {
     "col": "black",
@@ -7057,21 +7057,21 @@
   "ev": "site"
  },
  "g-job-11": {
-  "name": "Black gilet and stone trousers",
+  "name": "Black gilet and black trousers",
   "note": "5 pieces for £152.89, £130 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "black",
-    "item": "hollandsco-swanndri-mens-original-v2-t-shirt",
-    "shape": "tee",
-    "what": "Black T-shirt"
+    "item": "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "shape": "polo",
+    "what": "Black polo"
    },
    {
-    "col": "stone",
-    "item": "stanray-standard-5-70s-stone-denim-aw25",
+    "col": "black",
+    "item": "r13-gr-gpants",
     "shape": "trousers",
-    "what": "Stone trousers"
+    "what": "Black trousers"
    },
    {
     "col": "burgundy",
@@ -7102,62 +7102,22 @@
   "look": "men black T-shirt stone trousers purple roll neck black gilet black boots outfit",
   "ev": "site"
  },
- "g-job-12": {
-  "name": "Black hoodie and green trousers",
-  "note": "4 pieces for £174.49, £102 below full price.",
-  "occ": "everyday",
-  "pieces": [
-   {
-    "col": "black",
-    "item": "volcom-workwear-sst",
-    "shape": "tee",
-    "what": "Black T-shirt"
-   },
-   {
-    "col": "green",
-    "item": "stanray-og-painter-pant-quiet-green-hickory-25-1",
-    "shape": "trousers",
-    "what": "Green trousers"
-   },
-   {
-    "col": "black",
-    "item": "universalt-hawkwind-unisex-adult-choose-your-masques-hoodie",
-    "shape": "hoodie",
-    "what": "Black hoodie"
-   },
-   {
-    "col": "white",
-    "item": "rocksolids-nora-multiralf-safety-wellington-boots",
-    "shape": "boots",
-    "what": "White boots"
-   }
-  ],
-  "rank": 433,
-  "style": [
-   "job"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "look": "men black T-shirt green trousers black hoodie white boots outfit",
-  "ev": "site"
- },
  "g-job-13": {
-  "name": "Black gilet and navy trousers",
+  "name": "Black gilet and black trousers",
   "note": "5 pieces for £187.94, £105 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "black",
-    "item": "universalt-nosferatu-unisex-adult-ornamental-t-shirt",
-    "shape": "tee",
-    "what": "Black T-shirt"
+    "item": "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "shape": "polo",
+    "what": "Black polo"
    },
    {
-    "col": "navy",
-    "item": "stanray-earls-bib-navy-ripstop-fw23",
+    "col": "black",
+    "item": "r12-sr-painter-denim",
     "shape": "trousers",
-    "what": "Navy trousers"
+    "what": "Black trousers"
    },
    {
     "col": "black",
@@ -7189,21 +7149,21 @@
   "ev": "site"
  },
  "g-job-14": {
-  "name": "Grey T-shirt and stone trousers",
+  "name": "Charcoal polo and black trousers",
   "note": "3 pieces for £139.44, £56 below full price.",
   "occ": "everyday",
   "pieces": [
    {
-    "col": "grey",
-    "item": "dewaltwork-chico",
-    "shape": "tee",
-    "what": "Grey T-shirt"
+    "col": "charcoal",
+    "item": "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
+    "shape": "polo",
+    "what": "Charcoal polo"
    },
    {
-    "col": "stone",
-    "item": "stanray-stan-ray-og-painter-pant-heavy-stone-wash-denim-24-2",
+    "col": "black",
+    "item": "wk-stanray-dk-black",
     "shape": "trousers",
-    "what": "Stone trousers"
+    "what": "Black trousers"
    },
    {
     "col": "brown",
@@ -7223,21 +7183,21 @@
   "ev": "site"
  },
  "g-job-15": {
-  "name": "Black gilet and olive trousers",
+  "name": "Black gilet and black trousers",
   "note": "6 pieces for £227.45, £140 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "black",
-    "item": "volcom-workwear-sst",
-    "shape": "tee",
-    "what": "Black T-shirt"
+    "item": "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
+    "shape": "polo",
+    "what": "polo"
    },
    {
-    "col": "olive",
-    "item": "stanray-earls-bib-olive-ripstop-fw23",
+    "col": "black",
+    "item": "wk-stanray-painter-black",
     "shape": "trousers",
-    "what": "Olive trousers"
+    "what": "Black trousers"
    },
    {
     "col": "burgundy",
@@ -7253,7 +7213,7 @@
    },
    {
     "col": "brown",
-    "item": "amblerssaf-10057-crazy",
+    "item": "r9-hf-m9509b",
     "shape": "boots",
     "what": "Brown boots"
    },
@@ -7275,21 +7235,21 @@
   "ev": "site"
  },
  "g-job-16": {
-  "name": "Yellow jumper and indigo trousers",
+  "name": "Camel jumper and black trousers",
   "note": "5 pieces for £276.85, £162 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "black",
-    "item": "universalt-nosferatu-unisex-adult-ornamental-t-shirt",
-    "shape": "tee",
-    "what": "Black T-shirt"
+    "item": "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "shape": "polo",
+    "what": "Black polo"
    },
    {
-    "col": "indigo",
-    "item": "stanray-earls-bib-vintage-stonewash-denim",
+    "col": "black",
+    "item": "r12-mt-chino",
     "shape": "trousers",
-    "what": "Indigo trousers"
+    "what": "Black trousers"
    },
    {
     "col": "camel",
@@ -7321,7 +7281,7 @@
   "ev": "site"
  },
  "g-job-17": {
-  "name": "Navy polo and indigo trousers",
+  "name": "Navy polo and black trousers",
   "note": "4 pieces for £126.99, £65 below full price.",
   "occ": "everyday",
   "pieces": [
@@ -7332,10 +7292,10 @@
     "what": "Navy polo"
    },
    {
-    "col": "indigo",
-    "item": "stanray-og-painter-pant-mid-stonewash-denim-fw22",
+    "col": "black",
+    "item": "r12-wo-pianemo",
     "shape": "trousers",
-    "what": "Indigo trousers"
+    "what": "Black trousers"
    },
    {
     "col": "green",
@@ -7360,62 +7320,22 @@
   "look": "men navy polo indigo trousers green boots outfit",
   "ev": "site"
  },
- "g-job-18": {
-  "name": "Black gilet and stone trousers",
-  "note": "4 pieces for £172.96, £72 below full price.",
-  "occ": "everyday",
-  "pieces": [
-   {
-    "col": "green",
-    "item": "stanray-heatwave-tee-island-green",
-    "shape": "tee",
-    "what": "Green T-shirt"
-   },
-   {
-    "col": "stone",
-    "item": "stanray-stan-ray-double-knee-pant-heavy-stone-wash-denim-24-2",
-    "shape": "trousers",
-    "what": "Stone trousers"
-   },
-   {
-    "col": "black",
-    "item": "r13-le-f417",
-    "shape": "gilet",
-    "what": "Black gilet"
-   },
-   {
-    "col": "black",
-    "item": "amblerssaf-26318-black",
-    "shape": "boots",
-    "what": "Black boots"
-   }
-  ],
-  "rank": 451,
-  "style": [
-   "job"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "look": "men green T-shirt stone trousers black gilet black boots outfit",
-  "ev": "site"
- },
  "g-job-19": {
-  "name": "Black T-shirt and indigo trousers",
+  "name": "Charcoal polo and charcoal trousers",
   "note": "3 pieces for £144.45, £54 below full price.",
   "occ": "everyday",
   "pieces": [
    {
-    "col": "black",
-    "item": "universalt-marduk-unisex-adult-opus-nocturne-b-t-shirt",
-    "shape": "tee",
-    "what": "Black T-shirt"
+    "col": "charcoal",
+    "item": "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
+    "shape": "polo",
+    "what": "Charcoal polo"
    },
    {
-    "col": "indigo",
-    "item": "stanray-og-painter-pant-mid-stonewash-denim-fw22",
+    "col": "charcoal",
+    "item": "r12-cl-openhem-cargo",
     "shape": "trousers",
-    "what": "Indigo trousers"
+    "what": "Charcoal trousers"
    },
    {
     "col": "black",
@@ -7434,62 +7354,16 @@
   "look": "men black T-shirt indigo trousers black boots outfit",
   "ev": "site"
  },
- "g-job-20": {
-  "name": "Black jacket and olive trousers",
-  "note": "5 pieces for £251.4, £99 below full price.",
-  "occ": "everyday",
-  "pieces": [
-   {
-    "col": "green",
-    "item": "hollandsco-pinewood-mens-twin-pack-t-shirt",
-    "shape": "tee",
-    "what": "Green T-shirt"
-   },
-   {
-    "col": "olive",
-    "item": "stanray-earls-bib-olive-ripstop-fw23",
-    "shape": "trousers",
-    "what": "Olive trousers"
-   },
-   {
-    "col": "black",
-    "item": "r13-mm-tssoftshell",
-    "shape": "jacket",
-    "what": "Black jacket, worn open"
-   },
-   {
-    "col": "black",
-    "item": "r9-ws-expanse",
-    "shape": "boots",
-    "what": "Black boots"
-   },
-   {
-    "col": "grey",
-    "item": "stanray-tote-bag-tigerstripe-ripstop",
-    "shape": "bag",
-    "what": "bag"
-   }
-  ],
-  "rank": 457,
-  "style": [
-   "job"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "look": "men green T-shirt olive trousers black jacket black boots outfit",
-  "ev": "site"
- },
  "g-job-21": {
-  "name": "Camel T-shirt and black trousers",
+  "name": "Camel polo and black trousers",
   "note": "4 pieces for £201.39, £86 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "camel",
-    "item": "hollandsco-laksen-mens-duck-cotton-t-shirt",
-    "shape": "tee",
-    "what": "Camel T-shirt"
+    "item": "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
+    "shape": "polo",
+    "what": "polo"
    },
    {
     "col": "black",
@@ -7521,19 +7395,19 @@
   "ev": "site"
  },
  "g-job-22": {
-  "name": "Black T-shirt and grey trousers",
+  "name": "Black polo and grey trousers",
   "note": "4 pieces for £214.89, £162 below full price.",
   "occ": "everyday",
   "pieces": [
    {
     "col": "black",
-    "item": "hollandsco-swanndri-mens-original-v2-t-shirt",
-    "shape": "tee",
-    "what": "Black T-shirt"
+    "item": "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "shape": "polo",
+    "what": "Black polo"
    },
    {
     "col": "grey",
-    "item": "stanray-earls-bib-battle-grey-duck-fw22",
+    "item": "r12-bs-twill-cargo",
     "shape": "trousers",
     "what": "Grey trousers"
    },
@@ -7560,108 +7434,16 @@
   "look": "men black T-shirt grey trousers black boots outfit",
   "ev": "site"
  },
- "g-job-23": {
-  "name": "Black gilet and black trousers",
-  "note": "5 pieces for £212.2, £37 below full price.",
+ "g-job-28": {
+  "name": "Blue polo and grey trousers",
+  "note": "4 pieces for £165.56, £78 below full price.",
   "occ": "everyday",
   "pieces": [
    {
-    "col": "grey",
-    "item": "dewaltwork-chico",
-    "shape": "tee",
-    "what": "Grey T-shirt"
-   },
-   {
-    "col": "black",
-    "item": "wk-stanray-painter-black",
-    "shape": "trousers",
-    "what": "Black trousers"
-   },
-   {
-    "col": "black",
-    "item": "rocksolids-scruffs-tamworth-logo-hoodie",
-    "shape": "hoodie",
-    "what": "Black hoodie"
-   },
-   {
-    "col": "black",
-    "item": "r13-le-cd876",
-    "shape": "gilet",
-    "what": "Black gilet"
-   },
-   {
-    "col": "black",
-    "item": "amblerssaf-42856-black",
-    "shape": "boots",
-    "what": "Black boots"
-   }
-  ],
-  "rank": 466,
-  "style": [
-   "job"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "look": "men grey T-shirt black trousers black hoodie black gilet black boots outfit",
-  "ev": "site"
- },
- "g-job-24": {
-  "name": "Black jacket and black trousers",
-  "note": "5 pieces for £251.84, £120 below full price.",
-  "occ": "everyday",
-  "pieces": [
-   {
-    "col": "navy",
-    "item": "hollandsco-ridgeline-mens-signature-t-shirt",
-    "shape": "tee",
-    "what": "Navy T-shirt"
-   },
-   {
-    "col": "black",
-    "item": "wk-stanray-dk-black",
-    "shape": "trousers",
-    "what": "Black trousers"
-   },
-   {
-    "col": "black",
-    "item": "w8-sf-softshell",
-    "shape": "jacket",
-    "what": "Black jacket, worn open"
-   },
-   {
-    "col": "tan",
-    "item": "amblerssaf-42860-tan",
-    "shape": "boots",
-    "what": "Tan boots"
-   },
-   {
-    "col": "green",
-    "item": "hollandsco-stetson-trouts-bucket-hat",
-    "shape": "bucket",
-    "what": "Green bucket hat"
-   }
-  ],
-  "rank": 469,
-  "style": [
-   "job"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "look": "men navy T-shirt black trousers black jacket tan boots outfit",
-  "ev": "site"
- },
- "g-job-25": {
-  "name": "Yellow jumper and grey trousers",
-  "note": "5 pieces for £208.99, £74 below full price.",
-  "occ": "everyday",
-  "pieces": [
-   {
-    "col": "black",
-    "item": "liftingequ-f61082m-fruit-of-the-loom-mens-original-t-shirt",
-    "shape": "tee",
-    "what": "Black T-shirt"
+    "col": "blue",
+    "item": "bestworkwe-fruit-of-the-loom-ss029-original-polo",
+    "shape": "polo",
+    "what": "Blue polo"
    },
    {
     "col": "grey",
@@ -7670,160 +7452,16 @@
     "what": "Grey trousers"
    },
    {
-    "col": "camel",
-    "item": "universalt-fear-of-god-essentials-mens-essentials-crew-neck-sweatshirt",
-    "shape": "jumper",
-    "what": "Yellow jumper"
-   },
-   {
-    "col": "brown",
-    "item": "amblerssaf-10057-crazy",
-    "shape": "boots",
-    "what": "Brown boots"
-   },
-   {
-    "col": "sand",
-    "item": "stanray-tote-bag-natural-drill",
-    "shape": "bag",
-    "what": "Sand bag"
-   }
-  ],
-  "rank": 472,
-  "style": [
-   "job"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "look": "men black T-shirt grey trousers yellow jumper brown boots outfit",
-  "ev": "site"
- },
- "g-job-26": {
-  "name": "Blue jumper and stone trousers",
-  "note": "5 pieces for £273.35, £165 below full price.",
-  "occ": "everyday",
-  "pieces": [
-   {
-    "col": "camel",
-    "item": "hollandsco-laksen-mens-duck-cotton-t-shirt",
-    "shape": "tee",
-    "what": "Camel T-shirt"
-   },
-   {
-    "col": "stone",
-    "item": "stanray-stan-ray-og-painter-pant-heavy-stone-wash-denim-24-2",
-    "shape": "trousers",
-    "what": "Stone trousers"
-   },
-   {
-    "col": "blue",
-    "item": "universalt-sesame-street-unisex-adult-grover-face-sweatshirt",
-    "shape": "jumper",
-    "what": "Blue jumper"
-   },
-   {
-    "col": "black",
-    "item": "r9-ws-bedrock",
-    "shape": "boots",
-    "what": "Black boots"
-   },
-   {
-    "col": "black",
-    "item": "universalt-carrera-mens-224s-003-m9-sunglasses",
-    "shape": "sunglasses",
-    "what": "Black sunglasses"
-   }
-  ],
-  "rank": 475,
-  "style": [
-   "job"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "look": "men camel T-shirt stone trousers blue jumper black boots outfit",
-  "ev": "site"
- },
- "g-job-27": {
-  "name": "Black gilet and indigo trousers",
-  "note": "6 pieces for £248.18, £102 below full price.",
-  "occ": "everyday",
-  "pieces": [
-   {
-    "col": "black",
-    "item": "workweargu-portwest-b195-turin-premium-t-shirt",
-    "shape": "tee",
-    "what": "Black T-shirt"
-   },
-   {
-    "col": "indigo",
-    "item": "stanray-earls-bib-vintage-stonewash-denim",
-    "shape": "trousers",
-    "what": "Indigo trousers"
-   },
-   {
-    "col": "black",
-    "item": "stanray-fire-dept-hood-raven-black",
-    "shape": "hoodie",
-    "what": "Black hoodie"
-   },
-   {
-    "col": "black",
-    "item": "r13-le-cd876",
-    "shape": "gilet",
-    "what": "Black gilet"
-   },
-   {
     "col": "black",
     "item": "amblerssaf-26318-black",
     "shape": "boots",
     "what": "Black boots"
    },
    {
-    "col": "olive",
-    "item": "militaryki-highlander-emergency-survival-bag-olive",
+    "col": "black",
+    "item": "workweargu-portwest-fp99-nylon-drawstring-bag",
     "shape": "bag",
-    "what": "Olive bag"
-   }
-  ],
-  "rank": 478,
-  "style": [
-   "job"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "look": "men black T-shirt indigo trousers black hoodie black gilet black boots outfit",
-  "ev": "site"
- },
- "g-job-28": {
-  "name": "Blue T-shirt and grey trousers",
-  "note": "4 pieces for £165.56, £78 below full price.",
-  "occ": "everyday",
-  "pieces": [
-   {
-    "col": "blue",
-    "item": "bestworkwe-orn-1000-plover-premium-t-shirt",
-    "shape": "tee",
-    "what": "Blue T-shirt"
-   },
-   {
-    "col": "grey",
-    "item": "stanray-earls-bib-battle-grey-duck-fw22",
-    "shape": "trousers",
-    "what": "Grey trousers"
-   },
-   {
-    "col": "tan",
-    "item": "amblerssaf-42860-tan",
-    "shape": "boots",
-    "what": "Tan boots"
-   },
-   {
-    "col": "olive",
-    "item": "militaryma-swedish-army-kit-bag-and-clasp",
-    "shape": "bag",
-    "what": "Olive bag"
+    "what": "Black bag"
    }
   ],
   "rank": 481,
@@ -7836,84 +7474,16 @@
   "look": "men blue T-shirt grey trousers tan boots outfit",
   "ev": "site"
  },
- "g-job-29": {
-  "name": "Black T-shirt and black trousers",
-  "note": "3 pieces for £148.9, £3 below full price.",
-  "occ": "everyday",
-  "pieces": [
-   {
-    "col": "black",
-    "item": "universalt-spiral-direct-unisex-adult-sun-dragon-t-shirt",
-    "shape": "tee",
-    "what": "Black T-shirt"
-   },
-   {
-    "col": "black",
-    "item": "r13-mk-brandit-cargo",
-    "shape": "trousers",
-    "what": "Black trousers"
-   },
-   {
-    "col": "brown",
-    "item": "r10-ws-grit-brown",
-    "shape": "boots",
-    "what": "Brown boots"
-   }
-  ],
-  "rank": 484,
-  "style": [
-   "job"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "look": "men black T-shirt black trousers brown boots outfit",
-  "ev": "site"
- },
- "g-job-30": {
-  "name": "Black T-shirt and grey trousers",
-  "note": "3 pieces for £110.45.",
-  "occ": "everyday",
-  "pieces": [
-   {
-    "col": "black",
-    "item": "liftingequ-f61082m-fruit-of-the-loom-mens-original-t-shirt",
-    "shape": "tee",
-    "what": "Black T-shirt"
-   },
-   {
-    "col": "grey",
-    "item": "r12-bs-twill-cargo",
-    "shape": "trousers",
-    "what": "Grey trousers"
-   },
-   {
-    "col": "black",
-    "item": "r9-ws-latitude",
-    "shape": "shoes",
-    "what": "Black shoes"
-   }
-  ],
-  "rank": 487,
-  "style": [
-   "job"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "look": "men black T-shirt grey trousers black shoes outfit",
-  "ev": "site"
- },
  "g-job-31": {
-  "name": "White T-shirt and black trousers",
+  "name": "Charcoal polo and black trousers",
   "note": "3 pieces for £122.29.",
   "occ": "everyday",
   "pieces": [
    {
-    "col": "white",
-    "item": "bestworkwe-awdis-ecologie-ea001-cascade-organic-tee",
-    "shape": "tee",
-    "what": "White T-shirt"
+    "col": "charcoal",
+    "item": "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
+    "shape": "polo",
+    "what": "Charcoal polo"
    },
    {
     "col": "black",
@@ -7923,7 +7493,7 @@
    },
    {
     "col": "black",
-    "item": "amblerssaf-42856-black",
+    "item": "r9-ut-dealer",
     "shape": "boots",
     "what": "Black boots"
    }
@@ -7936,46 +7506,6 @@
    "mild"
   ],
   "look": "men white T-shirt black trousers black boots outfit",
-  "ev": "site"
- },
- "g-job-32": {
-  "name": "Green T-shirt and black trousers",
-  "note": "4 pieces for £201.43, £24 below full price.",
-  "occ": "everyday",
-  "pieces": [
-   {
-    "col": "green",
-    "item": "hollandsco-pinewood-mens-twin-pack-t-shirt",
-    "shape": "tee",
-    "what": "Green T-shirt"
-   },
-   {
-    "col": "black",
-    "item": "rocksolids-hard-yakka-raptor-active-cuffed-work-trousers",
-    "shape": "trousers",
-    "what": "Black trousers"
-   },
-   {
-    "col": "brown",
-    "item": "amblerssaf-42854-brown",
-    "shape": "boots",
-    "what": "Brown boots"
-   },
-   {
-    "col": "olive",
-    "item": "stanray-tote-bag-olive-sateen",
-    "shape": "bag",
-    "what": "Olive bag"
-   }
-  ],
-  "rank": 493,
-  "style": [
-   "job"
-  ],
-  "wx": [
-   "mild"
-  ],
-  "look": "men green T-shirt black trousers brown boots outfit",
   "ev": "site"
  },
  "g-lounge-01": {

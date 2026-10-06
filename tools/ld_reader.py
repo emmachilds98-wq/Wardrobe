@@ -13,6 +13,28 @@ def walk(o,out):
     if 'Product' in t or 'ProductGroup' in t: out.append(o)
     for k in ('@graph','hasVariant','mainEntity'):
       if k in o: walk(o[k],out)
+def main_product(prods,u):
+  """Pages often carry JSON-LD for recommended products too. Keep the page's own product (its
+  url, @id, sku or productID appears in the page address), with its variants; when nothing
+  matches, keep the first product and its variants."""
+  def ids(p):
+    out=[str(p.get(k) or '') for k in ('url','@id','sku','productID','productGroupID','mpn')]
+    return [x for x in out if len(x)>=4]
+  path=u.split('?')[0].rstrip('/').lower()
+  tops=[p for p in prods if not any(p is v for q in prods for v in (q.get('hasVariant') or []) if isinstance(v,dict))]
+  pick=None
+  for p in tops:
+    for x in ids(p):
+      x=x.split('?')[0].rstrip('/').lower()
+      if x and (x==path or (not x.startswith('http') and re.search(r'(^|[^0-9a-z])'+re.escape(x)+r'($|[^0-9a-z])',path)) or (x.startswith('http') and path.endswith(x.split('/',3)[-1]))):
+        pick=p;break
+    if pick: break
+  if pick is None:
+    if len(tops)<=1: return prods
+    pick=tops[0]
+  out=[pick]
+  walk(pick.get('hasVariant') or [],out)
+  return out
 def parse(u):
   try: s,final=get(u)
   except Exception as e: return {'url':u,'err':str(e)[:80]}
@@ -21,8 +43,9 @@ def parse(u):
     try: walk(json.loads(html.unescape(m.group(1).strip())),prods)
     except Exception: pass
   if not prods: return {'url':u,'err':'no ld'}
+  prods=main_product(prods,u)
   top=prods[0];name=top.get('name','');img=top.get('image')
-  sizes={};price=None
+  sizes={};price=None;cur=None
   for p in prods:
     offs=p.get('offers') or []
     offs=offs if isinstance(offs,list) else [offs]
@@ -31,6 +54,7 @@ def parse(u):
         price=price or float(o.get('lowPrice') or 0); offs2=o.get('offers') or []
       else: offs2=[o]
       for x in offs2:
+        cur=cur or x.get('priceCurrency') or o.get('priceCurrency')
         pr=x.get('price')
         try: pr=float(pr)
         except Exception: pr=None
@@ -53,7 +77,7 @@ def parse(u):
     try: was=float(m3.group(1))
     except Exception: pass
   if was and price and was<=price: was=None
-  return {'was':was,'url':final,'name':name,'price':price,'img':img or (og[0] if og else None),'og':og[0] if og else None,'sizes':sizes,'color':top.get('color')}
+  return {'was':was,'url':final,'name':name,'price':price,'currency':cur,'img':img or (og[0] if og else None),'og':og[0] if og else None,'sizes':sizes,'color':top.get('color')}
 if __name__=='__main__':
   urls=[l.strip() for l in open(sys.argv[1]) if l.strip()]
   with cf.ThreadPoolExecutor(6) as ex: res=list(ex.map(parse,urls))

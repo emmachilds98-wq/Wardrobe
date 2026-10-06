@@ -99,6 +99,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--per-style", type=int, default=30)
     ap.add_argument("--seed", type=int, default=1)
+    ap.add_argument("--new-since", default="", help="weekly mode: each outfit needs a pick added on or after this date")
+    ap.add_argument("--out", default=os.path.join(ROOT, "data", "outfits-new.json"))
+    ap.add_argument("--id-prefix", default="g")
     a = ap.parse_args()
     rnd = random.Random(a.seed)
     items = json.load(open(os.path.join(ROOT, "data", "items.json")))
@@ -108,11 +111,15 @@ def main():
     photos = set()
     for p in glob.glob(os.path.join(ROOT, "photos", "*-[0-9][0-9].json")):
         photos.update(json.load(open(p)).keys())
-    old = json.load(open(os.path.join(ROOT, "data", "outfits.json")))
+    old = {}
+    for of in glob.glob(os.path.join(ROOT, "data", "outfits*.json")):
+        if os.path.abspath(of) != os.path.abspath(a.out) or a.new_since:
+            old.update(json.load(open(of)))
     used = {}
     for f in old.values():
         for p in f["pieces"]:
             used[p["item"]] = used.get(p["item"], 0) + 1
+    fresh = {k for k, v in items.items() if a.new_since and v.get("added", "") >= a.new_since}
 
     pool = []
     for k, v in items.items():
@@ -146,7 +153,8 @@ def main():
         if not cands:
             return None
         # Reduced and cheaper pieces first, with some variety.
-        cands.sort(key=lambda x: (-(1 - x[1]["price"] / x[1]["was"]) if x[1].get("was") else 0) + x[1]["price"] / 150 + rnd.random() * 0.8)
+        cands.sort(key=lambda x: (-(1 - x[1]["price"] / x[1]["was"]) if x[1].get("was") else 0) + x[1]["price"] / 150 + rnd.random() * 0.8
+                   - (0.9 if x[0] in fresh else 0))
         return cands[0]
 
     out = {}
@@ -167,7 +175,7 @@ def main():
             def bright():
                 return [c for c in cols if c not in NEUTRAL]
 
-            top = pick(style, {"tee", "polo"} if job else (TOP if not lounge else {"tee", "polo"}), wx, set(), taken)
+            top = pick(style, {"polo"} if job else (TOP if not lounge else {"tee", "polo"}), wx, set(), taken)
             if not top:
                 continue
             add(top)
@@ -198,6 +206,8 @@ def main():
                     add(acc)
             if len(bright()) > 1:
                 continue
+            if a.new_since and not any(x[0] in fresh for x in pieces):
+                continue
             for x in pieces:
                 used[x[0]] = used.get(x[0], 0) + 1
             tot = sum(x[1]["price"] for x in pieces)
@@ -209,7 +219,7 @@ def main():
             name = (label(hero) + " and " + label(lowp))
             name = name[0].upper() + name[1:]
             occ = next((o for o in STYLE_OCC[style] if all(o in x[1].get("occ", [o]) for x in pieces[:2])), STYLE_OCC[style][0])
-            fid = "g-%s-%02d" % (style, made + 1)
+            fid = "%s-%s-%02d" % (a.id_prefix, style, made + 1)
             out[fid] = {
                 "name": name,
                 "note": "%d pieces for £%s%s." % (len(pieces), ("%.2f" % tot).rstrip("0").rstrip("."),
@@ -227,7 +237,7 @@ def main():
                 out[fid]["ev"] = "site"
             made += 1
         print(style, made)
-    with open(os.path.join(ROOT, "data", "outfits-new.json"), "w", encoding="utf-8") as f:
+    with open(a.out, "w", encoding="utf-8") as f:
         json.dump(out, f, indent=1, ensure_ascii=False)
     print(len(out), "new outfits")
 

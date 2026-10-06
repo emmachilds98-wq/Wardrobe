@@ -644,9 +644,8 @@ its whole range.
     line shorter.
 
 ### Further upgrades found in the review (not done yet)
-1. **"New this week" has lost its meaning:** after the big sweeps almost every pick was added this
-   week (6,582). From the next weekly refresh, only picks first seen that week should carry it.
-2. **Weekly price refresh:** re-run `shopify_pull.py`, `sitemap_sweep.py` and `sweep_filter.py` weekly
+1. ~~**"New this week" has lost its meaning.**~~ Done in 2x: only the week's new picks carry it.
+2. ~~**Weekly price refresh:**~~ Done in 2x (`tools/weekly_refresh.py`). re-run `shopify_pull.py`, `sitemap_sweep.py` and `sweep_filter.py` weekly
    to update prices, stock in his size and `hist`, so "Price drop" tags and the shortlist's
    "Down £x since saved" work across all 7,155 picks; drop picks no longer listed.
 3. **Shop-by-budget sets:** £60, £100 and £150 buttons on Outfits using the builder's suggester.
@@ -657,6 +656,49 @@ its whole range.
    lists already show at most two, but the sweep could add the colour from the variant.
 7. **Blocked shops:** about 30 shops still refuse automated requests from the cloud; running
    `tools/browser_sweep.js` from a home computer would add them.
+
+## 2x. First weekly refresh (6 Oct 2026)
+
+A repeatable weekly refresh (`tools/weekly_refresh.py`, steps in `REFRESH.md`) checked every pick
+against its shop, removed what is no longer sold, added new picks and published the result to the
+artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outfits** (was 572).
+
+- **Price check:** 6,626 picks were checked against the live listing (Shopify feeds, product pages,
+  and headless Chromium for 128 pages that refuse a plain request). 17 prices went down and 50 went
+  up, mostly sales that ended at Matalan, Clarks, Tu and M&S. The cards show "Price drop" and a price
+  history.
+- **Currency guard:** shops geolocate the cloud server and sometimes answer in dollars or euros (one
+  run showed 1,527 false price rises). Every request now asks for the UK market, answers in another
+  currency are retried, and a shop whose prices all move by one shared factor is left alone and
+  reported (this week: Peacocks; Ted Baker, Colorful Standard and Rains answered only in other
+  currencies).
+- **Removed (63):** 14 sold out in every size, 34 sold out in his size, 2 Moss slim-fit trousers,
+  and 13 things that are not clothing (tie-down straps, bivvy and survival bags, laptop sleeves,
+  magazine rigs). Eight 6E safety boots stay listed as "his size sold out" watch items.
+- **Moss data fixed:** Moss pages carry data for a dozen recommended products, and the old reader
+  took the cheapest of them, so Moss picks had wrong names and prices (a "£4.95 linen shirt"). The
+  reader now uses only the page's own product; 19 Moss picks were renamed from their pages.
+- **Workwear rules enforced:** the October sweep had tagged items Workwear on looser rules (60%
+  cotton, any boot, any shop). Following Emma's rules, the Workwear tag came off 67 T-shirts, 19
+  safety boots that are not EE or wider, 23 trousers that are not black or charcoal, stretch,
+  Cordura or not confirmed cotton, and about 110 fashion pieces from mixed shops (sunglasses,
+  wallets, band tees, Boss blazers). They stay in their other styles. Work gloves, beanies, socks,
+  base layers and the like keep the tag. 79 Workwear outfits were mended to match and 11 that could
+  not be were dropped.
+- **New picks (433):** 414 from 110 Shopify shops and 19 from shops read through their sitemaps,
+  up to 6 a shop and 2 a kind, reduced first, all in his size with a photo. The filter learned new
+  rules from this week's review (women's "W" items, swim caps and briefs, feed codes in names,
+  muscle fit, Workwear: no T-shirts, black or charcoal trousers only, no stretch, Cordura or
+  bundles, light colours out). Only these carry "New this week" now.
+- **Outfits:** 22 outfits that lost a piece got the closest live match (same kind, shop and colour
+  first; single-shop outfits stay single-shop), and 14 new outfits are built on the new picks.
+- **Not checked from the cloud:** ASOS (195 picks), Ted Baker, Colorful Standard, Rains, Peacocks,
+  M and M Direct, WoolOvers, Schuh and a few others refuse cloud servers or answer in another
+  currency, even in a real browser. Their picks keep last week's price. The full list is in
+  `data/refresh-report.json`.
+- **Published:** the claude.ai artifact <https://claude.ai/artifact/8uqcGr2eNmzbQv8UVBshY2> and
+  GitHub Pages <https://emmachilds98-wq.github.io/Wardrobe/> (the site is built into `docs/`, and
+  the root `index.html` opens it).
 
 ## 3. Next steps
 
