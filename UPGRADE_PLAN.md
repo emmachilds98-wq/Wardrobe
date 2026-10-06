@@ -568,6 +568,36 @@ its whole range.
   middle of the main colour, and pulls studio-lit black back to near black. A colour picked by hand in
   the builder still wins.
 
+## 2u. A visual builder, 572 outfits and 200 shops (version 28, 6 Oct 2026)
+
+- **Build:** the dropdowns are gone. A chip for each part of the outfit (with its photo once
+  chosen), then that part's pieces as photo tiles with price, saving and shop. Tap a tile, or drag
+  it onto the figure, to put it on; tap again or "Take it off" to remove it. Filter and sort the
+  tiles; Keep and Suggest still work. On phones the figure sits on top.
+- **Drawings match the listings:** 23 outfit pieces were drawn as the wrong kind of garment
+  (overshirts as jackets, puffer jackets as long coats, a parka as a jacket) and 51 in the wrong
+  colour; all corrected. The page's own shape rules now read hoods, knitted polos, gilets, vests,
+  overshirts, slippers and more trainer names correctly.
+- **Figure:** Dave's shorter curls (on top, trimmed above the ears), short beard and moustache,
+  eyes and brows, from his photo. Parkas, waterproofs and puffers get a hood, zips, flap pockets and a
+  waist cord. Graphic tees show a chest print; mod polos tipping; pocket tees, henleys, zip hoodies,
+  rugby stripes, button-down collars and gum soles are drawn when the listing names them. Checks
+  and stripes take the item's second colour from its photo.
+- **Outfits:** `tools/make_outfits.py` adds 229 outfits (`data/outfits-new.json`) across all eight
+  styles, from photographed picks in his size: weather-matched, at most one non-neutral colour,
+  safety footwear for Workwear, no joggers outside Lounge and Rave, reduced pieces first, no pick in
+  more than two. 572 outfits in all.
+- **Shops:** 78 more UK shops in "Where to look", including a new Premium brands group (Reiss,
+  AllSaints, Ted Baker, Hackett, Paul Smith, BOSS, Tommy Hilfiger, Ralph Lauren, Lacoste, Stone
+  Island and more) and Fred Perry, Barbour, House of Fraser, Flannels, Mainline, Scotts, Footasylum,
+  size?, Skechers, Clarks, Loake, Grenson, Barker, Hotter, Cosyfeet, Spoke, BadRhino, Craghoppers,
+  Rab, Patagonia, Helly Hansen, Engelbert Strauss and Snickers. `tools/sitemap_sweep.py` reads shops
+  without a Shopify feed through their sitemaps and schema.org data: 9,303 products from 48 shops,
+  filtered to 1,012 picks (`data/items-shops.json`, 948 with photos). The page now has 7,155 picks
+  from 200 shops. About 30 shops refuse automated requests (Fred Perry, Ralph Lauren, Lacoste, TK
+  Maxx, Mr Porter, Dr Martens and others) and are links only. Picks from shops that do not publish
+  stock by size show his usual size instead of "in stock".
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

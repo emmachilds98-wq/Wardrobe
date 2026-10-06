@@ -12,12 +12,12 @@ Rules (from the brief):
   - workwear: at least 60% cotton, no slim, skinny or tapered fits, safety boots 4E or 6E only;
   - each pick keeps the shop's own photo URL (`img_src`) for fetch_photos.py --shopify.
 """
-import argparse, collections, glob, html, json, os, re
+import argparse, collections, glob, html, json, os, re, urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 WOMEN = re.compile(r"\b(women'?s?|womens|ladies|lady|lady's|girls?|boys?|kids?|kid's|child(ren)?|"
-                   r"junior|juniors|youth|infant|toddler|baby|babies|maternity|unisex-kids|dress|skirt|bra|"
+                   r"junior|juniors|youth|infant|toddler|baby|babies|maternity|unisex-kids|dress|skirt|bra|tunic|kaftan|bralette|"
                    r"leggings|bikini|swimsuit|blouse|camisole)\b", re.I)
 MEN = re.compile(r"\b(men|mens|men's|man|male|gents?|gent's|menswear|unisex)\b", re.I)
 NOT_CLOTHES = re.compile(r"\b(gift ?card|gift ?voucher|voucher|e-?gift|sticker|poster|mug|candle|"
@@ -279,6 +279,8 @@ def category(title, ptype, tags):
     t = re.sub(r"\bpolo shirt\b", " polo ", t, flags=re.I)
     t = re.sub(r"\b(t-?shirt|tshirt|sweatshirt|overshirt|rugby shirt|football shirt|shirt jacket|shirt-jacket)\b",
                lambda m: {"overshirt": "overshirt", "shirt jacket": "overshirt", "shirt-jacket": "overshirt"}.get(m.group(1).lower(), m.group(1)), t, flags=re.I)
+    if re.search(r"\b(beanie|bobble hat|bucket hat|baseball cap|cap|scarf|gloves?|snood)\b", t, re.I) and not re.search(r"\b(jumper|cardigan|jacket|hoodie|toe cap)\b", t, re.I):
+        return "acc"
     # Shorts (also "jersey short", "cargo short") are trousers, whatever else the title says.
     if re.search(r"\bshorts?\b", t, re.I) and not re.search(r"\b(swim|board|trunks?|pyjama|lounge|sleep)\b", t, re.I):
         return "trouser"
@@ -349,7 +351,7 @@ def make_name(title, vendor, shop, colour):
     t = clean_title(title, vendor, shop)
     vendor = re.sub(r"\s+(clothing|apparel|europe|uk|ltd|accessories|footwear|cap|store)$", "", (vendor or "").strip(), flags=re.I)
     brand = vendor if vendor and not JUNK_VENDOR.match(vendor) and vendor.lower() != shop.lower() and len(vendor) < 30 and not re.search(r"\d", vendor) else shop
-    if brand.lower() in t.lower():
+    if re.sub(r"\s*(&|and)\s*", " ", brand.lower()) in re.sub(r"\s*(&|and)\s*", " ", t.lower()):
         name = t
     else:
         name = brand + " " + t
@@ -507,6 +509,9 @@ def main():
                 tags = [t.strip() for t in tags.split(",")]
             ptype = p.get("product_type") or ""
             hay = " ".join([title, ptype, " ".join(tags), p.get("handle", "")])
+            if re.search(r"\b\d{1,2}(-\d{1,2})? ?(years?|yrs)\b|\bage \d|school ?(uniform|shirt|trouser|jumper)|\bkids?\b", title, re.I):
+                stats["children's"] += 1
+                continue
             if WOMEN.search(title + " " + ptype + " " + p.get("handle", "").replace("-", " ")):
                 stats["women"] += 1
                 continue
@@ -571,6 +576,11 @@ def main():
             if was <= price * 1.04:
                 was = 0
             url = p.get("url") or "https://%s/products/%s" % (host, p["handle"])
+            seg = (urllib.parse.urlparse(url).path.lower().strip("/").split("/") or [""])[0]
+            if (re.fullmatch(r"[a-z]{2}(-[a-z]{2})?", seg) and seg not in ("gb", "uk", "en-gb", "en-uk", "en")) or \
+                    re.search(r"/(en-us|en-au|en-ca|us)/", urllib.parse.urlparse(url).path.lower()):
+                stats["not a UK page"] += 1
+                continue
             if re.sub(r"[?#].*", "", url).rstrip("/").lower() in old_urls:
                 stats["already a pick"] += 1
                 continue
