@@ -1057,6 +1057,28 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   - The two ends lie down his front over whatever he wears, one longer, with fringed ends.
   - Shirt collar points tuck away under a scarf.
 
+## 2zn. Proportions from his photos, body controls, tops that fit (7 Oct 2026)
+
+- **Proportions:**
+  - The saved base had his legs at 44.9% of his height (shorter than nearly all men) and a large head.
+  - His photos show a slightly long body, nothing marked, so the base is now legs at 46.6% of his height (most men
+    are 46 to 49%) and 7.8 heads tall.
+  - Older saves take these new proportions once (`propV`).
+- **Proportion sliders:** they keep a set span either side of him (legs 45.5% to 47.6%), so they adjust him
+  without throwing him out of proportion.
+  - Leg length trades against the body, so his height stays the same.
+  - A line under them gives his leg-to-height share and head count against the usual range.
+  - "His proportions" and "Average man" buttons set all five lengths at once.
+- **New body sliders:**
+  - shoulder slope (squarer to more sloped, with the arms following);
+  - body depth front to back;
+  - how clothes fit, from slimmer and closer to looser and straighter.
+- **Tops:**
+  - Hems are set from his crotch, as real ones are: a tee or polo covers the waistband, a shirt is a little
+    longer, and a blazer covers the seat. Before, they ran below the crotch.
+  - Below the chest they take in toward the waist by the fit slider.
+  - Sleeves stop under the shoulder cover, so the shoulder rounds over the arm instead of forming a square pad.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

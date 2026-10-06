@@ -2309,9 +2309,9 @@ function figMode(){return FIG.allow2d?FIG.mode:"3d";}
    (meta/character); anyone else's stays on their device. The defaults are the look the owner saved as his current
    base (6 Oct 2026, second save): no beard, a moustache. Every Edit Dave slider has this base in the middle. */
 var CHAR_DEF={height:183,skin:"#e2b08f",hair:"#38261b",hairVol:0.6,tache:"pencil",tacheCol:"#7a4a2c",beard:"none",eyes:"#5d86b5",brows:"thin",glasses:"none",glassCol:"#2b2622",weight:0,muscle:0,shoulderW:0,chest:0,waistW:0,belly:0,hips:0,arms:0,legs:0,neckW:0,faceW:0,jaw:0,chin:0,noseSize:0,lips:0,ears:0,eyeSize:0,smile:0.3,
-  tacheY:0,tacheZ:0,tacheV:2,tacheW:1,tacheLen:0,tacheDen:1,tacheDroop:0.45,browCol:"",browThick:-0.4,browY:-0.25,browArch:-0.1,browTilt:-0.25,browLen:-0.05,
-  hairStyle:"short",hairShade:0.26,hairLight:0.4,curlK:1,hairLenK:1,fringe:1,freckles:0.3,legLen:-1,torsoLen:0.35,armLen:0,neckLen:-0.45,headSize:0.3,
-  hairTop:-1,hairSides:-0.14,hairBack:0,hairFinish:"natural",curlSize:1,frizz:-1,hairDir:-0.63,fringeLen:-0.37};
+  tacheY:0,tacheZ:0,tacheV:2,propV:2,tacheW:1,tacheLen:0,tacheDen:1,tacheDroop:0.45,browCol:"",browThick:-0.4,browY:-0.25,browArch:-0.1,browTilt:-0.25,browLen:-0.05,
+  hairStyle:"short",hairShade:0.26,hairLight:0.4,curlK:1,hairLenK:1,fringe:1,freckles:0.3,legLen:-0.45,torsoLen:0.2,armLen:0,neckLen:-0.45,headSize:0.05,
+  hairTop:-1,hairSides:-0.14,hairBack:0,hairFinish:"natural",curlSize:1,frizz:-1,hairDir:-0.63,fringeLen:-0.37,torsoDepth:0,shoulderSlope:0,clothFit:0};
 /* older saves used fixed choices (build, shoulders, middle, face, nose): turn them into slider positions */
 function migrateChar(o){if(!o||typeof o!=="object")return o;
   function set(k,v){if(o[k]==null)o[k]=v;}
@@ -2324,6 +2324,8 @@ function migrateChar(o){if(!o||typeof o!=="object")return o;
   /* hair: only cuts his curls can take; the base is his current short cut, in his brown */
   if(o.hairStyle&&["short","tidy","crop","swept","grown","long","sbs","fade"].indexOf(o.hairStyle)<0)o.hairStyle="short";
   if(o.hairShade==null&&Object.keys(o).length){o.hairShade=0.32;o.hairLight=0.55;o.hairVol=1;delete o.hair;if(!o.hairStyle)o.hairStyle="short";}
+  /* his proportions were re-set to match his photos (a slightly long body): saves from before take the new ones */
+  if(Object.keys(o).length&&o.propV!==2){["legLen","torsoLen","armLen","neckLen","headSize"].forEach(function(k){delete o[k];});o.propV=2;}
   /* the moustache's starting place moved up to sit under the nose: placement saved against the old one starts again from there */
   if(Object.keys(o).length&&o.tacheV!==2){o.tacheY=0;o.tacheZ=0;o.tacheV=2;}
   ["build","shoulders","waist","face","nose","hairline","grey","highlights","curl","hairLen"].forEach(function(k){delete o[k];});return o;}
@@ -2636,14 +2638,19 @@ function irisTex(col){if(irisTx[col])return irisTx[col];var T=window.THREE,cv=do
    standard proportions, then one pass stretches heights band by band (feet unchanged, then legs, torso, neck,
    and a head scaled as a whole), and arms are re-hung from the shoulder at their own length. The body and the
    clothes go through the same pass, so they always line up. */
-function propK(){var v=function(k){return Number(CHAR[k])||0;};return {fl:1+0.1*v("legLen"),ft:1+0.1*v("torsoLen"),fn:1+0.3*v("neckLen"),af:1+0.1*v("armLen"),hs:1+0.1*v("headSize")};}
+function propK(){var v=function(k){return Number(CHAR[k])||0;};return {fl:1+0.1*v("legLen"),ft:1+0.1*v("torsoLen"),fn:1+0.3*v("neckLen"),af:1+0.1*v("armLen"),hs:1+0.1*v("headSize"),td:1+0.13*v("torsoDepth"),ss:v("shoulderSlope")};}
 function propWarp(chin){var K=propK(),A=0.09,Cc=0.85,S=1.45,Ch=chin||1.567;
-  if(Math.abs(K.fl-1)+Math.abs(K.ft-1)+Math.abs(K.fn-1)+Math.abs(K.af-1)+Math.abs(K.hs-1)<1e-4)return null;
+  if(Math.abs(K.fl-1)+Math.abs(K.ft-1)+Math.abs(K.fn-1)+Math.abs(K.af-1)+Math.abs(K.hs-1)+Math.abs(K.td-1)+Math.abs(K.ss)<1e-4)return null;
   var c1=A+(Cc-A)*K.fl,s1=c1+(S-Cc)*K.ft,h1=s1+(Ch-S)*K.fn;
   function W(y){return y<=A?y:(y<=Cc?A+(y-A)*K.fl:(y<=S?c1+(y-Cc)*K.ft:(y<=Ch?s1+(y-S)*K.fn:h1+(y-Ch)*K.hs)));}
   function hk(y){return y>=Ch?K.hs:(y>Ch-0.05?1+(K.hs-1)*(y-(Ch-0.05))/0.05:1);}
   return {K:K,W:W,hk:hk,S:S,
-    pt:function(p,arm,hz){if(arm&&p.y<S){p.y=W(S)-(S-p.y)*K.af;return p;}var k=hk(p.y);p.y=W(p.y);if(k!==1){p.x*=k;p.z=hz+(p.z-hz)*k;}return p;}};}
+    /* besides heights: the shoulders slope down (or square up) toward the arms, which move with them, and the torso
+       gets deeper or shallower front to back (fading out below the hips and up the neck) */
+    pt:function(p,arm,hz){var SL=-0.028*K.ss;if(arm&&p.y<S){p.y=W(S)-(S-p.y)*K.af+SL;return p;}
+      var y0=p.y,wd=sstep(Cc-0.1,Cc+0.04,y0)*(1-sstep(1.5,1.57,y0));if(wd>0&&K.td!==1)p.z=-0.01+(p.z+0.01)*(1+(K.td-1)*wd);
+      var ws=SL?sstep(0.07,0.19,Math.abs(p.x))*sstep(1.3,1.44,y0)*(1-sstep(1.56,1.62,y0)):0;
+      var k=hk(y0);p.y=W(y0)+SL*ws;if(k!==1){p.x*=k;p.z=hz+(p.z-hz)*k;}return p;}};}
 function warpMan(man,PW,hzc){var T=window.THREE,v=new T.Vector3(),mi=new T.Matrix4(),inv=new T.Matrix4(),m4=new T.Matrix4(),p0=new T.Vector3(),p1=new T.Vector3();
   man.updateMatrixWorld(true);
   man.traverse(function(o){if(!o.isMesh)return;var arm=false,a=o;while(a&&a!==man){if(a.userData.arm)arm=true;a=a.parent;}
@@ -3080,6 +3087,9 @@ function make3Dcore(pieces){
     var hid=up.slice(k+1).some(function(q){return !((LAYER[q.shape]===2&&q.shape!=="gilet")||q.shape==="cardigan"||/worn open/i.test(q.what))&&!/^(vest|waistcoat|gilet)$/.test(q.shape);});
     var zipped=open&&/zip|parka|puffer|padded|harrington|bomber|waterproof|shell|track|softshell|fleece/.test(n0);
     var hem={coat:0.52,gown:0.46,blazer:0.74,jacket:0.8,shirt:0.8,sshirt:0.82,polo:0.84,tee:0.84,vest:0.85,gilet:0.82,waistcoat:0.88,cardigan:0.82,hoodie:0.83,halfzip:0.83,jumper:0.83,rollneck:0.83}[p.shape]||0.84;
+    /* on the real body tops end a set distance above or below his crotch, as real ones do (a tee covers the
+       waistband, a blazer the seat) */
+    if(bodyOn){var dH={tee:0.075,polo:0.075,vest:0.08,sshirt:0.065,shirt:0.035,jumper:0.08,rollneck:0.08,halfzip:0.08,hoodie:0.07,cardigan:0.055,jacket:0.05,gilet:0.065,waistcoat:0.13,blazer:-0.025}[p.shape];if(dH!=null)hem=BL.crotch+dH;}
     if(/crop|boxy/.test(n0))hem+=0.03;if(/longline/.test(n0))hem-=0.05;if(p.shape==="jacket"&&/parka|mac|trench/.test(n0))hem=0.6;
     var tucked=tuckIn&&L===0&&/^(shirt|sshirt|polo)$/.test(p.shape);if(tucked)hem=1.005;
     var n52=bodyOn?NK(1.525):null;
@@ -3092,9 +3102,10 @@ function make3Dcore(pieces){
     var secs=flare.concat(tor).filter(function(q){return q[0]>hem;});
     secs.unshift([hem,secs[0][1],secs[0][2],0,secs[0][4]]);
     /* on the real body, cloth hangs straight down from the widest part of the chest: it never follows the waist in */
-    if(bodyOn){var hmx=0,hmz=0;for(var hi2=secs.length-1;hi2>=0;hi2--){var hq=secs[hi2];if(hq[0]<1.38){hmx=Math.max(hmx,hq[1]);hmz=Math.max(hmz,hq[2]);if(hq[0]<1.33){var tp=hq[0]<1.12?Math.min(1,(1.12-hq[0])/0.3):0;secs[hi2]=[hq[0],Math.max(hq[1],hmx*(1-0.035*tp)),Math.max(hq[2],hmz*(1-0.02*tp)),hq[3],hq[4]];}}}}
+    /* how far it takes in toward the waist depends on the fit set in Edit Dave: slim follows him, relaxed hangs straight */
+    if(bodyOn){var hmx=0,hmz=0,CF=Number(CHAR.clothFit)||0;for(var hi2=secs.length-1;hi2>=0;hi2--){var hq=secs[hi2];if(hq[0]<1.38){hmx=Math.max(hmx,hq[1]);hmz=Math.max(hmz,hq[2]);if(hq[0]<1.33){var tp=sstep(1.3,1.04,hq[0]),tw=Math.max(0,0.08-0.085*CF)*tp;secs[hi2]=[hq[0],Math.max(hq[1],hmx*(1-tw)),Math.max(hq[2],hmz*(1-tw*0.7)),hq[3],hq[4]];}}}}
     if(!bodyOn)secs=secs.map(function(q){return q[0]<1.0?[q[0],Math.max(q[1],0.171),Math.max(q[2],0.111),q[3],Math.min(q[4],-0.008)]:q;});
-    secs=secs.map(function(q){var top=q[0]>1.48,w=tucked?(q[0]<1.04?-0.004:(q[0]<1.1?0.004:0)):waistE&&q[0]<1.08?(q[0]<1.0?0.022:0.022*(1.08-q[0])/0.08):0;var et=bodyOn?(q[0]>1.44?e+0.009:e):(top?e*0.6:e);return [q[0],q[1]+et+w,q[2]+et+w,q[3],q[4]];});
+    secs=secs.map(function(q){var top=q[0]>1.48,w=tucked?(q[0]<1.04?-0.004:(q[0]<1.1?0.004:0)):waistE&&q[0]<1.08?(q[0]<1.0?0.022:0.022*(1.08-q[0])/0.08):0;var et=bodyOn?(q[0]>1.44?e+0.009:e)*(1+0.55*(Number(CHAR.clothFit)||0)):(top?e*0.6:e);return [q[0],q[1]+et+w,q[2]+et+w,q[3],q[4]];});
     if(!open&&hem<0.97)waistHid=true;
     var gap=open?(p.shape==="cardigan"?0.5:(p.shape==="blazer"||p.shape==="coat"?0.75:0.62)):0;
     var NDIP=bodyOn&&p.shape!=="rollneck"&&!/^(shirt|sshirt|polo|blazer|coat|jacket)$/.test(p.shape)?0.024:(bodyOn&&/^(shirt|sshirt|polo)$/.test(p.shape)?0.012:0);
@@ -3112,13 +3123,13 @@ function make3Dcore(pieces){
     var underLong=up.slice(k+1).some(function(q){return !/^(vest|waistcoat|gilet)$/.test(q.shape)&&!(/^(tee|polo|sshirt)$/.test(q.shape)&&!/long/.test(nm(q)));});
     if(!sleeveless&&!underLong){[-1,1].forEach(function(s){
       tgt=armG[s];
-      var se=e*0.55+0.004,arm=sideX(B3.arm,s).filter(function(q){return q[0]>=(short?1.24:(bodyOn?SLV+0.02:0.9));});
+      var se=(e*0.55+0.004)*(bodyOn?1+0.55*(Number(CHAR.clothFit)||0):1),arm=sideX(B3.arm,s).filter(function(q){return q[0]>=(short?1.24:(bodyOn?SLV+0.02:0.9));});
       var a24=AT(1.24),a30=AT(1.3),aSl=AT(SLV);
       if(short){arm=(bodyOn?[[1.24,a24[1]+0.008,a24[2]+0.008,s*a24[3],a24[4]],[1.3,a30[1]+0.006,a30[2]+0.006,s*a30[3],a30[4]]]:[[1.24,0.054,0.056,s*0.222,0.005],[1.3,0.053,0.055,s*0.216,0.004]]).concat(arm.filter(function(q){return q[0]>1.33;}));}
       else{arm.unshift(bodyOn?[SLV,aSl[1],aSl[2],s*aSl[3],aSl[4]]:[0.905,arm[0][1],arm[0][2],arm[0][3],arm[0][4]]);}
       arm=ease(arm,se);
       /* the sleeve head: rounded over the top of the arm and into the shoulder seam, not cut flat */
-      arm=arm.filter(function(q){return q[0]<=(wrapOn?1.43:1.4);});var a1=arm[arm.length-1];   /* under the wrap the sleeve runs up into the shoulder */
+      var aTop=wrapOn?1.37:1.4,aCut=secAt(arm,aTop);arm=arm.filter(function(q){return q[0]<aTop-0.005;});arm.push([aTop,aCut[1],aCut[2],aCut[3],aCut[4]]);var a1=arm[arm.length-1];   /* under the wrap the sleeve stops below the shoulder: the wrap rounds over it */
       if(!wrapOn)arm.push([1.425,a1[1]*0.95,a1[2]*0.96,a1[3]-s*0.006,a1[4]],[1.448,a1[1]*0.72,a1[2]*0.78,a1[3]-s*0.02,a1[4]],[1.462,a1[1]*0.4,a1[2]*0.46,a1[3]-s*0.038,a1[4]],[1.468,a1[1]*0.12,a1[2]*0.14,a1[3]-s*0.05,a1[4]]);
       sec(arm,m,{seg:22,u:0.4,top:true,k:short?4:10,wr:short?null:sleeveFolds(L===2?0.7:1),ao:{kind:"limb",s:s}});
       if(!bodyOn)add(new T.SphereGeometry(0.05+se,22,16),m,s*0.18,1.404,0,1,0.64,0.94);   /* shoulder: the body's own shoulder plus ease, so no skin shows at the seam */
@@ -4327,7 +4338,8 @@ function SL(g,k,l,lo,hi){return {g:g,k:k,l:l,t:"sl",min:-1,max:1,step:0.05,f:slF
 /* Every slider has his saved base (CHAR_DEF) in the middle. Its ends still reach the full range either way (wider
    where his base sits near one end), and the stored value is the real one, so saves stay as they were. */
 function ceRng(c){var lo=c.t==="sl"?-1:c.min,hi=c.t==="sl"?1:c.max,b=Number(CHAR_DEF[c.k]);if(isNaN(b))b=(lo+hi)/2;
-  if(c.t==="sl"){var sp=c.g==="hair"?1:0.6;lo=Math.min(lo,b-sp);hi=Math.max(hi,b+sp);}   /* hair sliders keep a full step either side */else{if(c.lo!=null)lo=Math.min(lo,c.lo);if(c.hi!=null)hi=Math.max(hi,c.hi);}
+  /* (proportion sliders keep a set span either side of him, so they adjust him without throwing him out of proportion) */
+  if(c.t==="sl"&&c.span){lo=b-c.span;hi=b+c.span;}else if(c.t==="sl"){var sp=c.g==="hair"?1:0.6;lo=Math.min(lo,b-sp);hi=Math.max(hi,b+sp);}   /* hair sliders keep a full step either side */else{if(c.lo!=null)lo=Math.min(lo,c.lo);if(c.hi!=null)hi=Math.max(hi,c.hi);}
   return [lo,b,hi];}
 function cePos(c,v){var r=ceRng(c);v=Number(v);if(isNaN(v))v=r[1];var p=v<r[1]?(r[1]-r[0]>1e-6?(v-r[1])/(r[1]-r[0]):0):(r[2]-r[1]>1e-6?(v-r[1])/(r[2]-r[1]):0);return Math.max(-1,Math.min(1,Math.round(p*100)/100));}
 function ceVal(c,p){var r=ceRng(c);p=Number(p)||0;var v=p<0?r[1]+p*(r[1]-r[0]):r[1]+p*(r[2]-r[1]);return c.step>=1?Math.round(v):Math.round(v*1000)/1000;}
@@ -4339,21 +4351,26 @@ var CE=[
   {g:"body",k:"height",l:"Height",t:"range",min:160,max:200,step:1,f:function(v){return v+" cm ("+Math.floor(v/30.48)+"ft "+Math.round((v/2.54)%12)+"in)";}},
   SL("body","weight","Weight","Slimmer","Heavier"),
   SL("body","muscle","Muscle","Softer","More muscular"),
-  {g:"body",h:"Proportions"},
-  SL("body","shoulderW","Shoulders","Narrower","Broader"),
+  {g:"body",h:"Shape"},
+  SL("body","shoulderW","Shoulder width","Narrower","Broader"),
+  SL("body","shoulderSlope","Shoulder slope","Squarer","More sloped"),
   SL("body","chest","Chest","Smaller","Bigger"),
+  SL("body","torsoDepth","Body depth (front to back)","Flatter","Deeper"),
   SL("body","waistW","Waist","Narrower","Wider"),
   SL("body","belly","Belly","Flatter","Rounder"),
   SL("body","hips","Hips","Narrower","Wider"),
   SL("body","arms","Arms","Thinner","Thicker"),
   SL("body","legs","Legs","Thinner","Thicker"),
   SL("body","neckW","Neck","Thinner","Thicker"),
-  {g:"body",h:"Lengths (his height stays the same)"},
-  SL("body","legLen","Legs","Shorter","Longer"),
-  SL("body","torsoLen","Body","Shorter","Longer"),
-  SL("body","armLen","Arms","Shorter","Longer"),
-  SL("body","neckLen","Neck length","Shorter","Longer"),
-  SL("body","headSize","Head size","Smaller","Bigger"),
+  {g:"body",h:"Proportions (his height stays the same)"},
+  Object.assign(SL("body","legLen","Leg length","Shorter, longer body","Longer, shorter body"),{span:0.45}),
+  Object.assign(SL("body","torsoLen","Torso length","Shorter","Longer"),{span:0.45}),
+  Object.assign(SL("body","armLen","Arm length","Shorter","Longer"),{span:0.5}),
+  Object.assign(SL("body","neckLen","Neck length","Shorter","Longer"),{span:0.5}),
+  Object.assign(SL("body","headSize","Head size","Smaller","Bigger"),{span:0.5}),
+  {g:"body",k:"_prop",t:"prop"},
+  {g:"body",h:"Clothes"},
+  SL("body","clothFit","How clothes fit","Slimmer, closer","Looser, straighter"),
   {g:"body",k:"skin",l:"Skin",t:"sw",o:["#f6dccb","#eec3aa","#e2b08f","#c98f6b","#a8714f","#7a4e34","#55372a"]},
   {g:"body",k:"_meas",t:"meas"},
   {g:"face",h:"Shape"},
@@ -4413,6 +4430,12 @@ var BODY_KEYS=["weight","muscle","shoulderW","chest","waistW","belly","hips","ar
 var PRESETS={dave:{},slim:{weight:-0.6,muscle:-0.15,chest:-0.2,belly:-0.4,arms:-0.3,legs:-0.25},average:{weight:0.1,belly:0},
   athletic:{weight:-0.1,muscle:0.65,shoulderW:0.4,chest:0.35,waistW:-0.15,belly:-0.45,arms:0.35,legs:0.25,neckW:0.3},
   heavier:{weight:0.6,belly:0.55,waistW:0.45,chest:0.2,hips:0.25,arms:0.25,legs:0.2,neckW:0.3}};
+/* how his lengths compare with most men, so the sliders can be set by eye or by numbers */
+var PROP_KEYS=["legLen","torsoLen","armLen","neckLen","headSize"];
+function ceProp(){if(!BODY)return "";var L=BODY.lm,PW=propWarp(L.chin),W=PW?PW.W:function(y){return y;},H=W(1.79),leg=W(L.crotch)/H,head=(H-W(L.chin))/H;
+  var lp=Math.round(leg*1000)/10,hn=Math.round(10/head)/10;
+  return "Legs (to the crotch) are "+lp+"% of his height; most men are 46 to 49%, so "+(lp<45.5?"his legs read short.":(lp>49.5?"his legs read long.":(lp<46.8?"he has a slightly long body, within the usual range.":"he is in the usual range.")))+
+    " He is "+hn+" heads tall"+(hn<7?" (a large head; most men are 7 to 8).":(hn>8.3?" (a small head; most men are 7 to 8).":" (most men are 7 to 8)."));}
 /* his chest, waist and hips from the model, as a rough guide for sizes */
 function ceMeas(){if(!BODY)return "";var b=bodySecs(),t=b.torso,kH=(Number(CHAR.height)||183)/183;
   function circ(y){var q=secAt(t,y),a=q[1]*kH,c=q[2]*kH;return Math.PI*(3*(a+c)-Math.sqrt((3*a+c)*(a+3*c)))*1.04;}
@@ -4427,6 +4450,7 @@ function ceForm(){
   $("ce-form").innerHTML=CE.filter(function(c){return c.g===ceTab&&(!c.when||c.when());}).map(function(c){
     if(c.h)return '<h3 class="ce-sub">'+esc(c.h)+'</h3>';
     if(c.t==="meas")return '<p class="msg ce-meas" id="ce-meas">'+esc(ceMeas())+'</p>';
+    if(c.t==="prop")return '<p class="msg ce-meas" id="ce-prop">'+esc(ceProp())+'</p><div class="ce-row"><span class="label"></span><div class="ce-opts"><button type="button" class="chip" data-ceprop="his">His proportions</button><button type="button" class="chip" data-ceprop="avg">Average man</button></div></div>';
     if(c.t==="preset")return '<div class="ce-row"><span class="label" id="ce-l-pre">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-pre">'+c.o.map(function(o){return '<button type="button" class="chip" data-ceset="'+o[0]+'">'+esc(o[1])+'</button>';}).join("")+'</div></div>';
     if(c.t==="sl"||c.t==="range"){var sv=CHAR[c.k],dv=CHAR_DEF[c.k];return '<div class="ce-row"><label class="label" for="ce-r-'+c.k+'">'+esc(c.l)+'</label><div class="ce-opts"><input type="range" id="ce-r-'+c.k+'" data-cer="'+c.k+'" min="-1" max="1" step="0.01" value="'+cePos(c,sv)+'"><span class="ce-val" id="ce-v-'+c.k+'">'+esc(ceLabel(c,sv))+'</span><button type="button" class="linkbtn ce-rs" data-cers="'+c.k+'"'+(Math.abs((Number(sv)||0)-(Number(dv)||0))<0.001?' hidden':'')+'>Reset</button></div></div>';}
     var v=CHAR[c.k],h='<div class="ce-row"><span class="label" id="ce-l-'+c.k+'">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-'+c.k+'">';
@@ -4435,7 +4459,7 @@ function ceForm(){
     return h+'</div></div>';}).join("");
   $("ce-undo").disabled=!ceHist.length;
 }
-function ceApply(){clearTimeout(ceT);ceT=setTimeout(function(){if(cePrev&&cePrev.on&&cePieces)cePrev.update(cePieces);var me=$("ce-meas");if(me)me.textContent=ceMeas();},120);}
+function ceApply(){clearTimeout(ceT);ceT=setTimeout(function(){if(cePrev&&cePrev.on&&cePieces)cePrev.update(cePieces);var me=$("ce-meas");if(me)me.textContent=ceMeas();var pr=$("ce-prop");if(pr)pr.textContent=ceProp();},120);}
 function cePush(force){var now=Date.now();if(force||now-ceLastPush>700){ceHist.push(Object.assign({},CHAR));if(ceHist.length>40)ceHist.shift();}ceLastPush=now;$("ce-undo").disabled=false;}
 function ceSet(k,v,drag){if(CHAR[k]===v)return;cePush(!drag);CHAR[k]=v;if(k==="hairShade")CHAR.hair=brownAt(v);var c=CE.filter(function(x){return x.k===k;})[0];
   if(c&&c.t!=="range"&&c.t!=="sl"){if(k==="glasses"||k==="tache"||k==="hairStyle"){ceForm();}else{Array.prototype.forEach.call(document.querySelectorAll('[data-ce="'+k+'"]'),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-cv")===String(v).toLowerCase()));});var ci=$("ce-c-"+k);if(ci&&/^#/.test(v))ci.value=v;}}
@@ -4474,6 +4498,7 @@ document.addEventListener("click",function(e){var b;
   if((b=e.target.closest("[data-cet]"))){ceTab=b.getAttribute("data-cet");ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);return;}
   if((b=e.target.closest("[data-ce]"))){ceSet(b.getAttribute("data-ce"),b.getAttribute("data-cv"));return;}
   if((b=e.target.closest("[data-cers]"))){var rk=b.getAttribute("data-cers");ceSet(rk,Number(CHAR_DEF[rk])||0);var ri=$("ce-r-"+rk);if(ri)ri.value=0;return;}
+  if((b=e.target.closest("[data-ceprop]"))){var avg=b.getAttribute("data-ceprop")==="avg";cePush(true);ceLastPush=0;PROP_KEYS.forEach(function(k2){CHAR[k2]=avg?0:CHAR_DEF[k2];});ceForm();ceApply();$("ce-msg").textContent=avg?"Proportions of an average man.":"His own proportions.";return;}
   if((b=e.target.closest("[data-ceset]"))){var pr=PRESETS[b.getAttribute("data-ceset")]||{};cePush(true);ceLastPush=0;BODY_KEYS.forEach(function(k2){CHAR[k2]=pr[k2]!=null?pr[k2]:(b.getAttribute("data-ceset")==="dave"?CHAR_DEF[k2]:0);});ceForm();ceApply();$("ce-msg").textContent="Body type: "+b.textContent+". Fine-tune it with the sliders.";return;}
 });
 $("chared").addEventListener("keydown",function(e){var t=e.target;if(!t.hasAttribute||!t.hasAttribute("data-cet")||(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"))return;
