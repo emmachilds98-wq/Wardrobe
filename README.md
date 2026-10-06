@@ -12,7 +12,7 @@ that refresh them every week (see `REFRESH.md`).
 |---|---|
 | `page.html` | The page source as published. Opened directly in a browser it shows the layout; picks and outfits load only inside the artifact, where its database lives. |
 | `data/items.json` | Every pick (name, shop, price, link, styles, occasion, weather, sizes). |
-| `data/outfits.json` | Every outfit and the picks it uses. |
+| `data/outfits.json` | Every outfit and the picks it uses. A piece marked `"own"` is something he already has (his work T-shirt), with nothing to buy. |
 | `photos/` | Listing photos, shrunk to small WebP files and packed into JSON files the page loads. |
 | `tools/fetch_photos.py` | Downloads and packs the listing photos. `--browser` retries refused shops in headless Chromium. |
 | `tools/shopify_pull.py` | Downloads a whole catalogue (prices, stock by size, photos) from shops that publish a product feed. |

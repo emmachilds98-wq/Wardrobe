@@ -139,6 +139,10 @@ def main():
         with open(os.path.join(out, "data", name + ".json"), "w", encoding="utf-8") as f:
             json.dump(obj, f, separators=(",", ":"), ensure_ascii=False)
     shutil.copyfile(os.path.join(ROOT, "page.html"), os.path.join(out, "index.html"))
+    # Dave's 3D body (tools/build_body.py); without it the page falls back to the hand-built body
+    body = os.path.join(ROOT, "data", "body.json")
+    if os.path.exists(body):
+        shutil.copyfile(body, os.path.join(out, "data", "body.json"))
     print(f"{len(items)} picks in {len(groups)} load groups (largest {max(len(v) for v in groups.values())}), "
           f"{len(outfits)} outfits, {meta['photos']['count']} photos -> {out}")
 
