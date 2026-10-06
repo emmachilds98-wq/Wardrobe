@@ -918,6 +918,36 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
 - **Older saves:** the earlier fixed choices (build, shoulders, middle, face, nose) are converted to
   slider positions automatically, including the copy shared in the page's data.
 
+## 2zh. Moustache, brow and hair controls, proportions, face detail, layering (6 Oct 2026)
+
+- **Moustache sliders:** position (up or down), depth (closer to or further from the skin), width,
+  hair length, thickness and ends (turned up or drooping), for any style, to fix placement by eye.
+- **Brows:** a colour (match his hair, swatches or any colour), thickness, height, arch, angle and
+  length.
+- **Hair:**
+  - Styles: his curls, a short crop, straight and swept back, a buzz cut, or bald.
+  - Highlights and grey (salt and pepper).
+  - Hairline (lower to receding) and the curls over his forehead.
+  - Length, curl and volume where they apply.
+- **Proportions:** leg, body, arm and neck length, and head size.
+  - His total height stays the same, and the size line now includes his inside leg.
+  - The model is built at standard proportions, then one pass stretches heights band by band (feet
+    unchanged) and re-hangs the arms from the shoulder. Body and clothes go through the same pass,
+    so they always line up.
+- **Face detail:**
+  - Fine skin pores from a bump pattern in the skin shader.
+  - Real irises: fibres, a lighter ring by the pupil and a darker rim, on a curved cap.
+  - Eyeballs shaded under the upper lid and at the corners.
+  - A crisper lip edge and a mouth line.
+  - Deeper shading in the face's creases, and a little more contrast in the light.
+- **Layering:**
+  - The skin at the base of the neck is hidden by direction: it stays at the front, where necklines
+    dip, and goes at the sides and back, where it showed through.
+  - Under sleeveless tops the shoulders stay bare, and gilets, vests and waistcoats slope at the
+    shoulders instead of forming a flat shelf.
+  - A hoodie's hood lies outside an open coat or jacket worn over it.
+  - Overshirts, chore jackets, shackets and flannels layer over a tee or polo rather than under it.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

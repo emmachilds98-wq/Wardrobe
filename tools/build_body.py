@@ -332,7 +332,8 @@ def bake_ao(P, tris, vreg, nv):
     for _ in range(3):                                          # spread a little so creases read softly
         S2 = np.zeros(n); np.add.at(S2, tris.ravel(), np.repeat(cav[tris].mean(1), 3)); c2 = np.zeros(n); np.add.at(c2, tris.ravel(), 1)
         cav = 0.5 * cav + 0.5 * S2 / np.maximum(c2, 1)
-    ao = 1 - 0.55 * np.clip(cav, 0, 0.6)
+    headv = vreg == REGIONS.index("head")
+    ao = 1 - np.where(headv, 0.95, 0.55) * np.clip(cav, 0, 0.6)          # the face's creases read more strongly
     R_ = {r: REGIONS.index(r) for r in REGIONS}
     side = np.sign(P[:, 0])
     inward = np.clip(-N[:, 0] * side, 0, 1)
