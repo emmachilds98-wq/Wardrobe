@@ -43,6 +43,14 @@ TARGETS = {
     "nose_v_incr": "nose/nose-scale-vert-incr.target", "nose_v_decr": "nose/nose-scale-vert-decr.target",
     "nose_h_incr": "nose/nose-scale-horiz-incr.target", "nose_h_decr": "nose/nose-scale-horiz-decr.target",
     "nose_d_incr": "nose/nose-scale-depth-incr.target", "nose_d_decr": "nose/nose-scale-depth-decr.target",
+    # a man's torso: a little more chest and a straighter waist, narrower hips
+    "vshape": "torso/torso-vshape-incr.target", "bust_incr": "measure/measure-bust-circ-incr.target",
+    "waist_c_incr": "measure/measure-waist-circ-incr.target", "hips_decr": "measure/measure-hips-circ-decr.target",
+    # a relaxed, friendly expression
+    "smile": "mouth/mouth-angles-up.target", "laugh": "mouth/mouth-laugh-lines-in.target",
+    "cheek_l": "cheek/l-cheek-volume-incr.target", "cheek_r": "cheek/r-cheek-volume-incr.target",
+    "fold_l": "eyes/l-eye-eyefold-down.target", "fold_r": "eyes/r-eye-eyefold-down.target",
+    "lid_l": "eyes/l-eye-height2-decr.target", "lid_r": "eyes/r-eye-height2-decr.target",
 }
 FILES = ["3dobjs/base.obj", "rigs/default.mhskel", "rigs/default_weights.mhw"] + ["targets/" + t for t in TARGETS.values()]
 
@@ -288,11 +296,46 @@ def face_depth(P, tris, sel, x0, x1, y0, y1, step):
     return Z
 
 
+def bake_ao(P, tris, vreg, nv):
+    """Soft shading baked into the skin: darker in creases and hollows (eye sockets, nostrils, ears,
+    lips, between the fingers) from the surface's curvature, and where the body faces itself (inner
+    arms and torso sides, inner thighs). 1 is fully lit."""
+    n = len(P)
+    N = np.zeros_like(P)
+    a, b, c = P[tris[:, 0]], P[tris[:, 1]], P[tris[:, 2]]
+    fn = np.cross(b - a, c - a)
+    for k in range(3): np.add.at(N, tris[:, k], fn)
+    N /= np.linalg.norm(N, axis=1, keepdims=True) + 1e-12
+    S = np.zeros_like(P); cnt = np.zeros(n)
+    for i, j in ((0, 1), (1, 2), (2, 0), (1, 0), (2, 1), (0, 2)):
+        np.add.at(S, tris[:, i], P[tris[:, j]]); np.add.at(cnt, tris[:, i], 1)
+    L = S / np.maximum(cnt, 1)[:, None] - P
+    curv = np.einsum("ij,ij->i", L, N)                          # > 0 where the surface is hollow
+    edge = np.linalg.norm(L, axis=1) + 1e-6
+    cav = np.clip(curv / edge, -1, 1)
+    for _ in range(3):                                          # spread a little so creases read softly
+        S2 = np.zeros(n); np.add.at(S2, tris.ravel(), np.repeat(cav[tris].mean(1), 3)); c2 = np.zeros(n); np.add.at(c2, tris.ravel(), 1)
+        cav = 0.5 * cav + 0.5 * S2 / np.maximum(c2, 1)
+    ao = 1 - 0.55 * np.clip(cav, 0, 0.6)
+    R_ = {r: REGIONS.index(r) for r in REGIONS}
+    side = np.sign(P[:, 0])
+    inward = np.clip(-N[:, 0] * side, 0, 1)
+    arm = np.isin(vreg, [R_["uarm"], R_["farm"]]) & (P[:, 1] > 0.95)
+    ao[arm] *= 1 - 0.22 * inward[arm] ** 1.5
+    tors = np.isin(vreg, [R_["chest"], R_["belly"]]) & (P[:, 1] > 1.05) & (P[:, 1] < 1.42)
+    ao[tors] *= 1 - 0.18 * np.clip(np.abs(N[tors, 0]) - 0.4, 0, 1) / 0.6
+    thigh = (vreg == R_["thigh"]) & (P[:, 1] > 0.55)
+    ao[thigh] *= 1 - 0.2 * inward[thigh] ** 1.5
+    return np.clip(ao, 0.45, 1)
+
+
 def b64(a):
     return base64.b64encode(np.ascontiguousarray(a).tobytes()).decode()
 
 
-BASE_MIX = {"male": 1, "male_minw": 0.25, "cauc": 1, "tall": 0.45, "ideal": 0.5}
+BASE_MIX = {"male": 1, "male_minw": 0.25, "cauc": 1, "tall": 0.45, "ideal": 0.5,
+            "vshape": 0.25, "bust_incr": 0.25, "waist_c_incr": 0.3, "hips_decr": 0.4,
+            "smile": 0.55, "laugh": 0.3, "cheek_l": 0.2, "cheek_r": 0.2, "fold_l": 0.3, "fold_r": 0.3, "lid_l": 0.2, "lid_r": 0.2}
 MORPHS = {
     "slim": {"male_minw": 0.45},
     "broad": {"male_maxm": 0.55, "male_minw": -0.2},
@@ -356,12 +399,6 @@ def main():
         ms = measure(Pf + Dp)
         msec[name] = {k: [[round(m[j] - b[j], 4) for j in range(1, 5)] for m, b in zip(ms[k], base_sec[k])] for k in ms}
 
-    # a relaxed, slight smile: lift the corners of the mouth a little (found from the face profile below)
-    def smile(X, mouth_y):
-        H = (vreg == REGIONS.index("head")) & (X[:, 2] > 0.1)
-        ax_ = np.abs(X[:, 0]); w = np.exp(-((ax_ - 0.021) / 0.009) ** 2 - ((X[:, 1] - mouth_y) / 0.007) ** 2) * H
-        X[:, 1] += 0.0028 * w; X[:, 2] -= 0.0006 * w
-        return X
     # landmarks
     def grp(name):
         fs = [f for f, g in zip(mesh.F, mesh.G) if g == name]
@@ -379,12 +416,18 @@ def main():
     prof = [p for p in prof if not np.isnan(p[1])]
     def pick(lo, hi, f): return f((p for p in prof if lo < p[0] < hi), key=lambda p: p[1])
     tip = pick(ec[1] - 0.09, ec[1] - 0.015, max)               # nose tip: furthest forward below the eyes
-    sn = pick(tip[0] - 0.03, tip[0] - 0.004, min)              # under the nose
-    ul = pick(sn[0] - 0.016, sn[0], max)                       # upper lip
-    mo = pick(ul[0] - 0.012, ul[0] - 0.002, min)               # the line between the lips
+    down = [p for p in sorted(prof, key=lambda p: -p[0]) if p[0] < tip[0]]
+    def turn(seq, want_min):
+        """the first local minimum (or maximum) walking down the profile, ignoring flat steps"""
+        best = seq[0]
+        for p in seq[1:]:
+            if (p[1] < best[1] - 1e-5) if want_min else (p[1] > best[1] + 1e-5): best = p
+            elif (p[1] > best[1] + 0.0008) if want_min else (p[1] < best[1] - 0.0008): break
+        return best
+    sn = turn(down, True)                                       # under the nose
+    ul = turn([p for p in down if p[0] < sn[0]], False)         # upper lip
+    mo = turn([p for p in down if p[0] < ul[0]], True)          # the line between the lips
     mouth_y = mo[0]
-    Pf = smile(Pf, mouth_y)
-    Z = face_depth(Pf, tris, hsel, fx0, fx1, fy0, fy1, st)
     # mouth half-width: the lips' corners, where the front surface steps back at mouth height
     mw = 0.024
     cranium = H[H[:, 1] > ec[1] + 0.03]
@@ -413,10 +456,11 @@ def main():
         "waist": round(waist[0], 4), "shoulder": base_sec["arm"][-1][:4],
     }
     zq = np.where(np.isnan(Z), -32768, np.round(Z * 1e4)).astype(np.int16)
+    ao = bake_ao(Pf[used], remap[tris], vreg[used], len(used))
     out = {
         "v": 1, "license": "Body from the MakeHuman base mesh, targets, skeleton and weights (CC0, makehumancommunity.org); shaped, posed and measured by tools/build_body.py.",
         "n": int(len(used)), "pos": b64(Pf[used].astype(np.float32)), "idx": b64(remap[tris].astype(np.uint16)),
-        "treg": b64(treg.astype(np.uint8)), "regions": REGIONS, "morphs": morphs,
+        "treg": b64(treg.astype(np.uint8)), "ao": b64(np.round(ao * 255).astype(np.uint8)), "regions": REGIONS, "morphs": morphs,
         "sec": base_sec, "secd": msec, "lm": lm,
         "face": {"x0": fx0, "y0": round(float(fy0), 4), "st": st, "nx": int(Z.shape[1]), "ny": int(Z.shape[0]), "z": b64(zq)},
     }

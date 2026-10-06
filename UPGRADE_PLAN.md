@@ -867,6 +867,33 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
 - **Removed:** the "What to wear today" section of Outfits. The rest of the Outfits area is
   unchanged.
 
+## 2zf. A more natural, more human 3D Dave (6 Oct 2026)
+
+- **Moustache fixed:** it sat below the mouth because the face measurements picked each feature one
+  step too low. The script now walks down the face profile feature by feature (nose tip, under the
+  nose, upper lip, the line between the lips), so the moustache and lip colour sit in the right
+  place.
+- **Moustache and brows as hair:**
+  - The moustache is now about 1,500 fine hairs rooted on the upper lip, in three shades of his
+    moustache colour. Each style changes the root area and how the hairs lie: chevron, walrus,
+    handlebar (ends turned out and up) and pencil.
+  - Brows are about 150 short hairs, thicker and pointing up at the inner end, lying outwards along
+    the rest.
+  - Real eyelashes along the upper lids.
+- **Expression:** a relaxed, friendly face from MakeHuman shape targets:
+  - mouth corners lifted, soft laugh lines, slightly fuller cheeks;
+  - a little more upper-lid fold, so he looks relaxed rather than staring.
+- **Shape:** a more masculine torso (a little more chest, a straighter waist, narrower hips).
+  - Tops hang straight down from the widest part of the chest with a slight taper, never following
+    the waist in, so there is no hourglass.
+  - Necklines follow his shoulder line up to the neck, crew necks dip at the front, and collars sit
+    on top. Nothing pokes through and nothing rides up the back of the neck.
+- **Skin:**
+  - Contact shading baked into the body: creases, eye sockets, nostrils, ears, between the fingers,
+    armpits and inner thighs.
+  - A touch of warmth in the shadows, faint shadow under the eyes, and slight natural colour
+    variation.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
