@@ -4,7 +4,7 @@ A personal outfit planner for Dave: clothes picked for his sizes across eight st
 drawn on a figure of him, live prices with links, an outfit builder, and a shared shortlist.
 
 The live version runs as a claude.ai artifact:
-<https://claude.ai/artifact/8uqcGr2eNmzbQv8UVBshY2>. This repository is its offline home: the
+<https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn>. This repository is its offline home: the
 page source, a copy of its data, the listing photos, and the tools that refresh them.
 
 | Path | What it is |
@@ -18,6 +18,7 @@ page source, a copy of its data, the listing photos, and the tools that refresh 
 | `tools/ld_reader.py` | Reads price, photo and stock per size from product pages with schema.org data. |
 | `data/styletags.json` | Older picks that also belong to the Mod and skate, Holiday or Workwear styles. |
 | `tools/asos_photos.py` | Fetches ASOS photos through wsrv.nl, since ASOS blocks cloud servers. |
+| `tools/build_site.py` | Builds `site/` (the page plus its data and photo files) for publishing. |
 | `tools/browser_fetch.js` | The headless-browser fallback used by `--browser`. |
 | `UPGRADE_PLAN.md` | The review, what has been done, and what is next. |
 

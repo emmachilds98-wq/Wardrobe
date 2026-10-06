@@ -469,6 +469,27 @@ its whole range.
 - 88 new picks and 9 outfits (4 Workwear). Page version 22. Totals: **1861 picks, 343
   outfits, 169 shops with picks.**
 
+## 2q. Restart: mixed styles, a large outfit view, and the catalogue as files (6 Oct 2026)
+
+- **New live page:** <https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn>. The old artifact
+  belongs to another account, so its database (including the later list of about 2,400
+  picks pulled from 61,000 shop products) could not be read. This round starts again from
+  the 1,861 picks and 343 outfits in this repo.
+- **Catalogue as files:** picks, outfits, sizes and photos are published with the page
+  (`tools/build_site.py` builds `site/`). The database now holds only what people mark:
+  shortlist, thumbs, saved outfits, his wardrobe and his measurements. No more 50-batch
+  database loads.
+- **Mix styles:** a "Mix styles" button lets several style tabs be on at once (for example
+  Holiday + Lounge). "All styles" still shows everything. The choice is remembered.
+- **Large outfit view:** tap any outfit drawing (or "View large") for the figure at full
+  height next to big listing photos of each piece, with prices and links.
+- **Layout:** style tabs wrap on wide screens instead of hiding off the edge, a fade shows
+  there are more on phones, and the page is wider on big monitors. Outfits switch to real
+  photos when half their pieces have one (was 60%).
+- **Blocked:** the cloud environment refused every shop site, so no new picks or photos
+  were pulled this round. Set Network access to Full in the project's cloud environment,
+  or run `tools/shopify_pull.py` and `tools/fetch_photos.py` from a home computer.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
