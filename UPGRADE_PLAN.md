@@ -1028,6 +1028,35 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   - It now includes the nape (the head-shape map takes in the top of the neck).
   - It rises out of the skin more gently, so a bare hairline (curls pushed back) has a smooth edge.
 
+## 2zm. Hair that matches top to forehead, stronger sliders, clothes on his real shape, scarves (6 Oct 2026)
+
+- **Base:** the owner's save (unchanged since 2zl) stays the base, with every slider centred on it.
+- **Forehead curls:**
+  - They are now the same ringlets as the rest of his hair, not a separate flatter lock.
+  - They hang down the forehead's own slope toward the brows and stop above them.
+  - Each is turned so its spiral swings away from the skin.
+- **Top of the head:** curls on top tumble forward over the head (and down over the crown) instead of standing
+  straight out.
+- **Sliders:**
+  - Curl runs from waves (under a turn) to tight ringlets (about three turns, narrower).
+  - Curl size changes each lock's width, its hair thickness and the number of hairs in it.
+  - Finish runs from defined (tight bundle) to fluffy (splayed).
+  - Every hair slider keeps a full step either side of his base.
+- **Clothes:**
+  - The chest, shoulders and upper back of every top now follow his own body shape, pushed out by the cloth's
+    thickness. Below the chest they blend into the straight hang.
+  - The hollows (between the pecs, under the arms) are bridged.
+  - The neckline is cut cleanly along a line, open fronts line up with the opening below, and stripes and knit
+    run on without a seam.
+  - Collars stand round the neck with a flared foot. Shirt collar points lie on the chest. Blazers and coats get a
+    collar round the back of the neck.
+  - Pockets, plackets, zips and lapels are placed on the clothes as built (by casting rays), not on a guess.
+  - Gilets, vests and waistcoats keep their sloped shape.
+- **Scarves:**
+  - The loop sits on the outermost collar, measured from the clothes around the neck.
+  - The two ends lie down his front over whatever he wears, one longer, with fringed ends.
+  - Shirt collar points tuck away under a scarf.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
