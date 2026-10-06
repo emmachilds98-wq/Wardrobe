@@ -490,6 +490,24 @@ its whole range.
   were pulled this round. Set Network access to Full in the project's cloud environment,
   or run `tools/shopify_pull.py` and `tools/fetch_photos.py` from a home computer.
 
+## 2r. Lifelike proportions and photos in every outfit (6 Oct 2026)
+
+- **Proportions:** the figure had a long body and short legs (crotch at 36% of his height,
+  fingertips above the crotch). `figFix()` in `page.html` now moves every point between chest
+  and ankle so he stands about 7.5 heads tall: waistband at 58% of his height from the floor,
+  crotch at 45% (a 32in leg), knees at 27%. The arms keep their length, so the wrists sit level
+  with the crotch and the fingertips reach mid-thigh. Hems were reset to match: tees and polos
+  end at the hip, shirts a little lower, blazers cover the seat, coats stop above the knee.
+- **Detail:** shading on the neck, arms and bare legs (light from the left, as on the clothes),
+  a calf shape on bare legs, and fingers and a thumb on each hand. Tool-belt pouches and
+  crossbody bags move with the hips rather than the arms.
+- **Photos in outfits:** the "pieces" side of each outfit board now shows tiles as soon as one
+  piece has a listing photo (was half of them): the real photo where there is one, the drawing
+  where there is not. The separate thumbnail strip under the board is gone, since it repeated them.
+- **Blocked again:** the cloud environment's network policy refused every shop site (403 from the
+  proxy for M&S, Next, ASOS, Workwear Gurus, JD Sports, Matalan, END. and the Shopify feeds), so
+  no new picks or photos this round. The catalogue stays at 1,861 picks and 343 outfits.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

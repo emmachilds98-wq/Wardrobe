@@ -1027,13 +1027,41 @@ var COL={navy:["#1d2a44",1],cream:["#efe7d6",0],white:["#fbfaf5",0],camel:["#c19
 
 /* ---- dressed figure: the outfit drawn on a figure (240 by 490 units, light from the left) ---- */
 var LAYER={vest:0,tee:0,polo:0,sshirt:0,shirt:0,rollneck:0,jumper:1,hoodie:1,halfzip:1,cardigan:1,waistcoat:1,jacket:2,blazer:2,coat:2,gilet:2,gown:2};
-var HEM={vest:252,tee:252,polo:252,sshirt:254,shirt:256,rollneck:246,jumper:246,hoodie:250,halfzip:246,cardigan:248,waistcoat:240,jacket:250,blazer:264,coat:372,gilet:248,gown:386};
+var HEM={vest:272,tee:272,polo:272,sshirt:278,shirt:284,rollneck:266,jumper:266,hoodie:270,halfzip:266,cardigan:272,waistcoat:240,jacket:266,blazer:306,coat:372,gilet:270,gown:386};
 function mir(d){ /* mirror a path made of absolute M L H V Q Z commands around x=120 */
   return d.replace(/([MLQ])([^MLHVQZ]*)/g,function(m,c,a){
     var n=a.trim().split(/[ ,]+/).map(Number),o=[];
     for(var i=0;i<n.length;i+=2){o.push((240-n[i])+" "+n[i+1]);}
     return c+o.join(" ")+" ";
   }).replace(/H([\d.]+)/g,function(m,x){return "H"+(240-Number(x));});
+}
+/* Body proportions. The shapes are laid out on a long-bodied frame; figFix() moves every point
+   between chest and ankle so the figure stands like a real man about 7.5 heads tall: waistband at
+   58% of his height from the floor, crotch at 45% (a 32in leg), knee at 27%. The arms keep their
+   length, so the wrists sit level with the crotch and the fingertips reach mid-thigh. */
+var FIGK=[[0,0],[140,140],[302,262],[384,345],[445,445],[999,999]];
+function figY(y){for(var i=1;i<FIGK.length;i++){var a=FIGK[i-1],b=FIGK[i];if(y<=b[0]){return Math.round((a[1]+(y-a[0])*(b[1]-a[1])/(b[0]-a[0]))*10)/10;}}return y;}
+function armPt(x,y){return (x<79||x>161)&&y<=292;}
+function figPath(d,aware){
+  var t=d.match(/[MLHVQCZ]|-?[\d.]+/g)||[],o=[],cmd="",cx=0,px=null;
+  t.forEach(function(k){
+    if(/[A-Z]/.test(k)){cmd=k;px=null;o.push(k);return;}
+    var v=Number(k);
+    if(cmd==="H"){cx=v;o.push(k);}
+    else if(cmd==="V"){o.push(aware&&armPt(cx,v)?v:figY(v));}
+    else if(px===null){px=v;}
+    else{o.push(px+" "+(aware&&armPt(px,v)?v:figY(v)));cx=px;px=null;}
+  });
+  return o.join(" ").replace(/([A-Z]) /g,"$1");
+}
+function pure(s){return "\u0001"+s+"\u0002";} /* parts that hang from the belt: moved with the body, not the arms */
+function figFix(h){
+  return h.split(/\u0001|\u0002/).map(function(s,i){
+    var aware=i%2===0;
+    return s.replace(/ d="([^"]*)"/g,function(m,d){return ' d="'+figPath(d,aware)+'"';})
+      .replace(/cx="([\d.]+)" cy="([\d.]+)"/g,function(m,x,y){x=+x;y=+y;return 'cx="'+x+'" cy="'+(aware&&armPt(x,y)?y:figY(y))+'"';})
+      .replace(/rotate\((-?[\d.]+) ([\d.]+) ([\d.]+)\)/g,function(m,a,x,y){return "rotate("+a+" "+x+" "+figY(+y)+")";});
+  }).join("");
 }
 function fade(hex){ /* blend a garment colour most of the way to the board colour */
   var b=[230,223,208],o="#";
@@ -1137,9 +1165,11 @@ function figure(pieces,hi){
   function grp(p,inner){return '<g '+tone(p.col,dim(p))+'>'+inner+'</g>';}
   up=up.map(function(p,k){return {p:p,k:k};}).sort(function(a,b){return rank(a.p)-rank(b.p)||b.k-a.k;}).map(function(x){return x.p;});
   var bare=!lo||lo.shape==="shorts";
-  var armL="M66 114 L81 134 L75 204 L71 260 L71 277 Q70 286 64 288 Q55 289 54 280 Q52 268 54 256 L57 198 Z",legL="M80 344 H114 L111 402 L109 452 H86 L83 402 Z";
+  var armL="M66 114 L81 134 L75 204 L71 260 L71 277 Q70 286 64 288 Q55 289 54 280 Q52 268 54 256 L57 198 Z",legL="M80 344 H114 L112 384 Q113 398 110 418 L109 452 H86 L85 424 Q79 404 81 384 Z",fing="M57 276 Q58 283 60 287 M61.5 277 Q62.5 283 64.5 287.5 M66 276 Q67 282 68.5 285.5 M71 262 Q74.5 270 71 279";
   var h='<ellipse cx="120" cy="471" rx="60" ry="6.5" fill="rgba(20,32,27,.14)"/><g transform="matrix(0.93 0 0 1 8.4 0)">';
   h+='<g class="sk">'+P("","M111 66 H129 V92 Q120 99 111 92 Z")+P("",armL)+P("",mir(armL))+(bare?P("",legL)+P("",mir(legL)):"")+'</g>'+
+     '<g fill="url(#fg-shade)"><path d="M111 66 H129 V92 Q120 99 111 92 Z"/><path d="'+armL+'"/><path d="'+mir(armL)+'"/>'+(bare?'<path d="'+legL+'"/><path d="'+mir(legL)+'"/>':"")+'</g>'+
+     '<path class="sd" d="'+fing+' '+mir(fing)+'" style="fill:none"/>'+
      '<path class="sd" d="M111 76 Q120 84 129 76 V84 Q120 90 111 84 Z M63 262 L70 264 M177 262 L170 264'+(bare?" M92 396 Q98 400 104 396 M136 396 Q142 400 148 396":"")+'"/>';
   if(ft){
     var fs=ft.shape,shoeL="M71 447 H115 V459 Q115 469 105 469 H76 Q65 469 67 458 Z",shaft="M76 418 H113 V449 H76 Z",soleL="M67 461 Q66 469 76 469 H105 Q115 469 115 461 Z";
@@ -1168,7 +1198,7 @@ function figure(pieces,hi){
   if(ac.belt&&!up.length){h+=grp(ac.belt,P("g","M82 222 H158 V231 H82 Z"));}
   if(ac.belt&&/holster|tool|pouch|apron/i.test(((byId[ac.belt.item]||{}).name||"")+" "+ac.belt.what)){
     var pch="M68 236 H97 L95 286 Q83 294 70 286 Z";
-    h+=grp(ac.belt,P("g","M78 228 H162 V238 H78 Z")+P("g",pch)+P("g",mir(pch))+P("d","M70 248 H96 M144 248 H170 M76 262 H90 M150 262 H164 M83 238 V286 M157 238 V286")+(dim(ac.belt)?"":'<path d="'+pch+'" fill="url(#fg-vol)"/><path d="'+mir(pch)+'" fill="url(#fg-vol)"/>'));
+    h+=pure(grp(ac.belt,P("g","M78 228 H162 V238 H78 Z")+P("g",pch)+P("g",mir(pch))+P("d","M70 248 H96 M144 248 H170 M76 262 H90 M150 262 H164 M83 238 V286 M157 238 V286")+(dim(ac.belt)?"":'<path d="'+pch+'" fill="url(#fg-vol)"/><path d="'+mir(pch)+'" fill="url(#fg-vol)"/>')));
   }
   h+='</g>';
   if(ac.scarf){h+=grp(ac.scarf,P("g","M103 98 L98 190 H118 L118 104 Z")+P("g","M99 77 Q120 92 141 77 L146 96 Q120 115 94 96 Z")+P("d","M99 182 H118 M102 190 V196 M107 190 V196 M112 190 V196 M117 190 V196 M100 88 Q120 104 140 88"));}
@@ -1191,10 +1221,10 @@ function figure(pieces,hi){
   }
   if(ac.sunglasses){var sgL="M104 44 H117 Q119 44 119 46 V52 Q119 56 115 56 H106 Q102 56 102 52 V46 Q102 44 104 44 Z";h+=grp(ac.sunglasses,P("g",sgL)+P("g",mir(sgL))+P("d","M119 47 H121"));}
   if(ac.backpack){h+=grp(ac.backpack,P("st","M96 94 L92 170")+P("st","M144 94 L148 170"));}
-  if(ac.bag){h+=grp(ac.bag,P("st","M158 97 L88 204")+'<g transform="rotate(-24 94 208)">'+P("g","M72 198 Q72 190 82 190 H108 Q118 190 118 200 V212 Q118 222 108 222 H82 Q72 222 72 212 Z")+P("dz","M78 199 H112")+P("d","M92 199 V204")+'</g>');}
+  if(ac.bag){h+=pure(grp(ac.bag,P("st","M158 97 L88 204")+'<g transform="rotate(-24 94 208)">'+P("g","M72 198 Q72 190 82 190 H108 Q118 190 118 200 V212 Q118 222 108 222 H82 Q72 222 72 212 Z")+P("dz","M78 199 H112")+P("d","M92 199 V204")+'</g>'));}
   if(ac.watch){h+=grp(ac.watch,P("g","M168 246 L186 250 L185 257 L167 253 Z"));}
   if(ac.square){h+=grp(ac.square,P("g","M137 141 L148 136 L147 146 Z"));}
-  return h;
+  return figFix(h);
 }
 function figDefs(){
   var h='<linearGradient id="fg-shade" gradientUnits="userSpaceOnUse" x1="50" y1="0" x2="190" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset=".58" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".24"/></linearGradient>';
@@ -1243,9 +1273,9 @@ function board(f,nums){
   });
   var m=ac.length,as=m>3?66:78,astep=m>1?Math.min(92,(288-18-as)/(m-1)):0;
   ac.forEach(function(p,k){var x=18+astep*k,y=202+(78-as)/2;art+=use(p.shape,p.col,x,y,as);marks+=badge(nums[p.item],x+as*0.86,y+as*0.14);});
-  /* When most pieces have a shop photo, the right-hand side shows the real pieces, head to toe, instead of drawn icons. */
+  /* When any piece has a shop photo, the right-hand side shows the pieces head to toe as tiles: the real listing photo where there is one, the drawing where there is not. */
   var seen={},order=up.concat(lo,ft.slice(0,1),ac).filter(function(p){if(seen[p.item])return false;seen[p.item]=1;return true;});
-  var withPh=order.filter(function(p){return hasPh(byId[p.item]);}).length,real=order.length&&withPh/order.length>=0.5;
+  var withPh=order.filter(function(p){return hasPh(byId[p.item]);}).length,real=order.length&&withPh>0;
   if(real){
     var cols=order.length>6?3:2,cw=cols===3?112:168,chh=Math.round(cw*0.75),gap=8,rows=Math.ceil(order.length/cols);
     var gx=280+(350-(cols*cw+(cols-1)*gap))/2,gy=40+Math.max(0,(440-(rows*chh+(rows-1)*gap))/2);
@@ -1935,7 +1965,7 @@ function fitCard(f){
   }).join("");
   var wx=f.wx.length>=4?"Any weather":f.wx.map(function(w){return label(WX,w);}).join(", ");
   var q=encodeURIComponent(f.look),t=fitSum(ps),save=Math.round(t.full-t.tot),view={pieces:ps};
-  var withPh=order.filter(function(p){return hasPh(byId[p.item]);}).length,strip=order.length&&withPh>0&&withPh/order.length<0.5;
+  var strip=false; /* the board shows the listing photos whenever any piece has one, so no separate strip */
   return '<article class="fit" id="fit-'+esc(f.id)+'"><button class="board-btn" type="button" data-zoom="'+esc(f.id)+'" aria-label="View this outfit large">'+board(view,nums)+'<span class="zoom-hint">View large</span></button><div class="fit-body">'+
     (strip?'<div class="strip">'+order.map(function(p){return photoBox(byId[p.item],"thumb",false);}).join("")+'</div>':"")+
     '<span class="label">'+esc(label(OCC,f.occ))+(wx?" · "+esc(wx):"")+(state.q?" · "+esc(f.styles.map(function(s){return label(STYLE,s);}).join(", ")):"")+'</span>'+
