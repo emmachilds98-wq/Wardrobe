@@ -228,8 +228,6 @@ ol{margin:0}
 .bar .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:6px;min-width:0;margin-inline:calc(-1 * clamp(16px,4vw,40px));padding-inline:clamp(16px,4vw,40px)}
 .bar .tabs::-webkit-scrollbar{display:none}
 .bar .tab{padding:8px 14px;white-space:nowrap;flex:none}
-.tab.mixbtn{font-family:inherit;font-size:.85rem;border-style:dashed;color:var(--muted)}
-.tab.mixbtn[aria-pressed="true"]{background:var(--surface);color:var(--green);border-color:var(--green);border-style:solid;font-weight:600}
 .tabs.is-mix .tab[data-v][aria-pressed="true"]:not([data-v="all"])::before{content:"\2713\00a0"}
 .bar-row{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
 .search{flex:1 1 240px;min-width:0;display:flex}
@@ -1771,8 +1769,7 @@ function buildChips(id,list,key,cls,after){
 function syncStyleTabs(){
   var box=$("f-style");if(!box)return;var l=selStyles();
   Array.prototype.forEach.call(box.querySelectorAll("[data-v]"),function(c){var v=c.getAttribute("data-v");c.setAttribute("aria-pressed",String(v==="all"?!l.length:l.indexOf(v)>=0));});
-  var m=$("mixbtn");if(m){m.setAttribute("aria-pressed",String(state.multi));m.textContent=state.multi?"\u2713 Mixing styles":"Mix styles";}
-  box.classList.toggle("is-mix",state.multi);
+  box.classList.toggle("is-mix",l.length>1);
 }
 function syncChips(){
   syncStyleTabs();
@@ -2087,7 +2084,7 @@ function showFit(id){
 function gotoFit(id){
   var f=fitById[id];if(!f)return;
   state.q="";state.set="all";state.fit="all";state.fitmax=0;state.fitsort="rec";state.sub="all";
-  if(!inS(f.styles)){state.style=f.styles[0];state.styles=[f.styles[0]];syncStyleTabs();paintStyle();}
+  if(!inS(f.styles)){state.style=f.styles[0];state.styles=[f.styles[0]];state.multi=true;syncStyleTabs();paintStyle();}
   lim.fits=9999;paintStyle();syncChips();renderAll();setView("fits",true);showFit(id);
 }
 
@@ -2700,7 +2697,8 @@ function refilter(){lim.picks=PAGE;lim.fits=FITPAGE;sale.n=SPAGE;renderHead();re
   if(MERGED[h]){if(h!=="work")state.sub=h;h=MERGED[h];}if(MERGED[s])s=MERGED[s];
   if(isStyle(h)||h==="all"){state.style=h;}else if(isStyle(s)||s==="all"){state.style=s;}
   try{var ms=JSON.parse(localStorage.getItem("dw-styles")||"null");if(ms&&Array.isArray(ms.styles)){state.multi=ms.multi===true;state.styles=ms.styles.filter(isStyle);}}catch(e){}
-  if(state.style==="all"){state.styles=[];}else if(!state.multi||state.styles.indexOf(state.style)<0){state.styles=[state.style];}
+  state.multi=true;
+  if(state.style==="all"){state.styles=[];}else if(state.styles.indexOf(state.style)<0){state.styles=[state.style];}
   loadLocal();
   try{state.compact=localStorage.getItem("dw-compact")==="1";}catch(e){}
   var bar=$("bar");
@@ -2709,20 +2707,18 @@ function refilter(){lim.picks=PAGE;lim.fits=FITPAGE;sale.n=SPAGE;renderHead();re
 })();
 (function(){
   var box=$("f-style");
-  box.innerHTML=STYLE.map(function(o){return '<button type="button" class="tab" data-v="'+o[0]+'" aria-pressed="false">'+esc(o[1])+'</button>';}).join("")+
-    '<button type="button" class="tab mixbtn" id="mixbtn" aria-pressed="false" title="Pick several styles at once">Mix styles</button>';
+  /* Tap a style to add it, tap it again to take it away; "All styles" clears the choice. */
+  box.innerHTML=STYLE.map(function(o){return '<button type="button" class="tab" data-v="'+o[0]+'" aria-pressed="false"'+(o[0]==="all"?"":' title="Tap more than one style to see them together"')+'>'+esc(o[1])+'</button>';}).join("");
   box.addEventListener("click",function(e){
     var b=e.target.closest("button");if(!b)return;
-    if(b.id==="mixbtn"){state.multi=!state.multi;if(!state.multi&&state.style!=="all"){state.styles=[state.style];}}
+    var v=b.getAttribute("data-v");if(!v)return;
+    if(v==="all"){state.style="all";state.styles=[];}
     else{
-      var v=b.getAttribute("data-v");
-      if(v==="all"){state.style="all";state.styles=[];}
-      else if(state.multi&&state.style!=="all"){
-        var i=state.styles.indexOf(v);
-        if(i>=0){if(state.styles.length>1){state.styles.splice(i,1);}}else{state.styles.push(v);}
-        state.style=state.styles[0];
-      }else{state.style=v;state.styles=[v];}
+      var cur=state.style==="all"?[]:state.styles.slice(),i=cur.indexOf(v);
+      if(i>=0){cur.splice(i,1);}else{cur.push(v);}
+      if(cur.length){state.styles=cur;state.style=cur[0];}else{state.style="all";state.styles=[];}
     }
+    state.multi=true;
     derived={};state.fit="all";state.sub="all";state.jx=[];state.cats=[];state.dept="all";state.q="";state.set="all";state.gift="all";sale.cats=[];sale.n=SPAGE;syncChips();paintStyle();lim.picks=PAGE;lim.fits=FITPAGE;build={};$("b-msg").textContent="";renderAll();
   });
 })();
