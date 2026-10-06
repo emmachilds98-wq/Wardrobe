@@ -522,6 +522,22 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 .zf-3d{position:relative;aspect-ratio:3/5;max-height:78vh;margin-inline:auto;touch-action:none;cursor:grab}
 .zf-3d canvas{display:block;width:100%!important;height:100%!important}
 .zf-3d .zf-3dmsg{position:absolute;inset:auto 0 8px 0;text-align:center}
+.b-3d{position:relative;overflow:hidden}
+.v3-cv{display:block;width:100%!important;height:100%!important;outline:none}
+.zf-3d:focus-visible,.ce-3d:focus-visible,.b-3d:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.v3-bar{position:absolute;left:6px;right:6px;bottom:6px;display:flex;flex-wrap:wrap;justify-content:center;gap:4px;pointer-events:none}
+.v3-bar button{pointer-events:auto;font:inherit;font-size:.74rem;font-weight:600;line-height:1;padding:6px 9px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 88%,transparent);color:var(--ink);cursor:pointer}
+.v3-bar button[aria-pressed="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.v3-bar button:focus-visible{outline:2px solid var(--green);outline-offset:1px}
+.v3-sep{flex-basis:6px}
+.v3-tip{position:absolute;left:8px;right:8px;top:8px;margin:0;padding:7px 10px;border-radius:4px;background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);font-size:.82rem;line-height:1.35;color:var(--ink);pointer-events:none}
+.zoom-ph li.hot{border-color:var(--green);box-shadow:0 0 0 2px var(--green)}
+.ce-tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:4px}
+.ce-tab{font:inherit;font-weight:600;padding:8px 14px;border:0;border-bottom:3px solid transparent;background:none;color:var(--muted);cursor:pointer}
+.ce-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--green)}
+.ce-tab:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
+.ce-acts .btn[disabled]{opacity:.45;cursor:default}
+@media (max-width:480px){.v3-bar{gap:3px;left:2px;right:2px}.v3-bar button{font-size:.7rem;padding:5px 7px}.v3-sep{flex-basis:2px}}
 .zoom-ph{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:14px}
 .zoom-ph li{position:relative;display:flex;flex-direction:column;gap:8px;background:var(--ground);border:1px solid var(--line);border-radius:4px;padding:8px}
 .zoom-ph .zn{position:absolute;top:14px;left:14px;z-index:1;width:24px;height:24px;border-radius:50%;background:var(--green);color:var(--on-green);display:grid;place-items:center;font-size:.8rem;font-weight:700}
@@ -1133,9 +1149,10 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 <dialog class="zoom chared" id="chared" aria-labelledby="chared-h"><div class="zoom-in"><button class="act zx" type="button" data-cclose>Close</button>
   <h2 id="chared-h" class="ce-h">Edit Dave</h2>
   <p class="msg ce-lede">How Dave looks in the 3D model. Changes show straight away on the left; Save puts them on every 3D figure on the page.</p>
-  <div class="ce-grid"><div class="ce-view"><div class="ce-3d" id="ce-3d" aria-label="3D preview of Dave. Drag to turn him round."><p class="msg ce-load">Loading the 3D model…</p></div><p class="msg">Drag to turn him round.</p></div>
-  <div class="ce-side"><div id="ce-form"></div>
-  <div class="b-row ce-acts"><button class="btn" type="button" id="ce-save">Save</button><button class="btn ghost" type="button" id="ce-reset">Back to his defaults</button><span class="msg" id="ce-msg"></span></div></div></div>
+  <div class="ce-grid"><div class="ce-view"><div class="ce-3d" id="ce-3d" aria-label="3D preview of Dave. Drag to turn him round."><p class="msg ce-load">Loading the 3D model…</p></div><p class="msg">Drag to turn him, scroll or pinch to zoom, tap a piece to see what it is.</p></div>
+  <div class="ce-side"><div class="ce-tabs" role="tablist" aria-label="Parts of Dave to change"><button type="button" role="tab" class="ce-tab" data-cet="body" aria-selected="true">Body</button><button type="button" role="tab" class="ce-tab" data-cet="face" aria-selected="false">Face</button><button type="button" role="tab" class="ce-tab" data-cet="hair" aria-selected="false">Hair</button></div>
+  <div id="ce-form" role="tabpanel"></div>
+  <div class="b-row ce-acts"><button class="btn" type="button" id="ce-save">Save</button><button class="btn ghost" type="button" id="ce-undo" disabled>Undo</button><button class="btn ghost" type="button" id="ce-reset">Back to his defaults</button><button class="btn ghost" type="button" id="ce-next">Try another outfit</button><span class="msg" id="ce-msg" role="status"></span></div></div></div>
 </div></dialog>
 <dialog class="zoom" id="zoom" aria-labelledby="zoom-body"><div class="zoom-in"><button class="act zx" type="button" data-zclose>Close</button><div id="zoom-body"></div></div></dialog>
 <script>
@@ -2290,9 +2307,14 @@ try{FIG.mode=localStorage.getItem("dw-fig")==="3d"?"3d":"2d";FIG.allow2d=localSt
 function figMode(){return FIG.allow2d?FIG.mode:"3d";}
 /* Dave's look for the 3D model, set in "Edit Dave". The page owner's choice is shared through the database
    (meta/character); anyone else's stays on their device. Defaults match his photos: no beard, a moustache. */
-var CHAR_DEF={height:183,build:"regular",skin:"#eec3aa",hair:"#35251b",hairLen:"ear",curl:"curly",hairVol:1,tache:"chevron",tacheCol:"#93582f",beard:"none",eyes:"#7f99ae",brows:"normal"};
+var CHAR_DEF={height:183,build:"regular",skin:"#eec3aa",hair:"#35251b",hairLen:"ear",curl:"curly",hairVol:1,tache:"chevron",tacheCol:"#93582f",beard:"none",eyes:"#7f99ae",brows:"normal",shoulders:"average",waist:"average",face:"average",nose:"average",glasses:"none",glassCol:"#2b2622"};
 var CHAR=Object.assign({},CHAR_DEF);try{var cj0=JSON.parse(localStorage.getItem("dw-char")||"null");if(cj0&&typeof cj0==="object")Object.assign(CHAR,cj0);}catch(e){}
-function charKey(){return [CHAR.height,CHAR.build,CHAR.skin,CHAR.hair,CHAR.hairLen,CHAR.curl,CHAR.hairVol,CHAR.tache,CHAR.tacheCol,CHAR.beard,CHAR.eyes,CHAR.brows].join(",");}
+function charKey(){return Object.keys(CHAR_DEF).map(function(k){return CHAR[k];}).join(",");}
+/* body shape from Edit Dave: how much wider the chest and shoulders, and fuller the middle, are at height y */
+var SHK={narrow:0.95,average:1,broad:1.07},SHX={narrow:-0.012,average:0,broad:0.016},WAK={flat:0.94,average:1,fuller:1.13};
+function shapeAt(y){var sk=SHK[CHAR.shoulders]||1,wk=WAK[CHAR.waist]||1,w1=Math.max(0,Math.min(1,(y-1.2)/0.16))*(y>1.47?0.4:1),w2=Math.max(0,1-Math.abs(y-1.06)/0.21);
+  return {x:(1+(sk-1)*w1)*(1+(wk-1)*w2*0.65),z:(1+(sk-1)*w1*0.5)*(1+(wk-1)*w2),dz:(wk-1)*w2*0.035};}
+function shapeSecs(secs){return secs.map(function(q){var k=shapeAt(q[0]);return [q[0],q[1]*k.x,q[2]*k.z,q[3],q[4]+k.dz];});}
 /* lighter by multiplying (keeps a brown warm, where shade() fades it toward grey) */
 function tone(hex,f){return "#"+[1,3,5].map(function(i){return ("0"+Math.min(255,Math.round(parseInt(hex.substr(i,2),16)*f)).toString(16)).slice(-2);}).join("");}
 function lum(hex){return [1,3,5].reduce(function(t,i,k){return t+parseInt(hex.substr(i,2),16)/255*[0.3,0.59,0.11][k];},0);}
@@ -2389,7 +2411,8 @@ function secGeo(secs,o){
   function pw(v){return (v<0?-1:1)*Math.pow(Math.abs(v),2/n);}
   var len=[0];for(i=1;i<sm.length;i++){len.push(len[i-1]+Math.abs(sm[i][0]-sm[i-1][0])+1e-6);}
   for(i=0;i<sm.length;i++){var s=sm[i];for(j=0;j<cols;j++){var t=a0+span*j/seg;
-    pos.push(s[3]+s[1]*pw(Math.sin(t)),s[0],s[4]+s[2]*pw(Math.cos(t)));uv.push(j/seg*(o.u||1),len[i]/(o.v||0.3));}}
+    var wf=o.wr?1+o.wr(s[0],t):1,yy=s[0]+(o.hemC?o.hemC*Math.pow(Math.sin(t),2)*Math.max(0,1-(s[0]-sm[0][0])/0.06):0);
+    pos.push(s[3]+s[1]*wf*pw(Math.sin(t)),yy,s[4]+s[2]*wf*pw(Math.cos(t)));uv.push(j/seg*(o.u||1),len[i]/(o.v||0.3));}}
   for(i=0;i<sm.length-1;i++){for(j=0;j<seg;j++){var a=i*cols+j,b=a+1,c=a+cols,d=c+1;idx.push(a,b,c,b,d,c);}}
   function cap(row,up){var s=sm[row],c0=pos.length/3;pos.push(s[3],s[0],s[4]);uv.push(0.5,0.5);
     for(j=0;j<cols;j++){var p=(row*cols+j)*3;pos.push(pos[p],pos[p+1],pos[p+2]);uv.push(0.5,0.5);}
@@ -2407,7 +2430,7 @@ function secGeo(secs,o){
 function aoColours(g,ao){
   var p=g.attributes.position,nr=g.attributes.normal,out=[];
   for(var i=0;i<p.count;i++){var nx=nr.getX(i),y=p.getY(i),f=1;
-    if(ao.kind==="limb"){var inw=Math.max(0,-ao.s*nx);f=1-0.3*inw*inw*(ao.leg?(y>0.6?1:0.55):1);}
+    if(ao.kind==="limb"){var inw=Math.max(0,-ao.s*nx);f=1-0.3*inw*inw*(ao.leg?(y<0.6?0.55:(y<0.74?1:Math.max(0,1-(y-0.74)/0.12))):1);}
     else if(ao.kind==="torso"){var side=Math.max(0,Math.abs(nx)-0.45)/0.55,bandY=y>1.08&&y<1.42?Math.sin((y-1.08)/0.34*Math.PI):0;f=1-0.2*side*bandY;if(y<0.95&&ny(i)<-0.3)f-=0.12;}
     out.push(f,f,f);}
   function ny(i){return nr.getY(i);}
@@ -2427,7 +2450,16 @@ function ease(secs,e,ez){return secs.map(function(q){return [q[0],q[1]+e,q[2]+(e
 function frontZ(y,e){var t=B3.torso;for(var i=0;i<t.length-1;i++){if(y>=t[i][0]&&y<=t[i+1][0]){var f=(y-t[i][0])/(t[i+1][0]-t[i][0]);return (t[i][2]+t[i][4])*(1-f)+(t[i+1][2]+t[i+1][4])*f+(e||0);}}return 0.1+(e||0);}
 function surfZ(y,x,e){var t=B3.torso,q=t[0];for(var i=0;i<t.length-1;i++){if(y>=t[i][0]&&y<=t[i+1][0]){var f=(y-t[i][0])/(t[i+1][0]-t[i][0]);q=[0,t[i][1]*(1-f)+t[i+1][1]*f,t[i][2]*(1-f)+t[i+1][2]*f,0,t[i][4]*(1-f)+t[i+1][4]*f];break;}}
   var rx=(y<1.0?Math.max(q[1],0.171):q[1])+e,rz=(y<1.0?Math.max(q[2],0.111):q[2])+e,u=Math.min(0.98,Math.abs(x)/rx);return q[4]+rz*Math.pow(1-Math.pow(u,2.3),1/2.3);}
-function make3D(pieces){
+function make3D(pieces){var keep=B3.torso;B3.torso=shapeSecs(keep);try{return make3Dcore(pieces);}finally{B3.torso=keep;}}
+/* Fabric folds, as a small change of radius by height y and angle t (t: cos(t)=1 is the front).
+   Trousers stack in soft rings above the shoe and crease behind the knee; long sleeves bunch at the
+   wrist and crease inside the elbow. */
+function legFolds(amp){return function(y,t){var a=0;if(y<0.26){var w=(0.26-y)/0.22;a+=0.055*w*Math.sin(y*150+Math.sin(t*2)*2.2);}
+  if(y>0.42&&y<0.6){a+=0.04*Math.max(0,-Math.cos(t))*Math.sin((y-0.42)*80)*Math.sin((y-0.42)/0.18*Math.PI);}
+  if(y>0.78){a+=0.012*Math.sin(t*3+y*40)*Math.min(1,(y-0.78)/0.08);}return a*amp;};}
+function sleeveFolds(amp){return function(y,t){var a=0;if(y<1.0){var w=Math.max(0,(1.0-y)/0.09);a+=0.06*w*Math.sin(y*170+Math.sin(t*2)*2);}
+  if(y>1.08&&y<1.2){a+=0.05*Math.max(0,Math.cos(t))*Math.sin((y-1.08)*95)*Math.sin((y-1.08)/0.12*Math.PI);}return a*amp;};}
+function make3Dcore(pieces){
   var T=window.THREE,scene=new T.Scene();
   scene.add(new T.HemisphereLight(0xffffff,0xb8a88a,0.6));
   var key=new T.DirectionalLight(0xfff8f0,1.05);key.position.set(-2.2,3.4,3.2);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-1;key.shadow.camera.right=1;key.shadow.camera.top=2.2;key.shadow.camera.bottom=-0.2;key.shadow.bias=-0.0005;key.shadow.radius=3;scene.add(key);
@@ -2438,19 +2470,22 @@ function make3D(pieces){
   function C(col){return new T.Color(col).convertSRGBToLinear();}
   function mat(col,rough,opt){var o={color:C(col),roughness:rough==null?0.86:rough,metalness:0};if(opt)Object.keys(opt).forEach(function(k){o[k]=opt[k];});return new T.MeshStandardMaterial(o);}
   function cloth(col,kind,c2,rough){return new T.MeshStandardMaterial({map:tex3D(kind||"plain",col,c2),color:0xffffff,roughness:rough==null?0.9:rough,metalness:0,bumpMap:clothBump(),bumpScale:0.0012,side:T.DoubleSide});}
-  var headG=new T.Group();headG.position.y=-0.034;man.add(headG);var tgt=man;
-  function put(me){me.castShadow=true;me.receiveShadow=true;tgt.add(me);return me;}
+  var headG=new T.Group();headG.position.y=-0.034;man.add(headG);var tgt=man,curIt=null,curWhat="",armG={};
+  [-1,1].forEach(function(s){var g=new T.Group();g.position.x=s*(SHX[CHAR.shoulders]||0);man.add(g);armG[s]=g;});
+  function put(me){me.castShadow=true;me.receiveShadow=true;if(curIt){me.userData.item=curIt;me.userData.what=curWhat;}tgt.add(me);return me;}
   function add(geo,m,x,y,z,sx,sy,sz,rx,ry,rz){var me=new T.Mesh(geo,m);me.position.set(x||0,y||0,z||0);me.scale.set(sx||1,sy||1,sz||1);me.rotation.set(rx||0,ry||0,rz||0);return put(me);}
   function aoM(m){if(!m.userData.ao){var c=m.clone();c.vertexColors=true;m.userData.ao=c;}return m.userData.ao;}
   function sec(secs,m,o){return put(new T.Mesh(secGeo(secs,o),o&&o.ao?aoM(m):m));}
   function tube(pts,r,m,seg){var c=new T.CatmullRomCurve3(pts.map(function(p){return new T.Vector3(p[0],p[1],p[2]);}));return put(new T.Mesh(new T.TubeGeometry(c,seg||24,r,8,false),m));}
   function band(y,h,rx,rz,m,o){o=o||{};return sec([[y,rx,rz,o.x||0,o.z||0],[y+h,rx-(o.taper||0),rz-(o.taper||0),o.x||0,o.z||0]],m,{seg:o.seg||40,gap:o.gap||0,k:1,sq:o.sq||2});}
   var skinC=CHAR.skin,skin=mat(skinC,0.62),white=mat("#f6f2ea",0.35),lipM=mat("#c4887c",0.55);
+  var sleevedTop=pieces.some(function(p){return UPPER[p.shape]&&!/^(vest|waistcoat|gilet)$/.test(p.shape);});
   /* ---- body ---- */
   sec(B3.torso,skin,{seg:44,sq:2.3,top:true,bottom:true,ao:{kind:"torso"}});
   sec(B3.neck,skin,{seg:28});
   [-1,1].forEach(function(s){
-    add(new T.SphereGeometry(0.053,24,16),skin,s*0.182,1.418,0,1,0.8,0.95);           /* shoulder */
+    tgt=armG[s];
+    if(!sleevedTop)add(new T.SphereGeometry(0.053,24,16),skin,s*0.182,1.418,0,1,0.8,0.95);   /* under a sleeved top the garment's own shoulder stands in, so it can slope */           /* shoulder */
     sec(sideX(B3.arm,s),skin,{seg:22,top:true,ao:{kind:"limb",s:s}});
     sec(sideX(B3.hand,s),skin,{seg:20,top:true,bottom:true,ao:{kind:"limb",s:s}});
     tube([[s*0.234,0.875,0.066],[s*0.232,0.85,0.076],[s*0.235,0.828,0.078]],0.0085,skin,8);  /* thumb */
@@ -2458,6 +2493,7 @@ function make3D(pieces){
     /* four fingers, hanging relaxed and curled a little forward */
     [[0.03,0.07,0.0078],[0.01,0.078,0.0082],[-0.01,0.074,0.0078],[-0.028,0.058,0.0068]].forEach(function(f){var z0=0.042+f[0],y0=0.806;
       tube([[s*0.248,y0,z0],[s*0.247,y0-f[1]*0.55,z0+0.004],[s*0.244,y0-f[1],z0+0.013]],f[2],skin,10);add(new T.SphereGeometry(f[2],10,8),skin,s*0.244,y0-f[1],z0+0.013);});
+    tgt=man;
     sec(sideX(B3.leg,s),skin,{seg:26,top:true,bottom:true,ao:{kind:"limb",s:s,leg:true}});
   });
   var hatOn=pieces.some(function(p){return /^(beanie|bcap|cap|bucket)$/.test(p.shape);});
@@ -2482,8 +2518,9 @@ function make3D(pieces){
     add(new T.SphereGeometry(0.0085,12,10),skin,ex+s*0.004,HY-0.023,-0.002,0.6,1,0.9);});
   /* his nose: long and straight, a narrow bridge, a rounded tip and nostril wings */
   var noseM=mat(shade(CHAR.skin,0.985),0.55);
-  sec([[1.661,0.0165,0.009,0,0.1],[1.667,0.0185,0.015,0,0.106],[1.675,0.0145,0.0165,0,0.1095],[1.688,0.0095,0.0135,0,0.1085],[1.706,0.0082,0.011,0,0.106],[1.73,0.0088,0.0065,0,0.1035]],noseM,{seg:18,top:true,bottom:true});
-  [-1,1].forEach(function(s){add(new T.SphereGeometry(0.0068,14,10),noseM,s*0.0128,1.6665,0.1005,1,0.9,1.1);});
+  var nk={small:0.85,average:1,large:1.18}[CHAR.nose]||1;
+  sec([[1.661,0.0165,0.009,0,0.1],[1.667,0.0185,0.015,0,0.106],[1.675,0.0145,0.0165,0,0.1095],[1.688,0.0095,0.0135,0,0.1085],[1.706,0.0082,0.011,0,0.106],[1.73,0.0088,0.0065,0,0.1035]].map(function(q){return [q[0],q[1]*nk,q[2]*nk,0,0.098+(q[4]-0.098)*nk];}),noseM,{seg:18,top:true,bottom:true});
+  [-1,1].forEach(function(s){add(new T.SphereGeometry(0.0068*nk,14,10),noseM,s*0.0128*nk,1.6665,0.098+0.0025*nk,1,0.9,1.1);});
   /* mouth: a closed, slight smile, the upper lip mostly under the moustache */
   tube([[-0.02,1.6365,hz(-0.02,1.6365)+0.001],[0,1.634,hz(0,1.634)+0.003],[0.02,1.6365,hz(0.02,1.6365)+0.001]],0.0022,lipM,12);
   tube([[-0.0175,1.6295,hz(-0.0175,1.6295)+0.001],[0,1.6265,hz(0,1.6265)+0.0026],[0.0175,1.6295,hz(0.0175,1.6295)+0.0005]],0.003,lipM,12);
@@ -2500,6 +2537,18 @@ function make3D(pieces){
     [[0,0.0029],[0.0024,0.0022],[-0.0022,0.002]].forEach(function(q){var dy=q[0];
       tube([[s*0.012,1.7365+dy*0.6,hz(0.012,1.737)+0.0022],[s*0.022,1.7395+dy,hz(0.022,1.74)+0.0026],[s*0.036,1.7405+dy,hz(0.036,1.74)+0.0026],[s*0.05,1.7375+dy*0.7,hz(0.05,1.737)+0.0012]],q[1]*browK,browM,14);});
   });
+  /* everyday glasses from Edit Dave (left off when the outfit has sunglasses): thin frames over the eyes,
+     a bridge over the nose, clear lenses and arms back to the ears */
+  if(CHAR.glasses&&CHAR.glasses!=="none"&&!pieces.some(function(p){return p.shape==="sunglasses";})){
+    var gfm=mat(CHAR.glassCol||"#2b2622",0.35,{metalness:0.25}),glz=new T.MeshStandardMaterial({color:0xffffff,transparent:true,opacity:0.1,roughness:0.05,metalness:0,side:T.DoubleSide}),rnd2=CHAR.glasses==="round";
+    [-1,1].forEach(function(s){var cx=s*0.0315,cy=1.7215,cz=0.1205,fp=[];
+      for(var gi=0;gi<=48;gi++){var ga=gi/48*Math.PI*2,gc=Math.cos(ga),gs=Math.sin(ga),ex2=rnd2?2:0.55;
+        fp.push([cx+(rnd2?0.0172:0.0205)*Math.sign(gc)*Math.pow(Math.abs(gc),ex2/2),cy+(rnd2?0.0172:0.0142)*Math.sign(gs)*Math.pow(Math.abs(gs),ex2/2),cz-0.006*Math.pow((Math.abs(cx+(rnd2?0.0172:0.0205)*gc)-0.014)/0.04,2)]);}
+      tube(fp,rnd2?0.0013:0.0017,gfm,96);
+      var lg=rnd2?new T.CircleGeometry(0.017,32):new T.PlaneGeometry(0.04,0.028);add(lg,glz,cx,cy,cz-0.001);
+      tube([[s*0.051,1.7245,0.116],[s*0.074,1.7265,0.08],[s*0.082,1.724,0.02],[s*0.083,1.716,-0.006]],0.0014,gfm,12);});
+    tube([[-0.0135,1.7245,0.1215],[0,1.7285,0.1235],[0.0135,1.7245,0.1215]],0.0014,gfm,10);
+  }
   /* the moustache: a full ginger-brown chevron, one pillowed surface from under the nose to over the lip,
      its ends drooping just past the corners of the mouth and thinning into the beard */
   /* moustache styles: chevron (his), walrus (fuller and lower), handlebar (ends turned up), pencil (a thin line) */
@@ -2546,14 +2595,23 @@ function make3D(pieces){
   /* trousers or shorts */
   var waistE=0;
   if(lo){
+    curIt=lo.item;curWhat=lo.what;
     var lm=pm(lo),sh=lo.shape==="shorts",n0=nm(lo),fitL=((byId[lo.item]||{}).fit||""),wide=fitL==="Wide leg"||/wide|baggy|barrel|parachute/.test(n0)?0.022:(fitL==="Relaxed"||/loose|relaxed|carpenter|cargo|combat/.test(n0)?0.013:(fitL?0.006:0.004));
     waistE=0.012;
-    sec([[0.785,0.156,0.102,0,-0.004],[0.85,0.174,0.114,0,-0.01],[0.92,0.184,0.123,0,-0.012],[0.98,0.18,0.118,0,-0.008],[1.035,0.165,0.111,0,-0.002]],lm,{seg:44,sq:2.3,bottom:true});   /* the rise covers the seat and crotch */
-    band(1.0,0.04,0.167,0.113,lm,{z:-0.003});
+    sec(shapeSecs([[0.785,0.156,0.102,0,-0.004],[0.85,0.174,0.114,0,-0.01],[0.92,0.184,0.123,0,-0.012],[0.98,0.18,0.118,0,-0.008],[1.035,0.165,0.111,0,-0.002]]),lm,{seg:44,sq:2.3,bottom:true});   /* the rise covers the seat and crotch */
+    var wk1=shapeAt(1.02),jog=/jogger|track|sweatpant|lounge|pyjama/.test(n0),jean=/jean|denim/.test(n0);
+    band(1.0,0.04,0.167*wk1.x,0.113*wk1.z,jog?rib(lo):lm,{z:-0.003+wk1.dz,sq:2.3,seg:44});
+    /* belt loops on tailored trousers, chinos and jeans; a drawcord on joggers */
+    if(!jog){[-0.62,-0.2,0.2,0.62,Math.PI].forEach(function(a){var pa=function(v){return (v<0?-1:1)*Math.pow(Math.abs(v),2/2.3);},lx=pa(Math.sin(a))*(0.168*wk1.x+0.0015),lz=pa(Math.cos(a))*(0.114*wk1.z+0.0015)-0.003+wk1.dz;add(new T.BoxGeometry(0.011,0.042,0.004),lm,lx,1.02,lz,1,1,1,0,a,0);});}
+    else{[-1,1].forEach(function(s){tube([[s*0.012,1.03,frontZ(1.03,0.012)+0.004],[s*0.016,0.98,frontZ(0.98,0.016)+0.006],[s*0.013,0.94,frontZ(0.94,0.016)+0.006]],0.0022,white,8);});}
+    /* back pockets on jeans and chinos, and the little coin pocket on jeans */
+    if(!jog&&!sh||/chino|jean|denim/.test(n0)){[-1,1].forEach(function(s){add(new T.BoxGeometry(0.075,0.085,0.005),lm,s*0.072,0.925,-(0.117*shapeAt(0.92).z)-0.014,1,1,1,-0.12,0,0);});}
+    if(jean){add(new T.BoxGeometry(0.03,0.032,0.004),lm,0.098,0.965,surfZ(0.965,0.098,0.016)+0.003,1,1,1,0,0.45,0);}
     [-1,1].forEach(function(s){
       var L=sh?[[0.53,0.08+wide,0.084+wide,s*0.098,0.002],[0.62,0.08+wide,0.084+wide,s*0.096,0.002],[0.74,0.085+wide,0.09+wide,s*0.093,0],[0.86,0.094,0.098,s*0.09,-0.004],[0.94,0.098,0.1,s*0.086,-0.008]]
         :[[0.04,0.06+wide,0.066+wide,s*0.1,0.002],[0.2,0.06+wide,0.066+wide,s*0.099,-0.008],[0.38,0.064+wide,0.074+wide,s*0.098,-0.014],[0.5,0.066+wide,0.076+wide,s*0.096,-0.004],[0.6,0.072+wide,0.079+wide,s*0.095,0],[0.7,0.079+wide*0.6,0.083+wide*0.6,s*0.093,0],[0.82,0.09,0.094,s*0.09,-0.004],[0.94,0.097,0.099,s*0.086,-0.008]];
-      sec(L,lm,{seg:30,u:0.4,ao:{kind:"limb",s:s,leg:true}});
+      sec(L,lm,{seg:30,u:0.4,k:sh?6:16,wr:sh?null:legFolds(jog?0.6:(wide?1.2:1)),ao:{kind:"limb",s:s,leg:true}});
+      if(jog&&!sh&&!/wide|straight|open hem/.test(n0))band(0.04,0.045,0.052+wide,0.058+wide,rib(lo),{x:s*0.1,z:0.0});
       if(sh)band(0.53,0.025,0.081+wide,0.085+wide,lm,{x:s*0.098,z:0.002});
       if(/cargo|utility|combat|work/.test(n0)){add(new T.BoxGeometry(0.012,0.1,0.075),lm,s*(0.165+wide+(sh?0.012:0)),sh?0.68:0.62,0.004);}
     });
@@ -2561,7 +2619,10 @@ function make3D(pieces){
   }
   /* tops, knits, jackets and coats */
   var outer=0.011,waistHid=false;
+  /* a shirt is tucked in when it is worn with tailoring: a blazer, waistcoat or tie, or suit trousers */
+  var tuckIn=!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape);})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo)));
   up.forEach(function(p,k){
+    curIt=p.item;curWhat=p.what;
     var m=pm(p),n0=nm(p),L=LAYER[p.shape]||0,e=[0.008,0.017,0.03][L]+0.004*k+(lay(p)%1?0.006:0)+(L===0&&waistE?0.006:0);
     if(/puffer|padded|quilted|parka|down/.test(n0))e+=0.014;
     outer=Math.max(outer,e);
@@ -2570,19 +2631,23 @@ function make3D(pieces){
     var zipped=open&&/zip|parka|puffer|padded|harrington|bomber|waterproof|shell|track|softshell|fleece/.test(n0);
     var hem={coat:0.52,gown:0.46,blazer:0.74,jacket:0.8,shirt:0.8,sshirt:0.82,polo:0.84,tee:0.84,vest:0.85,gilet:0.82,waistcoat:0.88,cardigan:0.82,hoodie:0.83,halfzip:0.83,jumper:0.83,rollneck:0.83}[p.shape]||0.84;
     if(/crop|boxy/.test(n0))hem+=0.03;if(/longline/.test(n0))hem-=0.05;if(p.shape==="jacket"&&/parka|mac|trench/.test(n0))hem=0.6;
-    var tor=B3.torso.slice(0,9).concat([[1.47,0.146,0.084,0,-0.008],[1.5,0.092,0.072,0,-0.012]]);
+    var tucked=tuckIn&&L===0&&/^(shirt|sshirt|polo)$/.test(p.shape);if(tucked)hem=1.005;
+    var tor=B3.torso.slice(0,9).concat(shapeSecs([[1.47,0.146,0.084,0,-0.008],[1.5,0.092,0.072,0,-0.012]]));
     var flare=[[0.46,0.192,0.135,0,-0.012],[0.6,0.187,0.129,0,-0.012],[0.74,0.18,0.122,0,-0.012]];
     var secs=flare.concat(tor).filter(function(q){return q[0]>hem;});
     secs.unshift([hem,secs[0][1],secs[0][2],0,secs[0][4]]);
     secs=secs.map(function(q){return q[0]<1.0?[q[0],Math.max(q[1],0.171),Math.max(q[2],0.111),q[3],Math.min(q[4],-0.008)]:q;});
-    secs=secs.map(function(q){var top=q[0]>1.48,w=waistE&&q[0]<1.08?(q[0]<1.0?0.022:0.022*(1.08-q[0])/0.08):0;return [q[0],q[1]+(top?e*0.6:e)+w,q[2]+(top?e*0.6:e)+w,q[3],q[4]];});
+    secs=secs.map(function(q){var top=q[0]>1.48,w=tucked?(q[0]<1.04?-0.004:(q[0]<1.1?0.004:0)):waistE&&q[0]<1.08?(q[0]<1.0?0.022:0.022*(1.08-q[0])/0.08):0;return [q[0],q[1]+(top?e*0.6:e)+w,q[2]+(top?e*0.6:e)+w,q[3],q[4]];});
     if(!open&&hem<0.97)waistHid=true;
     var gap=open?(p.shape==="cardigan"?0.5:(p.shape==="blazer"||p.shape==="coat"?0.75:0.62)):0;
-    sec(secs,m,{seg:48,sq:2.3,gap:gap,ao:{kind:"torso"}});
+    sec(secs,m,{seg:48,sq:2.3,gap:gap,hemC:tucked?0:(/^(shirt|sshirt)$/.test(p.shape)?0.035:(p.shape==="polo"?0.012:0)),ao:{kind:"torso"}});
     /* sleeves */
     var outSleeve=!up.slice(k+1).some(function(q){return !/^(vest|waistcoat|gilet)$/.test(q.shape);});
     var sleeveless=p.shape==="vest"||p.shape==="waistcoat"||p.shape==="gilet",short=/^(tee|polo|sshirt)$/.test(p.shape)&&!/long/.test(n0);
-    if(!sleeveless){[-1,1].forEach(function(s){
+    /* sleeves under a long-sleeved layer are never seen: leave them out, so they cannot poke through */
+    var underLong=up.slice(k+1).some(function(q){return !/^(vest|waistcoat|gilet)$/.test(q.shape)&&!(/^(tee|polo|sshirt)$/.test(q.shape)&&!/long/.test(nm(q)));});
+    if(!sleeveless&&!underLong){[-1,1].forEach(function(s){
+      tgt=armG[s];
       var se=e*0.55+0.004,arm=sideX(B3.arm,s).filter(function(q){return q[0]>=(short?1.24:0.9);});
       if(short){arm=[[1.24,0.054,0.056,s*0.222,0.005],[1.3,0.053,0.055,s*0.216,0.004]].concat(arm.filter(function(q){return q[0]>1.33;}));}
       else{arm.unshift([0.905,arm[0][1],arm[0][2],arm[0][3],arm[0][4]]);}
@@ -2590,10 +2655,14 @@ function make3D(pieces){
       /* the sleeve head: rounded over the top of the arm and into the shoulder seam, not cut flat */
       arm=arm.filter(function(q){return q[0]<=1.4;});var a1=arm[arm.length-1];
       arm.push([1.425,a1[1]*0.95,a1[2]*0.96,a1[3]-s*0.006,a1[4]],[1.448,a1[1]*0.72,a1[2]*0.78,a1[3]-s*0.02,a1[4]],[1.462,a1[1]*0.4,a1[2]*0.46,a1[3]-s*0.038,a1[4]],[1.468,a1[1]*0.12,a1[2]*0.14,a1[3]-s*0.05,a1[4]]);
-      sec(arm,m,{seg:22,u:0.4,top:true,ao:{kind:"limb",s:s}});
-      add(new T.SphereGeometry(0.057+se,22,16),m,s*0.182,1.416,0,1,0.8,0.95);   /* shoulder: the body's own shoulder plus ease, so no skin shows at the seam */
+      sec(arm,m,{seg:22,u:0.4,top:true,k:short?4:10,wr:short?null:sleeveFolds(L===2?0.7:1),ao:{kind:"limb",s:s}});
+      add(new T.SphereGeometry(0.05+se,22,16),m,s*0.18,1.404,0,1,0.64,0.94);   /* shoulder: the body's own shoulder plus ease, so no skin shows at the seam */
       if(!short&&outSleeve&&/^(jumper|hoodie|halfzip|rollneck|cardigan)$/.test(p.shape))band(0.905,0.035,0.028+se+0.003,0.033+se+0.003,rib(p),{x:s*0.24,z:0.032});
       if(short&&outSleeve)band(1.24,0.012,0.0555+se,0.0575+se,m,{x:s*0.222,z:0.005});
+      /* shirt cuffs, with a button; a turned-back cuff on tailoring */
+      if(!short&&outSleeve&&p.shape==="shirt"){band(0.903,0.05,0.03+se+0.004,0.035+se+0.004,m,{x:s*0.241,z:0.033});add(new T.SphereGeometry(0.0035,8,6),white,s*(0.241+0.03+se),0.93,0.04);}
+      if(!short&&outSleeve&&/^(blazer|coat)$/.test(p.shape))band(0.905,0.022,0.03+se+0.003,0.035+se+0.003,m,{x:s*0.24,z:0.032});
+      tgt=man;
     });}
     /* hems, necklines, collars, plackets, zips and pockets */
     var hs=secs[0];
@@ -2629,6 +2698,7 @@ function make3D(pieces){
   function hAt(z){for(var i=0;i<shoeS.length-1;i++){if(z>=shoeS[i][0]&&z<=shoeS[i+1][0]){var f=(z-shoeS[i][0])/(shoeS[i+1][0]-shoeS[i][0]);return shoeS[i][2]*(1-f)+shoeS[i+1][2]*f;}}return 0.02;}
   function shoeGeo(rows,lift,grow){var g=secGeo(rows.map(function(q){var h=q[2]+(grow||0);return [q[0],q[1]+(grow||0),h,0,-h];}),{seg:28,sq:2.6,top:true,bottom:true,k:3});
     g.rotateX(Math.PI/2);g.translate(0,lift||0,0);return g;}
+  curIt=ft?ft.item:null;curWhat=ft?ft.what:"";
   [-1,1].forEach(function(s){
     var x=s*0.1,rot=s*0.1,lift=ft?(trainer?0.026:0.017):0;
     var shoe=add(shoeGeo(shoeS,lift),fm,x,0,0.0,1,1,1,0,rot,0);
@@ -2639,7 +2709,7 @@ function make3D(pieces){
     if(trainer){add(new T.BoxGeometry(0.004,0.016,0.07),soleM,x+s*0.052,lift+0.035,0.07,1,1,1,0,rot,0);}
   });
   /* accessories */
-  acc.forEach(function(p){var m=mat(cc(p.col)[0],0.8);tgt=/^(beanie|bcap|cap|bucket|sunglasses)$/.test(p.shape)?headG:man;
+  acc.forEach(function(p){var m=mat(cc(p.col)[0],0.8);curIt=p.item;curWhat=p.what;tgt=/^(beanie|bcap|cap|bucket|sunglasses)$/.test(p.shape)?headG:(p.shape==="watch"?armG[-1]:man);
     if(p.shape==="beanie"){add(new T.SphereGeometry(1,30,18,0,Math.PI*2,0,Math.PI/2),cloth(cc(p.col)[0],"rib","",0.95),0,1.79,0.002,0.1,0.085,0.121);band(1.762,0.042,0.101,0.122,cloth(cc(p.col)[0],"rib","",0.95),{z:0.002});}
     else if(p.shape==="bcap"||p.shape==="cap"){add(new T.SphereGeometry(1,30,18,0,Math.PI*2,0,Math.PI/2),m,0,1.775,0.004,0.097,p.shape==="cap"?0.058:0.08,0.117);
       add(new T.CylinderGeometry(0.08,0.08,0.006,28,1,false,-Math.PI/2,Math.PI),m,0,1.778,0.098,1,1,0.9,0.12,0,0);}
@@ -2657,38 +2727,119 @@ function make3D(pieces){
     else if(p.shape==="belt"){if(!waistHid)band(0.99,0.035,0.172+(lo?0.006:0),0.117+(lo?0.006:0),mat(cc(p.col)[0],0.5),{z:-0.004});if(!waistHid)add(new T.BoxGeometry(0.045,0.036,0.006),metal,0,1.007,frontZ(1.0,0.02)+0.006);}
     else if(p.shape==="kneepads"){[-1,1].forEach(function(s){add(new T.BoxGeometry(0.1,0.13,0.03),m,s*0.096,0.5,0.07,1,1,1,0,0,0);});}
   });
-  tgt=man;
+  tgt=man;curIt=null;
+  headG.scale.x={narrow:0.94,average:1,wide:1.07}[CHAR.face]||1;
   /* height and build from "Edit Dave": the whole figure scales, clothes with it */
   var kH=(Number(CHAR.height)||183)/183,bw={slim:0.92,regular:1,broad:1.1}[CHAR.build]||1;
   man.scale.set(kH*bw,kH,kH*(0.5+0.5*bw));
   return {scene:scene,man:man,k:kH};
 }
 function dispose3D(o){if(!o)return;o.scene.traverse(function(n){if(n.geometry)n.geometry.dispose();if(n.material){[].concat(n.material).forEach(function(m){if(m.map&&m.map!==bumpTex&&!m.map.keep)m.map.dispose();m.dispose();});}});}
-/* A live view you can turn: used by the large outfit view and the builder. */
-function Live3D(box,pieces){
-  var T=window.THREE,W=box.clientWidth||300,H=box.clientHeight||500;
-  var r=new T.WebGLRenderer({antialias:true,alpha:true});r.setPixelRatio(Math.min(2,window.devicePixelRatio||1));r.setSize(W,H);
+/* A live view you can turn: used by the large outfit view, the builder and Edit Dave.
+   They all share ONE WebGL renderer. Phones allow only a few WebGL contexts per page, and each view used
+   to make its own and never free it, so after a few views (or Edit Dave opened over an outfit) the next
+   one failed and stayed on "Loading". Now the newest view borrows the renderer's canvas and, when it
+   closes, hands it back to the view underneath. A view that is hidden does not draw. */
+var liveR=null,liveStack=[];
+function liveRenderer(){
+  if(liveR&&!liveR.lost)return liveR;
+  var T=window.THREE,r=new T.WebGLRenderer({antialias:true,alpha:true});
+  r.setPixelRatio(Math.min(window.innerWidth<700?1.5:2,window.devicePixelRatio||1));
   if(T.sRGBEncoding)r.outputEncoding=T.sRGBEncoding;r.toneMapping=T.ACESFilmicToneMapping;r.toneMappingExposure=1.08;r.shadowMap.enabled=true;r.shadowMap.type=T.PCFSoftShadowMap;
-  box.appendChild(r.domElement);
-  var cam=new T.PerspectiveCamera(24,W/H,0.1,50);
-  function fit(k){var f=Math.max(1,k||1);cam.position.set(0,1.0*f,4.75*f);cam.lookAt(0,0.93*f,0);}
-  var o=make3D(pieces);fit(o.k);var rot=0.35,spin=!(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches),drag=null,el=r.domElement,h={on:true,raf:0};
-  el.addEventListener("pointerdown",function(e){drag={x:e.clientX,r:rot};spin=false;try{el.setPointerCapture(e.pointerId);}catch(x){}});
-  el.addEventListener("pointermove",function(e){if(drag){rot=drag.r+(e.clientX-drag.x)*0.012;}});
-  el.addEventListener("pointerup",function(){drag=null;});
-  function loop(){if(!h.on)return;if(spin)rot+=0.006;o.man.rotation.y=rot;r.render(o.scene,cam);h.raf=requestAnimationFrame(loop);}loop();
-  h.update=function(ps){dispose3D(o);o=make3D(ps);fit(o.k);};
-  h.stop=function(){h.on=false;cancelAnimationFrame(h.raf);dispose3D(o);try{r.dispose();}catch(e){}if(el.parentNode)el.parentNode.removeChild(el);};
+  r.domElement.addEventListener("webglcontextlost",function(e){e.preventDefault();r.lost=true;liveStack.forEach(function(h){h.lostCtx();});},false);
+  r.domElement.className="v3-cv";liveR=r;return r;
+}
+/* camera framing: z 0 is the whole figure, 1 is his face */
+function camAt(z,k){var f=Math.max(1,k||1),e=z*z*(3-2*z);return {y:(1.0+(1.71-1.0)*e)*f,look:(0.93+(1.69-0.93)*e)*f,d:(4.75+(0.95-4.75)*Math.pow(z,0.8))*f};}
+function Live3D(box,pieces,opt){
+  opt=opt||{};
+  var T=window.THREE,r=liveRenderer(),cam=new T.PerspectiveCamera(24,1,0.05,50),o=make3D(pieces);
+  var h={box:box,on:true,raf:0,tm:0,active:false,o:o},rot=0.35,tRot=null,z=opt.zoom||0,tZ=z,W=0,H=0,ptr={},pinch=null,drag=null,down=null,flash=0;
+  var spin=opt.spin!==false&&!(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  /* the view buttons and the label for a tapped garment */
+  var bar=null,tip=document.createElement("p");tip.className="v3-tip";tip.hidden=true;box.appendChild(tip);
+  if(opt.bar!==false){bar=document.createElement("div");bar.className="v3-bar";bar.setAttribute("role","group");bar.setAttribute("aria-label","Turn and zoom the 3D model");
+    bar.innerHTML='<button type="button" data-v3="front">Front</button><button type="button" data-v3="side">Side</button><button type="button" data-v3="back">Back</button><button type="button" data-v3="spin" aria-pressed="'+spin+'">Turn</button><span class="v3-sep"></span><button type="button" data-v3="z0" aria-label="Whole figure">Full</button><button type="button" data-v3="z55" aria-label="Top half">Top</button><button type="button" data-v3="z1" aria-label="His face">Face</button>';
+    box.appendChild(bar);
+    bar.addEventListener("click",function(e){var b=e.target.closest("[data-v3]");if(!b)return;var v=b.getAttribute("data-v3");
+      if(v==="spin"){spin=!spin;tRot=null;}
+      else if(v==="front"||v==="side"||v==="back"){spin=false;var want={front:0.3,side:1.45,back:Math.PI}[v],tw=Math.PI*2;tRot=want+Math.round((rot-want)/tw)*tw;}
+      else{tZ=v==="z0"?0:(v==="z1"?1:0.55);}
+      syncBar();});}
+  function syncBar(){if(!bar)return;var sb=bar.querySelector('[data-v3="spin"]');if(sb)sb.setAttribute("aria-pressed",String(spin));}
+  box.tabIndex=box.tabIndex>=0?box.tabIndex:0;
+  function fit(){var w=box.clientWidth||300,hh=box.clientHeight||500;if(w!==W||hh!==H){W=w;H=hh;r.setSize(W,H);cam.aspect=W/H;cam.updateProjectionMatrix();}}
+  function place(){var c=camAt(z,o.k);cam.position.set(0,c.y,c.d);cam.lookAt(0,c.look,0);}
+  function shown(){return box.isConnected&&box.offsetParent!==null&&box.clientWidth>0;}
+  function loop(){
+    if(!h.on||!h.active)return;
+    if(!box.isConnected){h.stop();return;}
+    if(!shown()){h.tm=setTimeout(function(){h.raf=requestAnimationFrame(loop);},400);return;}
+    fit();
+    if(tRot!=null){rot+=(tRot-rot)*0.14;if(Math.abs(tRot-rot)<0.002){rot=tRot;tRot=null;}}else if(spin&&!drag)rot+=0.006;
+    z+=(tZ-z)*0.16;o.man.rotation.y=rot;place();
+    if(flash&&Date.now()>flash){flash=0;glow(null);}
+    try{r.render(o.scene,cam);}catch(e){}
+    h.raf=requestAnimationFrame(loop);}
+  /* drag to turn, wheel or pinch to zoom, tap a garment to see which piece it is */
+  var el=r.domElement;
+  function onDown(e){if(!h.active)return;ptr[e.pointerId]={x:e.clientX,y:e.clientY};var ids=Object.keys(ptr);
+    if(ids.length===2){var a=ptr[ids[0]],b2=ptr[ids[1]];pinch={d:Math.hypot(a.x-b2.x,a.y-b2.y),z:tZ};drag=null;}
+    else{drag={x:e.clientX,r:rot};down={x:e.clientX,y:e.clientY,t:Date.now()};spin=false;tRot=null;syncBar();}
+    try{el.setPointerCapture(e.pointerId);}catch(x){}}
+  function onMove(e){if(!h.active||!ptr[e.pointerId])return;ptr[e.pointerId]={x:e.clientX,y:e.clientY};var ids=Object.keys(ptr);
+    if(pinch&&ids.length===2){var a=ptr[ids[0]],b2=ptr[ids[1]],d=Math.hypot(a.x-b2.x,a.y-b2.y);tZ=Math.max(0,Math.min(1,pinch.z+(d-pinch.d)/260));z=tZ;}
+    else if(drag){rot=drag.r+(e.clientX-drag.x)*0.012;}}
+  function onUp(e){if(!h.active)return;delete ptr[e.pointerId];if(Object.keys(ptr).length<2)pinch=null;
+    if(drag&&down&&Math.hypot(e.clientX-down.x,e.clientY-down.y)<6&&Date.now()-down.t<450)pick(e);
+    drag=null;down=null;}
+  function onWheel(e){if(!h.active)return;e.preventDefault();tZ=Math.max(0,Math.min(1,tZ-e.deltaY*0.0012));}
+  function onKey(e){if(!h.active)return;var k=e.key;
+    if(k==="ArrowLeft"||k==="ArrowRight"){spin=false;tRot=(tRot==null?rot:tRot)+(k==="ArrowLeft"?-0.4:0.4);syncBar();e.preventDefault();}
+    else if(k==="+"||k==="="){tZ=Math.min(1,tZ+0.2);e.preventDefault();}else if(k==="-"){tZ=Math.max(0,tZ-0.2);e.preventDefault();}}
+  var rc=new T.Raycaster(),nv=new T.Vector2();
+  function glow(item){o.scene.traverse(function(n){if(n.isMesh&&n.material&&n.material.emissive){var on=item&&n.userData.item===item;n.material.emissive.setHex(on?0x2a2a1a:0x000000);}});}
+  function pick(e){var rb=el.getBoundingClientRect();nv.set((e.clientX-rb.left)/rb.width*2-1,-(e.clientY-rb.top)/rb.height*2+1);rc.setFromCamera(nv,cam);
+    var hit=rc.intersectObject(o.man,true).filter(function(x){return x.object.visible;})[0],item=hit&&hit.object.userData.item;
+    if(!item){tip.hidden=true;glow(null);if(opt.onPick)opt.onPick(null);return;}
+    glow(item);flash=Date.now()+1600;var it=byId[item],what=hit.object.userData.what||"";
+    tip.textContent=(what?what+(it?": ":""):"")+(it?it.name+" · "+money(cost(it)):"");tip.hidden=false;clearTimeout(tip.t);tip.t=setTimeout(function(){tip.hidden=true;},4500);
+    if(opt.onPick)opt.onPick(item);}
+  box.addEventListener("keydown",onKey);
+  /* take the shared canvas into this box, wiring its pointer events to this view */
+  h.activate=function(){if(!h.on)return;liveStack.forEach(function(x){if(x!==h)x.active=false;});h.active=true;
+    if(el.parentNode!==box)box.insertBefore(el,box.firstChild);
+    el.onpointerdown=onDown;el.onpointermove=onMove;el.onpointerup=onUp;el.onpointercancel=onUp;el.onwheel=onWheel;
+    W=0;H=0;clearTimeout(h.tm);cancelAnimationFrame(h.raf);loop();};
+  h.update=function(ps){var old=o;o=make3D(ps);h.o=o;dispose3D(old);};
+  h.zoomTo=function(v){tZ=Math.max(0,Math.min(1,v));};
+  h.lostCtx=function(){h.active=false;cancelAnimationFrame(h.raf);clearTimeout(h.tm);if(h.onLost)h.onLost();};
+  h.stop=function(){if(!h.on)return;h.on=false;h.active=false;cancelAnimationFrame(h.raf);clearTimeout(h.tm);dispose3D(o);
+    box.removeEventListener("keydown",onKey);if(bar&&bar.parentNode)bar.parentNode.removeChild(bar);if(tip.parentNode)tip.parentNode.removeChild(tip);
+    var i=liveStack.indexOf(h),top=i===liveStack.length-1;if(i>=0)liveStack.splice(i,1);
+    if(el.parentNode===box)box.removeChild(el);
+    if(top&&liveStack.length)liveStack[liveStack.length-1].activate();};
+  liveStack.push(h);h.activate();
   return h;
 }
 function stop3D(){if(z3){z3.stop();z3=null;}}
+/* tapping a garment in the large view picks out its photo card on the right */
+function zoomPick(item){Array.prototype.forEach.call(document.querySelectorAll("#zoom-body .zoom-ph li"),function(li){var on=!!item&&li.getAttribute("data-zitem")===item;li.classList.toggle("hot",on);if(on&&li.scrollIntoView)li.scrollIntoView({block:"nearest",behavior:"smooth"});});}
+function live3DFail(box,msg,again){
+  if(!msg){msg=document.createElement("p");msg.className="msg zf-3dmsg";box.appendChild(msg);}
+  msg.hidden=false;msg.innerHTML='The 3D model stopped on this device. <button class="linkbtn" type="button" data-3dagain>Try again</button>';
+  msg.querySelector("[data-3dagain]").onclick=function(){liveR=null;msg.textContent="Loading the 3D model…";again();};
+}
 function show3D(pieces){
   var box=document.querySelector("#zoom-body .zf-3d");if(!box)return;
   var msg=box.querySelector(".zf-3dmsg");
   loadThree().then(function(){
     if(!document.querySelector("#zoom-body .zf-3d"))return;
-    if(z3&&z3.box===box){z3.update(pieces);return;}
-    stop3D();if(msg)msg.hidden=true;z3=Live3D(box,pieces);z3.box=box;
+    if(z3&&z3.box===box&&z3.on){z3.update(pieces);return;}
+    stop3D();
+    try{z3=Live3D(box,pieces,{onPick:zoomPick});z3.box=box;if(msg)msg.hidden=true;
+      z3.onLost=function(){var ps=pieces;stop3D();live3DFail(box,msg,function(){show3D(ps);});};}
+    catch(e){z3=null;live3DFail(box,msg,function(){show3D(pieces);});}
   },function(){if(msg)msg.textContent="The 3D model could not load. Check the connection and try again.";});
 }
 /* Still renders for outfit cards and small figures: one hidden renderer, cached by outfit and colours. */
@@ -2704,7 +2855,7 @@ function pumpSnap(){
   setTimeout(function(){
     try{
       var T=window.THREE;
-      if(!snapR){snapR=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});snapR.setPixelRatio(1);snapR.setSize(360,735);if(T.sRGBEncoding)snapR.outputEncoding=T.sRGBEncoding;snapR.toneMapping=T.ACESFilmicToneMapping;snapR.toneMappingExposure=1.08;snapR.shadowMap.enabled=true;snapR.shadowMap.type=T.PCFSoftShadowMap;}
+      if(!snapR){snapR=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});snapR.setPixelRatio(1);snapR.setSize(360,735);if(T.sRGBEncoding)snapR.outputEncoding=T.sRGBEncoding;snapR.toneMapping=T.ACESFilmicToneMapping;snapR.toneMappingExposure=1.08;snapR.shadowMap.enabled=true;snapR.shadowMap.type=T.PCFSoftShadowMap;snapR.domElement.addEventListener("webglcontextlost",function(e){e.preventDefault();snapR=null;},false);}
       var o=make3D(j.ps),f=Math.max(1,o.k||1),cam=new T.PerspectiveCamera(13,240/490,0.1,50);cam.position.set(0,0.95*f,8.7*f);cam.lookAt(0,0.93*f,0);o.man.rotation.y=0.32;snapR.render(o.scene,cam);
       var url=snapR.domElement.toDataURL("image/webp",0.86);if(url.indexOf("image/webp")<0)url=snapR.domElement.toDataURL("image/png");
       dispose3D(o);
@@ -2741,7 +2892,7 @@ function openZoom(id){
   $("zoom-body").innerHTML='<div class="zoom-head"><span class="label">'+esc(f.styles.map(function(s){return label(STYLE,s);}).join(" · "))+'</span><h2>'+esc(f.name)+'</h2>'+(f.note?'<p>'+esc(f.note)+'</p>':"")+'<p class="zoom-tot"><b>'+money(t.tot)+'</b> for the whole outfit</p></div>'+
     '<div class="zoom-grid"><div class="zoom-fig" data-mode="'+mode+'"><div class="zoom-tabs" role="group" aria-label="How to show the outfit"><button type="button" class="act" data-zlay="1" aria-pressed="'+(mode==="1")+'">Real photos, to scale</button>'+(FIG.allow2d?'<button type="button" class="act" data-zlay="0" aria-pressed="'+(mode==="0")+'">Drawing (2D)</button>':"")+'<button type="button" class="act" data-zlay="3" aria-pressed="'+(mode==="3")+'">3D model</button></div><div class="zf-lay">'+flatLay(order)+'</div><div class="zf-3d"><p class="msg zf-3dmsg">Loading the 3D model…</p></div><button class="linkbtn zf-3dedit" type="button" data-chared data-chared-fit="'+esc(f.id)+'">Edit Dave\'s 3D look</button><div class="zf-fig"><svg viewBox="0 0 268 486" role="img" aria-label="'+esc("Drawing of the outfit: "+order.map(function(p){return p.what;}).join(", "))+'"><g transform="translate(14,4)">'+figure(ps)+'</g></svg></div></div>'+
     '<ol class="zoom-ph">'+order.map(function(p,i){var it=byId[p.item];if(!it)return '<li><span class="zn">'+(i+1)+'</span><span class="zi"><b>'+esc(p.what)+'</b><small>No longer listed</small></span></li>';
-      return '<li><span class="zn">'+(i+1)+'</span>'+(photoBox(it,"zbig",true)||'<span class="ph zbig"></span>')+'<span class="zi"><b>'+esc(p.what)+'</b><a href="'+esc(it.url)+'" target="_blank" rel="noopener">'+esc(it.name)+' ↗</a><small>'+esc(it.shop)+(it.insize===true?" · in his size":"")+(pct(it)>0?" · "+pct(it)+"% off":"")+'</small><b class="zp">'+money(cost(it))+'</b></span></li>';}).join("")+'</ol></div>';
+      return '<li data-zitem="'+esc(p.item)+'"><span class="zn">'+(i+1)+'</span>'+(photoBox(it,"zbig",true)||'<span class="ph zbig"></span>')+'<span class="zi"><b>'+esc(p.what)+'</b><a href="'+esc(it.url)+'" target="_blank" rel="noopener">'+esc(it.name)+' ↗</a><small>'+esc(it.shop)+(it.insize===true?" · in his size":"")+(pct(it)>0?" · "+pct(it)+"% off":"")+'</small><b class="zp">'+money(cost(it))+'</b></span></li>';}).join("")+'</ol></div>';
   if(typeof dlg.showModal==="function"){if(!dlg.open)dlg.showModal();}else{dlg.setAttribute("open","");}
   if(mode==="3")show3D(ps);
   trueFor(order,function(){if(dlg.open&&zoomId===id){var fg=document.querySelector("#zoom-body .zf-fig g");if(fg)fg.innerHTML=figure(effPieces(f));if(z3&&z3.on)show3D(effPieces(f));}});
@@ -3013,7 +3164,7 @@ function drawBuild(){
   if(!draw.some(function(p){return LOWER[p.shape];})){draw.push({item:"",shape:"trousers",col:"stone",what:""});}
   if(figMode()==="3d"){
     $("b-fig").style.display="none";var bd=$("b-3d");bd.hidden=false;$("b-3d-edit").hidden=false;
-    loadThree().then(function(){if(figMode()!=="3d")return;if(zb){zb.update(draw);}else{zb=Live3D(bd,draw);}},function(){bd.textContent="The 3D model could not load.";});
+    loadThree().then(function(){if(figMode()!=="3d")return;if(zb&&zb.on){zb.update(draw);}else{try{zb=Live3D(bd,draw,{bar:bd.clientWidth>=240});zb.onLost=function(){zb.stop();zb=null;live3DFail(bd,null,function(){drawBuild();});};}catch(e){zb=null;live3DFail(bd,null,function(){drawBuild();});}}},function(){bd.textContent="The 3D model could not load.";});
   }else{
     if(zb){zb.stop();zb=null;}$("b-3d").hidden=true;$("b-3d-edit").hidden=true;$("b-fig").style.display="";
     $("b-fig").innerHTML=figure(draw);
@@ -3670,39 +3821,55 @@ $("set-2d").addEventListener("change",function(e){
 syncFig();
 /* ---- Edit Dave: the character editor ---- */
 var CE=[
-  {k:"height",l:"Height",t:"range",min:160,max:200,step:1,f:function(v){return v+" cm ("+Math.floor(v/30.48)+"ft "+Math.round((v/2.54)%12)+"in)";}},
-  {k:"build",l:"Build",t:"seg",o:[["slim","Slim"],["regular","Regular"],["broad","Broad"]]},
-  {k:"skin",l:"Skin",t:"sw",o:["#f6dccb","#eec3aa","#e2b08f","#c98f6b","#a8714f","#7a4e34","#55372a"]},
-  {k:"hair",l:"Hair colour",t:"sw",o:["#1f1712","#35251b","#5a3a24","#7a5233","#a0683c","#c69a5e","#8f8c86"]},
-  {k:"hairLen",l:"Hair length",t:"seg",o:[["short","Short"],["ear","To the ears"],["collar","To the collar"]]},
-  {k:"curl",l:"Curls",t:"seg",o:[["loose","Loose waves"],["curly","Curly"],["tight","Tight ringlets"]]},
-  {k:"hairVol",l:"Hair volume",t:"range",min:0.5,max:1.6,step:0.05,f:function(v){return Math.round(v*100)+"%";}},
-  {k:"tache",l:"Moustache",t:"seg",o:[["none","None"],["chevron","Chevron"],["walrus","Walrus"],["handlebar","Handlebar"],["pencil","Pencil"]]},
-  {k:"tacheCol",l:"Moustache colour",t:"sw",o:["#35251b","#5a3a24","#7a4a2c","#93582f","#a8683a","#c08850"]},
-  {k:"beard",l:"Beard",t:"seg",o:[["none","None"],["stubble","Stubble"],["full","Short beard"]]},
-  {k:"eyes",l:"Eyes",t:"sw",o:["#7f99ae","#5d86b5","#6f8f6a","#8a7a4e","#6b4a33"]},
-  {k:"brows",l:"Brows",t:"seg",o:[["thin","Thin"],["normal","Medium"],["thick","Thick"]]}
+  {g:"body",k:"height",l:"Height",t:"range",min:160,max:200,step:1,f:function(v){return v+" cm ("+Math.floor(v/30.48)+"ft "+Math.round((v/2.54)%12)+"in)";}},
+  {g:"body",k:"build",l:"Build",t:"seg",o:[["slim","Slim"],["regular","Regular"],["broad","Broad"]]},
+  {g:"body",k:"shoulders",l:"Shoulders",t:"seg",o:[["narrow","Narrow"],["average","Average"],["broad","Broad"]]},
+  {g:"body",k:"waist",l:"Middle",t:"seg",o:[["flat","Flat"],["average","Average"],["fuller","Fuller"]]},
+  {g:"body",k:"skin",l:"Skin",t:"sw",o:["#f6dccb","#eec3aa","#e2b08f","#c98f6b","#a8714f","#7a4e34","#55372a"]},
+  {g:"face",k:"face",l:"Face shape",t:"seg",o:[["narrow","Narrow"],["average","Average"],["wide","Wide"]]},
+  {g:"face",k:"nose",l:"Nose",t:"seg",o:[["small","Small"],["average","Average"],["large","Large"]]},
+  {g:"face",k:"eyes",l:"Eyes",t:"sw",o:["#7f99ae","#5d86b5","#6f8f6a","#8a7a4e","#6b4a33"]},
+  {g:"face",k:"brows",l:"Brows",t:"seg",o:[["thin","Thin"],["normal","Medium"],["thick","Thick"]]},
+  {g:"face",k:"glasses",l:"Glasses",t:"seg",o:[["none","None"],["round","Round"],["square","Square"]]},
+  {g:"face",k:"glassCol",l:"Frames",t:"sw",o:["#2b2622","#5a3a24","#8a6a3a","#9a9a96","#c9a35a"],when:function(){return CHAR.glasses!=="none";}},
+  {g:"face",k:"tache",l:"Moustache",t:"seg",o:[["none","None"],["chevron","Chevron"],["walrus","Walrus"],["handlebar","Handlebar"],["pencil","Pencil"]]},
+  {g:"face",k:"tacheCol",l:"Moustache colour",t:"sw",o:["#35251b","#5a3a24","#7a4a2c","#93582f","#a8683a","#c08850"],when:function(){return CHAR.tache!=="none";}},
+  {g:"face",k:"beard",l:"Beard",t:"seg",o:[["none","None"],["stubble","Stubble"],["full","Short beard"]]},
+  {g:"hair",k:"hair",l:"Hair colour",t:"sw",o:["#1f1712","#35251b","#5a3a24","#7a5233","#a0683c","#c69a5e","#8f8c86"]},
+  {g:"hair",k:"hairLen",l:"Length",t:"seg",o:[["short","Short"],["ear","To the ears"],["collar","To the collar"]]},
+  {g:"hair",k:"curl",l:"Curls",t:"seg",o:[["loose","Loose waves"],["curly","Curly"],["tight","Tight ringlets"]]},
+  {g:"hair",k:"hairVol",l:"Volume",t:"range",min:0.5,max:1.6,step:0.05,f:function(v){return Math.round(v*100)+"%";}}
 ];
-var ceSaved=null,cePrev=null,ceT=0,cePieces=null;
+var ceSaved=null,cePrev=null,ceT=0,cePieces=null,ceTab="body",ceHist=[],ceLastPush=0,ceFit=-1;
+var CE_ZOOM={body:0,face:1,hair:0.82};
 function ceForm(){
-  $("ce-form").innerHTML=CE.map(function(c){var v=CHAR[c.k],h='<div class="ce-row"><span class="label" id="ce-l-'+c.k+'">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-'+c.k+'">';
+  Array.prototype.forEach.call(document.querySelectorAll("#chared [data-cet]"),function(b){b.setAttribute("aria-selected",String(b.getAttribute("data-cet")===ceTab));});
+  $("ce-form").innerHTML=CE.filter(function(c){return c.g===ceTab&&(!c.when||c.when());}).map(function(c){var v=CHAR[c.k],h='<div class="ce-row"><span class="label" id="ce-l-'+c.k+'">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-'+c.k+'">';
     if(c.t==="seg"){h+=c.o.map(function(o){return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="'+o[0]+'" aria-pressed="'+(v===o[0])+'">'+esc(o[1])+'</button>';}).join("");}
     else if(c.t==="sw"){h+=c.o.map(function(o){return '<button type="button" class="ce-sw" style="background:'+o+'" data-ce="'+c.k+'" data-cv="'+o+'" aria-pressed="'+(String(v).toLowerCase()===o)+'" aria-label="'+esc(c.l+" "+o)+'"></button>';}).join("")+'<input type="color" id="ce-c-'+c.k+'" data-cec="'+c.k+'" value="'+esc(v)+'" aria-label="'+esc(c.l+", any colour")+'">';}
     else{h+='<input type="range" id="ce-r-'+c.k+'" data-cer="'+c.k+'" min="'+c.min+'" max="'+c.max+'" step="'+c.step+'" value="'+v+'"><span class="ce-val" id="ce-v-'+c.k+'">'+esc(c.f(v))+'</span>';}
     return h+'</div></div>';}).join("");
+  $("ce-undo").disabled=!ceHist.length;
 }
-function ceApply(){clearTimeout(ceT);ceT=setTimeout(function(){if(cePrev&&cePieces)cePrev.update(cePieces);},120);}
-function ceSet(k,v){CHAR[k]=v;var c=CE.filter(function(x){return x.k===k;})[0];
-  if(c&&c.t!=="range"){Array.prototype.forEach.call(document.querySelectorAll('[data-ce="'+k+'"]'),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-cv")===String(v).toLowerCase()));});var ci=$("ce-c-"+k);if(ci&&/^#/.test(v))ci.value=v;}
+function ceApply(){clearTimeout(ceT);ceT=setTimeout(function(){if(cePrev&&cePrev.on&&cePieces)cePrev.update(cePieces);},120);}
+function cePush(force){var now=Date.now();if(force||now-ceLastPush>700){ceHist.push(Object.assign({},CHAR));if(ceHist.length>40)ceHist.shift();}ceLastPush=now;$("ce-undo").disabled=false;}
+function ceSet(k,v,drag){if(CHAR[k]===v)return;cePush(!drag);CHAR[k]=v;var c=CE.filter(function(x){return x.k===k;})[0];
+  if(c&&c.t!=="range"){if(k==="glasses"||k==="tache"){ceForm();}else{Array.prototype.forEach.call(document.querySelectorAll('[data-ce="'+k+'"]'),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-cv")===String(v).toLowerCase()));});var ci=$("ce-c-"+k);if(ci&&/^#/.test(v))ci.value=v;}}
   else if(c){$("ce-v-"+k).textContent=c.f(v);}
   $("ce-msg").textContent="";ceApply();}
+function ceStart(){
+  var box=$("ce-3d"),ld=box.querySelector(".ce-load");
+  loadThree().then(function(){if(!$("chared").open)return;if(cePrev){cePrev.stop();cePrev=null;}
+    try{cePrev=Live3D(box,cePieces,{zoom:CE_ZOOM[ceTab]||0});if(ld)ld.hidden=true;cePrev.onLost=function(){if(cePrev){cePrev.stop();cePrev=null;}live3DFail(box,ld,ceStart);};}
+    catch(e){cePrev=null;live3DFail(box,ld,ceStart);}
+  },function(){if(ld){ld.hidden=false;ld.textContent="The 3D model could not load. Check the connection and try again.";}});
+}
 function openCE(fitId){
-  var dlg=$("chared");if(!dlg)return;ceSaved=Object.assign({},CHAR);
-  var f=fitId&&fitById[fitId];cePieces=f?effPieces(f):(fits[0]?fits[0].pieces:[]);
+  var dlg=$("chared");if(!dlg)return;ceSaved=Object.assign({},CHAR);ceHist=[];ceLastPush=0;
+  var f=fitId&&fitById[fitId];cePieces=f?effPieces(f):(fits[0]?effPieces(fits[0]):[]);ceFit=f?fits.indexOf(f):0;
   ceForm();$("ce-msg").textContent="";
   if(typeof dlg.showModal==="function"){if(!dlg.open)dlg.showModal();}else{dlg.setAttribute("open","");}
-  var box=$("ce-3d"),ld=box.querySelector(".ce-load");
-  loadThree().then(function(){if(!dlg.open)return;if(ld)ld.hidden=true;if(cePrev){cePrev.stop();}cePrev=Live3D(box,cePieces);},function(){if(ld)ld.textContent="The 3D model could not load. Check the connection and try again.";});
+  ceStart();
 }
 function closeCE(save){
   var dlg=$("chared");if(cePrev){cePrev.stop();cePrev=null;}
@@ -3715,19 +3882,25 @@ function saveChar(){
   if(db&&!staticMode){db.doc("meta/character").set(Object.assign({},CHAR)).then(function(){$("ce-msg").textContent="Saved for everyone who uses this page.";},function(){$("ce-msg").textContent="Saved on this device only: only the page owner can change Dave for everyone.";});}
   else{$("ce-msg").textContent="Saved on this device.";}
   ceSaved=Object.assign({},CHAR);
-  if(figMode()==="3d"){renderAll();}if(z3&&fitById[zoomId])z3.update(effPieces(fitById[zoomId]));if(zb)drawBuild();
+  if(figMode()==="3d"){renderAll();}if(z3&&z3.on&&fitById[zoomId])z3.update(effPieces(fitById[zoomId]));if(zb&&zb.on)drawBuild();
 }
 document.addEventListener("click",function(e){var b;
   if((b=e.target.closest("[data-chared]"))){e.preventDefault();openCE(b.getAttribute("data-chared-fit")||(zoomId&&$("zoom").open?zoomId:""));return;}
   if((b=e.target.closest("[data-cclose]"))){closeCE(false);return;}
+  if((b=e.target.closest("[data-cet]"))){ceTab=b.getAttribute("data-cet");ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);return;}
   if((b=e.target.closest("[data-ce]"))){ceSet(b.getAttribute("data-ce"),b.getAttribute("data-cv"));return;}
 });
+$("chared").addEventListener("keydown",function(e){var t=e.target;if(!t.hasAttribute||!t.hasAttribute("data-cet")||(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"))return;
+  var tabs=["body","face","hair"],i=(tabs.indexOf(ceTab)+(e.key==="ArrowRight"?1:2))%3;ceTab=tabs[i];ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);var nb=document.querySelector('#chared [data-cet="'+ceTab+'"]');if(nb)nb.focus();e.preventDefault();});
 $("chared").addEventListener("input",function(e){var t=e.target;
-  if(t.hasAttribute("data-cer")){ceSet(t.getAttribute("data-cer"),Number(t.value));}
-  else if(t.hasAttribute("data-cec")){ceSet(t.getAttribute("data-cec"),t.value.toLowerCase());}});
+  if(t.hasAttribute("data-cer")){ceSet(t.getAttribute("data-cer"),Number(t.value),true);}
+  else if(t.hasAttribute("data-cec")){ceSet(t.getAttribute("data-cec"),t.value.toLowerCase(),true);}});
 $("chared").addEventListener("cancel",function(e){e.preventDefault();closeCE(false);});
 $("ce-save").addEventListener("click",saveChar);
-$("ce-reset").addEventListener("click",function(){Object.keys(CHAR_DEF).forEach(function(k){CHAR[k]=CHAR_DEF[k];});ceForm();ceApply();$("ce-msg").textContent="Back to his defaults. Save to keep them.";});
+$("ce-undo").addEventListener("click",function(){var last=ceHist.pop();if(!last)return;Object.keys(CHAR_DEF).forEach(function(k){CHAR[k]=last[k];});ceLastPush=0;ceForm();ceApply();$("ce-msg").textContent="Undone.";});
+$("ce-reset").addEventListener("click",function(){cePush();ceLastPush=0;Object.keys(CHAR_DEF).forEach(function(k){CHAR[k]=CHAR_DEF[k];});ceForm();ceApply();$("ce-msg").textContent="Back to his defaults. Save to keep them.";});
+/* see the changes on other kinds of clothes: tailoring, knits, coats, shorts */
+$("ce-next").addEventListener("click",function(){if(!fits.length)return;ceFit=(ceFit+1+Math.floor(Math.random()*7))%fits.length;cePieces=effPieces(fits[ceFit]);if(cePrev&&cePrev.on)cePrev.update(cePieces);$("ce-msg").textContent="Showing him in “"+fits[ceFit].name+"”.";});
 syncChips();paintStyle();
 (function(){var v="";try{v=(location.hash||"").slice(1)||localStorage.getItem("dw-view")||"";}catch(e){}setView(v||"shop",true);})();
 renderAll();

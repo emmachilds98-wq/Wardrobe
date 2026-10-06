@@ -789,6 +789,40 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   - The hair stays inside the jawline, so nothing reads as a beard.
   - The lighter curls are a warm chestnut, not grey.
 
+## 2zc. 3D views that keep working, a fuller Edit Dave, and clothes that sit better (6 Oct 2026)
+
+- **Fix: the outfit view's 3D model stopped loading after editing Dave.**
+  - Each turnable view (outfit view, builder, Edit Dave) made its own WebGL context and never freed it.
+  - Phones allow only a few per page, so after some views (or Edit Dave opened over an outfit) the next
+    one failed and stayed on "Loading the 3D model…".
+  - Now all of them share one renderer. Edit Dave borrows it from the outfit view and hands it back
+    when it closes, and a hidden view does not draw.
+  - If the browser drops the 3D context anyway, the view says so and offers "Try again". The card
+    renderer recovers on its own.
+- **3D views:**
+  - Front, Side, Back and Turn buttons, and Full, Top and Face framing.
+  - Scroll or pinch to zoom, and arrow keys to turn.
+  - Tap a garment to see what it is and its price. In the outfit view, the matching photo card is
+    picked out too.
+- **Edit Dave:**
+  - Body, Face and Hair tabs. The preview frames the part being changed (whole figure, face, hair).
+  - New options:
+    - shoulders (narrow, average, broad) and middle (flat, average, fuller), which the clothes follow
+    - face shape and nose size
+    - glasses (none, round, square) with frame colours
+  - Undo, one step per change, and "Try another outfit" to check the look on other clothes.
+- **Clothes on the model:**
+  - Trousers fold in soft rings above the shoe and crease behind the knee. Long sleeves bunch at the
+    wrist and crease at the elbow.
+  - Untucked shirts have a curved hem, and polos have short side vents.
+  - Shirts worn with a blazer, waistcoat, tie or suit trousers are tucked in, with the belt showing.
+  - Shirt cuffs with a button, and a cuff edge on blazers and coats.
+  - Belt loops on trousers, back pockets, a coin pocket on jeans, and a drawcord, ribbed waist and
+    cuffed ankles on joggers.
+  - Sleeves under a long-sleeved layer are left out, so they never poke through.
+  - Shoulders slope naturally under clothes instead of puffing.
+  - Leg shading blends into the hips, so no light patch shows at the crotch.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
