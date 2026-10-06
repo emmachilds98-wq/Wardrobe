@@ -1831,6 +1831,8 @@ var styleTags={};
 var state={view:"shop",dept:"all",shop:"all",col:"all",tfit:"all",compact:false,style:"quiet",styles:[],multi:false,sub:"all",set:"all",jx:[],gift:"all",mix:"",fit:"all",ev:"all",fitmax:0,fitsort:"rec",occ:"all",wx:"all",cats:[],src:"all",sale:false,size:false,fresh:false,max:0,sort:"rec",q:"",showNo:false,
   tocc:"everyday",twx:(function(){var m=new Date().getMonth();return m>=10||m<=1?"cold":(m>=4&&m<=7?"warm":"mild");})(),mocc:"everyday",mwx:"all"};
 var lim={picks:PAGE,fits:FITPAGE};
+/* the automatic 3D checks (tools/check_3d.js) open the page with ?qa=1 and drive it through this */
+if(/[?&]qa=1\b/.test(location.search))window.__qa=function(){return {make3D:make3D,fitById:fitById,effPieces:effPieces,trueFor:trueFor,LOOK:LOOK,TRUE:TRUE,byId:byId,dressed:dressed,loadThree:loadThree,body:function(){return BODY;},cc:cc,descOf:descOf,getPh:getPh,sampleLook:sampleLook};};
 var items=[],fits=[],byId={},fitById={},meta={},profile={},phase="loading",fitsSeen=false;
 var db=null,canShare=true,saved={},votes={},myfits=[],local={saved:{},votes:{},myfits:{},owned:{}};
 var owned={},shopInfo={},staticMode=false,catFiles=false,swaps={},locked={},colCache={};
@@ -3003,6 +3005,85 @@ function legFolds(amp){return function(y,t){var a=0;if(y<0.26){var w=(0.26-y)/0.
   if(y>0.78){a+=0.012*Math.sin(t*3+y*40)*Math.min(1,(y-0.78)/0.08);}return a*amp;};}
 function sleeveFolds(amp){return function(y,t){var a=0;if(y<1.0){var w=Math.max(0,(1.0-y)/0.09);a+=0.06*w*Math.sin(y*170+Math.sin(t*2)*2);}
   if(y>1.08&&y<1.2){a+=0.05*Math.max(0,Math.cos(t))*Math.sin((y-1.08)*95)*Math.sin((y-1.08)/0.12*Math.PI);}return a*amp;};}
+/* ---- Fitted clothes: radial maps of what he is wearing ----
+   A map holds, on a grid of heights (or angles of elevation) and directions round an axis, how far out from that axis
+   his body, or the clothes put on him so far, reaches. There are five: the torso round a line through his chest (T),
+   the shoulders seen from a point inside his chest (Y), the neck round its own centre line (N), and each arm round
+   its own (A). Tops are built from the maps of his body, and every piece is kept outside the maps of the layers
+   under it, so nothing underneath can come through. */
+var FX={zc:0.03,cy:1.3};   /* the torso's centre line (z) and the height of the point the shoulders are seen from */
+function fmNew(kind,l0,l1,dl,n,s){var nl=Math.round((l1-l0)/dl)+1;return {kind:kind,l0:l0,dl:dl,nl:nl,n:n,s:s||0,r:new Float32Array(nl*n)};}
+function fmCopy(M){var o={};for(var k in M)o[k]=M[k];o.r=new Float32Array(M.r);return o;}
+/* a point in a map's own terms: [level, across, out] (level: height, or elevation for the shoulders; across and out:
+   the point in the plane of that level, measured from the axis) */
+var FQ=[0,0,0,0,0];
+function fmCoord(M,x,y,z,o){
+  if(M.kind==="T"){o[0]=y;o[1]=x;o[2]=z-FX.zc;}
+  else if(M.kind==="Y"){var dz=z-FX.zc,h=Math.sqrt(x*x+dz*dz),dy=y-FX.cy,rho=Math.sqrt(h*h+dy*dy);o[0]=Math.atan2(dy,h);if(h>1e-9){o[1]=x/h*rho;o[2]=dz/h*rho;}else{o[1]=0;o[2]=rho;}}
+  else if(M.kind==="N"){var q=secAtF(B3.neck,y,FQ);o[0]=y;o[1]=x;o[2]=z-q[4];}
+  else{var a=secAtF(B3.arm,Math.min(1.445,y),FQ);o[0]=y;o[1]=x-M.s*a[3];o[2]=z-a[4];}
+  return o;}
+/* where a map's level and direction put a point at radius r */
+function fmPoint(M,lev,ang,r){var s=Math.sin(ang),c=Math.cos(ang);
+  if(M.kind==="T")return [s*r,lev,FX.zc+c*r];
+  if(M.kind==="Y"){var cg=Math.cos(lev);return [s*cg*r,FX.cy+Math.sin(lev)*r,FX.zc+c*cg*r];}
+  if(M.kind==="N"){var q=secAt(B3.neck,lev);return [s*r,lev,q[4]+c*r];}
+  var a=secAt(B3.arm,Math.min(1.445,lev));return [M.s*a[3]+s*r,lev,a[4]+c*r];}
+/* a stretch of a cut through the map's level i: for each direction it crosses, the furthest it reaches */
+function fmSeg(M,i,u1,w1,u2,w2){var n=M.n,TW=2*Math.PI,dt=TW/n,r=M.r,o=i*n;
+  var t1=Math.atan2(u1,w1),t2=Math.atan2(u2,w2);if(t1<0)t1+=TW;if(t2<0)t2+=TW;var d=t2-t1;if(d>Math.PI)d-=TW;else if(d<-Math.PI)d+=TW;
+  var ta=d>=0?t1:t2,tb=ta+Math.abs(d),ja=Math.ceil(ta/dt),jb=Math.floor(tb/dt),ex=u2-u1,ez=w2-w1;
+  for(var j=ja;j<=jb;j++){var ph=j*dt,sx=Math.sin(ph),sz=Math.cos(ph),den=ex*sz-sx*ez;if(Math.abs(den)<1e-12)continue;
+    var s=(ex*w1-u1*ez)/den;if(s>0){var jj=((j%n)+n)%n;if(s>r[o+jj])r[o+jj]=s;}}
+  var j1=Math.round(t1/dt)%n,j2=Math.round(t2/dt)%n,r1=Math.sqrt(u1*u1+w1*w1),r2=Math.sqrt(u2*u2+w2*w2);if(r1>r[o+j1])r[o+j1]=r1;if(r2>r[o+j2])r[o+j2]=r2;}
+/* a triangle (each corner in the map's own terms) cut by every level it spans */
+function fmTri(M,A,B,C){var lo=Math.min(A[0],B[0],C[0]),hi=Math.max(A[0],B[0],C[0]),i0=Math.max(0,Math.ceil((lo-M.l0)/M.dl)),i1=Math.min(M.nl-1,Math.floor((hi-M.l0)/M.dl));
+  for(var i=i0;i<=i1;i++){var L=M.l0+i*M.dl,n=0,p=[0,0,0,0];
+    if((A[0]<L)!==(B[0]<L)){var f=(L-A[0])/(B[0]-A[0]);p[n++]=A[1]+(B[1]-A[1])*f;p[n++]=A[2]+(B[2]-A[2])*f;}
+    if((B[0]<L)!==(C[0]<L)){f=(L-B[0])/(C[0]-B[0]);p[n++]=B[1]+(C[1]-B[1])*f;p[n++]=B[2]+(C[2]-B[2])*f;}
+    if(n<4&&(C[0]<L)!==(A[0]<L)){f=(L-C[0])/(A[0]-C[0]);p[n++]=C[1]+(A[1]-C[1])*f;p[n++]=C[2]+(A[2]-C[2])*f;}
+    if(n===4)fmSeg(M,i,p[0],p[1],p[2],p[3]);}}
+/* the reach at a level and direction, read between the grid points (directions nothing reaches are left out) */
+function fmGet(M,lev,ang){var fi=(lev-M.l0)/M.dl;if(fi<0||fi>M.nl-1)return 0;var i=Math.min(M.nl-2,Math.floor(fi)),fl=fi-i,n=M.n,a=ang/(2*Math.PI)*n;a=((a%n)+n)%n;
+  var j=Math.floor(a),fa=a-j,j2=(j+1)%n,r=M.r,s=0,w=0,v;
+  v=r[i*n+j];if(v>0){s+=v*(1-fl)*(1-fa);w+=(1-fl)*(1-fa);}v=r[i*n+j2];if(v>0){s+=v*(1-fl)*fa;w+=(1-fl)*fa;}
+  v=r[(i+1)*n+j];if(v>0){s+=v*fl*(1-fa);w+=fl*(1-fa);}v=r[(i+1)*n+j2];if(v>0){s+=v*fl*fa;w+=fl*fa;}
+  return w>1e-6?s/w:0;}
+/* cloth bridges hollows: each level replaced by its convex hull (between the pecs, the spine's groove, under the arms) */
+function fmHull(M){var n=M.n,dt=2*Math.PI/n,out=fmCopy(M),row=fmNew(M.kind,0,0,1,n),cr=function(o,a,b){return (a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);};
+  for(var i=0;i<M.nl;i++){var pts=[];for(var j=0;j<n;j++){var r=M.r[i*n+j];if(r>0)pts.push([Math.sin(j*dt)*r,Math.cos(j*dt)*r]);}if(pts.length<3)continue;
+    pts.sort(function(a,b){return a[0]-b[0]||a[1]-b[1];});var lw=[],up=[];
+    pts.forEach(function(p){while(lw.length>=2&&cr(lw[lw.length-2],lw[lw.length-1],p)<=0)lw.pop();lw.push(p);});
+    for(var k=pts.length-1;k>=0;k--){var p=pts[k];while(up.length>=2&&cr(up[up.length-2],up[up.length-1],p)<=0)up.pop();up.push(p);}
+    var H=lw.slice(0,-1).concat(up.slice(0,-1));if(H.length<3)continue;row.r.fill(0);
+    for(var h=0;h<H.length;h++){var P=H[h],Q=H[(h+1)%H.length];fmSeg(row,0,P[0],P[1],Q[0],Q[1]);}
+    for(j=0;j<n;j++){var v=row.r[j];if(v>out.r[i*n+j])out.r[i*n+j]=v;}}
+  return out;}
+/* a section list read at a height, without making a new array (as secAt, for the busy loops) */
+function secAtF(list,y,o){var L=list.length;if(y<=list[0][0]){o[1]=list[0][1];o[2]=list[0][2];o[3]=list[0][3];o[4]=list[0][4];return o;}
+  for(var i=0;i<L-1;i++){if(y<=list[i+1][0]){var a=list[i],b=list[i+1],f=(y-a[0])/(b[0]-a[0]);o[1]=a[1]+(b[1]-a[1])*f;o[2]=a[2]+(b[2]-a[2])*f;o[3]=a[3]+(b[3]-a[3])*f;o[4]=a[4]+(b[4]-a[4])*f;return o;}}
+  var z=list[L-1];o[1]=z[1];o[2]=z[2];o[3]=z[3];o[4]=z[4];return o;}
+/* the surface a thickness e out from what a map holds, rounded as cloth lies over a corner (the shoulder's edge): the
+   furthest reach of a ball of radius e rolled over it, level by level */
+function fmDilate(M,e){var out=fmCopy(M),n=M.n,K=Math.ceil(e/M.dl*(M.kind==="Y"?1/0.12:1));
+  for(var i=0;i<M.nl;i++)for(var j=0;j<n;j++){var best=0;for(var k=-K;k<=K;k++){var ii=i+k;if(ii<0||ii>=M.nl)continue;var r=M.r[ii*n+j];if(!(r>0))continue;
+      var d=M.kind==="Y"?r*Math.abs(k*M.dl):Math.abs(k*M.dl);if(d>e)continue;var v=r+Math.sqrt(e*e-d*d);if(v>best)best=v;}out.r[i*n+j]=best;}
+  return out;}
+/* the maps of his body (with the Edit Dave shape), kept until the shape changes */
+function fitMaps(){var c=bodyPos();if(c.fm&&c.fmK===c.posK)return c.fm;
+  var P=c.pos,I=BODY.idx,R=BODY.regions,rg=function(k){return R.indexOf(k);},trunk={},arm={},neck={};
+  ["neck","chest","belly","hips","thigh"].forEach(function(k){trunk[rg(k)]=1;});["uarm","farm"].forEach(function(k){arm[rg(k)]=1;});neck[rg("neck")]=1;neck[rg("chest")]=1;
+  var uA=rg("uarm"),T0=fmNew("T",0.3,1.48,0.01,128),TU=fmNew("T",1.3,1.48,0.01,128),Y=fmNew("Y",0.15,1.45,0.02,128),N=fmNew("N",1.44,1.66,0.005,96),A={"-1":fmNew("A",0.76,1.46,0.01,64,-1),"1":fmNew("A",0.76,1.46,0.01,64,1)};
+  var a=[0,0,0],b=[0,0,0],d=[0,0,0];
+  function tri(M,t){var ia=I[t*3]*3,ib=I[t*3+1]*3,ic=I[t*3+2]*3;fmCoord(M,P[ia],P[ia+1],P[ia+2],a);fmCoord(M,P[ib],P[ib+1],P[ib+2],b);fmCoord(M,P[ic],P[ic+1],P[ic+2],d);fmTri(M,a,b,d);}
+  for(var t=0;t<I.length/3;t++){var r=BODY.treg[t],y=P[I[t*3]*3+1];
+    if(trunk[r]){if(y<1.5)tri(T0,t);if(y>1.28&&y<1.5)tri(TU,t);if(y>1.2)tri(Y,t);}
+    if(r===uA){if(y>1.28)tri(TU,t);if(y>1.36)tri(Y,t);}
+    if(neck[r]&&y>1.42)tri(N,t);
+    if(arm[r]&&y<1.47){var xs=P[I[t*3]*3]<0?"-1":"1";tri(A[xs],t);}}
+  c.fm={T:fmHull(T0),TU:fmHull(TU),Y:fmHull(Y),N:N,A:A,Traw:T0};c.fmK=c.posK;return c.fm;}
+/* a blank set of maps for the clothes put on so far (tops; legwear separately, which a tucked-in shirt goes under) */
+function fmBlank(){return {T:fmNew("T",0.3,1.48,0.01,128),L:fmNew("T",0.3,1.48,0.01,128),Y:fmNew("Y",0.15,1.45,0.02,128),N:fmNew("N",1.44,1.66,0.005,96),A:{"-1":fmNew("A",0.76,1.46,0.01,64,-1),"1":fmNew("A",0.76,1.46,0.01,64,1)}};}
 function make3Dcore(pieces){
   var T=window.THREE,scene=new T.Scene();
   scene.add(new T.HemisphereLight(0xffffff,0xb8a88a,bodyOn?0.52:0.6));
@@ -3014,9 +3095,9 @@ function make3Dcore(pieces){
   function C(col){return new T.Color(col).convertSRGBToLinear();}
   function mat(col,rough,opt){var o={color:C(col),roughness:rough==null?0.86:rough,metalness:0};if(opt)Object.keys(opt).forEach(function(k){o[k]=opt[k];});return new T.MeshStandardMaterial(o);}
   function cloth(col,kind,c2,rough){return new T.MeshStandardMaterial({map:tex3D(kind||"plain",col,c2),color:0xffffff,roughness:rough==null?0.9:rough,metalness:0,bumpMap:clothBump(),bumpScale:0.0012,side:T.DoubleSide});}
-  var headG=new T.Group();headG.position.y=-0.034;man.add(headG);var tgt=man,curIt=null,curWhat="",armG={};
+  var headG=new T.Group();headG.position.y=-0.034;man.add(headG);var tgt=man,curIt=null,curWhat="",curKind="body",curOpen=false,armG={};
   [-1,1].forEach(function(s){var g=new T.Group();g.position.x=s*(bodyOn?0:shxOf());g.userData.arm=true;man.add(g);armG[s]=g;});
-  function put(me){me.castShadow=true;me.receiveShadow=true;if(curIt){me.userData.item=curIt;me.userData.what=curWhat;}tgt.add(me);return me;}
+  function put(me){me.castShadow=true;me.receiveShadow=true;if(curIt){me.userData.item=curIt;me.userData.what=curWhat;}me.userData.kind=curKind;me.userData.open=curOpen;if(NOOCC)me.userData.noOcc=true;if(PIECE)PIECE.push(me);tgt.add(me);return me;}   /* (kind: which piece a mesh belongs to, for the automatic checks) */
   function add(geo,m,x,y,z,sx,sy,sz,rx,ry,rz){var me=new T.Mesh(geo,m);me.position.set(x||0,y||0,z||0);me.scale.set(sx||1,sy||1,sz||1);me.rotation.set(rx||0,ry||0,rz||0);return put(me);}
   function aoM(m){if(!m.userData.ao){var c=m.clone();c.vertexColors=true;m.userData.ao=c;}return m.userData.ao;}
   function sec(secs,m,o){return put(new T.Mesh(secGeo(secs,o),o&&o.ao?aoM(m):m));}
@@ -3025,6 +3106,7 @@ function make3Dcore(pieces){
   var skinC=CHAR.skin,skin=mat(skinC,0.62),white=mat("#f6f2ea",0.35),lipM=mat("#c4887c",0.55);
   var sleevedTop=pieces.some(function(p){return UPPER[p.shape]&&!slvless(p);});
   var BL=bodyOn?(bodyPos(),bodyLM()):null,SLV=bodyOn?BL.wrist[1]-0.004:0.905;
+  if(bodyOn){FX.zc=secAt(B3.torso,1.3)[4];FX.cy=1.3;}var FIT3D=bodyOn&&!window.__oldfit;
   /* the measured body at a height: arm (left side), torso and neck sections [y, half-width, half-depth, x, z] */
   function AT(y){return secAt(B3.arm,y);}function TO(y){return secAt(B3.torso,y);}function NK(y){return secAt(B3.neck,y);}
   /* cut (from the listing): fall, how much of the thigh's width reaches the ankle (slim and tapered less, straight and
@@ -3188,12 +3270,275 @@ function make3Dcore(pieces){
      scarves and straps sit on the real surface rather than on a sliced approximation of it */
   var wraps=[],rc=null,rO=null,rD=null,WRAPE=0;
   /* the same from behind: the back of the clothes built so far */
-  function backZ(y,x){if(!wraps.length)return 9;if(!rc){rc=new T.Raycaster();rO=new T.Vector3();rD=new T.Vector3(0,0,-1);}rO.set(x,y,-1);var bd=new T.Vector3(0,0,1);rc.set(rO,bd);var h=rc.intersectObjects(wraps,false);return h.length?h[0].point.z:9;}
-  function rayZ(x,y){if(!wraps.length)return -9;if(!rc){rc=new T.Raycaster();rO=new T.Vector3();rD=new T.Vector3(0,0,-1);}rO.set(x,y,1);rc.set(rO,rD);var h=rc.intersectObjects(wraps,false);return h.length?h[0].point.z:-9;}
+  /* (both read from a depth map of those clothes seen from the front and from behind, filled in as each is added:
+     much quicker than casting a ray at the cloth for every point of a pocket, placket or photo) */
+  var ZX0=-0.36,ZY0=0.3,ZS=0.0025,ZW=Math.round(0.72/ZS)+1,ZH=Math.round(1.45/ZS)+1,ZF=null,ZK=null,ZN=0,ZV=0,ZV0=0;
+  function zbAdd(me){me.updateMatrixWorld(true);var g=me.geometry,pa=g.attributes.position,ix=g.index?g.index.array:null,n=ix?ix.length:pa.count,Mw=me.matrixWorld,v=new T.Vector3(),W=new Float32Array(pa.count*3);
+    for(var i=0;i<pa.count;i++){v.fromBufferAttribute(pa,i).applyMatrix4(Mw);W[i*3]=(v.x-ZX0)/ZS;W[i*3+1]=(v.y-ZY0)/ZS;W[i*3+2]=v.z;}
+    for(var t=0;t+2<n;t+=3){var a=(ix?ix[t]:t)*3,b=(ix?ix[t+1]:t+1)*3,c=(ix?ix[t+2]:t+2)*3,ax=W[a],ay=W[a+1],bx=W[b],by=W[b+1],cx=W[c],cy=W[c+1],det=(by-cy)*(ax-cx)+(cx-bx)*(ay-cy);if(Math.abs(det)<1e-9)continue;
+      var x0=Math.max(0,Math.ceil(Math.min(ax,bx,cx))),x1=Math.min(ZW-1,Math.floor(Math.max(ax,bx,cx))),y0=Math.max(0,Math.ceil(Math.min(ay,by,cy))),y1=Math.min(ZH-1,Math.floor(Math.max(ay,by,cy)));
+      for(var yy=y0;yy<=y1;yy++)for(var xx=x0;xx<=x1;xx++){var l1=((by-cy)*(xx-cx)+(cx-bx)*(yy-cy))/det,l2=((cy-ay)*(xx-cx)+(ax-cx)*(yy-cy))/det,l3=1-l1-l2;if(l1<-1e-6||l2<-1e-6||l3<-1e-6)continue;
+        var z=l1*W[a+2]+l2*W[b+2]+l3*W[c+2],q=yy*ZW+xx;if(z>ZF[q])ZF[q]=z;if(z<ZK[q])ZK[q]=z;}}}
+  function zbGet(back,x,y,none){if(ZV!==ZV0||!ZF){ZF=new Float32Array(ZW*ZH).fill(-9);ZK=new Float32Array(ZW*ZH).fill(9);ZN=0;ZV0=ZV;}for(;ZN<wraps.length;ZN++)zbAdd(wraps[ZN]);var Z=back?ZK:ZF;
+    var fx=(x-ZX0)/ZS,fy=(y-ZY0)/ZS,i=Math.floor(fx),j=Math.floor(fy);if(i<0||j<0||i>=ZW-1||j>=ZH-1)return none;var u=fx-i,w=fy-j,s=0,ws=0;
+    [[0,0,(1-u)*(1-w)],[1,0,u*(1-w)],[0,1,(1-u)*w],[1,1,u*w]].forEach(function(k){var zv=Z[(j+k[1])*ZW+i+k[0]];if(zv!==none&&k[2]>0){s+=zv*k[2];ws+=k[2];}});
+    if(ws>1e-6)return s/ws;var best=none,bd=9;for(var dj=-1;dj<=2;dj++)for(var di=-1;di<=2;di++){var ii=i+di,jj=j+dj;if(ii<0||jj<0||ii>=ZW||jj>=ZH)continue;var zv2=Z[jj*ZW+ii];if(zv2===none)continue;var d=Math.abs(ii-fx)+Math.abs(jj-fy);if(d<bd&&d<1.6){bd=d;best=zv2;}}return best;}
+  function backZ(y,x){if(!wraps.length)return 9;return zbGet(true,x,y,9);}
+  function rayZ(x,y){if(!wraps.length)return -9;return zbGet(false,x,y,-9);}
   function frontZ(y,e){return Math.max(frontZ0(y,e),rayZ(0,y));}
   function surfZ(y,x,e){return Math.max(surfZ0(y,x,e),rayZ(x,y));}
   function wrap(e,yLo,dip,gap,withArm,dr,m,armX,slv,vc){var m2=m.clone();m2.side=T.DoubleSide;m2.shadowSide=T.BackSide;   /* (the inside shows at an open neckline) */
     var me=put(new T.Mesh(wrapGeo(e,yLo,dip,gap,withArm,dr,1,Math.min(e,0.011+0.009*wraps.length),armX,slv,vc),m2));WRAPE=Math.max(WRAPE,me.geometry.userData.evMax||0);me.userData.armMask=me.geometry.userData.armMask;me.updateMatrixWorld(true);wraps.push(me);return me;}
+  /* ---- A top as one piece of cloth: its body and both sleeves, joined round real armholes ----
+     The body is a grid round him, in rows up from the hem and columns round from the front. Below his armpits it
+     follows his torso's map (bridging the hollows, and hanging straight down from his chest); from the armpit to the top
+     of the shoulder each side has an armhole; above that the shoulders and yoke lie over his shoulders, up to the
+     neckline. Each sleeve starts as its armhole's own edge (the same points, so there is no seam to open or poke
+     through), rounds over the top of his arm and narrows into a tube down it. All of it stays outside his body and
+     outside the clothes already on him (OCC). */
+  var OCC=bodyOn?fmBlank():null,FQ2=[0,0,0,0,0];
+  function fitTop(F){
+    var FM=fitMaps(),OM=OCC,TW=2*Math.PI,CF=Number(CHAR.clothFit)||0,eT=F.e*(1+0.55*CF),eY=eT*0.95+0.001,gp=0.0035,eN=Math.min(eT,0.009);
+    /* his body a cloth's thickness out, rounded over the edges (as the cloth itself lies) */
+    eY=Math.min(eT,0.006+0.3*eT+(F.puff||0));   /* (on the shoulders the cloth rests on what is under it: its thickness, not its looseness) */
+    var PF=window.__prof,tA=performance.now();var DT=fmDilate(FM.T,eT),DTU=fmDilate(FM.TU,eY),DY=fmDilate(FM.Y,eY);if(PF)PF.dil=(PF.dil||0)+performance.now()-tA;tA=performance.now();
+    var al=1.13,be=2.0,yA=1.3,yS=1.435,nS=12,nZ=9,nY=9,dT=TW/112,gap=F.gap||0,a0=gap>0?gap/2:Math.PI,span=gap>0?TW-gap:TW,aq=FQ2;
+    /* (what is under a row of cloth reaches as far as its furthest point over the row's own height: so the edge of a
+       ribbed hem or a waistband under it cannot come through between two rows) */
+    function occT(y,t){var a=0;for(var dy=-0.012;dy<=0.0121;dy+=0.008){var v=fmGet(OM.T,y+dy,t);if(v>a)a=v;if(!F.tucked){v=fmGet(OM.L,y+dy,t);if(v>a)a=v;}}return a;}
+    /* columns: round from the back (or from the left edge of an open front), with the two armholes' sides on columns */
+    var cuts=[a0];[al,be,TW-be,TW-al].forEach(function(b){for(var k=-1;k<=2;k++){var v=b+k*TW;if(v>a0+1e-6&&v<a0+span-1e-6)cuts.push(v);}});cuts.sort(function(a,b){return a-b;});cuts.push(a0+span);
+    function side(tm){var u=((tm%TW)+TW)%TW;return u>al&&u<be?1:(u>TW-be&&u<TW-al?-1:0);}
+    var cols=[],cs=[];for(var q=0;q<cuts.length-1;q++){var ta=cuts[q],tb=cuts[q+1],sd=side((ta+tb)/2),nn=sd?nS:Math.max(1,Math.round((tb-ta)/dT));for(var k=0;k<nn;k++){cols.push(ta+(tb-ta)*k/nn);cs.push(sd);}}
+    cols.push(a0+span);cs.push(0);var NC=cols.length,SC={},j,i;
+    for(j=0;j<NC-1;j++){if(cs[j]){if(!SC[cs[j]])SC[cs[j]]=[j,j+1];else SC[cs[j]][1]=j+1;}}
+    /* rows: up from the hem to the armpit, through the armholes to the top of the shoulder; then the yoke */
+    var hem=F.hem,rows=[],nB=Math.max(3,Math.ceil((yA-hem)/0.016));for(i=0;i<nB;i++)rows.push(hem+(yA-hem)*i/nB);
+    var iA=rows.length;for(i=0;i<nZ;i++)rows.push(yA+(yS-yA)*i/nZ);var iS=rows.length;rows.push(yS);var NR=iS+1+nY;
+    var inSc=new Uint8Array(NC),pnl=new Uint8Array(NC).fill(1);for(var s0 in SC){for(j=SC[s0][0];j<=SC[s0][1];j++){if(j>SC[s0][0]&&j<SC[s0][1]){inSc[j]=1;pnl[j]=0;}}}
+    function hole(i,j){return i>iA&&i<iS&&inSc[j]===1;}
+    function panel(j){return pnl[j]===1;}
+    /* below the chest the cloth hangs straight down from its widest part (taken in at the waist as Edit Dave's fit says) */
+    var tw=Math.max(0,0.08-0.085*CF),L0=Math.floor((hem-0.04)*100)/100,NL=Math.round((1.4-L0)/0.01)+1,HM=new Float32Array(NC*NL);
+    for(j=0;j<NC;j++){var mx=0;for(var l=NL-1;l>=0;l--){var yy=L0+l*0.01,v=fmGet(DT,yy,cols[j]);if(yy>1.215&&v>mx)mx=v;HM[j*NL+l]=mx;}}
+    function rCyl(y,t,j,pn,o){var r=fmGet(DT,y,t);
+      if(y>1.36&&(pn||y>=yS-1e-6)){var u=fmGet(DTU,y,t);if(u>r)r=r+(u-r)*sstep(1.36,1.43,y);}   /* (by the top of the armhole his shoulder's own roundness) */
+      if(y<1.4){var l=Math.max(0,Math.min(NL-1,Math.round((y-L0)/0.01))),h=HM[j*NL+l]*(1-tw*sstep(1.3,1.04,y));if(h>r)r=h;}
+      if(o>0&&o+gp>r)r=o+gp;return r;}
+    function yRow(i,t){var y=rows[i];if(F.hemC)y+=F.hemC*Math.pow(Math.sin(t),2)*Math.max(0,1-(rows[i]-hem)/0.06);return Math.min(y,F.ytop(t));}
+    /* the body's radius, smoothed as cloth would lie, but never inside him or the layer under it */
+    var RR=[],RM=[];for(i=0;i<=iS;i++){var rr=new Float32Array(NC),rm=new Float32Array(NC);for(j=0;j<NC;j++){var t=cols[j],y2=yRow(i,t),o2=occT(y2,t);rr[j]=rCyl(y2,t,j,panel(j),o2);
+        var b0=fmGet(DT,y2,t)-eT*0.2;rm[j]=Math.max(b0,o2>0?o2+gp:0);}RR.push(rr);RM.push(rm);}
+    for(var it=0;it<3;it++){var R2=RR.map(function(r){return r.slice();});
+      for(i=1;i<iS;i++)for(j=0;j<NC;j++){if(hole(i,j))continue;var up=hole(i+1,j)?R2[i][j]:R2[i+1][j],dn=hole(i-1,j)?R2[i][j]:R2[i-1][j];RR[i][j]=0.25*dn+0.5*R2[i][j]+0.25*up;}
+      for(i=0;i<=iS;i++){var R3=RR[i].slice();for(j=0;j<NC;j++){if(hole(i,j))continue;var jl=j-1,jr=j+1;if(gap>0){if(jl<0||jr>NC-1)continue;}else{if(jl<0)jl=NC-2;if(jr>NC-1)jr=1;}
+          if(hole(i,jl)||hole(i,jr))continue;RR[i][j]=0.25*R3[jl]+0.5*R3[j]+0.25*R3[jr];}}
+      for(i=0;i<=iS;i++)for(j=0;j<NC;j++)if(RR[i][j]<RM[i][j])RR[i][j]=RM[i][j];}
+    if(PF){PF.rr=(PF.rr||0)+performance.now()-tA;}tA=performance.now();var pos=[],uv=[],am=[],V=[],part=[];
+    function addV(x,y,z,u,w,a,pt){pos.push(x,y,z);uv.push(u,w);am.push(a);part.push(pt);return pos.length/3-1;}
+    for(i=0;i<=iS;i++){var vr=[];for(j=0;j<NC;j++){if(hole(i,j)){vr.push(-1);continue;}var t3=cols[j],y3=yRow(i,t3),r3=RR[i][j];
+        vr.push(addV(Math.sin(t3)*r3,y3,FX.zc+Math.cos(t3)*r3,(t3-a0)/span*(F.uvU||1),(y3-hem)/0.3,0,0));}V.push(vr);}
+    /* the yoke: from the top of the armholes over his shoulders to the neckline, laid out by the angle up from a point
+       inside his chest (so the tops of the shoulders, which are nearly flat, come out even) */
+    function oYm(g,t){return Math.max(fmGet(OM.Y,g-0.03,t),fmGet(OM.Y,g,t),fmGet(OM.Y,g+0.03,t));}
+    function rhoY(g,t){var r=fmGet(DY,g,t),o=oYm(g,t);if(o>0&&o+gp>r)r=o+gp;return r;}
+    var YV=[],FQ3=[0,0,0,0,0];for(var k2=0;k2<nY;k2++)YV.push(new Array(NC));
+    for(j=0;j<NC;j++){var t4=cols[j],vs=V[iS][j],xs=pos[vs*3],ys=pos[vs*3+1],zs=pos[vs*3+2],rs=Math.sqrt(xs*xs+(zs-FX.zc)*(zs-FX.zc)),gs=Math.atan2(ys-FX.cy,rs),rhoS=Math.sqrt(rs*rs+(ys-FX.cy)*(ys-FX.cy)),yt=F.ytop(t4);
+      /* the neckline: on his neck at its height, a little out from it (and outside any neckline under it) */
+      var nk=secAtF(B3.neck,yt,FQ3),sn=Math.sin(t4),cn=Math.cos(t4),Rn=1/Math.sqrt(sn*sn/(nk[1]*nk[1])+cn*cn/(nk[2]*nk[2]))+eN,on=fmGet(OM.N,yt,t4);if(on>0&&on+gp>Rn)Rn=on+gp;
+      var Pn=[sn*Rn,yt,nk[4]+cn*Rn],hn=Math.sqrt(Pn[0]*Pn[0]+(Pn[2]-FX.zc)*(Pn[2]-FX.zc)),gn=Math.atan2(yt-FX.cy,hn),rhoN=Math.sqrt(hn*hn+(yt-FX.cy)*(yt-FX.cy)),tn=Math.atan2(Pn[0],Pn[2]-FX.zc);
+      while(tn-t4>Math.PI)tn-=TW;while(tn-t4<-Math.PI)tn+=TW;
+      if(yt<=ys+0.003||gn<=gs+0.02){for(k2=0;k2<nY;k2++)YV[k2][j]=[xs,ys,zs];continue;}   /* (a neckline lower than this, as a V: the yoke closes up at it) */
+      var d0=rhoS-rhoY(gs,t4),d1=rhoN-rhoY(gn,tn);
+      for(k2=1;k2<=nY;k2++){if(k2===nY){YV[k2-1][j]=Pn;break;}var f=k2/nY,gk=gs+(gn-gs)*f,tk=t4+(tn-t4)*f,rk=rhoY(gk,tk)+d0*Math.max(0,1-(gk-gs)/0.2)+d1*sstep(gn-0.25,gn,gk);
+        var oY=oYm(gk,tk),bY=fmGet(DY,gk,tk)-eY*0.3;if(oY>0&&rk<oY+gp)rk=oY+gp;if(rk<bY)rk=bY;
+        YV[k2-1][j]=[Math.sin(tk)*Math.cos(gk)*rk,FX.cy+Math.sin(gk)*rk,FX.zc+Math.cos(tk)*Math.cos(gk)*rk];}}
+    /* the cloth bridges the hollows on the way up to the neckline (by the collarbones, at the base of his throat): seen
+       from inside his chest each column's line up to the neck never dips in */
+    for(j=0;j<NC;j++){var col0=[V[iS][j]].map(function(v){return [pos[v*3],pos[v*3+1],pos[v*3+2]];}).concat(YV.map(function(r){return r[j];}));
+      for(it=0;it<4;it++)for(var kk=1;kk<col0.length-1;kk++){var A=col0[kk-1],B=col0[kk],C=col0[kk+1],
+          pr=function(P){var h=Math.sqrt(P[0]*P[0]+(P[2]-FX.zc)*(P[2]-FX.zc));return [h,P[1]-FX.cy];},a2=pr(A),b2=pr(B),c3=pr(C),
+          gB=Math.atan2(b2[1],b2[0]),rB=Math.hypot(b2[0],b2[1]),dx=Math.cos(gB),dy=Math.sin(gB),ex=c3[0]-a2[0],ey=c3[1]-a2[1],den=ex*dy-dx*ey;
+        if(Math.abs(den)<1e-9)continue;var sR=(ex*a2[1]-a2[0]*ey)/den;if(sR>rB+1e-5){var kf=sR/rB;B[0]*=kf;B[2]=FX.zc+(B[2]-FX.zc)*kf;B[1]=FX.cy+(B[1]-FX.cy)*kf;}}}
+    /* (smoothed round, as the cloth lies across the shoulders) */
+    for(it=0;it<2;it++)for(k2=0;k2<nY-1;k2++){var rowY=YV[k2],cp=rowY.map(function(p){return p.slice();});for(j=0;j<NC;j++){var jl2=j-1,jr2=j+1;if(gap>0){if(jl2<0||jr2>NC-1)continue;}else{if(jl2<0)jl2=NC-2;if(jr2>NC-1)jr2=1;}
+        for(var c=0;c<3;c++)rowY[j][c]=0.25*cp[jl2][c]+0.5*cp[j][c]+0.25*cp[jr2][c];}}
+    for(k2=0;k2<nY;k2++){var vr2=[];for(j=0;j<NC;j++){var p4=YV[k2][j];vr2.push(addV(p4[0],p4[1],p4[2],(cols[j]-a0)/span*(F.uvU||1),(p4[1]-hem)/0.3,0,0));}V.push(vr2);}
+    if(gap===0){for(i=0;i<NR;i++){var vA=V[i][0],vB=V[i][NC-1];if(vA<0||vB<0)continue;for(var c2=0;c2<3;c2++){var m2=(pos[vA*3+c2]+pos[vB*3+c2])/2;pos[vA*3+c2]=m2;pos[vB*3+c2]=m2;}}}
+    if(PF){PF.yoke=(PF.yoke||0)+performance.now()-tA;}tA=performance.now();var idx=[],nT=0;
+    for(i=0;i<NR-1;i++)for(j=0;j<NC-1;j++){if(i>=iA&&i<iS&&cs[j])continue;var a=V[i][j],b=V[i][j+1],cc2=V[i+1][j],d=V[i+1][j+1];if(a<0||b<0||cc2<0||d<0)continue;idx.push(a,b,cc2,b,d,cc2);}
+    nT=idx.length;
+    /* sleeves */
+    var dup=[],SL={};
+    if(F.sleeve)[-1,1].forEach(function(s){var sc=SC[s];if(!sc)return;var c0=sc[0],c1=sc[1],loop=[],jj,ii;
+      for(jj=c0;jj<=c1;jj++)loop.push(V[iA][jj]);for(ii=iA+1;ii<iS;ii++)loop.push(V[ii][c1]);for(jj=c1;jj>=c0;jj--)loop.push(V[iS][jj]);for(ii=iS-1;ii>iA;ii--)loop.push(V[ii][c0]);
+      var Lp=loop.length,ph=[],last=null;
+      loop.forEach(function(v){var a=secAtF(B3.arm,Math.min(1.445,pos[v*3+1]),aq),an=Math.atan2(pos[v*3]-s*a[3],pos[v*3+2]-a[4]);if(last!=null){while(an-last>Math.PI)an-=TW;while(an-last<-Math.PI)an+=TW;}ph.push(an);last=an;});
+      function ell(a,an,add){var sn=Math.sin(an),cn=Math.cos(an),rx=a[1]+add,rz=a[2]+add;return 1/Math.sqrt(sn*sn/(rx*rx)+cn*cn/(rz*rz));}
+      function armR(y,an,a){var R=ell(a,an,F.se),rb=fmGet(FM.A[s],y,an),ro=Math.max(fmGet(OM.A[s],y-0.01,an),fmGet(OM.A[s],y,an),fmGet(OM.A[s],y+0.01,an));if(rb>0&&rb+F.se*0.7>R)R=rb+F.se*0.7;if(ro>0&&ro+gp>R)R=ro+gp;return R;}
+      var yC=yA-0.012,yCf=F.sleeve==="short"?1.24:SLV,nR=Math.max(2,Math.ceil((yC-yCf)/0.02)),S=[];
+      for(var r=0;r<=nR;r++){var y=yCf+(yC-yCf)*r/nR,a=secAtF(B3.arm,y,aq),row=[];
+        for(var k=0;k<Lp;k++){var an=ph[k],R=armR(y,an,a);if(F.folds)R*=1+F.folds(y,an);row.push([s*a[3]+Math.sin(an)*R,y,a[4]+Math.cos(an)*R]);}S.push(row);}
+      /* the sleeve's head: from the top of the tube up to the armhole, rounded out over his shoulder */
+      var nCp=6,top=S[nR],LP=loop.map(function(v){return [pos[v*3],pos[v*3+1],pos[v*3+2]];});
+      /* (round his arm: carrying straight on up from the tube, then turning out to the armhole's edge) */
+      for(var c=1;c<nCp;c++){var f=c/nCp,h=f*f,row2=[];for(k=0;k<Lp;k++){var A0=top[k],B0=LP[k],yq=A0[1]+(B0[1]-A0[1])*f,aT=secAtF(B3.arm,Math.min(1.445,A0[1]),aq),r0=Math.hypot(A0[0]-s*aT[3],A0[2]-aT[4]),
+          aL=secAtF(B3.arm,Math.min(1.445,B0[1]),aq),r1=Math.hypot(B0[0]-s*aL[3],B0[2]-aL[4]),aQ=secAtF(B3.arm,Math.min(1.445,yq),aq),rq=r0+(r1-r0)*h;
+          row2.push([s*aQ[3]+Math.sin(ph[k])*rq,yq,aQ[4]+Math.cos(ph[k])*rq]);}S.push(row2);}
+      function pushArm(p){var yy=Math.min(1.445,p[1]),a=secAtF(B3.arm,yy,aq),dx=p[0]-s*a[3],dz=p[2]-a[4],an=Math.atan2(dx,dz),rr=Math.sqrt(dx*dx+dz*dz),R=armR(Math.min(1.455,p[1]),an,a);if(rr<R){p[0]=s*a[3]+Math.sin(an)*R;p[2]=a[4]+Math.cos(an)*R;}}
+      for(it=0;it<6;it++){for(c=nR+1;c<S.length;c++){var cur=S[c],dn=S[c-1],upr=c+1<S.length?S[c+1]:LP,nw=[];
+          for(k=0;k<Lp;k++){var kl=(k+Lp-1)%Lp,kr=(k+1)%Lp,p=cur[k],q2=[0,0,0];for(var e2=0;e2<3;e2++)q2[e2]=0.5*p[e2]+0.125*(cur[kl][e2]+cur[kr][e2])+0.125*(dn[k][e2]+upr[k][e2]);nw.push(q2);}
+          for(k=0;k<Lp;k++){pushArm(nw[k]);S[c][k]=nw[k];}}}
+      /* the cloth's weave laid round the sleeve by distance, at the body's scale, so it reads as the same cloth */
+      var rA=S[Math.max(0,nR-2)],UK=[0];for(k=1;k<=Lp;k++){var p0=rA[k-1],p1=rA[k%Lp];UK.push(UK[k-1]+Math.hypot(p1[0]-p0[0],p1[2]-p0[2]));}var uS=1/(2*Math.PI*0.152)*(F.uvU||1);
+      var base=pos.length/3,VS=[];
+      S.forEach(function(row3,ri){var ids=[];row3.forEach(function(p,k){ids.push(addV(p[0],p[1],p[2],UK[k]*uS,(p[1]-yCf)/0.3,1,s));});VS.push(ids);});
+      var lid=LP.map(function(p,k){var v=addV(p[0],p[1],p[2],UK[k]*uS,(p[1]-yCf)/0.3,0,0);dup.push([loop[k],v]);return v;});VS.push(lid);
+      var tri=[];for(var rr2=0;rr2<VS.length-1;rr2++)for(k=0;k<Lp;k++){var k1=(k+1)%Lp,A1=VS[rr2][k],B1=VS[rr2][k1],C1=VS[rr2+1][k],D1=VS[rr2+1][k1];tri.push(A1,B1,C1,B1,D1,C1);}
+      /* (wound so its outside faces out: most of its faces must face away from his arm) */
+      var cntW=[0,0];for(var t6=0;t6<tri.length;t6+=3){var i1=tri[t6]*3,i2=tri[t6+1]*3,i3=tri[t6+2]*3,u1=pos[i2]-pos[i1],u2=pos[i2+1]-pos[i1+1],u3=pos[i2+2]-pos[i1+2],w1=pos[i3]-pos[i1],w2=pos[i3+1]-pos[i1+1],w3=pos[i3+2]-pos[i1+2],a6=secAtF(B3.arm,Math.min(1.445,pos[i1+1]),aq);
+        cntW[((u2*w3-u3*w2)*(pos[i1]-s*a6[3])+(u1*w2-u2*w1)*(pos[i1+2]-a6[4]))>0?0:1]++;}
+      if(cntW[1]>cntW[0]){for(var t5=0;t5<tri.length;t5+=3){var sw=tri[t5+1];tri[t5+1]=tri[t5+2];tri[t5+2]=sw;}}
+      idx.push.apply(idx,tri);SL[s]={rows:VS,Lp:Lp,yCuf:yCf};});
+    if(PF){PF.slv=(PF.slv||0)+performance.now()-tA;}tA=performance.now();
+    /* the cloth settles: round the armholes and over the shoulders it smooths out the creases where the sleeve meets the
+       body, never sinking in (only along and away from the surface) and with its edges (hem, neckline, cuffs) held */
+    (function(){var nV=pos.length/3,cn=new Int32Array(nV),v,t,e3;for(v=0;v<nV;v++)cn[v]=v;dup.forEach(function(d){cn[d[1]]=d[0];});
+      if(gap===0)for(var i7=0;i7<NR;i7++){if(V[i7][0]>=0&&V[i7][NC-1]>=0)cn[V[i7][NC-1]]=V[i7][0];}
+      var nb=[],ek=new Map(),bnd=new Uint8Array(nV),n0=new Float32Array(nV*3);for(v=0;v<nV;v++)nb.push([]);
+      for(t=0;t<idx.length;t+=3){var A=cn[idx[t]],B=cn[idx[t+1]],C=cn[idx[t+2]],ux=pos[B*3]-pos[A*3],uy=pos[B*3+1]-pos[A*3+1],uz=pos[B*3+2]-pos[A*3+2],wx=pos[C*3]-pos[A*3],wy=pos[C*3+1]-pos[A*3+1],wz=pos[C*3+2]-pos[A*3+2],
+          fx=uy*wz-uz*wy,fy=uz*wx-ux*wz,fz=ux*wy-uy*wx;n0[A*3]+=fx;n0[A*3+1]+=fy;n0[A*3+2]+=fz;n0[B*3]+=fx;n0[B*3+1]+=fy;n0[B*3+2]+=fz;n0[C*3]+=fx;n0[C*3+1]+=fy;n0[C*3+2]+=fz;
+        for(e3=0;e3<3;e3++){var a=e3===0?A:(e3===1?B:C),b=e3===0?B:(e3===1?C:A);if(a===b)continue;var key=a<b?a*nV+b:b*nV+a;ek.set(key,(ek.get(key)||0)+1);if(nb[a].indexOf(b)<0)nb[a].push(b);if(nb[b].indexOf(a)<0)nb[b].push(a);}}
+      ek.forEach(function(cnt,key2){if(cnt===1){var a8=Math.floor(key2/nV),b8=key2-a8*nV;bnd[a8]=1;bnd[b8]=1;}});
+      for(v=0;v<nV;v++){var l=Math.hypot(n0[v*3],n0[v*3+1],n0[v*3+2])||1;n0[v*3]/=l;n0[v*3+1]/=l;n0[v*3+2]/=l;}
+      var p0=pos.slice(),wv=new Float32Array(nV);for(v=0;v<nV;v++){if(cn[v]!==v||bnd[v])continue;var yv=p0[v*3+1];wv[v]=sstep(1.16,1.27,yv)*(1-sstep(1.5,1.53,yv))*sstep(0.06,0.13,Math.abs(p0[v*3]));}
+      for(var it2=0;it2<10;it2++){var np=pos.slice();for(v=0;v<nV;v++){if(!wv[v])continue;var L=nb[v],sx=0,sy=0,sz=0;for(var q=0;q<L.length;q++){sx+=pos[L[q]*3];sy+=pos[L[q]*3+1];sz+=pos[L[q]*3+2];}
+          var f=0.5*wv[v],x=pos[v*3]+(sx/L.length-pos[v*3])*f,y=pos[v*3+1]+(sy/L.length-pos[v*3+1])*f,z=pos[v*3+2]+(sz/L.length-pos[v*3+2])*f,dx=x-p0[v*3],dy=y-p0[v*3+1],dz=z-p0[v*3+2],dn=dx*n0[v*3]+dy*n0[v*3+1]+dz*n0[v*3+2];
+          if(dn<0){x-=dn*n0[v*3];y-=dn*n0[v*3+1];z-=dn*n0[v*3+2];}np[v*3]=x;np[v*3+1]=y;np[v*3+2]=z;}pos=np;}
+      for(v=0;v<nV;v++)if(cn[v]!==v){pos[v*3]=pos[cn[v]*3];pos[v*3+1]=pos[cn[v]*3+1];pos[v*3+2]=pos[cn[v]*3+2];}})();
+    if(PF){PF.relax=(PF.relax||0)+performance.now()-tA;}tA=performance.now();
+    var geo=new T.BufferGeometry();geo.setAttribute("position",new T.Float32BufferAttribute(pos,3));geo.setAttribute("uv",new T.Float32BufferAttribute(uv,2));geo.setIndex(idx);
+    geo.addGroup(0,nT,0);if(idx.length>nT)geo.addGroup(nT,idx.length-nT,1);geo.computeVertexNormals();
+    /* one smooth surface: the back seam and the armholes shade as one */
+    var nr=geo.attributes.normal.array;function avgN(a,b){for(var c3=0;c3<3;c3++){var m3=(nr[a*3+c3]+nr[b*3+c3])/2;nr[a*3+c3]=m3;nr[b*3+c3]=m3;}}
+    if(gap===0)for(i=0;i<NR;i++){if(V[i][0]>=0&&V[i][NC-1]>=0)avgN(V[i][0],V[i][NC-1]);}
+    dup.forEach(function(d2){avgN(d2[0],d2[1]);});
+    for(var v6=0;v6<nr.length/3;v6++){var ln=Math.sqrt(nr[v6*3]*nr[v6*3]+nr[v6*3+1]*nr[v6*3+1]+nr[v6*3+2]*nr[v6*3+2])||1;nr[v6*3]/=ln;nr[v6*3+1]/=ln;nr[v6*3+2]/=ln;}
+    /* soft contact shadow where the cloth is shut in between his arm and his side (below the armpits), and under the hem */
+    var col=[];for(v6=0;v6<pos.length/3;v6++){var nx6=nr[v6*3],x6=pos[v6*3],y6=pos[v6*3+1],z6=pos[v6*3+2],f6=1,bl=sstep(yA+0.02,yA-0.06,y6);
+      if(part[v6]){var inw=Math.max(0,-part[v6]*nx6);f6=1-0.3*inw*inw*bl;}
+      else if(bl>0&&y6>0.86){var sa=x6<0?-1:1,a6=secAtF(B3.arm,y6,aq),dA=Math.hypot(x6-sa*a6[3],z6-a6[4]);f6=1-0.22*sstep(0.12,0.06,dA)*bl*Math.max(0,sa*nx6);}
+      if(!part[v6]&&y6<0.95&&nr[v6*3+1]<-0.3)f6-=0.12;
+      if(window.__noao)f6=1;
+      if(F.tint&&!window.__notint){var xs6=0.17+0.03*Math.max(0,Math.min(1,(y6-yA)/0.17)),sw=y6<yA?(am[v6]?1:0):sstep(xs6-0.006,xs6+0.006,Math.abs(x6));if(y6<yA&&!am[v6]&&Math.abs(x6)>0.2)sw=1;
+        col.push(f6*(1+(F.tint[0]-1)*sw),f6*(1+(F.tint[1]-1)*sw),f6*(1+(F.tint[2]-1)*sw));}
+      else col.push(f6,f6,f6);}
+    geo.setAttribute("color",new T.Float32BufferAttribute(col,3));
+    geo.userData.armMask=new Uint8Array(am);geo.userData.evMax=eT;
+    return {geo:geo,V:V,cols:cols,rows:rows,NC:NC,NR:NR,iS:iS,iA:iA,SL:SL,gap:gap};}
+  /* ---- layers: what each piece leaves on him, and keeping the next piece outside it ----
+     Every mesh a piece makes is noted (PIECE). When the piece is done, anything of it that dips inside the layers
+     under it is pushed out to lie just over them (so a collar, cuff, placket or band can never show through from
+     beneath), and then the piece is added to the maps of what he is wearing. A hood laid out over the coat is left
+     out of this (it is meant to lie over what comes after). */
+  var PIECE=null,NOOCC=false,GPO=0.003;
+  function occSide(me){var a=me;while(a&&a!==man){if(a.userData.arm){return a===armG[-1]?-1:1;}a=a.parent;}return 0;}
+  function occPushPt(p,s,lowToo){var o=[0,0,0],M,an,r,R,k;
+    if(s){if(p[1]<1.455){M=OCC.A[s];fmCoord(M,p[0],p[1],p[2],o);an=Math.atan2(o[1],o[2]);r=Math.sqrt(o[1]*o[1]+o[2]*o[2]);R=fmGet(M,o[0],an);
+        if(R>0&&r<R+GPO&&r>1e-4){k=(R+GPO)/r;var q=fmPoint(M,o[0],an,R+GPO);p[0]=q[0];p[2]=q[2];}}return p;}
+    if(p[1]<1.42){M=OCC.T;fmCoord(M,p[0],p[1],p[2],o);an=Math.atan2(o[1],o[2]);r=Math.sqrt(o[1]*o[1]+o[2]*o[2]);R=fmGet(M,p[1],an);if(lowToo){var R2=fmGet(OCC.L,p[1],an);if(R2>R)R=R2;}
+      if(R>0&&r<R+GPO){q=fmPoint(M,p[1],an,R+GPO);p[0]=q[0];p[2]=q[2];}}
+    if(p[1]>1.36){M=OCC.Y;fmCoord(M,p[0],p[1],p[2],o);var g=o[0];if(g>0.25&&g<1.4){an=Math.atan2(o[1],o[2]);r=Math.sqrt(o[1]*o[1]+o[2]*o[2]);R=fmGet(M,g,an);
+        if(R>0&&r<R+GPO){q=fmPoint(M,g,an,R+GPO);p[0]=q[0];p[1]=q[1];p[2]=q[2];}}}
+    if(p[1]>1.47){M=OCC.N;fmCoord(M,p[0],p[1],p[2],o);r=Math.sqrt(o[1]*o[1]+o[2]*o[2]);if(r<0.115){an=Math.atan2(o[1],o[2]);R=fmGet(M,p[1],an);
+        if(R>0&&r<R+GPO){q=fmPoint(M,p[1],an,R+GPO);p[0]=q[0];p[2]=q[2];}}}
+    return p;}
+  function occPushMesh(me,lowToo){var g=me.geometry;if(!g||!g.attributes||!g.attributes.position||me.isInstancedMesh)return;me.updateMatrixWorld(true);
+    var pa=g.attributes.position,Mw=me.matrixWorld,inv=new T.Matrix4().copy(Mw).invert(),v=new T.Vector3(),s=occSide(me),AM=me.userData.armMask,moved=false,p=[0,0,0];
+    for(var i=0;i<pa.count;i++){v.fromBufferAttribute(pa,i).applyMatrix4(Mw);p[0]=v.x;p[1]=v.y;p[2]=v.z;occPushPt(p,s||(AM&&AM[i]?(v.x<0?-1:1):0),lowToo);
+      if(Math.abs(p[0]-v.x)+Math.abs(p[1]-v.y)+Math.abs(p[2]-v.z)>1e-6){if(!moved&&g.userData.shared){g=g.clone();me.geometry=g;pa=g.attributes.position;}v.set(p[0],p[1],p[2]).applyMatrix4(inv);pa.setXYZ(i,v.x,v.y,v.z);moved=true;}}
+    if(moved){pa.needsUpdate=true;if(wraps.indexOf(me)>=0)ZV++;}}
+  /* a piece's meshes added to the maps of what he wears (legwear to its own, which a tucked-in shirt goes under) */
+  function occAddMesh(me,low){var g=me.geometry;if(!g||!g.attributes||!g.attributes.position||me.isInstancedMesh)return;me.updateMatrixWorld(true);
+    var pa=g.attributes.position,ix=g.index?g.index.array:null,n=ix?ix.length:pa.count,nv=pa.count,Mw=me.matrixWorld,v=new T.Vector3(),s=occSide(me),AM=me.userData.armMask,TT=low?OCC.L:OCC.T;
+    /* each corner put in each map's own terms once (corners are shared by several triangles) */
+    var W=new Float32Array(nv*3),CT=new Float32Array(nv*3),CY=low?null:new Float32Array(nv*3),CN=low?null:new Float32Array(nv*3),NR=low?null:new Float32Array(nv),CA=new Float32Array(nv*3),o=[0,0,0];
+    for(var i=0;i<nv;i++){v.fromBufferAttribute(pa,i).applyMatrix4(Mw);W[i*3]=v.x;W[i*3+1]=v.y;W[i*3+2]=v.z;fmCoord(TT,v.x,v.y,v.z,o);CT[i*3]=o[0];CT[i*3+1]=o[1];CT[i*3+2]=o[2];
+      if(!low){fmCoord(OCC.Y,v.x,v.y,v.z,o);CY[i*3]=o[0];CY[i*3+1]=o[1];CY[i*3+2]=o[2];if(v.y>1.42){fmCoord(OCC.N,v.x,v.y,v.z,o);CN[i*3]=o[0];CN[i*3+1]=o[1];CN[i*3+2]=o[2];NR[i]=Math.sqrt(o[1]*o[1]+o[2]*o[2]);}else NR[i]=9;}
+      var sd=s||(AM&&AM[i]?(v.x<0?-1:1):0);if(sd){fmCoord(OCC.A[sd],v.x,v.y,v.z,o);CA[i*3]=o[0];CA[i*3+1]=o[1];CA[i*3+2]=o[2];}}
+    var a=[0,0,0],b=[0,0,0],c=[0,0,0];
+    function tri(M,C,i0,i1,i2){a[0]=C[i0*3];a[1]=C[i0*3+1];a[2]=C[i0*3+2];b[0]=C[i1*3];b[1]=C[i1*3+1];b[2]=C[i1*3+2];c[0]=C[i2*3];c[1]=C[i2*3+1];c[2]=C[i2*3+2];fmTri(M,a,b,c);}
+    for(var t=0;t+2<n;t+=3){var i0=ix?ix[t]:t,i1=ix?ix[t+1]:t+1,i2=ix?ix[t+2]:t+2,sd2=s;
+      if(!sd2&&AM&&AM[i0]&&AM[i1]&&AM[i2])sd2=W[i0*3]<0?-1:1;
+      if(sd2){if(W[i0*3+1]<1.47){if(s||(W[i0*3]<0)===(W[i1*3]<0)&&(W[i0*3]<0)===(W[i2*3]<0))tri(OCC.A[sd2],CA,i0,i1,i2);}continue;}
+      var y0=W[i0*3+1],y1=W[i1*3+1],y2=W[i2*3+1],yM=Math.max(y0,y1,y2),yN=Math.min(y0,y1,y2);
+      if(yN<1.48)tri(TT,CT,i0,i1,i2);
+      if(!low&&yM>1.34)tri(OCC.Y,CY,i0,i1,i2);
+      if(!low&&yN>1.42&&NR[i0]<0.13&&NR[i1]<0.13&&NR[i2]<0.13)tri(OCC.N,CN,i0,i1,i2);}}
+  /* the fitted piece's own reach round his neck (for laying its collars on it) */
+  function ownNeck(FT){if(FT.ownN)return FT.ownN;var own=fmNew("N",1.38,1.66,0.005,96),a=[0,0,0],b=[0,0,0],c=[0,0,0],g=FT.geo,pa=g.attributes.position.array,ix=g.index.array;
+    for(var t=0;t<ix.length;t+=3){var i0=ix[t]*3,i1=ix[t+1]*3,i2=ix[t+2]*3;if(Math.max(pa[i0+1],pa[i1+1],pa[i2+1])<1.38)continue;fmCoord(own,pa[i0],pa[i0+1],pa[i0+2],a);fmCoord(own,pa[i1],pa[i1+1],pa[i1+2],b);fmCoord(own,pa[i2],pa[i2+1],pa[i2+2],c);
+      if(Math.hypot(a[1],a[2])>0.16||Math.hypot(b[1],b[2])>0.16||Math.hypot(c[1],c[2])>0.16)continue;fmTri(own,a,b,c);}
+    FT.ownN=own;return own;}
+  function collarSnap(list,keep){if(!keep||!keep.userData.fit)return;var FT=keep.userData.fit,own=ownNeck(FT);
+    var o=[0,0,0],v=new T.Vector3();list.forEach(function(me){if(me===keep||me.userData.noOcc||!me.geometry||!me.geometry.attributes||me.isInstancedMesh)return;me.updateMatrixWorld(true);
+      var ga=me.geometry.attributes.position,Mw=me.matrixWorld,inv=new T.Matrix4().copy(Mw).invert(),mv=false;
+      for(var i=0;i<ga.count;i++){v.fromBufferAttribute(ga,i).applyMatrix4(Mw);if(v.y<1.4||v.y>1.6)continue;fmCoord(own,v.x,v.y,v.z,o);var r=Math.hypot(o[1],o[2]);if(r>(v.y<1.47?0.13:0.115))continue;var an=Math.atan2(o[1],o[2]),R=fmGet(own,v.y,an);
+        if(R>0&&r<R+0.0015){var P=fmPoint(own,v.y,an,R+0.0015);v.set(P[0],P[1],P[2]).applyMatrix4(inv);ga.setXYZ(i,v.x,v.y,v.z);mv=true;}}
+      if(mv)ga.needsUpdate=true;});}
+  function occFinish(list,keep,lowToo,low){if(!OCC)return;var P=window.__prof,t0=performance.now();collarSnap(list,keep);var t1=performance.now();list.forEach(function(me){if(me.userData.noOcc||me===keep)return;if(!low)occPushMesh(me,lowToo);});
+    var t2=performance.now();list.forEach(function(me){if(!me.userData.noOcc)occAddMesh(me,low);});if(P){P.snap=(P.snap||0)+t1-t0;P.push=(P.push||0)+t2-t1;P.add=(P.add||0)+performance.now()-t2;}}
+  /* a band of the fitted body itself (a ribbed hem), lying just over it */
+  function fitBand(FT,y0,y1,mt,off){var V=FT.V,NC=FT.NC,pa=FT.geo.attributes.position.array,na=FT.geo.attributes.normal.array,rows=[],pos=[],uv=[],ix=[];
+    for(var i=0;i<FT.iA;i++){if(FT.rows[i]<=y1+1e-6)rows.push(i);}if(FT.rows[rows[rows.length-1]]<y1&&rows.length<FT.iA)rows.push(rows.length);
+    rows.forEach(function(i,ri){for(var j=0;j<NC;j++){var v=V[i][j],yy=pa[v*3+1];pos.push(pa[v*3]+na[v*3]*off,yy+na[v*3+1]*off,pa[v*3+2]+na[v*3+2]*off);uv.push(j/(NC-1)*2,(yy-y0)/0.3);}});
+    for(var r=0;r<rows.length-1;r++)for(var j=0;j<NC-1;j++){var a=r*NC+j,b=a+1,c=a+NC,d=c+1;ix.push(a,b,c,b,d,c);}
+    var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setIndex(ix);g.computeVertexNormals();
+    var nn=g.attributes.normal.array;rows.forEach(function(i,ri){for(var j=0;j<NC;j++){var v=V[i][j],o=(ri*NC+j)*3;nn[o]=na[v*3];nn[o+1]=na[v*3+1];nn[o+2]=na[v*3+2];}});
+    return put(new T.Mesh(g,mt));}
+  /* an open front's facing: a strip along each edge of the opening, on the cloth */
+  function fitEdge(FT,m){var fm=m.clone();fm.side=T.DoubleSide;if(fm.color)fm.color.multiplyScalar(0.9);var V=FT.V,pa=FT.geo.attributes.position.array,na=FT.geo.attributes.normal.array;
+    [[0,1],[FT.NC-1,-1]].forEach(function(E){var j0=E[0],dj=E[1],pos=[],ix=[],n=0;
+      for(var i=0;i<FT.NR;i++){var a=V[i][j0];if(a<0)continue;var acc=0,j=j0,b=a;while(acc<0.016&&j+dj>=0&&j+dj<FT.NC&&V[i][j+dj]>=0){var c=V[i][j+dj];acc+=Math.hypot(pa[c*3]-pa[b*3],pa[c*3+2]-pa[b*3+2]);b=c;j+=dj;}
+        [a,b].forEach(function(v){pos.push(pa[v*3]+na[v*3]*0.0022,pa[v*3+1]+na[v*3+1]*0.0022,pa[v*3+2]+na[v*3+2]*0.0022);});if(n)ix.push((n-1)*2,(n-1)*2+1,n*2,(n-1)*2+1,n*2+1,n*2);n++;}
+      var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setIndex(ix);g.computeVertexNormals();put(new T.Mesh(g,fm));});}
+  /* A collar or neckband grown up from a fitted top's own neckline (so it can never stand off it or sink into it): h
+     high, leaning in toward his neck by lean (0 to 1) and flaring out at the top by flare, open at the front by gap (an
+     angle round his neck), and always outside the collars of the layers under it. fold: a shirt or polo collar's leaf,
+     turned back down over the stand (drop; lower at the front by front; standing out by out). */
+  function fitCollar(FT,o){var V=FT.V,top=FT.NR-1,pa=FT.geo.attributes.position.array,C=[],K=o.rows||4,q=[0,0,0,0,0],j,k;
+    for(j=0;j<FT.NC;j++){var v=V[top][j];if(v<0)continue;var x=pa[v*3],y=pa[v*3+1],z=pa[v*3+2],nk=secAtF(B3.neck,y,q);C.push({x:x,y:y,z:z,an:Math.atan2(x,z-nk[4]),r:Math.hypot(x,z-nk[4])});}
+    var closed=FT.gap===0;if(closed&&C.length>1)C.pop();
+    if(o.gap){var inG=function(c){return Math.abs(Math.atan2(Math.sin(c.an),Math.cos(c.an)))<o.gap/2;};
+      if(closed){var n=C.length,last=-1;for(j=0;j<n;j++)if(inG(C[j]))last=j;if(last>=0){var R=[];for(j=1;j<=n;j++){var c=C[(last+j)%n];if(!inG(c))R.push(c);else if(R.length)break;}C=R;}closed=false;}
+      else C=C.filter(function(c){return !inG(c);});}
+    if(C.length<2)return null;if(closed)C.push(C[0]);if(window.__dbgC)console.log("collar",FT.gap,o.gap,C.length,C.map(function(c){return c.an.toFixed(2)+"/"+c.y.toFixed(3);}).join(" "));
+    /* (measured from a fixed line up through the base of his neck, so the collar stands up rather than leaning forward
+       with the line through his neck, which tips forward toward the jaw) */
+    var rows=[],nq=[0,0,0,0,0],yb0=0;C.forEach(function(c){yb0+=c.y;});yb0/=C.length;var zc0=secAtF(B3.neck,yb0,nq)[4];
+    C.forEach(function(c){c.an=Math.atan2(c.x,c.z-zc0);c.r=Math.hypot(c.x,c.z-zc0);});
+    function neckR(y,an){var nk=secAtF(B3.neck,y,nq),sn=Math.sin(an),cn=Math.cos(an),dz=zc0-nk[4],A=sn*sn/(nk[1]*nk[1])+cn*cn/(nk[2]*nk[2]),B=2*dz*cn/(nk[2]*nk[2]),Cq=dz*dz/(nk[2]*nk[2])-1,D=B*B-4*A*Cq;
+      return D>0?(-B+Math.sqrt(D))/(2*A):nk[1];}
+    function at(y,an,r){return [Math.sin(an)*r,y,zc0+Math.cos(an)*r];}
+    for(k=0;k<=K;k++){var f=k/K,row=[];C.forEach(function(c){if(!k){row.push([c.x,c.y,c.z,c.r]);return;}var y=c.y+o.h*f,rn=neckR(y,c.an),rk=c.r+(rn+0.004-c.r)*o.lean*f+(o.flare||0)*f*f;
+        var P=at(y,c.an,Math.max(rk,rn+0.005));for(var it=0;it<2;it++){var q2=[0,0,0];fmCoord(OCC.N,P[0],P[1],P[2],q2);var a2=Math.atan2(q2[1],q2[2]),r2=Math.hypot(q2[1],q2[2]),oc=Math.max(fmGet(OCC.N,y,a2),fmGet(OCC.N,y+0.006,a2),fmGet(OCC.N,y-0.006,a2)),bn=fmGet(fitMaps().N,y,a2),need=Math.max(oc>0?oc+0.003:0,bn>0?bn+0.004:0);
+          if(need>r2){var d2=need-r2;rk+=d2;P=at(y,c.an,rk);}}P.push(rk);row.push(P);});rows.push(row);}
+    if(o.fold){var Fd=o.fold,KF=4,tp=rows[K],OWN=ownNeck(FT);for(k=0;k<=KF;k++){var f2=k/KF,row2=[];C.forEach(function(c,ci){var T0=tp[ci],cf=Math.max(0,Math.cos(c.an)),y=T0[1]-(Fd.drop+Fd.front*cf*cf)*f2,
+          rk=T0[3]+0.0028+Fd.out*Math.sin(f2*Math.PI/2);for(var kk=0;kk<=K;kk++){var S=rows[kk][ci];if(Math.abs(S[1]-y)<o.h/K)rk=Math.max(rk,S[3]+0.0028);}var P=at(y,c.an,rk);
+          for(var it3=0;it3<2;it3++){var q3=[0,0,0];fmCoord(OWN,P[0],P[1],P[2],q3);var a3=Math.atan2(q3[1],q3[2]),r3=Math.hypot(q3[1],q3[2]),nd=fmGet(OWN,y,a3)+0.003;if(nd>0.003&&r3<nd){rk+=nd-r3;P=at(y,c.an,rk);}}
+          P.push(rk);row2.push(P);});rows.push(row2);}}
+    if(window.__dbgC){var bi=0,bd=9;C.forEach(function(c,i){var d=Math.abs(Math.abs(c.an)-Math.PI);if(d<bd){bd=d;bi=i;}});console.log("collarBack",JSON.stringify(rows.map(function(r){return r[bi].map(function(v){return +v.toFixed(4);});})));}
+    var pos=[],uv=[],ix=[],NCc=C.length,U=[0];for(j=1;j<NCc;j++)U.push(U[j-1]+Math.abs(C[j].an-C[j-1].an>Math.PI?C[j].an-C[j-1].an-2*Math.PI:(C[j].an-C[j-1].an<-Math.PI?C[j].an-C[j-1].an+2*Math.PI:C[j].an-C[j-1].an))*0.07);
+    rows.forEach(function(row,ri){row.forEach(function(P,ci){pos.push(P[0],P[1],P[2]);uv.push(U[ci]*3,ri*o.h/K/0.3);});});
+    for(var r=0;r<rows.length-1;r++){if(o.fold&&r===K)continue;for(j=0;j<NCc-1;j++){var a=r*NCc+j,b=a+1,cc=a+NCc,d=cc+1;ix.push(a,b,cc,b,d,cc);}}
+    if(o.fold){for(j=0;j<NCc-1;j++){var a2=K*NCc+j,b2=a2+1,c2=(K+1)*NCc+j,d2=c2+1;ix.push(a2,b2,c2,b2,d2,c2);}}
+    var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setIndex(ix);g.computeVertexNormals();
+    var mt=o.mat.clone();mt.side=T.DoubleSide;return put(new T.Mesh(g,mt));}
+  /* where an open front's edge is, at a height (sd: his left +1, right -1): x and z, from the fitted cloth itself */
+  function fitEdgeAt(FT,y,sd){var j=sd>0?0:FT.NC-1,V=FT.V,pa=FT.geo.attributes.position.array,lo=null,hi=null;
+    for(var i=0;i<FT.NR;i++){var v=V[i][j];if(v<0)continue;if(pa[v*3+1]<=y)lo=v;else if(hi==null)hi=v;}
+    if(lo==null)lo=hi;if(hi==null)hi=lo;var f=hi===lo?0:Math.max(0,Math.min(1,(y-pa[lo*3+1])/(pa[hi*3+1]-pa[lo*3+1])));
+    return [pa[lo*3]+(pa[hi*3]-pa[lo*3])*f,pa[lo*3+2]+(pa[hi*3+2]-pa[lo*3+2])*f];}
   /* ---- body ---- */
   if(bodyOn){
     /* the real body, minus the skin the clothes cover (so nothing can poke through) */
@@ -3487,7 +3832,7 @@ function make3Dcore(pieces){
   /* trousers or shorts */
   var waistE=0;
   if(lo){
-    curIt=lo.item;curWhat=lo.what;
+    curIt=lo.item;curWhat=lo.what;curKind="lo";PIECE=bodyOn?[]:null;
     var lm=pm(lo),sh=lo.shape==="shorts",n0=nm(lo),fitL=((byId[lo.item]||{}).fit||""),wide=fitL==="Wide leg"||/wide|baggy|barrel|parachute/.test(n0)?0.022:(fitL==="Relaxed"||/loose|relaxed|carpenter|cargo|combat/.test(n0)?0.013:(fitL?0.006:0.004));
     waistE=0.012;
     /* on the real body the seat, hips and the tops of the thighs are one piece of cloth draped over him (lowerWrap);
@@ -3550,6 +3895,7 @@ function make3Dcore(pieces){
     if(!sh||true){var flyM=mat(cc(lo.col)[1]?"#000":"#3a3a3a",0.9,{transparent:true,opacity:0.4});
       if(bodyOn){var fp=[];[[0.022,0.995],[0.024,0.95],[0.022,0.91],[0.012,BL.crotch+0.035],[0.002,BL.crotch+0.02]].forEach(function(q){fp.push([q[0],q[1],surfZ(q[1],q[0],0)+0.0015]);});tube(fp,0.0016,flyM,16);}
       else tube([[0,1.0,frontZ(1.0,0.016)+0.004],[0.012,0.93,frontZ(0.93,0.02)+0.004],[0,0.87,0.105]],0.0022,flyM,8);}
+    if(PIECE){occFinish(PIECE,null,false,true);PIECE=null;}
   }
   /* tops, knits, jackets and coats */
   var outer=0.011,waistHid=false;
@@ -3570,7 +3916,7 @@ function make3Dcore(pieces){
      its point at his shoulder blades, its edges settled onto the back of the garment (no rigid dome); a gathered rim
      round the back and sides of his neck joins it to the neckline. out: how far outside this garment the layers worn
      over it reach, so it lies on top of them. */
-  function hoodDown(m,e,out,big,col){var hm=m.clone();hm.side=T.DoubleSide;var yT=1.535,yB=big?1.27:1.3,NU=18,NV=16,hv=[],hi=[],sc=big?1.12:1;
+  function hoodDown(m,e,out,big,col){var ck0=curKind,no0=NOOCC;NOOCC=true;if(out>0)curKind=curKind+"o";var hm=m.clone();   /* (a hood laid over the jacket counts as outside it, for the checks) */hm.side=T.DoubleSide;var yT=1.535,yB=big?1.27:1.3,NU=18,NV=16,hv=[],hi=[],sc=big?1.12:1;
     function bz(y,x){var z=backZ(y,x);if(z>1){var q=TO(Math.min(1.5,y));z=q[4]-q[2]*Math.sqrt(Math.max(0,1-Math.pow(x/(q[1]+0.001),2)))-e;}return z;}
     for(var iv=0;iv<=NV;iv++){var v=iv/NV,y=yT-v*(yT-yB),w=sc*(0.088+0.04*Math.sin(Math.min(1,v/0.55)*Math.PI*0.5)-0.1*Math.pow(Math.max(0,v-0.55)/0.45,1.6)),th=(0.03-0.016*v)*sc*sstep(1,0.82,v);
       w=Math.max(0.012,w);for(var iu=0;iu<=NU;iu++){var u=iu/NU*2-1,x=u*w,t=th*Math.sqrt(Math.max(0,1-u*u))+0.0015;hv.push(x,y-0.012*(1-u*u)*v,bz(y,x)-out-0.002-t);}}
@@ -3579,7 +3925,7 @@ function make3Dcore(pieces){
     var hA=hg.attributes.normal.array;for(var hq=0;hq<hA.length;hq+=3){if(hA[hq+2]>0){hA[hq]*=-1;hA[hq+1]*=-1;hA[hq+2]*=-1;}}put(new T.Mesh(hg,hm));
     /* its centre seam, and the gathered rim round his neck */
     var cs2=[];for(iv=0;iv<=NV;iv+=2){var vv=iv/NV,yy=yT-vv*(yT-yB);cs2.push([0,yy-0.012*vv,bz(yy,0)-out-0.0035-(0.03-0.016*vv)*sc*sstep(1,0.82,vv)]);}tube(cs2,0.0012,mat(shade(cc(col)[0],0.7),0.9),16);
-    var k0=NK(1.5),k1=NK(1.53);sec([[1.497,k0[1]+e+out+0.014,k0[2]+e+out+0.014,0,k0[4]-0.004],[1.522,k1[1]+e*0.5+out+0.016,k1[2]+e*0.5+out+0.016,0,k1[4]-0.006],[1.54,k1[1]+e*0.5+out+0.012,k1[2]+e*0.5+out+0.012,0,k1[4]-0.008]],hm,{seg:40,gap:1.25,k:1,sq:2});}
+    var k0=NK(1.5),k1=NK(1.53);sec([[1.497,k0[1]+e+out+0.014,k0[2]+e+out+0.014,0,k0[4]-0.004],[1.522,k1[1]+e*0.5+out+0.016,k1[2]+e*0.5+out+0.016,0,k1[4]-0.006],[1.54,k1[1]+e*0.5+out+0.012,k1[2]+e*0.5+out+0.012,0,k1[4]-0.008]],hm,{seg:40,gap:1.25,k:1,sq:2});curKind=ck0;NOOCC=no0;}
   function openEdge(p,e,hem,gap,secsAll,m){var dS2=smoothSecs(secsAll,4),pw2=function(v){return (v<0?-1:1)*Math.pow(Math.abs(v),2/2.3);},fm=m.clone();fm.side=T.DoubleSide;if(fm.color)fm.color.multiplyScalar(0.9);
     [-1,1].forEach(function(sd){var v=[],ix=[],n=0;for(var y=hem+0.005;y<=1.505;y+=0.02){var q=secAt(dS2,Math.min(y,dS2[dS2.length-1][0])),r=1+e/Math.max(0.05,q[1]),x0=sd*q[1]*r*pw2(Math.sin(gap/2)),x1=x0+sd*0.016;
         v.push(x0,y,surfZ(y,x0,0)+0.0022,x1,y,surfZ(y,x1,0)+0.0022);if(n)ix.push((n-1)*2,(n-1)*2+1,n*2,(n-1)*2+1,n*2+1,n*2);n++;}
@@ -3635,19 +3981,21 @@ function make3Dcore(pieces){
       add(new T.BoxGeometry(0.06,0.07,0.003),mat(shade(cc(p.col)[0],0.92),0.9),px2,py2,pzz,1,1,1,0,sd*0.18,0);
       tube([[px2-0.03,py2+0.035,pzz+0.0018],[px2+0.03,py2+0.035,pzz+0.0018]],0.0012,mat(shade(cc(p.col)[0],0.7),0.9),4);});}
   }
-  var lastE=0;
+  var lastE=0,PUFFRE=/puffer|padded|quilted|parka|(^|[^-\w])down\b(?![- ]?collar)/;   /* (filled and padded pieces; a button-down shirt is not one) */
   function isOpen3(q){return openWorn(q,up);}
   function underLong0(k){return up.slice(k+1).some(function(q){return !slvless(q)&&!(/^(tee|polo|sshirt)$/.test(q.shape)&&!/long/.test(nm(q)));});}
   up.forEach(function(p,k){
-    curIt=p.item;curWhat=p.what;
+    curIt=p.item;curWhat=p.what;curKind="up"+k;PIECE=bodyOn?[]:null;var FT=null,FTme=null;
     var m=pm(p),n0=nm(p),L=LAYER[p.shape]||0,e=[0.008,0.017,0.03][L]+0.004*k+(lay(p)%1?0.006:0)+(L===0&&waistE?0.006:0),DS=p.desc||{};
     /* (oversized and boxy pieces hang further off him, unless something is worn closed over them) */
     if(bodyOn&&!up.slice(k+1).some(function(q){return !isOpen3(q);}))e+=DS.fit==="loose"?0.012:(DS.fit==="relaxed"?0.006:0);if(bodyOn&&DS.fit==="slim")e-=0.003;
     if(bodyOn){e=Math.max(e,lastE+0.007);lastE=e;}   /* (each layer always a little further out than the one under it) */
-    if(/puffer|padded|quilted|parka|down/.test(n0))e+=0.014;
+    if(PUFFRE.test(n0))e+=0.014;
     outer=Math.max(outer,e);
-    var open=openWorn(p,up);
+    var open=openWorn(p,up);curOpen=open;
     var hid=up.slice(k+1).some(function(q){return !openWorn(q,up)&&!slvless(q);});
+    /* (a closed gilet or waistcoat hides the front too: pockets, plackets and cords under it are not made) */
+    var hidF=hid||up.slice(k+1).some(function(q){return !openWorn(q,up)&&/^(gilet|waistcoat)$/.test(q.shape);});
     var zipT=/zip|parka|puffer|padded|harrington|bomber|waterproof|shell|track|softshell|fleece|bodywarmer|anorak|windbreaker|sherpa|active jacket|down\b/.test(n0)||(p.shape==="gilet"&&!/tailor|suit|waistcoat/.test(n0));
     var zipped=open&&zipT,zipM=/harrington|denim|leather|suede|duck|canvas|detroit|carhartt|bomber|work/.test(n0)?metal:mat(shade(cc(p.col)[0],0.72),0.55);
     var hem={coat:0.52,gown:0.46,blazer:0.74,jacket:0.8,shirt:0.8,sshirt:0.82,polo:0.84,tee:0.84,vest:0.85,gilet:0.82,waistcoat:0.88,cardigan:0.82,hoodie:0.83,halfzip:0.83,jumper:0.83,rollneck:0.83}[p.shape]||0.84;
@@ -3678,28 +4026,40 @@ function make3Dcore(pieces){
     var wrapOn=bodyOn&&p.shape!=="waistcoat";   /* (a waistcoat keeps the sliced shape, sloped at the shoulder; a gilet covers his shoulders as a jacket does; a vest is cut from it) */
     var secsAll=secs.slice();
     if(wrapOn){secs=secs.filter(function(q){return q[0]<1.2;});var tq=secAt(secsAll,1.225);secs.push([1.225,tq[1]-0.0015,tq[2]-0.0015,0,tq[4]]);}   /* tucked just under the wrap's clean lower edge */
-    var tsm=sec(secs,m,{seg:48,sq:2.3,gap:gap,dip:wrapOn?0:NDIP,hemC:tucked?0:(/^(shirt|sshirt)$/.test(p.shape)?0.035:(p.shape==="polo"?0.012:0)),ao:{kind:"torso"}});
-    if(bodyOn){tsm.updateMatrixWorld(true);wraps.push(tsm);}
     var gil=p.shape==="gilet";
     var short0=/^(tee|polo|sshirt)$/.test(p.shape)&&!/long/.test(n0),kv=kvest(p),vst=p.shape==="vest"||kv,slv0=gil||vst?null:{se:(e*0.55+0.004)*(1+0.55*(Number(CHAR.clothFit)||0)),add:short0?0.007:0};
+    var hemC0=tucked?0:(/^(shirt|sshirt)$/.test(p.shape)?0.035:(p.shape==="polo"?0.012:0));
+    /* sleeves in their own colour where the photo shows them so (raglan, colour-block, two-tone) */
+    var ms=m;if(p.look&&p.look.slv&&!p.fixed){ms=m.clone();ms.map=null;ms.color=new T.Color(gC(p.look.slv));ms.needsUpdate=true;}
+    /* on the real body a top with sleeves is one fitted piece (fitTop); vests, gilets and waistcoats keep the cut shape */
+    var fitOn=FIT3D&&!vst&&!gil&&p.shape!=="waistcoat";
+    if(fitOn){var vD=DS.neck==="v"&&/^(tee|jumper|cardigan|polo)$/.test(p.shape)?0.1:0;
+      var tnt=null;if(ms!==m){var cB=new T.Color(gC(p.look&&p.look.c1?p.look.c1:cc(p.col)[0])).convertSRGBToLinear(),cS=new T.Color(gC(p.look.slv)).convertSRGBToLinear();tnt=[cS.r/Math.max(0.02,cB.r),cS.g/Math.max(0.02,cB.g),cS.b/Math.max(0.02,cB.b)];}
+      var tq0=performance.now();FT=fitTop({e:e,hem:hem,hemC:hemC0,gap:gap,tucked:tucked,tint:tnt,puff:PUFFRE.test(n0)?0.014:0,sleeve:underLong0(k)?null:(short0?"short":"long"),se:(e*0.55+0.004)*(1+0.55*(Number(CHAR.clothFit)||0))+(short0?0.007:0),folds:short0?null:sleeveFolds(L===2?0.7:1),
+        ytop:function(t){var c=Math.cos(t),f=c>0?c*c:0,tf=Math.abs(Math.atan2(Math.sin(t),c));return 1.522-NDIP*f-(vD?vD*Math.max(0,1-tf/0.62):0);}});
+      if(window.__prof)window.__prof.fit=(window.__prof.fit||0)+performance.now()-tq0;
+      var fA=m.clone();fA.vertexColors=true;fA.shadowSide=T.BackSide;
+      FTme=put(new T.Mesh(FT.geo,[fA,fA]));FTme.userData.armMask=FT.geo.userData.armMask;FTme.userData.fit=FT;FTme.updateMatrixWorld(true);wraps.push(FTme);WRAPE=Math.max(WRAPE,FT.geo.userData.evMax);}
+    else{var tsm=sec(secs,m,{seg:48,sq:2.3,gap:gap,dip:wrapOn?0:NDIP,hemC:hemC0,ao:{kind:"torso"}});
+      if(bodyOn){tsm.updateMatrixWorld(true);wraps.push(tsm);}}
+    var EX=FT&&gap>0?function(y,sd){return fitEdgeAt(FT,y,sd)[0];}:null;
     /* a vest's cut from its listing: a sleeveless tee or vest top (crew neck, straps out to the shoulder), a muscle or
        training vest (broad straps, armholes cut deep), a racerback, or a classic tank (narrow straps, low scoop) */
     var vc0=null;if(kv)vc0={xi:0.062,sx:0.128,ya:1.22,yt:1.41,yi:1.49,dip:0.115,vexp:1.15};   /* (a knitted vest: a V neck, broad straps) */
     else if(vst){var vt=/sleeveless t|vest top|sleeveless tee|muscle tee|cut[- ]?off|tank top tee/.test(n0)?"tee":/racer/.test(n0)?"racer":/muscle|training|gym|stringer|drop[- ]?arm/.test(n0)?"muscle":"tank";
       vc0={tee:{xi:0.056,sx:0.172,ya:1.24,yt:1.42,yi:1.5,dip:0.026},muscle:{xi:0.06,sx:0.122,ya:1.19,yt:1.41,yi:1.465,dip:0.085},racer:{xi:0.062,sx:0.1,ya:1.22,yt:1.41,yi:1.465,dip:0.09,racer:true},tank:{xi:0.064,sx:0.1,ya:1.22,yt:1.41,yi:1.46,dip:0.105}}[vt];}
-    if(wrapOn)wrap(e,1.19,vc0?0:NDIP,gap,gil||vst||!underLong0(k),secsAll,m,gil?TO(1.3)[1]+0.006:0,slv0,vc0);
+    if(wrapOn&&!fitOn)wrap(e,1.19,vc0?0:NDIP,gap,gil||vst||!underLong0(k),secsAll,m,gil?TO(1.3)[1]+0.006:0,slv0,vc0);
     /* a bodywarmer's stand collar, zipped to the top (open, it falls apart at the front) */
     if(bodyOn&&gil&&zipT){var gc=m.clone();gc.side=T.DoubleSide;sec([1.497,1.525,1.552].map(function(y,i){var nk=NK(y);return [y,nk[1]+e*0.6+0.008+i*0.004,nk[2]+e*0.6+0.008+i*0.004,0,nk[4]];}),gc,{seg:44,gap:open?1.1:0,sq:2});}
     /* what the shop photo and listing show on the front */
-    if(bodyOn&&!hid)frontDetails(p,e,hem,open,DS,m,k,secsAll);
-    if(bodyOn&&open&&gap>0&&!hid)openEdge(p,e,hem,gap,secsAll,m);
+    if(bodyOn&&!hidF)frontDetails(p,e,hem,open,DS,m,k,secsAll);
+    if(bodyOn&&open&&gap>0&&!hid){if(FT)fitEdge(FT,m);else openEdge(p,e,hem,gap,secsAll,m);}
     /* sleeves */
     var outSleeve=!up.slice(k+1).some(function(q){return !slvless(q);});
     var sleeveless=slvless(p),short=/^(tee|polo|sshirt)$/.test(p.shape)&&!/long/.test(n0);
     /* sleeves under a long-sleeved layer are never seen: leave them out, so they cannot poke through */
     var underLong=up.slice(k+1).some(function(q){return !slvless(q)&&!(/^(tee|polo|sshirt)$/.test(q.shape)&&!/long/.test(nm(q)));});
     /* sleeves in their own colour where the photo shows them so (raglan, colour-block, two-tone) */
-    var ms=m;if(p.look&&p.look.slv&&!p.fixed){ms=m.clone();ms.map=null;ms.color=new T.Color(gC(p.look.slv));ms.needsUpdate=true;}
     if(!sleeveless&&!underLong){[-1,1].forEach(function(s){
       tgt=armG[s];
       var se=(e*0.55+0.004)*(bodyOn?1+0.55*(Number(CHAR.clothFit)||0):1),arm=sideX(B3.arm,s).filter(function(q){return q[0]>=(short?1.24:(bodyOn?SLV+0.02:0.9));});
@@ -3710,7 +4070,7 @@ function make3Dcore(pieces){
       /* the sleeve head: rounded over the top of the arm and into the shoulder seam, not cut flat */
       var aTop=wrapOn?1.36:1.4,aCut=secAt(arm,aTop);arm=arm.filter(function(q){return q[0]<aTop-0.005;});if(wrapOn){var aJ=secAt(arm.concat([aCut]),1.325);arm=arm.filter(function(q){return q[0]<1.32;});arm.push([1.325,aJ[1]-0.002,aJ[2]-0.002,aJ[3],aJ[4]],[aTop,aCut[1]-0.009,aCut[2]-0.009,aCut[3],aCut[4]],[aTop+0.03,aCut[1]*0.78,aCut[2]*0.78,aCut[3]-s*0.01,aCut[4]]);}else arm.push([aTop,aCut[1],aCut[2],aCut[3],aCut[4]]);var a1=arm[arm.length-1];   /* (rounding in under the shoulder, so no lip shows) */   /* under the wrap the sleeve stops below the shoulder: the wrap rounds over it */
       if(!wrapOn)arm.push([1.425,a1[1]*0.95,a1[2]*0.96,a1[3]-s*0.006,a1[4]],[1.448,a1[1]*0.72,a1[2]*0.78,a1[3]-s*0.02,a1[4]],[1.462,a1[1]*0.4,a1[2]*0.46,a1[3]-s*0.038,a1[4]],[1.468,a1[1]*0.12,a1[2]*0.14,a1[3]-s*0.05,a1[4]]);
-      sec(arm,ms,{seg:22,u:0.4,top:true,k:short?4:10,wr:short?null:sleeveFolds(L===2?0.7:1),ao:{kind:"limb",s:s}});
+      if(!FT)sec(arm,ms,{seg:22,u:0.4,top:true,k:short?4:10,wr:short?null:sleeveFolds(L===2?0.7:1),ao:{kind:"limb",s:s}});
       if(!bodyOn)add(new T.SphereGeometry(0.05+se,22,16),m,s*0.18,1.404,0,1,0.64,0.94);   /* shoulder: the body's own shoulder plus ease, so no skin shows at the seam */
       if(!short&&outSleeve&&/^(jumper|hoodie|halfzip|rollneck|cardigan)$/.test(p.shape))band(SLV,0.035,(bodyOn?aSl[1]:0.028)+se+0.003,(bodyOn?aSl[2]:0.033)+se+0.003,rib(p),{x:s*(bodyOn?aSl[3]:0.24),z:bodyOn?aSl[4]:0.032});
       /* stripes round the sleeve where the listing has them ("sleeve-stripe polo") */
@@ -3725,27 +4085,38 @@ function make3Dcore(pieces){
     });}
     /* hems, necklines, collars, plackets, zips and pockets */
     var hs=secs[0];
-    if(/^(jumper|hoodie|halfzip|rollneck|cardigan)$/.test(p.shape))band(hem,0.045,hs[1]+(bodyOn?0.0005:0.003),hs[2]+(bodyOn?0.0005:0.003),rib(p),{gap:gap,z:hs[4],sq:2.3,seg:48});   /* (flush on the real body, so it never shows through a coat over it) */
+    if(/^(jumper|hoodie|halfzip|rollneck|cardigan)$/.test(p.shape)){if(FT)fitBand(FT,hem,hem+0.045,rib(p),0.0012);else band(hem,0.045,hs[1]+(bodyOn?0.0005:0.003),hs[2]+(bodyOn?0.0005:0.003),rib(p),{gap:gap,z:hs[4],sq:2.3,seg:48});}   /* (flush on the real body, so it never shows through a coat over it) */
     if(!hid&&(p.shape==="tee"||(p.shape==="jumper"&&!kv)||(p.shape==="vest"&&(!vc0||vc0.yi>=1.5))||(p.shape==="hoodie"))){   /* (a tank's low scoop has no crew neckband) */
-      if(bodyOn&&wrapOn){var b0=NK(1.51),b1=NK(1.532);   /* the neckband lies on the neckline, flaring to meet the body of the top */
+      if(FT)fitCollar(FT,{h:0.017,lean:0.55,mat:p.shape==="tee"||p.shape==="vest"?m:rib(p),rows:3});
+      else if(bodyOn&&wrapOn){var b0=NK(1.51),b1=NK(1.532);   /* the neckband lies on the neckline, flaring to meet the body of the top */
         sec([[1.508,b0[1]+e+0.006,b0[2]+e+0.006,0,b0[4]],[1.532,b1[1]+0.014+e*0.5,b1[2]+0.014+e*0.5,0,b1[4]]],p.shape==="tee"||p.shape==="vest"?m:rib(p),{seg:56,k:1,sq:2,dipAll:NDIP});}
       else band(bodyOn?1.521:1.478,0.016,(bodyOn?NK(1.545)[1]+0.02:0.084)+e*0.7,(bodyOn?NK(1.545)[2]+0.02:0.071)+e*0.7,p.shape==="tee"||p.shape==="vest"?m:rib(p),{z:bodyOn?NK(1.545)[4]:-0.008,dipAll:bodyOn?0.024:0,seg:56});}
-    if(p.shape==="rollneck"){sec([[1.47,0.076,0.074,0,-0.012],[1.51,0.07,0.068,0,-0.01],[1.545,0.069,0.067,0,-0.008],[1.558,0.072,0.07,0,-0.008]].map(function(q,i){if(!bodyOn)return q;var nk=NK(q[0]);return [q[0],nk[1]+(i===3?0.016:0.012),nk[2]+(i===3?0.016:0.012),0,nk[4]];}),rib(p),{seg:30});}
+    if(p.shape==="rollneck"&&FT){fitCollar(FT,{h:0.058,lean:0.8,flare:0.006,mat:rib(p),rows:6});}
+    else if(p.shape==="rollneck"){sec([[1.47,0.076,0.074,0,-0.012],[1.51,0.07,0.068,0,-0.01],[1.545,0.069,0.067,0,-0.008],[1.558,0.072,0.07,0,-0.008]].map(function(q,i){if(!bodyOn)return q;var nk=NK(q[0]);return [q[0],nk[1]+(i===3?0.016:0.012),nk[2]+(i===3?0.016:0.012),0,nk[4]];}),rib(p),{seg:30});}
     /* the hood lies on his upper back, outside any open coat or jacket worn over the hoodie */
-    var eTop=Math.max.apply(null,up.map(function(q,i){return [0.008,0.017,0.03][LAYER[q.shape]||0]+0.004*i+(/puffer|padded|quilted|parka|down/.test(nm(q))?0.014:0);})),hOut=Math.max(0,eTop-e);
+    var eTop=Math.max.apply(null,up.map(function(q,i){return [0.008,0.017,0.03][LAYER[q.shape]||0]+0.004*i+(PUFFRE.test(nm(q))?0.014:0);})),hOut=Math.max(0,eTop-e);
     var hoodOut=up.slice(k+1).some(function(q){return /^(coat|jacket)$/.test(q.shape)&&HOODRE.test(nm(q));});
     if(p.shape==="hoodie"&&(!hid||!hoodOut)){if(bodyOn){hoodDown(m,e,hOut,false,p.col);   /* (on his upper back; under a jacket it lies out over the jacket and its collar) */}else add(new T.SphereGeometry(0.115,26,16,0,Math.PI*2,0,Math.PI*0.55),m,0,1.49,-0.085,1.05,0.62,0.85,-0.35,0,0);}
-    if(p.shape==="hoodie"&&!hid&&!p._proj){
+    if(p.shape==="hoodie"&&!hidF&&!p._proj){
       [-1,1].forEach(function(s){tube([[s*0.03,1.49,frontZ(1.45,e)+0.012],[s*0.034,1.42,frontZ(1.4,e)+0.01],[s*0.036,1.36,frontZ(1.36,e)+0.008]],0.0028,white,8);});
-      add(new T.BoxGeometry(0.2,0.1,0.008),m,0,1.03,frontZ(1.03,e)+0.006+(waistE?0.02:0));}
+      /* the kangaroo pocket, laid on the cloth (narrower at the top), with its two slanted openings */
+      if(bodyOn){var pk3=[],pi3=[],NXp=10,NYp=5,pmk=m.clone();pmk.side=T.DoubleSide;
+        for(var iy=0;iy<=NYp;iy++){var yy3=Math.max(hem+0.03,0.975)+0.1*iy/NYp,hw3=0.105-0.028*iy/NYp;for(var ix=0;ix<=NXp;ix++){var xx3=(ix/NXp*2-1)*hw3;pk3.push(xx3,yy3,surfZ(yy3,xx3,0)+0.0028);}}
+        for(iy=0;iy<NYp;iy++)for(ix=0;ix<NXp;ix++){var a7=iy*(NXp+1)+ix;pi3.push(a7,a7+1,a7+NXp+1,a7+1,a7+NXp+2,a7+NXp+1);}
+        var pg3=new T.BufferGeometry();pg3.setAttribute("position",new T.Float32BufferAttribute(pk3,3));pg3.setIndex(pi3);pg3.computeVertexNormals();var pn3=pg3.attributes.normal.array;for(var q7=0;q7<pn3.length;q7+=3){if(pn3[q7+2]<0){pn3[q7]*=-1;pn3[q7+1]*=-1;pn3[q7+2]*=-1;}}
+        var pme=put(new T.Mesh(pg3,pmk));pme.castShadow=false;var y0p=Math.max(hem+0.03,0.975),seamK=mat(shade(cc(p.col)[0],0.62),0.9);
+        [-1,1].forEach(function(sd){tube([[sd*0.077,y0p+0.1,surfZ(y0p+0.1,sd*0.077,0)+0.0034],[sd*0.092,y0p+0.05,surfZ(y0p+0.05,sd*0.092,0)+0.0034],[sd*0.105,y0p+0.004,surfZ(y0p+0.004,sd*0.105,0)+0.0034]],0.0014,seamK,8);});}
+      else add(new T.BoxGeometry(0.2,0.1,0.008),m,0,1.03,frontZ(1.03,e)+0.006+(waistE?0.02:0));}
     /* a shirt under another shirt or polo worn closed shows no collar of its own (it would only poke through) */
     var colCov=bodyOn&&up.slice(k+1).some(function(q){return /^(shirt|sshirt|polo)$/.test(q.shape)&&!isOpen3(q);});
     /* zip-up jackets, fleeces and bombers have a stand collar round the neck (open, it parts at the front) */
     if(bodyOn&&p.shape==="jacket"&&zipT&&!/denim|trucker|harrington|chore|worker|utility|field|shacket|overshirt|coach|cord/.test(n0)){var jc=m.clone();jc.side=T.DoubleSide;
-      sec((open?[1.497,1.518,1.536]:[1.497,1.525,1.55]).map(function(y,i){var nk=NK(y);return [y,nk[1]+e*0.6+0.009+i*0.004,nk[2]+e*0.6+0.009+i*0.004,0,nk[4]];}),jc,{seg:44,gap:open?Math.max(1.3,gap+0.6):0,sq:2,dipAll:open?0.02:0});}   /* (open, it is lower and its ends turn down) */
+      if(FT)fitCollar(FT,{h:open?0.034:0.052,lean:0.5,flare:open?0.008:0.002,mat:m,rows:4});else sec((open?[1.497,1.518,1.536]:[1.497,1.525,1.55]).map(function(y,i){var nk=NK(y);return [y,nk[1]+e*0.6+0.009+i*0.004,nk[2]+e*0.6+0.009+i*0.004,0,nk[4]];}),jc,{seg:44,gap:open?Math.max(1.3,gap+0.6):0,sq:2,dipAll:open?0.02:0});}   /* (open, it is lower and its ends turn down) */
     else if(!colCov&&(/^(shirt|sshirt|polo)$/.test(p.shape)||(p.shape==="jacket"&&!/puffer|padded|parka|waterproof|shell|bomber|track|fleece|softshell|sherpa/.test(n0)))){
       var CT=(p.desc||{}).collar||"",opn=bodyOn&&open;
       if(bodyOn&&CT==="camp"){}   /* (a camp collar has no stand: it lies flat, below) */
+      else if(FT){var lf0=!opn&&CT!=="band"&&!pieces.some(function(q){return q.shape==="scarf"||q.shape==="snood";});   /* (done up, the leaf folds back down over the stand, longer at the front where its points lie) */
+        fitCollar(FT,{h:CT==="band"?0.022:(opn?0.026:0.034),lean:0.7,gap:opn?0:(CT==="band"?0.25:(p.shape==="polo"?0.5:0.4)),mat:m,rows:4,fold:lf0&&!hid?{drop:(CT==="band"?0.022:(opn?0.026:0.034))+0.006,front:CT==="spread"?0.016:0.026,out:0.004}:null,lean:p.shape==="jacket"?0.35:0.7});}
       else if(bodyOn){var c0=NK(1.512),c1=NK(1.53),c2=NK(1.552),cT=CT==="band"?1.542:(opn?1.545:1.553);   /* the collar stands round his neck, its foot flared over the shirt's neckline (a band collar lower; worn open, it stops at the opening and sits lower) */
         sec([[1.51,c0[1]+e+0.007,c0[2]+e+0.007,0,c0[4]],[1.53,c1[1]+0.012+e*0.4,c1[2]+0.012+e*0.4,0,c1[4]],[cT,c2[1]+0.008+e*0.4,c2[2]+0.008+e*0.4,0,c2[4]]],m,{seg:44,gap:opn?Math.max(1.6,gap+0.9):(CT==="band"?0.25:0.7),k:1,sq:2,dipAll:0.012});}
       else band(1.478,0.03,0.076+e*0.4,0.072+e*0.4,m,{gap:0.7,z:-0.012,taper:0.009});
@@ -3753,10 +4124,10 @@ function make3Dcore(pieces){
       if(!pieces.some(function(q){return q.shape==="scarf"||q.shape==="snood";})){   /* under a scarf the collar points are tucked away */
         if(bodyOn&&!hid){var cm=m.clone();cm.side=T.DoubleSide;   /* collar points lying on the chest: from the band, down to a point */
           /* worn open, the points lie back along each side of the opening, as an open shirt's collar does */
-          var oEdge=function(y,sd){var q=secAt(smoothSecs(secsAll,4),Math.min(y,secsAll[secsAll.length-1][0])),pw2=function(v){return (v<0?-1:1)*Math.pow(Math.abs(v),2/2.3);};return sd*(q[1]*pw2(Math.sin(gap/2)));};
+          var oEdge=function(y,sd){var q=secAt(smoothSecs(secsAll,4),Math.min(y,secsAll[secsAll.length-1][0])),pw2=function(v){return (v<0?-1:1)*Math.pow(Math.abs(v),2/2.3);};return EX?EX(y,sd):sd*(q[1]*pw2(Math.sin(gap/2)));};
           /* done up, the collar's leaf folds down from the top of the stand all the way round his neck, flaring out a
              little, and comes down to its two points at the front, lying on his chest there */
-          var leaf=!opn&&CT!=="camp"&&CT!=="band";
+          var leaf=!opn&&CT!=="camp"&&CT!=="band"&&!FT;
           if(leaf){var off=0.012+e*0.4,lg0=CT==="spread"?0.7:(p.shape==="polo"?0.5:0.4),rows=[[1.512,0.011,0.05],[1.533,0.006,0.02],[1.554,0.002,0.006]],NA=56,lv2=[],li3=[],tips=[];
             rows.forEach(function(rw,ri){var nk=NK(Math.min(1.553,rw[0]));for(var ai=0;ai<=NA;ai++){var t=lg0/2+(Math.PI*2-lg0)*ai/NA,cf=Math.cos(t)>0?Math.pow(Math.cos(t),2):0,
                 xx=(nk[1]+off+rw[1])*Math.sin(t),yy=rw[0]-rw[2]*cf,zz=nk[4]+(nk[2]+off+rw[1])*Math.cos(t);if(cf>0.2)zz=Math.max(zz,surfZ(yy,xx,0)+0.003+ri*0.002);
@@ -3764,7 +4135,7 @@ function make3Dcore(pieces){
             for(var ri2=0;ri2<rows.length-1;ri2++)for(var ai2=0;ai2<NA;ai2++){var q0=ri2*(NA+1)+ai2,q1=q0+1,q2=q0+NA+1,q3=q2+1;li3.push(q0,q2,q1,q1,q2,q3);}
             var lgm=new T.BufferGeometry();lgm.setAttribute("position",new T.Float32BufferAttribute(lv2,3));lgm.setIndex(li3);lgm.computeVertexNormals();put(new T.Mesh(lgm,cm));
             if(CT==="bd")tips.forEach(function(tp){add(new T.SphereGeometry(0.0028,8,6),mat("#f2efe8",0.4),tp[0]*0.92,tp[1]+0.006,tp[2]+0.002);});}
-          if(CT!=="band"&&!leaf)[-1,1].forEach(function(s){var pts=(opn?[[oEdge(1.49,s)-s*0.004,1.505],[oEdge(1.46,s)+s*0.065,1.482],[oEdge(1.4,s)+s*0.008,1.405]]:CT==="camp"?[[s*0.014,1.518],[s*0.085,1.503],[s*0.036,1.43]]:[[s*0.012,1.522],[s*0.062,1.512],[s*0.04,1.452]]).map(function(q){return [q[0],q[1],surfZ(q[1],q[0],0)+0.004+(q[1]>1.5?0.003:0)];}),cv=[],ci=[],NC=7,cix={};
+          if(CT!=="band"&&!leaf&&!(FT&&!opn&&CT!=="camp"))[-1,1].forEach(function(s){var pts=(opn?[[oEdge(1.49,s)-s*0.004,1.505],[oEdge(1.46,s)+s*0.065,1.482],[oEdge(1.4,s)+s*0.008,1.405]]:CT==="camp"?[[s*0.014,1.518],[s*0.085,1.503],[s*0.036,1.43]]:[[s*0.012,1.522],[s*0.062,1.512],[s*0.04,1.452]]).map(function(q){return [q[0],q[1],surfZ(q[1],q[0],0)+0.004+(q[1]>1.5?0.003:0)];}),cv=[],ci=[],NC=7,cix={};
             /* (laid on the cloth point by point, so it follows the curve of his chest and shoulder rather than standing
                off it as a flat plate; its outer edges turn down onto the cloth) */
             {
@@ -3776,17 +4147,17 @@ function make3Dcore(pieces){
             var cnA=cg.attributes.normal.array;for(var cq=0;cq<cnA.length;cq+=3){if(cnA[cq+2]<0){cnA[cq]*=-1;cnA[cq+1]*=-1;cnA[cq+2]*=-1;}}put(new T.Mesh(cg,cm));}
             if(CT==="bd"){var tp=pts[2];add(new T.SphereGeometry(0.0028,8,6),mat("#f2efe8",0.4),tp[0]-s*0.003,tp[1]+0.006,tp[2]+0.003);}});}   /* button-down points */
         else if(!bodyOn)[-1,1].forEach(function(s){add(new T.BoxGeometry(0.052,0.046,0.004),m,s*0.03,cpY,cpZ,1,1,1,-0.5,s*0.35,s*0.62);});}}
-    if((p.shape==="shirt"||p.shape==="sshirt"||p.shape==="polo")&&!open&&!hid&&!p._proj){var top=1.47,bot=p.shape==="polo"?1.35:hem+0.03;
+    if((p.shape==="shirt"||p.shape==="sshirt"||p.shape==="polo")&&!open&&!hidF&&!p._proj){var top=1.47,bot=p.shape==="polo"?1.35:hem+0.03;
       var pts=[];for(var py=top;py>=bot;py-=0.04){pts.push([0,py,frontZ(py,e)+0.003]);}if(pts.length>1)tube(pts,0.0035,m,24);
       for(var bi=0;bi<(p.shape==="polo"?2:6);bi++){var by=1.44-bi*(p.shape==="polo"?0.05:0.09);if(by<bot)break;add(new T.SphereGeometry(0.0045,8,6),white,0,by,frontZ(by,e)+0.007);}}
     /* a blazer's or coat's collar stands round the back of his neck, over the shirt collar, open at the front */
     if(bodyOn&&!hid&&(p.shape==="blazer"||(p.shape==="coat"&&!/parka|puffer|padded|waterproof/.test(n0)))){var k0=NK(1.505),k1=NK(1.532),k2=NK(1.55);
-      var cm2=m.clone();cm2.side=T.DoubleSide;sec([[1.5,k0[1]+eTop*0.6+0.016,k0[2]+eTop*0.6+0.016,0,k0[4]],[1.532,k1[1]+0.024+e*0.4,k1[2]+0.024+e*0.4,0,k1[4]],[1.552,k2[1]+0.028+e*0.35,k2[2]+0.028+e*0.35,0,k2[4]]],cm2,{seg:44,gap:1.7,k:1,sq:2});}
+      var cm2=m.clone();cm2.side=T.DoubleSide;if(FT)fitCollar(FT,{h:0.046,lean:0.35,flare:0.01,gap:1.7,mat:m,rows:4});else sec([[1.5,k0[1]+eTop*0.6+0.016,k0[2]+eTop*0.6+0.016,0,k0[4]],[1.532,k1[1]+0.024+e*0.4,k1[2]+0.024+e*0.4,0,k1[4]],[1.552,k2[1]+0.028+e*0.35,k2[2]+0.028+e*0.35,0,k2[4]]],cm2,{seg:44,gap:1.7,k:1,sq:2});}
     if(p.shape==="blazer"||(p.shape==="coat"&&!/parka|puffer|padded|waterproof/.test(n0))){
       [-1,1].forEach(function(s){
         if(bodyOn){var lm2=m.clone(),lv=[],li2=[];lm2.side=T.DoubleSide;if(lm2.color)lm2.color.multiplyScalar(0.8);var NR=8,yb=1.3,yt=1.5,pwq=function(v){return (v<0?-1:1)*Math.pow(Math.abs(v),2/2.3);};
           /* a lapel: from the top button it widens up the chest to the notch under the collar, lying on the jacket */
-          for(var r=0;r<=NR;r++){var y=yb+(yt-yb)*r/NR,q=secAt(secsAll,Math.min(y,secsAll[secsAll.length-1][0])),xin=s*q[1]*pwq(Math.sin(gap/2)),w=0.064*Math.min(1,r/NR*1.25)*(r===NR?0.6:1);
+          for(var r=0;r<=NR;r++){var y=yb+(yt-yb)*r/NR,q=secAt(secsAll,Math.min(y,secsAll[secsAll.length-1][0])),xin=EX?EX(y,s):s*q[1]*pwq(Math.sin(gap/2)),w=0.064*Math.min(1,r/NR*1.25)*(r===NR?0.6:1);
             [0,0.5,1].forEach(function(f){var xx=xin+s*w*f;lv.push(xx,y-(f*0.012*(r/NR)),Math.max(surfZ(y,xx,e),q[4]+0.02)+0.0035+(f===1?0.005:(f?0.004:0))*Math.min(1,r/3));});}   /* (rolled: the outer edge stands proud) */
           for(r=0;r<NR;r++)for(var c=0;c<2;c++){var a0=r*3+c;li2.push(a0,a0+3,a0+1,a0+1,a0+3,a0+4);}
           var lg=new T.BufferGeometry();lg.setAttribute("position",new T.Float32BufferAttribute(lv,3));lg.setIndex(li2);lg.computeVertexNormals();put(new T.Mesh(lg,lm2));
@@ -3794,18 +4165,20 @@ function make3Dcore(pieces){
         else{var a=Math.PI-gap/2,ex=s*Math.sin(a)*(0.17+e),ez=frontZ(1.32,e);
         add(new T.BoxGeometry(0.042,0.2,0.004),m,ex*0.9,1.37,ez+0.004,1,1,1,0.12,s*0.45,s*-0.3);}});
       if(p.shape==="blazer")[-1,1].forEach(function(s){add(new T.BoxGeometry(0.075,0.006,0.012),m,s*0.105,0.97,frontZ(0.97,e)+0.004);});}
-    if(zipped){[-1,1].forEach(function(s){var a=gap/2,ex=s*Math.sin(a)*(0.165+e);var pts=[];for(var zy=1.47;zy>=hem+0.01;zy-=0.04){pts.push([ex,zy,frontZ(zy,e)*Math.cos(a)+0.002]);}if(pts.length>1)tube(pts,0.0035,zipM,24);});}
+    if(zipped){[-1,1].forEach(function(s){var a=gap/2,ex=s*Math.sin(a)*(0.165+e);var pts=[];for(var zy=1.47;zy>=hem+0.01;zy-=0.04){if(FT){var ez2=fitEdgeAt(FT,zy,s);pts.push([ez2[0]-s*0.003,zy,ez2[1]+0.003]);continue;}pts.push([ex,zy,frontZ(zy,e)*Math.cos(a)+0.002]);}if(pts.length>1)tube(pts,0.0035,zipM,24);});}
     /* done up: a zip down the middle, or a row of buttons (cardigans, chore and denim jackets, overcoats; a blazer's
        one or two at the waist) */
     if(!open&&zipable(p)&&p.shape!=="shirt"){var gcz=bodyOn&&p.shape==="gilet",cz=function(y){if(gcz&&y>1.497){var nk=NK(y);return nk[4]+nk[2]+e*0.6+0.011+(y-1.497)*0.15;}return (bodyOn?surfZ(y,0,0):frontZ(y,e))+0.003;};
       if(zipT){var zp=[];for(var zy2=gcz?1.548:1.47;zy2>=hem+0.01;zy2-=0.03){zp.push([0,zy2,cz(zy2)]);}tube(zp,0.0035,zipM,24);if(zipM!==metal)add(new T.BoxGeometry(0.008,0.022,0.004),metal,0,1.455,cz(1.455)+0.002);}
       else{var bt=p.shape==="blazer"?[1.05,0.97]:p.shape==="coat"?[1.3,1.16,1.02,0.88]:p.shape==="cardigan"?[1.4,1.3,1.2,1.1,1.0,0.9]:[1.43,1.33,1.23,1.13,1.03,0.93],bm=mat(shade(cc(p.col)[0],cc(p.col)[1]?0.6:1.5),0.5);
         bt.forEach(function(by){if(by>hem+0.02)add(new T.CylinderGeometry(0.0075,0.0075,0.004,14),bm,0,by,cz(by)+0.001,1,1,1,Math.PI/2,0,0);});}}
-    if(p.shape==="halfzip"){tube([[0,1.485,frontZ(1.47,e)+0.004],[0,1.42,frontZ(1.42,e)+0.004],[0,1.34,frontZ(1.34,e)+0.004]],0.0035,metal,8);band(1.476,0.05,0.08+e*0.6,0.074+e*0.6,rib(p),{gap:0.35,z:-0.01});}
+    if(p.shape==="halfzip"){tube([[0,1.485,frontZ(1.47,e)+0.004],[0,1.42,frontZ(1.42,e)+0.004],[0,1.34,frontZ(1.34,e)+0.004]],0.0035,metal,8);if(FT)fitCollar(FT,{h:0.048,lean:0.62,gap:0.3,mat:rib(p),rows:5});else if(bodyOn){var hzc=rib(p).clone();hzc.side=T.DoubleSide;sec([1.497,1.522,1.548].map(function(y,i){var nk=NK(y);return [y,nk[1]+e*0.45+0.009+i*0.003,nk[2]+e*0.45+0.009+i*0.003,0,nk[4]];}),hzc,{seg:44,gap:0.32,k:1,sq:2});}   /* (its funnel collar round his neck, parted at the zip) */
+      else band(1.476,0.05,0.08+e*0.6,0.074+e*0.6,rib(p),{gap:0.35,z:-0.01});}
     if(HOODRE.test(n0)&&(p.shape==="coat"||p.shape==="jacket")){if(bodyOn){hoodDown(m,e,0,true,p.col);}
       else add(new T.SphereGeometry(0.12,26,16,0,Math.PI*2,0,Math.PI*0.55),m,0,1.5,-0.09,1.08,0.6,0.85,-0.4,0,0);}
-    if(!hid&&/pocket|cargo|chore|field|work|safari|utility/.test(n0)&&(p.shape==="jacket"||p.shape==="coat"||p.shape==="shirt"||p.shape==="gilet")){
-      [-1,1].forEach(function(s){var py=p.shape==="shirt"?1.33:Math.max(hem+0.09,0.92),px=s*(open?0.115:0.085),ew=e+(py<1.06&&waistE?0.022:0);add(new T.BoxGeometry(0.062,0.068,0.008),m,px,py,surfZ(py,px,ew)+0.002,1,1,1,0,s*Math.min(0.6,Math.abs(px)*3.2),0);});}
+    if(!hidF&&/pocket|cargo|chore|field|work|safari|utility/.test(n0)&&(p.shape==="jacket"||p.shape==="coat"||p.shape==="shirt"||p.shape==="gilet")){
+      [-1,1].forEach(function(s){var py=p.shape==="shirt"?1.33:Math.max(hem+0.09,0.92),px=EX?EX(py,s)+s*0.068:s*(open?0.115:0.085),ew=e+(py<1.06&&waistE?0.022:0);add(new T.BoxGeometry(0.062,0.068,0.008),m,px,py,surfZ(py,px,ew)+0.002,1,1,1,0,s*Math.min(0.6,Math.abs(px)*3.2),0);});}
+    if(PIECE){occFinish(PIECE,FTme,!tucked,false);PIECE=null;}
   });
   /* shoes or boots: a shoe shape on its sole, toes turned out a little */
   var fcol=ft?cc(ft.col)[0]:skinC,fn=ft?nm(ft):"",trainer=ft&&ft.shape==="trainers",boot=ft&&ft.shape==="boots",slip=ft&&ft.shape==="slippers";
@@ -3816,7 +4189,7 @@ function make3Dcore(pieces){
   function hAt(z){for(var i=0;i<shoeS.length-1;i++){if(z>=shoeS[i][0]&&z<=shoeS[i+1][0]){var f=(z-shoeS[i][0])/(shoeS[i+1][0]-shoeS[i][0]);return shoeS[i][2]*(1-f)+shoeS[i+1][2]*f;}}return 0.02;}
   function shoeGeo(rows,lift,grow){var g=secGeo(rows.map(function(q){var h=q[2]+(grow||0);return [q[0],q[1]+(grow||0),h,0,-h];}),{seg:28,sq:2.6,top:true,bottom:true,k:3});
     g.rotateX(Math.PI/2);g.translate(0,lift||0,0);return g;}
-  curIt=ft?ft.item:null;curWhat=ft?ft.what:"";
+  curIt=ft?ft.item:null;curWhat=ft?ft.what:"";curKind="ft";curOpen=false;
   /* shoes on his feet: an upper on a sole. Trainers have a chunky two-tone sole, a toe bumper, a heel tab, a padded
      collar and a side stripe; shoes a slim sole with a heel block and a welt; boots a lugged sole and a shaft round
      the ankle; slippers stay soft. With shorts he wears crew socks, white or black, a little way up the calf. */
@@ -3854,7 +4227,7 @@ function make3Dcore(pieces){
       else sec([[0.07,0.034,0.04,x,0.0],[0.2,0.036,0.042,x,0.0]],sk,{seg:20});}
   });
   /* accessories */
-  acc.forEach(function(p){var m=mat(cc(p.col)[0],0.8);curIt=p.item;curWhat=p.what;tgt=/^(beanie|bcap|cap|bucket|sunglasses)$/.test(p.shape)?headG:(p.shape==="watch"?armG[-1]:man);
+  acc.forEach(function(p){var m=mat(cc(p.col)[0],0.8);curIt=p.item;curWhat=p.what;curKind="acc";tgt=/^(beanie|bcap|cap|bucket|sunglasses)$/.test(p.shape)?headG:(p.shape==="watch"?armG[-1]:man);
     if(p.shape==="beanie"){add(new T.SphereGeometry(1,30,18,0,Math.PI*2,0,Math.PI/2),cloth(cc(p.col)[0],"rib","",0.95),0,1.79,0.002,0.1,0.085,0.121);band(1.762,0.042,0.101,0.122,cloth(cc(p.col)[0],"rib","",0.95),{z:0.002});}
     else if(p.shape==="bcap"||p.shape==="cap"){add(new T.SphereGeometry(1,30,18,0,Math.PI*2,0,Math.PI/2),m,0,1.775,0.004,0.097,p.shape==="cap"?0.058:0.08,0.117);
       add(new T.CylinderGeometry(0.08,0.08,0.006,28,1,false,-Math.PI/2,Math.PI),m,0,1.778,0.098,1,1,0.9,0.12,0,0);}
@@ -3889,7 +4262,7 @@ function make3Dcore(pieces){
     else if(p.shape==="belt"){if(!waistHid){var tb=bodyOn?TO(0.99):null;band(0.99,0.035,(bodyOn?tb[1]+0.014:0.172)+(lo?0.006:0),(bodyOn?tb[2]+0.014:0.117)+(lo?0.006:0),mat(cc(p.col)[0],0.5),{z:bodyOn?tb[4]:-0.004,sq:bodyOn?2.3:2,seg:44});}if(!waistHid)add(new T.BoxGeometry(0.045,0.036,0.006),metal,0,1.007,frontZ(1.0,0.02)+0.006);}
     else if(p.shape==="kneepads"){[-1,1].forEach(function(s){add(new T.BoxGeometry(0.1,0.13,0.03),m,s*0.096,0.5,0.07,1,1,1,0,0,0);});}
   });
-  tgt=man;curIt=null;
+  tgt=man;curIt=null;curKind="body";
   if(!bodyOn)headG.scale.x=1+0.07*(Number(CHAR.faceW)||0);
   /* height and build from "Edit Dave": the whole figure scales, clothes with it */
   var kH=(Number(CHAR.height)||183)/183,bw=1+0.08*(Number(CHAR.weight)||0)+0.06*(Number(CHAR.muscle)||0);
