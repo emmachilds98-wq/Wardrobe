@@ -598,6 +598,25 @@ its whole range.
   Maxx, Mr Porter, Dr Martens and others) and are links only. Picks from shops that do not publish
   stock by size show his usual size instead of "in stock".
 
+## 2v. Original face, curlier hair, a 3D model and 131 more photos (version 29, 6 Oct 2026)
+
+- **Face:** back to the version 27 face (the moustache, dot eyes, thin brows), with the moustache in the
+  ginger-brown of his photos.
+- **Hair:** from his photos: dark, tightly curled ringlets with height on top, a few loose curls over
+  the forehead, and the sides falling to about the bottom of the ears. Each curl is a ringlet with an
+  open spiral stroke.
+- **3D model:** a third view in the large outfit view. Three.js (r128 from cdnjs) loads only when it is
+  opened. Dave is built at 1.83 m with the drawing's proportions, his curls and moustache, and each
+  piece as cloth over the body in its photo colour and pattern (check, stripe, denim, knit, cord,
+  quilt): tops, knits and jackets layered and open where worn open, trousers or shorts, shoes or
+  boots, and hats, sunglasses, watch, bag, scarf and chain. Drag to turn him; he turns slowly until
+  touched (not with reduced motion). The view stops when closed.
+- **Photos:** the headless-browser fallback (`fetch_photos.py --browser`, now with relative photo URLs
+  resolved) found 131 of the 174 picks still without one. 7,081 of 7,155 picks now have a photo.
+- **Shops behind bot protection:** `tools/browser_sweep.js` (sitemaps and product pages through headless
+  Chromium) is written, but Fred Perry and John Lewis still refused it from this cloud server. The
+  shops in the "links only" list stay links for now.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

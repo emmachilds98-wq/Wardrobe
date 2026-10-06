@@ -7,7 +7,7 @@ both alike. Each product carries its real "url".
 
     python3 tools/sitemap_sweep.py host1,host2,... [--out cat] [--max 300]
 """
-import argparse, concurrent.futures as cf, gzip, json, os, re, sys, urllib.parse, urllib.request
+import argparse, concurrent.futures as cf, glob, gzip, json, os, re, sys, urllib.parse, urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ld_reader  # noqa: E402
@@ -158,7 +158,17 @@ def main():
     ap.add_argument("hosts")
     ap.add_argument("--out", default="cat")
     ap.add_argument("--max", type=int, default=300)
+    ap.add_argument("--from-ld", action="store_true",
+                    help="hosts is a folder of <host>.ld.json files from browser_sweep.js: convert them")
     a = ap.parse_args()
+    if a.from_ld:
+        for path in sorted(glob.glob(os.path.join(a.hosts, "*.ld.json"))):
+            host = os.path.basename(path)[:-8]
+            prods = [p for p in (as_shopify(r) for r in json.load(open(path))) if p]
+            with open(os.path.join(a.out, host + ".json"), "w") as f:
+                json.dump(prods, f)
+            print(host, len(prods), "products")
+        return
     hosts = open(a.hosts[1:]).read().split() if a.hosts.startswith("@") else a.hosts.split(",")
     os.makedirs(a.out, exist_ok=True)
     with cf.ThreadPoolExecutor(6) as ex:

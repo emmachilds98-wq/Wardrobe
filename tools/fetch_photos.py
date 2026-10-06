@@ -121,6 +121,7 @@ def one(item_id, item):
         return item_id, None, "skipped: not a single listing"
     try:
         src = item.get("img_src") or photo_url(item["url"])
+        src = urllib.parse.urljoin(item["url"], src)
         if item.get("img_src") and ("cdn.shopify.com" in src or "/cdn/shop/" in src):
             src += ("&" if "?" in src else "?") + "width=%d" % (SIZE[0] * 2)
         if not src:
