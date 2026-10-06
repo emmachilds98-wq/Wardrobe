@@ -1336,3 +1336,141 @@ New Balance direct, Timberland direct, Berghaus direct, Urban Outfitters, Pull&B
 TK Maxx, BrandAlley, Very and F&F. The search index had only old or US prices for Gap and Levi's
 this round. Check them again when they can be reached directly. Next round: aim for 3 to 5 picks each, and favour sale stock and
 pieces that slot into existing outfits.
+
+## 4. Product review and large-scale plan (6 Oct 2026)
+
+The full review, with the render-against-photo comparison, the roadmap drawing and a tracker, is
+in Emma's doc "Dave's Wardrobe: product review and upgrade plan":
+<https://claude.ai/artifact/Ltsoegoei9Yj6XSf6NhgQV>. This section is the working copy for the
+sessions that carry it out. Line numbers are `page.html` at commit 9e3f504.
+
+### Status after the 6 October 3D update (pull request 7)
+
+That update landed during the review: a real CC0 human body with the Edit Dave editor, listings read for
+collar, neckline, zips, pockets, fit and material (`descOf`), photos read for stripes, checks and chest prints
+(`readLook`), the shop photo's front laid over flat-lay tops, trouser cuts from the listing, zip up or
+unzip, flat hoods, and listing colours winning over bad photo reads. Re-rendering the same 12 outfits on
+it (main at 517a37e):
+- **Now right:** brown trainers, a closed hip-length Harrington, the tie, no skin gap under hoodies, and a
+  natural body.
+- **Still wrong:**
+  - Denim jacket sky blue; stone trousers near white; tan trainers pale yellow.
+  - Every boot still a low shoe.
+  - Gilets still forced to quilt (`texOf`, `sh==="gilet"` gives "diamond").
+  - "button-down" still matches `down` in `texOf`, the loft rule, the material rule and the care text.
+  - Oxford weave read as stripes.
+  - Belts hidden under untucked tops; no rib bands or cord collars on blousons; sunglasses one shape;
+    one wrong photo (the Timberland boots).
+
+So phases 1, 2, 4 and 5 below are partly done. The work that remains is the core: specs stored once
+per item rather than read on every visit, draped templates per archetype, shoe lasts and boots, a fabric
+library, ease-driven layering, and the weekly check. The line numbers in the rest of this section are
+for commit 9e3f504, before that update.
+
+### What the review found
+- **3D clothes:** 12 fully photographed outfits were rendered beside their shop photos. Every one
+  had at least one piece a shopper would not recognise. The repeating faults:
+  - wrong colours (a sky-blue denim jacket, near-white stone chinos, white brown trainers);
+  - one jacket cut and length for every jacket;
+  - missing hoods;
+  - boots drawn as low shoes;
+  - patterns guessed from words;
+  - a skin gap under hoodies;
+  - a tiny floating tie;
+  - one sunglasses shape.
+- **Why:** every top is one torso tube (`make3D` 2385–2608). The only differences are hem height,
+  sleeves and a few add-ons. Ease is fixed per layer (2516). Trousers vary only below the knee (2500).
+  Inputs are just shape, palette colour, two photo-sampled colours (`TRUE`, `sampleCol` 1850–1883)
+  and about 20 name regexes. Pattern UVs are stretched about 3.4:1 (2347).
+- **Data:** 7,474 picks, 200 shops, 574 outfits; 95% of prices checked on 6 Oct.
+  - Colour: no colour field.
+  - Fit: stored for only 6.6% of picks.
+  - Fabric: stored for 32%, but 97% of those are cut off by the lazy regex in
+    `tools/sweep_filter.py` `fabric_of()` (line 175–176). That breaks the "100% cotton" filter:
+    42 matches against about 1,149 real ones.
+  - Offline catalogues (`cat/`, 5,860 picks matched) do hold fabric (58%), fit words (42%),
+    prints (38%), closures (36%) and pockets (32%), with about 5 images per product.
+- **2D:** 609 of 2,333 drawn pieces (26%, in 71% of outfits) misrepresent the product. The shared
+  colour sampler treats tan, brown, rust and camel cloth as skin (1863). The board lost its
+  background when it became a button: `.fit > svg` at line 94 no longer matches.
+- **Page:** opening Shop downloads 17.7 MB (about 10.5 MB compressed). Search matches substrings
+  ("red" finds Fred Perry). Builder suggestions ignore formality. The refresh can delete saved or
+  owned picks. No page `lang`; Back does not move between views.
+
+### Order of work
+1. **Quick fixes:**
+   - Belts are hidden in all 55 belted outfits: draw them over the top, or tuck the shirt when a
+     belt is worn (belt band vs untucked hem at y 0.99–1.03).
+   - Always put a tee under a shirt. In barrel-chore, ox-open, ramsey-weekend and x11-passenger
+     the tee covers the shirt.
+   - Stop "button-down" matching `/down/` (22 picks become puffers).
+   - Gilets are plain unless the name says quilted (`texOf` 1226; "diamond" draws as quilt lines,
+     2275).
+   - "Longline" tees keep short sleeves.
+   - Hoodie drawcords take `col2`.
+   - Draw pocket squares.
+   - 2D: board background (`.fit .board-btn svg`), dark-mode contrast, and Dave's new face (beard,
+     chevron moustache, blue-grey eyes, straight brows, longer nose, curls with volume on top).
+2. **Colour you can trust:** fix `sampleCol`. Only filter skin when a person is in the photo,
+   crop to the garment on model shots, fall back to the name's colour when the two disagree,
+   store colours in the data, and allow a manual override.
+3. **Read the data we have:**
+   - Fix `fabric_of`, backfill from `cat/`, regenerate the notes, and add a test.
+   - Store structured details: colour option, composition, gsm, fit, length, rise, leg opening,
+     closures, pockets, prints, images, measurements in his size.
+   - Add data checks to `build_site.py`.
+   - Keep saved and owned picks as watch items instead of deleting them.
+4. **Faster page:**
+   - Load photo packs per screen; save a 720 px photo for the large view.
+   - Merge Dave's curls and give them a level of detail. They are 432k of the roughly 0.5M
+     triangles in a frame.
+   - Build the body, head and hair once and swap only the garments.
+   - Pre-render card images at build time, which ends the double render (2767).
+5. **3D phase 1, product specs:**
+   - About 45 archetypes.
+   - `data/specs.json` with archetype, fit, length, collar, closure, pockets, hems, zone colours,
+     pattern, fabric and measurements, each with its source and a confidence.
+   - A vision-labelling pass over contact sheets for the roughly 1,500 outfit pieces.
+6. **3D phase 2, engine and body:**
+   - Move from Three.js r128 to r160+. It is a module import; `encoding` becomes `colorSpace`
+     (the `if(T.sRGBEncoding)` guards at 2278, 2314, 2321, 2614 and 2649 would silently skip
+     sRGB); drop `convertSRGBToLinear` in `C()`; lights need about ×π.
+   - Dave as a rigged CC0 base mesh built to his measurements, with three poses.
+   - Use meshopt rather than Draco or KTX2, since the WASM decoders may be blocked in the
+     artifact.
+7. **3D phase 3, garment templates:**
+   - Built in headless Blender (download.blender.org is reachable): pattern pieces draped on
+     Dave's body with cloth simulation, then baked.
+   - Morph targets for length, ease, sleeve, hem, leg width, taper, rise and crop.
+   - Switchable parts: hoods, collar types, plackets, zips, pockets, hems and linings.
+   - UVs in real units.
+   - About 8 MB in all, loaded per archetype.
+8. **3D phase 6, footwear and accessories:** 15 shoe lasts with sole, upper, lace and trim zones;
+   accessory variants by style.
+9. **3D phase 4, fabrics and photos:**
+   - About 25 CC0 fabric sets (ambientCG, Poly Haven).
+   - A stripe and check shader driven by the measured colours and spacing.
+   - Packshot photos warped onto the template's front panel.
+   - Shoe side photos projected onto the shoe sides.
+10. **3D phase 5, fit and layering:**
+    - Garment minus body measurement sets the morphs (chest ease: under 8 cm slim, 10–16
+      regular, 18–26 relaxed, over 28 oversized).
+    - A distance-field push-out for layers.
+    - Rules for tucks, hoods over collars, and boots.
+11. **3D phase 7, weekly check:**
+    - Render each item at its photo's angle and score outline overlap and colour Delta E against
+      the cut-out photo.
+    - Proposed gates: overlap 0.8 or better, and Delta E 5 or less, for 90% of outfit pieces.
+    - Send failures to a review sheet.
+    - Add an approve/reject page for each week's changes.
+12. **Page upgrades alongside:** search, builder rules shared with `make_outfits.py`, phone
+    navigation and deep links, size confidence from size charts and the measuring card,
+    accessibility, budget sets, and his wardrobe with photos and a wear log.
+
+### Needed from Emma
+- Dave's measurements: chest, waist, hips, inside leg, shoulder width and sleeve length. Also
+  confirm 1.83 m and the 15.5–16 in neck.
+- A decision on the cropped reference photos. Either a permission rule lets them into the repo,
+  or they stay private elsewhere.
+- A yes to the newer Three.js and the Blender templates.
+- Which step to start with (recommended: 1 to 3).
