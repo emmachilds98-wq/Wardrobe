@@ -977,6 +977,34 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
 - This is the starting position. Placement saved against the old position (up/down and depth) is
   reset once, so it starts from the new one.
 
+## 2zk. His saved look as the base, more hair and cut options, hairline fix (6 Oct 2026)
+
+- **Base model:** the look the owner saved in Edit Dave is now Dave's built-in default (`CHAR_DEF`), and "Back
+  to his defaults" returns to it.
+- **Sliders centred on him:** every slider has his saved value in the middle.
+  - Each end still reaches the slider's full range. Where his value sat near one end, that end reaches a little
+    further, for example leg length now goes from -1.6 to 1.
+  - The stored value is the real one, so existing saves load unchanged.
+- **Cut:**
+  - Two new styles: short back and sides (tapered), and curly top with faded sides.
+  - Sliders for the top, sides and back.
+  - Sides and back can be natural, tapered or faded.
+  - Hair cut close shows as a short tint on the scalp, fading to skin for a fade.
+  - Sideburns stay short in every cut.
+- **Curls:**
+  - Curl size and finish (defined ringlets to softer and fluffier).
+  - Which way the curls fall.
+  - Length of the curls over the forehead.
+- **Hairline:**
+  - The short cuts keep his own hairline. The old short hairline was high at the temples and read as receding.
+  - His hairline now has short sideburns in front of the ears and a proper temple line.
+- **Forehead clipping:**
+  - The hair now sits on a map of his real head shape (`headRad`), measured from the body mesh, instead of a
+    fitted egg, so the hairline meets the forehead cleanly.
+  - The curls over his forehead root on the hair at the hairline. The old ones took their depth from a face map
+    that stops below the hairline, so some floated or sank.
+  - Any curl that would pass through bare skin is tipped outward, or left out.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

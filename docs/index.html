@@ -2306,10 +2306,12 @@ var FIG={mode:"2d",allow2d:true};
 try{FIG.mode=localStorage.getItem("dw-fig")==="3d"?"3d":"2d";FIG.allow2d=localStorage.getItem("dw-allow2d")!=="0";}catch(e){}
 function figMode(){return FIG.allow2d?FIG.mode:"3d";}
 /* Dave's look for the 3D model, set in "Edit Dave". The page owner's choice is shared through the database
-   (meta/character); anyone else's stays on their device. Defaults match his photos: no beard, a moustache. */
-var CHAR_DEF={height:183,skin:"#eec3aa",hair:"#3e2a1e",hairVol:1,tache:"chevron",tacheCol:"#93582f",beard:"none",eyes:"#7896b8",brows:"normal",glasses:"none",glassCol:"#2b2622",weight:-0.15,muscle:0,shoulderW:0,chest:0,waistW:0,belly:-0.2,hips:0,arms:0,legs:0,neckW:0,faceW:0,jaw:0,chin:0,noseSize:0,lips:0,ears:0,eyeSize:0,smile:0.3,
-  tacheY:0,tacheZ:0,tacheV:2,tacheW:0,tacheLen:0.15,tacheDen:0.2,tacheDroop:0,browCol:"",browThick:0.35,browY:0,browArch:-0.3,browTilt:0,browLen:0,
-  hairStyle:"short",hairShade:0.32,hairLight:0.55,curlK:0,hairLenK:0,fringe:0,freckles:0.3,legLen:0,torsoLen:0,armLen:0,neckLen:0,headSize:0};
+   (meta/character); anyone else's stays on their device. The defaults are the look the owner saved as his base
+   (6 Oct 2026): no beard, a moustache. Every Edit Dave slider has this base in the middle. */
+var CHAR_DEF={height:183,skin:"#e2b08f",hair:"#38261b",hairVol:0.6,tache:"pencil",tacheCol:"#7a4a2c",beard:"none",eyes:"#5d86b5",brows:"thin",glasses:"none",glassCol:"#2b2622",weight:0,muscle:0,shoulderW:0,chest:0,waistW:0,belly:0,hips:0,arms:0,legs:0,neckW:0,faceW:0,jaw:0,chin:0,noseSize:0,lips:0,ears:0,eyeSize:0,smile:0.3,
+  tacheY:0,tacheZ:0,tacheV:2,tacheW:1,tacheLen:0,tacheDen:1,tacheDroop:0.45,browCol:"",browThick:-0.4,browY:-0.25,browArch:-0.1,browTilt:-0.25,browLen:-0.05,
+  hairStyle:"short",hairShade:0.26,hairLight:0.4,curlK:0,hairLenK:-0.05,fringe:-0.5,freckles:0.3,legLen:-1,torsoLen:0.35,armLen:0,neckLen:-0.45,headSize:0.3,
+  hairTop:0,hairSides:0,hairBack:0,hairFinish:"auto",curlSize:0,frizz:0,hairDir:0,fringeLen:0};
 /* older saves used fixed choices (build, shoulders, middle, face, nose): turn them into slider positions */
 function migrateChar(o){if(!o||typeof o!=="object")return o;
   function set(k,v){if(o[k]==null)o[k]=v;}
@@ -2320,7 +2322,7 @@ function migrateChar(o){if(!o||typeof o!=="object")return o;
   if(o.nose==="small")set("noseSize",-1);else if(o.nose==="large")set("noseSize",1);
   if(o.brows==="thin")set("browThick",-0.6);else if(o.brows==="thick")set("browThick",0.6);
   /* hair: only cuts his curls can take; the base is his current short cut, in his brown */
-  if(o.hairStyle&&["short","tidy","crop","swept","grown","long"].indexOf(o.hairStyle)<0)o.hairStyle="short";
+  if(o.hairStyle&&["short","tidy","crop","swept","grown","long","sbs","fade"].indexOf(o.hairStyle)<0)o.hairStyle="short";
   if(o.hairShade==null&&Object.keys(o).length){o.hairShade=0.32;o.hairLight=0.55;o.hairVol=1;delete o.hair;if(!o.hairStyle)o.hairStyle="short";}
   /* the moustache's starting place moved up to sit under the nose: placement saved against the old one starts again from there */
   if(Object.keys(o).length&&o.tacheV!==2){o.tacheY=0;o.tacheZ=0;o.tacheV=2;}
@@ -2385,19 +2387,35 @@ function lerpT(pts,a){if(a<=pts[0][0])return pts[0][1];for(var i=1;i<pts.length;
 var BEARD_TOP=[[0,-0.8],[0.22,-0.8],[0.4,-0.52],[0.7,-0.34],[1.05,-0.14],[1.3,0.12],[1.45,0.2],[1.56,-0.5],[1.9,-0.78],[2.4,-1.05]];
 var HAIR_LOW=[[-1,-0.5],[-0.6,-0.32],[-0.35,-0.1],[0,0.1],[0.15,0.24],[0.35,0.52],[1,0.55]];
 var HAIR_SHORT=[[-1,-0.24],[-0.35,-0.02],[0,0.2],[0.15,0.35],[0.35,0.57],[1,0.6]],HAIR_LONG=[[-1,-0.86],[-0.35,-0.58],[0,-0.32],[0.15,-0.06],[0.35,0.46],[1,0.52]];
-/* His hair: loose curls with ringlets. Each style is a cut his hair can actually take: where the hair stops at the
-   sides and back, how full the top and sides are, how long the curls are, and how many fall over his forehead. */
-var HAIR_MID=[[-1,-0.36],[-0.6,-0.18],[-0.35,-0.05],[0,0.15],[0.15,0.3],[0.35,0.55],[1,0.58]];
+/* His hair: loose curls with ringlets. Each style is a cut his hair can actually take: how full the top, sides and
+   back are, how long the curls are, and how many fall over his forehead. The short cuts keep his own hairline (a
+   haircut never moves it); only the longer styles hang lower at the back. */
+/* his hairline by depth round the head: the nape, above the ears, short sideburns just in front of them, the temples
+   and the front hairline */
+var HAIR_MID=[[-1,-0.36],[-0.6,-0.2],[-0.4,-0.1],[-0.3,0.2],[0.05,0.28],[0.12,-0.1],[0.3,-0.05],[0.42,0.3],[0.55,0.5],[1,0.58]];
 var HSTY={
   short:{l:"Short curls (his cut)",low:HAIR_MID,top:0.6,side:0.9,back:0.7,len:0.85,size:1,fringe:1},
-  tidy:{l:"Short sides, curly top",low:HAIR_SHORT,top:0.95,side:0.25,back:0.35,len:0.95,size:0.95,fringe:0.85},
-  crop:{l:"Close curly crop",low:HAIR_SHORT,top:0.45,side:0.5,back:0.5,len:0.62,size:0.75,fringe:0.45},
+  tidy:{l:"Short sides, curly top",low:HAIR_MID,top:0.95,side:0.25,back:0.35,len:0.95,size:0.95,fringe:0.85},
+  crop:{l:"Close curly crop",low:HAIR_MID,top:0.45,side:0.5,back:0.5,len:0.62,size:0.75,fringe:0.45},
   swept:{l:"Curls pushed back",low:HAIR_MID,top:1,side:0.9,back:0.85,len:1.05,size:1,fringe:0,swept:true},
   grown:{l:"Grown out, over the ears",low:HAIR_LOW,top:1.1,side:1.15,back:1,len:1.2,size:1.05,fringe:0.8},
-  long:{l:"Longer, to the collar",low:HAIR_LONG,top:1.15,side:1.2,back:1.15,len:1.45,size:1.1,fringe:0.65}};
+  long:{l:"Longer, to the collar",low:HAIR_LONG,top:1.15,side:1.2,back:1.15,len:1.45,size:1.1,fringe:0.65},
+  sbs:{l:"Short back and sides",low:HAIR_MID,top:0.75,side:0.34,back:0.34,len:0.82,size:0.85,fringe:0.7,fin:"taper"},
+  fade:{l:"Curly top, faded sides",low:HAIR_MID,top:0.95,side:0.1,back:0.12,len:0.95,size:0.95,fringe:0.85,fin:"fade"}};
 function hairStyleO(){return HSTY[CHAR.hairStyle]||HSTY.short;}
 function hairLow(){var st=hairStyleO(),k=Number(CHAR.hairLenK)||0;if(!k)return st.low;return st.low.map(function(q){return [q[0],q[1]-(q[0]<0.3?0.14*k:0)];});}
 function scalpAt(x,y,z){return Math.max(0,Math.min(1,(y-lerpT(hairLow(),z))/0.06));}
+function sstep(a,b,v){var t=Math.max(0,Math.min(1,(v-a)/(b-a)));return t*t*(3-2*t);}
+/* the cut at a point on his head (unit skull directions): how full the hair is there against the style's top
+   (sides and back from Edit Dave's cut sliders), and how much of the hair colour shows on the scalp under it.
+   A taper shortens the hair toward the bottom of the sides and back; a fade takes it down to the skin. */
+function hairCut(x,y,z){var st=hairStyleO(),sk=Math.max(0.04,Math.min(1.6,st.side*(1+0.75*(Number(CHAR.hairSides)||0)))),bk=Math.max(0.04,Math.min(1.6,st.back*(1+0.75*(Number(CHAR.hairBack)||0))));
+  var ws=sstep(0.45,0.72,Math.abs(x))*sstep(0.62,0.38,y),wb=sstep(-0.15,-0.45,z)*sstep(0.55,0.25,y),k=Math.min(1+ws*(sk-1),1+wb*(bk-1));
+  if(sk>1&&bk>1)k=Math.max(1+ws*(sk-1),1+wb*(bk-1));
+  k*=1-0.85*sstep(0.05,0.15,z)*sstep(0.22,0.02,y);   /* sideburns stay short in every cut */
+  var fin=CHAR.hairFinish&&CHAR.hairFinish!=="auto"?CHAR.hairFinish:(st.fin||"natural"),w=Math.max(ws*sstep(0.65,0.35,z),wb),fd=Math.max(0,Math.min(1,(y-lerpT(hairLow(),z))/0.35)),tint=1;
+  if(fin==="taper"){k*=1-w*(1-fd)*0.7;tint=1-w*(1-fd)*0.22;}else if(fin==="fade"){k*=1-w*(1-fd*fd);tint=1-w*Math.pow(1-fd,1.5)*0.92;}
+  return [k,tint];}
 /* his browns, darkest to lightest */
 var BROWNS=[[0,"#241811"],[0.3,"#3b281c"],[0.5,"#553a27"],[0.75,"#765234"],[1,"#9a7248"]];
 function brownAt(t){t=Math.max(0,Math.min(1,Number(t)));for(var i=0;i<BROWNS.length-1;i++){if(t<=BROWNS[i+1][0])return mixHex(BROWNS[i][1],BROWNS[i+1][1],(t-BROWNS[i][0])/(BROWNS[i+1][0]-BROWNS[i][0]));}return BROWNS[BROWNS.length-1][1];}
@@ -2533,6 +2551,22 @@ function bodySecs(){var w=bodyW(),o={};Object.keys(BODY.sec).forEach(function(k)
 function hzN(x,y){var F=BODY.face,ZL=BODY.cache.face,fx=(x-F.x0)/F.st,fy=(y-F.y0)/F.st,i=Math.floor(fx),j=Math.floor(fy),tx=fx-i,ty=fy-j,sm=0,sw=0;
   [[i,j,(1-tx)*(1-ty)],[i+1,j,tx*(1-ty)],[i,j+1,(1-tx)*ty],[i+1,j+1,tx*ty]].forEach(function(q){var a=Math.max(0,Math.min(F.nx-1,q[0])),b=Math.max(0,Math.min(F.ny-1,q[1])),v=ZL?ZL[b*F.nx+a]:(F.z[b*F.nx+a]===-32768?-9:F.z[b*F.nx+a]*1e-4);if(v>-8){sm+=v*q[2];sw+=q[2];}});
   return sw?sm/sw:BODY.lm.eye[2];}
+/* the real head's distance from the skull centre in every direction (in skull units), so his hair sits on his
+   scalp rather than on a fitted egg: the hairline then meets the forehead cleanly instead of poking through in places */
+function headRad(){var c=BODY.cache,k=bodyKey();if(c.hrad&&c.hradK===k)return c.hrad;
+  var P=bodyPos().pos,SK=bodyLM().skull,I=BODY.idx,hR=BODY.regions.indexOf("head"),NL=64,NA=32,G=new Float32Array(NL*NA),seen=new Uint8Array(BODY.n),a,o;
+  for(var t=0;t<I.length/3;t++){if(BODY.treg[t]!==hR)continue;for(var j=0;j<3;j++){var v=I[t*3+j];if(seen[v])continue;seen[v]=1;
+    var ux=P[v*3]/SK[2],uy=(P[v*3+1]-SK[0])/SK[3],uz=(P[v*3+2]-SK[1])/SK[4],r=Math.sqrt(ux*ux+uy*uy+uz*uz);
+    if(r<0.3||(Math.abs(ux)>0.98&&uy<0.5&&uy>-0.6))continue;   /* (the ears stand off the head: leave them out) */
+    var g=Math.min(NA-1,Math.floor((Math.asin(uy/r)+Math.PI/2)/Math.PI*NA))*NL+Math.floor((Math.atan2(ux,uz)+Math.PI)/(2*Math.PI)*NL)%NL;if(r>G[g])G[g]=r;}}
+  /* fill the directions no point landed in from their neighbours, then soften */
+  for(var it=0;it<8;it++){var F=G.slice();for(a=0;a<NA;a++)for(o=0;o<NL;o++){if(G[a*NL+o])continue;var sm=0,n=0;
+    [[0,1],[0,-1],[1,0],[-1,0]].forEach(function(d){var aa=a+d[0];if(aa<0||aa>=NA)return;var w=G[aa*NL+(o+d[1]+NL)%NL];if(w){sm+=w;n++;}});if(n)F[a*NL+o]=sm/n;}G=F;}
+  var S=new Float32Array(NL*NA);for(a=0;a<NA;a++)for(o=0;o<NL;o++){var s2=0,n2=0;for(var da=-1;da<=1;da++)for(var dd=-1;dd<=1;dd++){var aa2=a+da;if(aa2<0||aa2>=NA)continue;var w2=G[aa2*NL+(o+dd+NL)%NL],wt=da||dd?1:2;if(w2){s2+=w2*wt;n2+=wt;}}S[a*NL+o]=n2?s2/n2:1;}
+  function at(ux,uy,uz){var r=Math.sqrt(ux*ux+uy*uy+uz*uz)||1,fo=(Math.atan2(ux,uz)+Math.PI)/(2*Math.PI)*NL-0.5,fa=(Math.asin(Math.max(-1,Math.min(1,uy/r)))+Math.PI/2)/Math.PI*NA-0.5,o0=Math.floor(fo),a0=Math.floor(fa),to=fo-o0,ta=fa-a0;
+    function q(a1,o1){a1=Math.max(0,Math.min(NA-1,a1));return S[a1*NL+(o1%NL+NL)%NL];}
+    return q(a0,o0)*(1-to)*(1-ta)+q(a0,o0+1)*to*(1-ta)+q(a0+1,o0)*(1-to)*ta+q(a0+1,o0+1)*to*ta;}
+  c.hrad=at;c.hradK=k;return at;}
 /* skin colour per vertex: his skin tone, warmer cheeks, nose tip and ears, lips, stubble or a beard from
    Edit Dave, and the scalp under his hair tinted to the hair colour */
 function bodyCols(c){var k=charKey()+bodyKey();if(c.col&&c.colK===k)return c.col;
@@ -2554,7 +2588,7 @@ function bodyCols(c){var k=charKey()+bodyKey();if(c.col&&c.colK===k)return c.col
       var lx=x/0.0235,ly=(y-my-0.0008)/(y>my?0.0085:0.0105),ld=lx*lx+ly*ly;
       if(ld<1&&z>mz-0.012){var tl=Math.min(1,(1-ld)*7)*0.85;r+=((lip[0]+lipT[0])/2-r)*tl;g+=((lip[1]+lipT[1])/2-g)*tl;b+=((lip[2]+lipT[2])/2-b)*tl;}
       if(bk){var bw=beardAt(ux,uy,uz)*bk;r+=(bd[0]-r)*bw;g+=(bd[1]-g)*bw;b+=(bd[2]-b)*bw;}
-      var sc=scalpAt(ux,uy,uz)*0.9;if(sc>0){r+=(hr[0]-r)*sc;g+=(hr[1]-g)*sc;b+=(hr[2]-b)*sc;}
+      var sc=scalpAt(ux,uy,uz)*0.9;if(sc>0)sc*=hairCut(ux,uy,uz)[1];if(sc>0){r+=(hr[0]-r)*sc;g+=(hr[1]-g)*sc;b+=(hr[2]-b)*sc;}
     }
     if(y>L.chin-0.04&&Math.abs(y-L.mouth[0])<0.0014&&Math.abs(x)<0.021&&z>L.mouth[1]-0.01){var ml=0.32*(1-Math.abs(y-L.mouth[0])/0.0014)*(1-Math.pow(Math.abs(x)/0.021,3));r*=1-ml;g*=1-ml*1.1;b*=1-ml;}
     var nz=1+0.025*(Math.sin(i*12.9898)*43758.5453%1);r*=nz;g*=nz;b*=nz;
@@ -2832,44 +2866,65 @@ function make3Dcore(pieces){
      and sides are and how long the curls hang; curls fall over his forehead to just above the brows, and the
      sides flare out a little above the ears, as in his photos. */
   var hv=CHAR.hairVol||1,HS=hairStyleO(),CK=Number(CHAR.curlK)||0,LK=Number(CHAR.hairLenK)||0,FR=Number(CHAR.fringe)||0;
+  var TPk=Number(CHAR.hairTop)||0,CSZ=Number(CHAR.curlSize)||0,FZ=Number(CHAR.frizz)||0,DIR=Number(CHAR.hairDir)||0,FLk=Number(CHAR.fringeLen)||0;
   var hcol=CHAR.hairShade!=null?brownAt(CHAR.hairShade):CHAR.hair,tipCol=mixHex(hcol,"#a07a50",0.1+0.45*(CHAR.hairLight==null?0.55:Number(CHAR.hairLight)));
-  function hairR(x,y,z){var sc=scalpAt(x,y,z),side=Math.abs(x)>0.55&&y>-0.25&&y<0.55?HS.side:1,back=z<-0.35?HS.back:1,
-      vol=hatOn?0.06:((0.045+0.13*Math.pow(Math.max(0,y),1.5))*HS.top*hv+0.03*lump(x,y,z)+(Math.abs(x)>0.6&&y>0&&y<0.5?0.035*HS.side*hv:0))*Math.min(side,back);
-    return 0.8+0.14*Math.min(1,sc*2)+sc*vol;}
-  var hm=new T.SphereGeometry(1,48,36),mp=hm.attributes.position;
+  /* on the real body the hair sits on his scalp (headRad); the drawn-only head keeps its fitted egg */
+  var HRAD=bodyOn?headRad():null,topF=HS.top*(1+0.55*TPk);
+  function hairR(x,y,z){var sc=scalpAt(x,y,z),ck=hairCut(x,y,z)[0],
+      vol=hatOn?0.06:((0.045+0.13*Math.pow(Math.max(0,y),1.5))*topF*hv+0.03*(1+0.8*FZ)*lump(x,y,z)+(Math.abs(x)>0.6&&y>0&&y<0.5?0.035*HS.side*hv:0))*ck;
+    if(!HRAD)return 0.8+0.14*Math.min(1,sc*2)+sc*vol;
+    var rs=HRAD(x,y,z);
+    /* where no hair grows the mass stays well inside the head; at the hairline it slides out from just under the skin */
+    /* hair cut close to the head (clipper sides, a taper or fade) tucks under the skin, where the scalp tint shows it */
+    var kk=sstep(0.3,0.6,ck);return sc>0?rs*(0.9+0.05*kk+0.04*Math.min(1,sc*2)*kk)+sc*vol:Math.min(0.8,rs*0.85);}
+  var hm=new T.SphereGeometry(1,96,72),mp=hm.attributes.position;
   for(vi=0;vi<mp.count;vi++){x=mp.getX(vi);y=mp.getY(vi);z=mp.getZ(vi);var hr=hairR(x,y,z);mp.setXYZ(vi,x*0.084*hr,HY+y*0.12*hr,z*0.106*hr);}
   hm.computeVertexNormals();add(hm,mat(shade(hcol,0.7),0.9));
   /* a curl: two or three fine strands twisting round each other along a loose spiral */
   function lin3(h){var c=new T.Color(h).convertSRGBToLinear();return [c.r,c.g,c.b];}
   var rootL=lin3(shade(hcol,0.9)),tipL=lin3(tipCol);
-  function curl(rh,len,turns,nStr){var pos=[],nrm=[],col=[],idx=[],base=0;
-    for(var k=0;k<nStr;k++){var ph=k/nStr*Math.PI*2,pts=[];for(var i=0;i<=20;i++){var f=i/20,a=f*turns*Math.PI*2+ph*0.25,rr=rh*(1-0.2*f)+0.0016*Math.sin(f*9+ph);pts.push(new T.Vector3(rr*Math.cos(a)+0.0014*Math.cos(ph+f*12),-f*len,rr*Math.sin(a)+0.0014*Math.sin(ph+f*12)));}
+  function curl(rh,len,turns,nStr){var pos=[],nrm=[],col=[],idx=[],base=0,fj=0.0014*(1+1.2*Math.max(0,FZ));
+    for(var k=0;k<nStr;k++){var ph=k/nStr*Math.PI*2,pts=[];for(var i=0;i<=20;i++){var f=i/20,a=f*turns*Math.PI*2+ph*0.25,rr=rh*(1-0.2*f)+0.0016*Math.sin(f*9+ph);pts.push(new T.Vector3(rr*Math.cos(a)+fj*Math.cos(ph+f*12),-f*len,rr*Math.sin(a)+fj*Math.sin(ph+f*12)));}
       var tg=new T.TubeGeometry(new T.CatmullRomCurve3(pts),18,0.0012,3,false),tp=tg.attributes.position,tn=tg.attributes.normal,ti=tg.index.array,ring=4;
       for(var v=0;v<tp.count;v++){pos.push(tp.getX(v),tp.getY(v),tp.getZ(v));nrm.push(tn.getX(v),tn.getY(v),tn.getZ(v));var f2=Math.floor(v/ring)/18,w=Math.pow(f2,2.4);col.push(rootL[0]/tipL[0]*(1-w)+w,rootL[1]/tipL[1]*(1-w)+w,rootL[2]/tipL[2]*(1-w)+w);}
       for(var q=0;q<ti.length;q++)idx.push(ti[q]+base);base+=tp.count;tg.dispose();}
     var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setAttribute("normal",new T.Float32BufferAttribute(nrm,3));g.setAttribute("color",new T.Float32BufferAttribute(col.map(function(c){return Math.min(1,c);}),3));g.setIndex(idx);return g;}
-  /* curl shape: loose waves at -1, his loose curls with ringlets at 0, tighter ringlets at +1 */
-  var cr=0.013*(1-0.32*CK),cl=0.036*HS.len*(1+0.3*LK)*(1-0.12*CK),ct=1.45*(1+0.5*CK);
-  var geos=[curl(cr,cl,ct,3),curl(cr*1.25,cl*0.85,ct*0.85,2),curl(cr*0.8,cl*1.15,ct*1.2,3)];
+  /* curl shape: loose waves at -1, his loose curls with ringlets at 0, tighter ringlets at +1; the curl size
+     makes each ringlet narrower or wider; softer, fluffier curls add more strands and a looser spiral */
+  var cr=0.013*(1-0.32*CK)*(1+0.35*CSZ),cl=0.036*HS.len*(1+0.3*LK)*(1-0.12*CK)*(1+0.12*CSZ),ct=1.45*(1+0.5*CK)*(1-0.15*CSZ),nS=FZ>0.3?4:(FZ<-0.3?2:3);
+  var geos=[curl(cr,cl,ct,nS),curl(cr*1.25,cl*0.85,ct*0.85,Math.max(2,nS-1)),curl(cr*0.8,cl*1.15,ct*1.2,nS)];
   var HMs=[new T.MeshStandardMaterial({color:C(tipCol),vertexColors:true,roughness:0.68,metalness:0}),new T.MeshStandardMaterial({color:C(shade(tipCol,0.8)),vertexColors:true,roughness:0.72,metalness:0})];
-  var NI=hatOn?150:260,ims=geos.map(function(g){return HMs.map(function(hm2){var m=new T.InstancedMesh(g,hm2,NI);m.count=0;return m;});});
-  var dm=new T.Object3D(),q0=new T.Vector3(0,-1,0),dv=new T.Vector3();
+  var NI=hatOn?150:280,ims=geos.map(function(g){return HMs.map(function(hm2){var m=new T.InstancedMesh(g,hm2,NI);m.count=0;return m;});});
+  var dm=new T.Object3D(),q0=new T.Vector3(0,-1,0),dv=new T.Vector3(),jit=1+0.6*FZ;
   function pickM(){return ims[(rnd()*ims.length)|0][rnd()<0.55?0:1];}
-  function ringlet(px,py,pz,nx,ny,nz,droop,sc){var m=pickM();if(m.count>=NI)return;var l=Math.hypot(nx,ny,nz);nx/=l;ny/=l;nz/=l;
-    dv.set(nx*(1-droop)+(rnd()-0.5)*0.7,ny*(1-droop)-droop+(rnd()-0.5)*0.6,nz*(1-droop)+(rnd()-0.5)*0.7).normalize();
+  /* a ringlet at a root on the hair, hanging between its outward direction and straight down (droop); the curls fall
+     a little toward one side when Edit Dave says so */
+  function ringlet(px,py,pz,nx,ny,nz,droop,sc,jt){var m=pickM();if(m.count>=NI)return;var l=Math.hypot(nx,ny,nz);nx/=l;ny/=l;nz/=l;jt=(jt==null?1:jt)*jit;
+    dv.set(nx*(1-droop)+DIR*0.45*droop+(rnd()-0.5)*0.7*jt,ny*(1-droop)-droop+(rnd()-0.5)*0.6*jt,nz*(1-droop)+(rnd()-0.5)*0.7*jt).normalize();
+    /* a curl must not pass through bare skin (forehead, temples): tip it outward until it clears, or leave it out */
+    if(HRAD){var Lh=cl*1.15*sc*HS.size,Rh=cr*1.25*sc*HS.size/0.1,ok=false;
+      for(var at=0;at<4&&!ok;at++){ok=true;for(var tt=0.25;tt<=1.01;tt+=0.25){var X=(px+dv.x*Lh*tt)/0.084,Y=(py+dv.y*Lh*tt-HY)/0.12,Z=(pz+dv.z*Lh*tt)/0.106,r=Math.sqrt(X*X+Y*Y+Z*Z);
+          if(scalpAt(X/r,Y/r,Z/r)<0.8&&r<HRAD(X,Y,Z)+Rh){ok=false;break;}}
+        if(!ok){dv.x+=nx*0.7;dv.y+=ny*0.7;dv.z+=nz*0.7;dv.normalize();}}
+      if(!ok)return;}
     dm.position.set(px,py,pz);dm.quaternion.setFromUnitVectors(q0,dv);dm.rotateY(rnd()*6.28);dm.scale.setScalar(sc*HS.size);dm.updateMatrix();
     m.setMatrixAt(m.count,dm.matrix);m.count++;}
-  /* curls over his forehead, hanging to just above the brows (none when the curls are pushed back) */
-  var nF=Math.round(18*HS.fringe*(1+0.8*FR));
-  if(!hatOn&&nF>0){for(var fi=0;fi<nF;fi++){var fx=(rnd()*2-1)*0.056,fy=1.787+Math.abs(fx)*0.18+(rnd()-0.5)*0.01,fz=hz(fx,fy)+0.008;
-    ringlet(fx,fy,fz,fx*3,0.15,1,0.88,(0.9+rnd()*0.35)*Math.min(1,1.05/HS.len));}}
+  function onHair(ux,uy,uz,lift){var r=hairR(ux,uy,uz)+(lift||0);return [ux*0.084*r,HY+uy*0.12*r,uz*0.106*r];}
+  /* curls over his forehead, from the front hairline down to just above the brows (none when the curls are pushed
+     back). They root on the hair at the hairline, lifted clear of the skin, and hang forward of the forehead. */
+  var nF=Math.round(18*HS.fringe*(1+0.8*FR)),fLow=lerpT(hairLow(),0.85);
+  if(!hatOn&&nF>0){for(var fi=0;fi<nF;fi++){var fux=(rnd()*2-1)*0.6,fuy=fLow+0.05+rnd()*0.06,fuz=Math.sqrt(Math.max(0.02,1-fux*fux-fuy*fuy));
+    var fp=onHair(fux,fuy,fuz,0.03);ringlet(fp[0],fp[1],fp[2],fux/0.084,fuy/0.12*0.3,fuz/0.106,0.72,(0.9+rnd()*0.3)*Math.min(1,1.05/HS.len)*(1+0.35*FLk),0.45);}}
   for(var ci=0;ci<9000;ci++){var th=rnd()*Math.PI*2,uy=1-2*rnd(),sn=Math.sqrt(1-uy*uy),ux=sn*Math.cos(th),uz=sn*Math.sin(th);
     if(scalpAt(ux,uy,uz)<0.5||(hatOn&&uy>0.3))continue;
-    var rr2=hairR(ux,uy,uz)+(rnd()-0.4)*0.04,sideS=Math.abs(ux)>0.55&&uy<0.45?(0.55+0.45*HS.side):1,backS=uz<-0.35&&uy<0.3?(0.6+0.4*HS.back):1;
-    var dr=0.35+0.45*(1-Math.max(0,uy));
-    if(HS.swept&&uz>0.3&&uy>0.2){ringlet(ux*0.084*rr2,HY+uy*0.12*rr2,uz*0.106*rr2,ux*0.3,1,-0.9,0.1,0.85+rnd()*0.3);continue;}
-    var frontS=uz>0.45&&uy<0.75?Math.min(1,1.05/HS.len):1;   /* curls at the front hairline never hang over his eyes */
-    ringlet(ux*0.084*rr2,HY+uy*0.12*rr2,uz*0.106*rr2,ux/0.084,uy/0.12,uz/0.106,dr,(0.8+rnd()*0.45)*Math.min(sideS,backS,frontS));}
+    var ck=hairCut(ux,uy,uz)[0];if(ck<0.3)continue;   /* hair cut short shows as the scalp tint, with no curls */
+    var rr2=hairR(ux,uy,uz)+(rnd()-0.4)*0.04,cS=Math.min(1,0.3+0.7*ck)*(uy>0.3?1+0.3*TPk:1);
+    var dr=0.35+0.45*(1-Math.max(0,uy)),kb=hairCut(ux,uy-0.3,uz)[0];
+    if(kb<1){cS*=0.45+0.55*kb;dr*=0.6+0.4*kb;}   /* above short sides the curls stay on top instead of hanging over them */
+    if(HS.swept&&uz>0.3&&uy>0.2){ringlet(ux*0.084*rr2,HY+uy*0.12*rr2,uz*0.106*rr2,ux*0.3,1,-0.9,0.1,(0.85+rnd()*0.3)*cS);continue;}
+    var front=uz>0.45&&uy<fLow+0.25,frontS=uz>0.45&&uy<0.75?Math.min(1,1.05/HS.len):1;   /* curls at the front hairline stand out over the forehead and never hang over his eyes */
+    if(front){dr*=0.55;rr2=Math.max(rr2,hairR(ux,uy,uz)+0.02);}
+    ringlet(ux*0.084*rr2,HY+uy*0.12*rr2,uz*0.106*rr2,ux/0.084,uy/0.12,uz/0.106,dr,(0.8+rnd()*0.45)*cS*frontS);}
   ims.forEach(function(row){row.forEach(function(m){if(m.count){m.castShadow=true;headG.add(m);}});});
   tgt=man;
   /* ---- the outfit, sorted by layer ---- */
@@ -4136,6 +4191,14 @@ syncFig();
 /* slider rows: -1 to 1, described in words either side of average */
 function slF(lo,hi){return function(v){v=Number(v)||0;return Math.abs(v)<0.04?"Average":(v<0?lo:hi)+" "+Math.round(Math.abs(v)*100)+"%";};}
 function SL(g,k,l,lo,hi){return {g:g,k:k,l:l,t:"sl",min:-1,max:1,step:0.05,f:slF(lo,hi)};}
+/* Every slider has his saved base (CHAR_DEF) in the middle. Its ends still reach the full range either way (wider
+   where his base sits near one end), and the stored value is the real one, so saves stay as they were. */
+function ceRng(c){var lo=c.t==="sl"?-1:c.min,hi=c.t==="sl"?1:c.max,b=Number(CHAR_DEF[c.k]);if(isNaN(b))b=(lo+hi)/2;
+  if(c.t==="sl"){lo=Math.min(lo,b-0.6);hi=Math.max(hi,b+0.6);}else{if(c.lo!=null)lo=Math.min(lo,c.lo);if(c.hi!=null)hi=Math.max(hi,c.hi);}
+  return [lo,b,hi];}
+function cePos(c,v){var r=ceRng(c);v=Number(v);if(isNaN(v))v=r[1];var p=v<r[1]?(r[1]-r[0]>1e-6?(v-r[1])/(r[1]-r[0]):0):(r[2]-r[1]>1e-6?(v-r[1])/(r[2]-r[1]):0);return Math.max(-1,Math.min(1,Math.round(p*100)/100));}
+function ceVal(c,p){var r=ceRng(c);p=Number(p)||0;var v=p<0?r[1]+p*(r[1]-r[0]):r[1]+p*(r[2]-r[1]);return c.step>=1?Math.round(v):Math.round(v*1000)/1000;}
+function ceLabel(c,v){return c.t==="sl"?c.f(cePos(c,v)):c.f(v);}
 var CE=[
   {g:"body",h:"Quick start"},
   {g:"body",k:"_preset",l:"Body type",t:"preset",o:[["dave","Dave"],["slim","Slim"],["average","Average"],["athletic","Athletic"],["heavier","Heavier"]]},
@@ -4193,16 +4256,25 @@ var CE=[
   Object.assign(SL("face","tacheDroop","Ends","Turned up","Drooping"),{when:function(){return CHAR.tache!=="none";}}),
   {g:"face",h:"Beard"},
   {g:"face",k:"beard",l:"Beard",t:"seg",o:[["none","None"],["stubble","Stubble"],["full","Short beard"]]},
-  {g:"hair",h:"His cut"},
-  {g:"hair",k:"hairStyle",l:"Style",t:"seg",o:[["short","Short curls (his cut)"],["tidy","Short sides, curly top"],["crop","Close curly crop"],["swept","Curls pushed back"],["grown","Grown out, over the ears"],["long","Longer, to the collar"]]},
+  {g:"hair",h:"Style"},
+  {g:"hair",k:"hairStyle",l:"Style",t:"seg",o:[["short","Short curls (his cut)"],["tidy","Short sides, curly top"],["sbs","Short back and sides"],["fade","Curly top, faded sides"],["crop","Close curly crop"],["swept","Curls pushed back"],["grown","Grown out, over the ears"],["long","Longer, to the collar"]]},
+  {g:"hair",h:"The cut"},
+  SL("hair","hairTop","Top","Shorter, flatter","Longer, fuller"),
+  SL("hair","hairSides","Sides","Clipper short","Fuller"),
+  SL("hair","hairBack","Back","Shorter","Fuller, longer"),
+  {g:"hair",k:"hairFinish",l:"Sides and back",t:"seg",o:[["auto","As the style"],["natural","Natural"],["taper","Tapered"],["fade","Faded"]]},
+  SL("hair","hairLenK","Overall length","Shorter","Longer"),
+  {g:"hair",k:"hairVol",l:"Volume",t:"range",min:0.6,max:1.5,lo:0.35,step:0.05,f:function(v){return Math.round(v*100)+"%";}},
+  {g:"hair",h:"Curls"},
+  SL("hair","curlK","Curl","Looser waves","Tighter ringlets"),
+  SL("hair","curlSize","Curl size","Smaller","Bigger"),
+  SL("hair","frizz","Finish","Defined ringlets","Softer, fluffier"),
+  SL("hair","hairDir","Fall","Toward his right","Toward his left"),
+  Object.assign(SL("hair","fringe","Curls over the forehead","Fewer","More"),{when:function(){return CHAR.hairStyle!=="swept";}}),
+  Object.assign(SL("hair","fringeLen","Forehead curls length","Shorter","Longer"),{when:function(){return CHAR.hairStyle!=="swept";}}),
   {g:"hair",h:"Colour"},
   {g:"hair",k:"hairShade",l:"Brown",t:"range",min:0,max:1,step:0.02,f:function(v){v=Number(v);return v<0.2?"Very dark brown":(v<0.4?"Dark brown":(v<0.6?"Mid brown":(v<0.8?"Light brown":"Very light brown")));}},
-  {g:"hair",k:"hairLight",l:"Sun-lightened ends",t:"range",min:0,max:1,step:0.05,f:function(v){return v<0.05?"None":Math.round(v*100)+"%";}},
-  {g:"hair",h:"Shape"},
-  SL("hair","hairLenK","Length","Shorter","Longer"),
-  {g:"hair",k:"hairVol",l:"Volume",t:"range",min:0.6,max:1.5,step:0.05,f:function(v){return Math.round(v*100)+"%";}},
-  SL("hair","curlK","Curl","Looser waves","Tighter ringlets"),
-  Object.assign(SL("hair","fringe","Curls over the forehead","Fewer","More"),{when:function(){return CHAR.hairStyle!=="swept";}})
+  {g:"hair",k:"hairLight",l:"Sun-lightened ends",t:"range",min:0,max:1,step:0.05,f:function(v){return v<0.05?"None":Math.round(v*100)+"%";}}
 ];
 var BODY_KEYS=["weight","muscle","shoulderW","chest","waistW","belly","hips","arms","legs","neckW"];
 var PRESETS={dave:{},slim:{weight:-0.6,muscle:-0.15,chest:-0.2,belly:-0.4,arms:-0.3,legs:-0.25},average:{weight:0.1,belly:0},
@@ -4223,11 +4295,10 @@ function ceForm(){
     if(c.h)return '<h3 class="ce-sub">'+esc(c.h)+'</h3>';
     if(c.t==="meas")return '<p class="msg ce-meas" id="ce-meas">'+esc(ceMeas())+'</p>';
     if(c.t==="preset")return '<div class="ce-row"><span class="label" id="ce-l-pre">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-pre">'+c.o.map(function(o){return '<button type="button" class="chip" data-ceset="'+o[0]+'">'+esc(o[1])+'</button>';}).join("")+'</div></div>';
-    if(c.t==="sl"){var sv=Number(CHAR[c.k])||0,dv=Number(CHAR_DEF[c.k])||0;return '<div class="ce-row"><label class="label" for="ce-r-'+c.k+'">'+esc(c.l)+'</label><div class="ce-opts"><input type="range" id="ce-r-'+c.k+'" data-cer="'+c.k+'" min="-1" max="1" step="0.05" value="'+sv+'"><span class="ce-val" id="ce-v-'+c.k+'">'+esc(c.f(sv))+'</span><button type="button" class="linkbtn ce-rs" data-cers="'+c.k+'"'+(Math.abs(sv-dv)<0.001?' hidden':'')+'>Reset</button></div></div>';}
+    if(c.t==="sl"||c.t==="range"){var sv=CHAR[c.k],dv=CHAR_DEF[c.k];return '<div class="ce-row"><label class="label" for="ce-r-'+c.k+'">'+esc(c.l)+'</label><div class="ce-opts"><input type="range" id="ce-r-'+c.k+'" data-cer="'+c.k+'" min="-1" max="1" step="0.01" value="'+cePos(c,sv)+'"><span class="ce-val" id="ce-v-'+c.k+'">'+esc(ceLabel(c,sv))+'</span><button type="button" class="linkbtn ce-rs" data-cers="'+c.k+'"'+(Math.abs((Number(sv)||0)-(Number(dv)||0))<0.001?' hidden':'')+'>Reset</button></div></div>';}
     var v=CHAR[c.k],h='<div class="ce-row"><span class="label" id="ce-l-'+c.k+'">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-'+c.k+'">';
     if(c.t==="seg"){h+=c.o.map(function(o){return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="'+o[0]+'" aria-pressed="'+(v===o[0])+'">'+esc(o[1])+'</button>';}).join("");}
     else if(c.t==="sw"){h+=c.o.map(function(o){if(o==="")return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="" aria-pressed="'+(!v)+'">Match hair</button>';return '<button type="button" class="ce-sw" style="background:'+o+'" data-ce="'+c.k+'" data-cv="'+o+'" aria-pressed="'+(String(v).toLowerCase()===o)+'" aria-label="'+esc(c.l+" "+o)+'"></button>';}).join("")+'<input type="color" id="ce-c-'+c.k+'" data-cec="'+c.k+'" value="'+esc(v||browColor())+'" aria-label="'+esc(c.l+", any colour")+'">';}
-    else{h+='<input type="range" id="ce-r-'+c.k+'" data-cer="'+c.k+'" min="'+c.min+'" max="'+c.max+'" step="'+c.step+'" value="'+v+'"><span class="ce-val" id="ce-v-'+c.k+'">'+esc(c.f(v))+'</span>';}
     return h+'</div></div>';}).join("");
   $("ce-undo").disabled=!ceHist.length;
 }
@@ -4235,7 +4306,7 @@ function ceApply(){clearTimeout(ceT);ceT=setTimeout(function(){if(cePrev&&cePrev
 function cePush(force){var now=Date.now();if(force||now-ceLastPush>700){ceHist.push(Object.assign({},CHAR));if(ceHist.length>40)ceHist.shift();}ceLastPush=now;$("ce-undo").disabled=false;}
 function ceSet(k,v,drag){if(CHAR[k]===v)return;cePush(!drag);CHAR[k]=v;if(k==="hairShade")CHAR.hair=brownAt(v);var c=CE.filter(function(x){return x.k===k;})[0];
   if(c&&c.t!=="range"&&c.t!=="sl"){if(k==="glasses"||k==="tache"||k==="hairStyle"){ceForm();}else{Array.prototype.forEach.call(document.querySelectorAll('[data-ce="'+k+'"]'),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-cv")===String(v).toLowerCase()));});var ci=$("ce-c-"+k);if(ci&&/^#/.test(v))ci.value=v;}}
-  else if(c){$("ce-v-"+k).textContent=c.f(v);var rs=document.querySelector('[data-cers="'+k+'"]');if(rs)rs.hidden=Math.abs((Number(v)||0)-(Number(CHAR_DEF[k])||0))<0.001;}
+  else if(c){$("ce-v-"+k).textContent=ceLabel(c,v);var rs=document.querySelector('[data-cers="'+k+'"]');if(rs)rs.hidden=Math.abs((Number(v)||0)-(Number(CHAR_DEF[k])||0))<0.001;}
   $("ce-msg").textContent="";ceApply();}
 function ceStart(){
   var box=$("ce-3d"),ld=box.querySelector(".ce-load");
@@ -4269,13 +4340,13 @@ document.addEventListener("click",function(e){var b;
   if((b=e.target.closest("[data-cclose]"))){closeCE(false);return;}
   if((b=e.target.closest("[data-cet]"))){ceTab=b.getAttribute("data-cet");ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);return;}
   if((b=e.target.closest("[data-ce]"))){ceSet(b.getAttribute("data-ce"),b.getAttribute("data-cv"));return;}
-  if((b=e.target.closest("[data-cers]"))){var rk=b.getAttribute("data-cers");ceSet(rk,Number(CHAR_DEF[rk])||0);var ri=$("ce-r-"+rk);if(ri)ri.value=CHAR[rk];return;}
+  if((b=e.target.closest("[data-cers]"))){var rk=b.getAttribute("data-cers");ceSet(rk,Number(CHAR_DEF[rk])||0);var ri=$("ce-r-"+rk);if(ri)ri.value=0;return;}
   if((b=e.target.closest("[data-ceset]"))){var pr=PRESETS[b.getAttribute("data-ceset")]||{};cePush(true);ceLastPush=0;BODY_KEYS.forEach(function(k2){CHAR[k2]=pr[k2]!=null?pr[k2]:(b.getAttribute("data-ceset")==="dave"?CHAR_DEF[k2]:0);});ceForm();ceApply();$("ce-msg").textContent="Body type: "+b.textContent+". Fine-tune it with the sliders.";return;}
 });
 $("chared").addEventListener("keydown",function(e){var t=e.target;if(!t.hasAttribute||!t.hasAttribute("data-cet")||(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"))return;
   var tabs=["body","face","hair"],i=(tabs.indexOf(ceTab)+(e.key==="ArrowRight"?1:2))%3;ceTab=tabs[i];ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);var nb=document.querySelector('#chared [data-cet="'+ceTab+'"]');if(nb)nb.focus();e.preventDefault();});
 $("chared").addEventListener("input",function(e){var t=e.target;
-  if(t.hasAttribute("data-cer")){ceSet(t.getAttribute("data-cer"),Number(t.value),true);}
+  if(t.hasAttribute("data-cer")){var ck=t.getAttribute("data-cer"),cc=CE.filter(function(x){return x.k===ck;})[0];ceSet(ck,cc?ceVal(cc,t.value):Number(t.value),true);}
   else if(t.hasAttribute("data-cec")){ceSet(t.getAttribute("data-cec"),t.value.toLowerCase(),true);}});
 $("chared").addEventListener("cancel",function(e){e.preventDefault();closeCE(false);});
 $("ce-save").addEventListener("click",saveChar);
