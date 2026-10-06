@@ -469,6 +469,237 @@ its whole range.
 - 88 new picks and 9 outfits (4 Workwear). Page version 22. Totals: **1861 picks, 343
   outfits, 169 shops with picks.**
 
+## 2q. Restart: mixed styles, a large outfit view, and the catalogue as files (6 Oct 2026)
+
+- **New live page:** <https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn>. The old artifact
+  belongs to another account, so its database (including the later list of about 2,400
+  picks pulled from 61,000 shop products) could not be read. This round starts again from
+  the 1,861 picks and 343 outfits in this repo.
+- **Catalogue as files:** picks, outfits, sizes and photos are published with the page
+  (`tools/build_site.py` builds `site/`). The database now holds only what people mark:
+  shortlist, thumbs, saved outfits, his wardrobe and his measurements. No more 50-batch
+  database loads.
+- **Mix styles:** a "Mix styles" button lets several style tabs be on at once (for example
+  Holiday + Lounge). "All styles" still shows everything. The choice is remembered.
+- **Large outfit view:** tap any outfit drawing (or "View large") for the figure at full
+  height next to big listing photos of each piece, with prices and links.
+- **Layout:** style tabs wrap on wide screens instead of hiding off the edge, a fade shows
+  there are more on phones, and the page is wider on big monitors. Outfits switch to real
+  photos when half their pieces have one (was 60%).
+- **Blocked:** the cloud environment refused every shop site, so no new picks or photos
+  were pulled this round. Set Network access to Full in the project's cloud environment,
+  or run `tools/shopify_pull.py` and `tools/fetch_photos.py` from a home computer.
+
+## 2r. Lifelike proportions and photos in every outfit (6 Oct 2026)
+
+- **Proportions:** the figure had a long body and short legs (crotch at 36% of his height,
+  fingertips above the crotch). `figFix()` in `page.html` now moves every point between chest
+  and ankle so he stands about 7.5 heads tall: waistband at 58% of his height from the floor,
+  crotch at 45% (a 32in leg), knees at 27%. The arms keep their length, so the wrists sit level
+  with the crotch and the fingertips reach mid-thigh. Hems were reset to match: tees and polos
+  end at the hip, shirts a little lower, blazers cover the seat, coats stop above the knee.
+- **Detail:** shading on the neck, arms and bare legs (light from the left, as on the clothes),
+  a calf shape on bare legs, and fingers and a thumb on each hand. Tool-belt pouches and
+  crossbody bags move with the hips rather than the arms.
+- **Photos in outfits:** the "pieces" side of each outfit board now shows tiles as soon as one
+  piece has a listing photo (was half of them): the real photo where there is one, the drawing
+  where there is not. The separate thumbnail strip under the board is gone, since it repeated them.
+- **Blocked again:** the cloud environment's network policy refused every shop site (403 from the
+  proxy for M&S, Next, ASOS, Workwear Gurus, JD Sports, Matalan, END. and the Shopify feeds), so
+  no new picks or photos this round. The catalogue stays at 1,861 picks and 343 outfits.
+
+## 2s. 4,282 more picks, photos for 98%, and a to-scale photo flat lay (6 Oct 2026)
+
+- **The older 2,400-pick list:** not recoverable. The older artifact belongs to another account, so
+  its database cannot be read, and its published files are only the page and five photo packs. The
+  zip that came with the brief is an older copy of the page (about version 22) with the same packs.
+  This round rebuilds a larger list from the shops directly.
+- **Pull:** 129 shops in "Where to look" (and the shops behind existing picks) publish a Shopify
+  feed. `tools/shopify_pull.py` (now with `--out`, `--pages` and `@hosts.txt`) pulled up to 5,000
+  products from each: about 208,000 products from 119 shops.
+- **Filter:** the new `tools/sweep_filter.py` turned them into 4,282 picks from 112 shops
+  (`data/items-new.json`), so the page now has **6,143 picks**. Its rules:
+  - men's only; in stock in his size at the pull: L tops, 15.5 to 16in collars, 40R jackets,
+    34W with a 32in or regular leg, UK 11 shoes. A bare "11" counts only when the shop does not list
+    US sizes. Short, long and 34in legs are left out (1,098 trousers dropped). Where a shop lists the
+    waist only, the card says the leg length is not listed.
+  - category from the noun, after removing brand names that contain "jeans" or "polo" (Tommy Jeans,
+    Calvin Klein Jeans, Polo Ralph Lauren) and words like "short sleeve", so a short-sleeve shirt is a
+    shirt and a Tommy Jeans jumper is a jumper.
+  - clean names: no "Special Offer", "Clearance" or "Sale" prefixes (also when the shop puts them in
+    the brand field), no doubled brand, no repeated colour, no "Men's", no style codes; long names are
+    cut at a word.
+  - discounted first: each shop gets up to 60 picks and 14 per kind, filled with reduced pieces first;
+    full-price pieces fill at most a third. 3,212 of the 4,282 are reduced.
+  - workwear: at least 60% cotton (read from the description), no slim, skinny or tapered fits, and
+    safety boots only in 4E, 5E or 6E. Ordinary shoes from the wide-fit shops go to Casual rather than
+    Workwear. No slim or tapered trousers anywhere.
+- **Photos:** `tools/fetch_photos.py` gained `--prefix`, `--skip-existing`, `--size`, `--fit contain`
+  and `--quality`, and uses a pick's `img_src` (the shop's own photo URL from the feed) when there is
+  one. New photos are 360 by 450 (4:5), the whole garment on its own background, about 6.6 KB each.
+  4,281 of the new picks have one (`photos/new-*.json`). For the older picks, 131 more came from their
+  pages (`photos/more-*.json`), and 835 whose shops refuse page downloads were matched to the pulled
+  feeds by handle (`photos/more2-*.json`). In total, **6,002 of 6,143 picks have a photo** (98%, was 41%).
+- **Load groups:** `tools/build_site.py` now writes the picks as 12 load groups of at most 712
+  (`data/items/<group>.json`, listed in `data/items.json`), with shirts and coats each in their own.
+  Each group's photos are in `data/photos/<group>.json`. The page fetches the groups in parallel.
+- **Outfits:** the large outfit view opens on **Real photos, to scale**: the shop photos laid out
+  head to toe at 2.4 units per centimetre (coat about 88 cm, trousers 106 cm, boots 30 cm, a cap
+  24 cm), tops side by side, accessories in a column, with a 50 cm scale bar. "On the figure" switches
+  back to the drawing, and the choice is remembered. Cards, tiles and the outfit boards now show the
+  whole photo (contain, not crop).
+- **Published:** version 25 of <https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn> (43 MB of files).
+
+## 2t. A more lifelike figure, drawn in each piece's real colour (6 Oct 2026)
+
+- **Style tabs (version 26):** the Mix styles button is gone; tap several style tabs to combine them,
+  tap one again to drop it, and All styles clears the choice.
+- **Neck:** about 70% of the head's width (was half), flaring into the shoulders, with the Adam's
+  apple and neck tendons drawn in.
+- **Shoes:** drawn from the front at about 11 cm wide each (were 17 cm slabs), with the toe box,
+  a sole, welt line, a toe highlight, and detail by kind: laces and a toe cap on trainers, laces up
+  the shaft on lace-up boots, elastic sides on Chelsea and dealer boots, a saddle on loafers, a toe-cap
+  ridge on safety footwear. Bare feet are narrower to match.
+- **Arms and trousers:** sleeves and arms swell slightly at the shoulder and forearm instead of being
+  straight tubes; trouser hems curve over the shoe.
+- **True colours:** each piece is drawn in the colour of its own shop photo instead of the nearest of
+  18 palette colours. The page samples the photo on a canvas (chest for tops, the sides for open
+  jackets, the legs for trousers, the whole shoe), leaves out the background and skin, takes the darker
+  middle of the main colour, and pulls studio-lit black back to near black. A colour picked by hand in
+  the builder still wins.
+
+## 2u. A visual builder, 572 outfits and 200 shops (version 28, 6 Oct 2026)
+
+- **Build:** the dropdowns are gone. A chip for each part of the outfit (with its photo once
+  chosen), then that part's pieces as photo tiles with price, saving and shop. Tap a tile, or drag
+  it onto the figure, to put it on; tap again or "Take it off" to remove it. Filter and sort the
+  tiles; Keep and Suggest still work. On phones the figure sits on top.
+- **Drawings match the listings:** 23 outfit pieces were drawn as the wrong kind of garment
+  (overshirts as jackets, puffer jackets as long coats, a parka as a jacket) and 51 in the wrong
+  colour; all corrected. The page's own shape rules now read hoods, knitted polos, gilets, vests,
+  overshirts, slippers and more trainer names correctly.
+- **Figure:** Dave's shorter curls (on top, trimmed above the ears), short beard and moustache,
+  eyes and brows, from his photo. Parkas, waterproofs and puffers get a hood, zips, flap pockets and a
+  waist cord. Graphic tees show a chest print; mod polos tipping; pocket tees, henleys, zip hoodies,
+  rugby stripes, button-down collars and gum soles are drawn when the listing names them. Checks
+  and stripes take the item's second colour from its photo.
+- **Outfits:** `tools/make_outfits.py` adds 229 outfits (`data/outfits-new.json`) across all eight
+  styles, from photographed picks in his size: weather-matched, at most one non-neutral colour,
+  safety footwear for Workwear, no joggers outside Lounge and Rave, reduced pieces first, no pick in
+  more than two. 572 outfits in all.
+- **Shops:** 78 more UK shops in "Where to look", including a new Premium brands group (Reiss,
+  AllSaints, Ted Baker, Hackett, Paul Smith, BOSS, Tommy Hilfiger, Ralph Lauren, Lacoste, Stone
+  Island and more) and Fred Perry, Barbour, House of Fraser, Flannels, Mainline, Scotts, Footasylum,
+  size?, Skechers, Clarks, Loake, Grenson, Barker, Hotter, Cosyfeet, Spoke, BadRhino, Craghoppers,
+  Rab, Patagonia, Helly Hansen, Engelbert Strauss and Snickers. `tools/sitemap_sweep.py` reads shops
+  without a Shopify feed through their sitemaps and schema.org data: 9,303 products from 48 shops,
+  filtered to 1,012 picks (`data/items-shops.json`, 948 with photos). The page now has 7,155 picks
+  from 200 shops. About 30 shops refuse automated requests (Fred Perry, Ralph Lauren, Lacoste, TK
+  Maxx, Mr Porter, Dr Martens and others) and are links only. Picks from shops that do not publish
+  stock by size show his usual size instead of "in stock".
+
+## 2v. Original face, curlier hair, a 3D model and 131 more photos (version 29, 6 Oct 2026)
+
+- **Face:** back to the version 27 face (the moustache, dot eyes, thin brows), with the moustache in the
+  ginger-brown of his photos.
+- **Hair:** from his photos: dark, tightly curled ringlets with height on top, a few loose curls over
+  the forehead, and the sides falling to about the bottom of the ears. Each curl is a ringlet with an
+  open spiral stroke.
+- **3D model:** a third view in the large outfit view. Three.js (r128 from cdnjs) loads only when it is
+  opened. Dave is built at 1.83 m with the drawing's proportions, his curls and moustache, and each
+  piece as cloth over the body in its photo colour and pattern (check, stripe, denim, knit, cord,
+  quilt): tops, knits and jackets layered and open where worn open, trousers or shorts, shoes or
+  boots, and hats, sunglasses, watch, bag, scarf and chain. Drag to turn him; he turns slowly until
+  touched (not with reduced motion). The view stops when closed.
+- **Photos:** the headless-browser fallback (`fetch_photos.py --browser`, now with relative photo URLs
+  resolved) found 131 of the 174 picks still without one. 7,081 of 7,155 picks now have a photo.
+- **Shops behind bot protection:** `tools/browser_sweep.js` (sitemaps and product pages through headless
+  Chromium) is written, but Fred Perry and John Lewis still refused it from this cloud server. The
+  shops in the "links only" list stay links for now.
+
+## 2w. A 2D/3D switch, a better 3D model, and a review of the whole page (version 30, 6 Oct 2026)
+
+- **2D or 3D, page-wide:** a "Dave: 2D drawing / 3D model" switch in the top bar. In 3D, outfit cards,
+  "What to wear today", "One piece, many outfits" and saved outfits show still 3D renders (one hidden
+  renderer, cached by outfit and colours, so the page never opens more than three 3D views); the
+  builder and the large outfit view show the live model you can turn. The choice is remembered.
+- **Turning 2D off later:** Style guide > Page settings > "Offer the 2D drawings". Off, Dave is shown
+  only in 3D everywhere and the 2D buttons disappear. The page owner's choice is saved for everyone
+  (database `meta/settings`); anyone else's stays on their device. It is on until changed.
+- **Better 3D model:** a chin and jaw, eyes with whites, brows, a nose, a single curved moustache;
+  ringlet curls (small tori and beads) over a dark cap that stops at the hairline in front and at
+  the bottom of the ears behind; shoulders, hands with thumbs; cloth with a fine weave that catches
+  the light; ribbed hems and cuffs on knits, crew necks, roll necks, hoods with drawcords, shirt and
+  polo collars with plackets and buttons, blazer lapels, zips on zip jackets and half-zips, chest and
+  cargo pockets, waistbands and flies; trainers with white or gum soles and laces, boots with shafts;
+  beanie, cap, bucket hat, sunglasses, watch, bag, backpack, scarf, chain and tie.
+- **Review of the rest of the page** (desktop and phone, every view): no errors, no sideways scroll,
+  data loads in about a second. Fixed now:
+  - an old price more than six times the current one is treated as a data error and dropped (one
+    beanie showed 89% off);
+  - names that began with a stray trademark sign are cleaned;
+  - photo files are split into files of at most 150 photos (51 files, the largest 1.5 MB, was 3 to
+    5 MB per category), so opening a category on a phone loads far less;
+  - on phones the 2D/3D switch sits beside the search box with short labels, so the sticky bar is one
+    line shorter.
+
+### Further upgrades found in the review (not done yet)
+1. ~~**"New this week" has lost its meaning.**~~ Done in 2x: only the week's new picks carry it.
+2. ~~**Weekly price refresh:**~~ Done in 2x (`tools/weekly_refresh.py`). re-run `shopify_pull.py`, `sitemap_sweep.py` and `sweep_filter.py` weekly
+   to update prices, stock in his size and `hist`, so "Price drop" tags and the shortlist's
+   "Down £x since saved" work across all 7,155 picks; drop picks no longer listed.
+3. **Shop-by-budget sets:** £60, £100 and £150 buttons on Outfits using the builder's suggester.
+4. **Size check per shop:** store size charts for the main shops and show what L means at each.
+5. **Fit filters for the new shops:** about half the new-shop picks have no stock-by-size data; a
+   browser pass over just those product pages could confirm his size.
+6. **Duplicate colourways:** 53 shop-and-name pairs repeat (same product, colour not in the name); the
+   lists already show at most two, but the sweep could add the colour from the variant.
+7. **Blocked shops:** about 30 shops still refuse automated requests from the cloud; running
+   `tools/browser_sweep.js` from a home computer would add them.
+
+## 2x. First weekly refresh (6 Oct 2026)
+
+A repeatable weekly refresh (`tools/weekly_refresh.py`, steps in `REFRESH.md`) checked every pick
+against its shop, removed what is no longer sold, added new picks and published the result to the
+artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outfits** (was 572).
+
+- **Price check:** 6,626 picks were checked against the live listing (Shopify feeds, product pages,
+  and headless Chromium for 128 pages that refuse a plain request). 17 prices went down and 50 went
+  up, mostly sales that ended at Matalan, Clarks, Tu and M&S. The cards show "Price drop" and a price
+  history.
+- **Currency guard:** shops geolocate the cloud server and sometimes answer in dollars or euros (one
+  run showed 1,527 false price rises). Every request now asks for the UK market, answers in another
+  currency are retried, and a shop whose prices all move by one shared factor is left alone and
+  reported (this week: Peacocks; Ted Baker, Colorful Standard and Rains answered only in other
+  currencies).
+- **Removed (63):** 14 sold out in every size, 34 sold out in his size, 2 Moss slim-fit trousers,
+  and 13 things that are not clothing (tie-down straps, bivvy and survival bags, laptop sleeves,
+  magazine rigs). Eight 6E safety boots stay listed as "his size sold out" watch items.
+- **Moss data fixed:** Moss pages carry data for a dozen recommended products, and the old reader
+  took the cheapest of them, so Moss picks had wrong names and prices (a "£4.95 linen shirt"). The
+  reader now uses only the page's own product; 19 Moss picks were renamed from their pages.
+- **Workwear rules enforced:** the October sweep had tagged items Workwear on looser rules (60%
+  cotton, any boot, any shop). Following Emma's rules, the Workwear tag came off 67 T-shirts, 19
+  safety boots that are not EE or wider, 23 trousers that are not black or charcoal, stretch,
+  Cordura or not confirmed cotton, and about 110 fashion pieces from mixed shops (sunglasses,
+  wallets, band tees, Boss blazers). They stay in their other styles. Work gloves, beanies, socks,
+  base layers and the like keep the tag. 79 Workwear outfits were mended to match and 11 that could
+  not be were dropped.
+- **New picks (433):** 414 from 110 Shopify shops and 19 from shops read through their sitemaps,
+  up to 6 a shop and 2 a kind, reduced first, all in his size with a photo. The filter learned new
+  rules from this week's review (women's "W" items, swim caps and briefs, feed codes in names,
+  muscle fit, Workwear: no T-shirts, black or charcoal trousers only, no stretch, Cordura or
+  bundles, light colours out). Only these carry "New this week" now.
+- **Outfits:** 22 outfits that lost a piece got the closest live match (same kind, shop and colour
+  first; single-shop outfits stay single-shop), and 14 new outfits are built on the new picks.
+- **Not checked from the cloud:** ASOS (195 picks), Ted Baker, Colorful Standard, Rains, Peacocks,
+  M and M Direct, WoolOvers, Schuh and a few others refuse cloud servers or answer in another
+  currency, even in a real browser. Their picks keep last week's price. The full list is in
+  `data/refresh-report.json`.
+- **Published:** the claude.ai artifact <https://claude.ai/artifact/8uqcGr2eNmzbQv8UVBshY2> and
+  GitHub Pages <https://emmachilds98-wq.github.io/Wardrobe/> (the site is built into `docs/`, and
+  the root `index.html` opens it).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -501,6 +732,18 @@ from a home computer usually gets past them. Then add the new pack to the page a
 4. **"Shop by budget" quick sets:** an outfit for £60, £100 or £150, drawn from the builder's
    suggestion engine and refreshed weekly.
 5. ~~**Shop filter in Picks.**~~ Done in round two.
+
+### Step 4b: Features suggested for next round
+1. **Shop-by-budget sets:** "£60 / £100 / £150 outfit" buttons that run the builder's suggest engine
+   over the photo-backed picks and show the set as a flat lay.
+2. **Price-drop alerts on the shortlist:** re-run `shopify_pull.py` weekly for the shops behind
+   saved picks and set `prev` and `hist`, so the shortlist's "Down £x since it was saved" lights up.
+3. **Size check per shop:** store each Shopify shop's size-chart page and show "L at this shop is
+   a 42 to 44in chest" on the card; flag shops that run small.
+4. **Outfits from the new picks:** generate outfits per style from the 4,282 new picks, using
+   only pieces with photos, so every outfit shows a full flat lay.
+5. **Non-Shopify shops:** M&S, Next, Uniqlo, ASOS and the other big shops are not on Shopify; a
+   headless-browser pass (`tools/browser_fetch.js`) over their sale pages would add them.
 
 ### Step 5: More stores to add next
 These are in the directory but still have no picks: Gap, Levi's, Dr Martens direct, Vans,

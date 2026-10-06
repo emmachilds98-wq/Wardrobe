@@ -1,0 +1,7514 @@
+{
+ "summary": {
+  "date": "2026-10-06",
+  "picks_before": 7155,
+  "removed": 50,
+  "checked": 6626,
+  "price_down": 17,
+  "price_up": 50,
+  "not_checked": 442,
+  "not_checked_by_shop": [
+   [
+    "ASOS",
+    195
+   ],
+   [
+    "Ted Baker",
+    60
+   ],
+   [
+    "Peacocks",
+    32
+   ],
+   [
+    "M and M Direct",
+    31
+   ],
+   [
+    "Colorful Standard",
+    24
+   ],
+   [
+    "Rains",
+    19
+   ],
+   [
+    "WoolOvers",
+    13
+   ],
+   [
+    "Schuh",
+    9
+   ],
+   [
+    "Mountain Warehouse",
+    7
+   ],
+   [
+    "M&S",
+    6
+   ],
+   [
+    "H&M",
+    4
+   ],
+   [
+    "Joseph Turner",
+    4
+   ],
+   [
+    "Zara",
+    4
+   ],
+   [
+    "Decathlon",
+    3
+   ],
+   [
+    "George at Asda",
+    3
+   ],
+   [
+    "Zalando",
+    3
+   ],
+   [
+    "COS",
+    2
+   ],
+   [
+    "Hawes & Curtis",
+    2
+   ],
+   [
+    "John Lewis",
+    2
+   ],
+   [
+    "Joules",
+    2
+   ],
+   [
+    "Next",
+    2
+   ],
+   [
+    "First Class Watches",
+    2
+   ],
+   [
+    "The North Face",
+    2
+   ],
+   [
+    "Adidas",
+    1
+   ],
+   [
+    "Arket",
+    1
+   ],
+   [
+    "Converse",
+    1
+   ],
+   [
+    "END.",
+    1
+   ],
+   [
+    "FatFace",
+    1
+   ],
+   [
+    "JD Sports",
+    1
+   ],
+   [
+    "Office",
+    1
+   ],
+   [
+    "Sports Direct",
+    1
+   ],
+   [
+    "Stuarts London",
+    1
+   ],
+   [
+    "Seasalt",
+    1
+   ],
+   [
+    "Trespass",
+    1
+   ]
+  ],
+  "removed_why": {
+   "sold out": 14,
+   "his size sold out": 34
+  }
+ },
+ "currency_shift": [
+  "www.peacocks.co.uk"
+ ],
+ "via_browser": [
+  "ct-belt-black",
+  "ct-belt-tan",
+  "ct-blazer-navy",
+  "ct-blazer-taupe",
+  "ct-chino-navy",
+  "ct-chino-tan",
+  "ct-chukka",
+  "ct-derby-black",
+  "ct-gingham",
+  "ct-greenwich",
+  "ct-honeycomb-qz",
+  "ct-honeycomb-trophy",
+  "ct-jacket-navy",
+  "ct-knit-tie",
+  "ct-linen-tie",
+  "ct-loafer-navy",
+  "ct-ls-knit-polo",
+  "ct-merino-button",
+  "ct-merino-camel",
+  "ct-merino-halfzip",
+  "ct-merino-vneck",
+  "ct-merino-qz-polo",
+  "ct-oxford-ink",
+  "ct-oxford-stripe",
+  "ct-pique-white",
+  "ct-pocket-square",
+  "ct-poplin-stripe",
+  "ct-quilted-gilet",
+  "ct-quilted-jacket",
+  "ct-silk-tie",
+  "ct-royal-oxford",
+  "ct-spot-tie",
+  "ct-square-tan",
+  "ct-trainer",
+  "ct-stretch-belt",
+  "gs-restday-indigo",
+  "mw-brisk-navy",
+  "r12-tg-m9503a",
+  "r12-tg-m9504a",
+  "r12-tg-m9509b",
+  "rg-hurden",
+  "sdr-charcoal-suit",
+  "sdr-knit-tie",
+  "sdr-navy-suit",
+  "uq-3d-knit",
+  "uq-active-joggers",
+  "uq-airism-pique",
+  "uq-airism-tee",
+  "uq-airsense",
+  "uq-backpack",
+  "uq-barrel",
+  "uq-barrel-jeans",
+  "uq-belt",
+  "uq-blocktech-coat",
+  "uq-blocktech-parka",
+  "uq-cargo-shorts",
+  "uq-cargo",
+  "uq-cashmere-crew",
+  "uq-cashmere-turtle",
+  "uq-chino-shorts",
+  "uq-coated-bag",
+  "uq-cord-easy",
+  "uq-denim-trucker",
+  "uq-dry-pique",
+  "uq-easy-care",
+  "uq-flannel",
+  "uq-flannel-check",
+  "uq-flannel-easy",
+  "uq-fleece",
+  "uq-fleece-joggers",
+  "uq-gloves",
+  "uq-harrington",
+  "uq-heattech-cashmere",
+  "uq-heattech-gloves",
+  "uq-jersey-barrel",
+  "uq-jersey-easy-barrel",
+  "uq-jersey-jacket",
+  "uq-jorts",
+  "uq-joggers",
+  "uq-knit-jacket",
+  "uq-linen-easy-shorts",
+  "uq-linen-shirt-jacket",
+  "uq-ls-tee",
+  "uq-merino-crew",
+  "uq-merino-halfzip",
+  "uq-merino-polo",
+  "uq-merino-turtle",
+  "uq-merino-vneck",
+  "uq-milano-cardigan",
+  "uq-milano-crew",
+  "uq-mini-bag",
+  "uq-mock-neck",
+  "uq-oversized-oxford",
+  "uq-oversized-oxford-stripe",
+  "uq-oxford-stripe",
+  "uq-oxford",
+  "uq-pile-fleece",
+  "uq-pleated-shorts",
+  "uq-regular-chino",
+  "uq-puffertech",
+  "uq-seamless-down",
+  "uq-selvedge-jeans",
+  "uq-single-blouson",
+  "uq-skipper-polo",
+  "uq-slim-chino",
+  "uq-slim-oxford",
+  "uq-soft-brushed",
+  "uq-souffle-crew",
+  "uq-sport-sunglasses",
+  "uq-straight-jeans-sale",
+  "uq-stripe-ls",
+  "uq-sunglasses-boston",
+  "uq-sunglasses-wellington",
+  "uq-supima-tee",
+  "uq-sweat-wide",
+  "uq-sweatshirt",
+  "uq-ultra-stretch",
+  "uq-umbrella",
+  "uq-utility-jacket",
+  "uq-utility-shoulder",
+  "uq-utility-volume",
+  "uq-waffle-henley",
+  "uq-warm-lined",
+  "uq-wide-shorts",
+  "uq-windproof",
+  "uq-zip-blouson",
+  "uq-zip-short-blouson",
+  "ws-newport-merino"
+ ],
+ "not_checked": [
+  [
+   "adidas-samba",
+   "Adidas",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "ar-heavy-tee-grey",
+   "Arket",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "asos-adidas-sweat",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-af1",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-arket-coach",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-arket-jumper",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-arket-ls",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "asos-arket-polo",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-arket-sweat",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "asos-arket-tee",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-arket-trouser",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-arket-wool",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-baggy-jeans",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-beanie",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-berghaus-deluge",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "asos-boxy-hoodie",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-boxy-poplin",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-brown-fleece",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-bum-bag",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "asos-cap-brown",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-carhartt-beanie",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-carhartt-tee",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-chelsea-black",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-collusion-cargo",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "asos-collusion-jogger",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-collusion-ls",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-columbia-fleece",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-converse-hi",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "asos-dickies-874",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-dickies-874-sale",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-dickies-cable",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "asos-dickies-carpenter",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-dickies-coach",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-dickies-eisenhower",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-dickies-jorts",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-dickies-painter",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-dickies-tee",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-dm-101",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-dm-1461",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-heavy-hoodie",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-jj-brushed-overshirt",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-jj-cargo",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-jj-fine-rib",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-jj-flannel",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-jj-harrington",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-jj-loose-jeans",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-jj-mac",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-jj-windbreaker",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-jj-worker-boot",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-longline-khaki",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-loose-jeans",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-mango-knit",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-merrell",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-nb-cap",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "asos-nb530",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-nb740",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-newlook-roll",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-noak-loafer",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-only-linen",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "asos-only-tailored",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-overcoat-tobacco",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "asos-oversized-rib",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-oversized-tee",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-own-white",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-peakfreak",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-pleat-stone",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-qz-sweat",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-rains",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-regatta-matt",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-regatta-sterlings",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-rv-check",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-salomon",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-samba-brown",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-sling",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-spezial",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-stormmax",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-super-heavy-tee",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-terrex",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-tnf-bucket",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-tnf-glacier",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-tnf-quest",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-tnf-rodey",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-twill-overshirt",
+   "ASOS",
+   "unreachable",
+   "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of "
+  ],
+  [
+   "asos-vans",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-weekday-baggy",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-weekday-bomber",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-weekday-knit",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-weekday-sweat",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-weekday-tee",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-weekday-wool",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-wide-jogger",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "asos-wool-overcoat-black",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "bs-adidas-socks",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "bs-asos-trunks-3",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "bs-asos-trunks-5",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "bs-dickies-socks",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "bs-nike-socks",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "colorfulst-classic-organic-boxer-briefs-boxershorts-ivory-white-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-classic-organic-boxer-briefs-boxershorts-optical-white-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-deep-black-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-faded-khaki-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-ivory-white-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-kelly-green-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-marine-blue-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-navy-blue-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-optical-white-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-oxblood-red-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-pacific-blue-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-petrol-blue-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-red-tangerine-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-soft-lavender-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-soft-yellow-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-cotton-bucket-hat-ultra-violet-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-rib-tank-top-deep-black-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-rib-tank-top-heather-grey-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-organic-rib-tank-top-optical-white-male",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "colorfulst-oversized-organic-t-shirt-faded-indigo-female",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "cos-ladder-cream",
+   "COS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "cos-tipped-merino",
+   "COS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "cv-chuck70",
+   "Converse",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "dc-3in1-green",
+   "Decathlon",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "dc-mh100-brown",
+   "Decathlon",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "dc-mh500-grey",
+   "Decathlon",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "endclothin-row-icecream-cone-man-sock-ic23136-blk-html",
+   "END.",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "fat-cord-green",
+   "FatFace",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "ga-check-shacket",
+   "George at Asda",
+   "unreachable",
+   "HTTP Error 425: <none>"
+  ],
+  [
+   "ga-ribbed-olive",
+   "George at Asda",
+   "unreachable",
+   "HTTP Error 425: <none>"
+  ],
+  [
+   "ga-shearling-jacket",
+   "George at Asda",
+   "unreachable",
+   "HTTP Error 425: <none>"
+  ],
+  [
+   "gf-barneys-card",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "gf-barneys-coin",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "gf-colt-card",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "gf-levis-card-black",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "gf-levis-card-brown",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "hc-stripe-oxford",
+   "Hawes & Curtis",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "hc-white-oxford",
+   "Hawes & Curtis",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "hm-knit-polo",
+   "H&M",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "hm-linen",
+   "H&M",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "hm-oxford",
+   "H&M",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "hm-resort",
+   "H&M",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "jdsports-product-grey-nike-air-t-shirt-19746438",
+   "JD Sports",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "jl-barbour-scarf",
+   "John Lewis",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "jl-flat-cap",
+   "John Lewis",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "jo-hillside-2pk",
+   "Joules",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "jo-hillside-khaki",
+   "Joules",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "jt-lambswool-green",
+   "Joseph Turner",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "jt-linen-grandad",
+   "Joseph Turner",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "jt-linen-overshirt",
+   "Joseph Turner",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "jt-waffle-navy",
+   "Joseph Turner",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "lg-asos-pj-grey",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-boss-waffle",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-jj-everest",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-jj-set",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-loungeable-fleece",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-loungeable-grey",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-mule-black",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-mule-cord",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-mule-tan",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-prl-jogger",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-seqwl-slip",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-tezenis",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-threadbare-elton",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "lg-threadbare-moc",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "lg-threadbare-short",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "lg-threadbare-stripe",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "mm-berghaus-anwick",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-berghaus-lusby",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-berghaus-tathwell",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-converse-leather",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-converse-star",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-crew-gingham",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-crew-halfzip",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-crew-linen-ss",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-crew-oarsmen",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-crew-oxford",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-crew-qz",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-crew-vneck",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-farah-lounge",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-jj-baxter",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-levis-501",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-levis-555",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-levis-569",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-levis-cargo",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-ls-gown",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-ls-overshirt",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-ls-polo",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-ls-sweat",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-regatta-bayfell",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-regatta-frankie",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-regatta-gilet",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-regatta-highton",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-regatta-kames",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-timberland-alden",
+   "M and M Direct",
+   "unreachable",
+   "IncompleteRead(1089568 bytes read)"
+  ],
+  [
+   "mm-timberland-chukka",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-timberland-denim",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mm-timberland-winsor",
+   "M and M Direct",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "ms-brushed-pyjamas",
+   "M&S",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "ms-cashmere-crew",
+   "M&S",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "ms-cashmere-scarf",
+   "M&S",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "ms-cotton-crew",
+   "M&S",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "ms-lambswool-crew",
+   "M&S",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "ms-pyjamas",
+   "M&S",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mw-cargo-shorts",
+   "Mountain Warehouse",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mw-flannel-navy",
+   "Mountain Warehouse",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mw-holiday-shirt",
+   "Mountain Warehouse",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mw-rove-gilet",
+   "Mountain Warehouse",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mw-seasons",
+   "Mountain Warehouse",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mw-shandals",
+   "Mountain Warehouse",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "mw-treston-khaki",
+   "Mountain Warehouse",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "next-epsom",
+   "Next",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "nx-heavy-tee",
+   "Next",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "of-vans-oldskool",
+   "Office",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "pc-argyle",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-biker",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-chelsea-brown",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-hooded-black",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-jeans-black",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-jeans-indigo",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-khaki-jacket",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-ls-tee-navy",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-qz-grey",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-sherpa-navy",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-sherpa-stone",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-stripe-knit",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-sweat-mocha",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-wax-green",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "pc-zip-polo",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "peacocks-4102021-blue-geo-html",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "peacocks-4102024-navy-palm-html",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "peacocks-4202095-grey-camo-html",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "peacocks-4202133-red-plain-html",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "peacocks-4202373-plum-palm-html",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "peacocks-4202407-red-plain-html",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "peacocks-4202459-red-plain-html",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "peacocks-4202894-navy-xmas-html",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "peacocks-4202929-tan-plain-html",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "peacocks-4203381-green-elf-html",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "r11-colorful-bag",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "r11-colorful-smallacc",
+   "Colorful Standard",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "r11-colorful-trousers",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "r11-peacocks-braces",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "r11-peacocks-cap",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "r11-peacocks-gloves",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "r11-peacocks-gown",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "r11-peacocks-hoodie",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "r11-peacocks-joggers",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "r11-peacocks-shirt",
+   "Peacocks",
+   "unreliable price",
+   "every price moved by the same factor"
+  ],
+  [
+   "rains-2-zip-cosmetic-bag-large",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-beanie-splash",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-boonie-hat",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-bucket-hat",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-cap",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-classic-t-shirt-rains-female",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-classic-t-shirt-rains-male",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-classic-t-shirt-splash-male",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-cosmetic-bag",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-lunch-bag",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-lunch-bag-large",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-rain-pants-regular-male",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-sarna-insulated-mittens",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-snood",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-stainless-steel-2-pack-bowls",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-stainless-steel-2-pack-cups-300ml",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-stainless-steel-2-pack-deep-plates",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-stainless-steel-2-pack-plates",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rains-wash-bag-small",
+   "Rains",
+   "unreliable price",
+   "priced in EUR"
+  ],
+  [
+   "rv-4505-track",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-adidas-cargo-short",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-bershka-darted",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-cap-black",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-cargo-short",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-carhartt-cargo-short",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-carhartt-ray",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-chain-link",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-chain-lovisa",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-chain-rv",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-chain-slim",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-charcoal-ls",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-chunky-boot",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-collusion-ls",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-collusion-vest",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-dickies-fort",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "rv-dickies-pelican",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-dm-rain",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-firebird",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-firebird-gold",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-jj-5panel",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "rv-jj-cargo-black",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "rv-jj-cargo-short",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-jj-ls",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-jj-mesh",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-jj-tank",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-jj-tech-short",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-ls-cap",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-mesh-ls",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-mesh-tee",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-mesh-vest",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-nl-parachute-short",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-nylon-baggy",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-quilted-gilet",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-regatta-samaris",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-ri-cargo",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-rib-ls",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-schuh-devin",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-seqwl-chelsea",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-seqwl-lace",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-sport-mesh-tee",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-square-vest",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-stormmax-track",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-tapered-cargo",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-tommy-parachute",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-utility-gilet",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-vest-black",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-walk-sean",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-weekday-parachute",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-weekday-vest",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-wrap-amber",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-wrap-blue",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "rv-wrap-sunglasses",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sc-dane",
+   "Schuh",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "sc-denver",
+   "Schuh",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "sc-giles",
+   "Schuh",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "sc-kickers",
+   "Schuh",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "sc-rico",
+   "Schuh",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "sc-rl-aera",
+   "Schuh",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "sc-robin",
+   "Schuh",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "sc-timberland",
+   "Schuh",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "sc-warrington",
+   "Schuh",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "sd-firetrap-wind",
+   "Sports Direct",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sl-timberland-6in",
+   "Stuarts London",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "sp-4505-10in",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sp-4505-3in",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sp-4505-5in",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sp-4505-7in",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sp-4505-base",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sp-4505-cargo",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sp-4505-ls",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sp-4505-mesh-tee",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sp-4505-muscle",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sp-4505-seamless",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sp-4505-tank",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "sp-nike-pro",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "ss-mizzen",
+   "Seasalt",
+   "unreadable",
+   ""
+  ],
+  [
+   "swim-adidas",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "swim-asos-black",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "swim-asos-khaki",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "swim-nike-volley",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "swim-southbeach",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "swim-speedo",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "tedbaker-arrone-oxblood",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-belaire-olive-us",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-brentwd-teal-blue",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-button-front-shacket-black",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-button-front-sweater-polo-urban-chic",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-camp-shirt-grey",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-camp-shirt-navy",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-ciandra-navy",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-compact-herringbone-trousers-black-beauty",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-compact-herringbone-trousers-blue-nights",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-compact-herringbone-trousers-crockery",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-compten-mid-navy-us",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-core-waistcoat-grey",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-devin-pale-pink",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-floral-graphic-tee-sky-captain",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-halbak-dark-blue",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-halbak-mid-pink",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-halbak-olive",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-heavy-twill-chino-coffee-liqueur",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-heffner-navy-1",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-intarsia-black-beauty",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-intarsia-castlerock-heather",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-intarsia-lt-camel-heather",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-intarsia-sky-captain",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-jacquard-polo-black-beauty",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-jess-white",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-jvwscbl-black",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-knit-twill-elastic-trousers-insignia-blue-heather",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-knit-twill-elastic-trousers-iron-gate-heather",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-leah-light-yellow",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-loweton-black",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-loweton-tan",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-modern-viscose-blend-crew-high-rise-grey-heather",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-modern-viscose-blend-crew-sea-navy",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-moses-navy",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-palmdle-pink",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-pomonna-navy",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-popcorn-stripe-long-sleeve-polo-egret",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-popcorn-stripe-long-sleeve-polo-grey-heather",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-popcorn-stripe-long-sleeve-polo-sky-captain",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-printed-shirt-blue-nights",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-printed-shirt-bright-white",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-printed-shirt-brunnera-blue",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-printed-shirt-dk-navy",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-printed-shirt-jet-stream",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-printed-shirt-mocha-bisque",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-printed-shirt-pumice-stone",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-rib-zip-polo-jet-stream",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-rib-zip-polo-zephyr",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-short-sleeve-crew-neck-key-hole-back-with-pointelle-rib-light",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-straight-leg-pant-dk-grey",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-straight-leg-pant-grey",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-straight-leg-pant-khaki",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-stripe-shirt-light-blue",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-sweater-polo-grey-hthr",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-t-stitch-long-sleeve-crew-neck-sweater-egret-heather",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-texture-polo-grey",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-textured-camp-shirt-ivory",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-trim-strap-tank-top-with-pointelle-rib-rich-black",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "tedbaker-verdes-lt-green",
+   "Ted Baker",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "timex-35",
+   "First Class Watches",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "timex-38",
+   "First Class Watches",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "tnf-glacier",
+   "The North Face",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "tnf-yumiori-qz",
+   "The North Face",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "tp-cherhill",
+   "Trespass",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "w-casio-a158",
+   "ASOS",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "w-casio-aq230",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "w-limit-42",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "w-limit-green",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "w-sekonda-jones",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "w-sekonda-king",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "w-sekonda-williams",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "w-sekonda-wilson",
+   "ASOS",
+   "unreachable",
+   "Remote end closed connection without response"
+  ],
+  [
+   "wk-cs-shorts-black",
+   "Colorful Standard",
+   "unreliable price",
+   "priced in USD"
+  ],
+  [
+   "wo-aran",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-beanie",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-bed-sock",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-cardigan",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-cashmere-merino",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-gloves",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-guernsey",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-lambswool-crew",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-lambswool-vneck",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-lambswool-zip",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-scarf",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-shawl-cardigan",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "wo-socks",
+   "WoolOvers",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ],
+  [
+   "za-heavy-tee",
+   "Zara",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "za-straight-jeans",
+   "Zara",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "za-tech-bomber",
+   "Zara",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "za-twill-shirt",
+   "Zara",
+   "unreachable",
+   "no ld"
+  ],
+  [
+   "zl-bdg-jack-black",
+   "Zalando",
+   "unreachable",
+   "The read operation timed out"
+  ],
+  [
+   "zl-bdg-vintage",
+   "Zalando",
+   "unreachable",
+   "The read operation timed out"
+  ],
+  [
+   "zl-nb574-grey",
+   "Zalando",
+   "unreachable",
+   "HTTP Error 403: Forbidden"
+  ]
+ ],
+ "price_up": [
+  [
+   "clarks-desert",
+   "Clarks",
+   "Clarks Originals Desert Boot, Sand Suede",
+   79,
+   99.0
+  ],
+  [
+   "clarks-evo",
+   "Clarks",
+   "Clarks Originals Desert Boot Evo, Dark Brown Suede",
+   65,
+   85.0
+  ],
+  [
+   "moss-black-tropical-overshirt-967079215",
+   "Moss",
+   "Moss White Linen Shirt",
+   14.95,
+   24.95
+  ],
+  [
+   "moss-chestnut-linen-shirt-967065533",
+   "Moss",
+   "Moss White Linen Shirt",
+   14.95,
+   39.95
+  ],
+  [
+   "moss-navy-smart-swim-short-967107809",
+   "Moss",
+   "Moss Black Linen-Blend Pleated Shorts",
+   14.95,
+   29.95
+  ],
+  [
+   "moss-navy-wool-pleated-short-967092009",
+   "Moss",
+   "Moss Navy Chino Cotton Shorts",
+   14.95,
+   29.95
+  ],
+  [
+   "moss-neutral-tropical-overshirt-967079266",
+   "Moss",
+   "Moss White Linen Shirt",
+   14.95,
+   29.95
+  ],
+  [
+   "moss-slim-fit-aqua-marl-trouser-967071860",
+   "Moss",
+   "Moss Tailored Fit Grey Twill Trousers",
+   9.95,
+   20.0
+  ],
+  [
+   "moss-slim-fit-grey-trousers-966737517",
+   "Moss",
+   "Moss Tailored Fit Grey Twill Trousers",
+   9.95,
+   30.0
+  ],
+  [
+   "moss-tailored-fit-aqua-trouser-967047660",
+   "Moss",
+   "Moss Tailored Fit Grey Twill Trousers",
+   9.95,
+   40.0
+  ],
+  [
+   "moss-teal-crew-neck-t-shirt-966644737",
+   "Moss",
+   "Moss Sage Green Cotton Crew-Neck T-Shirt",
+   4.95,
+   9.95
+  ],
+  [
+   "mt-argyle-grey",
+   "Matalan",
+   "Matalan argyle crew jumper, grey",
+   17.6,
+   22.0
+  ],
+  [
+   "mt-barn-navy",
+   "Matalan",
+   "Matalan barn jacket, navy",
+   33.6,
+   42.0
+  ],
+  [
+   "mt-bomber-navy",
+   "Matalan",
+   "Matalan funnel-neck bomber jacket, navy",
+   33.6,
+   42.0
+  ],
+  [
+   "mt-borg-overshirt",
+   "Matalan",
+   "Matalan borg-lined herringbone overshirt, navy",
+   25.6,
+   32.0
+  ],
+  [
+   "mt-cargo-stone",
+   "Matalan",
+   "Matalan loose cargo trousers, stone",
+   20.8,
+   26.0
+  ],
+  [
+   "mt-chino-navy",
+   "Matalan",
+   "Matalan Lincoln chinos with belt, navy",
+   19.2,
+   24.0
+  ],
+  [
+   "mt-chore-stone",
+   "Matalan",
+   "Matalan canvas chore jacket, stone",
+   33.6,
+   42.0
+  ],
+  [
+   "mt-cord-shacket",
+   "Matalan",
+   "Matalan cord shacket, charcoal",
+   25.6,
+   32.0
+  ],
+  [
+   "mt-flannel-burg",
+   "Matalan",
+   "Matalan check flannel shirt, burgundy",
+   12.8,
+   16.0
+  ],
+  [
+   "mt-fleece-black",
+   "Matalan",
+   "Matalan half-zip fleece, black",
+   12.0,
+   15.0
+  ],
+  [
+   "mt-jeans-straight",
+   "Matalan",
+   "Matalan straight jeans, dark wash",
+   16.0,
+   20.0
+  ],
+  [
+   "mt-jeans-vintage",
+   "Matalan",
+   "Matalan relaxed vintage jeans, dark wash",
+   17.6,
+   22.0
+  ],
+  [
+   "mt-oxford-blue",
+   "Matalan",
+   "Matalan Oxford shirt, blue",
+   12.8,
+   16.0
+  ],
+  [
+   "mt-rib-khaki",
+   "Matalan",
+   "Matalan ribbed crew jumper, khaki",
+   14.4,
+   18.0
+  ],
+  [
+   "mt-rib-navy",
+   "Matalan",
+   "Matalan ribbed crew jumper, navy",
+   14.4,
+   18.0
+  ],
+  [
+   "mt-suede-bomber",
+   "Matalan",
+   "Matalan faux suede bomber, grey",
+   30.4,
+   38.0
+  ],
+  [
+   "mt-sweat-navy",
+   "Matalan",
+   "Matalan relaxed crew sweatshirt, navy",
+   12.8,
+   16.0
+  ],
+  [
+   "mt-vneck-stone",
+   "Matalan",
+   "Matalan Lincoln lambswool V-neck jumper, stone",
+   17.6,
+   22.0
+  ],
+  [
+   "mt-wax-black",
+   "Matalan",
+   "Matalan wax jacket, black",
+   36.8,
+   46.0
+  ],
+  [
+   "mw-brisk-navy",
+   "Mountain Warehouse",
+   "Mountain Warehouse Brisk Extreme waterproof jacket, navy",
+   64.99,
+   79.99
+  ],
+  [
+   "r11-animal-polo",
+   "Animal",
+   "Animal Ollie Long Sleeve Polo, black",
+   29.99,
+   34.99
+  ],
+  [
+   "r11-matalan-boots",
+   "Matalan",
+   "Matalan leather Chelsea boots, black",
+   32,
+   40.0
+  ],
+  [
+   "r11-matalan-chukka",
+   "Matalan",
+   "Matalan chukka boots, brown",
+   22.4,
+   28.0
+  ],
+  [
+   "r11-matalan-hat",
+   "Matalan",
+   "Matalan herringbone flat cap, navy",
+   6.4,
+   8.0
+  ],
+  [
+   "r11-matalan-hoodie",
+   "Matalan",
+   "Matalan relaxed hoodie, black",
+   14.4,
+   18.0
+  ],
+  [
+   "r11-matalan-joggers",
+   "Matalan",
+   "Matalan relaxed straight joggers, black",
+   12.8,
+   16.0
+  ],
+  [
+   "r11-matalan-lounge",
+   "Matalan",
+   "Matalan twill stripe pyjama set, blue",
+   14.4,
+   18.0
+  ],
+  [
+   "r11-matalan-polo",
+   "Matalan",
+   "Matalan long-sleeve knitted polo shirt, navy",
+   16,
+   20.0
+  ],
+  [
+   "r11-matalan-shoes",
+   "Matalan",
+   "Matalan leather brogue shoes, tan",
+   30.4,
+   38.0
+  ],
+  [
+   "r11-matalan-slippers",
+   "Matalan",
+   "Matalan suede fur-lined slippers, tan",
+   16,
+   20.0
+  ],
+  [
+   "r11-matalan-trainers",
+   "Matalan",
+   "Matalan retro smart trainers, white",
+   17.6,
+   22.0
+  ],
+  [
+   "r12-mt-cargo",
+   "Matalan",
+   "Matalan basic cargo trousers, black",
+   16,
+   20.0
+  ],
+  [
+   "r12-mt-chino",
+   "Matalan",
+   "Matalan straight fit chinos, black",
+   14.4,
+   18.0
+  ],
+  [
+   "sp-ua-surge",
+   "M&S",
+   "Under Armour Surge 5 Running Trainers",
+   43.6,
+   54.5
+  ],
+  [
+   "sp-ua-tank",
+   "M&S",
+   "Under Armour Velociti Tank Top",
+   25.6,
+   32.0
+  ],
+  [
+   "tp-finley-boots",
+   "Trespass",
+   "Finley Men's Waterproof Walking Boots, Brown",
+   34.99,
+   43.99
+  ],
+  [
+   "tu-birdseye-polo",
+   "Tu at Sainsbury's",
+   "Tu birdseye tipped jersey polo, blue",
+   10.62,
+   12.5
+  ],
+  [
+   "tu-merino-hz-black",
+   "Tu at Sainsbury's",
+   "Tu merino wool half-zip jumper, black",
+   29.75,
+   35.0
+  ],
+  [
+   "uq-seamless-down",
+   "Uniqlo",
+   "Seamless Down Jacket",
+   79.9,
+   99.9
+  ]
+ ],
+ "price_down": [
+  [
+   "clarks-lockford",
+   "Clarks",
+   "Clarks Lockford Easy, Brown Leather",
+   70,
+   42.0
+  ],
+  [
+   "fl-nb740",
+   "Foot Locker",
+   "New Balance 740, brown and green",
+   60,
+   45.0
+  ],
+  [
+   "footlocker-en-product-model-nike-club-fleece-48549-html",
+   "Foot Locker",
+   "Foot Locker Nike Club Fleece - Pants",
+   28.0,
+   24.0
+  ],
+  [
+   "moss-charcoal-suit",
+   "Moss",
+   "Regular Fit Charcoal Twill Suit",
+   199,
+   129.0
+  ],
+  [
+   "moss-linen-suit",
+   "Moss",
+   "Tailored Fit Neutral Twill Linen Suit",
+   169,
+   119.0
+  ],
+  [
+   "moss-navy-suit",
+   "Moss",
+   "Regular Fit Navy Twill Suit",
+   199,
+   129.0
+  ],
+  [
+   "r10-ue-rapid",
+   "Urban Excess",
+   "Columbia Rapid Rivers cargo walking trousers, green",
+   25.95,
+   19.95
+  ],
+  [
+   "r11-urbanexc-hoodie",
+   "Urban Excess",
+   "No Problemo SIDD Hoodie, black",
+   34.95,
+   25.95
+  ],
+  [
+   "r11-urbanexc-polo",
+   "Urban Excess",
+   "Thisisneverthat E/TLogo Shaggy Polo, ivory white",
+   48.0,
+   31.95
+  ],
+  [
+   "rh-range-jeans",
+   "Rohan",
+   "Rohan Range jeans, dark denim",
+   60,
+   50.0
+  ],
+  [
+   "sdr-charcoal-suit",
+   "Suit Direct",
+   "Limehaus Regular Fit Charcoal Stretch Suit",
+   127,
+   105.0
+  ],
+  [
+   "sdr-navy-suit",
+   "Suit Direct",
+   "Limehaus Regular Fit Navy Stretch Suit",
+   127,
+   84.0
+  ],
+  [
+   "ss-balefire",
+   "Seasalt",
+   "Seasalt Balefire organic cotton polo",
+   25.95,
+   15.95
+  ],
+  [
+   "tp-qikpac",
+   "Trespass",
+   "Unisex Waterproof Packaway Jacket Qikpac",
+   26.99,
+   19.99
+  ],
+  [
+   "tradeworkw-portwest-hi-vis-contrast-gaiters-yellow-black-hv389ybr",
+   "Trade Workwear",
+   "Portwest Hi-Vis Contrast Gaiters - Yellow - Black",
+   3.25,
+   3.23
+  ],
+  [
+   "trespass-keynote-mens-fleece",
+   "Trespass",
+   "Trespass 1/2 Zip Fleece Keynote",
+   12.99,
+   8.99
+  ],
+  [
+   "ws-newport-merino",
+   "White Stuff",
+   "White Stuff Newport merino jumper, dark navy",
+   59,
+   21.0
+  ]
+ ],
+ "renamed": [
+  [
+   "moss-black-tropical-overshirt-967079215",
+   "Moss",
+   "Moss White Linen Shirt",
+   "Moss Black Tropical Wool Overshirt"
+  ],
+  [
+   "moss-navy-smart-swim-short-967107809",
+   "Moss",
+   "Moss Black Linen-Blend Pleated Shorts",
+   "Moss Navy Smart Swim Shorts"
+  ],
+  [
+   "moss-navy-wool-pleated-short-967092009",
+   "Moss",
+   "Moss Navy Chino Cotton Shorts",
+   "Moss Navy Wool Pleated Shorts"
+  ],
+  [
+   "moss-neutral-tropical-overshirt-967079266",
+   "Moss",
+   "Moss White Linen Shirt",
+   "Moss Neutral Tropical Wool Overshirt"
+  ],
+  [
+   "moss-slim-fit-aqua-marl-trouser-967071860",
+   "Moss",
+   "Moss Tailored Fit Grey Twill Trousers",
+   "Moss Slim Fit Aqua Marl Trouser"
+  ],
+  [
+   "moss-charcoal-suit",
+   "Moss",
+   "Regular Fit Charcoal Twill Suit",
+   "Moss Regular Fit Charcoal Twill Suit"
+  ],
+  [
+   "moss-contrast-skipper",
+   "Moss",
+   "Off-White Contrast Placket Cotton Skipper Polo Shirt",
+   "Moss Off-White Contrast Placket Cotton Skipper Polo Shirt"
+  ],
+  [
+   "moss-cuban-ecru",
+   "Moss",
+   "Ecru Knitted Cuban Collar Shirt",
+   "Moss Ecru Knitted Cuban Collar Shirt"
+  ],
+  [
+   "moss-linen-sky",
+   "Moss",
+   "Sky Linen Shirt",
+   "Moss Sky Linen Shirt"
+  ],
+  [
+   "moss-linen-suit",
+   "Moss",
+   "Tailored Fit Neutral Twill Linen Suit",
+   "Moss Tailored Fit Neutral Twill Linen Suit"
+  ],
+  [
+   "moss-linen-white",
+   "Moss",
+   "White Linen Shirt",
+   "Moss White Linen Shirt"
+  ],
+  [
+   "moss-navy-suit",
+   "Moss",
+   "Regular Fit Navy Twill Suit",
+   "Moss Regular Fit Navy Twill Suit"
+  ],
+  [
+   "moss-navy-waistcoat",
+   "Moss",
+   "Regular Fit Navy Twill Waistcoat",
+   "Moss Regular Fit Navy Twill Waistcoat"
+  ],
+  [
+   "moss-polo-brown",
+   "Moss",
+   "Brown Pointelle Polo Shirt",
+   "Moss Brown Pointelle Polo Shirt"
+  ],
+  [
+   "moss-teal-crew-neck-t-shirt-966644737",
+   "Moss",
+   "Moss Sage Green Cotton Crew-Neck T-Shirt",
+   "Moss Teal Cotton Crew-Neck T-Shirt"
+  ],
+  [
+   "moss-tailored-fit-aqua-trouser-967047660",
+   "Moss",
+   "Moss Tailored Fit Grey Twill Trousers",
+   "Moss Italian Tailored Fit Aqua Trousers"
+  ],
+  [
+   "moss-chestnut-linen-shirt-967065533",
+   "Moss",
+   "Moss White Linen Shirt",
+   "Moss Chestnut Linen Shirt"
+  ],
+  [
+   "moss-black-straight-leg-short-967075315",
+   "Moss",
+   "Moss Navy Wool Pleated Shorts",
+   "Moss Black Linen-Blend Pleated Shorts"
+  ],
+  [
+   "moss-black-heavy-weight-t-shirt-967076915",
+   "Moss",
+   "Moss White Cotton Crew-Neck T-Shirt",
+   "Moss Black Heavy Weight Cotton T-Shirt"
+  ]
+ ],
+ "kept_watch": [
+  [
+   "r13-wf-steitz-fa375",
+   "Wide Fit Shoes",
+   "Steitz Secura FA 375 6E safety boots, black"
+  ],
+  [
+   "r13-wf-steitz-nf355",
+   "Wide Fit Shoes",
+   "Steitz Secura NF355 6E safety shoes, black"
+  ],
+  [
+   "r13-wf-steitz-nf375",
+   "Wide Fit Shoes",
+   "Steitz Secura NF375 6E safety boots, black"
+  ],
+  [
+   "w8-wl-290bsc",
+   "Wide Shoes",
+   "Wide Load 290BSC 6E composite toe safety shoes, black"
+  ],
+  [
+   "w8-wl-490bpo",
+   "Wide Shoes",
+   "Wide Load 490BPO 6E steel toe safety dealer boots, black"
+  ],
+  [
+   "w8-wl-690blwc",
+   "Wide Shoes",
+   "Wide Load 690BLWC 6E composite toe safety boots, black, lace-up"
+  ],
+  [
+   "w8-wl-690szc",
+   "Wide Shoes",
+   "Wide Load 690SZC 6E composite toe safety boots, stone"
+  ],
+  [
+   "w8-wl-690wz",
+   "Wide Shoes",
+   "Wide Load 690WZ 6E steel toe safety boots, tan"
+  ]
+ ],
+ "back_in_size": [
+  [
+   "sp-mtx-essential-tee",
+   "Montirex",
+   "Essential T-Shirt, Black"
+  ],
+  [
+   "sw-linen-shorts",
+   "Samuel Windsor",
+   "Linen Rich Shorts, Natural"
+  ],
+  [
+   "uq-cashmere-turtle",
+   "Uniqlo",
+   "100% Cashmere Turtleneck Jumper"
+  ],
+  [
+   "uq-dry-pique",
+   "Uniqlo",
+   "DRY Piqué Polo Shirt"
+  ]
+ ],
+ "removed": [
+  [
+   "p6-bb-alderley",
+   "his size sold out",
+   "Brakeburn",
+   "Brakeburn Alderley jumper"
+  ],
+  [
+   "r11-cernucci-fleece",
+   "sold out",
+   "Cernucci",
+   "Cernucci Fleece Hoodie, grey marl"
+  ],
+  [
+   "r11-closurel-polo",
+   "his size sold out",
+   "Closure London",
+   "Closure London Long Sleeve Textured Polo, stone"
+  ],
+  [
+   "cc-joe-denim",
+   "sold out",
+   "Community Clothing",
+   "Community Clothing Joe denim jacket, indigo"
+  ],
+  [
+   "fa-brewer-white",
+   "his size sold out",
+   "Farah",
+   "Brewer Box Fit Oxford Shirt, White"
+  ],
+  [
+   "swim-farah",
+   "his size sold out",
+   "Farah",
+   "Colbert Seersucker Stripe Swim Shorts, True Navy"
+  ],
+  [
+   "fa-fletcher",
+   "his size sold out",
+   "Farah",
+   "Fletcher Zip Through Fleece, True Navy"
+  ],
+  [
+   "fa-hanbury",
+   "his size sold out",
+   "Farah",
+   "Hanbury Crew Neck Sweatshirt, Battleship Blue"
+  ],
+  [
+   "fa-hawtin",
+   "his size sold out",
+   "Farah",
+   "Hawtin Relaxed Tapered Fit Full Length Trousers, True Navy"
+  ],
+  [
+   "gs-restday-indigo",
+   "sold out",
+   "Gymshark",
+   "Gymshark Rest Day Sweats joggers, indigo blue marl"
+  ],
+  [
+   "jackwolfsk-a63848-c0413",
+   "his size sold out",
+   "Jack Wolfskin",
+   "Jack Wolfskin Essential Hoodie W"
+  ],
+  [
+   "js-dm-1460",
+   "his size sold out",
+   "Jean Store",
+   "Dr Martens 1460 smooth leather boots, black"
+  ],
+  [
+   "ls-funnel-puffer",
+   "his size sold out",
+   "Lyle & Scott",
+   "Funnel Neck Puffer Jacket, Dark Navy"
+  ],
+  [
+   "ls-oversized-tee",
+   "his size sold out",
+   "Lyle & Scott",
+   "Oversized Cotton Crew Neck T-Shirt, Jet Black"
+  ],
+  [
+   "ls-wr-jacket",
+   "his size sold out",
+   "Lyle & Scott",
+   "Water Resistant Hooded Jacket, Shrub Green"
+  ],
+  [
+   "r11-montirex-gilet",
+   "his size sold out",
+   "Montirex",
+   "Montirex Golf Hybrid Gilet, onyx/black"
+  ],
+  [
+   "moss-chunky-black-brogue-shoe-966943315",
+   "sold out",
+   "Moss",
+   "Moss Navy Suede Relaxed Loafers"
+  ],
+  [
+   "moss-navy-cardigan",
+   "his size sold out",
+   "Moss",
+   "Navy Four Button Cardigan"
+  ],
+  [
+   "moss-skipper-oatmeal",
+   "his size sold out",
+   "Moss",
+   "Oatmeal Linen-blend Skipper Polo Shirt"
+  ],
+  [
+   "moss-navy-trousers",
+   "his size sold out",
+   "Moss",
+   "Regular Fit Navy Twill Trousers"
+  ],
+  [
+   "moss-merino-zip",
+   "his size sold out",
+   "Moss",
+   "Taupe Melange Merino Zip-Neck Jumper"
+  ],
+  [
+   "op-honeycomb-tee",
+   "his size sold out",
+   "Original Penguin",
+   "Jacquard Honeycomb Texture T-Shirt, Birch"
+  ],
+  [
+   "r11-passenge-overshirt",
+   "his size sold out",
+   "Passenger",
+   "Passenger Harvest Cotton Cord Overshirt, caramel brown"
+  ],
+  [
+   "ps-odyssey-duffel",
+   "sold out",
+   "Passenger",
+   "Passenger Odyssey backpack duffel, black and orange"
+  ],
+  [
+   "r12-rs-m303",
+   "his size sold out",
+   "Rock Solid Safety",
+   "Grafters M303 4E super wide safety trainers, black"
+  ],
+  [
+   "r12-rs-m9548",
+   "sold out",
+   "Rock Solid Safety",
+   "Grafters M9548 4E super wide safety chukka boots, black"
+  ],
+  [
+   "sw-chino-shorts",
+   "his size sold out",
+   "Samuel Windsor",
+   "Chino Shorts, Khaki"
+  ],
+  [
+   "sw-suede-loafer",
+   "his size sold out",
+   "Samuel Windsor",
+   "Suede Loafer, Navy"
+  ],
+  [
+   "tml-qz-cotton",
+   "his size sold out",
+   "T.M. Lewin",
+   "The Cotton Quarter-Zip Jumper, Navy"
+  ],
+  [
+   "tu-merino-hz-red",
+   "sold out",
+   "Tu at Sainsbury's",
+   "Tu merino wool half-zip jumper, dark red"
+  ],
+  [
+   "tu-lambswool-high",
+   "sold out",
+   "Tu at Sainsbury's",
+   "Tu pure lambswool high-neck jumper"
+  ],
+  [
+   "uq-airsense",
+   "his size sold out",
+   "Uniqlo",
+   "AirSense Jacket"
+  ],
+  [
+   "uq-linen-shirt-jacket",
+   "his size sold out",
+   "Uniqlo",
+   "Cotton Linen Blend Shirt Jacket"
+  ],
+  [
+   "uq-flannel",
+   "his size sold out",
+   "Uniqlo",
+   "Flannel Shirt (Regular Collar)"
+  ],
+  [
+   "uq-jersey-barrel",
+   "sold out",
+   "Uniqlo",
+   "Jersey Barrel Leg Trousers"
+  ],
+  [
+   "uq-joggers",
+   "sold out",
+   "Uniqlo",
+   "Joggers"
+  ],
+  [
+   "uq-linen-easy-shorts",
+   "his size sold out",
+   "Uniqlo",
+   "Linen Blend Easy Shorts"
+  ],
+  [
+   "uq-milano-cardigan",
+   "his size sold out",
+   "Uniqlo",
+   "Milano Ribbed Shirt Collar Cardigan"
+  ],
+  [
+   "uq-oversized-oxford",
+   "sold out",
+   "Uniqlo",
+   "Oversized Oxford Shirt"
+  ],
+  [
+   "uq-pleated-shorts",
+   "his size sold out",
+   "Uniqlo",
+   "Pleated Shorts"
+  ],
+  [
+   "uq-oxford-stripe",
+   "his size sold out",
+   "Uniqlo",
+   "Regular Fit Oxford Shirt (Striped)"
+  ],
+  [
+   "uq-souffle-crew",
+   "his size sold out",
+   "Uniqlo",
+   "Soufflé Yarn Crew Neck Jumper"
+  ],
+  [
+   "uq-sunglasses-boston",
+   "sold out",
+   "Uniqlo",
+   "Sunglasses (Boston)"
+  ],
+  [
+   "uq-sweatshirt",
+   "his size sold out",
+   "Uniqlo",
+   "Sweatshirt"
+  ],
+  [
+   "uq-wide-shorts",
+   "his size sold out",
+   "Uniqlo",
+   "Wide Shorts"
+  ],
+  [
+   "uq-zip-short-blouson",
+   "sold out",
+   "Uniqlo",
+   "Zip-Up Short Blouson"
+  ],
+  [
+   "uw-military-black",
+   "his size sold out",
+   "Universal Works",
+   "Universal Works polytech military trousers, black"
+  ],
+  [
+   "us-taupe",
+   "sold out",
+   "Uskees",
+   "3001 Overshirt, dark taupe"
+  ],
+  [
+   "moss-slim-fit-grey-trousers-966737517",
+   "slim fit",
+   "Moss",
+   "Moss Slim Fit Grey Performance Trousers"
+  ],
+  [
+   "moss-slim-fit-aqua-marl-trouser-967071860",
+   "slim fit",
+   "Moss",
+   "Moss Slim Fit Aqua Marl Trouser"
+  ]
+ ],
+ "outfits": {
+  "swapped": [
+   [
+    "dinner-out",
+    "Dinner out in winter",
+    "moss-navy-trousers",
+    "tmlewin-ronnie-infinity-active-slim-fit-charcoal-trousers-58728",
+    "T.M.Lewin The Ronnie Suit Trouser"
+   ],
+   [
+    "errands",
+    "Out and about",
+    "fa-brewer-white",
+    "farah-castlefield-waffle-overshirt-grey-f4whf008gp-031",
+    "Farah Castlefield Waffle Overshirt In White Smoke"
+   ],
+   [
+    "lazy-sunday",
+    "Lazy Sunday",
+    "uq-souffle-crew",
+    "moss-cuban-ecru",
+    "Moss Ecru Knitted Cuban Collar Shirt"
+   ],
+   [
+    "m5-argyle",
+    "Argyle and Oxford",
+    "fa-brewer-white",
+    "farah-castlefield-waffle-overshirt-grey-f4whf008gp-031",
+    "Farah Castlefield Waffle Overshirt In White Smoke"
+   ],
+   [
+    "mn-party",
+    "Night out",
+    "uq-jersey-barrel",
+    "folkclothi-barrel-leg-trouser-ecru-twill",
+    "Folk Barrel Leg Trouser - Ecru Twill"
+   ],
+   [
+    "n4-tech-black",
+    "Technical black",
+    "uw-military-black",
+    "montirex-haze-pant-black-asphalt-platinum-grey-mtx1377-2481",
+    "Montirex Haze Pant - Black - Asphalt - Platinum Grey"
+   ],
+   [
+    "nw-docs",
+    "Docs and black denim",
+    "js-dm-1460",
+    "r13-mk-patrol-boot",
+    "Kombat patrol boots, black"
+   ],
+   [
+    "nw-film",
+    "Film night",
+    "gs-restday-indigo",
+    "lg-loungeable-grey",
+    "Loungeable long sleeve T-shirt and check trouser pyjama set, grey"
+   ],
+   [
+    "nw-queue",
+    "Cold festival queue",
+    "js-dm-1460",
+    "universalt-original-penguin-mens-atlas-hiking-boots",
+    "Original Penguin Atlas Hiking Boots, black"
+   ],
+   [
+    "nw-supermarket",
+    "The supermarket upgrade",
+    "tu-lambswool-high",
+    "tokyolaund-striker-crew-neck-knitted-jumper-in-mid-grey-marl-kensingto",
+    "Kensington Eastside Striker Crew Neck Knitted Jumper in Mid Grey Marl"
+   ],
+   [
+    "ox-knit",
+    "Navy knit and jeans",
+    "fa-brewer-white",
+    "samuelwind-linen-mix-shirt-trad-white",
+    "Samuel Windsor Linen Rich Shirt - White"
+   ],
+   [
+    "ox-mono",
+    "Charcoal and white",
+    "fa-brewer-white",
+    "slamcity-huf-arch-mesh-button-up-white",
+    "HUF Arch Mesh Button Up White"
+   ],
+   [
+    "ox-open",
+    "Shirt as a jacket",
+    "fa-brewer-white",
+    "savilerowc-white-cotton-classic-fit-printed-casual-shirt-5011whn",
+    "Savile Row Company White Cotton Classic Fit Printed Casual Shirt"
+   ],
+   [
+    "ox-suit",
+    "Navy suit",
+    "fa-brewer-white",
+    "savilerowc-blue-white-linen-cotton-random-stripe-classic-fit-button-do",
+    "Savile Row Company Blue White Linen Cotton Random Stripe Classic Fit Button-Down Casual"
+   ],
+   [
+    "q6-quilted",
+    "Quilted jacket and cords",
+    "p6-bb-alderley",
+    "jeanstore-fred-perry-pique-stitch-knitted-tee-ecru",
+    "Fred Perry Pique Stitch Knitted Tee - Ecru"
+   ],
+   [
+    "smart-125",
+    "Smart for under £125",
+    "fa-brewer-white",
+    "savilerowc-pink-white-cotton-prince-of-wales-check-slim-fit-formal-shi",
+    "Savile Row Company Pink White Cotton Prince of Wales Check Slim Fit Formal Shirt - Double"
+   ],
+   [
+    "winter-140",
+    "Winter for under £140",
+    "moss-merino-zip",
+    "philipmorr-albert-and-maurice-netherton-zip-neck-lambswool-jumper-taup",
+    "Albert and Maurice Netherton Zip Neck Lambswool Jumper Taupe"
+   ],
+   [
+    "x11-farah",
+    "Farah head to toe",
+    "fa-hawtin",
+    "farah-sambrano-archive-canvas-trousers-beige-f4bsg048gp-280",
+    "Farah Sambrano Archive Canvas Trousers In Ecru"
+   ],
+   [
+    "x11-passenger",
+    "Passenger head to toe",
+    "r11-passenge-overshirt",
+    "r11-passenge-shirt",
+    "Passenger Acreage Shirt, patchwork faded black"
+   ],
+   [
+    "g-quiet-02",
+    "Blue shirt and black trousers",
+    "uw-military-black",
+    "universalw-black-tropical-suiting-military-chino",
+    "Universal Works Black Tropical Suiting Military Chino"
+   ],
+   [
+    "g-quiet-23",
+    "Blue shirt and navy trousers",
+    "fa-hawtin",
+    "sw-chino-navy",
+    "Regular Fit Chino, Navy"
+   ],
+   [
+    "g-job-01",
+    "Olive jacket and navy trousers",
+    "universalt-crosshatch-mens-transflate-t-shirt-1",
+    "bestworkwe-fruit-of-the-loom-ss029-original-polo",
+    "Fruit of the Loom Ss029 Original polo, azure blue"
+   ],
+   [
+    "g-job-01",
+    "Olive jacket and navy trousers",
+    "stanray-earls-bib-navy-ripstop-fw23",
+    "r12-sr-painter-denim",
+    "Stan Ray 80s painter work trousers, stonewashed black denim"
+   ],
+   [
+    "g-job-01",
+    "Olive jacket and navy trousers",
+    "amblerssaf-24022-brown",
+    "r9-ut-pullon",
+    "Grafters 4E super wide pull-on safety dealer boots, dark brown"
+   ],
+   [
+    "g-job-03",
+    "Navy T-shirt and charcoal trousers",
+    "hollandsco-ridgeline-mens-signature-t-shirt",
+    "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
+    "Gildan Gd017 Softstyle™ double piqué polo, charcoal"
+   ],
+   [
+    "g-job-03",
+    "Navy T-shirt and charcoal trousers",
+    "amblerssaf-24022-brown",
+    "r9-hc-dealer-wr",
+    "Grafters 4E water-resistant safety dealer boots, brown"
+   ],
+   [
+    "g-job-04",
+    "Navy hoodie and green trousers",
+    "jeanstore-lee-workwear-relaxed-boxy-tee-washed-black",
+    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "JCB Workwear Trade Work Polo Shirt, black"
+   ],
+   [
+    "g-job-04",
+    "Navy hoodie and green trousers",
+    "stanray-og-painter-pant-quiet-green-hickory-25-1",
+    "wk-stanray-dk-black",
+    "Stan Ray double-knee work jeans, washed black"
+   ],
+   [
+    "g-job-05",
+    "Blue T-shirt and olive trousers",
+    "universalt-crosshatch-mens-transflate-t-shirt-1",
+    "bestworkwe-fruit-of-the-loom-ss029-original-polo",
+    "Fruit of the Loom Ss029 Original polo, azure blue"
+   ],
+   [
+    "g-job-05",
+    "Blue T-shirt and olive trousers",
+    "stanray-fat-pant-olive-cord-fw22",
+    "wk-stanray-painter-black",
+    "Stan Ray 80s painter work trousers, black twill"
+   ],
+   [
+    "g-job-06",
+    "Black hoodie and black trousers",
+    "stanray-heatwave-tee-island-green",
+    "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
+    "Fruit of the Loom SS5 Premium Pique Polo, azure"
+   ],
+   [
+    "g-job-07",
+    "Olive jacket and olive trousers",
+    "jeanstore-lee-workwear-relaxed-boxy-tee-washed-black",
+    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "JCB Workwear Trade Work Polo Shirt, black"
+   ],
+   [
+    "g-job-07",
+    "Olive jacket and olive trousers",
+    "stanray-fat-pant-olive-cord-fw22",
+    "r12-wo-pianemo",
+    "Weekend Offender Pianemo cargo trousers, black"
+   ],
+   [
+    "g-job-08",
+    "Navy T-shirt and stone trousers",
+    "hollandsco-hard-yakka-heritage-long-sleeve-t-shirt",
+    "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
+    "Gildan Gd017 Softstyle™ double piqué polo, charcoal"
+   ],
+   [
+    "g-job-08",
+    "Navy T-shirt and stone trousers",
+    "stanray-standard-5-70s-stone-denim-aw25",
+    "r13-on-carpenter",
+    "O'Neill O'Riginals carpenter trousers, black"
+   ],
+   [
+    "g-job-09",
+    "Black gilet and stone trousers",
+    "universalt-marduk-unisex-adult-opus-nocturne-b-t-shirt",
+    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "JCB Workwear Trade Work Polo Shirt, black"
+   ],
+   [
+    "g-job-09",
+    "Black gilet and stone trousers",
+    "stanray-stan-ray-double-knee-pant-heavy-stone-wash-denim-24-2",
+    "r13-mk-magnum",
+    "Highlander Magnum cargo work trousers, black"
+   ],
+   [
+    "g-job-10",
+    "Navy T-shirt and black trousers",
+    "hollandsco-hard-yakka-heritage-long-sleeve-t-shirt",
+    "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
+    "Fruit of the Loom SS5 Premium Pique Polo, azure"
+   ],
+   [
+    "g-job-11",
+    "Black gilet and stone trousers",
+    "hollandsco-swanndri-mens-original-v2-t-shirt",
+    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "JCB Workwear Trade Work Polo Shirt, black"
+   ],
+   [
+    "g-job-11",
+    "Black gilet and stone trousers",
+    "stanray-standard-5-70s-stone-denim-aw25",
+    "r13-gr-gpants",
+    "Gramicci G-Pants climbing trousers, black"
+   ],
+   [
+    "g-job-12",
+    "Black hoodie and green trousers",
+    "volcom-workwear-sst",
+    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "JCB Workwear Trade Work Polo Shirt, black"
+   ],
+   [
+    "g-job-13",
+    "Black gilet and navy trousers",
+    "universalt-nosferatu-unisex-adult-ornamental-t-shirt",
+    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "JCB Workwear Trade Work Polo Shirt, black"
+   ],
+   [
+    "g-job-13",
+    "Black gilet and navy trousers",
+    "stanray-earls-bib-navy-ripstop-fw23",
+    "r12-sr-painter-denim",
+    "Stan Ray 80s painter work trousers, stonewashed black denim"
+   ],
+   [
+    "g-job-14",
+    "Grey T-shirt and stone trousers",
+    "dewaltwork-chico",
+    "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
+    "Gildan Gd017 Softstyle™ double piqué polo, charcoal"
+   ],
+   [
+    "g-job-14",
+    "Grey T-shirt and stone trousers",
+    "stanray-stan-ray-og-painter-pant-heavy-stone-wash-denim-24-2",
+    "wk-stanray-dk-black",
+    "Stan Ray double-knee work jeans, washed black"
+   ],
+   [
+    "g-job-15",
+    "Black gilet and olive trousers",
+    "volcom-workwear-sst",
+    "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
+    "Fruit of the Loom SS5 Premium Pique Polo, azure"
+   ],
+   [
+    "g-job-15",
+    "Black gilet and olive trousers",
+    "stanray-earls-bib-olive-ripstop-fw23",
+    "wk-stanray-painter-black",
+    "Stan Ray 80s painter work trousers, black twill"
+   ],
+   [
+    "g-job-15",
+    "Black gilet and olive trousers",
+    "amblerssaf-10057-crazy",
+    "r9-hf-m9509b",
+    "Grafters M9509B 4E safety dealer boots, brown"
+   ],
+   [
+    "g-job-16",
+    "Yellow jumper and indigo trousers",
+    "universalt-nosferatu-unisex-adult-ornamental-t-shirt",
+    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "JCB Workwear Trade Work Polo Shirt, black"
+   ],
+   [
+    "g-job-16",
+    "Yellow jumper and indigo trousers",
+    "stanray-earls-bib-vintage-stonewash-denim",
+    "r12-mt-chino",
+    "Matalan straight fit chinos, black"
+   ],
+   [
+    "g-job-17",
+    "Navy polo and indigo trousers",
+    "stanray-og-painter-pant-mid-stonewash-denim-fw22",
+    "r12-wo-pianemo",
+    "Weekend Offender Pianemo cargo trousers, black"
+   ],
+   [
+    "g-job-19",
+    "Black T-shirt and indigo trousers",
+    "universalt-marduk-unisex-adult-opus-nocturne-b-t-shirt",
+    "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
+    "Gildan Gd017 Softstyle™ double piqué polo, charcoal"
+   ],
+   [
+    "g-job-19",
+    "Black T-shirt and indigo trousers",
+    "stanray-og-painter-pant-mid-stonewash-denim-fw22",
+    "r12-cl-openhem-cargo",
+    "Closure London twill cargo trousers, charcoal"
+   ],
+   [
+    "g-job-21",
+    "Camel T-shirt and black trousers",
+    "hollandsco-laksen-mens-duck-cotton-t-shirt",
+    "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
+    "Fruit of the Loom SS5 Premium Pique Polo, azure"
+   ],
+   [
+    "g-job-22",
+    "Black T-shirt and grey trousers",
+    "hollandsco-swanndri-mens-original-v2-t-shirt",
+    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
+    "JCB Workwear Trade Work Polo Shirt, black"
+   ],
+   [
+    "g-job-22",
+    "Black T-shirt and grey trousers",
+    "stanray-earls-bib-battle-grey-duck-fw22",
+    "r12-bs-twill-cargo",
+    "Brave Soul cotton twill cargo trousers, dark grey"
+   ],
+   [
+    "g-job-28",
+    "Blue T-shirt and grey trousers",
+    "bestworkwe-orn-1000-plover-premium-t-shirt",
+    "bestworkwe-fruit-of-the-loom-ss029-original-polo",
+    "Fruit of the Loom Ss029 Original polo, azure blue"
+   ],
+   [
+    "g-job-28",
+    "Blue T-shirt and grey trousers",
+    "stanray-earls-bib-battle-grey-duck-fw22",
+    "r12-bs-twill-cargo",
+    "Brave Soul cotton twill cargo trousers, dark grey"
+   ],
+   [
+    "g-job-28",
+    "Blue T-shirt and grey trousers",
+    "amblerssaf-42860-tan",
+    "amblerssaf-26318-black",
+    "Amblers Safety As803 Broad S3 SRC Waterproof Wide Fit Safety Boots, black"
+   ],
+   [
+    "g-job-31",
+    "White T-shirt and black trousers",
+    "bestworkwe-awdis-ecologie-ea001-cascade-organic-tee",
+    "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
+    "Gildan Gd017 Softstyle™ double piqué polo, charcoal"
+   ],
+   [
+    "g-job-31",
+    "White T-shirt and black trousers",
+    "amblerssaf-42856-black",
+    "r9-ut-dealer",
+    "Grafters 4E super wide safety dealer boots, black"
+   ],
+   [
+    "g-job-28",
+    "Blue polo and grey trousers",
+    "militaryma-swedish-army-kit-bag-and-clasp",
+    "workweargu-portwest-fp99-nylon-drawstring-bag",
+    "Portwest Fp99 Nylon Drawstring Bag, black"
+   ]
+  ],
+  "dropped": [
+   [
+    "g-job-12",
+    "Black hoodie and green trousers",
+    "stanray-og-painter-pant-quiet-green-hickory-25-1"
+   ],
+   [
+    "g-job-18",
+    "Black gilet and stone trousers",
+    "stanray-heatwave-tee-island-green"
+   ],
+   [
+    "g-job-20",
+    "Black jacket and olive trousers",
+    "hollandsco-pinewood-mens-twin-pack-t-shirt"
+   ],
+   [
+    "g-job-23",
+    "Black gilet and black trousers",
+    "dewaltwork-chico"
+   ],
+   [
+    "g-job-24",
+    "Black jacket and black trousers",
+    "hollandsco-ridgeline-mens-signature-t-shirt"
+   ],
+   [
+    "g-job-25",
+    "Yellow jumper and grey trousers",
+    "liftingequ-f61082m-fruit-of-the-loom-mens-original-t-shirt"
+   ],
+   [
+    "g-job-26",
+    "Blue jumper and stone trousers",
+    "hollandsco-laksen-mens-duck-cotton-t-shirt"
+   ],
+   [
+    "g-job-27",
+    "Black gilet and indigo trousers",
+    "workweargu-portwest-b195-turin-premium-t-shirt"
+   ],
+   [
+    "g-job-29",
+    "Black T-shirt and black trousers",
+    "universalt-spiral-direct-unisex-adult-sun-dragon-t-shirt"
+   ],
+   [
+    "g-job-30",
+    "Black T-shirt and grey trousers",
+    "liftingequ-f61082m-fruit-of-the-loom-mens-original-t-shirt"
+   ],
+   [
+    "g-job-32",
+    "Green T-shirt and black trousers",
+    "hollandsco-pinewood-mens-twin-pack-t-shirt"
+   ]
+  ]
+ },
+ "removed_items": {
+  "p6-bb-alderley": {
+   "name": "Brakeburn Alderley jumper",
+   "shop": "Brakeburn",
+   "cat": "knit",
+   "kind": "new",
+   "price": 19.49,
+   "url": "https://www.brakeburn.com/products/alderley-aw25?variant=42485230796861",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "cold",
+    "mild"
+   ],
+   "note": "Knitted jumper for £19.49, 70% off.",
+   "rank": 200,
+   "sets": [
+    "winter"
+   ],
+   "checked": "2026-10-05",
+   "added": "2026-10-05",
+   "was": 64.99,
+   "insize": true,
+   "sizes": "L in stock"
+  },
+  "r11-cernucci-fleece": {
+   "name": "Cernucci Fleece Hoodie, grey marl",
+   "shop": "Cernucci",
+   "cat": "knit",
+   "kind": "new",
+   "price": 64.99,
+   "url": "https://cernucci.com/products/480gsm-fleece-hoodie-grey-marl?variant=58797490536829",
+   "style": [
+    "street",
+    "casual",
+    "outdoor"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "cold",
+    "mild"
+   ],
+   "note": "A fleece from Cernucci. £64.99.",
+   "rank": 220,
+   "sets": [],
+   "checked": "2026-10-05",
+   "added": "2026-10-05",
+   "insize": true,
+   "sizes": "L in stock"
+  },
+  "r11-closurel-polo": {
+   "name": "Closure London Long Sleeve Textured Polo, stone",
+   "shop": "Closure London",
+   "cat": "polo",
+   "kind": "new",
+   "price": 19.99,
+   "url": "https://www.closurelondon.com/products/long-sleeve-textured-polo-stone?variant=56442486063482",
+   "style": [
+    "street",
+    "casual"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "warm",
+    "mild"
+   ],
+   "note": "A polo shirt from Closure London. £19.99, 64% off. Half price or more.",
+   "rank": 120,
+   "sets": [],
+   "checked": "2026-10-05",
+   "added": "2026-10-05",
+   "was": 56.0,
+   "insize": true,
+   "sizes": "L in stock"
+  },
+  "cc-joe-denim": {
+   "added": "2026-10-05",
+   "cat": "coat",
+   "checked": "2026-10-05",
+   "insize": true,
+   "kind": "new",
+   "name": "Community Clothing Joe denim jacket, indigo",
+   "note": "British-made denim jacket, 70% off.",
+   "occ": [
+    "everyday"
+   ],
+   "price": 44.7,
+   "rank": 120,
+   "sets": [],
+   "shop": "Community Clothing",
+   "sizes": "L in stock",
+   "style": [
+    "casual",
+    "street"
+   ],
+   "url": "https://communityclothing.co.uk/products/mens-joe-denim-jacket-indigo",
+   "was": 149,
+   "wx": [
+    "mild"
+   ]
+  },
+  "fa-brewer-white": {
+   "cat": "shirt",
+   "checked": "2026-10-05",
+   "insize": true,
+   "kind": "new",
+   "name": "Brewer Box Fit Oxford Shirt, White",
+   "note": "Sixty per cent off an Oxford cut boxy, which is how he likes his tops.",
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "price": 28,
+   "rank": 30.2,
+   "shop": "Farah",
+   "sizes": "M in stock, L sold out",
+   "style": [
+    "quiet",
+    "street",
+    "minimal",
+    "casual"
+   ],
+   "url": "https://www.farah.co.uk/collections/sale/products/brewer-box-fit-oxford-shirt-white-f4wff048gp-104",
+   "was": 70,
+   "wx": [
+    "cold",
+    "mild",
+    "warm",
+    "wet"
+   ]
+  },
+  "swim-farah": {
+   "added": "2026-10-05",
+   "cat": "swim",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Colbert Seersucker Stripe Swim Shorts, True Navy",
+   "note": "Navy seersucker stripe at 40% off.",
+   "occ": [
+    "everyday",
+    "party"
+   ],
+   "price": 27,
+   "rank": 671,
+   "sets": [
+    "holiday"
+   ],
+   "shop": "Farah",
+   "sizes": "M and L both sold out",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "url": "https://www.farah.co.uk/collections/sale/products/colbert-seersucker-stripe-swim-shorts-blue-f4sse078gp-412",
+   "was": 45,
+   "wx": [
+    "warm"
+   ]
+  },
+  "fa-fletcher": {
+   "cat": "knit",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Fletcher Zip Through Fleece, True Navy",
+   "note": "Sixty per cent off a plain navy fleece.",
+   "occ": [
+    "everyday"
+   ],
+   "price": 46,
+   "rank": 461,
+   "sets": [
+    "winter"
+   ],
+   "shop": "Farah",
+   "sizes": "M and L both sold out",
+   "style": [
+    "outdoor",
+    "street"
+   ],
+   "url": "https://www.farah.co.uk/collections/sale/products/fletcher-zip-through-fleece-blue-f4kff018gp-412",
+   "was": 115,
+   "wx": [
+    "cold",
+    "mild"
+   ]
+  },
+  "fa-hanbury": {
+   "cat": "knit",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Hanbury Crew Neck Sweatshirt, Battleship Blue",
+   "note": "Half price. A plain sweatshirt in a grey-blue.",
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "price": 30,
+   "rank": 458,
+   "shop": "Farah",
+   "sizes": "M and L both sold out",
+   "style": [
+    "street",
+    "minimal",
+    "quiet",
+    "casual",
+    "lounge"
+   ],
+   "url": "https://www.farah.co.uk/collections/sale/products/hanbury-crew-neck-sweatshirt-blue-f4kfd089ou-980",
+   "was": 60,
+   "wx": [
+    "mild",
+    "cold"
+   ]
+  },
+  "fa-hawtin": {
+   "cat": "trouser",
+   "checked": "2026-10-05",
+   "insize": true,
+   "kind": "new",
+   "name": "Hawtin Relaxed Tapered Fit Full Length Trousers, True Navy",
+   "note": "Relaxed navy trousers at 40% off.",
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "price": 48,
+   "rank": 462,
+   "shop": "Farah",
+   "sizes": "L in stock (fits a 34in waist)",
+   "style": [
+    "quiet",
+    "minimal",
+    "street"
+   ],
+   "url": "https://www.farah.co.uk/collections/sale/products/hawtin-relaxed-tapered-fit-full-length-trousers-blue-f4bff056gp-412",
+   "was": 80,
+   "wx": [
+    "cold",
+    "mild",
+    "warm",
+    "wet"
+   ]
+  },
+  "gs-restday-indigo": {
+   "added": "2026-10-05",
+   "cat": "lounge",
+   "checked": "2026-09-15",
+   "kind": "new",
+   "name": "Gymshark Rest Day Sweats joggers, indigo blue marl",
+   "note": "Half price. 345 reviewers say they run large, so M rather than L.",
+   "occ": [
+    "lounge"
+   ],
+   "price": 22.5,
+   "rank": 250,
+   "sets": [],
+   "shop": "Gymshark",
+   "style": [
+    "lounge",
+    "street"
+   ],
+   "url": "https://uk.gymshark.com/products/gymshark-rest-day-sweats-joggers-bros-indigo-blue-marl-aw24",
+   "was": 45,
+   "wx": [
+    "mild",
+    "cold"
+   ]
+  },
+  "jackwolfsk-a63848-c0413": {
+   "name": "Jack Wolfskin Essential Hoodie W",
+   "shop": "Jack Wolfskin",
+   "cat": "knit",
+   "price": 52.0,
+   "url": "https://www.jack-wolfskin.co.uk/products/a63848_c0413?variant=56836599021892",
+   "style": [
+    "outdoor"
+   ],
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "wx": [
+    "cold",
+    "mild"
+   ],
+   "note": "Down from £75 to £52 (31% off). L in stock at the last check.",
+   "rank": 263,
+   "sets": [
+    "winter"
+   ],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0954/6897/8500/files/A63848_C0413_1-MA100-essential-hoodie-w-dark-navy.png?v=1788973222",
+   "was": 75.0
+  },
+  "js-dm-1460": {
+   "added": "2026-10-05",
+   "cat": "shoe",
+   "checked": "2026-09-18",
+   "kind": "new",
+   "name": "Dr Martens 1460 smooth leather boots, black",
+   "note": "The original 8-eye boot. Stiff for the first few weeks, then lasts for years. Survives a warehouse floor.",
+   "occ": [
+    "everyday",
+    "party"
+   ],
+   "price": 169,
+   "rank": 300,
+   "sets": [],
+   "shop": "Jean Store",
+   "style": [
+    "street",
+    "rave"
+   ],
+   "url": "https://jeanstore.co.uk/products/dr-martens-1460-smooth-leather-boots-black",
+   "wx": [
+    "cold",
+    "wet",
+    "mild"
+   ]
+  },
+  "ls-funnel-puffer": {
+   "cat": "coat",
+   "checked": "2026-10-05",
+   "insize": true,
+   "kind": "new",
+   "name": "Funnel Neck Puffer Jacket, Dark Navy",
+   "note": "Sixty per cent off a plain navy puffer.",
+   "occ": [
+    "everyday"
+   ],
+   "offer": "M in stock, L sold out when checked",
+   "price": 48,
+   "rank": 542,
+   "sets": [
+    "winter"
+   ],
+   "shop": "Lyle & Scott",
+   "sizes": "M in stock, L sold out",
+   "style": [
+    "street",
+    "outdoor",
+    "quiet"
+   ],
+   "url": "https://www.lyleandscott.com/products/funnel-neck-wadded-jacket-dark-navy",
+   "was": 120,
+   "wx": [
+    "cold"
+   ]
+  },
+  "ls-oversized-tee": {
+   "cat": "polo",
+   "checked": "2026-10-05",
+   "insize": true,
+   "kind": "new",
+   "name": "Oversized Cotton Crew Neck T-Shirt, Jet Black",
+   "note": "An oversized black tee at half price.",
+   "occ": [
+    "everyday",
+    "party"
+   ],
+   "offer": "M in stock, L sold out when checked",
+   "price": 15,
+   "rank": 541,
+   "sets": [
+    "christmas",
+    "holiday"
+   ],
+   "shop": "Lyle & Scott",
+   "sizes": "M in stock, L sold out",
+   "style": [
+    "street",
+    "rave",
+    "casual"
+   ],
+   "url": "https://www.lyleandscott.com/products/oversized-t-shirt-jet-black",
+   "was": 31,
+   "wx": [
+    "warm",
+    "mild"
+   ]
+  },
+  "ls-wr-jacket": {
+   "cat": "coat",
+   "checked": "2026-10-05",
+   "insize": true,
+   "kind": "new",
+   "name": "Water Resistant Hooded Jacket, Shrub Green",
+   "note": "Half price. A dark green hooded jacket for showers.",
+   "occ": [
+    "everyday",
+    "party"
+   ],
+   "offer": "M in stock, L sold out when checked",
+   "price": 47,
+   "rank": 543,
+   "shop": "Lyle & Scott",
+   "sizes": "M in stock, L sold out",
+   "style": [
+    "outdoor",
+    "street"
+   ],
+   "url": "https://www.lyleandscott.com/products/water-resistant-hooded-jacket-shrub-green",
+   "was": 95,
+   "wx": [
+    "wet",
+    "mild"
+   ]
+  },
+  "r11-montirex-gilet": {
+   "name": "Montirex Golf Hybrid Gilet, onyx/black",
+   "shop": "Montirex",
+   "cat": "coat",
+   "kind": "new",
+   "price": 39.99,
+   "url": "https://montirex.com/products/golf-hybrid-gilet-onyx-black-beauty-mtx1216-200?variant=55375447425401",
+   "style": [
+    "street",
+    "rave"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "A gilet from Montirex. £39.99, 56% off. Half price or more.",
+   "rank": 160,
+   "sets": [],
+   "checked": "2026-10-05",
+   "added": "2026-10-05",
+   "was": 89.99,
+   "insize": true,
+   "sizes": "L in stock"
+  },
+  "moss-chunky-black-brogue-shoe-966943315": {
+   "name": "Moss Navy Suede Relaxed Loafers",
+   "shop": "Moss",
+   "cat": "shoe",
+   "price": 19.95,
+   "url": "https://www.moss.co.uk/chunky-black-brogue-shoe-966943315",
+   "style": [
+    "quiet",
+    "work",
+    "mod"
+   ],
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "£19.95, full price. UK 11 in stock at the last check.",
+   "rank": 304,
+   "sets": [],
+   "insize": true,
+   "sizes": "UK 11 in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://content.moss.co.uk/images/extraextralarge/"
+  },
+  "moss-navy-cardigan": {
+   "cat": "knit",
+   "checked": "2026-10-05",
+   "kind": "new",
+   "name": "Navy Four Button Cardigan",
+   "note": "Half price. Wear in place of a blazer over a shirt.",
+   "occ": [
+    "smart",
+    "everyday"
+   ],
+   "price": 39.95,
+   "rank": 157,
+   "shop": "Moss",
+   "style": [
+    "quiet",
+    "minimal"
+   ],
+   "url": "https://www.moss.co.uk/navy-four-button-cardigan-967072409",
+   "was": 79.95,
+   "wx": [
+    "mild",
+    "cold"
+   ]
+  },
+  "moss-skipper-oatmeal": {
+   "cat": "polo",
+   "checked": "2026-10-05",
+   "kind": "new",
+   "name": "Oatmeal Linen-blend Skipper Polo Shirt",
+   "note": "Collar with no buttons, in oatmeal. Also light blue.",
+   "occ": [
+    "party",
+    "smart"
+   ],
+   "price": 24.95,
+   "rank": 183,
+   "sets": [
+    "holiday"
+   ],
+   "shop": "Moss",
+   "style": [
+    "quiet",
+    "minimal"
+   ],
+   "url": "https://www.moss.co.uk/linen-blend-oatmeal-skipper-967064032",
+   "was": 59.95,
+   "wx": [
+    "warm"
+   ]
+  },
+  "moss-navy-trousers": {
+   "cat": "tailor",
+   "checked": "2026-10-05",
+   "kind": "new",
+   "name": "Regular Fit Navy Twill Trousers",
+   "note": "Smart trousers on their own, with a jumper or blazer.",
+   "occ": [
+    "event",
+    "smart"
+   ],
+   "price": 70,
+   "rank": 99,
+   "sets": [
+    "christmas"
+   ],
+   "shop": "Moss",
+   "style": [
+    "quiet",
+    "minimal",
+    "outdoor"
+   ],
+   "url": "https://www.moss.co.uk/regular-fit-navy-twill-trousers-966749609",
+   "was": 130,
+   "wx": [
+    "cold",
+    "mild",
+    "warm",
+    "wet"
+   ]
+  },
+  "moss-merino-zip": {
+   "cat": "knit",
+   "checked": "2026-10-05",
+   "kind": "new",
+   "name": "Taupe Melange Merino Zip-Neck Jumper",
+   "note": "Three quarters off a merino zip-neck in a soft neutral.",
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "offer": "Check which sizes are left",
+   "price": 14.95,
+   "rank": 1.5,
+   "shop": "Moss",
+   "style": [
+    "quiet",
+    "minimal"
+   ],
+   "url": "https://www.moss.co.uk/taupe-melange-merino-zip-neck-jumper-966805969",
+   "was": 59.95,
+   "wx": [
+    "cold",
+    "mild"
+   ]
+  },
+  "op-honeycomb-tee": {
+   "cat": "polo",
+   "checked": "2026-10-05",
+   "insize": true,
+   "kind": "new",
+   "name": "Jacquard Honeycomb Texture T-Shirt, Birch",
+   "note": "A textured beige tee, smarter than plain jersey.",
+   "occ": [
+    "everyday",
+    "party"
+   ],
+   "price": 20,
+   "rank": 467,
+   "sets": [
+    "holiday"
+   ],
+   "shop": "Original Penguin",
+   "sizes": "M in stock, L sold out",
+   "style": [
+    "minimal",
+    "quiet",
+    "casual"
+   ],
+   "url": "https://www.originalpenguin.co.uk/collections/sale/products/jacquard-honeycomb-texture-t-shirt-beige-opkm2612gp-252",
+   "was": 40,
+   "wx": [
+    "warm"
+   ]
+  },
+  "r11-passenge-overshirt": {
+   "name": "Passenger Harvest Cotton Cord Overshirt, caramel brown",
+   "shop": "Passenger",
+   "cat": "shirt",
+   "kind": "new",
+   "price": 39.98,
+   "url": "https://www.passenger-clothing.com/products/harvest-organic-cotton-cord-overshirt-caramel-brown?variant=44036055564483",
+   "style": [
+    "outdoor",
+    "casual"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "An overshirt from Passenger. £39.98, 50% off.",
+   "rank": 160,
+   "sets": [],
+   "checked": "2026-10-05",
+   "added": "2026-10-05",
+   "was": 79.95,
+   "insize": true,
+   "sizes": "L in stock"
+  },
+  "ps-odyssey-duffel": {
+   "added": "2026-10-05",
+   "cat": "acc",
+   "checked": "2026-10-05",
+   "gift": true,
+   "kind": "new",
+   "name": "Passenger Odyssey backpack duffel, black and orange",
+   "note": "Carry it as a backpack or a holdall. A good weekend bag, 60% off.",
+   "occ": [
+    "everyday"
+   ],
+   "price": 47.98,
+   "rank": 420,
+   "sets": [],
+   "shop": "Passenger",
+   "style": [
+    "outdoor",
+    "rave",
+    "casual"
+   ],
+   "url": "https://www.passenger-clothing.com/products/odyssey-recycled-backpack-duffel-black",
+   "was": 119.95,
+   "wx": [
+    "mild",
+    "wet"
+   ]
+  },
+  "r12-rs-m303": {
+   "name": "Grafters M303 4E super wide safety trainers, black",
+   "shop": "Rock Solid Safety",
+   "cat": "shoe",
+   "kind": "new",
+   "price": 27.99,
+   "url": "https://www.rocksolidsafety.co.uk/products/grafters-m-303-super-wide-safety-trainers?variant=50018077376858",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "warm"
+   ],
+   "note": "4E super wide S1P safety trainers. Sold out in UK 11 today; listed so the page shows when it comes back. £27.99.",
+   "rank": 160,
+   "sets": [],
+   "checked": "2026-10-05",
+   "added": "2026-10-05",
+   "insize": false,
+   "sizes": "UK 11 (4E) sold out"
+  },
+  "r12-rs-m9548": {
+   "name": "Grafters M9548 4E super wide safety chukka boots, black",
+   "shop": "Rock Solid Safety",
+   "cat": "shoe",
+   "kind": "new",
+   "price": 21.99,
+   "url": "https://www.rocksolidsafety.co.uk/products/grafters-m-9548-super-wide-eeee-fitting-safety-chukka-boots?variant=50018073346394",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold",
+    "wet"
+   ],
+   "note": "4E (EEEE) S3 water-resistant safety chukkas. Sold out in UK 11 today. £21.99.",
+   "rank": 160,
+   "sets": [],
+   "checked": "2026-10-05",
+   "added": "2026-10-05",
+   "insize": false,
+   "sizes": "UK 11 (4E) sold out"
+  },
+  "sw-chino-shorts": {
+   "cat": "trouser",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Chino Shorts, Khaki",
+   "note": "Forty per cent off.",
+   "occ": [
+    "everyday"
+   ],
+   "offer": "Also white",
+   "price": 15,
+   "rank": 74,
+   "sets": [
+    "holiday"
+   ],
+   "shop": "Samuel Windsor",
+   "sizes": "34in waist sold out",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "url": "https://www.samuel-windsor.co.uk/collections/sale/products/regular-chino-short-khaki",
+   "was": 25,
+   "wx": [
+    "warm"
+   ]
+  },
+  "sw-suede-loafer": {
+   "cat": "shoe",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Suede Loafer, Navy",
+   "note": "A casual summer loafer.",
+   "occ": [
+    "everyday",
+    "party"
+   ],
+   "offer": "Also pumice and spice",
+   "price": 45,
+   "rank": 114,
+   "sets": [
+    "holiday"
+   ],
+   "shop": "Samuel Windsor",
+   "sizes": "UK 11 sold out",
+   "style": [
+    "quiet"
+   ],
+   "url": "https://www.samuel-windsor.co.uk/collections/loafers/products/suede-loafer-navy",
+   "wx": [
+    "warm"
+   ]
+  },
+  "tml-qz-cotton": {
+   "cat": "knit",
+   "checked": "2026-10-05",
+   "insize": true,
+   "kind": "new",
+   "name": "The Cotton Quarter-Zip Jumper, Navy",
+   "note": "Smooth cotton quarter-zip that can go over a shirt.",
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "offer": "2 for £80",
+   "price": 60,
+   "rank": 164,
+   "shop": "T.M. Lewin",
+   "sizes": "M and L in stock",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "url": "https://tmlewin.co.uk/products/cotton-milano-navy-quarter-zip-jumper",
+   "wx": [
+    "mild"
+   ]
+  },
+  "tu-merino-hz-red": {
+   "added": "2026-10-05",
+   "cat": "knit",
+   "checked": "2026-09-24",
+   "kind": "new",
+   "name": "Tu merino wool half-zip jumper, dark red",
+   "note": "The same jumper in a dark red. Good with navy and stone.",
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "price": 29.75,
+   "rank": 260,
+   "sets": [
+    "christmas"
+   ],
+   "shop": "Tu at Sainsbury's",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "url": "https://tuclothing.sainsburys.co.uk/product/tuc148197401",
+   "was": 35,
+   "wx": [
+    "mild",
+    "cold"
+   ]
+  },
+  "tu-lambswool-high": {
+   "added": "2026-10-05",
+   "cat": "knit",
+   "checked": "2026-10-04",
+   "gift": true,
+   "kind": "new",
+   "name": "Tu pure lambswool high-neck jumper",
+   "note": "100% lambswool for £35, with a slightly high crew neck. Three colours. Buy it in the supermarket with the shopping.",
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "price": 35,
+   "rank": 70,
+   "sets": [
+    "winter"
+   ],
+   "shop": "Tu at Sainsbury's",
+   "style": [
+    "quiet",
+    "minimal"
+   ],
+   "url": "https://tuclothing.sainsburys.co.uk/product/tuc148474579",
+   "wx": [
+    "cold",
+    "mild"
+   ]
+  },
+  "uq-airsense": {
+   "cat": "tailor",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "AirSense Jacket",
+   "note": "A light, soft tailored jacket in dark grey.",
+   "occ": [
+    "smart",
+    "event"
+   ],
+   "price": 69.9,
+   "rank": 309,
+   "sets": [
+    "christmas"
+   ],
+   "shop": "Uniqlo",
+   "sizes": "M and L both sold out in Dark Grey",
+   "style": [
+    "minimal",
+    "street"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E448034-000/00?colorDisplayCode=08",
+   "wx": [
+    "cold",
+    "mild",
+    "warm",
+    "wet"
+   ]
+  },
+  "uq-linen-shirt-jacket": {
+   "cat": "coat",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Cotton Linen Blend Shirt Jacket",
+   "note": "Half price. A light layer for summer evenings.",
+   "occ": [
+    "party",
+    "everyday"
+   ],
+   "price": 19.9,
+   "rank": 80,
+   "shop": "Uniqlo",
+   "sizes": "M and L both sold out in Natural",
+   "style": [
+    "quiet",
+    "minimal"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E482443-000/00?colorDisplayCode=30",
+   "was": 39.9,
+   "wx": [
+    "warm",
+    "mild"
+   ]
+  },
+  "uq-flannel": {
+   "cat": "shirt",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Flannel Shirt (Regular Collar)",
+   "note": "Brushed cotton for cold weekends, worn open over a T-shirt or under a jumper.",
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "offer": "Sale colours only. Other colours are £34.90",
+   "price": 12.9,
+   "rank": 33,
+   "shop": "Uniqlo",
+   "sizes": "M and L both sold out in Wine",
+   "style": [
+    "quiet",
+    "work",
+    "casual",
+    "lounge"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E470182-000/01?colorDisplayCode=19",
+   "was": 34.9,
+   "wx": [
+    "cold"
+   ]
+  },
+  "uq-jersey-barrel": {
+   "cat": "trouser",
+   "checked": "2026-10-05",
+   "insize": true,
+   "kind": "new",
+   "name": "Jersey Barrel Leg Trousers",
+   "note": "Sixty-three per cent off wide jersey trousers in off white.",
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "offer": "Sale colour only. Other colours are £34.90",
+   "price": 12.9,
+   "rank": 248,
+   "shop": "Uniqlo",
+   "sizes": "L in stock (fits a 34in waist)",
+   "style": [
+    "street",
+    "minimal",
+    "casual",
+    "lounge"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E475344-000/01?colorDisplayCode=01",
+   "was": 34.9,
+   "wx": [
+    "mild",
+    "warm"
+   ]
+  },
+  "uq-joggers": {
+   "cat": "lounge",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Joggers",
+   "note": "Half price. Plain grey or navy joggers.",
+   "occ": [
+    "lounge"
+   ],
+   "offer": "Sale colour only. Other colours are £29.90",
+   "price": 14.9,
+   "rank": 144,
+   "shop": "Uniqlo",
+   "sizes": "M and L both sold out in Dark Grey",
+   "style": [
+    "quiet",
+    "street",
+    "minimal",
+    "lounge"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E477875-000/00?colorDisplayCode=08",
+   "was": 29.9,
+   "wx": [
+    "mild",
+    "cold"
+   ]
+  },
+  "uq-linen-easy-shorts": {
+   "cat": "lounge",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Linen Blend Easy Shorts",
+   "note": "Drawstring linen shorts for hot days at home or a festival.",
+   "occ": [
+    "lounge",
+    "party"
+   ],
+   "price": 14.9,
+   "rank": 152,
+   "sets": [
+    "holiday"
+   ],
+   "shop": "Uniqlo",
+   "sizes": "M and L both sold out in Yellow",
+   "style": [
+    "quiet",
+    "lounge"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E487309-000/00?colorDisplayCode=44",
+   "was": 19.9,
+   "wx": [
+    "warm"
+   ]
+  },
+  "uq-milano-cardigan": {
+   "cat": "knit",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Milano Ribbed Shirt Collar Cardigan",
+   "note": "A collared knit that works as a soft jacket over a T-shirt or shirt.",
+   "occ": [
+    "smart",
+    "everyday"
+   ],
+   "offer": "Sale colour, sizes S to 3XL. Other colours are £39.90",
+   "price": 24.9,
+   "rank": 8,
+   "shop": "Uniqlo",
+   "sizes": "M and L both sold out in Olive",
+   "style": [
+    "quiet"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E478550-000/01?colorDisplayCode=56",
+   "was": 39.9,
+   "wx": [
+    "mild",
+    "cold"
+   ]
+  },
+  "uq-oversized-oxford": {
+   "cat": "shirt",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Oversized Oxford Shirt",
+   "note": "A looser Oxford for the relaxed fit he already wears. Take his usual size.",
+   "occ": [
+    "everyday",
+    "party"
+   ],
+   "price": 34.9,
+   "rank": 153,
+   "sets": [
+    "christmas"
+   ],
+   "shop": "Uniqlo",
+   "sizes": "M and L both sold out in White",
+   "style": [
+    "quiet",
+    "street",
+    "minimal",
+    "casual"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E479996-000/00?colorDisplayCode=00",
+   "wx": [
+    "cold",
+    "mild",
+    "warm",
+    "wet"
+   ]
+  },
+  "uq-pleated-shorts": {
+   "cat": "trouser",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Pleated Shorts",
+   "note": "Tailored grey shorts for under £15.",
+   "occ": [
+    "everyday",
+    "party"
+   ],
+   "prev": 14.9,
+   "price": 9.9,
+   "rank": 302,
+   "sets": [
+    "holiday"
+   ],
+   "shop": "Uniqlo",
+   "sizes": "34in waist sold out in Grey",
+   "style": [
+    "minimal",
+    "street",
+    "casual"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E487892-000/00?colorDisplayCode=05",
+   "was": 29.9,
+   "wx": [
+    "warm"
+   ]
+  },
+  "uq-oxford-stripe": {
+   "cat": "shirt",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Regular Fit Oxford Shirt (Striped)",
+   "note": "A blue university stripe.",
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "price": 34.9,
+   "rank": 179,
+   "shop": "Uniqlo",
+   "sizes": "M and L both sold out in Blue",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E452298-000/00?colorDisplayCode=65",
+   "wx": [
+    "cold",
+    "mild",
+    "warm",
+    "wet"
+   ]
+  },
+  "uq-souffle-crew": {
+   "cat": "knit",
+   "checked": "2026-10-05",
+   "insize": true,
+   "kind": "new",
+   "name": "Soufflé Yarn Crew Neck Jumper",
+   "note": "Soft brushed knit. Good for the sofa and fine for the pub.",
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "offer": "Sale colours only. Other colours are £34.90",
+   "price": 19.9,
+   "rank": 12,
+   "shop": "Uniqlo",
+   "sizes": "M in stock, L sold out",
+   "style": [
+    "quiet",
+    "casual",
+    "lounge"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E479235-000/01?colorDisplayCode=01",
+   "was": 34.9,
+   "wx": [
+    "cold",
+    "mild"
+   ]
+  },
+  "uq-sunglasses-boston": {
+   "cat": "acc",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Sunglasses (Boston)",
+   "note": "Half price. A round tortoiseshell-style frame.",
+   "occ": [
+    "party",
+    "everyday"
+   ],
+   "offer": "Sale colour only",
+   "price": 9.9,
+   "rank": 126,
+   "sets": [
+    "holiday"
+   ],
+   "shop": "Uniqlo",
+   "sizes": "Sold out in this colour",
+   "style": [
+    "quiet",
+    "street"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E486056-000/01?colorDisplayCode=38",
+   "was": 19.9,
+   "wx": [
+    "warm"
+   ]
+  },
+  "uq-sweatshirt": {
+   "cat": "lounge",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Sweatshirt",
+   "note": "Half price. A plain crew sweatshirt with no print.",
+   "occ": [
+    "lounge",
+    "everyday"
+   ],
+   "offer": "Sale colour only. Other colours are £29.90",
+   "price": 14.9,
+   "rank": 142,
+   "shop": "Uniqlo",
+   "sizes": "M and L both sold out in Off White",
+   "style": [
+    "quiet",
+    "street",
+    "minimal",
+    "lounge"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E475377-000/00?colorDisplayCode=01",
+   "was": 29.9,
+   "wx": [
+    "mild",
+    "cold"
+   ]
+  },
+  "uq-wide-shorts": {
+   "cat": "trouser",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Wide Shorts",
+   "note": "Two thirds off wide shorts in brown.",
+   "occ": [
+    "everyday",
+    "party"
+   ],
+   "offer": "Sale colour only",
+   "price": 9.9,
+   "rank": 259,
+   "sets": [
+    "holiday"
+   ],
+   "shop": "Uniqlo",
+   "sizes": "34in waist sold out in Brown",
+   "style": [
+    "street",
+    "casual"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E487891-000/00?colorDisplayCode=34",
+   "was": 29.9,
+   "wx": [
+    "warm"
+   ]
+  },
+  "uq-zip-short-blouson": {
+   "cat": "coat",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "Zip-Up Short Blouson",
+   "note": "Sixty-four per cent off a cropped zip jacket.",
+   "occ": [
+    "everyday"
+   ],
+   "offer": "Sale colour only",
+   "price": 24.9,
+   "rank": 265,
+   "shop": "Uniqlo",
+   "sizes": "M and L both sold out in Olive",
+   "style": [
+    "street",
+    "casual"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E478230-000/00?colorDisplayCode=57",
+   "was": 69.9,
+   "wx": [
+    "mild"
+   ]
+  },
+  "uw-military-black": {
+   "added": "2026-10-05",
+   "cat": "trouser",
+   "checked": "2026-10-05",
+   "insize": true,
+   "kind": "new",
+   "name": "Universal Works polytech military trousers, black",
+   "note": "Black technical trousers that look like chinos and dry fast. 57% off.",
+   "occ": [
+    "party",
+    "everyday"
+   ],
+   "price": 65,
+   "rank": 130,
+   "sets": [],
+   "shop": "Universal Works",
+   "sizes": "34W in stock",
+   "style": [
+    "rave",
+    "minimal",
+    "street"
+   ],
+   "url": "https://www.universalworks.co.uk/products/black-recycled-poly-tech-military-chino",
+   "was": 150,
+   "wx": [
+    "mild",
+    "wet"
+   ]
+  },
+  "us-taupe": {
+   "cat": "coat",
+   "checked": "2026-10-05",
+   "insize": false,
+   "kind": "new",
+   "name": "3001 Overshirt, dark taupe",
+   "note": "Thirty per cent off, in a muted taupe.",
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "price": 59.5,
+   "rank": 496,
+   "sets": [
+    "winter"
+   ],
+   "shop": "Uskees",
+   "sizes": "M and L both sold out",
+   "style": [
+    "work",
+    "minimal",
+    "casual"
+   ],
+   "url": "https://uskees.com/products/3001-buttoned-overshirt-dark-taupe",
+   "was": 85,
+   "wx": [
+    "mild",
+    "cold"
+   ]
+  },
+  "moss-slim-fit-grey-trousers-966737517": {
+   "name": "Moss Tailored Fit Grey Twill Trousers",
+   "shop": "Moss",
+   "cat": "trouser",
+   "price": 9.95,
+   "url": "https://www.moss.co.uk/slim-fit-grey-trousers-966737517",
+   "style": [
+    "quiet",
+    "work"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "£9.95, full price. 34W 32L in stock at the last check.",
+   "rank": 302,
+   "sets": [],
+   "insize": true,
+   "sizes": "34W 32L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://content.moss.co.uk/images/extraextralarge/"
+  },
+  "moss-slim-fit-aqua-marl-trouser-967071860": {
+   "name": "Moss Tailored Fit Grey Twill Trousers",
+   "shop": "Moss",
+   "cat": "trouser",
+   "price": 9.95,
+   "url": "https://www.moss.co.uk/slim-fit-aqua-marl-trouser-967071860",
+   "style": [
+    "quiet",
+    "work"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "£9.95, full price. 34W 32L in stock at the last check.",
+   "rank": 302,
+   "sets": [],
+   "insize": true,
+   "sizes": "34W 32L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://content.moss.co.uk/images/extraextralarge/"
+  },
+  "militaryki-british-army-bivvy-bag-mtp-camo-used": {
+   "name": "British Army Bivvy Bag MTP Camouflage - Grade1",
+   "shop": "Military Kit",
+   "cat": "acc",
+   "price": 35.95,
+   "url": "https://www.militarykit.com/products/british-army-bivvy-bag-mtp-camo-used?variant=54911507333493",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Down from £39.95 to £35.95 (10% off).",
+   "rank": 292,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1529/1475/files/british-army-sleeping-bag-covers-bivvy-mtp-camo.jpg?v=1736415124",
+   "was": 39.95
+  },
+  "militaryki-viper-vx-buckle-up-mag-rig-coyote": {
+   "name": "Viper VX Buckle Up Mag Rig Coyote",
+   "shop": "Military Kit",
+   "cat": "acc",
+   "price": 22.95,
+   "url": "https://www.militarykit.com/products/viper-vx-buckle-up-mag-rig-coyote?variant=43094782738603",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Down from £24.95 to £22.95 (8% off).",
+   "rank": 292,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1529/1475/files/viper-vx-buckle-up-mag-rig-coyote.jpg?v=1698245265",
+   "was": 24.95
+  },
+  "militaryki-viper-vx-double-smg-mag-sleeve-coyote": {
+   "name": "Viper VX Double SMG Mag Sleeve Coyote",
+   "shop": "Military Kit",
+   "cat": "acc",
+   "price": 4.75,
+   "url": "https://www.militarykit.com/products/viper-vx-double-smg-mag-sleeve-coyote?variant=43101512827051",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "£4.75, full price.",
+   "rank": 301,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1529/1475/files/viper-vx-double-smg-mag-sleeve-coyote.jpg?v=1698404565"
+  },
+  "militaryki-highlander-emergency-survival-bag-olive": {
+   "name": "Highlander Emergency Survival Bag Olive",
+   "shop": "Military Kit",
+   "cat": "acc",
+   "price": 4.95,
+   "url": "https://www.militarykit.com/products/highlander-emergency-survival-bag-olive?variant=23172877844538",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "£4.95, full price.",
+   "rank": 301,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1529/1475/products/highlander-emergency-survival-bag-olive.jpg?v=1643888979"
+  },
+  "militaryki-highlander-emergency-survival-bag-orange": {
+   "name": "Highlander Emergency Survival Bag Orange",
+   "shop": "Military Kit",
+   "cat": "acc",
+   "price": 4.95,
+   "url": "https://www.militarykit.com/products/highlander-emergency-survival-bag-orange?variant=23172877287482",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "£4.95, full price.",
+   "rank": 301,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1529/1475/products/highlander-orange-emergency-survival-bag.jpg?v=1663078728"
+  },
+  "militaryma-amazon-basics-15-6-laptop-sleeve-boxed-new-old-stock": {
+   "name": "surplus Amazon Basics 15.6\" Laptop Sleeve - Boxed New Old Stock",
+   "shop": "Military Mart",
+   "cat": "acc",
+   "price": 5.0,
+   "url": "https://www.militarymart.co.uk/products/amazon-basics-15-6-laptop-sleeve-boxed-new-old-stock?variant=57451105976703",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Down from £12.99 to £5 (62% off). 100% fac.",
+   "rank": 202,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0039/4490/6801/files/ScreenShotTool-20260502221819.png?v=1779279272",
+   "was": 12.99,
+   "fabric": "100% fac"
+  },
+  "militaryma-amazon-basics-11-6-laptop-tablet-briefcase-boxed-new-old-st": {
+   "name": "surplus Amazon Basics 11.6\" Laptop & Tablet Briefcase - Boxed New Old Stock",
+   "shop": "Military Mart",
+   "cat": "acc",
+   "price": 7.0,
+   "url": "https://www.militarymart.co.uk/products/amazon-basics-11-6-laptop-tablet-briefcase-boxed-new-old-stock?variant=57451041685887",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Down from £17.49 to £7 (60% off).",
+   "rank": 205,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0039/4490/6801/files/amazon-basics-tablet-laptop-bag-militarymart.png?v=1779279270",
+   "was": 17.49
+  },
+  "militaryma-french-army-comms-tool-roll-holdall": {
+   "name": "surplus French Army Comms Tool Roll - Holdall",
+   "shop": "Military Mart",
+   "cat": "acc",
+   "price": 7.5,
+   "url": "https://www.militarymart.co.uk/products/french-army-comms-tool-roll-holdall?variant=39269065031729",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Down from £12.50 to £7.50 (40% off).",
+   "rank": 237,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0039/4490/6801/products/7de84436-5ddf-4937-9671-0356f6e60629.jpg?v=1757420978",
+   "was": 12.5
+  },
+  "militaryma-swedish-army-kit-bag-and-clasp": {
+   "name": "surplus Swedish Army Kit Bag and clasp",
+   "shop": "Military Mart",
+   "cat": "acc",
+   "price": 12.5,
+   "url": "https://www.militarymart.co.uk/products/swedish-army-kit-bag-and-clasp?variant=55220141195647",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Down from £15 to £12.50 (17% off).",
+   "rank": 276,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0039/4490/6801/files/rn-image_picker_lib_temp_c2bfbb24-0d36-4c76-ae37-33e339c013a9.jpg?v=1743595156",
+   "was": 15.0
+  },
+  "militaryma-dog-tether": {
+   "name": "Benross Heavy Duty 16\" Tie Down Stake",
+   "shop": "Military Mart",
+   "cat": "acc",
+   "price": 3.0,
+   "url": "https://www.militarymart.co.uk/products/dog-tether?variant=16036221485105",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "£3, full price.",
+   "rank": 300,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0039/4490/6801/products/tie-out-stake-militarymart.jpg?v=1618239574"
+  },
+  "militaryma-outdoor-first-aid-belt-pouch-pack": {
+   "name": "Misc First Aid Belt Pouch Pack - BBQ",
+   "shop": "Military Mart",
+   "cat": "acc",
+   "price": 3.0,
+   "url": "https://www.militarymart.co.uk/products/outdoor-first-aid-belt-pouch-pack?variant=16036462592049",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "£3, full price.",
+   "rank": 300,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0039/4490/6801/products/First-aid-pouch-kit-orange_feddad1b-b433-467f-aa17-9d12ce63a15c.jpg?v=1746436767"
+  },
+  "militaryma-blackspur-1-x-15-ratchet-tie-down-strap": {
+   "name": "Blackspur 1\" x 15' Heavy-Duty Ratchet Tie Down Strap with Vinyl-Coated S-Hooks",
+   "shop": "Military Mart",
+   "cat": "acc",
+   "price": 3.5,
+   "url": "https://www.militarymart.co.uk/products/blackspur-1-x-15-ratchet-tie-down-strap?variant=58518627778943",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "£3.50, full price.",
+   "rank": 300,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0039/4490/6801/files/BB-BD336.jpg?v=1790456843"
+  },
+  "militaryma-dutch-molle-hand-grenade-dpm-pouch": {
+   "name": "surplus Dutch Military Molle Grenade - Small Utility Pouch - Grade A",
+   "shop": "Military Mart",
+   "cat": "acc",
+   "price": 3.5,
+   "url": "https://www.militarymart.co.uk/products/dutch-molle-hand-grenade-dpm-pouch?variant=45004300091612",
+   "style": [
+    "job"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "£3.50, full price.",
+   "rank": 300,
+   "sets": [],
+   "insize": true,
+   "sizes": "One size",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0039/4490/6801/products/dutch-molle-handgrenade_13eb8214-2748-499a-a2b6-0fddc9ededb1.jpg?v=1746436144"
+  }
+ },
+ "workwear_untagged": [
+  [
+   "r12-mt-badrhino",
+   "Matalan",
+   "BadRhino stretch chino shorts, black",
+   "stretch or Cordura"
+  ],
+  [
+   "liftingequ-uneek-uc320-olympic-t-shirt",
+   "Lifting Equipment Store",
+   "Uneek Uc320 Olympic T Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "liftingequ-f61082m-fruit-of-the-loom-mens-original-t-shirt",
+   "Lifting Equipment Store",
+   "Fruit of the Loom Original T Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "liftingequ-uneek-uc301-classic-t-shirt",
+   "Lifting Equipment Store",
+   "Uneek Uc301 Classic T Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "liftingequ-f61422m-fruit-of-the-loom-mens-iconic-190-t-shirt",
+   "Lifting Equipment Store",
+   "Fruit of the Loom Iconic 190 T-shirt, black",
+   "T-shirt"
+  ],
+  [
+   "liftingequ-f61044m-fruit-of-the-loom-mens-super-premium-t-shirt",
+   "Lifting Equipment Store",
+   "Fruit of the Loom Super Premium T-shirt, black",
+   "T-shirt"
+  ],
+  [
+   "amblerssaf-24022-brown",
+   "Amblers Safety",
+   "Amblers Safety Carlisle Dealer Boots, brown",
+   "not extra wide"
+  ],
+  [
+   "amblerssaf-10057-crazy",
+   "Amblers Safety",
+   "Amblers Safety Abingdon Dealer Boot, brown",
+   "not extra wide"
+  ],
+  [
+   "amblerssaf-42860-tan",
+   "Amblers Safety",
+   "Amblers Safety Wells Dealer Boot, tan",
+   "not extra wide"
+  ],
+  [
+   "amblerssaf-42859-tan",
+   "Amblers Safety",
+   "Amblers Safety Dallby Dealer Boot, tan",
+   "not extra wide"
+  ],
+  [
+   "amblerssaf-42856-black",
+   "Amblers Safety",
+   "Amblers Safety Colchester Dealer Boots, black",
+   "not extra wide"
+  ],
+  [
+   "amblerssaf-42854-brown",
+   "Amblers Safety",
+   "Amblers Safety Chelmsford Dealer Boots, brown",
+   "not extra wide"
+  ],
+  [
+   "bestworkwe-fruit-of-the-loom-ss430-iconic-150-t",
+   "Best Workwear",
+   "Fruit of the Loom Ss430 Iconic 150 T, deep navy",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-fruit-of-the-loom-ss068-original-v-neck-t",
+   "Best Workwear",
+   "Fruit of the Loom Ss068 Original v-neck T, black*",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-fruit-of-the-loom-sa101-heavy-cotton-t-shirt",
+   "Best Workwear",
+   "Fruit of the Loom Sa101 Heavy Cotton T-Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-fruit-of-the-loom-ss422-iconic-195-ringspun-premium-t",
+   "Best Workwear",
+   "Fruit of the Loom Ss422 Iconic 195 ringspun premium T, azure blue",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-build-your-brand-basic-bb011-basic-tank",
+   "Best Workwear",
+   "Build Your Brand Basic Bb011 Basic tank, black",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-build-your-brand-basic-bb010-basic-round-neck-tee",
+   "Best Workwear",
+   "Build Your Brand Basic Bb010 Basic round neck tee, black",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-fruit-of-the-loom-ss069-original-long-sleeve-t",
+   "Best Workwear",
+   "Fruit of the Loom Ss069 Original long sleeve T, black*",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-gildan-gd003-hammer-adult-t-shirt",
+   "Best Workwear",
+   "Gildan Gd003 Hammer® t-shirt, black",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-orn-1000-plover-premium-t-shirt",
+   "Best Workwear",
+   "Orn 1000 Plover Premium T-Shirt, reflex blue",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-fruit-of-the-loom-ss433-iconic-150-classic-long-sleeve-t",
+   "Best Workwear",
+   "Fruit of the Loom Ss433 Iconic 150 classic long sleeve T, deep navy",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-build-your-brand-by003-jersey-big-tank",
+   "Best Workwear",
+   "Build Your Brand By003 Jersey big tank, black",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-build-your-brand-by007-raglan-contrast-tee",
+   "Best Workwear",
+   "Build Your Brand By007 Raglan contrast tee, white/black",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-awdis-ecologie-ea001-cascade-organic-tee",
+   "Best Workwear",
+   "AWDis Ecologie Ea001 Cascade organic tee, arctic white",
+   "T-shirt"
+  ],
+  [
+   "bestworkwe-tridri-tr058-mens-tridri-jogger-shorts",
+   "Best Workwear",
+   "® Tr058 TriDri® jogger shorts, black",
+   "stretch or Cordura"
+  ],
+  [
+   "bestworkwe-tridri-tr059-mens-tridri-classic-joggers",
+   "Best Workwear",
+   "® Tr059 TriDri® classic joggers, black",
+   "stretch or Cordura"
+  ],
+  [
+   "dewaltwork-chico",
+   "DeWalt Workwear",
+   "DeWalt Workwear Dewalt Chico CoolMax Regular Fit T Shirt, grey",
+   "T-shirt"
+  ],
+  [
+   "hirstfootw-mens-snickers-plain-classic-t-shirt-2502",
+   "Hirst Footwear",
+   "Snickers Plain Classic T-Shirt 2502, navy",
+   "T-shirt"
+  ],
+  [
+   "hirstfootw-mens-snickers-workwear-special-edition-embroidered-two-colo",
+   "Hirst Footwear",
+   "Snickers Workwear Two Coloured T-Shirt 2550, black",
+   "T-shirt"
+  ],
+  [
+   "hirstfootw-mens-roamers-black-leather-chelsea-boots-twin-gusset-slip-o",
+   "Hirst Footwear",
+   "Roamers Black Leather Chelsea Boots Twin Gusset Slip On Dealer",
+   "not extra wide"
+  ],
+  [
+   "hollandsco-amblers-mens-abingdon-dealer-boots",
+   "Hollands Country Clothing",
+   "Amblers Abingdon Dealer Boots, brown crazy horse",
+   "not extra wide"
+  ],
+  [
+   "hollandsco-hunter-mens-jura-dealer-boots",
+   "Hollands Country Clothing",
+   "Hunter Jura Dealer Boots, black",
+   "not extra wide"
+  ],
+  [
+   "hollandsco-laksen-mens-duck-cotton-t-shirt",
+   "Hollands Country Clothing",
+   "Laksen Duck Cotton T-Shirt, camel",
+   "T-shirt"
+  ],
+  [
+   "hollandsco-ridgeline-mens-signature-t-shirt",
+   "Hollands Country Clothing",
+   "Ridgeline Signature T-Shirt, navy",
+   "T-shirt"
+  ],
+  [
+   "hollandsco-pinewood-mens-twin-pack-t-shirt",
+   "Hollands Country Clothing",
+   "Pinewood Twin Pack T-Shirt, green",
+   "T-shirt"
+  ],
+  [
+   "hollandsco-laksen-mens-amalfi-polo-t-shirt",
+   "Hollands Country Clothing",
+   "Laksen Amalfi Polo T-Shirt, olive",
+   "T-shirt"
+  ],
+  [
+   "hollandsco-swanndri-mens-original-v2-t-shirt",
+   "Hollands Country Clothing",
+   "Swanndri Original V2 T-Shirt, black white",
+   "T-shirt"
+  ],
+  [
+   "hollandsco-hard-yakka-heritage-long-sleeve-t-shirt",
+   "Hollands Country Clothing",
+   "Hard Yakka Heritage Long Sleeve T-Shirt, navy",
+   "T-shirt"
+  ],
+  [
+   "hollandsco-swanndri-mens-glenbrook-v3-work-shorts",
+   "Hollands Country Clothing",
+   "Swanndri Glenbrook V3 Work Shorts, cashew",
+   "not black or charcoal"
+  ],
+  [
+   "hollandsco-ridgeline-hose-down-t-shirt",
+   "Hollands Country Clothing",
+   "Ridgeline Hose Down T-Shirt, rhubarb",
+   "T-shirt"
+  ],
+  [
+   "jeanstore-lee-workwear-relaxed-boxy-tee-washed-black",
+   "Jean Store",
+   "Lee Workwear Relaxed Boxy Tee - Washed Black",
+   "T-shirt"
+  ],
+  [
+   "militaryki-desert-camo-army-tshirt",
+   "Military Kit",
+   "Military Kit British Army Desert Camouflage T-Shirt",
+   "T-shirt"
+  ],
+  [
+   "militaryki-us-woodland-camo-tshirt",
+   "Military Kit",
+   "Military Kit US Woodland Camouflage T-Shirt",
+   "T-shirt"
+  ],
+  [
+   "militaryki-urban-camo-tshirt",
+   "Military Kit",
+   "Military Kit US Army Urban Camouflage T-Shirt",
+   "T-shirt"
+  ],
+  [
+   "militaryki-tiger-stripe-camo-tshirt",
+   "Military Kit",
+   "Military Kit US Army Tiger Stripe Jungle Camo T-Shirt",
+   "T-shirt"
+  ],
+  [
+   "militaryki-midnight-blue-camo-tshirt",
+   "Military Kit",
+   "Military Kit US Army Midnight Blue Camo T-Shirt",
+   "T-shirt"
+  ],
+  [
+   "militaryma-adults-premium-200gsm-heavy-cotton-fishing-legend-t-shirt",
+   "Military Mart",
+   "Military Mart Heavy Cotton \"Fishing Legend\" T-Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "militaryma-adults-tee-xms3-lets-get-baked-custompx",
+   "Military Mart",
+   "Military Mart Xms3 \"Let's Get Baked\" T-Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "militaryma-adults-tee-xms2-sitting-reindeer-custompx",
+   "Military Mart",
+   "Military Mart Xms2 \"Sitting Reindeer\" T-Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "militaryma-adults-tee-xms4-penguin-custompx",
+   "Military Mart",
+   "Military Mart Xms4 \"Penguin\" T-Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "rocksolids-dickies-pocket-long-sleeve-t-shirt",
+   "Rock Solid Safety",
+   "Dickies Pocket Long Sleeve T-Shirt, grey",
+   "T-shirt"
+  ],
+  [
+   "rocksolids-hunter-mens-argyll-short-knee-wellington-boots",
+   "Rock Solid Safety",
+   "Hunter Argyll Short Knee Wellington Boots, black",
+   "not extra wide"
+  ],
+  [
+   "rocksolids-hard-yakka-xtreme-2-0-work-trousers",
+   "Rock Solid Safety",
+   "Hard Yakka Xtreme 2.0 Ripstop Work Trousers, black",
+   "fabric not confirmed as cotton"
+  ],
+  [
+   "rocksolids-scruffs-eco-worker-pocket-t-shirt",
+   "Rock Solid Safety",
+   "Scruffs Eco Worker Pocket T-Shirt, navy",
+   "T-shirt"
+  ],
+  [
+   "rocksolids-jcb-workwear-trade-t-shirt",
+   "Rock Solid Safety",
+   "JCB Workwear Trade T-Shirt, black/grey",
+   "T-shirt"
+  ],
+  [
+   "rocksolids-hard-yakka-raptor-active-cuffed-work-trousers",
+   "Rock Solid Safety",
+   "Hard Yakka Raptor Active Cuffed Ripstop Work Trousers, black",
+   "stretch or Cordura"
+  ],
+  [
+   "rocksolids-hard-yakka-raptor-active-work-trousers",
+   "Rock Solid Safety",
+   "Hard Yakka Raptor Active Ripstop Work Trousers, black",
+   "stretch or Cordura"
+  ],
+  [
+   "rocksolids-caterpillar-dynamic-trouser",
+   "Rock Solid Safety",
+   "Caterpillar Dynamic Trouser, black",
+   "fabric not confirmed as cotton"
+  ],
+  [
+   "rocksolids-skechers-work-nampa-groton-slip-on-occupational-shoes",
+   "Rock Solid Safety",
+   "Skechers Work Nampa Groton Slip On Occupational Shoes, black",
+   "not extra wide"
+  ],
+  [
+   "stanray-og-painter-pant-mid-stonewash-denim-fw22",
+   "Stan Ray",
+   "Stan Ray OG Painter Pant (Mid Stonewash Denim)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-stan-ray-og-painter-pant-heavy-stone-wash-denim-24-2",
+   "Stan Ray",
+   "Stan Ray OG Painter Pant (Heavy Stone Wash Denim)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-fat-pant-olive-cord-fw22",
+   "Stan Ray",
+   "Stan Ray Fat Pant (Olive Cord)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-work-vest-indigo-denim-12oz-25-1",
+   "Stan Ray",
+   "Stan Ray Work Vest (Indigo Denim 12oz)",
+   "T-shirt"
+  ],
+  [
+   "stanray-og-painter-pant-quiet-green-hickory-25-1",
+   "Stan Ray",
+   "Stan Ray OG Painter Pant (Quiet Green Hickory)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-og-painter-pant-peyote-hickory-25-1",
+   "Stan Ray",
+   "Stan Ray OG Painter Pant (Peyote Hickory)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-stan-ray-double-knee-pant-heavy-stone-wash-denim-24-2",
+   "Stan Ray",
+   "Stan Ray Double Knee Pant (Heavy Stone Wash Denim)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-stan-ray-og-painter-pant-opal-ss24",
+   "Stan Ray",
+   "Stan Ray OG Painter Pant (Opal)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-earls-bib-dusk-ss23",
+   "Stan Ray",
+   "Stan Ray Earls Bib (Dusk)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-earls-bib-vintage-stonewash-denim",
+   "Stan Ray",
+   "Stan Ray Earls Bib (Vintage Stonewash Denim)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-earls-bib-hickory-mix-ss23",
+   "Stan Ray",
+   "Stan Ray Earls Bib (Hickory Mix)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-earls-bib-battle-grey-duck-fw22",
+   "Stan Ray",
+   "Stan Ray Earls Bib (Battle Grey Duck)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-earls-bib-navy-ripstop-fw23",
+   "Stan Ray",
+   "Stan Ray Earls Bib (Navy Ripstop)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-earls-bib-olive-ripstop-fw23",
+   "Stan Ray",
+   "Stan Ray Earls Bib (Olive Ripstop)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-standard-5-70s-stone-denim-aw25",
+   "Stan Ray",
+   "Stan Ray Standard 5 (70s Stone Denim)",
+   "not black or charcoal"
+  ],
+  [
+   "stanray-pork-chop-vest-washed-acorn-aw25",
+   "Stan Ray",
+   "Stan Ray Pork Chop Vest (Washed Acorn)",
+   "T-shirt"
+  ],
+  [
+   "stanray-pork-chop-vest-washed-navy-aw25",
+   "Stan Ray",
+   "Stan Ray Pork Chop Vest (Washed Navy)",
+   "T-shirt"
+  ],
+  [
+   "stanray-heatwave-tee-island-green",
+   "Stan Ray",
+   "Stan Ray Heatwave Tee (Island Green)",
+   "T-shirt"
+  ],
+  [
+   "timberland-euro-hiker-alloy-toe-work-boot-brown",
+   "Timberland PRO",
+   "TimberlandPro Euro Hiker Alloy Toe Work Boot Brown",
+   "not extra wide"
+  ],
+  [
+   "timberland-euro-hiker-alloy-toe-work-boot-black",
+   "Timberland PRO",
+   "TimberlandPro Euro Hiker Alloy Toe Work Boot Black",
+   "not extra wide"
+  ],
+  [
+   "timberland-tempe-6-waterproof-alloy-toe-work-boot-brown",
+   "Timberland PRO",
+   "TimberlandPro Tempe 6\" Waterproof Alloy-Toe Work Boot Brown",
+   "not extra wide"
+  ],
+  [
+   "timberland-tempe-6-waterproof-alloy-toe-work-boot-black",
+   "Timberland PRO",
+   "TimberlandPro Tempe 6\" Waterproof Alloy-Toe Work Boot Black",
+   "not extra wide"
+  ],
+  [
+   "timberland-boondock-6-waterproof-composite-toe-work-boot-black",
+   "Timberland PRO",
+   "TimberlandPro Boondock 6\" Waterproof Composite-Toe Work Boot Black",
+   "not extra wide"
+  ],
+  [
+   "timberland-boondock-6-waterproof-composite-toe-work-boot-wheat",
+   "Timberland PRO",
+   "TimberlandPro Boondock 6\" Waterproof Composite-Toe Work Boot Wheat",
+   "not extra wide"
+  ],
+  [
+   "tradeworkw-portwest-es1-essential-t-shirt-s-s-es195",
+   "Trade Workwear",
+   "Portwest ES1 Essential T-shirt S - S - Es195, black",
+   "T-shirt"
+  ],
+  [
+   "tradeworkw-portwest-turin-cotton-t-shirt-s-s-b195",
+   "Trade Workwear",
+   "Portwest Turin Cotton T-Shirt S - S - B195, black",
+   "T-shirt"
+  ],
+  [
+   "tradeworkw-portwest-v-neck-cotton-t-shirt-s-s-b197",
+   "Trade Workwear",
+   "Portwest V-Neck Cotton T-Shirt S - S - B197, navy",
+   "T-shirt"
+  ],
+  [
+   "tradeworkw-portwest-portwest-cotton-t-shirt-s-s-b198",
+   "Trade Workwear",
+   "Portwest Cotton T-Shirt S - S - B198, black",
+   "T-shirt"
+  ],
+  [
+   "tuffstuffw-tuffstuff-logo-t-shirt",
+   "TuffStuff",
+   "TuffStuff Logo T-Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "tuffstuffw-tuffstuff-icon-t-shirt",
+   "TuffStuff",
+   "TuffStuff Icon T-Shirt, white",
+   "T-shirt"
+  ],
+  [
+   "universalt-crosshatch-mens-transflate-t-shirt-1",
+   "Universal Textiles",
+   "Crosshatch Transflate T-Shirt, light blue",
+   "T-shirt"
+  ],
+  [
+   "universalt-crosshatch-mens-tranplex-cotton-t-shirt-pack-of-5",
+   "Universal Textiles",
+   "Crosshatch Tranplex Cotton T-Shirt (Pack of 5), multicoloured",
+   "T-shirt"
+  ],
+  [
+   "universalt-marduk-unisex-adult-opus-nocturne-b-t-shirt",
+   "Universal Textiles",
+   "Marduk Opus Nocturne B T-Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "universalt-nosferatu-unisex-adult-ornamental-t-shirt",
+   "Universal Textiles",
+   "Nosferatu Ornamental T-Shirt, black-white",
+   "T-shirt"
+  ],
+  [
+   "universalt-garfield-mens-still-got-it-t-shirt",
+   "Universal Textiles",
+   "Garfield Still Got It T-Shirt, banana yellow",
+   "T-shirt"
+  ],
+  [
+   "universalt-spiral-direct-unisex-adult-sun-dragon-t-shirt",
+   "Universal Textiles",
+   "Spiral Direct Sun Dragon T-Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "universalt-adidas-mens-neuclassics-3-stripes-t-shirt",
+   "Universal Textiles",
+   "Adidas Neuclassics 3 Stripes T-Shirt, olive",
+   "T-shirt"
+  ],
+  [
+   "universalt-lonsdale-mens-logo-t-shirt",
+   "Universal Textiles",
+   "Lonsdale Logo T-Shirt, white",
+   "T-shirt"
+  ],
+  [
+   "universalt-black-sabbath-unisex-adult-paranoid-t-shirt",
+   "Universal Textiles",
+   "Black Sabbath Paranoid T-Shirt",
+   "T-shirt"
+  ],
+  [
+   "universalt-guns-n-roses-unisex-adult-welcome-to-the-jungle-t-shirt-1",
+   "Universal Textiles",
+   "Guns N Roses Welcome To The Jungle T-Shirt, grey",
+   "T-shirt"
+  ],
+  [
+   "universalt-deftones-unisex-adult-koi-no-yokan-t-shirt-1",
+   "Universal Textiles",
+   "Deftones Koi No Yokan T-Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "universalt-gildan-mens-cotton-lightweight-t-shirt-2",
+   "Universal Textiles",
+   "Gildan Cotton Lightweight T-Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "volcom-workwear-sst",
+   "Volcom",
+   "Volcom Workwear T-Shirt - Black",
+   "T-shirt"
+  ],
+  [
+   "workandsaf-muck-boots-mens-arctic-outpost-tall-wellington-1",
+   "Work+Safety",
+   "Muck Boots Arctic Outpost Tall Wellington - Black",
+   "not extra wide"
+  ],
+  [
+   "workandsaf-muck-boots-mens-arctic-outpost-tall-wellington",
+   "Work+Safety",
+   "Muck Boots Arctic Outpost Tall Wellington - Green",
+   "not extra wide"
+  ],
+  [
+   "workweargu-blaklader-x1500-craftsman-trousers-cotton-1500-mens-1500137",
+   "Workwear Gurus",
+   "Twin Pack Deal - Blaklader Craftsman Trousers Cotton 1500 - (15001370), navy blue/black",
+   "fabric not confirmed as cotton"
+  ],
+  [
+   "workweargu-portwest-b195-turin-premium-t-shirt",
+   "Workwear Gurus",
+   "Portwest B195 Turin Premium T-Shirt, black",
+   "T-shirt"
+  ],
+  [
+   "workweargu-regatta-professional-original-workwear-t-shirt-trs300",
+   "Workwear Gurus",
+   "Regatta Professional Original Workwear T-Shirt Trs300, burgundy",
+   "T-shirt"
+  ],
+  [
+   "workweargu-fristads-acode-t-shirt-1911-bsj-100239",
+   "Workwear Gurus",
+   "Fristads Acode T-Shirt - 1911 BSJ, black",
+   "T-shirt"
+  ],
+  [
+   "hirstfootw-roka-kennington-cross-body-bag-medium",
+   "Hirst Footwear",
+   "Roka Kennington Cross Body Bag Medium, corn",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-heather-harland-camo-wax-bush-hat",
+   "Hollands Country Clothing",
+   "Heather Hats Heather Harland Camo Wax Bush Hat, olive camo",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-stetson-kettering-outdoor-hat",
+   "Hollands Country Clothing",
+   "Stetson Kettering Outdoor Hat, olive",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-stetson-trouts-bucket-hat",
+   "Hollands Country Clothing",
+   "Stetson Trouts Bucket Hat, green blue",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-swanndri-mens-emerson-st-shirt",
+   "Hollands Country Clothing",
+   "Swanndri Emerson St Shirt, red",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-heather-rory-harris-tweed-coin-card-wallet",
+   "Hollands Country Clothing",
+   "Heather Hats Heather Rory Harris Tweed Coin Card Wallet, blackwatch",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-laksen-arnold-organic-cotton-shirt",
+   "Hollands Country Clothing",
+   "Laksen Arnold Organic Cotton Shirt, purple check",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-tilley-thermashield-t3",
+   "Hollands Country Clothing",
+   "Tilley Hats Tilley Thermashield T3, black",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-craghoppers-mens-nosilife-desert-hat-iii",
+   "Hollands Country Clothing",
+   "Craghoppers NosiLife Desert Hat III, woodland green",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-craghoppers-kiwi-belt",
+   "Hollands Country Clothing",
+   "Craghoppers Kiwi Belt, black",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-laksen-alex-organic-cotton-shirt",
+   "Hollands Country Clothing",
+   "Laksen Alex Organic Cotton Shirt, purple",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-stetson-powell-traveller-felt-hat",
+   "Hollands Country Clothing",
+   "Stetson Powell Traveller Felt Hat, brown",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-craghoppers-nosilife-multi-active-cap-ii",
+   "Hollands Country Clothing",
+   "Craghoppers Nosilife Multi Active Cap II",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-craghoppers-mens-nosilife-outback-hat-ii",
+   "Hollands Country Clothing",
+   "Craghoppers NosiLife Outback Hat II, woodland green",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-deerhunter-mens-moor-padded-waistcoat",
+   "Hollands Country Clothing",
+   "Deerhunter Moor Padded Waistcoat",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-percussion-ardenne-shirt",
+   "Hollands Country Clothing",
+   "Percussion Ardenne Shirt, blue",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-deerhunter-mens-cumbria-fleece-waistcoat",
+   "Hollands Country Clothing",
+   "Deerhunter Cumbria Fleece Waistcoat",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-swazi-mens-polo-shirt",
+   "Hollands Country Clothing",
+   "Swazi Polo Shirt",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-deerhunter-mens-muflon-pro-fleece-waistcoat",
+   "Hollands Country Clothing",
+   "Deerhunter Muflon Pro Fleece Waistcoat, art green",
+   "not work clothing"
+  ],
+  [
+   "hollandsco-ridgeline-mens-kilworth-polo-shirt",
+   "Hollands Country Clothing",
+   "Ridgeline Kilworth Polo Shirt, navy",
+   "not work clothing"
+  ],
+  [
+   "militaryki-highlander-canvas-webbing-backpack-raf-blue",
+   "Military Kit",
+   "Highlander Canvas Webbing Backpack 18L RAF Blue",
+   "not work clothing"
+  ],
+  [
+   "militaryki-british-army-bivvy-bag-mtp-camo-used",
+   "Military Kit",
+   "British Army Bivvy Bag MTP Camouflage - Grade1",
+   "not work clothing"
+  ],
+  [
+   "militaryki-highlander-harrier-full-clamshell-pack-35l-coyote-tan",
+   "Military Kit",
+   "Highlander Harrier Full Clamshell Pack 35L Coyote Tan",
+   "not work clothing"
+  ],
+  [
+   "militaryki-viper-vx-buckle-up-mag-rig-coyote",
+   "Military Kit",
+   "Viper VX Buckle Up Mag Rig Coyote",
+   "not work clothing"
+  ],
+  [
+   "militaryki-highlander-harrier-full-clamshell-pack-45l-hmtc-camo",
+   "Military Kit",
+   "Highlander Harrier Full Clamshell Pack 45L Hmtc Camo",
+   "not work clothing"
+  ],
+  [
+   "militaryki-highlander-harrier-full-clamshell-pack-45l-coyote-tan",
+   "Military Kit",
+   "Highlander Harrier Full Clamshell Pack 45L Coyote Tan",
+   "not work clothing"
+  ],
+  [
+   "militaryki-viper-vx-double-smg-mag-sleeve-coyote",
+   "Military Kit",
+   "Viper VX Double SMG Mag Sleeve Coyote",
+   "not work clothing"
+  ],
+  [
+   "militaryki-scrim-net-scarf-coyote",
+   "Military Kit",
+   "Military Kit Scrim Net Scarf Coyote",
+   "not work clothing"
+  ],
+  [
+   "militaryki-highlander-emergency-survival-bag-olive",
+   "Military Kit",
+   "Highlander Emergency Survival Bag Olive",
+   "not work clothing"
+  ],
+  [
+   "militaryki-highlander-emergency-survival-bag-orange",
+   "Military Kit",
+   "Highlander Emergency Survival Bag Orange",
+   "not work clothing"
+  ],
+  [
+   "militaryma-amazon-basics-15-6-laptop-sleeve-boxed-new-old-stock",
+   "Military Mart",
+   "surplus Amazon Basics 15.6\" Laptop Sleeve - Boxed New Old Stock",
+   "not work clothing"
+  ],
+  [
+   "militaryma-amazon-basics-11-6-laptop-tablet-briefcase-boxed-new-old-st",
+   "Military Mart",
+   "surplus Amazon Basics 11.6\" Laptop & Tablet Briefcase - Boxed New Old Stock",
+   "not work clothing"
+  ],
+  [
+   "militaryma-highlander-flying-tree-camo-hat-small",
+   "Military Mart",
+   "Highlander Tree Deep Camo Trapper Hat with Protective Brim Size Small",
+   "not work clothing"
+  ],
+  [
+   "militaryma-forces-12-litre-scout-pack",
+   "Military Mart",
+   "Highlander Forces 12 Litre Scout Pack, black",
+   "not work clothing"
+  ],
+  [
+   "militaryma-french-army-comms-tool-roll-holdall",
+   "Military Mart",
+   "surplus French Army Comms Tool Roll - Holdall",
+   "not work clothing"
+  ],
+  [
+   "militaryma-forces-33-litre-rucksack",
+   "Military Mart",
+   "Highlander Forces 33 Litre Rucksack, desert camo",
+   "not work clothing"
+  ],
+  [
+   "militaryma-swedish-army-kit-bag-and-clasp",
+   "Military Mart",
+   "surplus Swedish Army Kit Bag and clasp",
+   "not work clothing"
+  ],
+  [
+   "militaryma-unisex-sports-baseball-cap",
+   "Military Mart",
+   "Military Mart Sports Baseball Cap, black",
+   "not work clothing"
+  ],
+  [
+   "militaryma-dog-tether",
+   "Military Mart",
+   "Benross Heavy Duty 16\" Tie Down Stake",
+   "not work clothing"
+  ],
+  [
+   "militaryma-outdoor-first-aid-belt-pouch-pack",
+   "Military Mart",
+   "Misc First Aid Belt Pouch Pack - BBQ",
+   "not work clothing"
+  ],
+  [
+   "militaryma-blackspur-1-x-15-ratchet-tie-down-strap",
+   "Military Mart",
+   "Blackspur 1\" x 15' Heavy-Duty Ratchet Tie Down Strap with Vinyl-Coated S-Hooks",
+   "not work clothing"
+  ],
+  [
+   "militaryma-dutch-molle-hand-grenade-dpm-pouch",
+   "Military Mart",
+   "surplus Dutch Military Molle Grenade - Small Utility Pouch - Grade A",
+   "not work clothing"
+  ],
+  [
+   "militaryma-british-raf-flight-suit-olive-green-copy",
+   "Military Mart",
+   "surplus Usaf US Airforce Flight Suit OD",
+   "not work clothing"
+  ],
+  [
+   "militaryma-mens-game-lightweight-wax-jacket",
+   "Military Mart",
+   "Game Unpadded Lightweight Wax Jacket, black",
+   "not work clothing"
+  ],
+  [
+   "rocksolids-helly-hansen-workwear-manchester-hoodie-1",
+   "Rock Solid Safety",
+   "Helly Hansen Manchester Hoodie, Alert Red",
+   "not work clothing"
+  ],
+  [
+   "stanray-stan-ray-terrace-scarf-navy-24-2",
+   "Stan Ray",
+   "Stan Ray Terrace Scarf (Navy)",
+   "not work clothing"
+  ],
+  [
+   "stanray-stan-ray-boonie-navy-ripstop-ss24",
+   "Stan Ray",
+   "Stan Ray Boonie (Navy Ripstop)",
+   "not work clothing"
+  ],
+  [
+   "stanray-painter-shirt-washed-red-25-1",
+   "Stan Ray",
+   "Stan Ray Short Sleeve Painter Shirt (Washed Red)",
+   "not work clothing"
+  ],
+  [
+   "stanray-western-shirt-stonewashed-denim-25-1",
+   "Stan Ray",
+   "Stan Ray Western Shirt (Stonewashed Denim)",
+   "not work clothing"
+  ],
+  [
+   "stanray-western-shirt-washed-black-denim-aw25",
+   "Stan Ray",
+   "Stan Ray Western Shirt (Washed Black Denim)",
+   "not work clothing"
+  ],
+  [
+   "stanray-roughneck-collared-bomber-washed-navy-aw25",
+   "Stan Ray",
+   "Stan Ray Roughneck Collared Bomber (Washed Navy)",
+   "not work clothing"
+  ],
+  [
+   "stanray-pork-chop-jacket-washed-acorn-aw25",
+   "Stan Ray",
+   "Stan Ray Pork Chop Jacket (Washed Acorn)",
+   "not work clothing"
+  ],
+  [
+   "stanray-boonie-cosmic-od-hickory",
+   "Stan Ray",
+   "Stan Ray Boonie (Cosmic Od Hickory)",
+   "not work clothing"
+  ],
+  [
+   "stanray-boonie-choc-chip-camo",
+   "Stan Ray",
+   "Stan Ray Boonie (Choc Chip Camo)",
+   "not work clothing"
+  ],
+  [
+   "stanray-tote-bag-centuary-navy",
+   "Stan Ray",
+   "Stan Ray Tote Bag (Century Navy)",
+   "not work clothing"
+  ],
+  [
+   "stanray-tote-bag-tigerstripe-ripstop",
+   "Stan Ray",
+   "Stan Ray Tote Bag (Tigerstripe Ripstop)",
+   "not work clothing"
+  ],
+  [
+   "stanray-tote-bag-natural-drill",
+   "Stan Ray",
+   "Stan Ray Tote Bag (Natural Drill)",
+   "not work clothing"
+  ],
+  [
+   "stanray-tote-bag-olive-sateen",
+   "Stan Ray",
+   "Stan Ray Tote Bag (Olive Sateen 8.5oz)",
+   "not work clothing"
+  ],
+  [
+   "stanray-tote-bag-woodland-camo-ripstop",
+   "Stan Ray",
+   "Stan Ray Tote Bag (Woodland Camo Ripstop)",
+   "not work clothing"
+  ],
+  [
+   "stanray-big-tote-cosmic-hickory-natural-strap",
+   "Stan Ray",
+   "Stan Ray Big Tote (Cosmic Hickory - Natural Strap)",
+   "not work clothing"
+  ],
+  [
+   "stanray-big-tote-choc-chip-camo-canvas",
+   "Stan Ray",
+   "Stan Ray Big Tote (Choc Chip Camo Canvas)",
+   "not work clothing"
+  ],
+  [
+   "stanray-pepper-crew-raven-black",
+   "Stan Ray",
+   "Stan Ray Pepper Crew (Raven Black)",
+   "not work clothing"
+  ],
+  [
+   "stanray-fire-dept-hood-raven-black",
+   "Stan Ray",
+   "Stan Ray Fire Dept Hood (Raven Black)",
+   "not work clothing"
+  ],
+  [
+   "stanray-bbq-hood-brittany-blue",
+   "Stan Ray",
+   "Stan Ray BBQ Hood (Brittany Blue)",
+   "not work clothing"
+  ],
+  [
+   "stanray-tour-shirt-blue-yellow-stripe",
+   "Stan Ray",
+   "Stan Ray Tour Shirt (Blue - Yellow Stripe)",
+   "not work clothing"
+  ],
+  [
+   "stanray-mexicali-ss-shirt-blue-stripe",
+   "Stan Ray",
+   "Stan Ray Mexicali Shirt (Blue Stripe)",
+   "not work clothing"
+  ],
+  [
+   "stanray-bbq-zip-raven-black",
+   "Stan Ray",
+   "Stan Ray BBQ Zip (Raven Black)",
+   "not work clothing"
+  ],
+  [
+   "stanray-ss-bowling-shirt-raven-black",
+   "Stan Ray",
+   "Stan Ray Bowling Shirt (Raven Black)",
+   "not work clothing"
+  ],
+  [
+   "stanray-ss-bowling-shirt-island-green",
+   "Stan Ray",
+   "Stan Ray Bowling Shirt (Island Green)",
+   "not work clothing"
+  ],
+  [
+   "stanray-ss-painter-shirt-natural-twill",
+   "Stan Ray",
+   "Stan Ray Painter Shirt (Natural Twill)",
+   "not work clothing"
+  ],
+  [
+   "stanray-ss-painter-shirt-brittany-blue-canvas",
+   "Stan Ray",
+   "Stan Ray Painter Shirt (Brittany Blue Canvas)",
+   "not work clothing"
+  ],
+  [
+   "stanray-ss-painter-shirt-apple-cinnamon-canvas",
+   "Stan Ray",
+   "Stan Ray Painter Shirt (Apple Cinnamon Canvas)",
+   "not work clothing"
+  ],
+  [
+   "stanray-cpo-shirt-choc-chip-camo",
+   "Stan Ray",
+   "Stan Ray CPO Shirt (Choc Chip Camo)",
+   "not work clothing"
+  ],
+  [
+   "stanray-zip-shirt-imperial-blue-bedford-cord",
+   "Stan Ray",
+   "Stan Ray Zip Shirt (Imperial Blue Bedford Cord)",
+   "not work clothing"
+  ],
+  [
+   "stanray-zip-shirt-cosmic-purple-hickory",
+   "Stan Ray",
+   "Stan Ray Zip Shirt (Cosmic Purple Hickory)",
+   "not work clothing"
+  ],
+  [
+   "stanray-coverall-jacket-cosmic-hickory",
+   "Stan Ray",
+   "Stan Ray Coverall Jacket (Cosmic Hickory)",
+   "not work clothing"
+  ],
+  [
+   "stanray-coverall-jacket-choc-chip-camo-canvas",
+   "Stan Ray",
+   "Stan Ray Coverall Jacket (Choc Chip Camo Canvas)",
+   "not work clothing"
+  ],
+  [
+   "stanray-roughneck-jacket-brittany-blue-canvas",
+   "Stan Ray",
+   "Stan Ray Roughneck Jacket (Brittany Blue Canvas)",
+   "not work clothing"
+  ],
+  [
+   "stanray-hunters-jacket-island-green",
+   "Stan Ray",
+   "Stan Ray Hunters Jacket (Island Green)",
+   "not work clothing"
+  ],
+  [
+   "universalt-humanrace-mens-mock-neck-sweatshirt",
+   "Universal Textiles",
+   "Humanrace Mock Neck Sweatshirt, lilac",
+   "not work clothing"
+  ],
+  [
+   "universalt-fear-of-god-essentials-mens-knitted-sweater-vest",
+   "Universal Textiles",
+   "Fear Of God Essentials Knitted Sweater Vest, wood",
+   "not work clothing"
+  ],
+  [
+   "universalt-off-white-unisex-adult-richfield-rectangle-sunglasses",
+   "Universal Textiles",
+   "Off White Richfield Rectangle Sunglasses",
+   "not work clothing"
+  ],
+  [
+   "universalt-carrera-mens-224s-003-m9-sunglasses",
+   "Universal Textiles",
+   "Carrera 224S 003 M9 Sunglasses, black",
+   "not work clothing"
+  ],
+  [
+   "universalt-fear-of-god-essentials-mens-essentials-crew-neck-sweatshirt",
+   "Universal Textiles",
+   "Fear Of God Essentials Essentials Crew Neck Sweatshirt, canary yellow",
+   "not work clothing"
+  ],
+  [
+   "universalt-moschino-unisex-adult-buckle-detail-sunglasses",
+   "Universal Textiles",
+   "Moschino Buckle Detail Sunglasses, black",
+   "not work clothing"
+  ],
+  [
+   "universalt-diesel-mens-crane-tie-dye-hoodie",
+   "Universal Textiles",
+   "Diesel Crane Tie Dye Hoodie, black",
+   "not work clothing"
+  ],
+  [
+   "universalt-palm-angels-mens-salton-rectangle-sunglasses",
+   "Universal Textiles",
+   "Palm Angels Salton Rectangle Sunglasses, brown",
+   "not work clothing"
+  ],
+  [
+   "universalt-palm-angels-mens-stockton-rectangle-sunglasses",
+   "Universal Textiles",
+   "Palm Angels Stockton Rectangle Sunglasses, grey",
+   "not work clothing"
+  ],
+  [
+   "universalt-diesel-easy-3d-logo-leather-card-holder",
+   "Universal Textiles",
+   "Diesel Easy 3D Logo Leather Card Holder, black",
+   "not work clothing"
+  ],
+  [
+   "universalt-diesel-bi-fold-leather-card-holder",
+   "Universal Textiles",
+   "Diesel Bi-Fold Leather Card Holder, black",
+   "not work clothing"
+  ],
+  [
+   "universalt-diesel-debossed-bi-fold-wallet",
+   "Universal Textiles",
+   "Diesel Debossed Bi-Fold Wallet, toffee",
+   "not work clothing"
+  ],
+  [
+   "universalt-diesel-bi-fold-leather-wallet",
+   "Universal Textiles",
+   "Diesel Bi-Fold Leather Wallet, white",
+   "not work clothing"
+  ],
+  [
+   "universalt-diesel-repeat-logo-leather-wallet",
+   "Universal Textiles",
+   "Diesel Repeat Logo Leather Wallet, black ink",
+   "not work clothing"
+  ],
+  [
+   "universalt-trespass-tuckit-packaway-40l-duffle-bag",
+   "Universal Textiles",
+   "Trespass Tuckit Packaway 40L Duffle Bag, black",
+   "not work clothing"
+  ],
+  [
+   "universalt-osprey-leather-card-holder",
+   "Universal Textiles",
+   "Osprey Leather Card Holder, purple",
+   "not work clothing"
+  ],
+  [
+   "universalt-hawkwind-unisex-adult-choose-your-masques-hoodie",
+   "Universal Textiles",
+   "Hawkwind Choose Your Masques Hoodie, black",
+   "not work clothing"
+  ],
+  [
+   "universalt-off-white-unisex-adult-virgil-square-frame-sunglasses",
+   "Universal Textiles",
+   "Off-White Virgil Square Frame Sunglasses",
+   "not work clothing"
+  ],
+  [
+   "universalt-fear-of-god-essentials-unisex-adult-fleece-relaxed-fit-swea",
+   "Universal Textiles",
+   "Fear Of God Essentials Fleece Relaxed Fit Sweatpants, seal grey",
+   "not work clothing"
+  ],
+  [
+   "universalt-hugo-mens-motion-short-sleeved-button-down-shirt",
+   "Universal Textiles",
+   "Hugo Motion Short-Sleeved Button-Down Shirt, grey",
+   "not work clothing"
+  ],
+  [
+   "universalt-under-armour-mens-curry-splash-fleece-hoodie",
+   "Universal Textiles",
+   "Under Armour Curry Splash Fleece Hoodie, black-white",
+   "not work clothing"
+  ],
+  [
+   "universalt-adidas-mens-woven-boxer-shorts-pack-of-2",
+   "Universal Textiles",
+   "Adidas Woven Boxer Shorts (Pack of 2), multicoloured",
+   "not work clothing"
+  ],
+  [
+   "universalt-burzum-unisex-adult-aske-heather-full-zip-hoodie",
+   "Universal Textiles",
+   "Burzum Aske Heather Full Zip Hoodie, grey",
+   "not work clothing"
+  ],
+  [
+   "universalt-jack-pyke-mens-rugby-long-sleeved-polo-shirt",
+   "Universal Textiles",
+   "Jack Pyke Rugby Long-Sleeved Polo Shirt, green-black",
+   "not work clothing"
+  ],
+  [
+   "universalt-west-ham-united-fc-mens-crest-fleece-dressing-gown",
+   "Universal Textiles",
+   "West Ham United FC Crest Fleece Dressing Gown, grey",
+   "not work clothing"
+  ],
+  [
+   "universalt-yungblud-unisex-adult-portrait-pull-over-hoodie",
+   "Universal Textiles",
+   "Yungblud Portrait Pull Over Hoodie, black",
+   "not work clothing"
+  ],
+  [
+   "universalt-bathory-unisex-adult-hammerheart-track-list-top",
+   "Universal Textiles",
+   "Bathory Hammerheart Track List Top, black",
+   "not work clothing"
+  ],
+  [
+   "universalt-sesame-street-unisex-adult-grover-face-sweatshirt",
+   "Universal Textiles",
+   "Sesame Street Grover Face Sweatshirt, royal blue",
+   "not work clothing"
+  ],
+  [
+   "universalt-clique-unisex-adult-miami-sweatshirt",
+   "Universal Textiles",
+   "Clique Miami Sweatshirt, apple green",
+   "not work clothing"
+  ],
+  [
+   "universalt-fruit-of-the-loom-mens-iconic-premium-heather-zip-neck-swea",
+   "Universal Textiles",
+   "Fruit of the Loom Iconic Premium Heather Zip Neck Sweatshirt",
+   "not work clothing"
+  ],
+  [
+   "universalt-fruit-of-the-loom-mens-iconic-premium-sweatshirt-2",
+   "Universal Textiles",
+   "Fruit of the Loom Iconic Premium Sweatshirt, royal blue",
+   "not work clothing"
+  ],
+  [
+   "workandsaf-dunlop-purofort-safety-wellingtons-with-steel-toe-cap",
+   "Work+Safety",
+   "Dunlop Purofort+ Full Safety Wellingtons with Steel Toe Cap",
+   "not work clothing"
+  ],
+  [
+   "workandsaf-dunlop-acifort-safety-wellingtons-with-steel-toe-cap-a18133",
+   "Work+Safety",
+   "Dunlop Acifort Safety Wellingtons - Steel Toe Cap",
+   "not work clothing"
+  ],
+  [
+   "workandsaf-dunlop-purofort-pro-safety-wellingtons-with-steel-toe-cap-c",
+   "Work+Safety",
+   "Dunlop Purofort Pro S5 Safety Wellingtons - Steel Toe Cap",
+   "not work clothing"
+  ]
+ ],
+ "removed_not_clothing": [
+  [
+   "militaryki-british-army-bivvy-bag-mtp-camo-used",
+   "Military Kit",
+   "British Army Bivvy Bag MTP Camouflage - Grade1"
+  ],
+  [
+   "militaryki-viper-vx-buckle-up-mag-rig-coyote",
+   "Military Kit",
+   "Viper VX Buckle Up Mag Rig Coyote"
+  ],
+  [
+   "militaryki-viper-vx-double-smg-mag-sleeve-coyote",
+   "Military Kit",
+   "Viper VX Double SMG Mag Sleeve Coyote"
+  ],
+  [
+   "militaryki-highlander-emergency-survival-bag-olive",
+   "Military Kit",
+   "Highlander Emergency Survival Bag Olive"
+  ],
+  [
+   "militaryki-highlander-emergency-survival-bag-orange",
+   "Military Kit",
+   "Highlander Emergency Survival Bag Orange"
+  ],
+  [
+   "militaryma-amazon-basics-15-6-laptop-sleeve-boxed-new-old-stock",
+   "Military Mart",
+   "surplus Amazon Basics 15.6\" Laptop Sleeve - Boxed New Old Stock"
+  ],
+  [
+   "militaryma-amazon-basics-11-6-laptop-tablet-briefcase-boxed-new-old-st",
+   "Military Mart",
+   "surplus Amazon Basics 11.6\" Laptop & Tablet Briefcase - Boxed New Old Stock"
+  ],
+  [
+   "militaryma-french-army-comms-tool-roll-holdall",
+   "Military Mart",
+   "surplus French Army Comms Tool Roll - Holdall"
+  ],
+  [
+   "militaryma-swedish-army-kit-bag-and-clasp",
+   "Military Mart",
+   "surplus Swedish Army Kit Bag and clasp"
+  ],
+  [
+   "militaryma-dog-tether",
+   "Military Mart",
+   "Benross Heavy Duty 16\" Tie Down Stake"
+  ],
+  [
+   "militaryma-outdoor-first-aid-belt-pouch-pack",
+   "Military Mart",
+   "Misc First Aid Belt Pouch Pack - BBQ"
+  ],
+  [
+   "militaryma-blackspur-1-x-15-ratchet-tie-down-strap",
+   "Military Mart",
+   "Blackspur 1\" x 15' Heavy-Duty Ratchet Tie Down Strap with Vinyl-Coated S-Hooks"
+  ],
+  [
+   "militaryma-dutch-molle-hand-grenade-dpm-pouch",
+   "Military Mart",
+   "surplus Dutch Military Molle Grenade - Small Utility Pouch - Grade A"
+  ]
+ ]
+}

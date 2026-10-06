@@ -1,0 +1,578 @@
+{
+ "w20261006-quiet-01": {
+  "name": "Black jacket and indigo trousers",
+  "note": "6 pieces for £249.34, £263 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "burgundy",
+    "item": "jeanstore-stan-ray-s-s-flannel-shirt-red-gingham",
+    "shape": "shirt",
+    "what": "Red shirt"
+   },
+   {
+    "col": "indigo",
+    "item": "siksilk-loose-fit-jeans-ss-28669",
+    "shape": "trousers",
+    "what": "Indigo trousers"
+   },
+   {
+    "col": "black",
+    "item": "slamcity-huf-waffle-knit-contrast-shortsleeve-polo-top-black",
+    "shape": "jumper",
+    "what": "Black jumper"
+   },
+   {
+    "col": "black",
+    "item": "routeone-dickies-scobey-puffer-jacket-black-001178754",
+    "shape": "jacket",
+    "what": "Black jacket, worn open"
+   },
+   {
+    "col": "black",
+    "item": "samuelwind-country-brogue-boot-black",
+    "shape": "boots",
+    "what": "Black boots"
+   },
+   {
+    "col": "grey",
+    "item": "folkclothi-fleece-beanie-tile-jacquard",
+    "shape": "beanie",
+    "what": "beanie"
+   }
+  ],
+  "rank": 400,
+  "style": [
+   "quiet"
+  ],
+  "wx": [
+   "cold"
+  ],
+  "look": "men red shirt indigo trousers black jumper black jacket black boots outfit"
+ },
+ "w20261006-quiet-02": {
+  "name": "Navy jacket and stone trousers",
+  "note": "4 pieces for £268, £267 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "cream",
+    "item": "universalw-universal-works-smock-overshirt-in-ecru-deffe-self-stripe-1",
+    "shape": "shirt",
+    "what": "Cream shirt"
+   },
+   {
+    "col": "stone",
+    "item": "tml-chino-stone",
+    "shape": "trousers",
+    "what": "Stone trousers"
+   },
+   {
+    "col": "navy",
+    "item": "uw-capitol-navy",
+    "shape": "jacket",
+    "what": "Navy jacket, worn open"
+   },
+   {
+    "col": "black",
+    "item": "samuelwind-country-brogue-boot-black",
+    "shape": "boots",
+    "what": "Black boots"
+   }
+  ],
+  "rank": 403,
+  "style": [
+   "quiet"
+  ],
+  "wx": [
+   "wet"
+  ],
+  "look": "men cream shirt stone trousers navy jacket black boots outfit"
+ },
+ "w20261006-casual-01": {
+  "name": "Grey hoodie and sand trousers",
+  "note": "4 pieces for £145.4, £190 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "jeanstore-stan-ray-s-s-flannel-shirt-blue-gingham",
+    "shape": "shirt",
+    "what": "Blue shirt"
+   },
+   {
+    "col": "sand",
+    "item": "stanray-a-pant-natural-25-1",
+    "shape": "trousers",
+    "what": "Sand trousers"
+   },
+   {
+    "col": "grey",
+    "item": "neweracap-minnesota-vikings-nfl-international-series-games-2025-grey-p",
+    "shape": "hoodie",
+    "what": "Grey hoodie"
+   },
+   {
+    "col": "black",
+    "item": "universalt-original-penguin-mens-atlas-hiking-boots",
+    "shape": "boots",
+    "what": "Black boots"
+   }
+  ],
+  "rank": 400,
+  "style": [
+   "casual"
+  ],
+  "wx": [
+   "cold"
+  ],
+  "look": "men blue shirt sand trousers grey hoodie black boots outfit"
+ },
+ "w20261006-casual-02": {
+  "name": "Stone jacket and black trousers",
+  "note": "5 pieces for £130.99, £234 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "universalt-threadbare-mens-moss-stitch-crew-neck-t-shirt",
+    "shape": "tee",
+    "what": "Grey T-shirt"
+   },
+   {
+    "col": "black",
+    "item": "goodhoodst-umbro-nq-zip-off-loose-fit-pants-black",
+    "shape": "trousers",
+    "what": "Black trousers"
+   },
+   {
+    "col": "grey",
+    "item": "gymking-gym-king-momentum-crew-grey-marl",
+    "shape": "jumper",
+    "what": "Grey jumper"
+   },
+   {
+    "col": "stone",
+    "item": "tokyolaund-frewin-striped-ribbed-detail-bomber-jacket-in-stone-kensing",
+    "shape": "jacket",
+    "what": "Stone jacket, worn open"
+   },
+   {
+    "col": "grey",
+    "item": "universalt-clae-unisex-adult-leather-moc-toe-derby-shoes",
+    "shape": "shoes",
+    "what": "shoes"
+   }
+  ],
+  "rank": 403,
+  "style": [
+   "casual"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men grey T-shirt black trousers grey jumper stone jacket shoes outfit"
+ },
+ "w20261006-casual-03": {
+  "name": "Stone T-shirt and black trousers",
+  "note": "3 pieces for £71.98, £92 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "stone",
+    "item": "duckandcov-sudbury-t-shirt-light-stone-1",
+    "shape": "tee",
+    "what": "Stone T-shirt"
+   },
+   {
+    "col": "black",
+    "item": "goodhoodst-umbro-nq-zip-off-loose-fit-pants-black",
+    "shape": "trousers",
+    "what": "Black trousers"
+   },
+   {
+    "col": "black",
+    "item": "baselondon-garfield-washed-black-loafers-shoes",
+    "shape": "shoes",
+    "what": "Black shoes"
+   }
+  ],
+  "rank": 406,
+  "style": [
+   "casual"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men stone T-shirt black trousers black shoes outfit"
+ },
+ "w20261006-casual-04": {
+  "name": "Black jacket and black trousers",
+  "note": "6 pieces for £244.3, £264 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "burgundy",
+    "item": "jeanstore-stan-ray-s-s-flannel-shirt-red-gingham",
+    "shape": "shirt",
+    "what": "Red shirt"
+   },
+   {
+    "col": "black",
+    "item": "jeanstore-lee-west-relaxed-straight-mens-jeans-clean-black-1",
+    "shape": "trousers",
+    "what": "Black trousers"
+   },
+   {
+    "col": "cream",
+    "item": "siksilk-siksilk-essentials-full-zip-hoodie-ss-28585",
+    "shape": "hoodie",
+    "what": "Cream hoodie"
+   },
+   {
+    "col": "black",
+    "item": "routeone-dickies-scobey-puffer-jacket-black-001178754",
+    "shape": "jacket",
+    "what": "Black jacket, worn open"
+   },
+   {
+    "col": "brown",
+    "item": "hollandsco-roamers-mens-crazy-horse-leather-gusset-boots",
+    "shape": "boots",
+    "what": "Brown boots"
+   },
+   {
+    "col": "grey",
+    "item": "folkclothi-fleece-beanie-tile-jacquard",
+    "shape": "beanie",
+    "what": "beanie"
+   }
+  ],
+  "rank": 409,
+  "style": [
+   "casual"
+  ],
+  "wx": [
+   "cold"
+  ],
+  "look": "men red shirt black trousers cream hoodie black jacket brown boots outfit"
+ },
+ "w20261006-outdoor-01": {
+  "name": "Grey half-zip and navy trousers",
+  "note": "5 pieces for £141.9, £195 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "millets-columbia-mens-fuse-t-shirt-grey-447286",
+    "shape": "tee",
+    "what": "Grey T-shirt"
+   },
+   {
+    "col": "navy",
+    "item": "urbanexces-bhode-two-pleat-pant-midnight-navy-blue",
+    "shape": "trousers",
+    "what": "Navy trousers"
+   },
+   {
+    "col": "grey",
+    "item": "millets-stanley-workwear-mens-weston-full-zip-fleece-grey-765993",
+    "shape": "halfzip",
+    "what": "Grey half-zip"
+   },
+   {
+    "col": "brown",
+    "item": "amblerssaf-24022-brown",
+    "shape": "boots",
+    "what": "Brown boots"
+   },
+   {
+    "col": "black",
+    "item": "millets-oex-halley-mountain-cap-unisex-black-319600",
+    "shape": "bcap",
+    "what": "Black cap"
+   }
+  ],
+  "rank": 400,
+  "style": [
+   "outdoor"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men grey T-shirt navy trousers grey half-zip brown boots outfit"
+ },
+ "w20261006-outdoor-02": {
+  "name": "Black jacket and stone trousers",
+  "note": "5 pieces for £183.43, £165 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "uk-o-neill-uni-flower-t-shirt-black-out",
+    "shape": "tee",
+    "what": "Black T-shirt"
+   },
+   {
+    "col": "stone",
+    "item": "berghaus-mens-greenbank-pant-taupe-4a000112007",
+    "shape": "trousers",
+    "what": "Stone trousers"
+   },
+   {
+    "col": "black",
+    "item": "blacks-altura-mens-mistral-softshell-jacket-black-464798",
+    "shape": "jacket",
+    "what": "Black jacket, worn open"
+   },
+   {
+    "col": "black",
+    "item": "widefitsho-mens-wide-fit-new-balance-m411ru3-walking-running-trainers",
+    "shape": "trainers",
+    "what": "Black trainers"
+   },
+   {
+    "col": "black",
+    "item": "blacks-oex-halley-mountain-cap-unisex-black-319600",
+    "shape": "bcap",
+    "what": "Black cap"
+   }
+  ],
+  "rank": 403,
+  "style": [
+   "outdoor"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men black T-shirt stone trousers black jacket black trainers outfit"
+ },
+ "w20261006-outdoor-03": {
+  "name": "Black jacket and indigo trousers",
+  "note": "4 pieces for £127.96, £146 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "cream",
+    "item": "saltrock-block-icons-td-s-s-tee-cream",
+    "shape": "tee",
+    "what": "Cream T-shirt"
+   },
+   {
+    "col": "indigo",
+    "item": "r11-tog24-joggers",
+    "shape": "trousers",
+    "what": "Indigo trousers"
+   },
+   {
+    "col": "black",
+    "item": "blacks-altura-mens-mistral-softshell-jacket-black-464798",
+    "shape": "jacket",
+    "what": "Black jacket, worn open"
+   },
+   {
+    "col": "brown",
+    "item": "amblerssaf-24022-brown",
+    "shape": "boots",
+    "what": "Brown boots"
+   }
+  ],
+  "rank": 406,
+  "style": [
+   "outdoor"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men cream T-shirt indigo trousers black jacket brown boots outfit"
+ },
+ "w20261006-outdoor-04": {
+  "name": "Charcoal gilet and indigo trousers",
+  "note": "5 pieces for £161.95, £110 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "cream",
+    "item": "saltrock-block-icons-td-s-s-tee-cream",
+    "shape": "tee",
+    "what": "Cream T-shirt"
+   },
+   {
+    "col": "indigo",
+    "item": "r11-tog24-joggers",
+    "shape": "trousers",
+    "what": "Indigo trousers"
+   },
+   {
+    "col": "charcoal",
+    "item": "animal-light-cosi-marl-mens-gilet-charcoal",
+    "shape": "gilet",
+    "what": "Charcoal gilet"
+   },
+   {
+    "col": "black",
+    "item": "widefitsho-mens-wide-fit-new-balance-m411ru3-walking-running-trainers",
+    "shape": "trainers",
+    "what": "Black trainers"
+   },
+   {
+    "col": "black",
+    "item": "blacks-oex-halley-mountain-cap-unisex-black-319600",
+    "shape": "bcap",
+    "what": "Black cap"
+   }
+  ],
+  "rank": 409,
+  "style": [
+   "outdoor"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men cream T-shirt indigo trousers charcoal gilet black trainers outfit"
+ },
+ "w20261006-lounge-01": {
+  "name": "Blue polo and grey trousers",
+  "note": "3 pieces for £60, £75 below full price.",
+  "occ": "lounge",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "tmlewin-the-non-iron-pique-striped-polo-dusky-blue",
+    "shape": "polo",
+    "what": "Blue polo"
+   },
+   {
+    "col": "grey",
+    "item": "luke1977-m720401-ice-grey",
+    "shape": "trousers",
+    "what": "Grey trousers"
+   },
+   {
+    "col": "indigo",
+    "item": "threadbare-threadbare-mens-textured-faux-fur-lined-mule-slippers-in-de",
+    "shape": "slippers",
+    "what": "Indigo slippers"
+   }
+  ],
+  "rank": 400,
+  "style": [
+   "lounge"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men blue polo grey trousers indigo slippers outfit"
+ },
+ "w20261006-lounge-02": {
+  "name": "Grey half-zip and charcoal trousers",
+  "note": "4 pieces for £114.96, £140 below full price.",
+  "occ": "lounge",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "universalt-threadbare-mens-moss-stitch-crew-neck-t-shirt",
+    "shape": "tee",
+    "what": "Grey T-shirt"
+   },
+   {
+    "col": "charcoal",
+    "item": "luke1977-m720401-charcoal",
+    "shape": "trousers",
+    "what": "Charcoal trousers"
+   },
+   {
+    "col": "grey",
+    "item": "millets-stanley-workwear-mens-weston-full-zip-fleece-grey-765993",
+    "shape": "halfzip",
+    "what": "Grey half-zip"
+   },
+   {
+    "col": "black",
+    "item": "widefitsho-mens-wide-fit-tredd-well-scott-slippers",
+    "shape": "slippers",
+    "what": "Black slippers"
+   }
+  ],
+  "rank": 403,
+  "style": [
+   "lounge"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men grey T-shirt charcoal trousers grey half-zip black slippers outfit"
+ },
+ "w20261006-lounge-03": {
+  "name": "Grey hoodie and charcoal trousers",
+  "note": "4 pieces for £74.96, £90 below full price.",
+  "occ": "lounge",
+  "pieces": [
+   {
+    "col": "grey",
+    "item": "blacks-columbia-mens-fuse-t-shirt-grey-447286",
+    "shape": "tee",
+    "what": "Grey T-shirt"
+   },
+   {
+    "col": "charcoal",
+    "item": "luke1977-m720401-charcoal",
+    "shape": "trousers",
+    "what": "Charcoal trousers"
+   },
+   {
+    "col": "grey",
+    "item": "tokyolaund-billsburg-zip-through-borg-lined-fleece-hoodie-in-light-gre",
+    "shape": "hoodie",
+    "what": "Grey hoodie"
+   },
+   {
+    "col": "charcoal",
+    "item": "threadbare-threadbare-mens-elasticated-faux-fur-lined-slippers-in-char",
+    "shape": "slippers",
+    "what": "Charcoal slippers"
+   }
+  ],
+  "rank": 406,
+  "style": [
+   "lounge"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men grey T-shirt charcoal trousers grey hoodie charcoal slippers outfit"
+ },
+ "w20261006-lounge-04": {
+  "name": "Black T-shirt and grey trousers",
+  "note": "3 pieces for £94.99, £70 below full price.",
+  "occ": "lounge",
+  "pieces": [
+   {
+    "col": "black",
+    "item": "luke1977-thor-t-shirt-black-dk-ecru",
+    "shape": "tee",
+    "what": "Black T-shirt"
+   },
+   {
+    "col": "grey",
+    "item": "luke1977-m720401-ice-grey",
+    "shape": "trousers",
+    "what": "Grey trousers"
+   },
+   {
+    "col": "navy",
+    "item": "wideshoes-cosyfeet-ernest-mens-extra-wide-slipper-with-open-panels-6e",
+    "shape": "slippers",
+    "what": "Navy slippers"
+   }
+  ],
+  "rank": 409,
+  "style": [
+   "lounge"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men black T-shirt grey trousers navy slippers outfit"
+ }
+}

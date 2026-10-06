@@ -36,6 +36,7 @@ Usage: python3 fetch_photos.py [--items ../data/items.json] [--out photos]
 """
 import argparse
 import base64
+import glob
 import concurrent.futures as cf
 import html
 import io
@@ -86,9 +87,21 @@ def photo_url(page_url):
     return None
 
 
-def shrink(raw):
-    img = Image.open(io.BytesIO(raw)).convert("RGB")
+def shrink(raw, fit="crop", quality=68):
+    img = Image.open(io.BytesIO(raw))
+    if img.mode in ("RGBA", "LA", "P"):
+        img = img.convert("RGBA")
+        bg = Image.new("RGBA", img.size, (255, 255, 255, 255))
+        img = Image.alpha_composite(bg, img)
+    img = img.convert("RGB")
     w, h = img.size
+    if fit == "contain":  # keep the whole garment, pad with the photo's own corner colour
+        img.thumbnail(SIZE, Image.LANCZOS)
+        canvas = Image.new("RGB", SIZE, img.getpixel((0, 0)))
+        canvas.paste(img, ((SIZE[0] - img.width) // 2, (SIZE[1] - img.height) // 2))
+        buf = io.BytesIO()
+        canvas.save(buf, "WEBP", quality=quality, method=6)
+        return "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode()
     target = SIZE[0] / SIZE[1]
     if w / h > target:  # too wide: trim the sides
         nw = int(h * target)
@@ -99,7 +112,7 @@ def shrink(raw):
         img = img.crop((0, top, w, top + nh))
     img = img.resize(SIZE, Image.LANCZOS)
     buf = io.BytesIO()
-    img.save(buf, "WEBP", quality=68, method=6)
+    img.save(buf, "WEBP", quality=quality, method=6)
     return "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode()
 
 
@@ -107,7 +120,10 @@ def one(item_id, item):
     if item.get("kind") == "preowned" or NOT_A_LISTING.search(item.get("url", "")):
         return item_id, None, "skipped: not a single listing"
     try:
-        src = photo_url(item["url"])
+        src = item.get("img_src") or photo_url(item["url"])
+        src = urllib.parse.urljoin(item["url"], src)
+        if item.get("img_src") and ("cdn.shopify.com" in src or "/cdn/shop/" in src):
+            src += ("&" if "?" in src else "?") + "width=%d" % (SIZE[0] * 2)
         if not src:
             return item_id, None, "no photo tag on the page"
         raw, ctype = get(src, 8_000_000)
@@ -125,13 +141,28 @@ def main():
     ap.add_argument("--out", default="photos")
     ap.add_argument("--only", default="")
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--prefix", default="pack", help="pack file names: <prefix>-01.json, ...")
+    ap.add_argument("--skip-existing", action="store_true", help="skip picks already in photos/pack-*.json")
+    ap.add_argument("--size", default="480x360", help="WxH, e.g. 360x450 for portrait tiles")
+    ap.add_argument("--fit", default="crop", choices=["crop", "contain"])
+    ap.add_argument("--quality", type=int, default=68)
     ap.add_argument("--browser", action="store_true",
                     help="retry refused shops in headless Chromium (node + playwright, see browser_fetch.js)")
     ap.add_argument("--skip-hosts", default="www.asos.com",
                     help="comma-separated hosts not worth a browser retry (they block data-centre traffic)")
     args = ap.parse_args()
 
+    global SIZE
+    SIZE = tuple(int(x) for x in args.size.split("x"))
     items = json.load(open(args.items))
+    if args.skip_existing:
+        have = set()
+        for pth in glob.glob(os.path.join(here, "..", "photos", "*.json")):
+            try:
+                have.update(json.load(open(pth)))
+            except Exception:
+                pass
+        items = {k: v for k, v in items.items() if k not in have}
     if args.only:
         keep = set(args.only.split(","))
         items = {k: v for k, v in items.items() if k in keep}
@@ -165,7 +196,7 @@ def main():
     got = {}
     for k, data in raw.items():
         try:
-            got[k] = shrink(data)
+            got[k] = shrink(data, args.fit, args.quality)
         except Exception as exc:  # unreadable or unsupported image format
             report[k] = "could not read the image: %s" % str(exc)[:80]
 
@@ -180,15 +211,13 @@ def main():
         packs.append(cur)
     names = []
     for i, pack in enumerate(packs, 1):
-        name = "photos/pack-%02d.json" % i
+        name = "photos/%s-%02d.json" % (args.prefix, i)
         with open(os.path.join(args.out, os.path.basename(name)), "w") as f:
             json.dump(pack, f, separators=(",", ":"))
         names.append(name)
-    with open(os.path.join(args.out, "meta-photos.json"), "w") as f:
-        json.dump({"packs": names}, f, indent=1)
-    with open(os.path.join(args.out, "report.json"), "w") as f:
+    with open(os.path.join(args.out, "report-%s.json" % args.prefix), "w") as f:
         json.dump(report, f, indent=1, sort_keys=True)
-    print("%d of %d picks have a photo, in %d packs. See %s/report.json for the rest."
+    print("%d of %d picks have a photo, in %d packs. See %s/report-*.json for the rest."
           % (len(got), len(items), len(names), args.out))
 
 
