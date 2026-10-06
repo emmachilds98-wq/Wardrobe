@@ -1285,6 +1285,60 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
 - **2D:** shoulders on sleeveless pieces are rounded, not pointed. Knitted vests and done-up gilets are drawn without
   sleeves.
 
+## 2zu. Phase 1 of the 3D upgrade: fitted tops, layering, trousers and weekly checks (7 Oct 2026)
+
+Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fitting room) is next.
+
+- **Automatic 3D checks (`tools/check_3d.js`).**
+  - Renders every outfit (or `--sample N`, `--ids a,b`) from the front, side and back, both as shown and as a
+    flat colour-per-layer image. It flags:
+    - skin or an inner layer showing through an outer one;
+    - small see-through holes;
+    - floating parts;
+    - colours that drift from the listing.
+  - It writes `report.json` and pictures of anything flagged. With `--report` it adds a `checks_3d` summary to
+    `data/refresh-report.json`.
+  - Usage: `node tools/check_3d.js --site docs --sample 80 --out qa [--debug]`.
+  - Baseline over 80 outfits: 10 pokes, 76 with the trouser slit, 4 colour drifts.
+- **Tops as one fitted piece (`fitTop`).**
+  - Every top with sleeves is now one continuous piece of cloth, built from radial maps of his body (`fitMaps`):
+    - the body bridges hollows and hangs straight from the chest, taken in at the waist as Edit Dave's fit says;
+    - the yoke rounds over his shoulders at the cloth's thickness rather than its looseness, so jackets no
+      longer look padded;
+    - each sleeve grows out of its own armhole edge. The sleeve head rounds over the arm, and the cloth settles
+      around the armhole, so there is no ledge, box or seam to poke through.
+  - Sleeves photographed in another colour are tinted along a natural seam line, from under the arm to the point
+    of the shoulder.
+  - Vests, gilets and waistcoats keep their cut shapes.
+- **Layering.**
+  - What each piece leaves on him is recorded in maps (torso, shoulders, neck, each arm, legwear).
+  - Every later piece is kept outside them across each row's whole height, so the edge of a ribbed hem or
+    waistband underneath cannot come through. This applies to its body, sleeves, collars, cuffs, bands and
+    plackets.
+  - A tucked-in shirt goes under the trousers; an untucked top lies over them.
+  - A closed gilet or waistcoat hides the pockets, plackets and cords under it.
+- **Collars from the neckline (`fitCollar`).**
+  - Crew neckbands, funnel and stand collars, shirt and polo collars (stand plus a leaf folded back over it) and
+    coat collars grow up from the top's own neckline, so they never stand off it or sink into it.
+  - They are built around a fixed line through the base of his neck, so they stand up instead of tipping forward.
+- **Smaller fixes:**
+  - The hoodie pocket lies on the cloth, with its two slanted openings.
+  - Jacket pockets sit on the panel when the front is open.
+  - The quarter-zip has a real funnel collar.
+  - "Button-down" shirts are no longer treated as down-filled.
+- **Trousers.**
+  - The slit of light down the middle, front and back, is closed: where his thighs would touch, each leg's inside
+    is pressed flat against the other.
+  - Still to fix: a small gap right under the crotch on some trousers and shorts.
+- **Speed.** Pockets, plackets and photo fronts are placed from a depth map of the clothes, not by casting rays,
+  so outfits build as fast as before (about 0.1 to 0.25 s).
+- **Next:**
+  - Close the gap under the crotch.
+  - Tidy the remaining small collar artifacts at the side of the neck.
+  - Phase 1d: a fitting room in the Style guide, with Dave in plain underwear and the body sliders, opened from
+    every outfit's Edit Dave button.
+  - Run the checks over all 574 outfits, and hook them into the weekly refresh.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
