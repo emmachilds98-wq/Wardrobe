@@ -1,8 +1,9 @@
 """Builds the files the published page reads: site/index.html plus site/data/*.json.
 
-The page loads its picks, outfits and settings from these files, and the listing
-photos from one file per type (data/photos/<cat>.json), fetched only when a card
-with that type scrolls into view. The shared shortlist, thumbs and "his wardrobe"
+The page loads its picks, outfits and settings from these files. Picks come in load
+groups of under 900 (data/items/<group>.json, listed in data/items.json); shirts and
+coats always have groups of their own. Each group's listing photos sit in
+data/photos/<group>.json, fetched only when a card from that group scrolls into view. The shared shortlist, thumbs and "his wardrobe"
 marks still live in the artifact's database.
 
     python3 tools/build_site.py [--out site]
@@ -39,6 +40,37 @@ def load(p):
         return json.load(f)
 
 
+GROUP_MAX = 899
+OWN_GROUP = ("shirt", "coat")
+
+
+def load_groups(items):
+    """Splits the picks into groups of at most GROUP_MAX, one kind of thing per group where
+    it is big enough. Shirts and coats always get their own; small kinds share a group."""
+    bycat = {}
+    for k in sorted(items, key=lambda k: (items[k].get("rank", 9999), k)):
+        bycat.setdefault(items[k].get("cat") or "other", []).append(k)
+    groups, small = {}, []
+    for cat in sorted(bycat):
+        ids = bycat[cat]
+        if cat in OWN_GROUP or len(ids) >= 300:
+            n = -(-len(ids) // GROUP_MAX)
+            for i in range(n):
+                groups[cat if n == 1 else "%s-%d" % (cat, i + 1)] = ids[i::n]
+        else:
+            small.append(cat)
+    cur, name = [], []
+    for cat in small:
+        if cur and len(cur) + len(bycat[cat]) > GROUP_MAX:
+            groups["-".join(name)] = cur
+            cur, name = [], []
+        cur = cur + bycat[cat]
+        name.append(cat)
+    if cur:
+        groups["-".join(name)] = cur
+    return groups
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(ROOT, "site"))
@@ -62,27 +94,37 @@ def main():
     }
 
     photos = {}
-    for p in sorted(glob.glob(os.path.join(ROOT, "photos", "pack-*.json"))):
+    for p in sorted(glob.glob(os.path.join(ROOT, "photos", "*-[0-9][0-9].json"))):
         with open(p, encoding="utf-8") as f:
             photos.update(json.load(f))
     bycat = {}
+    groups = load_groups(items)
+    for g, ids in groups.items():
+        for k in ids:
+            items[k]["pg"] = g
+            items[k].pop("img_src", None)
     for k, src in photos.items():
         it = items.get(k)
         if not it or not isinstance(src, str) or not src.startswith("data:image/"):
             continue
-        cat = it.get("cat") if str(it.get("cat", "")).isalpha() else "other"
-        bycat.setdefault(cat, {})[k] = src
+        bycat.setdefault(it["pg"], {})[k] = src
         it["ph"] = True
-    for cat, m in bycat.items():
-        with open(os.path.join(out, "data", "photos", cat + ".json"), "w", encoding="utf-8") as f:
+    for g, m in bycat.items():
+        with open(os.path.join(out, "data", "photos", g + ".json"), "w", encoding="utf-8") as f:
             json.dump(m, f, separators=(",", ":"))
     meta["photos"] = {"cats": sorted(bycat), "count": sum(len(m) for m in bycat.values())}
 
-    for name, obj in (("items", items), ("outfits", outfits), ("meta", meta)):
+    os.makedirs(os.path.join(out, "data", "items"), exist_ok=True)
+    for g, ids in groups.items():
+        with open(os.path.join(out, "data", "items", g + ".json"), "w", encoding="utf-8") as f:
+            json.dump({k: items[k] for k in ids}, f, separators=(",", ":"), ensure_ascii=False)
+    index = {"_groups": ["data/items/%s.json" % g for g in groups]}
+    for name, obj in (("items", index), ("outfits", outfits), ("meta", meta)):
         with open(os.path.join(out, "data", name + ".json"), "w", encoding="utf-8") as f:
             json.dump(obj, f, separators=(",", ":"), ensure_ascii=False)
     shutil.copyfile(os.path.join(ROOT, "page.html"), os.path.join(out, "index.html"))
-    print(f"{len(items)} picks, {len(outfits)} outfits, {meta['photos']['count']} photos in {len(bycat)} files -> {out}")
+    print(f"{len(items)} picks in {len(groups)} load groups (largest {max(len(v) for v in groups.values())}), "
+          f"{len(outfits)} outfits, {meta['photos']['count']} photos -> {out}")
 
 
 if __name__ == "__main__":

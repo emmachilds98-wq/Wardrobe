@@ -508,6 +508,48 @@ its whole range.
   proxy for M&S, Next, ASOS, Workwear Gurus, JD Sports, Matalan, END. and the Shopify feeds), so
   no new picks or photos this round. The catalogue stays at 1,861 picks and 343 outfits.
 
+## 2s. 4,282 more picks, photos for 98%, and a to-scale photo flat lay (6 Oct 2026)
+
+- **The older 2,400-pick list:** not recoverable. The older artifact belongs to another account, so
+  its database cannot be read, and its published files are only the page and five photo packs. The
+  zip that came with the brief is an older copy of the page (about version 22) with the same packs.
+  This round rebuilds a larger list from the shops directly.
+- **Pull:** 129 shops in "Where to look" (and the shops behind existing picks) publish a Shopify
+  feed. `tools/shopify_pull.py` (now with `--out`, `--pages` and `@hosts.txt`) pulled up to 5,000
+  products from each: about 208,000 products from 119 shops.
+- **Filter:** the new `tools/sweep_filter.py` turned them into 4,282 picks from 112 shops
+  (`data/items-new.json`), so the page now has **6,143 picks**. Its rules:
+  - men's only; in stock in his size at the pull: L tops, 15.5 to 16in collars, 40R jackets,
+    34W with a 32in or regular leg, UK 11 shoes. A bare "11" counts only when the shop does not list
+    US sizes. Short, long and 34in legs are left out (1,098 trousers dropped). Where a shop lists the
+    waist only, the card says the leg length is not listed.
+  - category from the noun, after removing brand names that contain "jeans" or "polo" (Tommy Jeans,
+    Calvin Klein Jeans, Polo Ralph Lauren) and words like "short sleeve", so a short-sleeve shirt is a
+    shirt and a Tommy Jeans jumper is a jumper.
+  - clean names: no "Special Offer", "Clearance" or "Sale" prefixes (also when the shop puts them in
+    the brand field), no doubled brand, no repeated colour, no "Men's", no style codes; long names are
+    cut at a word.
+  - discounted first: each shop gets up to 60 picks and 14 per kind, filled with reduced pieces first;
+    full-price pieces fill at most a third. 3,212 of the 4,282 are reduced.
+  - workwear: at least 60% cotton (read from the description), no slim, skinny or tapered fits, and
+    safety boots only in 4E, 5E or 6E. Ordinary shoes from the wide-fit shops go to Casual rather than
+    Workwear. No slim or tapered trousers anywhere.
+- **Photos:** `tools/fetch_photos.py` gained `--prefix`, `--skip-existing`, `--size`, `--fit contain`
+  and `--quality`, and uses a pick's `img_src` (the shop's own photo URL from the feed) when there is
+  one. New photos are 360 by 450 (4:5), the whole garment on its own background, about 6.6 KB each.
+  4,281 of the new picks have one (`photos/new-*.json`). For the older picks, 131 more came from their
+  pages (`photos/more-*.json`), and 835 whose shops refuse page downloads were matched to the pulled
+  feeds by handle (`photos/more2-*.json`). In total, **6,002 of 6,143 picks have a photo** (98%, was 41%).
+- **Load groups:** `tools/build_site.py` now writes the picks as 12 load groups of at most 712
+  (`data/items/<group>.json`, listed in `data/items.json`), with shirts and coats each in their own.
+  Each group's photos are in `data/photos/<group>.json`. The page fetches the groups in parallel.
+- **Outfits:** the large outfit view opens on **Real photos, to scale**: the shop photos laid out
+  head to toe at 2.4 units per centimetre (coat about 88 cm, trousers 106 cm, boots 30 cm, a cap
+  24 cm), tops side by side, accessories in a column, with a 50 cm scale bar. "On the figure" switches
+  back to the drawing, and the choice is remembered. Cards, tiles and the outfit boards now show the
+  whole photo (contain, not crop).
+- **Published:** version 25 of <https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn> (43 MB of files).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -540,6 +582,18 @@ from a home computer usually gets past them. Then add the new pack to the page a
 4. **"Shop by budget" quick sets:** an outfit for £60, £100 or £150, drawn from the builder's
    suggestion engine and refreshed weekly.
 5. ~~**Shop filter in Picks.**~~ Done in round two.
+
+### Step 4b: Features suggested for next round
+1. **Shop-by-budget sets:** "£60 / £100 / £150 outfit" buttons that run the builder's suggest engine
+   over the photo-backed picks and show the set as a flat lay.
+2. **Price-drop alerts on the shortlist:** re-run `shopify_pull.py` weekly for the shops behind
+   saved picks and set `prev` and `hist`, so the shortlist's "Down £x since it was saved" lights up.
+3. **Size check per shop:** store each Shopify shop's size-chart page and show "L at this shop is
+   a 42 to 44in chest" on the card; flag shops that run small.
+4. **Outfits from the new picks:** generate outfits per style from the 4,282 new picks, using
+   only pieces with photos, so every outfit shows a full flat lay.
+5. **Non-Shopify shops:** M&S, Next, Uniqlo, ASOS and the other big shops are not on Shopify; a
+   headless-browser pass (`tools/browser_fetch.js`) over their sale pages would add them.
 
 ### Step 5: More stores to add next
 These are in the directory but still have no picks: Gap, Levi's, Dr Martens direct, Vans,
