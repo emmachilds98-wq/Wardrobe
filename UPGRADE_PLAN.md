@@ -763,6 +763,32 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
     the curls below the brim show.
   - A slight closed-mouth smile, and warmer skin to match.
 
+## 2zb. Edit Dave, no beard, and a better fit (6 Oct 2026)
+
+- **Edit Dave:** a character editor with a live 3D preview. Open it from Page settings, from the 3D
+  view of any outfit, or from the builder. It sets:
+  - Height (160 to 200 cm) and build (slim, regular, broad).
+  - Skin tone.
+  - Hair colour, length (short, ear, collar), curl (loose, curly, tight) and volume.
+  - Moustache style (chevron, walrus, handlebar, pencil or none) and colour.
+  - Beard (none, stubble, full).
+  - Eye colour and brows.
+
+  Saving re-renders every 3D figure. Emma's saves are stored in the page's shared data, so
+  everyone sees the same Dave. Other viewers keep their changes in their own browser only.
+  "Back to his defaults" resets everything.
+- **Defaults:** no beard; the ginger-brown chevron moustache stays.
+- **Fit:**
+  - Sleeves have a rounded head that runs into the shoulder seam, so no square shoulders,
+    pads or gaps.
+  - Sleeves are less baggy. Short sleeves sit just off the arm.
+  - The trouser rise covers the seat and crotch.
+  - Knit hem ribs follow the body's shape.
+  - Collars sit lower and lean in.
+  - A belt under an untucked top is hidden.
+  - The hair stays inside the jawline, so nothing reads as a beard.
+  - The lighter curls are a warm chestnut, not grey.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
