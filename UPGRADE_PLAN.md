@@ -1116,6 +1116,24 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   ragged notches by the collar.
 - **Shoulders:** the sleeve top sits fully under the shoulder cover, so the seam is a clean line.
 
+## 2zq. Drag along him when zoomed; trousers as one piece; product details (7 Oct 2026)
+
+- **Drag when zoomed:**
+  - In every 3D view (the outfit view, the builder and Edit Dave), once zoomed in, dragging up or down moves along
+    his body, from face to feet in a stroke or two. Dragging across still turns him.
+  - The direction is decided by the first few pixels of the drag.
+  - The view stays within his height, and recentres when zooming out or pressing Full, Top or Face.
+  - Up and down arrow keys also work.
+- **Trousers and shorts:**
+  - The hips, seat and tops of the thighs are now one piece of cloth draped over him (`lowerWrap`).
+  - Across the front of the crotch it lies flat from thigh to thigh.
+  - The crotch seam hangs a little below his body.
+  - Each leg carries on from it with no seam. Before, the separate rounded "rise" read as an underwear layer.
+- **Product details from the photos:**
+  - Jeans: gold topstitching down the outside seams, scooped front pockets and copper rivets.
+  - Chinos and tailored trousers: slanted front pockets.
+  - All trousers: the fly stitching lies on the cloth.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
