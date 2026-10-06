@@ -700,6 +700,26 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   GitHub Pages <https://emmachilds98-wq.github.io/Wardrobe/> (the site is built into `docs/`, and
   the root `index.html` opens it).
 
+## 2y. A better 3D model (6 Oct 2026)
+
+- **Smooth body and clothes:** the torso, neck, arms, hands (with thumbs), legs, nose and shoes are now
+  smooth tubes through tapered cross-sections (`secGeo` in the page), so there are no ball joints or
+  seams at the knees, elbows or shoulders. Every garment is built the same way over the body with ease
+  for its layer (shirt, knit, jacket), and puffers and parkas get extra loft.
+- **Clothes fixed:** long coats hang from the shoulders to the knee (they used to float as a separate
+  skirt); open jackets, cardigans and gowns now open at the front (the gap was at the sides); garments
+  hang straight from the hips; an open shirt sits over a tee; front details of a hidden layer (buttons,
+  pockets) no longer show through; short-sleeve and cuff hems only show on the outermost sleeve; trousers
+  follow the calf so no skin shows at the knee.
+- **Head:** a jaw, chin and brow shape, eyes with whites, irises and lids, brows, a slimmer moustache,
+  a thicker neck, and hats (beanie, cap, bucket hat with a sloping brim) that sit on the hairline with
+  the curls tucked under them. Sunglasses have two lenses and arms.
+- **Shoes:** a shoe shape on its own sole (white or gum for trainers), laces on top, boot shafts, toes
+  turned out a little.
+- **Accessories:** the crossbody bag strap runs over the chest to a bag at the hip, backpack straps over
+  the shoulders, belts with a buckle, a watch on the wrist.
+- **Light:** filmic tone mapping and softer shadows.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
