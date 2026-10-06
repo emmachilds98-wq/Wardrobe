@@ -550,6 +550,24 @@ its whole range.
   whole photo (contain, not crop).
 - **Published:** version 25 of <https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn> (43 MB of files).
 
+## 2t. A more lifelike figure, drawn in each piece's real colour (6 Oct 2026)
+
+- **Style tabs (version 26):** the Mix styles button is gone; tap several style tabs to combine them,
+  tap one again to drop it, and All styles clears the choice.
+- **Neck:** about 70% of the head's width (was half), flaring into the shoulders, with the Adam's
+  apple and neck tendons drawn in.
+- **Shoes:** drawn from the front at about 11 cm wide each (were 17 cm slabs), with the toe box,
+  a sole, welt line, a toe highlight, and detail by kind: laces and a toe cap on trainers, laces up
+  the shaft on lace-up boots, elastic sides on Chelsea and dealer boots, a saddle on loafers, a toe-cap
+  ridge on safety footwear. Bare feet are narrower to match.
+- **Arms and trousers:** sleeves and arms swell slightly at the shoulder and forearm instead of being
+  straight tubes; trouser hems curve over the shoe.
+- **True colours:** each piece is drawn in the colour of its own shop photo instead of the nearest of
+  18 palette colours. The page samples the photo on a canvas (chest for tops, the sides for open
+  jackets, the legs for trousers, the whole shoe), leaves out the background and skin, takes the darker
+  middle of the main colour, and pulls studio-lit black back to near black. A colour picked by hand in
+  the builder still wins.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

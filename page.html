@@ -1069,8 +1069,13 @@ function fade(hex){ /* blend a garment colour most of the way to the board colou
   for(var i=0;i<3;i++){var v=parseInt(hex.substr(1+i*2,2),16);o+=("0"+Math.round(v*0.24+b[i]*0.76).toString(16)).slice(-2);}
   return o;
 }
+/* A colour is a palette name or a "#rrggbb" read from the shop photo; the second value says whether it is dark. */
+function cc(col){
+  if(typeof col==="string"&&/^#[0-9a-f]{6}$/i.test(col)){var r=parseInt(col.substr(1,2),16),g=parseInt(col.substr(3,2),16),b=parseInt(col.substr(5,2),16);return [col,(0.299*r+0.587*g+0.114*b)<140?1:0];}
+  return COL[col]||COL.grey;
+}
 function tone(col,dim){
-  var c=COL[col]||COL.grey;
+  var c=cc(col);
   if(dim){return 'style="color:'+fade(c[0])+';--d:rgba(20,32,27,.16);--o:rgba(20,32,27,.26)"';}
   return 'style="color:'+c[0]+';--d:'+(c[1]?"rgba(255,255,255,.42)":"rgba(20,32,27,.46)")+';--o:'+(c[1]?"rgba(255,255,255,.34)":"rgba(20,32,27,.6)")+'"';
 }
@@ -1090,18 +1095,18 @@ function texOf(p){
   return "";
 }
 function body(d,p,dim){ /* main cloth: colour, fabric texture, side light, then top-to-bottom volume */
-  var t=texOf(p),c=COL[p.col]||COL.grey;
+  var t=texOf(p),c=cc(p.col);
   if(dim){return P("g",d);}
   return P("g",d)+(t?'<path d="'+d+'" fill="url(#tx-'+t+(c[1]?"-l":"-d")+')"/>':"")+'<path d="'+d+'" fill="url(#fg-shade)"/><path d="'+d+'" fill="url(#fg-vol)"/>';
 }
 function closedTop(H,long){
   return long
-    ?"M98 90 Q120 104 142 90 L160 96 Q171 100 174 114 L183 198 L186 256 L169 260 L165 204 L159 134 L160 "+H+" Q120 "+(H+6)+" 80 "+H+" L81 134 L75 204 L71 260 L54 256 L57 198 L66 114 Q69 100 80 96 Z"
+    ?"M98 90 Q120 104 142 90 L160 96 Q171 100 174 114 Q182 152 183 198 Q186 226 186 256 L169 260 L165 204 L159 134 L160 "+H+" Q120 "+(H+6)+" 80 "+H+" L81 134 L75 204 L71 260 L54 256 Q54 226 57 198 Q58 152 66 114 Q69 100 80 96 Z"
     :"M98 90 Q120 104 142 90 L160 96 Q171 100 174 114 L180 152 L162 157 L159 134 L160 "+H+" Q120 "+(H+6)+" 80 "+H+" L81 134 L78 157 L60 152 L66 114 Q69 100 80 96 Z";
 }
 function panelL(H,sleeves,v){
   var edge=v?"L117 "+H+" L117 166 L108 92":"L103 "+H+" L105 150 L112 92";
-  return sleeves?"M98 90 L80 96 Q69 100 66 114 L57 198 L54 256 L71 260 L75 204 L81 134 L80 "+H+" "+edge+" Z":"M98 90 L83 95 Q89 118 82 140 L80 "+H+" "+edge+" Z";
+  return sleeves?"M98 90 L80 96 Q69 100 66 114 Q58 152 57 198 Q54 226 54 256 L71 260 L75 204 L81 134 L80 "+H+" "+edge+" Z":"M98 90 L83 95 Q89 118 82 140 L80 "+H+" "+edge+" Z";
 }
 function isOpen(p){return LAYER[p.shape]===2||p.shape==="cardigan"||/worn open/i.test(p.what);}
 function collar(){var l="M104 85 L120 100 L109 112 L99 94 Z";return P("g",l)+P("g",mir(l));}
@@ -1157,6 +1162,7 @@ function upperArt(p,dim){
   return '<g '+tone(p.col,dim)+'>'+h+'</g>';
 }
 function figure(pieces,hi){
+  pieces=pieces.map(function(p){var hx=!p.fixed&&TRUE[p.item];return hx?Object.assign({},p,{col:hx}):p;});
   var up=[],lo=null,ft=null,ac={};
   pieces.forEach(function(p){
     if(UPPER[p.shape]){up.push(p);}else if(LOWER[p.shape]){lo=lo||p;}else if(FEET[p.shape]){ft=ft||p;}else if(!ac[p.shape]){ac[p.shape]=p;}
@@ -1166,25 +1172,38 @@ function figure(pieces,hi){
   function grp(p,inner){return '<g '+tone(p.col,dim(p))+'>'+inner+'</g>';}
   up=up.map(function(p,k){return {p:p,k:k};}).sort(function(a,b){return rank(a.p)-rank(b.p)||b.k-a.k;}).map(function(x){return x.p;});
   var bare=!lo||lo.shape==="shorts";
-  var armL="M66 114 L81 134 L75 204 L71 260 L71 277 Q70 286 64 288 Q55 289 54 280 Q52 268 54 256 L57 198 Z",legL="M80 344 H114 L112 384 Q113 398 110 418 L109 452 H86 L85 424 Q79 404 81 384 Z",fing="M57 276 Q58 283 60 287 M61.5 277 Q62.5 283 64.5 287.5 M66 276 Q67 282 68.5 285.5 M71 262 Q74.5 270 71 279";
+  var armL="M66 114 L81 134 L76 170 Q75 198 75 204 L71 260 L71 277 Q70 286 64 288 Q55 289 54 280 Q52 268 54 256 Q54 226 57 198 Q58 152 66 114 Z",legL="M80 344 H114 L112 384 Q113 398 110 418 L109 452 H86 L85 424 Q79 404 81 384 Z",fing="M57 276 Q58 283 60 287 M61.5 277 Q62.5 283 64.5 287.5 M66 276 Q67 282 68.5 285.5 M71 262 Q74.5 270 71 279";
   var h='<ellipse cx="120" cy="471" rx="60" ry="6.5" fill="rgba(20,32,27,.14)"/><g transform="matrix(0.93 0 0 1 8.4 0)">';
-  h+='<g class="sk">'+P("","M111 66 H129 V92 Q120 99 111 92 Z")+P("",armL)+P("",mir(armL))+(bare?P("",legL)+P("",mir(legL)):"")+'</g>'+
-     '<g fill="url(#fg-shade)"><path d="M111 66 H129 V92 Q120 99 111 92 Z"/><path d="'+armL+'"/><path d="'+mir(armL)+'"/>'+(bare?'<path d="'+legL+'"/><path d="'+mir(legL)+'"/>':"")+'</g>'+
+  var neck="M106 62 H134 Q133 76 136 84 Q140 90 148 93 Q120 104 92 93 Q100 90 104 84 Q107 76 106 62 Z";
+  h+='<g class="sk">'+P("",neck)+P("",armL)+P("",mir(armL))+(bare?P("",legL)+P("",mir(legL)):"")+'</g>'+
+     '<g fill="url(#fg-shade)"><path d="'+neck+'"/><path d="'+armL+'"/><path d="'+mir(armL)+'"/>'+(bare?'<path d="'+legL+'"/><path d="'+mir(legL)+'"/>':"")+'</g>'+
      '<path class="sd" d="'+fing+' '+mir(fing)+'" style="fill:none"/>'+
-     '<path class="sd" d="M111 76 Q120 84 129 76 V84 Q120 90 111 84 Z M63 262 L70 264 M177 262 L170 264'+(bare?" M92 396 Q98 400 104 396 M136 396 Q142 400 148 396":"")+'"/>';
+     '<path class="sd" d="M109 70 Q120 80 131 70 V77 Q120 87 109 77 Z M63 262 L70 264 M177 262 L170 264'+(bare?" M92 396 Q98 400 104 396 M136 396 Q142 400 148 396":"")+'"/>';
+  h+='<path class="sd" style="fill:none" d="M120 80 Q119 84 120 87 M110 79 Q112 86 107 92 M130 79 Q128 86 133 92"/>';
   if(ft){
-    var fs=ft.shape,shoeL="M71 447 H115 V459 Q115 469 105 469 H76 Q65 469 67 458 Z",shaft="M76 418 H113 V449 H76 Z",soleL="M67 461 Q66 469 76 469 H105 Q115 469 115 461 Z";
-    h+=grp(ft,(fs==="boots"?P("g",shaft)+P("g",mir(shaft)):"")+(bare&&fs==="trainers"?'<path class="so" d="M84 432 H111 V448 H84 Z"/><path class="so" d="M129 432 H156 V448 H129 Z"/>':"")+
-      P("g",shoeL)+P("g",mir(shoeL))+(dim(ft)?"":'<path d="'+shoeL+'" fill="url(#fg-shade)"/><path d="'+mir(shoeL)+'" fill="url(#fg-shade)"/>')+
-      (fs==="trainers"?P("so",soleL)+P("so",mir(soleL)):P("d","M68 463 H115 M125 463 H172"))+
-      (fs==="slippers"?P("d","M80 452 Q93 460 107 452 M133 452 Q147 460 160 452"):P("d","M84 450 H104 M85 454 H103 M136 450 H156 M137 454 H155 M76 459 Q93 453 110 459 M130 459 Q147 453 164 459"))+
-      (fs==="boots"?P("d","M86 422 L103 426 M86 428 L103 432 M86 434 L103 438 M86 440 L103 444 M154 422 L137 426 M154 428 L137 432 M154 434 L137 438 M154 440 L137 444"):"")+
-      (/safety|toe cap|steel|composite|dealer/i.test(((byId[ft.item]||{}).name||"")+" "+ft.what)?P("d","M68 460 Q70 449 86 448 M172 460 Q170 449 154 448")+P("so","M66 465 Q66 470 76 470 H106 Q116 470 116 465 V462 H66 Z")+P("so",mir("M66 465 Q66 470 76 470 H106 Q116 470 116 465 V462 H66 Z")):""));
-  }else{var fL="M72 452 H114 V461 Q114 469 105 469 H78 Q68 469 70 460 Z";h+='<g class="sk">'+P("",fL)+P("",mir(fL))+'</g>';}
+    var fs=ft.shape,fnm=(((byId[ft.item]||{}).name||"")+" "+ft.what).toLowerCase(),safe=/safety|toe cap|steel|composite|dealer|s1p|s3|rigger/.test(fnm);
+    var upL="M83 444 Q95 439 107 444 L111 455 Q115 465 111 471 Q95 474 79 471 Q75 465 79 455 Z";
+    var soleL=fs==="trainers"?"M76 465 Q75 477 84 477 H106 Q115 477 114 465 Q95 471 76 465 Z":"M77 469 Q76 477 84 477 H106 Q114 477 113 469 Q95 474 77 469 Z";
+    var shaftL="M83 418 H107 L108 450 H82 Z",fg="";
+    if(fs==="boots"){fg+=P("g",shaftL)+P("g",mir(shaftL));}
+    fg+=P("g",upL)+P("g",mir(upL));
+    if(!dim(ft)){fg+='<path d="'+upL+'" fill="url(#fg-shade)"/><path d="'+mir(upL)+'" fill="url(#fg-shade)"/>'+(fs==="boots"?'<path d="'+shaftL+'" fill="url(#fg-vol)"/><path d="'+mir(shaftL)+'" fill="url(#fg-vol)"/>':"")+
+      '<ellipse cx="89" cy="463" rx="6" ry="2.6" fill="#fff" opacity=".2"/><ellipse cx="151" cy="463" rx="6" ry="2.6" fill="#fff" opacity=".2"/>';}
+    fg+=fs==="trainers"?P("so",soleL)+P("so",mir(soleL))+P("d","M78 471 Q95 475 112 471 M128 471 Q145 475 162 471"):P("g",soleL)+P("g",mir(soleL))+P("d","M78 470 Q95 474 112 470 M128 470 Q145 474 162 470");
+    var lace="";
+    if(fs==="trainers"){lace="M89 446 H101 M88.5 449.5 H101.5 M88 453 H102 M87.5 456.5 H102.5 M84 464 Q95 459 106 464 M80 460 Q83 452 88 447 M110 460 Q107 452 102 447";}
+    else if(fs==="boots"){lace=/chelsea|dealer/.test(fnm)?"M85 424 Q86 436 85 448 M105 424 Q104 436 105 448":"M89 423 H101 M89 428 H101 M89 433 H101 M89 438 H101 M89 443 H101 M89 448 H101 M95 420 V450";}
+    else if(fs==="slippers"){lace="M82 453 Q95 460 108 453";}
+    else if(/loafer|moccasin|penny|boat|deck/.test(fnm)){lace="M84 453 Q95 459 106 453 M88 453 V457 M102 453 V457 M82 462 Q95 458 108 462";}
+    else{lace="M89 447 H101 M89 450.5 H101 M89 454 H101 M95 445 V456 M82 463 Q95 458 108 463 M80 460 Q83 452 88 446 M110 460 Q107 452 102 446";}
+    if(safe){lace+=" M80 466 Q95 456 110 466";}
+    fg+=P("d",lace+" "+mir(lace));
+    h+=grp(ft,fg);
+  }else{var fL="M85 451 H108 L110 462 Q111 471 102 471 H90 Q80 471 82 462 Z";h+='<g class="sk">'+P("",fL)+P("",mir(fL))+'</g>'+'<path class="sd" style="fill:none" d="M88 466 Q90 468 92 466 M95 467 Q97 469 99 467 M141 467 Q143 469 145 467 M148 466 Q150 468 152 466"/>';}
   if(lo){
     var tr=lo.shape==="trousers",ld=tr?"M82 222 H158 L163 300 L167 449 L127 449 L120 304 L113 449 L73 449 L77 300 Z":"M82 222 H158 L163 300 L164 349 L125 349 L120 302 L115 349 L76 349 L77 300 Z";
     h+=grp(lo,body(ld,lo,dim(lo))+P("d","M82 230 H158 M120 230 V296 M113 232 Q116 262 120 272 M88 232 Q92 248 84 256 M152 232 Q148 248 156 256"+
-      (tr?" M95 250 L93 444 M145 250 L147 444 M74 443 H113 M127 443 H166 M86 372 Q95 377 106 371 M134 371 Q145 377 154 372 M84 382 Q92 385 99 382 M141 382 Q148 385 156 382 M77 432 Q93 426 111 432 M129 432 Q147 426 163 432":" M77 343 H115 M125 343 H163 M84 330 Q94 334 106 329 M134 329 Q146 334 156 330")+
+      (tr?" M95 250 L93 444 M145 250 L147 444 M74 441 Q93 446 112 441 M128 441 Q147 446 166 441  M86 372 Q95 377 106 371 M134 371 Q145 377 154 372 M84 382 Q92 385 99 382 M141 382 Q148 385 156 382 M77 432 Q93 426 111 432 M129 432 Q147 426 163 432":" M77 343 H115 M125 343 H163 M84 330 Q94 334 106 329 M134 329 Q146 334 156 330")+
       (/cargo|parachute|utility|combat/i.test(lo.what+" "+((byId[lo.item]||{}).name||""))?(tr?" M77 322 H96 V352 H77 Z M77 329 H96 M144 322 H163 V352 H144 Z M144 329 H163":" M77 296 H95 V322 H77 Z M77 302 H95 M145 296 H163 V322 H145 Z M145 302 H163"):"")));
   }
   if(ac.kneepads){var kp="M80 362 H110 Q113 362 113 366 V390 Q113 394 109 394 H81 Q77 394 77 390 V366 Q77 362 80 362 Z";h+=grp(ac.kneepads,P("g",kp)+P("g",mir(kp))+P("d","M78 372 H112 M128 372 H162 M78 384 H112 M128 384 H162"));}
@@ -1253,7 +1272,7 @@ function figDefs(){
 
 /* ---- outfit boards ---- */
 function use(shape,col,x,y,s){
-  var c=COL[col]||COL.grey,ln=c[1]?"rgba(255,255,255,.55)":"rgba(20,32,27,.55)",ol=c[1]?"rgba(255,255,255,.4)":"rgba(20,32,27,.5)";
+  var c=cc(col),ln=c[1]?"rgba(255,255,255,.55)":"rgba(20,32,27,.55)",ol=c[1]?"rgba(255,255,255,.4)":"rgba(20,32,27,.5)";
   return '<g style="color:'+c[0]+';--d:'+ln+';--o:'+ol+'"><use href="#g-'+shape+'" x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+s+'" height="'+s+'"/></g>';
 }
 function badge(n,x,y){return '<g class="bn"><circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="10"/><text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'">'+n+'</text></g>';}
@@ -1621,6 +1640,50 @@ function loadPhotoPacks(list){
     }).catch(function(){});
   });
 }
+/* True colours: each piece is drawn in the colour of its own shop photo. The photo is shrunk onto a canvas,
+   the background (read from the corners) and skin are left out, and the commonest remaining colour is kept.
+   Tops are read across the chest, open jackets at the sides, trousers on the legs, shoes over the whole shoe. */
+var TRUE={},TRUEQ={};
+function sampleCol(src,shape){
+  return new Promise(function(res){
+    var im=new Image();
+    im.onload=function(){try{
+      var W=48,H=60,cv=document.createElement("canvas");cv.width=W;cv.height=H;var cx=cv.getContext("2d");
+      cx.drawImage(im,0,0,W,H);var d=cx.getImageData(0,0,W,H).data;
+      function px(i,j){var k=(j*W+i)*4;return [d[k],d[k+1],d[k+2]];}
+      var bg=[0,0,0];[[1,1],[W-2,1],[1,H-2],[W-2,H-2]].forEach(function(q){var v=px(q[0],q[1]);bg[0]+=v[0]/4;bg[1]+=v[1]/4;bg[2]+=v[2]/4;});
+      var regs=FEET[shape]?[[.1,.9,.3,.95]]:LOWER[shape]?[[.3,.7,.25,.85]]:
+        UPPER[shape]?((LAYER[shape]===2||shape==="cardigan")?[[.14,.36,.25,.7],[.64,.86,.25,.7]]:[[.28,.72,.24,.56]]):[[.2,.8,.2,.8]];
+      var cloth=[],skin=[];
+      regs.forEach(function(r){for(var j=Math.floor(r[2]*H);j<r[3]*H;j++){for(var i=Math.floor(r[0]*W);i<r[1]*W;i++){
+        var v=px(i,j);if(Math.hypot(v[0]-bg[0],v[1]-bg[1],v[2]-bg[2])<38)continue;
+        (v[0]>95&&v[1]>40&&v[2]>20&&v[0]>v[1]+12&&v[0]>v[2]+20&&v[1]>v[2]?skin:cloth).push(v);}}});
+      var use=cloth.length>=Math.max(20,(cloth.length+skin.length)*0.15)?cloth:cloth.concat(skin);
+      if(use.length<25){res("");return;}
+      var bins={},best=null;
+      use.forEach(function(v){var k=(v[0]>>5)+"_"+(v[1]>>5)+"_"+(v[2]>>5),b=bins[k]||(bins[k]={n:0,r:0,g:0,b:0});b.n++;b.r+=v[0];b.g+=v[1];b.b+=v[2];if(!best||b.n>best.n)best=b;});
+      /* Take the darker middle of the main colour group: shop lighting and shine make photos read lighter than the cloth. */
+      var m=[best.r/best.n,best.g/best.n,best.b/best.n],t=[0,0,0],n=0;
+      var grp=use.filter(function(v){return Math.hypot(v[0]-m[0],v[1]-m[1],v[2]-m[2])<70;}).sort(function(a,b){return (a[0]+a[1]+a[2])-(b[0]+b[1]+b[2]);});
+      grp.slice(Math.floor(grp.length*0.2),Math.max(Math.floor(grp.length*0.55),Math.floor(grp.length*0.2)+1)).forEach(function(v){t[0]+=v[0];t[1]+=v[1];t[2]+=v[2];n++;});
+      t=t.map(function(v){return v/n;});
+      /* Studio light turns black leather and black cloth mid-grey; dark neutrals are pulled back to near black. */
+      var mx=Math.max(t[0],t[1],t[2]),mn=Math.min(t[0],t[1],t[2]);
+      if(mx<120&&mx-mn<20){var dk=mx>70?0.55:0.85;t=t.map(function(v){return v*dk;});}else{t=t.map(function(v){return 255*Math.pow(v/255,1.12);});}
+      res("#"+t.map(function(v){return ("0"+Math.round(v).toString(16)).slice(-2);}).join(""));
+    }catch(e){res("");}};
+    im.onerror=function(){res("");};im.src=src;
+  });
+}
+function trueFor(pieces,cb){
+  var jobs=[],seen={};
+  (pieces||[]).forEach(function(p){
+    var it=byId[p.item];if(!it||p.fixed||seen[p.item]||has(TRUE,p.item)||TRUEQ[p.item]||!hasPh(it))return;
+    seen[p.item]=1;TRUEQ[p.item]=1;
+    jobs.push(new Promise(function(done){getPh(p.item,function(src){if(!src){TRUE[p.item]="";done(0);return;}sampleCol(src,p.shape).then(function(hx){TRUE[p.item]=hx;done(hx?1:0);});});}));
+  });
+  if(jobs.length){Promise.all(jobs).then(function(r){if(cb&&r.some(Boolean))cb();});}
+}
 function glyph(it){
   var d=it&&derive(it);if(!d||!G[d.shape])return "";
   var c=COL[d.col]||COL.grey;
@@ -1974,7 +2037,7 @@ function flatLay(order){
 }
 /* The large view: the figure drawn at full height next to the real listing photos, each one big enough to see the fabric. */
 function openZoom(id){
-  var f=fitById[id],dlg=$("zoom");if(!f||!dlg)return;
+  var f=fitById[id],dlg=$("zoom");if(!f||!dlg)return;zoomId=id;
   var ps=effPieces(f),seen={},order=ps.filter(function(p){if(seen[p.item])return false;seen[p.item]=1;return true;}),t=fitSum(ps);
   var lay=order.some(function(p){return hasPh(byId[p.item]);});try{var lv=localStorage.getItem("dw-zlay");if(lv==="0")lay=false;}catch(e){}
   $("zoom-body").innerHTML='<div class="zoom-head"><span class="label">'+esc(f.styles.map(function(s){return label(STYLE,s);}).join(" · "))+'</span><h2>'+esc(f.name)+'</h2>'+(f.note?'<p>'+esc(f.note)+'</p>':"")+'<p class="zoom-tot"><b>'+money(t.tot)+'</b> for the whole outfit</p></div>'+
@@ -1982,7 +2045,9 @@ function openZoom(id){
     '<ol class="zoom-ph">'+order.map(function(p,i){var it=byId[p.item];if(!it)return '<li><span class="zn">'+(i+1)+'</span><span class="zi"><b>'+esc(p.what)+'</b><small>No longer listed</small></span></li>';
       return '<li><span class="zn">'+(i+1)+'</span>'+(photoBox(it,"zbig",true)||'<span class="ph zbig"></span>')+'<span class="zi"><b>'+esc(p.what)+'</b><a href="'+esc(it.url)+'" target="_blank" rel="noopener">'+esc(it.name)+' ↗</a><small>'+esc(it.shop)+(it.insize===true?" · in his size":"")+(pct(it)>0?" · "+pct(it)+"% off":"")+'</small><b class="zp">'+money(cost(it))+'</b></span></li>';}).join("")+'</ol></div>';
   if(typeof dlg.showModal==="function"){if(!dlg.open)dlg.showModal();}else{dlg.setAttribute("open","");}
+  trueFor(order,function(){if(dlg.open&&zoomId===id){var fg=document.querySelector("#zoom-body .zf-fig g");if(fg)fg.innerHTML=figure(effPieces(f));}});
 }
+var zoomId="";
 function fitCard(f){
   var nums={},order=[],ps=effPieces(f),sw=!!swaps[f.id]&&Object.keys(swaps[f.id]).length>0;
   ps.forEach(function(p){if(!(p.item in nums)){order.push(p);nums[p.item]=order.length;}});
@@ -2055,7 +2120,9 @@ function renderFits(){
     return;
   }
   st.hidden=true;
-  grid.innerHTML=list.slice(0,lim.fits).map(fitCard).join("");
+  var vis=list.slice(0,lim.fits);
+  grid.innerHTML=vis.map(fitCard).join("");
+  trueFor([].concat.apply([],vis.map(effPieces)),function(){vis.forEach(function(f){var fe=$("fit-"+f.id);if(fe)fe.outerHTML=fitCard(f);});});
   var rest=list.length-lim.fits;
   more.hidden=rest<=0;more.textContent=rest>0?"Show "+Math.min(rest,FITPAGE)+" more outfits ("+rest+" left)":"";
 }
@@ -2198,7 +2265,7 @@ function buildPieces(){
   SLOTS.forEach(function(s){
     var b=build[s[0]],it=b&&byId[b.item];if(!it)return;
     var d=b.shape?{shape:b.shape}:derive(it);if(!d)return;
-    out.push({item:it.id,shape:d.shape,col:b.col,what:b.what||WHAT[d.shape]||"Piece"});
+    out.push({item:it.id,shape:d.shape,col:b.col,what:b.what||WHAT[d.shape]||"Piece",fixed:!!b.colSet});
   });
   return out;
 }
@@ -2213,6 +2280,7 @@ function drawBuild(){
   }).join(""):'<li><span class="msg">Nothing chosen yet. Pick pieces on the left, or ask for a suggestion.</span></li>';
   $("b-total").textContent=money(tot);
   $("b-save").disabled=ps.length<2;
+  trueFor(ps,drawBuild);
 }
 function suggest(){
   var budget=Math.max(20,Number($("b-budget").value)||100),msg=$("b-msg");
@@ -2765,7 +2833,7 @@ $("b-slots").addEventListener("change",function(e){
     var it=byId[e.target.value];
     if(it){var d=derive(it);build[s]={item:it.id,col:d?d.col:"grey"};}else{delete build[s];}
     renderBuilder();
-  }else if(c&&build[c]){build[c].col=e.target.value;drawBuild();}
+  }else if(c&&build[c]){build[c].col=e.target.value;build[c].colSet=true;drawBuild();}
 });
 $("b-save").addEventListener("click",function(){
   var ps=buildPieces();if(ps.length<2)return;
