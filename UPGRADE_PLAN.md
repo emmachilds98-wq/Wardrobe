@@ -1079,6 +1079,25 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   - Below the chest they take in toward the waist by the fit slider.
   - Sleeves stop under the shoulder cover, so the shoulder rounds over the arm instead of forming a square pad.
 
+## 2zo. Lean build from his photos, legwear on his real legs, cloth that drapes (7 Oct 2026)
+
+- **Build:** his photos show a tall, lean man, with a slim chest and arms, moderate slightly sloped shoulders, a
+  flat stomach and slim legs.
+  - The base is now: weight -0.35, muscle -0.25, shoulders -0.15, chest -0.35, waist -0.1, belly -0.25, hips
+    -0.15, arms -0.3, legs -0.3, neck -0.15, shoulder slope 0.3, body depth -0.15.
+  - Older saves take this build once (`propV` 3).
+- **Shorts and trousers:**
+  - Each leg follows his own thigh, knee and calf (centre and size). The old fixed legs sat 3cm behind his thighs.
+  - Below the thigh the leg hangs nearly straight; shorts flare slightly to the hem.
+  - The seat rounds under at the crotch, so there is no flat panel or bump.
+  - Ankle folds are softer.
+- **Tops:**
+  - The chest and shoulders lie like a sheet: pec and rib shapes are smoothed out, but the cloth never comes
+    closer to the skin than a few millimetres.
+  - The lower edge and the arm edge are cut cleanly, with no jagged lines.
+  - Thick layers stand off the body less than their full thickness, and less again over the shoulders, so coats
+    and jumpers no longer look padded. Each layer still sits outside the one under it.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
