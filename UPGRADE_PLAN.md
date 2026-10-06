@@ -1339,6 +1339,31 @@ Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fit
     every outfit's Edit Dave button.
   - Run the checks over all 574 outfits, and hook them into the weekly refresh.
 
+## 2zv. The fitting room, and fabrics read properly (7 Oct 2026)
+
+- **Fitting room (Phase 1d):**
+  - Edit Dave now opens in a fitting room, with Dave in plain grey boxer briefs and a dark waistband, so his
+    build and proportions are easy to judge against the body sliders. An "In an outfit" switch puts the clothes
+    back on, and "Try another outfit" moves through the outfits.
+  - It opens from every outfit's "Edit Dave (fitting room)" button, and from a new Fitting room section in the
+    Style guide.
+  - The briefs and waistband are lifted straight off his skin. The copies of each vertex along the body's
+    region seams are welded, so the cloth has no cracks, and the skin hidden under them is exactly the skin they
+    cover. They follow every body slider.
+- **Fabric (data):**
+  - `fabric_of` in `tools/sweep_filter.py` cut every composition off after three letters ("100% Cot"). It now
+    reads the whole first list of fibres, down to the lining ("60% cotton, 40% polyester").
+  - A new `weekly_refresh.py fabric` re-reads every pick from the downloaded catalogues and rewrites the card
+    notes. A cut-off value is completed only when its fibre is unambiguous, otherwise it is dropped.
+  - Result: 3,057 picks with a full composition (2,946 read fresh from their listings). 1,375 are 100% cotton,
+    and the Workwear "100% cotton only" filter now finds them (it found 42 before).
+  - `tools/test_fabric.py` checks the reader.
+- **Still to do:**
+  - The 3D checks over all 574 outfits. A full run was started on the build before these changes and had not
+    finished.
+  - The gap under the crotch on some trousers and shorts, and the small collar glitches at the side of the neck.
+  - Phase 2 (draped garment library, cloth settling, fabrics) as set out in section 4 and in Emma's review doc.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

@@ -172,13 +172,34 @@ def cotton_pct(text):
     return None
 
 
+FIBRE = (r"(?:(?:organic|recycled|bci|supima|pima|egyptian|merino|lambs|virgin|brushed|combed|ring[- ]spun|"
+         r"extra[- ]fine|regenerated|responsible|conventional|genuine)\s+){0,2}"
+         r"(?:cotton|polyester|elastane|spandex|lycra|nylon|polyamide|lambswool|wool|cashmere|viscose|modal|lyocell|"
+         r"tencel|linen|flax|hemp|acrylic|silk|leather|suede|polyurethane|rubber|down|feathers?|alpaca|mohair|rayon|"
+         r"bamboo|ramie|cupro|acetate|elastomultiester|polypropylene|metallic|yak|camel|angora|other fibres?)")
+FIBRE_RE = re.compile(r"(\d{1,3}(?:\.\d+)?)\s*%\s*(" + FIBRE + r")\b", re.I)
+
+
 def fabric_of(text):
-    m = re.search(r"((?:\d{1,3}\s*%\s*[A-Za-z][A-Za-z -]{2,20}?(?:,\s*|\s+and\s+|\s*/\s*|\s+)?){1,4})", text)
-    if m and "%" in m.group(1):
-        f = re.sub(r"\s+", " ", m.group(1)).strip(" ,/")
-        if 6 < len(f) < 60:
-            return f
-    return ""
+    """The fibre composition, in lower case: "100% cotton", "60% cotton, 40% polyester". Takes the first run of
+    percentages that adds up to about 100 (so a lining or a trim listed later is left out)."""
+    found, total, last = [], 0, None
+    for m in FIBRE_RE.finditer(text or ""):
+        if last is not None and m.start() - last > 40:    # a new list further on (lining, trim): stop at the first one
+            if total >= 95:
+                break
+            found, total = [], 0
+        pct = float(m.group(1))
+        if pct <= 0 or pct > 100:
+            continue
+        found.append("%s%% %s" % (("%g" % pct), re.sub(r"\s+", " ", m.group(2).lower().replace("lycra", "elastane"))))
+        total += pct
+        last = m.end()
+        if total >= 99.5:
+            break
+    if not found or total < 95 or total > 100.5:
+        return ""
+    return ", ".join(found[:5])
 
 
 def opts(p, v):
