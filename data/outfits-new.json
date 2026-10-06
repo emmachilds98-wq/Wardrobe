@@ -201,7 +201,7 @@
   "look": "men navy shirt indigo trousers sand jumper navy jacket brown shoes outfit"
  },
  "g-quiet-06": {
-  "name": "Stone jacket and navy trousers",
+  "name": "Stone jacket and stone trousers",
   "note": "5 pieces for £196.95, £170 below full price.",
   "occ": "everyday",
   "pieces": [
@@ -212,10 +212,10 @@
     "what": "Blue shirt"
    },
    {
-    "col": "navy",
-    "item": "tml-5pocket",
+    "col": "stone",
+    "item": "jeanstore-stan-ray-og-painter-relaxed-fit-jeans-70s-stone-denim",
     "shape": "trousers",
-    "what": "Navy trousers"
+    "what": "Stone trousers"
    },
    {
     "col": "stone",
@@ -324,7 +324,7 @@
    },
    {
     "col": "grey",
-    "item": "md-tml-sandringham",
+    "item": "tedbaker-straight-leg-pant-dk-grey",
     "shape": "trousers",
     "what": "Grey trousers"
    },
@@ -666,7 +666,7 @@
    },
    {
     "col": "indigo",
-    "item": "r11-lylescot-jeans",
+    "item": "r11-philipmo-jeans",
     "shape": "trousers",
     "what": "Indigo trousers"
    },
@@ -762,7 +762,7 @@
    },
    {
     "col": "stone",
-    "item": "tml-chino-stone",
+    "item": "uw-aston-stone",
     "shape": "trousers",
     "what": "Stone trousers"
    },
@@ -807,7 +807,7 @@
    },
    {
     "col": "indigo",
-    "item": "r11-lylescot-jeans",
+    "item": "pc-jeans-indigo",
     "shape": "trousers",
     "what": "Indigo trousers"
    },
@@ -957,7 +957,7 @@
   "look": "men blue shirt navy trousers black shoes outfit"
  },
  "g-quiet-24": {
-  "name": "Navy jacket and navy trousers",
+  "name": "Navy jacket and stone trousers",
   "note": "4 pieces for £157.9, £147 below full price.",
   "occ": "everyday",
   "pieces": [
@@ -968,10 +968,10 @@
     "what": "Blue shirt"
    },
    {
-    "col": "navy",
-    "item": "tml-5pocket",
+    "col": "stone",
+    "item": "jeanstore-stan-ray-big-job-painter-loose-fit-jeans-70s-stone-denim",
     "shape": "trousers",
-    "what": "Navy trousers"
+    "what": "Stone trousers"
    },
    {
     "col": "navy",
@@ -1578,7 +1578,7 @@
    },
    {
     "col": "black",
-    "item": "r11-luke1977-jeans",
+    "item": "siksilk-siksilk-straight-fit-jeans-ss-28662",
     "shape": "trousers",
     "what": "Black trousers"
    },
@@ -1734,7 +1734,7 @@
    },
    {
     "col": "grey",
-    "item": "r8-cl-cargo",
+    "item": "trueface-mens-fleece-elasticated-jogging-bottoms-open-hem-joggers-gym",
     "shape": "trousers",
     "what": "Grey trousers"
    },
@@ -4641,7 +4641,7 @@
    },
    {
     "col": "stone",
-    "item": "millets-prana-mens-wonderland-rocks-pull-on-pants-sandstone-775606",
+    "item": "r11-bigboots-trousers",
     "shape": "trousers",
     "what": "Stone trousers"
    },
@@ -4725,7 +4725,7 @@
    },
    {
     "col": "stone",
-    "item": "millets-prana-mens-wonderland-rocks-pull-on-pants-sandstone-775606",
+    "item": "berghaus-mens-greenbank-pant-taupe-4a000112007",
     "shape": "trousers",
     "what": "Stone trousers"
    },
@@ -6829,7 +6829,7 @@
    },
    {
     "col": "black",
-    "item": "wk-stanray-painter-black",
+    "item": "r12-wg-pw347",
     "shape": "trousers",
     "what": "Black trousers"
    },
@@ -7195,7 +7195,7 @@
    },
    {
     "col": "black",
-    "item": "wk-stanray-painter-black",
+    "item": "wk-cernucci-twill",
     "shape": "trousers",
     "what": "Black trousers"
    },
@@ -7914,7 +7914,7 @@
    },
    {
     "col": "black",
-    "item": "gymking-gym-king-pro-logo-v2-jogger-black-black",
+    "item": "gymking-gym-king-momentum-jogger-black",
     "shape": "trousers",
     "what": "Black trousers"
    },
@@ -8019,7 +8019,7 @@
    },
    {
     "col": "navy",
-    "item": "gymking-gym-king-pro-logo-v2-jogger-midnight",
+    "item": "threadbare-trifoliate-mens-navy-slim-fit-cuffed-joggers",
     "shape": "trousers",
     "what": "Navy trousers"
    },
@@ -8085,7 +8085,7 @@
    },
    {
     "col": "black",
-    "item": "gymking-gym-king-pro-logo-v2-jogger-black-black",
+    "item": "gymking-gym-king-text-logo-loopback-jogger-black",
     "shape": "trousers",
     "what": "Black trousers"
    },
@@ -8328,7 +8328,7 @@
    },
    {
     "col": "charcoal",
-    "item": "gymking-gym-king-pro-logo-v2-jogger-gunmetal-grey",
+    "item": "threadbare-threadbare-mens-regular-fit-cotton-rich-joggers-in-charcoal",
     "shape": "trousers",
     "what": "Charcoal trousers"
    },

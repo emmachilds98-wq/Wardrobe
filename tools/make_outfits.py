@@ -154,7 +154,7 @@ def main():
             return None
         # Reduced and cheaper pieces first, with some variety.
         cands.sort(key=lambda x: (-(1 - x[1]["price"] / x[1]["was"]) if x[1].get("was") else 0) + x[1]["price"] / 150 + rnd.random() * 0.8
-                   - (0.9 if x[0] in fresh else 0))
+                   - (0.9 if x[0] in fresh else 0) - (0.6 if x[1].get("fit") else 0))
         return cands[0]
 
     out = {}

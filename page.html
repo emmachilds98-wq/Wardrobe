@@ -685,6 +685,9 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
           <label class="field" for="f-col">Colour
             <select id="f-col"><option value="all">Any colour</option></select>
           </label>
+          <label class="field" for="f-tfit">Trouser fit
+            <select id="f-tfit"><option value="all">Any fit</option><option value="loose">Regular, relaxed or wide</option><option value="wide">Wide leg only</option></select>
+          </label>
           <label class="field" for="f-shop">Shop
             <select id="f-shop"><option value="all">Every shop</option></select>
           </label>
@@ -1721,7 +1724,7 @@ var SMAX=[["0","Any price"],["20","Under £20"],["40","Under £40"],["75","Under
 var SPAGE=12;
 var sale={cats:[],max:"0",size:false,sort:"deal",n:SPAGE};
 var styleTags={};
-var state={view:"shop",dept:"all",shop:"all",col:"all",compact:false,style:"quiet",styles:[],multi:false,sub:"all",set:"all",jx:[],gift:"all",mix:"",fit:"all",ev:"all",fitmax:0,fitsort:"rec",occ:"all",wx:"all",cats:[],src:"all",sale:false,size:false,fresh:false,max:0,sort:"rec",q:"",showNo:false,
+var state={view:"shop",dept:"all",shop:"all",col:"all",tfit:"all",compact:false,style:"quiet",styles:[],multi:false,sub:"all",set:"all",jx:[],gift:"all",mix:"",fit:"all",ev:"all",fitmax:0,fitsort:"rec",occ:"all",wx:"all",cats:[],src:"all",sale:false,size:false,fresh:false,max:0,sort:"rec",q:"",showNo:false,
   tocc:"everyday",twx:(function(){var m=new Date().getMonth();return m>=10||m<=1?"cold":(m>=4&&m<=7?"warm":"mild");})(),mocc:"everyday",mwx:"all"};
 var lim={picks:PAGE,fits:FITPAGE};
 var items=[],fits=[],byId={},fitById={},meta={},profile={},phase="loading",fitsSeen=false;
@@ -1916,7 +1919,7 @@ function norm(id,d){
     offer:String(d.offer||""),note:String(d.note||""),url:url,checked:String(d.checked||""),added:String(d.added||""),rank:Number(d.rank)||9999,
     insize:d.insize===true?true:(d.insize===false?false:null),sizes:String(d.sizes||""),gift:d.gift===true,
     sets:Array.isArray(d.sets)?d.sets.filter(function(s){return typeof s==="string";}):[],img:okImg(d.img),
-    pg:typeof d.pg==="string"?d.pg:"",sizeNote:String(d.sizeNote||"").slice(0,140),fabric:String(d.fabric||"").slice(0,60),ph:d.ph===true||d.ph===1,
+    pg:typeof d.pg==="string"?d.pg:"",sizeNote:String(d.sizeNote||"").slice(0,140),fit:String(d.fit||"").slice(0,20),fabric:String(d.fabric||"").slice(0,60),ph:d.ph===true||d.ph===1,
     hist:Array.isArray(d.hist)?d.hist.filter(function(x){return Array.isArray(x)&&typeof x[0]==="string"&&Number(x[1])>0;}).map(function(x){return [x[0],Number(x[1])];}).slice(-6):[]};
   if(!it.name||!url)return null;
   if(it.kind==="preowned"?!(it.lo>0):!(it.price>0))return null;
@@ -2078,6 +2081,8 @@ function narrow(it,skipCat){
   if(state.max>0&&cost(it)>state.max)return false;
   if(state.shop!=="all"&&it.shop!==state.shop)return false;
   if(state.col!=="all"&&colourOf(it)!==state.col)return false;
+  /* Trouser fit: only trousers are narrowed; tops and shoes pass. */
+  if(state.tfit!=="all"&&(it.cat==="trouser"||/trouser|jogger|pant\b/i.test(it.name)&&/^(tailor|lounge|sport)$/.test(it.cat))){if(state.tfit==="wide"?it.fit!=="Wide leg":!it.fit)return false;}
   if(selHas("job")&&state.style!=="all"&&state.jx.length&&it.style.indexOf("job")>=0&&!jobOk(it))return false;
   return true;
 }
@@ -2133,7 +2138,7 @@ function card(it){
     (it.note?'<p class="note">'+esc(it.note)+'</p>':"")+
     '<div class="price">'+price+'</div>'+
     (it.offer?'<p class="offer">'+esc(it.offer)+'</p>':"")+
-    '<p class="meta">'+(sz?sz+'<br>':"")+(it.fabric?'<span class="fitnote">Fabric: '+esc(it.fabric)+'</span><br>':"")+(it.sizeNote?'<span class="fitnote">Fit tip: '+esc(it.sizeNote)+'</span><br>':"")+(hl?'<span class="hist">'+esc(hl)+'</span><br>':"")+(cr?'<span class="care">Care: '+esc(cr)+'</span><br>':"")+esc(where)+(wide?'<br>'+esc(it.style.map(function(s){return label(STYLE,s);}).join(", ")):"")+(chk?'<br>'+(old?'<span class="stale">Price seen '+esc(chk)+', over a month ago. Check before buying.</span>':'Checked '+esc(chk)):"")+'</p>'+
+    '<p class="meta">'+(sz?sz+'<br>':"")+(it.fit?'<span class="fitnote">Fit: '+esc(it.fit.toLowerCase())+'</span><br>':"")+(it.fabric?'<span class="fitnote">Fabric: '+esc(it.fabric)+'</span><br>':"")+(it.sizeNote?'<span class="fitnote">Fit tip: '+esc(it.sizeNote)+'</span><br>':"")+(hl?'<span class="hist">'+esc(hl)+'</span><br>':"")+(cr?'<span class="care">Care: '+esc(cr)+'</span><br>':"")+esc(where)+(wide?'<br>'+esc(it.style.map(function(s){return label(STYLE,s);}).join(", ")):"")+(chk?'<br>'+(old?'<span class="stale">Price seen '+esc(chk)+', over a month ago. Check before buying.</span>':'Checked '+esc(chk)):"")+'</p>'+
     '<a class="buy" href="'+esc(it.url)+'" target="_blank" rel="noopener">'+(pre?"Search ":"View at ")+esc(it.shop)+' <span aria-hidden="true">↗</span></a>'+
     (heroCount[it.id]?'<button class="linkbtn mixlink" type="button" data-mix="'+esc(it.id)+'">See it in '+heroCount[it.id]+' outfits</button>':"")+
     '<button class="linkbtn mixlink" type="button" data-goes="'+esc(it.id)+'" aria-expanded="false">What goes with it, and cheaper like this</button><div class="goes" hidden></div>'+
@@ -2305,14 +2310,26 @@ function secGeo(secs,o){
   var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();
   if(!open){var nr=g.attributes.normal,v=new T.Vector3();for(i=0;i<sm.length;i++){var p0=i*cols,q0=p0+seg;
     v.set(nr.getX(p0)+nr.getX(q0),nr.getY(p0)+nr.getY(q0),nr.getZ(p0)+nr.getZ(q0)).normalize();nr.setXYZ(p0,v.x,v.y,v.z);nr.setXYZ(q0,v.x,v.y,v.z);}}
+  if(o.ao){g.setAttribute("color",new T.Float32BufferAttribute(aoColours(g,o.ao),3));}
   return g;
+}
+/* Soft contact shadow, baked per vertex: darker where a surface faces another one close by (the inside
+   of an arm or leg, the sides of the chest under the arms, the inner thighs). */
+function aoColours(g,ao){
+  var p=g.attributes.position,nr=g.attributes.normal,out=[];
+  for(var i=0;i<p.count;i++){var nx=nr.getX(i),y=p.getY(i),f=1;
+    if(ao.kind==="limb"){var inw=Math.max(0,-ao.s*nx);f=1-0.3*inw*inw*(ao.leg?(y>0.6?1:0.55):1);}
+    else if(ao.kind==="torso"){var side=Math.max(0,Math.abs(nx)-0.45)/0.55,bandY=y>1.08&&y<1.42?Math.sin((y-1.08)/0.34*Math.PI):0;f=1-0.2*side*bandY;if(y<0.95&&ny(i)<-0.3)f-=0.12;}
+    out.push(f,f,f);}
+  function ny(i){return nr.getY(i);}
+  return out;
 }
 /* Dave's body at 1.83 m: torso, neck, arm and leg sections (left side; the right is mirrored). */
 var B3={
   torso:[[0.83,0.148,0.098,0,-0.004],[0.9,0.17,0.112,0,-0.012],[0.97,0.167,0.107,0,-0.008],[1.05,0.151,0.099,0,0],[1.13,0.151,0.101,0,0.004],[1.22,0.161,0.109,0,0.008],[1.3,0.17,0.114,0,0.01],[1.37,0.176,0.111,0,0.006],[1.43,0.17,0.097,0,0],[1.47,0.14,0.08,0,-0.008],[1.495,0.092,0.068,0,-0.012],[1.515,0.07,0.064,0,-0.014]],
-  neck:[[1.47,0.07,0.066,0,-0.014],[1.53,0.062,0.06,0,-0.012],[1.59,0.059,0.058,0,-0.008],[1.64,0.054,0.052,0,-0.004]],
+  neck:[[1.47,0.072,0.068,0,-0.014],[1.515,0.065,0.062,0,-0.012],[1.56,0.061,0.059,0,-0.008],[1.61,0.056,0.054,0,-0.004]],
   arm:[[0.89,0.024,0.029,0.241,0.034],[0.905,0.025,0.03,0.24,0.032],[0.97,0.033,0.036,0.237,0.026],[1.05,0.039,0.042,0.232,0.018],[1.12,0.035,0.038,0.228,0.012],[1.18,0.039,0.041,0.224,0.008],[1.28,0.045,0.046,0.215,0.004],[1.38,0.05,0.05,0.205,0],[1.45,0.05,0.052,0.19,0]],
-  hand:[[0.772,0.008,0.022,0.247,0.04],[0.8,0.014,0.04,0.248,0.042],[0.83,0.017,0.047,0.248,0.042],[0.87,0.018,0.045,0.246,0.04],[0.897,0.022,0.03,0.243,0.036]],
+  hand:[[0.798,0.012,0.036,0.248,0.042],[0.81,0.015,0.044,0.248,0.042],[0.83,0.017,0.047,0.248,0.042],[0.87,0.018,0.045,0.246,0.04],[0.897,0.022,0.03,0.243,0.036]],
   leg:[[0.07,0.03,0.033,0.1,-0.004],[0.12,0.033,0.036,0.1,-0.006],[0.22,0.038,0.042,0.099,-0.01],[0.33,0.049,0.055,0.098,-0.016],[0.41,0.051,0.056,0.097,-0.012],[0.49,0.048,0.052,0.096,0],[0.56,0.054,0.058,0.095,0.004],[0.66,0.064,0.068,0.093,0.004],[0.77,0.074,0.078,0.091,0],[0.86,0.084,0.088,0.088,-0.004],[0.92,0.088,0.09,0.085,-0.008]]
 };
 function sideX(secs,s){return secs.map(function(q){return [q[0],q[1],q[2],s*q[3],q[4]];});}
@@ -2332,46 +2349,62 @@ function make3D(pieces){
   function C(col){return new T.Color(col).convertSRGBToLinear();}
   function mat(col,rough,opt){var o={color:C(col),roughness:rough==null?0.86:rough,metalness:0};if(opt)Object.keys(opt).forEach(function(k){o[k]=opt[k];});return new T.MeshStandardMaterial(o);}
   function cloth(col,kind,c2,rough){return new T.MeshStandardMaterial({map:tex3D(kind||"plain",col,c2),color:0xffffff,roughness:rough==null?0.9:rough,metalness:0,bumpMap:clothBump(),bumpScale:0.0012,side:T.DoubleSide});}
-  var headG=new T.Group();headG.position.y=-0.014;man.add(headG);var tgt=man;
+  var headG=new T.Group();headG.position.y=-0.034;man.add(headG);var tgt=man;
   function put(me){me.castShadow=true;me.receiveShadow=true;tgt.add(me);return me;}
   function add(geo,m,x,y,z,sx,sy,sz,rx,ry,rz){var me=new T.Mesh(geo,m);me.position.set(x||0,y||0,z||0);me.scale.set(sx||1,sy||1,sz||1);me.rotation.set(rx||0,ry||0,rz||0);return put(me);}
-  function sec(secs,m,o){return put(new T.Mesh(secGeo(secs,o),m));}
+  function aoM(m){if(!m.userData.ao){var c=m.clone();c.vertexColors=true;m.userData.ao=c;}return m.userData.ao;}
+  function sec(secs,m,o){return put(new T.Mesh(secGeo(secs,o),o&&o.ao?aoM(m):m));}
   function tube(pts,r,m,seg){var c=new T.CatmullRomCurve3(pts.map(function(p){return new T.Vector3(p[0],p[1],p[2]);}));return put(new T.Mesh(new T.TubeGeometry(c,seg||24,r,8,false),m));}
   function band(y,h,rx,rz,m,o){o=o||{};return sec([[y,rx,rz,o.x||0,o.z||0],[y+h,rx-(o.taper||0),rz-(o.taper||0),o.x||0,o.z||0]],m,{seg:o.seg||40,gap:o.gap||0,k:1,sq:o.sq||2});}
-  var skinC="#eecdb6",skin=mat(skinC,0.62),hairM=mat("#2b1c15",0.9),tacheM=mat("#8d5b38",0.95),white=mat("#f6f2ea",0.35),iris=mat("#3d2a1e",0.3),lipM=mat("#b8786c",0.6);
+  var skinC="#eecdb6",skin=mat(skinC,0.62),hairM=mat("#2b1c15",0.9),tacheM=mat("#8d5b38",0.95),white=mat("#f6f2ea",0.35),iris=mat("#3d2a1e",0.3),lipM=mat("#c08a7e",0.6);
   /* ---- body ---- */
-  sec(B3.torso,skin,{seg:44,sq:2.3,top:true,bottom:true});
+  sec(B3.torso,skin,{seg:44,sq:2.3,top:true,bottom:true,ao:{kind:"torso"}});
   sec(B3.neck,skin,{seg:28});
   [-1,1].forEach(function(s){
-    add(new T.SphereGeometry(0.053,24,16),skin,s*0.182,1.428,0,1,1,0.95);           /* shoulder */
-    sec(sideX(B3.arm,s),skin,{seg:22,top:true});
-    sec(sideX(B3.hand,s),skin,{seg:20,top:true,bottom:true});
+    add(new T.SphereGeometry(0.053,24,16),skin,s*0.182,1.418,0,1,0.8,0.95);           /* shoulder */
+    sec(sideX(B3.arm,s),skin,{seg:22,top:true,ao:{kind:"limb",s:s}});
+    sec(sideX(B3.hand,s),skin,{seg:20,top:true,bottom:true,ao:{kind:"limb",s:s}});
     tube([[s*0.234,0.875,0.066],[s*0.232,0.85,0.076],[s*0.235,0.828,0.078]],0.0085,skin,8);  /* thumb */
-    sec(sideX(B3.leg,s),skin,{seg:26,top:true,bottom:true});
+    add(new T.SphereGeometry(0.0085,10,8),skin,s*0.235,0.828,0.078);
+    /* four fingers, hanging relaxed and curled a little forward */
+    [[0.03,0.07,0.0078],[0.01,0.078,0.0082],[-0.01,0.074,0.0078],[-0.028,0.058,0.0068]].forEach(function(f){var z0=0.042+f[0],y0=0.806;
+      tube([[s*0.248,y0,z0],[s*0.247,y0-f[1]*0.55,z0+0.004],[s*0.244,y0-f[1],z0+0.013]],f[2],skin,10);add(new T.SphereGeometry(f[2],10,8),skin,s*0.244,y0-f[1],z0+0.013);});
+    sec(sideX(B3.leg,s),skin,{seg:26,top:true,bottom:true,ao:{kind:"limb",s:s,leg:true}});
   });
   var hatOn=pieces.some(function(p){return /^(beanie|bcap|cap|bucket)$/.test(p.shape);});
   tgt=headG;
   /* ---- head: a sphere shaped into a jaw, chin, brow and the back of the skull ---- */
-  var hg=new T.SphereGeometry(1,48,36),hp=hg.attributes.position;
+  var hg=new T.SphereGeometry(1,64,48),hp=hg.attributes.position,hcol=[];
   for(var vi=0;vi<hp.count;vi++){var x=hp.getX(vi),y=hp.getY(vi),z=hp.getZ(vi);
     if(y<0){var k1=Math.min(1,-y);x*=1-0.2*k1*k1;if(z>0)z*=1+0.05*k1;}
     if(y>0.15&&z>0.35)z*=0.96;
     if(z<-0.2&&y>-0.4)z*=1.05;
     if(Math.abs(z)<0.55)x*=0.97;
-    hp.setXYZ(vi,x*0.081,y*0.114,z*0.1);}
-  hg.computeVertexNormals();add(hg,skin,0,1.71,0.008);
+    hp.setXYZ(vi,x*0.081,y*0.114,z*0.1);
+    var ox=hg.attributes.position.getX(vi)/0.081,oy=y,oz=z,base=new T.Color(skinC).convertSRGBToLinear(),c=base.clone();
+    var stub=oy<-0.22&&oz>-0.35?Math.min(1,(-oy-0.22)/0.25):0;if(oy<-0.5&&Math.abs(ox)<0.25&&oz>0.6)stub*=0.6;
+    c.lerp(new T.Color("#9a8070").convertSRGBToLinear(),0.32*stub);
+    var ch=Math.max(0,1-Math.hypot(Math.abs(ox)-0.52,oy+0.12)/0.32)*(oz>0.45?1:0);c.lerp(new T.Color("#e8a898").convertSRGBToLinear(),0.28*ch);
+    var so=Math.max(0,1-Math.hypot(Math.abs(ox)-0.38,oy-0.12)/0.2)*(oz>0.6?1:0);c.multiplyScalar(1-0.12*so);
+    hcol.push(c.r,c.g,c.b);}
+  hg.setAttribute("color",new T.Float32BufferAttribute(hcol,3));hg.computeVertexNormals();add(hg,mat("#ffffff",0.6,{vertexColors:true}),0,1.71,0.008);
   var HY=1.71;
   /* ears */
-  [-1,1].forEach(function(s){add(new T.SphereGeometry(0.03,18,14),skin,s*0.077,HY-0.002,-0.006,0.34,1,0.62,0,s*0.25,0);});
+  [-1,1].forEach(function(s){var ex=s*0.078;
+    add(new T.SphereGeometry(0.027,18,14),skin,ex,HY,-0.006,0.28,1,0.62,0,s*0.25,0);
+    add(new T.TorusGeometry(0.021,0.0045,8,22,Math.PI*1.55),skin,ex+s*0.006,HY+0.003,-0.008,0.62,1.2,1,0,s*Math.PI/2+s*0.25,Math.PI*0.35);
+    add(new T.SphereGeometry(0.0085,12,10),skin,ex+s*0.004,HY-0.023,-0.002,0.6,1,0.9);});
   /* nose and mouth */
   sec([[1.664,0.016,0.012,0,0.097],[1.674,0.019,0.019,0,0.108],[1.69,0.012,0.016,0,0.109],[1.708,0.009,0.011,0,0.106],[1.728,0.008,0.006,0,0.104]],skin,{seg:16,top:true,bottom:true});
-  tube([[-0.021,1.633,0.088],[0,1.629,0.095],[0.021,1.633,0.088]],0.0042,lipM,10);
+  tube([[-0.021,1.634,0.089],[0,1.6335,0.0955],[0.021,1.634,0.089]],0.0024,lipM,10);
+  tube([[-0.019,1.627,0.087],[0,1.624,0.094],[0.019,1.627,0.087]],0.0036,lipM,10);
   /* eyes: white, iris, and an upper lid in skin so they sit in the face */
   [-1,1].forEach(function(s){var ex=s*0.031,ey=1.722;
     add(new T.SphereGeometry(0.0125,18,12),white,ex,ey,0.1,1,0.68,0.62);
     add(new T.SphereGeometry(0.0062,14,10),iris,ex,ey-0.0005,0.1068);
     add(new T.SphereGeometry(0.0138,18,12,0,Math.PI*2,0,Math.PI*0.42),skin,ex,ey+0.0014,0.1,1,0.8,0.72,0.35,0,0);
     tube([[s*0.014,1.742,0.1085],[s*0.031,1.748,0.1075],[s*0.049,1.744,0.1]],0.0032,hairM,10);           /* brow */
+    tube([[s*0.0195,1.7225,0.1046],[s*0.031,1.7275,0.1092],[s*0.0425,1.7235,0.1048]],0.0011,hairM,10);    /* lash line */
   });
   /* the moustache: one thick curve over the lip, ends turned down */
   tube([[-0.042,1.627,0.08],[-0.026,1.645,0.095],[0,1.651,0.103],[0.026,1.645,0.095],[0.042,1.627,0.08]],0.0068,tacheM,24);
@@ -2405,14 +2438,14 @@ function make3D(pieces){
   /* trousers or shorts */
   var waistE=0;
   if(lo){
-    var lm=pm(lo),sh=lo.shape==="shorts",n0=nm(lo),wide=/wide|baggy|loose|relaxed|barrel|carpenter|cargo|parachute|combat/.test(n0)?0.012:(/slim|skinny/.test(n0)?-0.003:0);
+    var lm=pm(lo),sh=lo.shape==="shorts",n0=nm(lo),fitL=((byId[lo.item]||{}).fit||""),wide=fitL==="Wide leg"||/wide|baggy|barrel|parachute/.test(n0)?0.022:(fitL==="Relaxed"||/loose|relaxed|carpenter|cargo|combat/.test(n0)?0.013:(fitL?0.006:0.004));
     waistE=0.012;
     sec([[0.8,0.13,0.085,0,-0.004],[0.86,0.168,0.108,0,-0.01],[0.92,0.183,0.122,0,-0.012],[0.98,0.18,0.118,0,-0.008],[1.035,0.165,0.111,0,-0.002]],lm,{seg:44,sq:2.3});
     band(1.0,0.04,0.167,0.113,lm,{z:-0.003});
     [-1,1].forEach(function(s){
       var L=sh?[[0.53,0.08+wide,0.084+wide,s*0.098,0.002],[0.62,0.08+wide,0.084+wide,s*0.096,0.002],[0.74,0.085+wide,0.09+wide,s*0.093,0],[0.86,0.094,0.098,s*0.09,-0.004],[0.94,0.098,0.1,s*0.086,-0.008]]
         :[[0.04,0.06+wide,0.066+wide,s*0.1,0.002],[0.2,0.06+wide,0.066+wide,s*0.099,-0.008],[0.38,0.064+wide,0.074+wide,s*0.098,-0.014],[0.5,0.066+wide,0.076+wide,s*0.096,-0.004],[0.6,0.072+wide,0.079+wide,s*0.095,0],[0.7,0.079+wide*0.6,0.083+wide*0.6,s*0.093,0],[0.82,0.09,0.094,s*0.09,-0.004],[0.94,0.097,0.099,s*0.086,-0.008]];
-      sec(L,lm,{seg:30,u:0.4});
+      sec(L,lm,{seg:30,u:0.4,ao:{kind:"limb",s:s,leg:true}});
       if(sh)band(0.53,0.025,0.081+wide,0.085+wide,lm,{x:s*0.098,z:0.002});
       if(/cargo|utility|combat|work/.test(n0)){add(new T.BoxGeometry(0.012,0.1,0.075),lm,s*(0.165+wide+(sh?0.012:0)),sh?0.68:0.62,0.004);}
     });
@@ -2436,7 +2469,7 @@ function make3D(pieces){
     secs=secs.map(function(q){return q[0]<1.0?[q[0],Math.max(q[1],0.171),Math.max(q[2],0.111),q[3],Math.min(q[4],-0.008)]:q;});
     secs=secs.map(function(q){var top=q[0]>1.48,w=waistE&&q[0]<1.08?(q[0]<1.0?0.022:0.022*(1.08-q[0])/0.08):0;return [q[0],q[1]+(top?e*0.6:e)+w,q[2]+(top?e*0.6:e)+w,q[3],q[4]];});
     var gap=open?(p.shape==="cardigan"?0.5:(p.shape==="blazer"||p.shape==="coat"?0.75:0.62)):0;
-    sec(secs,m,{seg:48,sq:2.3,gap:gap});
+    sec(secs,m,{seg:48,sq:2.3,gap:gap,ao:{kind:"torso"}});
     /* sleeves */
     var outSleeve=!up.slice(k+1).some(function(q){return !/^(vest|waistcoat|gilet)$/.test(q.shape);});
     var sleeveless=p.shape==="vest"||p.shape==="waistcoat"||p.shape==="gilet",short=/^(tee|polo|sshirt)$/.test(p.shape)&&!/long/.test(n0);
@@ -2444,8 +2477,8 @@ function make3D(pieces){
       var se=e*0.85+0.006,arm=sideX(B3.arm,s).filter(function(q){return q[0]>=(short?1.24:0.9);});
       if(short){arm=[[1.24,0.047,0.049,s*0.219,0.005]].concat(arm.filter(function(q){return q[0]>1.27;}));}
       else{arm.unshift([0.905,arm[0][1],arm[0][2],arm[0][3],arm[0][4]]);}
-      sec(ease(arm,se),m,{seg:22,u:0.4});
-      add(new T.SphereGeometry(0.053+se*0.75,22,16),m,s*0.182,1.43,0,1,0.86,0.95);
+      sec(ease(arm,se),m,{seg:22,u:0.4,ao:{kind:"limb",s:s}});
+      add(new T.SphereGeometry(0.054+se*0.75,22,16),m,s*0.183,1.42,0,1,0.8,0.96);
       if(!short&&outSleeve&&/^(jumper|hoodie|halfzip|rollneck|cardigan)$/.test(p.shape))band(0.905,0.035,0.028+se+0.003,0.033+se+0.003,rib(p),{x:s*0.24,z:0.032});
       if(short&&outSleeve)band(1.24,0.012,0.0495+se,0.0515+se,m,{x:s*0.219,z:0.005});
     });}
@@ -2453,7 +2486,7 @@ function make3D(pieces){
     var hs=secs[0];
     if(/^(jumper|hoodie|halfzip|rollneck|cardigan)$/.test(p.shape))band(hem,0.045,hs[1]+0.003,hs[2]+0.003,rib(p),{gap:gap,z:hs[4]});
     if(p.shape==="tee"||p.shape==="jumper"||p.shape==="vest"||(p.shape==="hoodie"))band(1.478,0.018,0.084+e*0.6,0.071+e*0.6,p.shape==="tee"||p.shape==="vest"?m:rib(p),{z:-0.008});
-    if(p.shape==="rollneck"){sec([[1.47,0.074,0.072,0,-0.012],[1.52,0.068,0.066,0,-0.01],[1.575,0.066,0.064,0,-0.008],[1.59,0.069,0.067,0,-0.008]],rib(p),{seg:30});}
+    if(p.shape==="rollneck"){sec([[1.47,0.076,0.074,0,-0.012],[1.51,0.07,0.068,0,-0.01],[1.545,0.069,0.067,0,-0.008],[1.558,0.072,0.07,0,-0.008]],rib(p),{seg:30});}
     if(p.shape==="hoodie"&&!hid){add(new T.SphereGeometry(0.115,26,16,0,Math.PI*2,0,Math.PI*0.55),m,0,1.49,-0.085,1.05,0.62,0.85,-0.35,0,0);
       [-1,1].forEach(function(s){tube([[s*0.03,1.49,frontZ(1.45,e)+0.012],[s*0.034,1.42,frontZ(1.4,e)+0.01],[s*0.036,1.36,frontZ(1.36,e)+0.008]],0.0028,white,8);});
       add(new T.BoxGeometry(0.2,0.1,0.008),m,0,1.03,frontZ(1.03,e)+0.006+(waistE?0.02:0));}
@@ -2883,7 +2916,7 @@ function suggest(){
   SLOTS.forEach(function(s){var b=build[s[0]];if(locked[s[0]]&&b&&byId[b.item]){keep[s[0]]=b;kt+=cost(byId[b.item]);}});
   SLOTS.slice(0,5).forEach(function(s){
     pools[s[0]]=slotItems(s).filter(function(it){return it.price>0;}).map(function(it){
-      return {it:it,sc:(voteOf(it.id)===1?3:0)+(it.insize===true?1.5:0)+(pct(it)>=30?1:0)+Math.max(0,1-it.rank/800)+(it.price<=25?1:it.price<=50?0.5:0)};
+      return {it:it,sc:(it.fit?(it.fit==="Wide leg"||it.fit==="Relaxed"?1.4:1):0)+(voteOf(it.id)===1?3:0)+(it.insize===true?1.5:0)+(pct(it)>=30?1:0)+Math.max(0,1-it.rank/800)+(it.price<=25?1:it.price<=50?0.5:0)};
     }).sort(function(a,b){return b.sc-a.sc;}).slice(0,40);
   });
   var combos=[["top","bottom","feet","outer","mid"],["top","bottom","feet","outer"],["top","bottom","feet","mid"],["top","bottom","feet"],["mid","bottom","feet"]],best=null;
@@ -3101,7 +3134,7 @@ function setView(v,keep){
 }
 
 /* ---- picks ---- */
-function filtered(){return state.shop!=="all"||state.col!=="all"||state.occ!=="all"||state.wx!=="all"||state.cats.length>0||state.src!=="all"||state.sale||state.size||state.fresh||state.max>0||state.jx.length>0;}
+function filtered(){return state.shop!=="all"||state.col!=="all"||state.tfit!=="all"||state.occ!=="all"||state.wx!=="all"||state.cats.length>0||state.src!=="all"||state.sale||state.size||state.fresh||state.max>0||state.jx.length>0;}
 function fillCols(mine){
   var n={};mine.forEach(function(it){var c=colourOf(it);if(c)n[c]=(n[c]||0)+1;});
   var keys=Object.keys(COL).filter(function(c){return n[c]||state.col===c;});
@@ -3131,7 +3164,7 @@ function renderPicks(){
   var counts={},dcount={},nf=0;mine.forEach(function(it){if(narrow(it,true)&&(state.showNo||voteOf(it.id)!==-1)){counts[it.sub]=(counts[it.sub]||0)+1;dcount[it.dept]=(dcount[it.dept]||0)+1;nf++;}});
   renderDept(counts,dcount,nf);
   fillShops(mine);fillCols(mine);
-  var fc=[state.occ!=="all",state.wx!=="all",state.src!=="all",state.sale,state.size,state.fresh,state.max>0,state.shop!=="all",state.col!=="all",state.jx.length>0].filter(Boolean).length;
+  var fc=[state.tfit!=="all",state.occ!=="all",state.wx!=="all",state.src!=="all",state.sale,state.size,state.fresh,state.max>0,state.shop!=="all",state.col!=="all",state.jx.length>0].filter(Boolean).length;
   $("filt-sum").textContent=fc?fc+(fc===1?" filter on":" filters on"):"occasion, weather, size, price, colour, shop";
   var list=mine.filter(function(it){return narrow(it);});
   list=list.filter(function(it){if(voteOf(it.id)===-1){no++;return state.showNo;}return true;});
@@ -3405,6 +3438,7 @@ onPick("f-max",function(t){state.max=Number(t.value)||0;});
 onPick("f-sort",function(t){state.sort=t.value;});
 onPick("f-shop",function(t){state.shop=t.value;});
 onPick("f-col",function(t){state.col=t.value;});
+onPick("f-tfit",function(t){state.tfit=t.value;});
 $("f-ev").innerHTML=EVENTS.map(function(o){return '<option value="'+o[0]+'">'+esc(o[1])+'</option>';}).join("");
 $("b-budget").addEventListener("input",budgetHint);
 onPick("f-compact",function(t){state.compact=t.checked;try{localStorage.setItem("dw-compact",t.checked?"1":"");}catch(e){}});
@@ -3412,7 +3446,7 @@ $("f-fitmax").addEventListener("change",function(e){state.fitmax=Number(e.target
 $("f-fitsort").addEventListener("change",function(e){state.fitsort=e.target.value;lim.fits=FITPAGE;renderFits();syncMarks();});
 var qTimer=0;
 $("q").addEventListener("input",function(e){clearTimeout(qTimer);var v=e.target.value;qTimer=setTimeout(function(){state.q=v.trim();if(state.q&&state.view!=="shop"){setView("shop");}refilter();},180);});
-$("clear").addEventListener("click",function(){state.col="all";state.jx=[];state.cats=[];state.occ="all";state.wx="all";state.src="all";state.sale=false;state.size=false;state.fresh=false;state.max=0;state.shop="all";state.q="";state.set="all";state.gift="all";syncChips();refilter();});
+$("clear").addEventListener("click",function(){state.col="all";state.tfit="all";if($("f-tfit"))$("f-tfit").value="all";state.jx=[];state.cats=[];state.occ="all";state.wx="all";state.src="all";state.sale=false;state.size=false;state.fresh=false;state.max=0;state.shop="all";state.q="";state.set="all";state.gift="all";syncChips();refilter();});
 $("more").addEventListener("click",function(){lim.picks+=PAGE;renderPicks();syncMarks();});
 $("sale-more").addEventListener("click",function(){sale.n+=SPAGE;renderSale();});
 $("s-size").addEventListener("change",function(e){sale.size=e.target.checked;sale.n=SPAGE;renderSale();});

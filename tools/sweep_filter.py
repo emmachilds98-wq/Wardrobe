@@ -106,6 +106,42 @@ OUTDOORISH = {"jack-wolfskin.co.uk", "mountain-equipment.co.uk", "kavu.co.uk", "
               "dubarry.com", "lazyjacks.co.uk", "uk.oneill.com"}
 
 
+# Trouser fit. Dave likes trousers that do not grip: regular, straight, relaxed or wide. Slim, skinny and
+# tapered fits are left out (a "relaxed taper" is loose enough), and the looser fits rank higher.
+TIGHT_NAME = re.compile(r"\b(skinny|super ?slim|extra slim|slim|slimmer|tapered|taper|carrot|muscle fit|athletic fit|"
+                        r"spray[- ]on|510|511|512|519|sleenker|d-strukt|larston|bryson)\b", re.I)
+TIGHT_DESC = re.compile(r"\b(slim[- ]fit|skinny|slim[- ]leg|slim[- ]cut|slim[- ]tapered|close[- ]fitting|spray[- ]on)\b", re.I)
+# "Tapered leg" is often said of a loose cut (an oversized skate jean, a loose painter pant), so it only
+# counts as tight when nothing in the description says the cut is loose.
+TAPER_DESC = re.compile(r"\btapered[- ](fit|leg)\b|\btapered\b", re.I)
+LOOSE_DESC = re.compile(r"\b(loose|relaxed|regular|oversized|baggy|wide|easy[- ]going|roomy|dropped crotch|slightly tapered|straight)\b", re.I)
+NOT_TROUSERS = re.compile(r"\b(base ?layer|thermal|long johns|leggings)\b", re.I)
+RELAXED_TAPER = re.compile(r"\b(relaxed|loose|baggy)[- ]tapere?d?\b", re.I)
+FITS = [("Wide leg", r"wide[- ]?leg|\bwide\b|baggy|balloon|barrel|parachute|fat pant|skate"),
+        ("Relaxed", r"relaxed|loose|easy fit|comfort fit|carpenter|g-pants?|workwear|double[- ]knee"),
+        ("Straight", r"straight|\b50[15]\b|bootcut|boot cut"),
+        ("Regular", r"regular|classic fit|standard fit|\b55[0]\b|\b56[89]\b|\b578\b")]
+
+
+def fit_label(text):
+    for lab, rx in FITS:
+        if re.search(rx, text, re.I):
+            return lab
+    return ""
+
+
+def fit_verdict(name, body="", note=""):
+    """"tight" for a slim, skinny or tapered pair, else its loose fit ("Wide leg", "Relaxed", "Straight",
+    "Regular") or "" when nothing says. Joggers are cuffed by design, so only slim or skinny ones count."""
+    jog = re.search(r"jogger|track ?pant|sweatpant|jogging|lounge", name, re.I)
+    loose_name = fit_label(name)
+    tn = TIGHT_NAME.search(re.sub(r"\btaper(ed)?\b", "", name, flags=re.I) if jog else name)
+    if (tn and not RELAXED_TAPER.search(name)) or (not jog and TIGHT_NAME.search(note) and not RELAXED_TAPER.search(note)) or \
+            (not loose_name and (TIGHT_DESC.search(body) or (not jog and TAPER_DESC.search(body) and not LOOSE_DESC.search(body)))):
+        return "tight"
+    return loose_name or fit_label(body[:600])
+
+
 def bare(h):
     return h[4:] if h.startswith("www.") else h
 
@@ -550,6 +586,12 @@ def main():
             if SKINNY.search(title) or (cat == "trouser" or (cat == "tailor" and re.search(r"trouser", title, re.I))) and SLIM.search(title + " " + ptype):
                 stats["slim"] += 1
                 continue
+            trouserish = cat == "trouser" or (cat == "tailor" and re.search(r"trouser", title, re.I)) or \
+                (cat in ("lounge", "sport") and re.search(r"jogger|pant|bottom|trouser", title, re.I))
+            fitv = fit_verdict(title, body) if trouserish and not NOT_TROUSERS.search(title) else ""
+            if fitv == "tight":
+                stats["slim, skinny or tapered"] += 1
+                continue
             is_safety = cat == "shoe" and SAFETY.search(title + " " + ptype + " " + " ".join(tags))
             job = "job" in GROUP_STYLE.get(group, []) and bare(host) not in NOT_JOB and (
                 cat != "shoe" or bool(is_safety) or re.search(r"\b(work|rigger|dealer|wellington)\b", title, re.I))
@@ -646,6 +688,10 @@ def main():
                 "sizes": ("%s in stock" % sz) if sz and sz not in ("One size",) else ("One size" if sz else ""),
                 "kind": "new", "checked": a.date, "added": a.date, "img_src": img,
             }
+            if fitv:
+                it["fit"] = fitv
+                it["rank"] = max(1, it["rank"] - 60)
+                it["fitRank"] = 1
             if was:
                 it["was"] = round(was, 2)
             if fab:

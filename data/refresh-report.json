@@ -3895,495 +3895,375 @@
  "outfits": {
   "swapped": [
    [
-    "dinner-out",
-    "Dinner out in winter",
-    "moss-navy-trousers",
-    "tmlewin-ronnie-infinity-active-slim-fit-charcoal-trousers-58728",
-    "T.M.Lewin The Ronnie Suit Trouser"
+    "h10-cuban",
+    "Mint Cuban shirt and stone shorts",
+    "r7-dc-everett",
+    "wk-hikerdelic-worker",
+    "Hikerdelic Worker shorts 2.0, stone"
    ],
    [
-    "errands",
-    "Out and about",
-    "fa-brewer-white",
-    "farah-castlefield-waffle-overshirt-grey-f4whf008gp-031",
-    "Farah Castlefield Waffle Overshirt In White Smoke"
+    "h10-rust",
+    "Rust pocket tee and chino shorts",
+    "r7-dc-everett",
+    "duckandcov-sherborn-shorts-stone",
+    "Duck and Cover Sherborn Shorts Stone"
    ],
    [
-    "lazy-sunday",
-    "Lazy Sunday",
-    "uq-souffle-crew",
-    "moss-cuban-ecru",
-    "Moss Ecru Knitted Cuban Collar Shirt"
+    "h7-beach-50",
+    "Beach day under £50",
+    "r7-dc-everett",
+    "duckandcov-randolph-shorts-light-stone",
+    "Duck and Cover Randolph Shorts Light Stone"
    ],
    [
-    "m5-argyle",
-    "Argyle and Oxford",
-    "fa-brewer-white",
-    "farah-castlefield-waffle-overshirt-grey-f4whf008gp-031",
-    "Farah Castlefield Waffle Overshirt In White Smoke"
+    "h8-levanto",
+    "White polo and stone shorts",
+    "r7-dc-everett",
+    "luke1977-tecshort-cargo-short-stone",
+    "Luke 1977 Tecshort Technical Nylon Cargo Shorts - Stone"
    ],
    [
-    "mn-party",
-    "Night out",
-    "uq-jersey-barrel",
-    "folkclothi-barrel-leg-trouser-ecru-twill",
-    "Folk Barrel Leg Trouser - Ecru Twill"
+    "h9-apricot",
+    "Apricot twill shirt and stone shorts",
+    "r7-dc-everett",
+    "duckandcov-medford-polo-shorts-set-taupe",
+    "Duck and Cover Medford Polo & Shorts Set Taupe"
    ],
    [
-    "n4-tech-black",
-    "Technical black",
-    "uw-military-black",
-    "montirex-haze-pant-black-asphalt-platinum-grey-mtx1377-2481",
-    "Montirex Haze Pant - Black - Asphalt - Platinum Grey"
-   ],
-   [
-    "nw-docs",
-    "Docs and black denim",
-    "js-dm-1460",
-    "r13-mk-patrol-boot",
-    "Kombat patrol boots, black"
-   ],
-   [
-    "nw-film",
-    "Film night",
-    "gs-restday-indigo",
-    "lg-loungeable-grey",
-    "Loungeable long sleeve T-shirt and check trouser pyjama set, grey"
-   ],
-   [
-    "nw-queue",
-    "Cold festival queue",
-    "js-dm-1460",
-    "universalt-original-penguin-mens-atlas-hiking-boots",
-    "Original Penguin Atlas Hiking Boots, black"
-   ],
-   [
-    "nw-supermarket",
-    "The supermarket upgrade",
-    "tu-lambswool-high",
-    "tokyolaund-striker-crew-neck-knitted-jumper-in-mid-grey-marl-kensingto",
-    "Kensington Eastside Striker Crew Neck Knitted Jumper in Mid Grey Marl"
-   ],
-   [
-    "ox-knit",
-    "Navy knit and jeans",
-    "fa-brewer-white",
-    "samuelwind-linen-mix-shirt-trad-white",
-    "Samuel Windsor Linen Rich Shirt - White"
-   ],
-   [
-    "ox-mono",
-    "Charcoal and white",
-    "fa-brewer-white",
-    "slamcity-huf-arch-mesh-button-up-white",
-    "HUF Arch Mesh Button Up White"
-   ],
-   [
-    "ox-open",
-    "Shirt as a jacket",
-    "fa-brewer-white",
-    "savilerowc-white-cotton-classic-fit-printed-casual-shirt-5011whn",
-    "Savile Row Company White Cotton Classic Fit Printed Casual Shirt"
-   ],
-   [
-    "ox-suit",
-    "Navy suit",
-    "fa-brewer-white",
-    "savilerowc-blue-white-linen-cotton-random-stripe-classic-fit-button-do",
-    "Savile Row Company Blue White Linen Cotton Random Stripe Classic Fit Button-Down Casual"
-   ],
-   [
-    "q6-quilted",
-    "Quilted jacket and cords",
-    "p6-bb-alderley",
-    "jeanstore-fred-perry-pique-stitch-knitted-tee-ecru",
-    "Fred Perry Pique Stitch Knitted Tee - Ecru"
-   ],
-   [
-    "smart-125",
-    "Smart for under £125",
-    "fa-brewer-white",
-    "savilerowc-pink-white-cotton-prince-of-wales-check-slim-fit-formal-shi",
-    "Savile Row Company Pink White Cotton Prince of Wales Check Slim Fit Formal Shirt - Double"
-   ],
-   [
-    "winter-140",
-    "Winter for under £140",
-    "moss-merino-zip",
-    "philipmorr-albert-and-maurice-netherton-zip-neck-lambswool-jumper-taup",
-    "Albert and Maurice Netherton Zip Neck Lambswool Jumper Taupe"
-   ],
-   [
-    "x11-farah",
-    "Farah head to toe",
-    "fa-hawtin",
-    "farah-sambrano-archive-canvas-trousers-beige-f4bsg048gp-280",
-    "Farah Sambrano Archive Canvas Trousers In Ecru"
-   ],
-   [
-    "x11-passenger",
-    "Passenger head to toe",
-    "r11-passenge-overshirt",
-    "r11-passenge-shirt",
-    "Passenger Acreage Shirt, patchwork faded black"
-   ],
-   [
-    "g-quiet-02",
-    "Blue shirt and black trousers",
-    "uw-military-black",
-    "universalw-black-tropical-suiting-military-chino",
-    "Universal Works Black Tropical Suiting Military Chino"
-   ],
-   [
-    "g-quiet-23",
-    "Blue shirt and navy trousers",
-    "fa-hawtin",
-    "sw-chino-navy",
-    "Regular Fit Chino, Navy"
-   ],
-   [
-    "g-job-01",
-    "Olive jacket and navy trousers",
-    "universalt-crosshatch-mens-transflate-t-shirt-1",
-    "bestworkwe-fruit-of-the-loom-ss029-original-polo",
-    "Fruit of the Loom Ss029 Original polo, azure blue"
-   ],
-   [
-    "g-job-01",
-    "Olive jacket and navy trousers",
-    "stanray-earls-bib-navy-ripstop-fw23",
-    "r12-sr-painter-denim",
-    "Stan Ray 80s painter work trousers, stonewashed black denim"
-   ],
-   [
-    "g-job-01",
-    "Olive jacket and navy trousers",
-    "amblerssaf-24022-brown",
-    "r9-ut-pullon",
-    "Grafters 4E super wide pull-on safety dealer boots, dark brown"
-   ],
-   [
-    "g-job-03",
-    "Navy T-shirt and charcoal trousers",
-    "hollandsco-ridgeline-mens-signature-t-shirt",
-    "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
-    "Gildan Gd017 Softstyle™ double piqué polo, charcoal"
-   ],
-   [
-    "g-job-03",
-    "Navy T-shirt and charcoal trousers",
-    "amblerssaf-24022-brown",
-    "r9-hc-dealer-wr",
-    "Grafters 4E water-resistant safety dealer boots, brown"
-   ],
-   [
-    "g-job-04",
-    "Navy hoodie and green trousers",
-    "jeanstore-lee-workwear-relaxed-boxy-tee-washed-black",
-    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
-    "JCB Workwear Trade Work Polo Shirt, black"
-   ],
-   [
-    "g-job-04",
-    "Navy hoodie and green trousers",
-    "stanray-og-painter-pant-quiet-green-hickory-25-1",
-    "wk-stanray-dk-black",
-    "Stan Ray double-knee work jeans, washed black"
-   ],
-   [
-    "g-job-05",
-    "Blue T-shirt and olive trousers",
-    "universalt-crosshatch-mens-transflate-t-shirt-1",
-    "bestworkwe-fruit-of-the-loom-ss029-original-polo",
-    "Fruit of the Loom Ss029 Original polo, azure blue"
-   ],
-   [
-    "g-job-05",
-    "Blue T-shirt and olive trousers",
-    "stanray-fat-pant-olive-cord-fw22",
+    "jb-painter-6e",
+    "Painter trousers and 6E boots",
     "wk-stanray-painter-black",
-    "Stan Ray 80s painter work trousers, black twill"
-   ],
-   [
-    "g-job-06",
-    "Black hoodie and black trousers",
-    "stanray-heatwave-tee-island-green",
-    "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
-    "Fruit of the Loom SS5 Premium Pique Polo, azure"
-   ],
-   [
-    "g-job-07",
-    "Olive jacket and olive trousers",
-    "jeanstore-lee-workwear-relaxed-boxy-tee-washed-black",
-    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
-    "JCB Workwear Trade Work Polo Shirt, black"
-   ],
-   [
-    "g-job-07",
-    "Olive jacket and olive trousers",
-    "stanray-fat-pant-olive-cord-fw22",
-    "r12-wo-pianemo",
-    "Weekend Offender Pianemo cargo trousers, black"
-   ],
-   [
-    "g-job-08",
-    "Navy T-shirt and stone trousers",
-    "hollandsco-hard-yakka-heritage-long-sleeve-t-shirt",
-    "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
-    "Gildan Gd017 Softstyle™ double piqué polo, charcoal"
-   ],
-   [
-    "g-job-08",
-    "Navy T-shirt and stone trousers",
-    "stanray-standard-5-70s-stone-denim-aw25",
     "r13-on-carpenter",
     "O'Neill O'Riginals carpenter trousers, black"
    ],
    [
-    "g-job-09",
-    "Black gilet and stone trousers",
-    "universalt-marduk-unisex-adult-opus-nocturne-b-t-shirt",
-    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
-    "JCB Workwear Trade Work Polo Shirt, black"
+    "lo13-fleece",
+    "Quarter-zip fleece and green joggers",
+    "r13-gk-jogger",
+    "r13-on-sweatpants",
+    "O'Neill small logo joggers, black"
    ],
    [
-    "g-job-09",
-    "Black gilet and stone trousers",
-    "stanray-stan-ray-double-knee-pant-heavy-stone-wash-denim-24-2",
-    "r13-mk-magnum",
-    "Highlander Magnum cargo work trousers, black"
+    "m10-ivy",
+    "Stripe tee, windcheater and chinos",
+    "r8-lk-crantock",
+    "r11-ellesse-trousers",
+    "Ellesse Levone Pant Navy"
    ],
    [
-    "g-job-10",
-    "Navy T-shirt and black trousers",
-    "hollandsco-hard-yakka-heritage-long-sleeve-t-shirt",
-    "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
-    "Fruit of the Loom SS5 Premium Pique Polo, azure"
+    "m10-oxford-tiebar",
+    "Button-down oxford and tie bar",
+    "r8-lk-crantock",
+    "communityc-mens-relaxed-chinos-navy-01",
+    "Community Clothing Relaxed Chinos - Navy 01"
    ],
    [
-    "g-job-11",
-    "Black gilet and stone trousers",
-    "hollandsco-swanndri-mens-original-v2-t-shirt",
-    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
-    "JCB Workwear Trade Work Polo Shirt, black"
+    "m5-knit-polo-night",
+    "Knitted polo night out",
+    "md-tml-sandringham",
+    "r11-lambrett-trousers",
+    "Lambretta Dawson Grey Self Check Trouser, grey"
    ],
    [
-    "g-job-11",
-    "Black gilet and stone trousers",
-    "stanray-standard-5-70s-stone-denim-aw25",
-    "r13-gr-gpants",
-    "Gramicci G-Pants climbing trousers, black"
+    "m5-tipped-harrington",
+    "Tipped polo and Harrington",
+    "md-bb-norborton",
+    "hufworldwi-mason-pant-pt00335",
+    "HUF Mason Pant, natural"
    ],
    [
-    "g-job-12",
-    "Black hoodie and green trousers",
-    "volcom-workwear-sst",
-    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
-    "JCB Workwear Trade Work Polo Shirt, black"
+    "m7-check-polo",
+    "Check polo and chinos",
+    "md-bb-norborton",
+    "bb-didbrook",
+    "Didbrook Textured Trousers"
    ],
    [
-    "g-job-13",
-    "Black gilet and navy trousers",
-    "universalt-nosferatu-unisex-adult-ornamental-t-shirt",
-    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
-    "JCB Workwear Trade Work Polo Shirt, black"
+    "m7-knit-loafers",
+    "Knitted polo and loafers",
+    "r7-mc-judson",
+    "r11-gabicci-trousers",
+    "Gabicci Mayfield corduroy trousers, navy"
    ],
    [
-    "g-job-13",
-    "Black gilet and navy trousers",
-    "stanray-earls-bib-navy-ripstop-fw23",
-    "r12-sr-painter-denim",
-    "Stan Ray 80s painter work trousers, stonewashed black denim"
+    "m8-caneiros",
+    "White polo, navy chinos and suede loafers",
+    "r8-lk-crantock",
+    "percivalcl-linen-everyday-trousers-navy",
+    "Percival Menswear Linen Everyday Trousers - Navy"
    ],
    [
-    "g-job-14",
-    "Grey T-shirt and stone trousers",
-    "dewaltwork-chico",
-    "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
-    "Gildan Gd017 Softstyle™ double piqué polo, charcoal"
+    "m8-fort",
+    "Check zip-neck polo and cords",
+    "r7-mc-judson",
+    "r11-gabicci-trousers",
+    "Gabicci Mayfield corduroy trousers, navy"
    ],
    [
-    "g-job-14",
-    "Grey T-shirt and stone trousers",
-    "stanray-stan-ray-og-painter-pant-heavy-stone-wash-denim-24-2",
-    "wk-stanray-dk-black",
-    "Stan Ray double-knee work jeans, washed black"
+    "m9-stadium",
+    "White tee, navy chinos and tan Robbies",
+    "r8-lk-crantock",
+    "r11-ellesse-trousers",
+    "Ellesse Levone Pant Navy"
    ],
    [
-    "g-job-15",
-    "Black gilet and olive trousers",
-    "volcom-workwear-sst",
-    "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
-    "Fruit of the Loom SS5 Premium Pique Polo, azure"
+    "md6-fila",
+    "Collared tee and check trousers",
+    "p6-tml-highgrove",
+    "r11-lambrett-trousers",
+    "Lambretta Dawson Grey Self Check Trouser, grey"
    ],
    [
-    "g-job-15",
-    "Black gilet and olive trousers",
-    "stanray-earls-bib-olive-ripstop-fw23",
+    "md6-ringer",
+    "Ringer tee and chinos",
+    "md-bb-norborton",
+    "stanray-a-pant-natural-25-1",
+    "Stan Ray A Pant (Natural)"
+   ],
+   [
+    "q10-bhode",
+    "Quilted jacket and brogues",
+    "r8-lk-crantock",
+    "r11-oliverbr-trousers",
+    "Oliver Brown Pleated Trousers, navy/white stripe"
+   ],
+   [
+    "q10-kestin",
+    "Lambswool V-neck and oxford",
+    "r9-bk-beccles",
+    "routeone-dickies-unionville-pleated-work-pants-black-001191207",
+    "Dickies Unionville Pleated Work Pants - Black"
+   ],
+   [
+    "q10-qzip",
+    "Quarter-zip polo and chinos",
+    "md-bb-norborton",
+    "hufworldwi-mason-pant-pt00335",
+    "HUF Mason Pant, natural"
+   ],
+   [
+    "q13-coastal",
+    "Coastal weekend: grey polo and navy gilet",
+    "r13-vj-chi",
+    "routeone-volcom-chillow-pleat-elasticated-waist-pant-antique-black-001",
+    "Volcom Chillow Pleat Elasticated Waist Pant - Antique Black"
+   ],
+   [
+    "q6-christmas",
+    "Christmas party, under £100",
+    "p6-tml-highgrove",
+    "sw-tailored-grey",
+    "Tailored Trousers, Grey"
+   ],
+   [
+    "q7-gunnar",
+    "Striped half-zip and suede trainers",
+    "md-bb-norborton",
+    "bb-didbrook",
+    "Didbrook Textured Trousers"
+   ],
+   [
+    "q8-morden",
+    "Grey knit, navy chinos and black shoes",
+    "r8-lk-crantock",
+    "universalw-navy-kennedy-stripe-duke-pant",
+    "Universal Works Navy Kennedy Stripe Duke Pant"
+   ],
+   [
+    "q8-wool-jacket",
+    "Brown wool-look jacket and sand chinos",
+    "md-bb-norborton",
+    "stanray-a-pant-natural-25-1",
+    "Stan Ray A Pant (Natural)"
+   ],
+   [
+    "q9-beccles",
+    "Navy gilet and black trousers",
+    "r9-bk-beccles",
+    "universalw-black-merida-seersucker-military-chino",
+    "Universal Works Black Merida Seersucker Military Chino"
+   ],
+   [
+    "q9-hybrid-tie",
+    "Hybrid jacket, oxford and slim tie",
+    "r8-lk-crantock",
+    "universalw-navy-recycled-poly-tech-military-chino",
+    "Universal Works Navy Recycled Polytech Military Chino"
+   ],
+   [
+    "q9-matagalpa",
+    "Long-sleeve polo and scarf",
+    "r9-bk-beccles",
+    "routeone-carhartt-wip-snake-landon-pant-snake-camo-black-heavy-stone-w",
+    "Carhartt WIP Snake Landon Pant - Snake Camo - Black (Heavy Stone Wash)"
+   ],
+   [
+    "s10-varsity",
+    "Varsity sweat and chinos",
+    "md-bb-norborton",
+    "hufworldwi-mason-pant-pt00335",
+    "HUF Mason Pant, natural"
+   ],
+   [
+    "s8-puffer",
+    "Black puffer and tech cargos",
+    "r8-cl-cargo",
+    "r9-cl-techcargo",
+    "Closure London stretch tech cargo trousers, grey"
+   ],
+   [
+    "summer-event",
+    "Summer wedding or the races",
+    "tml-chino-sand",
+    "tmlewin-the-linen-blend-pull-on-trouser-navy",
+    "T.M.Lewin The Linen Blend Trouser"
+   ],
+   [
+    "x11-herring",
+    "Lambswool crew and capped Derbys",
+    "r11-philipmo-trousers",
+    "sw-chino-navy",
+    "Regular Fit Chino, Navy"
+   ],
+   [
+    "x11-luke",
+    "Luke 1977 head to toe",
+    "r11-luke1977-jeans",
+    "r12-lk-future-cargo",
+    "Luke 1977 Future cargo trousers, black"
+   ],
+   [
+    "x11-quilted",
+    "Quilted jacket and lambswool zip-neck",
+    "r11-original-trousers",
+    "routeone-dickies-unionville-pleated-work-pants-black-001191207",
+    "Dickies Unionville Pleated Work Pants - Black"
+   ],
+   [
+    "w20261006-quiet-02",
+    "Navy jacket and stone trousers",
+    "tml-chino-stone",
+    "routeone-carhartt-wip-single-knee-pant-shale-stone-canvas-001188614",
+    "Carhartt WIP Single Knee Pant - Shale (Stone Canvas)"
+   ],
+   [
+    "g-quiet-06",
+    "Stone jacket and navy trousers",
+    "tml-5pocket",
+    "jeanstore-stan-ray-og-painter-relaxed-fit-jeans-70s-stone-denim",
+    "Stan Ray OG Painter Relaxed Fit Jeans - 70's Stone Denim"
+   ],
+   [
+    "g-quiet-09",
+    "Black jacket and grey trousers",
+    "md-tml-sandringham",
+    "tedbaker-straight-leg-pant-dk-grey",
+    "United Legwear & Apparel Co. Straight Leg Pant - Dark Grey"
+   ],
+   [
+    "g-quiet-17",
+    "Navy jacket and indigo trousers",
+    "r11-lylescot-jeans",
+    "r11-philipmo-jeans",
+    "Joules Straight Jeans, rinse wash"
+   ],
+   [
+    "g-quiet-19",
+    "Navy jacket and stone trousers",
+    "tml-chino-stone",
+    "uw-aston-stone",
+    "Universal Works Aston trousers, stone twill"
+   ],
+   [
+    "g-quiet-20",
+    "Navy jacket and indigo trousers",
+    "r11-lylescot-jeans",
+    "pc-jeans-indigo",
+    "Peacocks straight jeans, indigo"
+   ],
+   [
+    "g-quiet-24",
+    "Navy jacket and navy trousers",
+    "tml-5pocket",
+    "jeanstore-stan-ray-big-job-painter-loose-fit-jeans-70s-stone-denim",
+    "Stan Ray Big Job Painter Loose Fit Jeans - 70's Stone Denim"
+   ],
+   [
+    "g-casual-07",
+    "Green T-shirt and black trousers",
+    "r11-luke1977-jeans",
+    "siksilk-siksilk-straight-fit-jeans-ss-28662",
+    "SikSilk Straight Fit Jeans Washed Black"
+   ],
+   [
+    "g-casual-11",
+    "Navy jumper and grey trousers",
+    "r8-cl-cargo",
+    "trueface-mens-fleece-elasticated-jogging-bottoms-open-hem-joggers-gym",
+    "Trueface Open Hem Jogging Bottoms, grey"
+   ],
+   [
+    "g-outdoor-07",
+    "Stone half-zip and stone trousers",
+    "millets-prana-mens-wonderland-rocks-pull-on-pants-sandstone-775606",
+    "r11-bigboots-trousers",
+    "Elwood Elastic Waist Trouser, stone"
+   ],
+   [
+    "g-outdoor-09",
+    "Grey jacket and stone trousers",
+    "millets-prana-mens-wonderland-rocks-pull-on-pants-sandstone-775606",
+    "berghaus-mens-greenbank-pant-taupe-4a000112007",
+    "Berghaus Greenbank Pant - Taupe"
+   ],
+   [
+    "g-job-05",
+    "Blue polo and black trousers",
     "wk-stanray-painter-black",
-    "Stan Ray 80s painter work trousers, black twill"
+    "r12-wg-pw347",
+    "Portwest PW3 cotton work holster trousers, black"
    ],
    [
     "g-job-15",
-    "Black gilet and olive trousers",
-    "amblerssaf-10057-crazy",
-    "r9-hf-m9509b",
-    "Grafters M9509B 4E safety dealer boots, brown"
+    "Black gilet and black trousers",
+    "wk-stanray-painter-black",
+    "wk-cernucci-twill",
+    "Cernucci relaxed twill trousers, black"
    ],
    [
-    "g-job-16",
-    "Yellow jumper and indigo trousers",
-    "universalt-nosferatu-unisex-adult-ornamental-t-shirt",
-    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
-    "JCB Workwear Trade Work Polo Shirt, black"
+    "g-lounge-12",
+    "Black half-zip and black trousers",
+    "gymking-gym-king-pro-logo-v2-jogger-black-black",
+    "gymking-gym-king-momentum-jogger-black",
+    "Gym King Momentum Jogger - Black"
    ],
    [
-    "g-job-16",
-    "Yellow jumper and indigo trousers",
-    "stanray-earls-bib-vintage-stonewash-denim",
-    "r12-mt-chino",
-    "Matalan straight fit chinos, black"
+    "g-lounge-15",
+    "Black T-shirt and navy trousers",
+    "gymking-gym-king-pro-logo-v2-jogger-midnight",
+    "threadbare-trifoliate-mens-navy-slim-fit-cuffed-joggers",
+    "Threadbare Regular Fit Joggers in Navy"
    ],
    [
-    "g-job-17",
-    "Navy polo and indigo trousers",
-    "stanray-og-painter-pant-mid-stonewash-denim-fw22",
-    "r12-wo-pianemo",
-    "Weekend Offender Pianemo cargo trousers, black"
+    "g-lounge-17",
+    "Stone hoodie and black trousers",
+    "gymking-gym-king-pro-logo-v2-jogger-black-black",
+    "gymking-gym-king-text-logo-loopback-jogger-black",
+    "Gym King Text Logo Loopback Jogger - Black"
    ],
    [
-    "g-job-19",
-    "Black T-shirt and indigo trousers",
-    "universalt-marduk-unisex-adult-opus-nocturne-b-t-shirt",
-    "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
-    "Gildan Gd017 Softstyle™ double piqué polo, charcoal"
-   ],
-   [
-    "g-job-19",
-    "Black T-shirt and indigo trousers",
-    "stanray-og-painter-pant-mid-stonewash-denim-fw22",
-    "r12-cl-openhem-cargo",
-    "Closure London twill cargo trousers, charcoal"
-   ],
-   [
-    "g-job-21",
-    "Camel T-shirt and black trousers",
-    "hollandsco-laksen-mens-duck-cotton-t-shirt",
-    "bestworkwe-fruit-of-the-loom-ss5-premium-pique-polo",
-    "Fruit of the Loom SS5 Premium Pique Polo, azure"
-   ],
-   [
-    "g-job-22",
-    "Black T-shirt and grey trousers",
-    "hollandsco-swanndri-mens-original-v2-t-shirt",
-    "rocksolids-jcb-workwear-workwear-trade-work-short-sleeve-polo-shirt",
-    "JCB Workwear Trade Work Polo Shirt, black"
-   ],
-   [
-    "g-job-22",
-    "Black T-shirt and grey trousers",
-    "stanray-earls-bib-battle-grey-duck-fw22",
-    "r12-bs-twill-cargo",
-    "Brave Soul cotton twill cargo trousers, dark grey"
-   ],
-   [
-    "g-job-28",
-    "Blue T-shirt and grey trousers",
-    "bestworkwe-orn-1000-plover-premium-t-shirt",
-    "bestworkwe-fruit-of-the-loom-ss029-original-polo",
-    "Fruit of the Loom Ss029 Original polo, azure blue"
-   ],
-   [
-    "g-job-28",
-    "Blue T-shirt and grey trousers",
-    "stanray-earls-bib-battle-grey-duck-fw22",
-    "r12-bs-twill-cargo",
-    "Brave Soul cotton twill cargo trousers, dark grey"
-   ],
-   [
-    "g-job-28",
-    "Blue T-shirt and grey trousers",
-    "amblerssaf-42860-tan",
-    "amblerssaf-26318-black",
-    "Amblers Safety As803 Broad S3 SRC Waterproof Wide Fit Safety Boots, black"
-   ],
-   [
-    "g-job-31",
-    "White T-shirt and black trousers",
-    "bestworkwe-awdis-ecologie-ea001-cascade-organic-tee",
-    "bestworkwe-gildan-gd017-softstyle-adult-double-pique-polo",
-    "Gildan Gd017 Softstyle™ double piqué polo, charcoal"
-   ],
-   [
-    "g-job-31",
-    "White T-shirt and black trousers",
-    "amblerssaf-42856-black",
-    "r9-ut-dealer",
-    "Grafters 4E super wide safety dealer boots, black"
-   ],
-   [
-    "g-job-28",
-    "Blue polo and grey trousers",
-    "militaryma-swedish-army-kit-bag-and-clasp",
-    "workweargu-portwest-fp99-nylon-drawstring-bag",
-    "Portwest Fp99 Nylon Drawstring Bag, black"
+    "g-lounge-24",
+    "Stone hoodie and charcoal trousers",
+    "gymking-gym-king-pro-logo-v2-jogger-gunmetal-grey",
+    "threadbare-threadbare-mens-regular-fit-cotton-rich-joggers-in-charcoal",
+    "Threadbare Regular Fit Cotton Rich Joggers in Charcoal"
    ]
   ],
   "dropped": [
    [
-    "g-job-12",
-    "Black hoodie and green trousers",
-    "stanray-og-painter-pant-quiet-green-hickory-25-1"
-   ],
-   [
-    "g-job-18",
-    "Black gilet and stone trousers",
-    "stanray-heatwave-tee-island-green"
-   ],
-   [
-    "g-job-20",
-    "Black jacket and olive trousers",
-    "hollandsco-pinewood-mens-twin-pack-t-shirt"
-   ],
-   [
-    "g-job-23",
-    "Black gilet and black trousers",
-    "dewaltwork-chico"
-   ],
-   [
-    "g-job-24",
-    "Black jacket and black trousers",
-    "hollandsco-ridgeline-mens-signature-t-shirt"
-   ],
-   [
-    "g-job-25",
-    "Yellow jumper and grey trousers",
-    "liftingequ-f61082m-fruit-of-the-loom-mens-original-t-shirt"
-   ],
-   [
-    "g-job-26",
-    "Blue jumper and stone trousers",
-    "hollandsco-laksen-mens-duck-cotton-t-shirt"
-   ],
-   [
-    "g-job-27",
-    "Black gilet and indigo trousers",
-    "workweargu-portwest-b195-turin-premium-t-shirt"
-   ],
-   [
-    "g-job-29",
-    "Black T-shirt and black trousers",
-    "universalt-spiral-direct-unisex-adult-sun-dragon-t-shirt"
-   ],
-   [
-    "g-job-30",
-    "Black T-shirt and grey trousers",
-    "liftingequ-f61082m-fruit-of-the-loom-mens-original-t-shirt"
-   ],
-   [
-    "g-job-32",
-    "Green T-shirt and black trousers",
-    "hollandsco-pinewood-mens-twin-pack-t-shirt"
+    "dinner-out",
+    "Dinner out in winter",
+    "tmlewin-ronnie-infinity-active-slim-fit-charcoal-trousers-58728"
    ]
   ]
  },
@@ -6108,6 +5988,1377 @@
    "checked": "2026-10-06",
    "added": "2026-10-06",
    "img_src": "https://cdn.shopify.com/s/files/1/0039/4490/6801/products/dutch-molle-handgrenade_13eb8214-2748-499a-a2b6-0fddc9ededb1.jpg?v=1746436144"
+  },
+  "asos-dickies-carpenter": {
+   "cat": "trouser",
+   "checked": "2026-10-05",
+   "kind": "new",
+   "name": "Dickies 993 regular tapered carpenter jeans, classic blue",
+   "note": "Carpenter jeans at half price.",
+   "occ": [
+    "everyday",
+    "party"
+   ],
+   "price": 37.99,
+   "rank": 332,
+   "sets": [
+    "christmas"
+   ],
+   "shop": "ASOS",
+   "style": [
+    "work",
+    "street",
+    "casual"
+   ],
+   "url": "https://www.asos.com/dickies/dickies-993-regular-tapered-carpenter-jeans-in-classic-blue/prd/210082999",
+   "was": 75,
+   "wx": [
+    "cold",
+    "mild",
+    "warm",
+    "wet"
+   ]
+  },
+  "md-bb-norborton": {
+   "name": "Brakeburn Norborton chinos, sand",
+   "shop": "Brakeburn",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 16.49,
+   "url": "https://www.brakeburn.com/products/norborton-trousers",
+   "checked": "2026-10-06",
+   "style": [
+    "mod",
+    "casual",
+    "quiet"
+   ],
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Slim chinos for £16.49, 70% off.",
+   "rank": 110,
+   "sets": [],
+   "was": 54.99,
+   "insize": true,
+   "sizes": "34W (leg not listed) in stock"
+  },
+  "md-tml-sandringham": {
+   "name": "T.M. Lewin slim check trousers, grey melange",
+   "shop": "T.M. Lewin",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 20.0,
+   "url": "https://tmlewin.co.uk/products/sandringham-infinity-slim-fit-melange-check-trouser-64854",
+   "checked": "2026-10-06",
+   "style": [
+    "mod",
+    "quiet"
+   ],
+   "occ": [
+    "smart",
+    "party",
+    "event"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Slim check trousers for £20, 80% off. Get them hemmed to just touch the shoe.",
+   "rank": 90,
+   "sets": [],
+   "was": 100.0,
+   "insize": true,
+   "sizes": "34W (leg not listed) in stock"
+  },
+  "p6-tml-highgrove": {
+   "name": "T.M. Lewin Highgrove slim check trousers, grey",
+   "shop": "T.M. Lewin",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 25.0,
+   "url": "https://tmlewin.co.uk/products/highgrove-woven-in-italy-slim-fit-grey-check-trousers-64866?variant=40248977653897",
+   "style": [
+    "quiet",
+    "mod"
+   ],
+   "occ": [
+    "smart",
+    "event",
+    "party"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Italian-woven check trousers for £25, 80% off.",
+   "rank": 200,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 125.0,
+   "insize": true,
+   "sizes": "34W (leg not listed) in stock"
+  },
+  "r11-bamboocl-trousers": {
+   "name": "Bamboo Clothing Cole heavyweight trousers",
+   "shop": "Bamboo Clothing",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 62.3,
+   "url": "https://www.bambooclothing.co.uk/products/cole-heavyweight-adventure-trousers-moss-green?variant=58201383567624",
+   "style": [
+    "casual",
+    "lounge"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Trousers from Bamboo Clothing. £62.30, 30% off.",
+   "rank": 220,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 89.0,
+   "insize": true,
+   "sizes": "34W (leg not listed) in stock"
+  },
+  "r11-bravesou-trousers": {
+   "name": "Brave Soul Cotton Twill Cargo Style Chino Trousers, khaki",
+   "shop": "Brave Soul",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 28.0,
+   "url": "https://www.bravesoul.co.uk/products/brave-soul-khaki-trousers-mtr-clarksonkhk?variant=58102156329263",
+   "style": [
+    "casual",
+    "street"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Trousers from Brave Soul. £28.",
+   "rank": 160,
+   "sets": [],
+   "checked": "2026-10-06",
+   "insize": true,
+   "sizes": "34W (leg not listed) in stock"
+  },
+  "r11-fila-trousers": {
+   "name": "Fila Pale Pink Molveno Pin Tuck Slim Leg Pants",
+   "shop": "Fila",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 33.0,
+   "url": "https://www.fila.co.uk/products/molveno-pin-tuck-slim-leg-pants-fw24mh035-581?variant=56286645223810",
+   "style": [
+    "casual",
+    "street"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Trousers from Fila. £33, 40% off.",
+   "rank": 160,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 55.0,
+   "insize": true,
+   "sizes": "L in stock"
+  },
+  "r11-lambrett-joggers": {
+   "name": "Lambretta Logo Jogger, navy",
+   "shop": "Lambretta",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 20.0,
+   "url": "https://www.lambrettaclothing.co.uk/products/logo-jogger-copy?variant=56840988557660",
+   "style": [
+    "mod",
+    "casual"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Joggers from Lambretta. £20, 50% off. Half price or more.",
+   "rank": 160,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 40.0,
+   "insize": true,
+   "sizes": "L in stock"
+  },
+  "r11-luke1977-jeans": {
+   "name": "Luke 1977 Vac slim fit jeans, black",
+   "shop": "Luke 1977",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 18.0,
+   "url": "https://www.luke1977.com/products/vac-black-midnight?variant=44022447702269",
+   "style": [
+    "casual",
+    "street"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Jeans from Luke 1977. £18, 70% off. Half price or more.",
+   "rank": 120,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 60.0,
+   "insize": true,
+   "sizes": "34W 32L in stock"
+  },
+  "r11-lylescot-jeans": {
+   "name": "Lyle & Scott Regular Fit Tapered Denim Jeans",
+   "shop": "Lyle & Scott",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 36.0,
+   "url": "https://www.lyleandscott.com/products/tapered-denim-jeans-stone-wash-blue?variant=45066933174522",
+   "style": [
+    "casual",
+    "quiet"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Jeans from Lyle & Scott. £36, 60% off. Half price or more.",
+   "rank": 160,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 90.0,
+   "insize": true,
+   "sizes": "34W in stock"
+  },
+  "r11-original-jeans": {
+   "name": "Original Penguin dyed stretch denim trousers, black",
+   "shop": "Original Penguin",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 52.5,
+   "url": "https://www.originalpenguin.co.uk/products/over-dyed-stretch-denim-trousers-gray-opbf7c44ou-027?variant=42417910513853",
+   "style": [
+    "casual",
+    "quiet"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Jeans from Original Penguin. £52.50, 30% off.",
+   "rank": 220,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 75.0,
+   "insize": true,
+   "sizes": "34W in stock"
+  },
+  "r11-original-shorts": {
+   "name": "Original Penguin Pull On 8\" Cargo Shorts, dark sapphire",
+   "shop": "Original Penguin",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 38.0,
+   "url": "https://www.originalpenguin.co.uk/products/pull-on-8-cargo-shorts-blue-ochs2203ou-413?variant=43671901274301",
+   "style": [
+    "casual",
+    "quiet"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "warm"
+   ],
+   "note": "Shorts from Original Penguin. £38, 31% off.",
+   "rank": 160,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 55.0,
+   "insize": true,
+   "sizes": "34W in stock"
+  },
+  "r11-original-trousers": {
+   "name": "Original Penguin Slim Fit Chinos, true black",
+   "shop": "Original Penguin",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 70.0,
+   "url": "https://www.originalpenguin.co.uk/products/flat-front-core-chino-pants-black-opbb0022gp-010?variant=62225140187523",
+   "style": [
+    "casual",
+    "quiet"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Trousers from Original Penguin. £70.",
+   "rank": 220,
+   "sets": [],
+   "checked": "2026-10-06",
+   "insize": true,
+   "sizes": "34W in stock"
+  },
+  "r11-philipmo-trousers": {
+   "name": "Spoke Sharps Chino, dark navy",
+   "shop": "Philip Morris Direct",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 74.95,
+   "url": "https://philipmorrisdirect.co.uk/products/spoke-mens-sharps-chino?variant=56762680705364",
+   "style": [
+    "quiet",
+    "outdoor"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Trousers from Philip Morris Direct. £74.95, 40% off.",
+   "rank": 220,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 125.0,
+   "insize": true,
+   "sizes": "34W in stock"
+  },
+  "r13-gk-jogger": {
+   "name": "Gym King fleece joggers, forest green",
+   "shop": "Gym King",
+   "cat": "lounge",
+   "kind": "new",
+   "price": 11.25,
+   "url": "https://www.gymking.com/products/gym-king-aventus-fleece-jogger-deep-forest-green?variant=55170877915519",
+   "style": [
+    "lounge"
+   ],
+   "occ": [
+    "lounge"
+   ],
+   "wx": [
+    "cold"
+   ],
+   "note": "Fleece joggers at 75% off. £11.25, 75% off.",
+   "rank": 120,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 45.0,
+   "insize": true,
+   "sizes": "L in stock"
+  },
+  "r13-vj-chi": {
+   "name": "Voi Chi chino trousers, black",
+   "shop": "Voi Jeans",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 45.0,
+   "url": "https://www.voijeans.com/products/chi-pants-black?variant=58300442345817",
+   "style": [
+    "casual",
+    "street"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Plain black chinos. £45.",
+   "rank": 220,
+   "sets": [],
+   "checked": "2026-10-06",
+   "insize": true,
+   "sizes": "34W in stock"
+  },
+  "r7-dc-everett": {
+   "name": "Duck and Cover Everett chino shorts, stone",
+   "shop": "Duck and Cover",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 16.0,
+   "url": "https://www.duckandcover.co.uk/products/everett-chino-shorts-stone?variant=57007641690495",
+   "style": [
+    "summer",
+    "casual"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "warm"
+   ],
+   "note": "Stone chino shorts. £16, 67% off.",
+   "rank": 120,
+   "sets": [
+    "holiday"
+   ],
+   "checked": "2026-10-06",
+   "was": 49.0,
+   "insize": true,
+   "sizes": "34W (leg not listed) in stock"
+  },
+  "r7-mc-judson": {
+   "name": "Merc Judson slim cord trousers, navy",
+   "shop": "Merc",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 65.0,
+   "url": "https://www.merc.co.uk/products/judson-32l?variant=40450123104358",
+   "style": [
+    "mod",
+    "quiet"
+   ],
+   "occ": [
+    "smart",
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Slim mod cord trousers, 34 waist, 32 leg. £65.",
+   "rank": 220,
+   "sets": [],
+   "checked": "2026-10-06",
+   "insize": true,
+   "sizes": "34W 32L in stock"
+  },
+  "r8-cl-cargo": {
+   "name": "Closure London smart utility cargo trousers, grey",
+   "shop": "Closure London",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 14.99,
+   "url": "https://www.closurelondon.com/products/smart-utility-cargo-pant-charcoal-copy?variant=56526302052730",
+   "style": [
+    "street",
+    "rave"
+   ],
+   "occ": [
+    "everyday",
+    "party"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "Smart cargo trousers. £14.99, 77% off.",
+   "rank": 120,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 65.0,
+   "insize": true,
+   "sizes": "L in stock"
+  },
+  "r8-lk-crantock": {
+   "name": "Luke 1977 Crantock tapered chinos, navy",
+   "shop": "Luke 1977",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 22.0,
+   "url": "https://www.luke1977.com/products/crantock-tapered-trouser-navy?variant=55562332438907",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Tapered navy chinos. £22, 71% off.",
+   "rank": 160,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 75.0,
+   "insize": true,
+   "sizes": "34W (leg not listed) in stock"
+  },
+  "r9-bk-beccles": {
+   "name": "Brakeburn Beccles trousers, black",
+   "shop": "Brakeburn",
+   "cat": "trouser",
+   "kind": "new",
+   "price": 19.49,
+   "url": "https://www.brakeburn.com/products/beccles-trouser-aw25?variant=42485221883965",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Smart trousers, 70% off. £19.49, 70% off.",
+   "rank": 120,
+   "sets": [],
+   "checked": "2026-10-06",
+   "was": 64.99,
+   "insize": true,
+   "sizes": "34W (leg not listed) in stock"
+  },
+  "rv-tapered-cargo": {
+   "cat": "trouser",
+   "checked": "2026-10-05",
+   "kind": "new",
+   "name": "ASOS DESIGN tapered cargo trousers, black",
+   "note": "Tapered at the ankle, so they sit cleanly on a boot.",
+   "occ": [
+    "party",
+    "everyday"
+   ],
+   "price": 32,
+   "rank": 595,
+   "shop": "ASOS",
+   "style": [
+    "rave",
+    "casual"
+   ],
+   "url": "https://www.asos.com/prd/209020359",
+   "wx": [
+    "cold",
+    "mild",
+    "warm",
+    "wet"
+   ]
+  },
+  "tml-5pocket": {
+   "cat": "trouser",
+   "checked": "2026-10-06",
+   "insize": true,
+   "kind": "new",
+   "name": "The 5 Pocket Jean, Navy",
+   "note": "Cut like jeans, in smart cotton.",
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "offer": "Also khaki, olive and black",
+   "price": 40,
+   "rank": 199,
+   "shop": "T.M. Lewin",
+   "sizes": "34W 32L in stock",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "url": "https://tmlewin.co.uk/products/carter-5-pocket-stretch-slim-trouser-navy-68195",
+   "was": 60,
+   "wx": [
+    "cold",
+    "mild",
+    "warm",
+    "wet"
+   ]
+  },
+  "tml-chino-sand": {
+   "cat": "trouser",
+   "checked": "2026-10-06",
+   "insize": true,
+   "kind": "new",
+   "name": "The Lightweight Chino, Sand",
+   "note": "A lighter cloth for spring and summer.",
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "offer": "Eight colours at this price",
+   "price": 40,
+   "rank": 66,
+   "shop": "T.M. Lewin",
+   "sizes": "34W (leg not listed) in stock",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "url": "https://tmlewin.co.uk/products/the-lightweight-chino-sand",
+   "was": 60,
+   "wx": [
+    "warm",
+    "mild"
+   ]
+  },
+  "tml-chino-stone": {
+   "cat": "trouser",
+   "checked": "2026-10-06",
+   "insize": true,
+   "kind": "new",
+   "name": "The Non-Iron Chino, Stone",
+   "note": "A non-iron chino for work.",
+   "occ": [
+    "smart",
+    "everyday"
+   ],
+   "offer": "Also sand, navy and olive",
+   "price": 60,
+   "rank": 200,
+   "shop": "T.M. Lewin",
+   "sizes": "34W (leg not listed) in stock",
+   "style": [
+    "quiet"
+   ],
+   "url": "https://tmlewin.co.uk/products/non-iron-radcliffe-stone-chino",
+   "was": 80,
+   "wx": [
+    "cold",
+    "mild",
+    "warm",
+    "wet"
+   ]
+  },
+  "tml-cord": {
+   "cat": "trouser",
+   "checked": "2026-10-06",
+   "insize": true,
+   "kind": "new",
+   "name": "The Corduroy 5 Pocket Trouser, Kangaroo",
+   "note": "Cords cut like jeans, in a tan brown.",
+   "occ": [
+    "everyday"
+   ],
+   "offer": "2 for £80",
+   "price": 60,
+   "rank": 71,
+   "shop": "T.M. Lewin",
+   "sizes": "34W 32L in stock",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "url": "https://tmlewin.co.uk/products/corduroy-kangaroo-5-pocket-trouser",
+   "wx": [
+    "cold",
+    "mild"
+   ]
+  },
+  "uq-slim-chino": {
+   "cat": "trouser",
+   "checked": "2026-10-06",
+   "insize": true,
+   "kind": "new",
+   "name": "Slim Chino Trousers",
+   "note": "The slimmer cut of the Uniqlo chino.",
+   "occ": [
+    "everyday",
+    "smart"
+   ],
+   "price": 24.9,
+   "rank": 67,
+   "shop": "Uniqlo",
+   "sizes": "34W in stock, 31in leg",
+   "style": [
+    "quiet",
+    "casual"
+   ],
+   "url": "https://www.uniqlo.com/uk/en/products/E450251-000/00?colorDisplayCode=57",
+   "wx": [
+    "cold",
+    "mild",
+    "warm",
+    "wet"
+   ]
+  },
+  "wk-stanray-fatigue": {
+   "name": "Stan Ray taper fatigue trousers, navy ripstop",
+   "shop": "Stan Ray",
+   "cat": "trouser",
+   "price": 63.0,
+   "url": "https://www.stanray.com/products/taper-fatigue-navy-ripstop?variant=37794491728054",
+   "style": [
+    "street",
+    "casual"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild"
+   ],
+   "note": "100% cotton ripstop work trousers made by the American workwear maker.",
+   "rank": 70,
+   "sets": [],
+   "was": 90.0,
+   "insize": true,
+   "sizes": "34W in stock",
+   "kind": "new",
+   "checked": "2026-10-06"
+  },
+  "wk-stanray-painter-black": {
+   "name": "Stan Ray 80s painter work trousers, black twill",
+   "shop": "Stan Ray",
+   "cat": "trouser",
+   "price": 66.5,
+   "url": "https://www.stanray.com/products/80s-painter-pant-black-twill?variant=31857709416545",
+   "style": [
+    "job",
+    "street"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "100% cotton twill painter trousers with a hammer loop.",
+   "rank": 60,
+   "sets": [],
+   "was": 95.0,
+   "insize": true,
+   "sizes": "34W in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "fabric": "100% cotton"
+  },
+  "gymking-gym-king-fundamental-jogger-storm-teal": {
+   "name": "Gym King Fundamental Jogger - Storm Teal",
+   "shop": "Gym King",
+   "cat": "trouser",
+   "price": 27,
+   "url": "https://www.gymking.com/products/gym-king-fundamental-jogger-storm-teal?variant=56271631974783",
+   "style": [
+    "casual",
+    "lounge"
+   ],
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £45 to £27 (40% off). L in stock at the last check.",
+   "rank": 242,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1659/8997/files/FUNDAMENTALCREW_FUNDAMENTALJOGGER-STORMTEALSWT-EOFFRTSB-EOFFT3.jpg?v=1770412458",
+   "was": 45
+  },
+  "gymking-gym-king-fundamental-jogger-blue-surge": {
+   "name": "Gym King Fundamental Jogger - Blue Surge",
+   "shop": "Gym King",
+   "cat": "trouser",
+   "price": 27,
+   "url": "https://www.gymking.com/products/gym-king-fundamental-jogger-blue-surge?variant=56271633613183",
+   "style": [
+    "casual",
+    "lounge"
+   ],
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £45 to £27 (40% off). L in stock at the last check.",
+   "rank": 242,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1659/8997/files/FUNDAMENTALHOOD_FUNDAMENTALJOGGER-BLUESURGEHDE-EOFFPTSB-BOGF03.jpg?v=1770411496",
+   "was": 45
+  },
+  "lyleandsco-sports-tape-sweat-shorts-mercury-grey": {
+   "name": "Lyle & Scott Sports Tape Sweat Shorts",
+   "shop": "Lyle & Scott",
+   "cat": "trouser",
+   "price": 45,
+   "url": "https://www.lyleandscott.com/products/sports-tape-sweat-shorts-mercury-grey?variant=57158721503612",
+   "style": [
+    "quiet",
+    "work",
+    "casual"
+   ],
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "wx": [
+    "warm"
+   ],
+   "note": "Down from £65 to £45 (31% off). L in stock at the last check.",
+   "rank": 262,
+   "sets": [
+    "holiday"
+   ],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "added": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0653/9404/9274/files/mens-jackets-8743056.jpg?v=1784779068",
+   "was": 65
+  },
+  "tmlewin-ronnie-infinity-active-slim-fit-charcoal-trousers-58728": {
+   "name": "T.M.Lewin The Ronnie Suit Trouser",
+   "shop": "T.M. Lewin",
+   "cat": "tailor",
+   "price": 62.5,
+   "url": "https://tmlewin.co.uk/products/ronnie-infinity-active-slim-fit-charcoal-trousers-58728?variant=40248963170441",
+   "style": [
+    "quiet",
+    "work"
+   ],
+   "occ": [
+    "smart",
+    "event"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £125 to £62.50 (50% off). 34W in stock at the last check.",
+   "rank": 235,
+   "sets": [],
+   "insize": true,
+   "sizes": "34W in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0568/3770/1769/files/63178_58727_58728_035.jpg?v=1757578836",
+   "was": 125.0
+  },
+  "tmlewin-the-lightweight-chino-black": {
+   "name": "T.M.Lewin The Lightweight Chino, black",
+   "shop": "T.M. Lewin",
+   "cat": "trouser",
+   "price": 40.0,
+   "url": "https://tmlewin.co.uk/products/the-lightweight-chino-black?variant=55458492187009",
+   "style": [
+    "quiet",
+    "work"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £60 to £40 (33% off). 98% Cot. 34W (leg not listed) in stock at the last check.",
+   "rank": 256,
+   "sets": [],
+   "insize": true,
+   "sizes": "34W (leg not listed) in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0568/3770/1769/files/68281-reddick-lightweight-slim-chino-black-front.png?v=1774545182",
+   "was": 60.0,
+   "fabric": "98% Cot",
+   "sizeNote": "Leg length not listed: check it is a 32in (regular) leg."
+  },
+  "tmlewin-carter-5-pocket-stretch-slim-trouser-olive-68264": {
+   "name": "T.M.Lewin The 5 Pocket Jean, olive",
+   "shop": "T.M. Lewin",
+   "cat": "trouser",
+   "price": 40.0,
+   "url": "https://tmlewin.co.uk/products/carter-5-pocket-stretch-slim-trouser-olive-68264?variant=54900312867201",
+   "style": [
+    "quiet",
+    "work"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £60 to £40 (33% off). 98% Glo. 34W in stock at the last check.",
+   "rank": 256,
+   "sets": [],
+   "insize": true,
+   "sizes": "34W in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0568/3770/1769/files/T-M-LEWIN2025-10-2216360.png?v=1761322293",
+   "was": 60.0,
+   "fabric": "98% Glo"
+  },
+  "tmlewin-the-candelo-linen-trouser-navy": {
+   "name": "T.M.Lewin The Candelo Linen Trouser, navy",
+   "shop": "T.M. Lewin",
+   "cat": "trouser",
+   "price": 100.0,
+   "url": "https://tmlewin.co.uk/products/the-candelo-linen-trouser-navy?variant=55181647872385",
+   "style": [
+    "quiet",
+    "work",
+    "summer"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £150 to £100 (33% off). 100% lin. 34W (leg not listed) in stock at the last check.",
+   "rank": 271,
+   "sets": [],
+   "insize": true,
+   "sizes": "34W (leg not listed) in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0568/3770/1769/files/candelo-navy-linen-trousers-front-68445.png?v=1780472844",
+   "was": 150.0,
+   "fabric": "100% lin",
+   "sizeNote": "Leg length not listed: check it is a 32in (regular) leg."
+  },
+  "tmlewin-non-iron-radcliffe-olive-chino": {
+   "name": "T.M.Lewin The Non-Iron Chino, olive",
+   "shop": "T.M. Lewin",
+   "cat": "trouser",
+   "price": 60.0,
+   "url": "https://tmlewin.co.uk/products/non-iron-radcliffe-olive-chino?variant=55512742592897",
+   "style": [
+    "quiet",
+    "work"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £80 to £60 (25% off). 97% Cot. 34W (leg not listed) in stock at the last check.",
+   "rank": 275,
+   "sets": [],
+   "insize": true,
+   "sizes": "34W (leg not listed) in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0568/3770/1769/files/65412_NI_Radcliffe_Slim_Olive_Chino_Front.jpg?v=1752833195",
+   "was": 80.0,
+   "fabric": "97% Cot",
+   "sizeNote": "Leg length not listed: check it is a 32in (regular) leg."
+  },
+  "blueinc-brave-soul-martell-joggers": {
+   "name": "Brave Soul Martell Joggers, baby pink",
+   "shop": "Blue Inc",
+   "cat": "trouser",
+   "price": 14.99,
+   "url": "https://www.blueinc.co.uk/products/brave-soul-martell-joggers?variant=42247976943806",
+   "style": [
+    "casual",
+    "lounge"
+   ],
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "£14.99, full price. L in stock at the last check.",
+   "rank": 303,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0619/4606/9182/products/brave-soul-martell-joggers-baby-pink-front-1000x1500.jpg?v=1666933032"
+  },
+  "goodhoodst-natra-studios-nellie-pleated-pants-black": {
+   "name": "Natra Studios Nellie Pleated Pants - Black",
+   "shop": "Goodhood",
+   "cat": "trouser",
+   "price": 105.0,
+   "url": "https://www.goodhoodstore.com/products/natra-studios-nellie-pleated-pants-black?variant=56538697761145",
+   "style": [
+    "casual"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £210 to £105 (50% off). 100% rec. L in stock at the last check.",
+   "rank": 246,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0321/4373/6963/files/1076A5DA-5D22-49FE-84F4-AA2B0CBC.jpg?v=1769006347",
+   "was": 210.0,
+   "fabric": "100% rec"
+  },
+  "gymking-gym-king-pro-logo-v2-jogger-black-black": {
+   "name": "Gym King Pro Logo V2 Jogger - Black",
+   "shop": "Gym King",
+   "cat": "trouser",
+   "price": 22.5,
+   "url": "https://www.gymking.com/products/gym-king-pro-logo-v2-jogger-black-black?variant=56928296206719",
+   "style": [
+    "casual",
+    "lounge"
+   ],
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £45 to £22.50 (50% off). L in stock at the last check.",
+   "rank": 225,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1659/8997/files/PROLOGOV2TEE_PROLOGOV2JOGGER-BLACKSST-BOHILTSB-BOHII5_1.jpg?v=1786624457",
+   "was": 45.0
+  },
+  "gymking-gym-king-pro-logo-v2-jogger-gunmetal-grey": {
+   "name": "Gym King Pro Logo V2 Jogger - Gunmetal Grey",
+   "shop": "Gym King",
+   "cat": "trouser",
+   "price": 22.5,
+   "url": "https://www.gymking.com/products/gym-king-pro-logo-v2-jogger-gunmetal-grey?variant=56928296599935",
+   "style": [
+    "casual",
+    "lounge"
+   ],
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £45 to £22.50 (50% off). L in stock at the last check.",
+   "rank": 225,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1659/8997/files/Gym_King_Pro_Logo_V2_Jogger_-_Gunmetal_Grey.jpg?v=1789722597",
+   "was": 45.0
+  },
+  "gymking-gym-king-pro-logo-v2-jogger-truffle": {
+   "name": "Gym King Pro Logo V2 Jogger - Truffle",
+   "shop": "Gym King",
+   "cat": "trouser",
+   "price": 22.5,
+   "url": "https://www.gymking.com/products/gym-king-pro-logo-v2-jogger-truffle?variant=56928296403327",
+   "style": [
+    "casual",
+    "lounge"
+   ],
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £45 to £22.50 (50% off). L in stock at the last check.",
+   "rank": 225,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1659/8997/files/PROLOGOV2HOOD_PROLOGOV2JOGGER-TRUFFLEHDE-BOHIETSB-BOHIJ6.jpg?v=1786624107",
+   "was": 45.0
+  },
+  "gymking-gym-king-pro-logo-v2-jogger-midnight": {
+   "name": "Gym King Pro Logo V2 Jogger - Midnight",
+   "shop": "Gym King",
+   "cat": "trouser",
+   "price": 22.5,
+   "url": "https://www.gymking.com/products/gym-king-pro-logo-v2-jogger-midnight?variant=56928296796543",
+   "style": [
+    "casual",
+    "lounge"
+   ],
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £45 to £22.50 (50% off). L in stock at the last check.",
+   "rank": 225,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1659/8997/files/PROLOGOV2HOOD_PROLOGOV2JOGGER-MIDNIGHTHDE-BOHIGTSB-BOIGP6.jpg?v=1786622746",
+   "was": 45.0
+  },
+  "gymking-gym-king-fundamental-jogger-blueprint": {
+   "name": "Gym King Fundamental Jogger - Blueprint",
+   "shop": "Gym King",
+   "cat": "trouser",
+   "price": 22.5,
+   "url": "https://www.gymking.com/products/gym-king-fundamental-jogger-blueprint?variant=56375913447807",
+   "style": [
+    "casual",
+    "lounge"
+   ],
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £45 to £22.50 (50% off). L in stock at the last check.",
+   "rank": 225,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1659/8997/files/GK_Joss_March_Nomad-8899.jpg?v=1773396060",
+   "was": 45.0
+  },
+  "jackwolfsk-a65166-d0108": {
+   "name": "Jack Wolfskin Prelight Trail Pants",
+   "shop": "Jack Wolfskin",
+   "cat": "trouser",
+   "price": 76.0,
+   "url": "https://www.jack-wolfskin.co.uk/products/a65166_d0108?variant=56836633329988",
+   "style": [
+    "outdoor"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £110 to £76 (31% off). L in stock at the last check.",
+   "rank": 269,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0954/6897/8500/files/A65166_D0108_1-prelight-trail-pants-m-peat.png?v=1788972272",
+   "was": 110.0
+  },
+  "lyleandsco-sports-loopback-cotton-joggers-jet-black": {
+   "name": "Lyle & Scott Sports Loopback Cotton Joggers",
+   "shop": "Lyle & Scott",
+   "cat": "trouser",
+   "price": 45.0,
+   "url": "https://www.lyleandscott.com/products/sports-loopback-cotton-joggers-jet-black?variant=57158708396412",
+   "style": [
+    "quiet",
+    "work",
+    "casual",
+    "lounge"
+   ],
+   "occ": [
+    "everyday",
+    "lounge"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £65 to £45 (31% off). L in stock at the last check.",
+   "rank": 262,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0653/9404/9274/files/mens-jackets-8421325.jpg?v=1785160286",
+   "was": 65.0
+  },
+  "millets-prana-mens-wonderland-rocks-pull-on-pants-sandstone-775606": {
+   "name": "Prana Wonderland Rocks Pull On Pants, beige",
+   "shop": "Millets",
+   "cat": "trouser",
+   "price": 34.97,
+   "url": "https://www.millets.co.uk/products/prana-mens-wonderland-rocks-pull-on-pants-sandstone-775606?variant=58198755311964",
+   "style": [
+    "outdoor"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £110 to £34.97 (68% off). L in stock at the last check.",
+   "rank": 199,
+   "sets": [],
+   "insize": true,
+   "sizes": "L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0895/2214/3580/files/go_775606_a.jpg?v=1773402459",
+   "was": 110.0
+  },
+  "trueface-true-face-men-jeans-tf022-mid-blue": {
+   "name": "True Face Jeans Tf022 Mid Blue",
+   "shop": "Trueface",
+   "cat": "trouser",
+   "price": 16.99,
+   "url": "https://www.trueface.co.uk/products/true-face-men-jeans-tf022-mid-blue?variant=40364050710613",
+   "style": [
+    "casual"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £22.99 to £16.99 (26% off). 97% Cot. 34W 32L in stock at the last check.",
+   "rank": 262,
+   "sets": [],
+   "insize": true,
+   "sizes": "34W 32L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0070/5386/9141/files/50cee979-b82f-4e5d-bccb-9dc361dd827e.jpg?v=1711167924",
+   "was": 22.99,
+   "fabric": "97% Cot"
+  },
+  "trueface-true-face-men-jeans-tf022-dark-blue": {
+   "name": "True Face Jeans Tf022 Dark Blue",
+   "shop": "Trueface",
+   "cat": "trouser",
+   "price": 18.99,
+   "url": "https://www.trueface.co.uk/products/true-face-men-jeans-tf022-dark-blue?variant=40363512234069",
+   "style": [
+    "casual"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "Down from £22.99 to £18.99 (17% off). 97% Cot. 34W 32L in stock at the last check.",
+   "rank": 276,
+   "sets": [],
+   "insize": true,
+   "sizes": "34W 32L in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/0070/5386/9141/files/818.jpg?v=1707827817",
+   "was": 22.99,
+   "fabric": "97% Cot"
+  },
+  "voijeans-chi-pants-navy": {
+   "name": "Voi Jeans CHI Pants Navy",
+   "shop": "Voi Jeans",
+   "cat": "trouser",
+   "price": 45.0,
+   "url": "https://www.voijeans.com/products/chi-pants-navy?variant=58300418195801",
+   "style": [
+    "casual"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "£45, full price. 98% COT. 34W in stock at the last check.",
+   "rank": 311,
+   "sets": [],
+   "insize": true,
+   "sizes": "34W in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1048/0471/2793/files/DSCF0458_0d110598-8c94-45de-bcee-f5b9deece174.jpg?v=1781542537",
+   "fabric": "98% COT"
+  },
+  "voijeans-chi-pants": {
+   "name": "Voi Jeans CHI Pants Stones",
+   "shop": "Voi Jeans",
+   "cat": "trouser",
+   "price": 45.0,
+   "url": "https://www.voijeans.com/products/chi-pants?variant=58300416131417",
+   "style": [
+    "casual"
+   ],
+   "occ": [
+    "everyday"
+   ],
+   "wx": [
+    "mild",
+    "cold"
+   ],
+   "note": "£45, full price. 98% COT. 34W in stock at the last check.",
+   "rank": 311,
+   "sets": [],
+   "insize": true,
+   "sizes": "34W in stock",
+   "kind": "new",
+   "checked": "2026-10-06",
+   "img_src": "https://cdn.shopify.com/s/files/1/1048/0471/2793/files/DSCF0421_d11f74eb-a5e8-4998-a2fc-b162db9d6209.jpg?v=1781035124",
+   "fabric": "98% COT"
   }
  },
  "workwear_untagged": [
@@ -7509,6 +8760,263 @@
    "militaryma-dutch-molle-hand-grenade-dpm-pouch",
    "Military Mart",
    "surplus Dutch Military Molle Grenade - Small Utility Pouch - Grade A"
+  ]
+ ],
+ "removed_tight_fit": [
+  [
+   "asos-dickies-carpenter",
+   "ASOS",
+   "Dickies 993 regular tapered carpenter jeans, classic blue"
+  ],
+  [
+   "md-bb-norborton",
+   "Brakeburn",
+   "Brakeburn Norborton chinos, sand"
+  ],
+  [
+   "md-tml-sandringham",
+   "T.M. Lewin",
+   "T.M. Lewin slim check trousers, grey melange"
+  ],
+  [
+   "p6-tml-highgrove",
+   "T.M. Lewin",
+   "T.M. Lewin Highgrove slim check trousers, grey"
+  ],
+  [
+   "r11-bamboocl-trousers",
+   "Bamboo Clothing",
+   "Bamboo Clothing Cole heavyweight trousers"
+  ],
+  [
+   "r11-bravesou-trousers",
+   "Brave Soul",
+   "Brave Soul Cotton Twill Cargo Style Chino Trousers, khaki"
+  ],
+  [
+   "r11-fila-trousers",
+   "Fila",
+   "Fila Pale Pink Molveno Pin Tuck Slim Leg Pants"
+  ],
+  [
+   "r11-lambrett-joggers",
+   "Lambretta",
+   "Lambretta Logo Jogger, navy"
+  ],
+  [
+   "r11-luke1977-jeans",
+   "Luke 1977",
+   "Luke 1977 Vac slim fit jeans, black"
+  ],
+  [
+   "r11-lylescot-jeans",
+   "Lyle & Scott",
+   "Lyle & Scott Regular Fit Tapered Denim Jeans"
+  ],
+  [
+   "r11-original-jeans",
+   "Original Penguin",
+   "Original Penguin dyed stretch denim trousers, black"
+  ],
+  [
+   "r11-original-shorts",
+   "Original Penguin",
+   "Original Penguin Pull On 8\" Cargo Shorts, dark sapphire"
+  ],
+  [
+   "r11-original-trousers",
+   "Original Penguin",
+   "Original Penguin Slim Fit Chinos, true black"
+  ],
+  [
+   "r11-philipmo-trousers",
+   "Philip Morris Direct",
+   "Spoke Sharps Chino, dark navy"
+  ],
+  [
+   "r13-gk-jogger",
+   "Gym King",
+   "Gym King fleece joggers, forest green"
+  ],
+  [
+   "r13-vj-chi",
+   "Voi Jeans",
+   "Voi Chi chino trousers, black"
+  ],
+  [
+   "r7-dc-everett",
+   "Duck and Cover",
+   "Duck and Cover Everett chino shorts, stone"
+  ],
+  [
+   "r7-mc-judson",
+   "Merc",
+   "Merc Judson slim cord trousers, navy"
+  ],
+  [
+   "r8-cl-cargo",
+   "Closure London",
+   "Closure London smart utility cargo trousers, grey"
+  ],
+  [
+   "r8-lk-crantock",
+   "Luke 1977",
+   "Luke 1977 Crantock tapered chinos, navy"
+  ],
+  [
+   "r9-bk-beccles",
+   "Brakeburn",
+   "Brakeburn Beccles trousers, black"
+  ],
+  [
+   "rv-tapered-cargo",
+   "ASOS",
+   "ASOS DESIGN tapered cargo trousers, black"
+  ],
+  [
+   "tml-5pocket",
+   "T.M. Lewin",
+   "The 5 Pocket Jean, Navy"
+  ],
+  [
+   "tml-chino-sand",
+   "T.M. Lewin",
+   "The Lightweight Chino, Sand"
+  ],
+  [
+   "tml-chino-stone",
+   "T.M. Lewin",
+   "The Non-Iron Chino, Stone"
+  ],
+  [
+   "tml-cord",
+   "T.M. Lewin",
+   "The Corduroy 5 Pocket Trouser, Kangaroo"
+  ],
+  [
+   "uq-slim-chino",
+   "Uniqlo",
+   "Slim Chino Trousers"
+  ],
+  [
+   "wk-stanray-fatigue",
+   "Stan Ray",
+   "Stan Ray taper fatigue trousers, navy ripstop"
+  ],
+  [
+   "wk-stanray-painter-black",
+   "Stan Ray",
+   "Stan Ray 80s painter work trousers, black twill"
+  ],
+  [
+   "gymking-gym-king-fundamental-jogger-storm-teal",
+   "Gym King",
+   "Gym King Fundamental Jogger - Storm Teal"
+  ],
+  [
+   "gymking-gym-king-fundamental-jogger-blue-surge",
+   "Gym King",
+   "Gym King Fundamental Jogger - Blue Surge"
+  ],
+  [
+   "lyleandsco-sports-tape-sweat-shorts-mercury-grey",
+   "Lyle & Scott",
+   "Lyle & Scott Sports Tape Sweat Shorts"
+  ],
+  [
+   "tmlewin-ronnie-infinity-active-slim-fit-charcoal-trousers-58728",
+   "T.M. Lewin",
+   "T.M.Lewin The Ronnie Suit Trouser"
+  ],
+  [
+   "tmlewin-the-lightweight-chino-black",
+   "T.M. Lewin",
+   "T.M.Lewin The Lightweight Chino, black"
+  ],
+  [
+   "tmlewin-carter-5-pocket-stretch-slim-trouser-olive-68264",
+   "T.M. Lewin",
+   "T.M.Lewin The 5 Pocket Jean, olive"
+  ],
+  [
+   "tmlewin-the-candelo-linen-trouser-navy",
+   "T.M. Lewin",
+   "T.M.Lewin The Candelo Linen Trouser, navy"
+  ],
+  [
+   "tmlewin-non-iron-radcliffe-olive-chino",
+   "T.M. Lewin",
+   "T.M.Lewin The Non-Iron Chino, olive"
+  ],
+  [
+   "blueinc-brave-soul-martell-joggers",
+   "Blue Inc",
+   "Brave Soul Martell Joggers, baby pink"
+  ],
+  [
+   "goodhoodst-natra-studios-nellie-pleated-pants-black",
+   "Goodhood",
+   "Natra Studios Nellie Pleated Pants - Black"
+  ],
+  [
+   "gymking-gym-king-pro-logo-v2-jogger-black-black",
+   "Gym King",
+   "Gym King Pro Logo V2 Jogger - Black"
+  ],
+  [
+   "gymking-gym-king-pro-logo-v2-jogger-gunmetal-grey",
+   "Gym King",
+   "Gym King Pro Logo V2 Jogger - Gunmetal Grey"
+  ],
+  [
+   "gymking-gym-king-pro-logo-v2-jogger-truffle",
+   "Gym King",
+   "Gym King Pro Logo V2 Jogger - Truffle"
+  ],
+  [
+   "gymking-gym-king-pro-logo-v2-jogger-midnight",
+   "Gym King",
+   "Gym King Pro Logo V2 Jogger - Midnight"
+  ],
+  [
+   "gymking-gym-king-fundamental-jogger-blueprint",
+   "Gym King",
+   "Gym King Fundamental Jogger - Blueprint"
+  ],
+  [
+   "jackwolfsk-a65166-d0108",
+   "Jack Wolfskin",
+   "Jack Wolfskin Prelight Trail Pants"
+  ],
+  [
+   "lyleandsco-sports-loopback-cotton-joggers-jet-black",
+   "Lyle & Scott",
+   "Lyle & Scott Sports Loopback Cotton Joggers"
+  ],
+  [
+   "millets-prana-mens-wonderland-rocks-pull-on-pants-sandstone-775606",
+   "Millets",
+   "Prana Wonderland Rocks Pull On Pants, beige"
+  ],
+  [
+   "trueface-true-face-men-jeans-tf022-mid-blue",
+   "Trueface",
+   "True Face Jeans Tf022 Mid Blue"
+  ],
+  [
+   "trueface-true-face-men-jeans-tf022-dark-blue",
+   "Trueface",
+   "True Face Jeans Tf022 Dark Blue"
+  ],
+  [
+   "voijeans-chi-pants-navy",
+   "Voi Jeans",
+   "Voi Jeans CHI Pants Navy"
+  ],
+  [
+   "voijeans-chi-pants",
+   "Voi Jeans",
+   "Voi Jeans CHI Pants Stones"
   ]
  ]
 }
