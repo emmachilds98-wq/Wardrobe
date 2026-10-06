@@ -1175,6 +1175,66 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
     - pleats and turn-ups.
 - **Trousers:** the crotch front lies flat across (no hollow "cup").
 
+## 2zs. Never shirtless; zip up or unzip; the shop photo's own front; collar, layer and seam fixes (7 Oct 2026)
+
+- **Never shirtless.** Six outfits put a jacket, fleece or gilet straight on his skin, and four had a lone shirt
+  "worn open". Each now has a top under it:
+  - The six Workwear outfits use **his work T-shirt**. That is a new kind of piece (`"own": "work"`) that he already
+    has: the card says "Already his, nothing to buy", it adds nothing to the price and it never shows as "no longer
+    listed". This follows the Workwear rule that work supplies his T-shirts.
+  - The others get real picks. The fleece walk gets a Tog24 grey marl tee (£8), the Montirex outfit a Montirex black
+    tee (£13.99), and the resort shirt a Saltrock white tee (£8). The crinkle shirt gets a Blue Inc ribbed tee (£6.99),
+    the Yedra shirt a Luke 1977 Dovetail tee (£12) and the Luke 1977 outfit a Luke 1977 Ellison waffle tee (£13).
+  - Notes and totals were updated.
+  - The builder adds a plain white tee to the figure whenever a jacket, gilet, cardigan or waistcoat has nothing
+    under it. It also says so, and an "Add a T-shirt" button picks a plain tee in his size and the chosen styles.
+  - Suggest never leaves a cardigan on its own.
+  - The weekly refresh adds a tee to any outfit that ends up bare: his work tee for Workwear, otherwise the cheapest
+    plain neutral tee in style. It also leaves "own" pieces alone.
+- **Zip up / Unzip** on the 3D model's view bar, whenever the outfit has a jacket, coat, blazer, gilet, cardigan or
+  overshirt:
+  - Done up, the piece shows a zip down the middle or a row of buttons (a blazer's one or two at the waist).
+  - Coil zips take the cloth's colour; metal is kept for workwear, denim, leather, Harringtons and bombers.
+  - A hoodie under a done-up jacket keeps its hood out over the collar. A hooded jacket (parka, "active" jacket,
+    anorak) has its own hood on his back.
+- **Gilets** are built like a jacket's body:
+  - They cover his shoulders, with clean armholes cut at the point of the shoulder (no more zigzag where the top
+    underneath poked through).
+  - A zipped stand collar on bodywarmers.
+  - In 2D a done-up gilet is drawn without sleeves, so the top under it shows at the arms.
+- **Overshirts** (shackets, chore and work shirts, flannels) are worn open over a shirt or tee, as jackets are.
+- **The shop photo's own front (3D).**
+  - When the photo is a flat or ghost-mannequin shot of a closed top, the garment's front is cut out of it, from just
+    under the collar to the hem. Background is made clear, the edges are feathered and the lighting is evened out
+    smoothly.
+  - The cut-out is laid over the front, so pockets, panels, plackets, prints and logos are as sold. Examples: the
+    Luke 1977 Thor tee's ecru chest panel, the Admiral and Weekend Offender prints, and the Pacaya shirt's buttons.
+  - The drawn pockets, plackets and logos then stand down, so nothing is doubled.
+  - A photo is not used when:
+    - it is worn by a model (his neck above the collar, a chin at the top middle, hands, or other clothes in the
+      cut-out);
+    - it is a folded shirt in its packaging (holes where the background shows through);
+    - much of it is far from the garment's own colours.
+  - A maker's neck label is no longer taken for a logo.
+- **Sleeves** take their own colour where the photo shows them in another (raglan, colour-block). A
+  "sleeve-stripe" polo gets stripes round the sleeves only, not across the body.
+- **Colour:**
+  - Charcoal and grey pieces are no longer crushed to near black (that pull-down is now kept for things the listing
+    calls black or that read very dark).
+  - A strong, even stripe is read from the photo even when the listing doesn't say stripe.
+- **Trousers:**
+  - Cut from the listing: slim, skinny, tapered (and cuffed joggers) narrow to the ankle; barrel legs are fuller at
+    the knee; bootcut and flares widen at the hem; cropped and ankle-length end higher.
+  - Where the legs meet the one-piece top, the cloth now runs on in one line: no shading step, specks or broken
+    check across the thigh. Wide legs widen gradually from the hip.
+- **Checked again** (the fixes from the last two rounds):
+  - open shirts' collars at the sides;
+  - no inner collar under a closed shirt;
+  - hoodie under an open or done-up jacket;
+  - the crotch;
+  - yokes, seams, pockets and prints on the back;
+  - shoe colours.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

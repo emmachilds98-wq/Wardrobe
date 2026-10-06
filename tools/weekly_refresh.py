@@ -654,6 +654,8 @@ def cmd_outfits(a):
             o = d[ok]
             styles = set(o.get("style", []))
             for p in o["pieces"]:
+                if p.get("own"):
+                    continue  # something he already has (his work T-shirt): nothing to check
                 it0 = items.get(p["item"])
                 job_bound = "job" in styles and it0 is not None and "job" not in it0.get("style", []) and \
                     p.get("shape") in ("trousers", "shorts", "boots", "shoes", "tee")
@@ -706,6 +708,46 @@ def cmd_outfits(a):
                     report["dropped"].append([ok, o["name"], p["item"]])
                     del d[ok]
                     break
+    # Never shirtless: a jacket, gilet, cardigan or waistcoat (or a shirt worn open) with nothing under it gets a T-shirt. Workwear
+    # outfits use his work T-shirt (work gives him those); others get the cheapest plain neutral tee in style.
+    report["tee_added"] = []
+    OPEN = {"jacket", "blazer", "coat", "gilet", "cardigan", "waistcoat"}
+    BASE = {"tee", "polo", "sshirt", "shirt", "rollneck", "jumper", "hoodie", "halfzip", "vest"}
+    for f, d in ofiles.items():
+        for ok, o in d.items():
+            ps = o["pieces"]
+            ups = [p for p in ps if p["shape"] in OPEN | BASE]
+            open_shirt = ups and all("worn open" in p.get("what", "").lower() for p in ups)  # a lone shirt worn open
+            if not open_shirt and (not any(p["shape"] in OPEN for p in ps) or any(p["shape"] in BASE for p in ps)):
+                continue
+            styles = set(o.get("style", []))
+            if "job" in styles:
+                tee = {"item": "", "shape": "tee", "col": "navy", "what": "His work T-shirt (work gives him these)", "own": "work"}
+            else:
+                pale = any(p["shape"] in OPEN and p.get("col") in ("white", "cream", "stone", "sand") for p in ps)
+                want = ["navy", "black", "grey", "charcoal"] if pale else ["white", "grey", "black", "navy"]
+                best = None
+                for k, v in items.items():
+                    if v.get("cat") != "polo" or v.get("insize") is False or v.get("kind") == "preowned":
+                        continue
+                    if styles and not styles & set(v.get("style", [])):
+                        continue
+                    try:
+                        if mo.shape(v) != "tee":
+                            continue
+                    except Exception:
+                        continue
+                    col = mo.colour(v["name"])
+                    if col not in want or re.search(r"graphic|print|logo|slogan|stripe|tie[- ]?dye|thermal|base ?layer", v["name"], re.I):
+                        continue
+                    sc = want.index(col) * 2 + (0 if k in photos else 2) + v.get("price", 99) / 12
+                    if best is None or sc < best[0]:
+                        best = (sc, k, col)
+                if not best:
+                    continue
+                tee = {"item": best[1], "shape": "tee", "col": best[2], "what": best[2].capitalize() + " T-shirt"}
+            ps.insert(1, tee)
+            report["tee_added"].append([ok, o["name"], tee["item"] or "his work T-shirt"])
     # Generated outfits are named after their colours ("Navy jacket and grey trousers"); rename
     # the ones whose pieces changed so the name still describes them.
     changed = {x[0] for x in report["swapped"]}

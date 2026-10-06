@@ -1080,7 +1080,7 @@
   "wx": [
    "warm"
   ],
-  "note": "Resort shirt over bright swim shorts with sport sandals: £71.",
+  "note": "Resort shirt open over a white tee, bright swim shorts and sport sandals: £79.",
   "look": "man ecru embroidered resort shirt orange swim shorts black sport sandals",
   "rank": 20,
   "tags": [
@@ -1092,6 +1092,12 @@
     "shape": "sshirt",
     "col": "cream",
     "what": "Resort shirt, worn open"
+   },
+   {
+    "item": "r10-sr-tee",
+    "shape": "tee",
+    "col": "white",
+    "what": "White T-shirt"
    },
    {
     "item": "r10-sr-putts",
@@ -2072,8 +2078,8 @@
   "wx": [
    "warm"
   ],
-  "note": "Charcoal 100% cotton shorts, 4E safety shoes and a light jacket for cool mornings: £88.",
-  "look": "man khaki light jacket charcoal cotton shorts black safety shoes",
+  "note": "Charcoal 100% cotton shorts, 4E safety shoes and a light jacket over his work T-shirt for cool mornings: £88.",
+  "look": "man khaki light jacket navy t-shirt charcoal cotton shorts black safety shoes",
   "rank": 7,
   "tags": [
    "holiday"
@@ -2084,6 +2090,13 @@
     "shape": "jacket",
     "col": "olive",
     "what": "Light jacket, worn open"
+   },
+   {
+    "item": "",
+    "shape": "tee",
+    "col": "navy",
+    "what": "His work T-shirt (work gives him these)",
+    "own": "work"
    },
    {
     "item": "wk-passenger-drifter",
@@ -2109,7 +2122,7 @@
    "warm"
   ],
   "note": "Black cotton work shorts, a canvas gilet for early starts and 4E safety shoes. About £118.",
-  "look": "man stone canvas gilet black denim work shorts black safety shoes",
+  "look": "man stone canvas gilet navy t-shirt black denim work shorts black safety shoes",
   "rank": 3,
   "tags": [
    "holiday"
@@ -2120,6 +2133,13 @@
     "shape": "gilet",
     "col": "stone",
     "what": "Canvas bodywarmer over the work tee"
+   },
+   {
+    "item": "",
+    "shape": "tee",
+    "col": "navy",
+    "what": "His work T-shirt (work gives him these)",
+    "own": "work"
    },
    {
     "item": "wk-stanray-short-black",
@@ -3663,8 +3683,8 @@
    "warm",
    "mild"
   ],
-  "note": "Plain cotton shorts with clip-on holster pockets and a light gilet: £153.",
-  "look": "man black padded gilet black twill shorts black holster pockets black safety shoes",
+  "note": "Plain cotton shorts with clip-on holster pockets and a light gilet over his work T-shirt: £153.",
+  "look": "man black padded gilet navy t-shirt black twill shorts black holster pockets black safety shoes",
   "rank": 11,
   "tags": [],
   "pieces": [
@@ -3673,6 +3693,13 @@
     "shape": "gilet",
     "col": "black",
     "what": "Light padded gilet"
+   },
+   {
+    "item": "",
+    "shape": "tee",
+    "col": "navy",
+    "what": "His work T-shirt (work gives him these)",
+    "own": "work"
    },
    {
     "item": "wk-cs-shorts-black",
@@ -3703,7 +3730,7 @@
   "wx": [
    "cold"
   ],
-  "note": "A warm hooded jacket, relaxed Carhartt twill trousers, a padded belt and wide boots: £305.",
+  "note": "A warm hooded jacket over his work T-shirt, relaxed Carhartt twill trousers, a padded belt and wide boots: £305.",
   "look": "man black sherpa lined hooded work jacket black canvas work trousers black padded tool belt black safety boots",
   "rank": 12,
   "tags": [
@@ -3715,6 +3742,13 @@
     "shape": "jacket",
     "col": "black",
     "what": "Sherpa-lined jacket"
+   },
+   {
+    "item": "",
+    "shape": "tee",
+    "col": "navy",
+    "what": "His work T-shirt (work gives him these)",
+    "own": "work"
    },
    {
     "item": "wk-carhartt-b324",
@@ -8730,8 +8764,8 @@
    "mild",
    "cold"
   ],
-  "note": "Fleece, cotton trousers and waterproof walking boots: £78.",
-  "look": "man navy fleece jacket olive cotton trousers brown walking boots green beanie",
+  "note": "Fleece over a grey marl tee, cotton trousers and waterproof walking boots: about £95.",
+  "look": "man navy fleece jacket grey marl t-shirt olive cotton trousers brown walking boots green beanie",
   "rank": 18,
   "tags": [],
   "pieces": [
@@ -8740,6 +8774,12 @@
     "shape": "jacket",
     "col": "blue",
     "what": "Fleece jacket"
+   },
+   {
+    "item": "tog24-goodman-mens-t-shirt-light-grey-marl",
+    "shape": "tee",
+    "col": "grey",
+    "what": "Grey marl T-shirt, 97% cotton"
    },
    {
     "item": "r7-tg-nelson",
@@ -10338,7 +10378,7 @@
    "mild",
    "warm"
   ],
-  "note": "All black for the night: £82.",
+  "note": "All black for the night, the crinkle shirt open over a ribbed tee: £89.",
   "look": "man black crinkle shirt black parachute trousers black tech runners wrap sunglasses",
   "rank": 18,
   "tags": [],
@@ -10348,6 +10388,12 @@
     "shape": "shirt",
     "col": "black",
     "what": "Crinkle shirt, worn open"
+   },
+   {
+    "item": "bi-rib-tee",
+    "shape": "tee",
+    "col": "black",
+    "what": "Black ribbed T-shirt"
    },
    {
     "item": "rv-weekday-parachute",
@@ -10461,7 +10507,7 @@
   "wx": [
    "mild"
   ],
-  "note": "A black pocket shirt, grey tech cargos and runners: £75.",
+  "note": "A black pocket shirt open over a black tee, grey tech cargos and runners: £87.",
   "look": "man black pocket shirt grey tech cargo trousers black tech runners silver chain",
   "rank": 20,
   "tags": [],
@@ -10471,6 +10517,12 @@
     "shape": "shirt",
     "col": "black",
     "what": "Pocket shirt, worn open"
+   },
+   {
+    "item": "r9-lk-dovetail",
+    "shape": "tee",
+    "col": "black",
+    "what": "Black T-shirt"
    },
    {
     "item": "r9-cl-techcargo",
@@ -13769,7 +13821,7 @@
   "wx": [
    "mild"
   ],
-  "note": "All Luke 1977: overshirt, slim black jeans and chucker boots for £104.",
+  "note": "All Luke 1977: overshirt over a waffle tee, black cargos and chucker boots for £134.",
   "look": "man black overshirt black slim jeans brown chukka boots",
   "rank": 16,
   "tags": [],
@@ -13779,6 +13831,12 @@
     "shape": "shirt",
     "col": "black",
     "what": "Overshirt, worn open"
+   },
+   {
+    "item": "r8-lk-ellison",
+    "shape": "tee",
+    "col": "black",
+    "what": "Black waffle T-shirt"
    },
    {
     "item": "r12-lk-future-cargo",
@@ -14011,8 +14069,8 @@
    "mild",
    "cold"
   ],
-  "note": "Montirex fleece, joggers and backpack: £160.",
-  "look": "man black fleece jacket grey joggers black backpack black runners",
+  "note": "Montirex fleece, tee, joggers and backpack: £174.",
+  "look": "man black fleece jacket black t-shirt grey joggers black backpack black runners",
   "rank": 20,
   "tags": [],
   "pieces": [
@@ -14021,6 +14079,12 @@
     "shape": "jacket",
     "col": "black",
     "what": "Void fleece jacket"
+   },
+   {
+    "item": "montirex-golf-t-shirt-black-mtx1552-001",
+    "shape": "tee",
+    "col": "black",
+    "what": "Black T-shirt"
    },
    {
     "item": "r11-montirex-joggers",
