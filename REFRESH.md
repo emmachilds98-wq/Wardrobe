@@ -36,6 +36,9 @@ Use today's date as `D` (YYYY-MM-DD). Work on a branch, then merge to `main` so 
      joggers only go if they are slim), and regular, straight, relaxed and wide fits get a `fit` label
      and rank higher. `weekly_refresh.py fit` does the same on its own.
    - The results are in `data/refresh-report.json`.
+   - Then `python3 tools/weekly_refresh.py fabric` reads each pick's fibre composition from its listing
+     (it also fixes card notes), and `node tools/check_3d.js --site docs --report` runs the 3D checks after the
+     build in step 6.
 
 3. **Find new picks** that fit (his sizes, style rules, Workwear rules, reduced first):
 

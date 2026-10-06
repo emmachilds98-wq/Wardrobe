@@ -618,6 +618,96 @@ def cmd_fit(a):
     print(len(report["removed_tight_fit"]), "slim, skinny or tapered trousers removed;", n, "picks labelled with a loose fit")
 
 
+# ---------------------------------------------------------------- fabric
+
+TRUNC_FAB = re.compile(r"^\d{1,3}% [A-Za-z]{2,4}$")
+FAB_PREFIX = {"cot": "cotton", "org": "organic cotton", "nyl": "nylon", "acr": "acrylic", "lea": "leather",
+              "lin": "linen", "vis": "viscose", "woo": "wool", "ela": "elastane", "bam": "bamboo", "cas": "cashmere",
+              "lam": "lambswool", "hem": "hemp", "sue": "suede", "lyo": "lyocell", "ray": "rayon", "mod": "modal"}
+# (left out as ambiguous: "pol" polyester or polyamide, "sil" silk or silicone, "rec" recycled what, "pur" pure what)
+
+
+def bodies(catdir, smdir, files):
+    """(host, handle) and url -> plain description, from the downloaded catalogues, for every pick found in them."""
+    want, by_url = collections.defaultdict(set), {}
+    for d in files.values():
+        for v in d.values():
+            h, hd = host_of(v["url"]), handle_of(v["url"])
+            if hd:
+                want[h].add(hd)
+            by_url[re.sub(r"[?#].*", "", v["url"]).rstrip("/").lower()] = 1
+    out = {}
+    for h, hs in want.items():
+        path = os.path.join(catdir, h + ".json")
+        if not os.path.exists(path):
+            continue
+        try:
+            for p in json.load(open(path)):
+                if p.get("handle") in hs:
+                    out[(h, p["handle"])] = sf.strip_tags(p.get("body_html"))[:4000]
+        except Exception:
+            continue
+    if smdir and os.path.isdir(smdir):
+        for fn in os.listdir(smdir):
+            if not fn.endswith(".json") or fn.startswith("_"):
+                continue
+            try:
+                for p in json.load(open(os.path.join(smdir, fn))):
+                    u = re.sub(r"[?#].*", "", p.get("url") or "").rstrip("/").lower()
+                    if u in by_url:
+                        out[u] = sf.strip_tags(p.get("body_html"))[:4000]
+            except Exception:
+                continue
+    return out
+
+
+def set_fabric(v, new):
+    """Sets the pick's fibre composition and keeps its card note in step: the old fabric sentence is replaced, or
+    the new one goes after the price sentence."""
+    old = v.get("fabric", "")
+    note = v.get("note", "")
+    if old:
+        note = re.sub(r"\s*" + re.escape(old) + r"\.", "", note, count=1, flags=re.I)
+    if new:
+        sent = new[0].upper() + new[1:] + "."
+        m = re.match(r"^(Down from £[\d.]+ to £[\d.]+ \(\d+% off\)\.|£[\d.]+, full price\.)", note)
+        note = (note[:m.end()] + " " + sent + note[m.end():]) if m else (sent + " " + note)
+        v["fabric"] = new
+    else:
+        v.pop("fabric", None)
+    v["note"] = re.sub(r"\s{2,}", " ", note).strip()
+
+
+def cmd_fabric(a):
+    """Re-reads every pick's fibre composition from its listing (the downloaded catalogues), fixes compositions cut
+    short by the old reader ("100% Cot"), and drops the ones that cannot be completed."""
+    files = load_items()
+    desc = bodies(a.cat, os.path.join(ROOT, "cat_sm"), files)
+    st = collections.Counter()
+    for d in files.values():
+        for v in d.values():
+            body = desc.get((host_of(v["url"]), handle_of(v["url"]) or "")) or desc.get(re.sub(r"[?#].*", "", v["url"]).rstrip("/").lower())
+            old = v.get("fabric", "")
+            new = sf.fabric_of(body) if body else ""
+            if not new and old:
+                if TRUNC_FAB.match(old):
+                    pct, w = old.split(" ", 1)
+                    full = FAB_PREFIX.get(w[:3].lower())
+                    new = (pct + " " + full) if full else ""
+                    st["completed from the cut-off text" if new else "cut off, dropped"] += 1
+                else:
+                    new = old.lower()
+                    st["kept"] += 1
+            elif new:
+                st["read from the listing" if new != old else "unchanged"] += 1
+            if new != old or (old and old not in v.get("note", "")):
+                set_fabric(v, new)
+    save_items(files)
+    n = sum(1 for d in files.values() for v in d.values() if v.get("fabric"))
+    c100 = sum(1 for d in files.values() for v in d.values() if re.match(r"^100% (organic )?cotton", v.get("fabric", "")))
+    print(dict(st), "-", n, "picks with a fabric,", c100, "of them 100% cotton")
+
+
 # ---------------------------------------------------------------- outfits
 
 def bkind(n):
@@ -774,14 +864,14 @@ def cmd_outfits(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["pull", "check", "rules", "fit", "outfits"])
+    ap.add_argument("cmd", choices=["pull", "check", "rules", "fit", "fabric", "outfits"])
     ap.add_argument("--cat", default=os.path.join(ROOT, "cat"))
     ap.add_argument("--date", default=datetime.date.today().isoformat())
     ap.add_argument("--pages", type=int, default=60)
     ap.add_argument("--workers", type=int, default=12)
     ap.add_argument("--browser", action="store_true")
     a = ap.parse_args()
-    {"pull": cmd_pull, "check": cmd_check, "rules": cmd_rules, "fit": cmd_fit, "outfits": cmd_outfits}[a.cmd](a)
+    {"pull": cmd_pull, "check": cmd_check, "rules": cmd_rules, "fit": cmd_fit, "fabric": cmd_fabric, "outfits": cmd_outfits}[a.cmd](a)
 
 
 if __name__ == "__main__":

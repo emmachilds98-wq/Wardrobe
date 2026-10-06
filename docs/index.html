@@ -505,6 +505,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 .ce-opts input[type=range]{width:min(100%,260px);accent-color:var(--green)}
 .ce-val{font-variant-numeric:tabular-nums;font-weight:600;min-width:4.5rem}
 .ce-acts{margin-top:14px}
+.ce-wear{display:flex;gap:6px;flex-wrap:wrap}
 .b3d-edit{align-self:center}
 @media (max-width:720px){.ce-grid{grid-template-columns:1fr}.ce-view{position:static}.ce-3d{max-height:46vh;aspect-ratio:auto;height:46vh}.ce-row{grid-template-columns:minmax(0,1fr)}}
 .figmode{display:flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
@@ -767,6 +768,14 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
     </div>
     <div id="mine-body"></div>
   </section>
+
+  <details class="fold" id="fitroom-fold" data-view="guide">
+    <summary>Fitting room <small>Dave's build in 3D</small></summary>
+    <div class="fold-body">
+      <p class="msg">Dave on the 3D model in plain underwear, with every body slider: height, build, shoulders, chest, waist, legs and proportions. Set him here once and every outfit drawn in 3D follows his shape. The fitting room also opens from Edit Dave on any outfit, and you can switch to that outfit to see the clothes on him.</p>
+      <div class="b-row"><button class="btn" type="button" data-chared data-chared-wear="under">Open the fitting room</button></div>
+    </div>
+  </details>
 
   <details class="fold" id="settings-fold" data-view="guide">
     <summary>Page settings <small>how Dave is shown</small></summary>
@@ -1145,8 +1154,8 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 
 <dialog class="zoom chared" id="chared" aria-labelledby="chared-h"><div class="zoom-in"><button class="act zx" type="button" data-cclose>Close</button>
   <h2 id="chared-h" class="ce-h">Edit Dave</h2>
-  <p class="msg ce-lede">How Dave looks in the 3D model. Changes show straight away on the left; Save puts them on every 3D figure on the page.</p>
-  <div class="ce-grid"><div class="ce-view"><div class="ce-3d" id="ce-3d" aria-label="3D preview of Dave. Drag to turn him round."><p class="msg ce-load">Loading the 3D model…</p></div><p class="msg">Drag across to turn him, scroll or pinch to zoom, then drag up or down to move along him (face to feet). Tap a piece to see what it is.</p></div>
+  <p class="msg ce-lede">How Dave looks in the 3D model. The fitting room shows him in plain underwear, so his build and proportions are easy to judge; switch to an outfit to see clothes on him. Changes show straight away; Save puts them on every 3D figure on the page.</p>
+  <div class="ce-grid"><div class="ce-view"><div class="ce-wear" role="group" aria-label="What Dave wears in the preview"><button type="button" class="chip" data-cewear="under" aria-pressed="true">Fitting room</button><button type="button" class="chip" data-cewear="outfit" aria-pressed="false">In an outfit</button></div><div class="ce-3d" id="ce-3d" aria-label="3D preview of Dave. Drag to turn him round."><p class="msg ce-load">Loading the 3D model…</p></div><p class="msg">Drag across to turn him, scroll or pinch to zoom, then drag up or down to move along him (face to feet). Tap a piece to see what it is.</p></div>
   <div class="ce-side"><div class="ce-tabs" role="tablist" aria-label="Parts of Dave to change"><button type="button" role="tab" class="ce-tab" data-cet="body" aria-selected="true">Body</button><button type="button" role="tab" class="ce-tab" data-cet="face" aria-selected="false">Face</button><button type="button" role="tab" class="ce-tab" data-cet="hair" aria-selected="false">Hair</button></div>
   <div id="ce-form" role="tabpanel"></div>
   <div class="b-row ce-acts"><button class="btn" type="button" id="ce-save">Save</button><button class="btn ghost" type="button" id="ce-undo" disabled>Undo</button><button class="btn ghost" type="button" id="ce-reset">Back to his defaults</button><button class="btn ghost" type="button" id="ce-next">Try another outfit</button><span class="msg" id="ce-msg" role="status"></span></div></div></div>
@@ -2447,7 +2456,7 @@ function jobOne(it,j){
   if(j==="cargoshort")return it.sub==="shorts"&&/cargo|pocket|workshop/i.test(it.name);
   if(j==="plainshort")return it.sub==="shorts"&&!/cargo|pocket|workshop/i.test(it.name);
   if(j==="belts")return it.cat==="acc"&&/belt|holster|pouch|apron/i.test(it.name);
-  if(j==="cotton")return /^100% (organic )?cotton/.test(it.fabric||"");
+  if(j==="cotton")return /^100% (organic )?cotton/i.test(it.fabric||"");
   return false;
 }
 function sizeFor(it){var m=profile&&profile.bycat;return m&&typeof m==="object"&&typeof m[it.cat]==="string"?m[it.cat]:"";}
@@ -3112,18 +3121,18 @@ function make3Dcore(pieces){
   /* cut (from the listing): fall, how much of the thigh's width reaches the ankle (slim and tapered less, straight and
      wide more); flare, extra width at the hem (bootcut, flare); barrel, extra round the knee; bot, the hem's height
      (cropped and ankle-length end higher) */
-  function legSecs(s,sh,wide,cut){cut=cut||{};var lg=sideX(B3.leg,s),yTop=Math.min(0.95,BL.crotch+0.06),yBot=sh?Math.max(0.5,BL.crotch-0.29):(cut.bot||0.035),out=[],mx=0,mz=0;
+  function legSecs(s,sh,wide,cut){cut=cut||{};var lg=sideX(B3.leg,s),yTop=Math.min(0.95,BL.crotch+0.06),yBot=cut.brief?BL.crotch-0.13:(sh?Math.max(0.5,BL.crotch-0.29):(cut.bot||0.035)),out=[],mx=0,mz=0;
     var ys=[];for(var y=yTop;y>yBot-1e-6;y-=0.04)ys.push(y);if(ys[ys.length-1]>yBot+0.005)ys.push(yBot);
     /* (a wide leg's extra room comes in gradually down the thigh, so the cloth falls from the hip in one line rather
        than flaring out just under the seat and leaving a ridge where the legs meet the top) */
     /* (below his ankle bone the cloth falls straight on from the ankle: the foot is the shoe's business, so the hem
        is not stretched along it) */
-    ys.forEach(function(y){var q=secAt(lg,Math.max(lg[0][0],y,sh?0:0.13)),ea=0.013+wide*(0.25+0.75*sstep(BL.crotch-0.03,BL.crotch-0.2,y));mx=Math.max(mx,q[1]);mz=Math.max(mz,q[2]);
-      var hang=sstep(BL.crotch-0.06,BL.crotch-0.2,y),fall=sh?0.9:(cut.fall!=null?cut.fall:(0.62+0.3*Math.min(1,wide/0.02)));   /* how much of the thigh's size it keeps going down */
+    ys.forEach(function(y){var q=secAt(lg,Math.max(lg[0][0],y,sh?0:0.13)),ea=cut.brief?0.004:0.013+wide*(0.25+0.75*sstep(BL.crotch-0.03,BL.crotch-0.2,y));mx=Math.max(mx,q[1]);mz=Math.max(mz,q[2]);   /* (boxer briefs sit close on the thigh) */
+      var hang=cut.brief?0:sstep(BL.crotch-0.06,BL.crotch-0.2,y),fall=sh?0.9:(cut.fall!=null?cut.fall:(0.62+0.3*Math.min(1,wide/0.02)));   /* how much of the thigh's size it keeps going down */
       var rx=Math.max(q[1]+ea,(mx+ea)*(1-hang*(1-fall))),rz=Math.max(q[2]+ea,(mz+ea)*(1-hang*(1-fall)));
       if(!sh&&cut.flare){var fl=cut.flare*sstep(0.48,0.06,y);rx+=fl;rz+=fl*0.8;}
       if(!sh&&cut.barrel){var br=cut.barrel*Math.max(0,1-Math.abs(y-0.5)/0.22);rx+=br;rz+=br;}
-      if(sh)rx+=0.006*sstep(BL.crotch-0.12,yBot,y),rz+=0.006*sstep(BL.crotch-0.12,yBot,y);
+      if(sh&&!cut.brief)rx+=0.006*sstep(BL.crotch-0.12,yBot,y),rz+=0.006*sstep(BL.crotch-0.12,yBot,y);
       var lb=sh?0:sstep(0.2,0.05,y);   /* (at the hem a little fuller and set back, so the heel of the shoe stays inside) */
       out.push([y,rx+0.004*lb,rz+0.012*lb,q[3],q[4]-0.01*lb]);});
     out.reverse();
@@ -3552,7 +3561,8 @@ function make3Dcore(pieces){
       rules.push(["belly"],["hips",0.97]);}
     if(ups0.some(function(p){return !noSleeve(p)&&!shortS(p);})){rules.push(["uarm"],["farm",SLV+0.012]);}
     else if(ups0.some(shortS)){rules.push(["uarm",1.27]);}
-    if(lo0){if(lo0.shape==="shorts")rules.push(["hips"],["thigh",Math.max(0.5,BL.crotch-0.29)+0.012]);else rules.push(["hips"],["thigh"],["shin",0.075]);}
+    if(lo0){if(lo0.under)rules.push(["hips",null,1.02],["belly",null,1.02],["chest",null,1.02],["thigh",BL.crotch-0.126,1.02]);   /* (underwear: only the skin under the briefs goes) */
+      else if(lo0.shape==="shorts")rules.push(["hips"],["thigh",Math.max(0.5,BL.crotch-0.29)+0.012]);else rules.push(["hips"],["thigh"],["shin",0.075]);}
     if(ft0){rules.push(["foot"]);if(ft0.shape==="boots")rules.push(["shin",null,0.2]);else if(lo0&&lo0.shape==="shorts"&&ft0.shape!=="slippers"&&!/loafer|slider|slide|sandal|mule|deck|boat|espadrille|flip/.test((((byId[ft0.item]||{}).name||"")+" "+ft0.what).toLowerCase()))rules.push(["shin",null,0.235]);}   /* (socks with shorts) */
     var bg=new T.BufferGeometry();bg.setAttribute("position",new T.BufferAttribute(bc.pos,3));bg.setAttribute("normal",new T.BufferAttribute(bc.nrm,3));
     bg.setAttribute("color",new T.BufferAttribute(bodyCols(bc),3));bg.setIndex(new T.BufferAttribute(bodyIdx(bc,rules),1));
@@ -3832,7 +3842,7 @@ function make3Dcore(pieces){
   var waistE=0;
   if(lo){
     curIt=lo.item;curWhat=lo.what;curKind="lo";PIECE=bodyOn?[]:null;
-    var lm=pm(lo),sh=lo.shape==="shorts",n0=nm(lo),fitL=((byId[lo.item]||{}).fit||""),wide=fitL==="Wide leg"||/wide|baggy|barrel|parachute/.test(n0)?0.022:(fitL==="Relaxed"||/loose|relaxed|carpenter|cargo|combat/.test(n0)?0.013:(fitL?0.006:0.004));
+    var und=!!lo.under,lm=pm(lo),sh=lo.shape==="shorts",n0=nm(lo),fitL=((byId[lo.item]||{}).fit||""),wide=fitL==="Wide leg"||/wide|baggy|barrel|parachute/.test(n0)?0.022:(fitL==="Relaxed"||/loose|relaxed|carpenter|cargo|combat/.test(n0)?0.013:(fitL?0.006:0.004));
     waistE=0.012;
     /* on the real body the seat, hips and the tops of the thighs are one piece of cloth draped over him (lowerWrap);
        each leg then carries on below it. The drawn-only body keeps its simple rise. */
@@ -3840,18 +3850,39 @@ function make3Dcore(pieces){
     var cutL={};if(/skinny|super slim/.test(n0))cutL={fall:0.44};else if(/slim|tapered|taper|cuffed/.test(n0)||(/jogger|track ?(pant|bottom)|sweatpant/.test(n0)&&!/straight|wide|relaxed|open hem|loose|baggy/.test(n0)))cutL={fall:/slim/.test(n0)&&!/taper/.test(n0)?0.55:0.48};
     if(/barrel|balloon/.test(n0))cutL={fall:0.6,barrel:0.018};if(/bootcut|boot cut|flare|kick flare/.test(n0))cutL={fall:0.7,flare:/flare/.test(n0)?0.03:0.016};
     if(/cropped|crop\b|ankle[- ]length|ankle grazer|7\/8/.test(n0))cutL.bot=0.095;
+    if(und)cutL={brief:true};   /* (the fitting room's plain boxer briefs) */
     var cuffd=/jogger|track|sweatpant|lounge|pyjama/.test(n0)&&!/wide|straight|open hem/.test(n0);if(cuffd&&!sh)cutL.bot=Math.max(cutL.bot||0,0.088);   /* (a cuffed jogger gathers at his ankle, above the shoe) */
     var LYB=BL?BL.crotch-0.075:0,LS0=bodyOn?{"-1":legSecs(-1,sh,wide,cutL),"1":legSecs(1,sh,wide,cutL)}:null,LSs=bodyOn?{"-1":smoothSecs(LS0["-1"],sh?6:16),"1":smoothSecs(LS0["1"],sh?6:16)}:null;
-    var LWme=null,LEGme={};if(bodyOn)LWme=lowerWrap(0.013,LYB,1.03,LSs,lm);
-    else sec(shapeSecs([[0.785,0.156,0.102,0,-0.004],[0.85,0.174,0.114,0,-0.01],[0.92,0.184,0.123,0,-0.012],[0.98,0.18,0.118,0,-0.008],[1.035,0.165,0.111,0,-0.002]]),lm,{seg:44,sq:2.3,bottom:true});   /* the rise covers the seat and crotch */
+    var LWme=null,LEGme={};if(bodyOn&&!und)LWme=lowerWrap(0.013,LYB,1.03,LSs,lm);
+    /* underwear (the fitting room): boxer briefs are his own skin from the waist to the top of the thighs, lifted by the
+       cloth's thickness, so they follow him exactly and have no seams to open; the edges are squared off at the
+       waistband and the leg hems */
+    if(bodyOn&&und){var UP=bc.pos,UN=bc.nrm,UI=BODY.idx,UR=BODY.regions,uRG=["hips","thigh","belly","chest"].map(function(r){return UR.indexOf(r);}),uTop=1.02,uLeg=BL.crotch-0.13;
+      /* (the body has a copy of each vertex along the seams between its regions; the copies are welded by position, with
+         one shared normal, so the cloth lifted off the skin has no cracks along those seams) */
+      var uk=function(v){return Math.round(UP[v*3]*2000)+"_"+Math.round(UP[v*3+1]*2000)+"_"+Math.round(UP[v*3+2]*2000);};
+      /* a piece lifted off his skin by e: the triangles test(top, centroid) keeps, with heights clamped to [y0, y1] */
+      var skinShell=function(test,e,y0,y1){var key={},nrm=[],pos=[],uv=[],ix=[],n=0;
+        for(var t=0;t<UI.length/3;t++){if(uRG.indexOf(BODY.treg[t])<0)continue;var a0=UP[UI[t*3]*3+1],a1=UP[UI[t*3+1]*3+1],a2=UP[UI[t*3+2]*3+1];if(!test(Math.max(a0,a1,a2),(a0+a1+a2)/3))continue;
+          for(var k=0;k<3;k++){var v=UI[t*3+k],kk=uk(v),id=key[kk];if(id==null){id=key[kk]=n++;pos.push(UP[v*3],UP[v*3+1],UP[v*3+2]);nrm.push(0,0,0);}
+            nrm[id*3]+=UN[v*3];nrm[id*3+1]+=UN[v*3+1];nrm[id*3+2]+=UN[v*3+2];ix.push(id);}}
+        for(var i=0;i<n;i++){var nx=nrm[i*3],ny=nrm[i*3+1],nz=nrm[i*3+2],nl=Math.sqrt(nx*nx+ny*ny+nz*nz)||1;
+          pos[i*3]+=nx/nl*e;pos[i*3+1]=Math.min(y1,Math.max(y0,pos[i*3+1]+ny/nl*e));pos[i*3+2]+=nz/nl*e;uv.push(Math.atan2(pos[i*3],pos[i*3+2])/(2*Math.PI)+0.5,pos[i*3+1]/0.3);}
+        var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setIndex(ix);g.computeVertexNormals();return g;};
+      /* the briefs: exactly the skin hidden under them (up to the waistband, down to the top of the thighs); the
+         waistband: a wider strip of elastic lifted a little further, over their top edge */
+      var ume=put(new T.Mesh(skinShell(function(hi,cy){return hi<uTop&&cy>=uLeg;},0.005,uLeg,9),lm));ume.userData.kind="lo";
+      var wbe=put(new T.Mesh(skinShell(function(hi,cy){return cy>0.955&&cy<1.045;},0.0095,0.972,1.032),mat("#2b2d31",0.75)));wbe.userData.kind="lo";
+      [-1,1].forEach(function(s){var hq=secAt(LS0[String(s)],uLeg+0.004);band(uLeg-0.002,0.022,hq[1]+0.003,hq[2]+0.003,lm,{x:hq[3],z:hq[4],seg:36});});}
+    if(!bodyOn)sec(shapeSecs([[0.785,0.156,0.102,0,-0.004],[0.85,0.174,0.114,0,-0.01],[0.92,0.184,0.123,0,-0.012],[0.98,0.18,0.118,0,-0.008],[1.035,0.165,0.111,0,-0.002]]),lm,{seg:44,sq:2.3,bottom:true});   /* the rise covers the seat and crotch */
     var wk1=shapeAt(1.02),jog=/jogger|track|sweatpant|lounge|pyjama/.test(n0),jean=/jean|denim/.test(n0);
     var tw0=bodyOn?TO(1.02):null,wbx=bodyOn?tw0[1]+0.014:0.167*wk1.x,wbz=bodyOn?tw0[2]+0.014:0.113*wk1.z,wbc=bodyOn?tw0[4]:-0.003+wk1.dz;
-    band(1.0,0.04,wbx,wbz,jog?rib(lo):lm,{z:wbc,sq:2.3,seg:44});
+    if(!(und&&bodyOn))band(1.0,0.04,wbx,wbz,jog?rib(lo):lm,{z:wbc,sq:2.3,seg:44});
     /* belt loops on tailored trousers, chinos and jeans; a drawcord on joggers */
-    if(!jog){[-0.62,-0.2,0.2,0.62,Math.PI].forEach(function(a){var pa=function(v){return (v<0?-1:1)*Math.pow(Math.abs(v),2/2.3);},lx=pa(Math.sin(a))*(wbx+0.0015),lz=pa(Math.cos(a))*(wbz+0.0015)+wbc;add(new T.BoxGeometry(0.011,0.042,0.004),lm,lx,1.02,lz,1,1,1,0,a,0);});}
+    if(und){}else if(!jog){[-0.62,-0.2,0.2,0.62,Math.PI].forEach(function(a){var pa=function(v){return (v<0?-1:1)*Math.pow(Math.abs(v),2/2.3);},lx=pa(Math.sin(a))*(wbx+0.0015),lz=pa(Math.cos(a))*(wbz+0.0015)+wbc;add(new T.BoxGeometry(0.011,0.042,0.004),lm,lx,1.02,lz,1,1,1,0,a,0);});}
     else{[-1,1].forEach(function(s){tube([[s*0.012,1.03,frontZ(1.03,0.012)+0.004],[s*0.016,0.98,frontZ(0.98,0.016)+0.006],[s*0.013,0.94,frontZ(0.94,0.016)+0.006]],0.0022,white,8);});}
     /* back pockets on jeans and chinos, and the little coin pocket on jeans */
-    if(bodyOn&&(!jog||/chino|jean|denim/.test(n0))){
+    if(bodyOn&&!und&&(!jog||/chino|jean|denim/.test(n0))){
       /* back pockets on his seat, laid on the cloth from behind; jeans have gold stitching, a back yoke and a waistband
          label, chinos a jetted slit */
       var pkM=lm.clone();pkM.side=T.DoubleSide;var gst=mat(jean?"#c99a45":shade(cc(lo.col)[0],0.6),0.7);
@@ -3866,7 +3897,7 @@ function make3Dcore(pieces){
         add(new T.BoxGeometry(0.05,0.022,0.003),mat("#a07850",0.8),0.06,1.015,backZ(1.015,0.06)-0.004);}}   /* back yoke and the leather label */
     else if(!jog&&!sh||/chino|jean|denim/.test(n0)){[-1,1].forEach(function(s){add(new T.BoxGeometry(0.075,0.085,0.005),lm,s*0.072,0.925,-(0.117*shapeAt(0.92).z)-0.014,1,1,1,-0.12,0,0);});}
     if(jean){add(new T.BoxGeometry(0.03,0.032,0.004),lm,0.098,0.965,surfZ(0.965,0.098,0.016)+0.003,1,1,1,0,0.45,0);}
-    [-1,1].forEach(function(s){
+    (bodyOn&&und?[]:[-1,1]).forEach(function(s){
       /* on the real body each leg follows his own thigh, knee and calf (centre and size), with ease; below the widest
          part of the thigh the cloth hangs nearly straight, so the leg is a soft column rather than a sausage, and
          shorts flare a little to the hem */
@@ -3894,7 +3925,7 @@ function make3Dcore(pieces){
         if(mv){pa.needsUpdate=true;ZV++;}});}
     /* what the shop photos show on the front: jeans have gold topstitching down the outside seams, scooped front pockets
        with copper rivets; chinos and tailored trousers have slanted pocket openings */
-    if(bodyOn){var stM=mat(jean?"#c99a45":shade(cc(lo.col)[0],0.6),0.7),rvM=mat("#b87333",0.35,{metalness:0.7});
+    if(bodyOn&&!und){var stM=mat(jean?"#c99a45":shade(cc(lo.col)[0],0.6),0.7),rvM=mat("#b87333",0.35,{metalness:0.7});
       [-1,1].forEach(function(s){var Lq=LS0[String(s)],yTop2=Math.min(LYB+0.01,Lq[Lq.length-1][0]);
         if(jean){var op=[];for(var y2=yTop2;y2>=Lq[0][0]+0.02;y2-=0.06){var q=secAt(Lq,y2);op.push([q[3]+s*(q[1]+0.0012),y2,q[4]]);}if(op.length>1)tube(op,0.0011,stM,24);}   /* outside seam */
         if(jean||/chino|trouser|slack|suit|tailor/.test(n0)||(!jog&&!sh)){var pk=[];
@@ -3905,7 +3936,7 @@ function make3Dcore(pieces){
     if(bodyOn&&lo.desc&&lo.desc.pleat)[-1,1].forEach(function(s){var pl=[];[0.995,0.96,0.92,0.88].forEach(function(y){pl.push([s*0.05,y,surfZ(y,s*0.05,0)+0.001]);});tube(pl,0.0014,mat(shade(cc(lo.col)[0],0.7),0.9),8);});
     if(bodyOn&&lo.desc&&lo.desc.turnup&&!sh)[-1,1].forEach(function(s){var lq=LS0[String(s)][0];band(lq[0],0.035,lq[1]+0.003,lq[2]+0.003,lm,{x:lq[3],z:lq[4]});});
     /* the fly: a stitched J from the waistband down to the crotch, on the cloth */
-    if(!sh||true){var flyM=mat(cc(lo.col)[1]?"#000":"#3a3a3a",0.9,{transparent:true,opacity:0.4});
+    if(!und){var flyM=mat(cc(lo.col)[1]?"#000":"#3a3a3a",0.9,{transparent:true,opacity:0.4});
       if(bodyOn){var fp=[];[[0.022,0.995],[0.024,0.95],[0.022,0.91],[0.012,BL.crotch+0.035],[0.002,BL.crotch+0.02]].forEach(function(q){fp.push([q[0],q[1],surfZ(q[1],q[0],0)+0.0015]);});tube(fp,0.0016,flyM,16);}
       else tube([[0,1.0,frontZ(1.0,0.016)+0.004],[0.012,0.93,frontZ(0.93,0.02)+0.004],[0,0.87,0.105]],0.0022,flyM,8);}
     if(PIECE){occFinish(PIECE,null,false,true);PIECE=null;}
@@ -4459,7 +4490,7 @@ function openZoom(id){
   var mode=order.some(function(p){return hasPh(byId[p.item]);})?"1":(figMode()==="3d"?"3":"0");try{var lv=localStorage.getItem("dw-zlay");if(lv==="0"||lv==="3")mode=figMode()==="3d"?"3":"0";}catch(e){}
   if(!FIG.allow2d&&mode==="0")mode="3";
   $("zoom-body").innerHTML='<div class="zoom-head"><span class="label">'+esc(f.styles.map(function(s){return label(STYLE,s);}).join(" · "))+'</span><h2>'+esc(f.name)+'</h2>'+(f.note?'<p>'+esc(f.note)+'</p>':"")+'<p class="zoom-tot"><b>'+money(t.tot)+'</b> for the whole outfit</p></div>'+
-    '<div class="zoom-grid"><div class="zoom-fig" data-mode="'+mode+'"><div class="zoom-tabs" role="group" aria-label="How to show the outfit"><button type="button" class="act" data-zlay="1" aria-pressed="'+(mode==="1")+'">Real photos, to scale</button>'+(FIG.allow2d?'<button type="button" class="act" data-zlay="0" aria-pressed="'+(mode==="0")+'">Drawing (2D)</button>':"")+'<button type="button" class="act" data-zlay="3" aria-pressed="'+(mode==="3")+'">3D model</button></div><div class="zf-lay">'+flatLay(order)+'</div><div class="zf-3d"><p class="msg zf-3dmsg">Loading the 3D model…</p></div><button class="linkbtn zf-3dedit" type="button" data-chared data-chared-fit="'+esc(f.id)+'">Edit Dave\'s 3D look</button><div class="zf-fig"><svg viewBox="0 0 268 486" role="img" aria-label="'+esc("Drawing of the outfit: "+order.map(function(p){return p.what;}).join(", "))+'"><g transform="translate(14,4)">'+figure(ps)+'</g></svg></div></div>'+
+    '<div class="zoom-grid"><div class="zoom-fig" data-mode="'+mode+'"><div class="zoom-tabs" role="group" aria-label="How to show the outfit"><button type="button" class="act" data-zlay="1" aria-pressed="'+(mode==="1")+'">Real photos, to scale</button>'+(FIG.allow2d?'<button type="button" class="act" data-zlay="0" aria-pressed="'+(mode==="0")+'">Drawing (2D)</button>':"")+'<button type="button" class="act" data-zlay="3" aria-pressed="'+(mode==="3")+'">3D model</button></div><div class="zf-lay">'+flatLay(order)+'</div><div class="zf-3d"><p class="msg zf-3dmsg">Loading the 3D model…</p></div><button class="linkbtn zf-3dedit" type="button" data-chared data-chared-fit="'+esc(f.id)+'">Edit Dave (fitting room)</button><div class="zf-fig"><svg viewBox="0 0 268 486" role="img" aria-label="'+esc("Drawing of the outfit: "+order.map(function(p){return p.what;}).join(", "))+'"><g transform="translate(14,4)">'+figure(ps)+'</g></svg></div></div>'+
     '<ol class="zoom-ph">'+order.map(function(p,i){var it=byId[p.item];if(!it)return '<li><span class="zn">'+(i+1)+'</span><span class="zi"><b>'+esc(p.what)+'</b><small>'+(p.own?"Already his, nothing to buy":"No longer listed")+'</small></span></li>';
       return '<li data-zitem="'+esc(p.item)+'"><span class="zn">'+(i+1)+'</span>'+(photoBox(it,"zbig",true)||'<span class="ph zbig"></span>')+'<span class="zi"><b>'+esc(p.what)+'</b><a href="'+esc(it.url)+'" target="_blank" rel="noopener">'+esc(it.name)+' ↗</a><small>'+esc(it.shop)+(it.insize===true?" · in his size":"")+(pct(it)>0?" · "+pct(it)+"% off":"")+'</small><b class="zp">'+money(cost(it))+'</b></span></li>';}).join("")+'</ol></div>';
   if(typeof dlg.showModal==="function"){if(!dlg.open)dlg.showModal();}else{dlg.setAttribute("open","");}
@@ -5518,7 +5549,13 @@ function ceMeas(){if(!BODY)return "";var b=bodySecs(),t=b.torso,kH=(Number(CHAR.
   function fmt(m){return Math.round(m*100/2.54)+"in";}
   var PW=propWarp(BODY.lm.chin),kF=(Number(CHAR.height)||183)/183*(PW?1.79/PW.W(1.79):1),leg=(PW?PW.W(BODY.lm.crotch):BODY.lm.crotch)*kF-0.03;
   return "Chest about "+fmt(circ(1.3))+" · waist about "+fmt(wst())+" · hips about "+fmt(circ(0.9))+" · inside leg about "+fmt(leg)+". Rough figures from the model, a guide only.";}
-var ceSaved=null,cePrev=null,ceT=0,cePieces=null,ceTab="body",ceHist=[],ceLastPush=0,ceFit=-1;
+var ceSaved=null,cePrev=null,ceT=0,cePieces=null,ceTab="body",ceHist=[],ceLastPush=0,ceFit=-1,ceWear="under",ceOut=[];
+/* the fitting room: Dave in plain grey boxer briefs, nothing else, so his build is easy to judge */
+var UNDERWEAR=[{item:"",shape:"shorts",col:"grey",what:"Plain boxer briefs",fixed:true,under:true}];
+function ceWearSet(w,msg){ceWear=w==="outfit"?"outfit":"under";cePieces=ceWear==="under"?UNDERWEAR:ceOut;
+  Array.prototype.forEach.call(document.querySelectorAll("#chared [data-cewear]"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-cewear")===ceWear));});
+  if(cePrev&&cePrev.on)cePrev.update(cePieces);
+  if(msg)$("ce-msg").textContent=ceWear==="under"?"Fitting room: Dave in plain underwear.":"Showing him in “"+((fits[ceFit]||{}).name||"an outfit")+"”.";}
 var CE_ZOOM={body:0,face:1,hair:0.82};
 function ceForm(){
   Array.prototype.forEach.call(document.querySelectorAll("#chared [data-cet]"),function(b){b.setAttribute("aria-selected",String(b.getAttribute("data-cet")===ceTab));});
@@ -5547,9 +5584,10 @@ function ceStart(){
     catch(e){cePrev=null;live3DFail(box,ld,ceStart);}
   },function(){if(ld){ld.hidden=false;ld.textContent="The 3D model could not load. Check the connection and try again.";}});
 }
-function openCE(fitId){
+function openCE(fitId,wear){
   var dlg=$("chared");if(!dlg)return;ceSaved=Object.assign({},CHAR);ceHist=[];ceLastPush=0;
-  var f=fitId&&fitById[fitId];cePieces=f?effPieces(f):(fits[0]?effPieces(fits[0]):[]);ceFit=f?fits.indexOf(f):0;
+  var f=fitId&&fitById[fitId];ceOut=f?effPieces(f):(fits[0]?effPieces(fits[0]):[]);ceFit=f?fits.indexOf(f):0;
+  ceWearSet(wear||"under");ceTab="body";
   ceForm();$("ce-msg").textContent="";
   if(typeof dlg.showModal==="function"){if(!dlg.open)dlg.showModal();}else{dlg.setAttribute("open","");}
   ceStart();
@@ -5568,7 +5606,8 @@ function saveChar(){
   if(figMode()==="3d"){renderAll();}if(z3&&z3.on&&fitById[zoomId])z3.update(effPieces(fitById[zoomId]));if(zb&&zb.on)drawBuild();
 }
 document.addEventListener("click",function(e){var b;
-  if((b=e.target.closest("[data-chared]"))){e.preventDefault();openCE(b.getAttribute("data-chared-fit")||(zoomId&&$("zoom").open?zoomId:""));return;}
+  if((b=e.target.closest("[data-chared]"))){e.preventDefault();openCE(b.getAttribute("data-chared-fit")||(zoomId&&$("zoom").open?zoomId:""),b.getAttribute("data-chared-wear")||"");return;}
+  if((b=e.target.closest("[data-cewear]"))){ceWearSet(b.getAttribute("data-cewear"),true);return;}
   if((b=e.target.closest("[data-cclose]"))){closeCE(false);return;}
   if((b=e.target.closest("[data-cet]"))){ceTab=b.getAttribute("data-cet");ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);return;}
   if((b=e.target.closest("[data-ce]"))){ceSet(b.getAttribute("data-ce"),b.getAttribute("data-cv"));return;}
@@ -5586,7 +5625,7 @@ $("ce-save").addEventListener("click",saveChar);
 $("ce-undo").addEventListener("click",function(){var last=ceHist.pop();if(!last)return;Object.keys(CHAR_DEF).forEach(function(k){CHAR[k]=last[k];});ceLastPush=0;ceForm();ceApply();$("ce-msg").textContent="Undone.";});
 $("ce-reset").addEventListener("click",function(){cePush();ceLastPush=0;Object.keys(CHAR_DEF).forEach(function(k){CHAR[k]=CHAR_DEF[k];});ceForm();ceApply();$("ce-msg").textContent="Back to his defaults. Save to keep them.";});
 /* see the changes on other kinds of clothes: tailoring, knits, coats, shorts */
-$("ce-next").addEventListener("click",function(){if(!fits.length)return;ceFit=(ceFit+1+Math.floor(Math.random()*7))%fits.length;cePieces=effPieces(fits[ceFit]);if(cePrev&&cePrev.on)cePrev.update(cePieces);$("ce-msg").textContent="Showing him in “"+fits[ceFit].name+"”.";});
+$("ce-next").addEventListener("click",function(){if(!fits.length)return;ceFit=(ceFit+1+Math.floor(Math.random()*7))%fits.length;ceOut=effPieces(fits[ceFit]);ceWearSet("outfit");$("ce-msg").textContent="Showing him in “"+fits[ceFit].name+"”.";});
 syncChips();paintStyle();
 (function(){var v="";try{v=(location.hash||"").slice(1)||localStorage.getItem("dw-view")||"";}catch(e){}setView(v||"shop",true);})();
 renderAll();
