@@ -1098,6 +1098,24 @@ artifact and to GitHub Pages. Totals: **7,525 picks** (was 7,155) and **575 outf
   - Thick layers stand off the body less than their full thickness, and less again over the shoulders, so coats
     and jumpers no longer look padded. Each layer still sits outside the one under it.
 
+## 2zp. His saved dimensions as the base; socks, shoes, lapels, cleaner openings (7 Oct 2026)
+
+- **Base:** every value the owner saved (body, proportions, face, moustache, hair) is now Dave's built-in default,
+  and every slider is centred on it.
+- **Socks:** with shorts he wears ribbed crew socks with a cuff a little way up the calf. They are white, or black
+  with dark shoes, and the skin under them is hidden.
+- **Shoes:**
+  - Trainers: a two-tone sole (midsole and outsole), a toe bumper, a heel tab, a padded collar and a side panel.
+  - Dress shoes: a slimmer, lower toe, a thin sole with a heel block, and a welt.
+  - Boots: a lugged sole, a shaft sized to his ankle, and a pull tab.
+- **Lapels:**
+  - Blazers and coats have real lapels lying on the jacket, widening from the top button to the notch under the
+    collar.
+  - The outer edge is rolled and has a darker edge line.
+- **Open fronts:** jackets, cardigans and coats are cut cleanly along the opening, as the neckline is, with no
+  ragged notches by the collar.
+- **Shoulders:** the sleeve top sits fully under the shoulder cover, so the seam is a clean line.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
