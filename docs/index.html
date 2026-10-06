@@ -2248,8 +2248,9 @@ function flatLay(order){
    Dave in Three.js at 1.83 m, with the drawing's proportions (crotch at 45% of his height, a 32in leg).
    Body, limbs, hands, nose, shoes and every garment are smooth tubes through cross-sections (secGeo), so
    nothing has seams or ball joints, and clothes follow the body with ease for each layer. Open jackets
-   open at the front. The head is a sphere shaped into a jaw, chin and brow, with eyes, lids, brows, his
-   ringlet curls and ginger-brown moustache. Each piece takes the colour and pattern of its shop photo.
+   open at the front. The head is a sphere shaped into a jaw, chin, brow ridge and mouth, painted with his
+   skin and short ginger-brown beard, with his blue-grey eyes, brows, nose, moustache and curls matched to
+   his photos. Each piece takes the colour and pattern of its shop photo.
    One builder (make3D) feeds three uses: the live view you can turn (large outfit view and the builder),
    and still renders that replace the drawings on outfit cards when the page is set to 3D.
    Three.js (r128) loads from cdnjs the first time any 3D view is needed. */
@@ -2281,6 +2282,49 @@ function clothBump(){ /* fine weave noise shared by every garment, so cloth catc
   if(bumpTex)return bumpTex;var T=window.THREE,cv=document.createElement("canvas");cv.width=cv.height=128;var x=cv.getContext("2d");
   var d=x.createImageData(128,128);for(var i=0;i<d.data.length;i+=4){var v=110+Math.random()*60+((i/4)%2?14:0);d.data[i]=d.data[i+1]=d.data[i+2]=v;d.data[i+3]=255;}x.putImageData(d,0,0);
   bumpTex=new T.CanvasTexture(cv);bumpTex.wrapS=bumpTex.wrapT=T.RepeatWrapping;bumpTex.repeat.set(10,10);return bumpTex;
+}
+/* Dave's face, from his photos: fair skin with warm cheeks, blue-grey eyes under straight dark brows, a
+   long straight nose, a full ginger-brown moustache over a short ginger-brown beard on the jaw and chin,
+   and dark brown curls. The skin, beard and hairline are painted once onto the head sphere's UVs (u 0.25
+   is the front), so the beard reads as short hairs rather than a tint. */
+var faceTx=null,strandTx=null,tacheTx=null;
+function lerpT(pts,a){if(a<=pts[0][0])return pts[0][1];for(var i=1;i<pts.length;i++){if(a<=pts[i][0]){var p=pts[i-1],q=pts[i];return p[1]+(q[1]-p[1])*(a-p[0])/(q[0]-p[0]);}}return pts[pts.length-1][1];}
+/* top edge of the beard by angle round the head (0 front, 1.57 the ear), and the lowest hair by depth (1 front, -1 back) */
+var BEARD_TOP=[[0,-0.8],[0.22,-0.8],[0.4,-0.52],[0.7,-0.34],[1.05,-0.14],[1.3,0.12],[1.45,0.2],[1.56,-0.5],[1.9,-0.78],[2.4,-1.05]];
+var HAIR_LOW=[[-1,-0.5],[-0.35,-0.25],[0,0.04],[0.15,0.22],[0.35,0.52],[1,0.55]];
+function beardAt(x,y,z){if(z<-0.75)return 0;return Math.max(0,Math.min(1,(lerpT(BEARD_TOP,Math.atan2(Math.abs(x),z))-y)/0.1));}
+function scalpAt(x,y,z){return Math.max(0,Math.min(1,(y-lerpT(HAIR_LOW,z))/0.06));}
+/* the front of the face on the unit sphere: a muzzle round the mouth and a brow ridge over the eyes */
+function faceBump(x,y,z){return z>0.3?(0.09*Math.exp(-Math.pow(x/0.36,2)-Math.pow((y+0.6)/0.26,2))+0.07*Math.exp(-Math.pow((y-0.25)/0.09,2)-Math.pow(x/0.55,4)))*Math.min(1,(z-0.3)/0.3):0;}
+function faceTex(){
+  if(faceTx)return faceTx;var T=window.THREE,W=1024,H=512,cv=document.createElement("canvas");cv.width=W;cv.height=H;var g=cv.getContext("2d"),im=g.createImageData(W,H),D=im.data;
+  function hx(h){return [1,3,5].map(function(i){return parseInt(h.substr(i,2),16);});}
+  var sk=hx("#eec3aa"),bl=hx("#e0927f"),bs=hx("#8c5d40"),hr=hx("#3a281d");
+  for(var py=0;py<H;py++){var th=(py+0.5)/H*Math.PI,y=Math.cos(th),st=Math.sin(th);
+    for(var px=0;px<W;px++){var ph=(px+0.5)/W*Math.PI*2,x=-Math.cos(ph)*st,z=Math.sin(ph)*st;
+      var ch=Math.max(0,1-Math.hypot(Math.abs(x)-0.5,y+0.18)/0.3)*(z>0.4?1:0),so=Math.max(0,1-Math.hypot(Math.abs(x)-0.36,y-0.03)/0.17)*(z>0.6?1:0);
+      var b=beardAt(x,y,z),s=scalpAt(x,y,z),i=(py*W+px)*4,n=(Math.random()-0.5)*6;
+      for(var k=0;k<3;k++){var v=sk[k];v+=(bl[k]-v)*0.38*ch;v*=1-0.1*so;v+=(bs[k]-v)*0.82*b;v+=(hr[k]-v)*s;D[i+k]=v+n;}D[i+3]=255;}}
+  g.putImageData(im,0,0);
+  var cols=["#7a4b2d","#8c5532","#663f29","#9c6139","#553423"];g.lineCap="round";
+  for(var m=0;m<60000;m++){var bx=Math.random()*W,by=H*0.42+Math.random()*H*0.58,t2=by/H*Math.PI,p2=bx/W*Math.PI*2,s2=Math.sin(t2);
+    if(Math.random()>beardAt(-Math.cos(p2)*s2,Math.cos(t2),Math.sin(p2)*s2))continue;
+    var len=4+Math.random()*5,dx=(Math.random()-0.5)*3;g.strokeStyle=cols[m%5];g.globalAlpha=0.55+Math.random()*0.35;g.lineWidth=0.9+Math.random()*0.8;
+    [0,-W,W].forEach(function(o){g.beginPath();g.moveTo(bx+o,by);g.lineTo(bx+o+dx,by+len);g.stroke();});}
+  faceTx=new T.CanvasTexture(cv);faceTx.anisotropy=4;if(T.sRGBEncoding)faceTx.encoding=T.sRGBEncoding;faceTx.keep=true;return faceTx;
+}
+function tacheTex(){ /* the moustache as hairs falling from under the nose, with a ragged lower edge (cut out by alphaTest) */
+  if(tacheTx)return tacheTx;var T=window.THREE,cv=document.createElement("canvas");cv.width=256;cv.height=128;var g=cv.getContext("2d"),cols=["#8a5230","#9c5d35","#7a472b","#b06f40","#6a3f28","#a5643a"];
+  g.fillStyle="#93582f";g.beginPath();g.moveTo(10,0);g.lineTo(246,0);g.lineTo(250,96);g.lineTo(128,104);g.lineTo(6,96);g.closePath();g.fill();g.lineCap="round";
+  for(var i=0;i<5200;i++){var x=Math.random()*256,y=Math.random()*100,l=10+Math.random()*22;g.strokeStyle=cols[i%6];g.globalAlpha=0.6+Math.random()*0.4;g.lineWidth=1+Math.random()*1.2;
+    g.beginPath();g.moveTo(x,y);g.lineTo(x+(x-128)*0.04+(Math.random()-0.5)*4,Math.min(126,y+l));g.stroke();}
+  tacheTx=new T.CanvasTexture(cv);if(T.sRGBEncoding)tacheTx.encoding=T.sRGBEncoding;tacheTx.keep=true;return tacheTx;
+}
+function strandTex(){ /* fine hairs across a tube, for the brows */
+  if(strandTx)return strandTx;var T=window.THREE,cv=document.createElement("canvas");cv.width=256;cv.height=32;var g=cv.getContext("2d");
+  g.fillStyle="#b4b4b4";g.fillRect(0,0,256,32);
+  for(var i=0;i<700;i++){var x=Math.random()*256,v=150+Math.random()*105|0;g.strokeStyle="rgb("+v+","+v+","+v+")";g.lineWidth=0.8+Math.random();g.beginPath();g.moveTo(x,0);g.lineTo(x+(Math.random()-0.5)*6,32);g.stroke();}
+  strandTx=new T.CanvasTexture(cv);strandTx.wrapS=strandTx.wrapT=T.RepeatWrapping;strandTx.repeat.set(6,1);strandTx.keep=true;return strandTx;
 }
 /* Smooth surfaces: every body part and garment is a tube through cross-sections, so limbs taper and
    cloth follows the body without seams or ball joints. A section is [y, half-width, half-depth, x, z];
@@ -2356,7 +2400,7 @@ function make3D(pieces){
   function sec(secs,m,o){return put(new T.Mesh(secGeo(secs,o),o&&o.ao?aoM(m):m));}
   function tube(pts,r,m,seg){var c=new T.CatmullRomCurve3(pts.map(function(p){return new T.Vector3(p[0],p[1],p[2]);}));return put(new T.Mesh(new T.TubeGeometry(c,seg||24,r,8,false),m));}
   function band(y,h,rx,rz,m,o){o=o||{};return sec([[y,rx,rz,o.x||0,o.z||0],[y+h,rx-(o.taper||0),rz-(o.taper||0),o.x||0,o.z||0]],m,{seg:o.seg||40,gap:o.gap||0,k:1,sq:o.sq||2});}
-  var skinC="#eecdb6",skin=mat(skinC,0.62),hairM=mat("#2b1c15",0.9),tacheM=mat("#8d5b38",0.95),white=mat("#f6f2ea",0.35),iris=mat("#3d2a1e",0.3),lipM=mat("#c08a7e",0.6);
+  var skinC="#eec3aa",skin=mat(skinC,0.62),white=mat("#f6f2ea",0.35),lipM=mat("#c4887c",0.55);
   /* ---- body ---- */
   sec(B3.torso,skin,{seg:44,sq:2.3,top:true,bottom:true,ao:{kind:"torso"}});
   sec(B3.neck,skin,{seg:28});
@@ -2373,57 +2417,72 @@ function make3D(pieces){
   });
   var hatOn=pieces.some(function(p){return /^(beanie|bcap|cap|bucket)$/.test(p.shape);});
   tgt=headG;
-  /* ---- head: a sphere shaped into a jaw, chin, brow and the back of the skull ---- */
-  var hg=new T.SphereGeometry(1,64,48),hp=hg.attributes.position,hcol=[];
-  for(var vi=0;vi<hp.count;vi++){var x=hp.getX(vi),y=hp.getY(vi),z=hp.getZ(vi);
+  /* ---- head: a sphere shaped into a jaw, chin, brow ridge and muzzle, painted with his skin, beard and hairline ---- */
+  function hz(x,y){var oy=(y-1.71)/0.114,k=oy<0?Math.min(1,-oy):0,xn=x/0.081,ox=xn/(1-0.2*k*k),oz=Math.sqrt(Math.max(0,1-ox*ox-oy*oy)),z=oz*(1+0.05*k);
+    if(oy>0.15&&oz>0.35)z*=0.96;return (z+faceBump(xn,oy,z))*0.1*(1+0.045*beardAt(ox,oy,oz))+0.008;}
+  var hg=new T.SphereGeometry(1,72,54),hp=hg.attributes.position;
+  for(var vi=0;vi<hp.count;vi++){var x=hp.getX(vi),y=hp.getY(vi),z=hp.getZ(vi),bb=1+0.045*beardAt(x,y,z);
     if(y<0){var k1=Math.min(1,-y);x*=1-0.2*k1*k1;if(z>0)z*=1+0.05*k1;}
     if(y>0.15&&z>0.35)z*=0.96;
     if(z<-0.2&&y>-0.4)z*=1.05;
     if(Math.abs(z)<0.55)x*=0.97;
-    hp.setXYZ(vi,x*0.081,y*0.114,z*0.1);
-    var ox=hg.attributes.position.getX(vi)/0.081,oy=y,oz=z,base=new T.Color(skinC).convertSRGBToLinear(),c=base.clone();
-    var stub=oy<-0.22&&oz>-0.35?Math.min(1,(-oy-0.22)/0.25):0;if(oy<-0.5&&Math.abs(ox)<0.25&&oz>0.6)stub*=0.6;
-    c.lerp(new T.Color("#9a8070").convertSRGBToLinear(),0.32*stub);
-    var ch=Math.max(0,1-Math.hypot(Math.abs(ox)-0.52,oy+0.12)/0.32)*(oz>0.45?1:0);c.lerp(new T.Color("#e8a898").convertSRGBToLinear(),0.28*ch);
-    var so=Math.max(0,1-Math.hypot(Math.abs(ox)-0.38,oy-0.12)/0.2)*(oz>0.6?1:0);c.multiplyScalar(1-0.12*so);
-    hcol.push(c.r,c.g,c.b);}
-  hg.setAttribute("color",new T.Float32BufferAttribute(hcol,3));hg.computeVertexNormals();add(hg,mat("#ffffff",0.6,{vertexColors:true}),0,1.71,0.008);
+    z+=faceBump(x,y,z);
+    hp.setXYZ(vi,x*0.081*bb,y*0.114*bb,z*0.1*bb);}
+  hg.computeVertexNormals();add(hg,mat("#ffffff",0.6,{map:faceTex()}),0,1.71,0.008);
   var HY=1.71;
   /* ears */
   [-1,1].forEach(function(s){var ex=s*0.078;
     add(new T.SphereGeometry(0.027,18,14),skin,ex,HY,-0.006,0.28,1,0.62,0,s*0.25,0);
     add(new T.TorusGeometry(0.021,0.0045,8,22,Math.PI*1.55),skin,ex+s*0.006,HY+0.003,-0.008,0.62,1.2,1,0,s*Math.PI/2+s*0.25,Math.PI*0.35);
     add(new T.SphereGeometry(0.0085,12,10),skin,ex+s*0.004,HY-0.023,-0.002,0.6,1,0.9);});
-  /* nose and mouth */
-  sec([[1.664,0.016,0.012,0,0.097],[1.674,0.019,0.019,0,0.108],[1.69,0.012,0.016,0,0.109],[1.708,0.009,0.011,0,0.106],[1.728,0.008,0.006,0,0.104]],skin,{seg:16,top:true,bottom:true});
-  tube([[-0.021,1.634,0.089],[0,1.6335,0.0955],[0.021,1.634,0.089]],0.0024,lipM,10);
-  tube([[-0.019,1.627,0.087],[0,1.624,0.094],[0.019,1.627,0.087]],0.0036,lipM,10);
-  /* eyes: white, iris, and an upper lid in skin so they sit in the face */
+  /* his nose: long and straight, a narrow bridge, a rounded tip and nostril wings */
+  var noseM=mat("#eebda4",0.55);
+  sec([[1.661,0.0165,0.009,0,0.1],[1.667,0.0185,0.015,0,0.106],[1.675,0.0145,0.0165,0,0.1095],[1.688,0.0095,0.0135,0,0.1085],[1.706,0.0082,0.011,0,0.106],[1.73,0.0088,0.0065,0,0.1035]],noseM,{seg:18,top:true,bottom:true});
+  [-1,1].forEach(function(s){add(new T.SphereGeometry(0.0068,14,10),noseM,s*0.0128,1.6665,0.1005,1,0.9,1.1);});
+  /* mouth: a closed, slight smile, the upper lip mostly under the moustache */
+  tube([[-0.02,1.6365,hz(-0.02,1.6365)+0.001],[0,1.634,hz(0,1.634)+0.003],[0.02,1.6365,hz(0.02,1.6365)+0.001]],0.0022,lipM,12);
+  tube([[-0.0175,1.6295,hz(-0.0175,1.6295)+0.001],[0,1.6265,hz(0,1.6265)+0.0026],[0.0175,1.6295,hz(0.0175,1.6295)+0.0005]],0.003,lipM,12);
+  /* eyes: blue-grey, a little hooded, under straight, thick dark-brown brows */
+  var eyeW=mat("#efe4d8",0.3),irO=mat("#4c6275",0.25),irI=mat("#7f99ae",0.25),pupil=mat("#141414",0.15),lidM=mat("#e9bba2",0.6),lash=mat("#2a1c14",0.8),browM=mat("#4a3326",0.9,{map:strandTex(),bumpMap:strandTex(),bumpScale:0.0004});
   [-1,1].forEach(function(s){var ex=s*0.031,ey=1.722;
-    add(new T.SphereGeometry(0.0125,18,12),white,ex,ey,0.1,1,0.68,0.62);
-    add(new T.SphereGeometry(0.0062,14,10),iris,ex,ey-0.0005,0.1068);
-    add(new T.SphereGeometry(0.0138,18,12,0,Math.PI*2,0,Math.PI*0.42),skin,ex,ey+0.0014,0.1,1,0.8,0.72,0.35,0,0);
-    tube([[s*0.014,1.742,0.1085],[s*0.031,1.748,0.1075],[s*0.049,1.744,0.1]],0.0032,hairM,10);           /* brow */
-    tube([[s*0.0195,1.7225,0.1046],[s*0.031,1.7275,0.1092],[s*0.0425,1.7235,0.1048]],0.0011,hairM,10);    /* lash line */
+    add(new T.SphereGeometry(0.0125,20,14),eyeW,ex,ey,0.1,1,0.72,0.62);
+    add(new T.SphereGeometry(0.0058,18,12),irO,ex,ey-0.0004,0.1066,1,1,0.32);
+    add(new T.SphereGeometry(0.0047,18,12),irI,ex,ey-0.0004,0.1072,1,1,0.3);
+    add(new T.SphereGeometry(0.0022,12,8),pupil,ex,ey-0.0004,0.1081,1,1,0.3);
+    add(new T.SphereGeometry(0.0138,18,12,0,Math.PI*2,0,Math.PI*0.41),lidM,ex,ey+0.0019,0.1,1,0.8,0.72,0.38,0,0);       /* upper lid */
+    tube([[s*0.019,1.7178,hz(0.019,1.7178)-0.0006],[s*0.031,1.7148,0.1074],[s*0.043,1.7178,hz(0.043,1.7178)-0.0008]],0.0012,lidM,10);  /* lower lid */
+    tube([[s*0.0195,1.7222,0.1046],[s*0.031,1.7252,0.1091],[s*0.0425,1.7224,0.1046]],0.0011,lash,10);                   /* lash line */
+    [[0,0.0029],[0.0024,0.0022],[-0.0022,0.002]].forEach(function(q){var dy=q[0];
+      tube([[s*0.012,1.7365+dy*0.6,hz(0.012,1.737)+0.0022],[s*0.022,1.7395+dy,hz(0.022,1.74)+0.0026],[s*0.036,1.7405+dy,hz(0.036,1.74)+0.0026],[s*0.05,1.7375+dy*0.7,hz(0.05,1.737)+0.0012]],q[1],browM,14);});
   });
-  /* the moustache: one thick curve over the lip, ends turned down */
-  tube([[-0.042,1.627,0.08],[-0.026,1.645,0.095],[0,1.651,0.103],[0.026,1.645,0.095],[0.042,1.627,0.08]],0.0068,tacheM,24);
-  /* his curls: a dark cap over the crown and back, then ringlets down to the bottom of the ears */
-  add(new T.SphereGeometry(1,32,22,0,Math.PI*2,0,Math.PI*0.32),hairM,0,HY,0.002,0.084,0.128,0.106);
-  add(new T.SphereGeometry(1,32,22,Math.PI,Math.PI,0,Math.PI*0.66),hairM,0,HY,0,0.085,0.127,0.105);
+  /* the moustache: a full ginger-brown chevron, one pillowed surface from under the nose to over the lip,
+     its ends drooping just past the corners of the mouth and thinning into the beard */
+  var tM=mat("#ffffff",0.85,{map:tacheTex(),bumpMap:tacheTex(),bumpScale:0.0006,alphaTest:0.45,side:T.DoubleSide}),NU=28,NV=12,mv=[],muv=[],mix=[];
+  for(var iv=0;iv<=NV;iv++){var v=iv/NV;for(var iu=0;iu<=NU;iu++){var u=iu/NU*2-1,au=Math.abs(u),w=0.019+v*0.014,mx=u*w,my=1.6605-v*0.025-(0.003+0.008*v)*Math.pow(au,2.2);
+    var th2=0.0068*Math.pow(Math.sin(Math.PI*Math.min(1,0.15+v*0.85)),0.6)*(1-Math.pow(au,3))+0.0006;mv.push(mx,my,hz(mx,my)+th2);muv.push(iu/NU,1-v);}}
+  for(iv=0;iv<NV;iv++){for(var iu2=0;iu2<NU;iu2++){var q1=iv*(NU+1)+iu2,q2=q1+NU+1;mix.push(q1,q2,q1+1,q1+1,q2,q2+1);}}
+  var mg=new T.BufferGeometry();mg.setAttribute("position",new T.Float32BufferAttribute(mv,3));mg.setAttribute("uv",new T.Float32BufferAttribute(muv,2));mg.setIndex(mix);mg.computeVertexNormals();add(mg,tM);
+  /* his curls: a lumpy dark-brown mass, higher on top, over the tops of the ears and down to the nape, covered in
+     corkscrew ringlets in dark to chestnut brown, with a few hanging over the forehead */
   var seed=5;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647;}
-  var torG=new T.TorusGeometry(0.0145,0.0068,6,12),ballG=new T.SphereGeometry(0.016,10,8),it1=new T.InstancedMesh(torG,hairM,420),it2=new T.InstancedMesh(ballG,hairM,240),dm=new T.Object3D(),n1=0,n2=0;
-  for(var ci=0;ci<2400&&(n1<420||n2<240);ci++){
-    var th=rnd()*Math.PI*2,ph=Math.acos(1-2*rnd()*0.86),ux=Math.sin(ph)*Math.cos(th),uy=Math.cos(ph),uz=Math.sin(ph)*Math.sin(th);
-    if(uz>0.3&&uy<0.6)continue;                 /* the face, below the hairline */
-    if(uy<-0.32&&uz>-0.45)continue;              /* stop at the bottom of the ears */
-    if(uy<-0.5)continue;
-    if(hatOn&&uy>0.42)continue;                  /* under the hat */
-    var out=1.08+rnd()*0.12;dm.position.set(ux*0.083*out,HY+uy*0.126*out+0.004,uz*0.104*out);dm.rotation.set(rnd()*6.3,rnd()*6.3,rnd()*6.3);var s2=0.8+rnd()*0.6;dm.scale.set(s2,s2,s2);dm.updateMatrix();
-    if(rnd()<0.62&&n1<420){it1.setMatrixAt(n1++,dm.matrix);}else if(n2<240){it2.setMatrixAt(n2++,dm.matrix);}
-  }
-  (hatOn?[]:[[-0.04,1.79,0.072],[0,1.8,0.078],[0.04,1.793,0.072],[-0.019,1.782,0.085],[0.022,1.784,0.084]]).forEach(function(q){dm.position.set(q[0],q[1],q[2]);dm.rotation.set(rnd()*6,rnd()*6,0);dm.scale.set(1,1,1);dm.updateMatrix();if(n1<420)it1.setMatrixAt(n1++,dm.matrix);});
-  it1.count=n1;it2.count=n2;[it1,it2].forEach(function(m){m.castShadow=true;headG.add(m);});
+  function lump(x,y,z){return 0.5+0.5*Math.sin(x*9.1+y*3.7)*Math.sin(y*8.3-z*5.2)*Math.sin(z*7.7+x*4.1);}
+  function hairR(x,y,z){return 0.94+scalpAt(x,y,z)*(hatOn?0.07:(0.07+0.2*Math.pow(Math.max(0,y),1.6)+0.04*lump(x,y,z))*(z<0?1-0.45*Math.min(1,-z*1.4):1));}
+  var hm=new T.SphereGeometry(1,48,36),mp=hm.attributes.position;
+  for(vi=0;vi<mp.count;vi++){x=mp.getX(vi);y=mp.getY(vi);z=mp.getZ(vi);var hr=hairR(x,y,z);mp.setXYZ(vi,x*0.084*hr,HY+y*0.12*hr,z*0.106*hr);}
+  hm.computeVertexNormals();add(hm,mat("#35251b",0.95));
+  function helix(rh,len,turns){var p=[];for(var i=0;i<=24;i++){var f=i/24,a=f*turns*Math.PI*2,rr=rh*(1-0.25*f);p.push(new T.Vector3(rr*Math.cos(a),-f*len,rr*Math.sin(a)));}return new T.TubeGeometry(new T.CatmullRomCurve3(p),30,0.0027,5,false);}
+  var NI=hatOn?120:240,HM=[mat("#2f2018",0.78),mat("#46301f",0.72)],ims=[];[helix(0.0085,0.028,1.8),helix(0.0105,0.022,1.3),helix(0.0072,0.034,2.2)].forEach(function(g){HM.forEach(function(hm2){var m=new T.InstancedMesh(g,hm2,NI);m.count=0;ims.push(m);});});
+  var dm=new T.Object3D(),q0=new T.Vector3(0,-1,0),dv=new T.Vector3();
+  function ringlet(px,py,pz,nx,ny,nz,droop,sc){var m=ims[(rnd()*ims.length)|0];if(m.count>=NI)return;var l=Math.hypot(nx,ny,nz);nx/=l;ny/=l;nz/=l;
+    dv.set(nx*(1-droop)+(rnd()-0.5)*0.6,ny*(1-droop)-droop+(rnd()-0.5)*0.6,nz*(1-droop)+(rnd()-0.5)*0.6).normalize();
+    dm.position.set(px,py,pz);dm.quaternion.setFromUnitVectors(q0,dv);dm.rotateY(rnd()*6.28);dm.scale.setScalar(sc);dm.updateMatrix();
+    m.setMatrixAt(m.count,dm.matrix);m.count++;}
+  if(!hatOn)[[-0.05,1.79],[-0.036,1.785],[-0.021,1.782],[-0.006,1.781],[0.009,1.782],[0.024,1.784],[0.038,1.788],[0.052,1.793],[-0.028,1.794],[0.0,1.792],[0.03,1.795],[-0.045,1.8],[0.045,1.802]].forEach(function(q){ringlet(q[0],q[1],hz(q[0],q[1])+0.01,q[0]*4,0.3,1,0.8,0.85+rnd()*0.3);});
+  for(var ci=0;ci<7000;ci++){var th=rnd()*Math.PI*2,uy=1-2*rnd(),sn=Math.sqrt(1-uy*uy),ux=sn*Math.cos(th),uz=sn*Math.sin(th);
+    if(scalpAt(ux,uy,uz)<0.5||(hatOn&&uy>0.3))continue;
+    var rr2=hairR(ux,uy,uz)+(rnd()-0.35)*0.05;
+    ringlet(ux*0.084*rr2,HY+uy*0.12*rr2,uz*0.106*rr2,ux/0.084,uy/0.12,uz/0.106,0.3+0.45*(1-Math.max(0,uy)),(0.75+rnd()*0.45)*(uy<0.2?0.8:1));}
+  ims.forEach(function(m){m.castShadow=true;headG.add(m);});
   tgt=man;
   /* ---- the outfit, sorted by layer ---- */
   var up=[],lo=null,ft=null,acc=[];
@@ -2547,7 +2606,7 @@ function make3D(pieces){
   tgt=man;
   return {scene:scene,man:man};
 }
-function dispose3D(o){if(!o)return;o.scene.traverse(function(n){if(n.geometry)n.geometry.dispose();if(n.material){[].concat(n.material).forEach(function(m){if(m.map&&m.map!==bumpTex)m.map.dispose();m.dispose();});}});}
+function dispose3D(o){if(!o)return;o.scene.traverse(function(n){if(n.geometry)n.geometry.dispose();if(n.material){[].concat(n.material).forEach(function(m){if(m.map&&m.map!==bumpTex&&!m.map.keep)m.map.dispose();m.dispose();});}});}
 /* A live view you can turn: used by the large outfit view and the builder. */
 function Live3D(box,pieces){
   var T=window.THREE,W=box.clientWidth||300,H=box.clientHeight||500;
