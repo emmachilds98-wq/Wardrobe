@@ -29,6 +29,8 @@ that refresh them every week (see `REFRESH.md`).
 | `data/items-YYYY-MM-DD*.json`, `data/outfits-YYYY-MM-DD.json` | Each week's new picks and outfits. |
 | `data/refresh-report.json` | What the last refresh changed: price moves, removals, renames, Workwear changes, shops not checked. |
 | `docs/` | The built site (page plus data and photo files), served by GitHub Pages and published to the artifact. |
+| `tools/qa/` | QA scripts for a served test copy of the site (`serve.sh`): close-up renders, items beside their shop photos, layer probes, a 2D/3D smoke test and a dump of every photo reading for before/after comparison. |
+| `HANDOFF.md` | Where the upgrade stands and how the next agent should carry on. |
 | `REFRESH.md` | The weekly refresh, step by step. |
 | `UPGRADE_PLAN.md` | The review, what has been done, and what is next. |
 
