@@ -1532,10 +1532,10 @@ function figure(pieces,hi){
     fg+=P("g",upL)+P("g",mir(upL));
     if(!dim(ft)){fg+='<path d="'+upL+'" fill="url(#fg-shade)"/><path d="'+mir(upL)+'" fill="url(#fg-shade)"/>'+(fs==="boots"?'<path d="'+shaftL+'" fill="url(#fg-vol)"/><path d="'+mir(shaftL)+'" fill="url(#fg-vol)"/>':"")+
       '<ellipse cx="89" cy="463" rx="6" ry="2.6" fill="#fff" opacity=".2"/><ellipse cx="151" cy="463" rx="6" ry="2.6" fill="#fff" opacity=".2"/>';}
-    var gum=/\bgum\b/.test(fnm),wsole=/white sole|cupsole|plimsoll|vulc/.test(fnm);
-    if(gum){fg+='<path d="'+soleL+'" fill="#b07a45"/><path d="'+mir(soleL)+'" fill="#b07a45"/>';}
+    var gum=/\bgum\b/.test(fnm),wsole=/white sole|cupsole|plimsoll|vulc/.test(fnm),rsole=fs==="trainers"&&!gum&&ft.look&&ft.look.sole;   /* (a trainer's sole as its photo shows it) */
+    if(gum||rsole){var sf=rsole||"#b07a45";fg+='<path d="'+soleL+'" fill="'+sf+'"/><path d="'+mir(soleL)+'" fill="'+sf+'"/>';}
     else if(wsole&&fs!=="trainers"){fg+='<path d="'+soleL+'" fill="#f1ede4"/><path d="'+mir(soleL)+'" fill="#f1ede4"/>';}
-    fg+=gum||(wsole&&fs!=="trainers")?P("d","M78 471 Q95 475 112 471 M128 471 Q145 475 162 471"):fs==="trainers"?P("so",soleL)+P("so",mir(soleL))+P("d","M78 471 Q95 475 112 471 M128 471 Q145 475 162 471"):P("g",soleL)+P("g",mir(soleL))+P("d","M78 470 Q95 474 112 470 M128 470 Q145 474 162 470");
+    fg+=gum||rsole||(wsole&&fs!=="trainers")?P("d","M78 471 Q95 475 112 471 M128 471 Q145 475 162 471"):fs==="trainers"?P("so",soleL)+P("so",mir(soleL))+P("d","M78 471 Q95 475 112 471 M128 471 Q145 475 162 471"):P("g",soleL)+P("g",mir(soleL))+P("d","M78 470 Q95 474 112 470 M128 470 Q145 474 162 470");
     var lace="";
     if(fs==="trainers"){lace="M89 446 H101 M88.5 449.5 H101.5 M88 453 H102 M87.5 456.5 H102.5 M84 464 Q95 459 106 464 M80 460 Q83 452 88 447 M110 460 Q107 452 102 447";}
     else if(fs==="boots"){lace=/chelsea|dealer/.test(fnm)?"M85 424 Q86 436 85 448 M105 424 Q104 436 105 448":"M89 423 H101 M89 428 H101 M89 433 H101 M89 438 H101 M89 443 H101 M89 448 H101 M95 420 V450";}
@@ -1543,8 +1543,9 @@ function figure(pieces,hi){
     else if(/loafer|moccasin|penny|boat|deck/.test(fnm)){lace="M84 453 Q95 459 106 453 M88 453 V457 M102 453 V457 M82 462 Q95 458 108 462";}
     else{lace="M89 447 H101 M89 450.5 H101 M89 454 H101 M95 445 V456 M82 463 Q95 458 108 463 M80 460 Q83 452 88 446 M110 460 Q107 452 102 446";}
     if(safe){lace+=" M80 466 Q95 456 110 466";}
-    /* three stripes on the side of a Samba, Gazelle or Campus, in the photo's (or the listing's) second colour */
-    if(fs==="trainers"&&/samba|gazelle|campus|spezial|superstar|adidas/.test(fnm)&&!dim(ft)){var s3=ft.col2&&Math.abs(lum(ft.col2)-lum(cc(ft.col)[0]))>0.18?ft.col2:(cc(ft.col)[1]?"#f2efe8":"#1e1d20"),st3="M90 467 L96 452 M94 467.5 L100 452.5 M98 468 L104 453.5";
+    /* three stripes on the side of a Samba, Gazelle or Campus, in the listing's (or the photo's) second colour, or the
+       photo's accent (red stripes on blue) */
+    if(fs==="trainers"&&/samba|gazelle|campus|spezial|superstar|adidas/.test(fnm)&&!dim(ft)){var s3=ft.col2&&Math.abs(lum(ft.col2)-lum(cc(ft.col)[0]))>0.18?ft.col2:((ft.look&&ft.look.acc)||(cc(ft.col)[1]?"#f2efe8":"#1e1d20")),st3="M90 467 L96 452 M94 467.5 L100 452.5 M98 468 L104 453.5";
       fg+='<path d="'+st3+' '+mir(st3)+'" stroke="'+s3+'" stroke-width="1.8" stroke-linecap="round" fill="none"/>';}
     fg+=P("d",lace+" "+mir(lace));
     h+=grp(ft,fg);}
@@ -2372,6 +2373,24 @@ function readLook(im,shape,DW){
   /* (a close-up's stripes and checks were measured against a garment far longer than what is in frame: about a
      quarter of the size) */
   if(L.close){if(L.per)L.per*=0.28;if(L.swPer)L.swPer*=0.28;}
+  /* footwear: the sole's colour and a bright accent on the upper too small to be its second colour (red stripes, a
+     red tick). The sole is the bottom of the shoe's outline: in each column the lowest point of the shoe and just above
+     it (the commonest colour there, so a shadow or blurred edge does not count). Only when most columns end near the bottom of the shoe's
+     box, as in a product shot, the shoe is not cut off by the frame, and no model is in shot. (A gum sole is tan, and was
+     taken for skin above: here it counts as the shoe.) Trainers only: shoes' and boots' photos catch reflections and
+     floors under them, and their dark sole (or a crepe, gum or wedge one named in the listing) is drawn as it is. */
+  if(FEETs&&!L.model){var sB={},sBest=null,sN=0,cN=0,cOk=0,sTh=Math.max(3,Math.round(gh*0.06));
+    if(shape==='trainers')for(i=bx[0]+Math.floor(gw*0.15);i<bx[0]+Math.ceil(gw*0.85);i++){var jb=-1;for(j=by[1];j>=by[0];j--){if(M[j*W+i]!==1){jb=j;break;}}cN++;
+      if(jb<0||jb<by[1]-gh*0.35)continue;cOk++;
+      for(j=jb;j>jb-sTh&&j>=by[0];j--){k=j*W+i;if(M[k]===1)continue;var sv=px(i,j),sk=(sv[0]>>5)+"_"+(sv[1]>>5)+"_"+(sv[2]>>5),sb=sB[sk]||(sB[sk]={n:0,r:0,g:0,b:0});
+        sb.n++;sb.r+=sv[0];sb.g+=sv[1];sb.b+=sv[2];sN++;if(!sBest||sb.n>sBest.n)sBest=sb;}}
+    var sC=sBest?[sBest.r/sBest.n,sBest.g/sBest.n,sBest.b/sBest.n]:null;
+    /* (a shoe at the bottom of the frame whose "sole" is the upper's own colour is cut off there: its sole is not in shot) */
+    if(sC&&cN&&cOk>=cN*0.6&&sN>=30&&sBest.n>=sN*0.35&&!(by[1]>=H-2&&dist(sC,m)<45))L.sole=hx(sC);
+    var aB={},aBest=null;if(shape==='trainers')use.forEach(function(v){var ch=Math.max(v[0],v[1],v[2])-Math.min(v[0],v[1],v[2]);if(ch<70||dist(v,m)<90||dist(v,t)<90)return;
+      if(v[0]>v[1]&&v[1]>v[2]&&(v[1]-v[2])>(v[0]-v[2])*0.25&&(v[1]-v[2])<(v[0]-v[2])*0.75)return;   /* (skin: a model's hand or leg) */
+      var ak=(v[0]>>5)+"_"+(v[1]>>5)+"_"+(v[2]>>5),ab=aB[ak]||(aB[ak]={n:0,r:0,g:0,b:0});ab.n++;ab.r+=v[0];ab.g+=v[1];ab.b+=v[2];if(!aBest||ab.n>aBest.n)aBest=ab;});
+    if(aBest&&aBest.n>=Math.max(12,use.length*0.012))L.acc=hx([aBest.r/aBest.n,aBest.g/aBest.n,aBest.b/aBest.n]);}
   L.str=L.c1+(L.c2?"|"+L.c2:"");
   return L;
 }
@@ -4597,7 +4616,9 @@ function make3Dcore(pieces){
   /* shoes or boots: a shoe shape on its sole, toes turned out a little */
   var fcol=ft?cc(ft.col)[0]:skinC,fn=ft?nm(ft):"",trainer=ft&&ft.shape==="trainers",boot=ft&&ft.shape==="boots",slip=ft&&ft.shape==="slippers";
   var fm=ft?(trainer||slip?cloth(fcol,"plain","",0.75):mat(fcol,/suede|nubuck/.test(fn)?0.92:0.38)):skin,gum=/\bgum\b/.test(fn);
-  var soleM=mat(gum?"#b07a45":(trainer||/white sole|wedge/.test(fn)?"#f1ede4":"#2a2420"),0.85);
+  /* (a trainer's sole as the photo shows it, a black hiking sole or a gum cupsole, else white) */
+  var fL=ft&&ft.look||{},soleC=gum||!trainer?"":(fL.sole||"");
+  var soleM=mat(gum?"#b07a45":(soleC?shade(soleC,0.8):(trainer||/white sole|wedge/.test(fn)?"#f1ede4":"#2a2420")),0.85);
   var shoeS=(ft?[[-0.075,0.03,0.04],[-0.062,0.042,0.05],[-0.02,0.048,0.053],[0.04,0.05,0.047],[0.1,0.053,0.037],[0.16,0.05,0.029],[0.2,0.042,0.023],[0.226,0.026,0.016]]
     :[[-0.07,0.028,0.03],[-0.04,0.036,0.034],[0.04,0.045,0.026],[0.12,0.048,0.018],[0.18,0.044,0.013],[0.205,0.03,0.01]]);
   function hAt(z){for(var i=0;i<shoeS.length-1;i++){if(z>=shoeS[i][0]&&z<=shoeS[i+1][0]){var f=(z-shoeS[i][0])/(shoeS[i+1][0]-shoeS[i][0]);return shoeS[i][2]*(1-f)+shoeS[i+1][2]*f;}}return 0.02;}
@@ -4643,13 +4664,15 @@ function make3Dcore(pieces){
     add(shoeGeo(rows,lift),fm,x,0,0.0,1,1,1,0,rot,0);
     if(!ft)return;
     function at(z,y,dx){return [x+Math.sin(rot)*z+Math.cos(rot)*(dx||0),y,Math.cos(rot)*z-Math.sin(rot)*(dx||0)];}
-    if(trainer){var midM=mat(gum?"#b07a45":"#f3f0e8",0.8),outM=mat(gum?"#7a5030":"#d9d4ca",0.9);
+    /* (the side mark in the listing's second colour, else the photo's accent, red stripes or a red tick, else light on
+       dark and dark on light) */
+    if(trainer){var midM=mat(gum?"#b07a45":(soleC||"#f3f0e8"),0.8),outM=mat(gum?"#7a5030":(soleC?shade(soleC,0.8):"#d9d4ca"),0.9);
       add(shoeGeo(shoeS.map(function(q){return [q[0],q[1]+0.006,0.011];}),0.008),midM,x,0,0,1,1,1,0,rot,0);   /* midsole */
       add(shoeGeo(shoeS.map(function(q){return [q[0],q[1]+0.0065,0.004];}),0),outM,x,0,0,1,1,1,0,rot,0);         /* outsole */
       var tb=at(0.215,0.04);add(new T.SphereGeometry(0.03,16,10,0,Math.PI*2,0,Math.PI/2),midM,tb[0],tb[1]-0.012,tb[2],0.85,0.45,0.6,-0.2,rot,0);   /* toe bumper */
       var ht=at(-0.072,0.075);add(new T.BoxGeometry(0.022,0.03,0.008),fm,ht[0],ht[1],ht[2],1,1,1,0.25,rot,0);   /* heel tab */
       var cl=at(-0.01,0.088);add(new T.TorusGeometry(0.042,0.008,8,24),fm,cl[0],cl[1],cl[2],1,1,1.25,Math.PI/2-0.15,0,rot);   /* padded collar */
-      var stc=ft.col2&&Math.abs(lum(ft.col2)-lum(fcol))>0.18?ft.col2:(lum(fcol)>0.6?"#2b2b2e":"#f4f1ea"),st=mat(stc,0.6),sp=at(0.03,lift+0.022,s*0.0515);
+      var stc=ft.col2&&Math.abs(lum(ft.col2)-lum(fcol))>0.18?ft.col2:(fL.acc||(lum(fcol)>0.6?"#2b2b2e":"#f4f1ea")),st=mat(stc,0.6),sp=at(0.03,lift+0.022,s*0.0515);
       if(/samba|gazelle|campus|spezial|superstar|adidas|three stripe|3-stripe/.test(fn))[-0.012,0.006,0.024].forEach(function(o3){var q4=at(0.035+o3,lift+0.026,s*0.0515);add(new T.BoxGeometry(0.003,0.034,0.007),st,q4[0],q4[1],q4[2],1,1,1,-0.5,rot,0);});   /* three stripes, from the photo's second colour */
       else add(new T.BoxGeometry(0.003,0.011,0.11),st,sp[0],sp[1],sp[2],1,1,1,-0.12,rot,0);}   /* a side panel */
     else if(shoeK){add(shoeGeo(shoeS.map(function(q){return [q[0],q[1]+0.003,0.0055];}),0.004),soleM,x,0,0,1,1,1,0,rot,0);   /* sole */
