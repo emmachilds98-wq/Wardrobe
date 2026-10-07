@@ -254,12 +254,7 @@ function colourOff(c) {
   // set it; the types are read from the page itself, so they never fall out of step with it
   const BODY = arg("body");
   if (BODY && BODY !== "dave") {
-    const src = fs.readFileSync(path.join(SITE, "index.html"), "utf8"), lit = n => { const m = src.match(new RegExp("var " + n + "=(\\{[\\s\\S]*?\\});")); return m ? Function("return " + m[1])() : null; };
-    const DEF = lit("CHAR_DEF"), PRE = lit("PRESETS"), KEYS = (src.match(/var BODY_KEYS=(\[[^\]]*\])/) || [])[1];
-    const ch = Object.assign({}, DEF);
-    if (BODY === "close" || BODY === "loose") ch.clothFit = BODY === "close" ? -1 : 1;
-    else if (PRE && PRE[BODY]) JSON.parse(KEYS).forEach(k => { ch[k] = PRE[BODY][k] != null ? PRE[BODY][k] : 0; });
-    else { console.error("--body is one of dave, " + Object.keys(PRE || {}).filter(k => k !== "dave").join(", ") + ", close, loose"); process.exit(1); }
+    let ch; try { ch = require("./qa/body").charFor(fs.readFileSync(path.join(SITE, "index.html"), "utf8"), BODY); } catch (e) { console.error("--body: " + e.message); process.exit(1); }
     await p.addInitScript(c => { try { localStorage.setItem("dw-char", JSON.stringify(c)); } catch (e) {} }, ch);
   }
   await p.goto("http://localhost:" + port + "/index.html?qa=1#fits");

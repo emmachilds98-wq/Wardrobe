@@ -285,6 +285,11 @@ runs the build checks and the 3D check automatically, but run them yourself firs
 4. **Run the 3D check** on the outfits you touched:
    `node tools/check_3d.js --site docs --ids a,b,c --out qa --debug` (or `--ids @file` with one id per line).
    For a change to the 3D builder or the photo reader, run it on every outfit (see below).
+5. **Check other builds.** Clothes must fit whatever Edit Dave is set to, not only his saved shape: what fits him
+   can leave a gap on a slimmer or broader build, or with the cloth fit slider at "looser". Add
+   `--body slim|average|athletic|heavier|close|loose` to the 3D check, and `QA_BODY=...` to `zoom.js`, `ray.js` and
+   `multi.js` (the shapes come from the page itself, `tools/qa/body.js`). The pull-request check runs the gate set on
+   his saved shape and on slim, athletic, heavier and loose.
 
 ### What the 3D check measures
 
@@ -379,5 +384,12 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
   with a slit down the inside of the forearm. Directions now follow the armhole's length when that happens.
 - **Cutting away skin by region and height alone leaves gaps** where a neckline or armhole sits lower than the cut
   (the sides of a crew neck, a muscle vest). The cut is now checked against the cloth actually built.
+- **A sleeve's directions can bunch up.** On a long coat on a slim build the armhole's points sat at the front, back
+  and top of the arm and left its inner side with no direction at all, so the sleeve's inside was one flat face
+  through his forearm. The sleeve now goes by the armhole's length whenever a stretch of more than about 50° is
+  empty.
+- **A tucked shirt must stay inside the trousers whatever the fit.** With the cloth fit at "looser" a tucked shirt
+  hung straight from the chest, over the waistband, and the waistband showed through it. It is now gathered in
+  above the waistband and kept just inside the trousers below it.
 - **One item looking right is not proof.** Check every item of that kind with `multi.js`, and every outfit with
   `check_3d.js`.
