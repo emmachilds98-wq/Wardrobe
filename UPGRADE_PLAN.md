@@ -1420,8 +1420,10 @@ Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fit
   the listing name, with the frame and lens colours it names (gold, silver, tortoiseshell; amber, green, blue,
   mirrored).
 - **Weekly routine:** now runs `weekly_refresh.py fabric` and the 3D checks, and reports their result.
-- **Still to do:** the small collar spikes at the side of the neck on some shirts (in the folded collar,
-  `fitCollar`), and then Phase 2.
+- **Collar leaf:** the folded leaf of shirt and polo collars had a toothed edge over the shoulders. The cloth under it
+  is measured from a coarse map, and neighbouring points jumped in and out. Each fold row is now smoothed round
+  the neck (a median, then a mean), keeping it just clear of the cloth.
+- **Still to do:** one small notch at the back of some polo collars, and then Phase 2.
 
 ## 3. Next steps
 

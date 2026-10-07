@@ -3598,7 +3598,14 @@ function make3Dcore(pieces){
     if(o.fold){var Fd=o.fold,KF=4,tp=rows[K],OWN=ownNeck(FT);for(k=0;k<=KF;k++){var f2=k/KF,row2=[];C.forEach(function(c,ci){var T0=tp[ci],cf=Math.max(0,Math.cos(c.an)),y=T0[1]-(Fd.drop+Fd.front*cf*cf)*f2,
           rk=T0[3]+0.0028+Fd.out*Math.sin(f2*Math.PI/2);for(var kk=0;kk<=K;kk++){var S=rows[kk][ci];if(Math.abs(S[1]-y)<o.h/K)rk=Math.max(rk,S[3]+0.0028);}var P=at(y,c.an,rk);
           for(var it3=0;it3<2;it3++){var q3=[0,0,0];fmCoord(OWN,P[0],P[1],P[2],q3);var a3=Math.atan2(q3[1],q3[2]),r3=Math.hypot(q3[1],q3[2]),nd=fmGet(OWN,y,a3)+0.003;if(nd>0.003&&r3<nd){rk+=nd-r3;P=at(y,c.an,rk);}}
-          P.push(rk);row2.push(P);});rows.push(row2);}}
+          P.push(rk);row2.push(P);});
+        /* (the cloth under the leaf is measured from a coarse map, which is noisy over the shoulders: neighbours jumped in
+           and out and the leaf's edge showed as teeth; each fold row is smoothed round his neck, a median then a mean,
+           keeping it just clear of what it lies on) */
+        if(k>0){var rkA=row2.map(function(P){return P[3];}),n5=rkA.length,med=rkA.map(function(v,i){var w=[];for(var d=-3;d<=3;d++)w.push(rkA[(i+d+n5)%n5]);w.sort(function(x,y){return x-y;});return w[3];}),
+            mn=med.map(function(v,i){return (med[(i-2+n5)%n5]+2*med[(i-1+n5)%n5]+3*v+2*med[(i+1)%n5]+med[(i+2)%n5])/9;});
+          row2=row2.map(function(P,ci){var c=C[ci],rk2=Math.max(mn[ci],P[3]-0.004);if(Math.abs(rk2-P[3])<1e-6)return P;var P2=at(P[1],c.an,rk2);P2.push(rk2);return P2;});}
+        rows.push(row2);}}
     var pos=[],uv=[],ix=[],NCc=C.length,U=[0];for(j=1;j<NCc;j++)U.push(U[j-1]+Math.abs(C[j].an-C[j-1].an>Math.PI?C[j].an-C[j-1].an-2*Math.PI:(C[j].an-C[j-1].an<-Math.PI?C[j].an-C[j-1].an+2*Math.PI:C[j].an-C[j-1].an))*0.07);
     rows.forEach(function(row,ri){row.forEach(function(P,ci){pos.push(P[0],P[1],P[2]);uv.push(U[ci]*3,ri*o.h/K/0.3);});});
     for(var r=0;r<rows.length-1;r++){if(o.fold&&r===K)continue;for(j=0;j<NCc-1;j++){var a=r*NCc+j,b=a+1,cc=a+NCc,d=cc+1;ix.push(a,b,cc,b,d,cc);}}
