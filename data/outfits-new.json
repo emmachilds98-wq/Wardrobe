@@ -441,7 +441,7 @@
   "look": "men green polo indigo trousers cream jumper navy shoes outfit"
  },
  "g-quiet-12": {
-  "name": "Navy T-shirt and blue trousers",
+  "name": "Navy T-shirt and blue shorts",
   "note": "3 pieces for £85.5, £158 below full price.",
   "occ": "everyday",
   "pieces": [
@@ -454,8 +454,8 @@
    {
     "col": "blue",
     "item": "tedbaker-halbak-dark-blue",
-    "shape": "trousers",
-    "what": "Blue trousers"
+    "shape": "shorts",
+    "what": "Blue shorts"
    },
    {
     "col": "navy",
@@ -525,7 +525,7 @@
   "look": "men blue polo brown trousers grey half-zip navy gilet brown boots outfit"
  },
  "g-quiet-14": {
-  "name": "Black T-shirt and pink trousers",
+  "name": "Black T-shirt and pink shorts",
   "note": "3 pieces for £82.49, £144 below full price.",
   "occ": "everyday",
   "pieces": [
@@ -538,8 +538,8 @@
    {
     "col": "pink",
     "item": "tedbaker-halbak-mid-pink",
-    "shape": "trousers",
-    "what": "Pink trousers"
+    "shape": "shorts",
+    "what": "Pink shorts"
    },
    {
     "col": "tan",
@@ -558,8 +558,8 @@
   "look": "men black T-shirt pink trousers tan shoes outfit"
  },
  "g-quiet-15": {
-  "name": "Black jacket and pink trousers",
-  "note": "6 pieces for £127.93, £276 below full price.",
+  "name": "Black jacket and stone chinos",
+  "note": "6 pieces for £152.43, £251 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -569,10 +569,10 @@
     "what": "Navy polo"
    },
    {
-    "col": "pink",
-    "item": "tedbaker-halbak-mid-pink",
+    "col": "stone",
+    "item": "communityc-mens-cotton-pleated-chino-stone",
     "shape": "trousers",
-    "what": "Pink trousers"
+    "what": "Stone chinos"
    },
    {
     "col": "black",
@@ -705,8 +705,8 @@
   "look": "men white T-shirt indigo trousers sand jumper navy jacket brown shoes outfit"
  },
  "g-quiet-18": {
-  "name": "Navy gilet and olive trousers",
-  "note": "5 pieces for £150.93, £247 below full price.",
+  "name": "Navy gilet and olive cords",
+  "note": "5 pieces for £150.93, £118 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -717,9 +717,9 @@
    },
    {
     "col": "olive",
-    "item": "tedbaker-halbak-olive",
+    "item": "sw-cord",
     "shape": "trousers",
-    "what": "Olive trousers"
+    "what": "Olive cords"
    },
    {
     "col": "navy",
@@ -996,7 +996,7 @@
   "look": "men blue shirt navy trousers navy jacket black boots outfit"
  },
  "g-quiet-25": {
-  "name": "Black shirt and blue trousers",
+  "name": "Black shirt and blue shorts",
   "note": "3 pieces for £113, £260 below full price.",
   "occ": "everyday",
   "pieces": [
@@ -1009,8 +1009,8 @@
    {
     "col": "blue",
     "item": "tedbaker-halbak-dark-blue",
-    "shape": "trousers",
-    "what": "Blue trousers"
+    "shape": "shorts",
+    "what": "Blue shorts"
    },
    {
     "col": "brown",
@@ -1029,8 +1029,8 @@
   "look": "men black shirt blue trousers brown shoes outfit"
  },
  "g-quiet-26": {
-  "name": "Grey gilet and olive trousers",
-  "note": "5 pieces for £209.95, £279 below full price.",
+  "name": "Grey gilet and olive chinos",
+  "note": "5 pieces for £229.9, £170 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -1041,9 +1041,9 @@
    },
    {
     "col": "olive",
-    "item": "tedbaker-halbak-olive",
+    "item": "r1-pleated-olive",
     "shape": "trousers",
-    "what": "Olive trousers"
+    "what": "Olive chinos"
    },
    {
     "col": "grey",
