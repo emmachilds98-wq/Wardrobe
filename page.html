@@ -1330,7 +1330,7 @@ function neckArt(p){
   return "";
 }
 function upperArt(p,dim){
-  var s=p.shape,H=HEM[s],long=!(s==="tee"||s==="polo"||s==="sshirt"||s==="vest")||/long|henley|mock|brushed/i.test(p.what),h,l,r;
+  var s=p.shape,H=p._tuck?228:HEM[s],long=!(s==="tee"||s==="polo"||s==="sshirt"||s==="vest")||/long|henley|mock|brushed/i.test(p.what),h,l,r;
   if(s==="waistcoat"){
     var wd="M104 92 L120 150 L136 92 L153 96 Q150 122 159 144 L160 236 L128 246 L120 238 L112 246 L80 236 L81 144 Q90 122 87 96 Z";
     return '<g '+tone(p.col,dim)+'>'+body(wd,p,dim)+P("d","M120 150 V240 M88 196 H104 M136 196 H152")+C(123,166,1.6)+C(123,184,1.6)+C(123,202,1.6)+C(123,220,1.6)+'</g>';
@@ -1557,8 +1557,15 @@ function figure(pieces,hi){
     if(LD.turnup&&trs){h+='<path d="M73.6 '+(bot-8)+' H112.6 M127.4 '+(bot-8)+' H166.4" stroke="rgba(20,32,27,.4)" stroke-width="1.2" fill="none"/>';}}
   if(ac.kneepads){var kp="M80 362 H110 Q113 362 113 366 V390 Q113 394 109 394 H81 Q77 394 77 390 V366 Q77 362 80 362 Z";h+=grp(ac.kneepads,P("g",kp)+P("g",mir(kp))+P("d","M78 372 H112 M128 372 H162 M78 384 H112 M128 384 H162"));}
   var base=null,covered=false;
+  /* a shirt or polo next to him is tucked in as on the 3D model (with a blazer, waistcoat or tie, tailored trousers, or a
+     belt worn to be seen; never with shorts, and an overshirt over another shirt hangs loose), and a belt then shows
+     on the waistband over it, under anything worn open on top */
+  var kitB=ac.belt&&/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/i.test(((byId[ac.belt.item]||{}).name||"")+" "+ac.belt.what),
+    tuck2=!!lo&&lo.shape!=="shorts"&&(!!(ac.tie||(ac.belt&&!kitB))||up.some(function(q){return /^(blazer|waistcoat)$/.test(q.shape);})||/suit|tailored|formal|dress trouser|wool trouser/i.test(((byId[lo.item]||{}).name||"")+" "+lo.what));
+  up=up.map(function(p,k){if(tuck2&&(LAYER[p.shape]||0)===0&&/^(shirt|sshirt|polo)$/.test(p.shape)&&!(overshirt(p)&&up.slice(0,k).some(function(q){return /^(shirt|sshirt|polo)$/.test(q.shape);})))return Object.assign({},p,{_tuck:true});return p;});
   up.forEach(function(p,k){
     h+=upperArt(p,dim(p));
+    if(p._tuck&&ac.belt&&!kitB&&!(up[k+1]&&up[k+1]._tuck)){h+=grp(ac.belt,P("g","M81 222 H159 V231 H81 Z"))+'<rect x="116" y="221.5" width="8" height="10" rx="1" fill="'+(dim(ac.belt)?fade(COL.silver[0]):COL.silver[0])+'" stroke="rgba(20,32,27,.45)" stroke-width=".6"/>';}
     if(k===0&&LAYER[p.shape]===0){base=p;if(ac.tie){h+=grp(ac.tie,P("g","M116.5 102 H123.5 L122.5 112 L127 186 L120 198 L113 186 L117.5 112 Z")+P("g","M115 99 H125 L123 111 H117 Z"));}}
     else if(base&&!isOpen(p)){covered=true;}
   });
@@ -2235,6 +2242,7 @@ function readLook(im,shape,DW){
       for(var yy2=0;yy2<FH;yy2++)for(var xx2=0;xx2<FW;xx2++){var q8=(yy2*FW+xx2)*4,mx3=Math.min(W-1,Math.max(0,Math.floor((fx2+xx2/FW*fw2)*sc))),my3=Math.min(H-1,Math.max(0,Math.floor((fy2+yy2/FH*fh2)*sc))),mk=M[my3*W+mx3]===1;if(M[my3*W+mx3]===2){if(yy2<FH*0.25)skT++;else if(yy2>FH*0.6)skB++;}
         var lv=0.3*FD[q8]+0.59*FD[q8+1]+0.11*FD[q8+2]+1;LUm[yy2*FW+xx2]=mk?-1:lv;if(!mk){gsum+=lv;gn++;}
         var ex=Math.min(xx2,FW-1-xx2)/(FW*0.07),ey=Math.min(yy2/(FH*0.05),(FH-1-yy2)/(FH*0.02));FD[q8+3]=mk?0:Math.round(255*Math.max(0,Math.min(1,ex,ey)));}
+      var FDo=new Uint8ClampedArray(FD);   /* (the colours as photographed, before the lighting is evened out) */
       /* (lighting: each pixel scaled by the mean over its neighbourhood, so folds and studio gradients do not show twice) */
       var gmn=gn?gsum/gn:128,CS=8,GX=Math.ceil(FW/CS),GY=Math.ceil(FH/CS),cm=new Float32Array(GX*GY);
       for(var gy=0;gy<GY;gy++)for(var gx=0;gx<GX;gx++){var sm2=0,c4=0;for(var yy3=gy*CS;yy3<Math.min(FH,(gy+1)*CS);yy3++)for(var xx3=gx*CS;xx3<Math.min(FW,(gx+1)*CS);xx3++){var lv2=LUm[yy3*FW+xx3];if(lv2>0){sm2+=lv2;c4++;}}cm[gy*GX+gx]=c4?sm2/c4:0;}
@@ -2261,7 +2269,22 @@ function readLook(im,shape,DW){
       /* the shops that sell formal shirts folded in the packet (collar up, a cuff laid across, a square of the cloth in
          the corner) or shot as a close-up of the collar: that is not a front to lay over his chest */
       var folded=/^(Savile Row Company|T\.M\. Lewin)$/.test((DW&&DW.shop)||"")&&/^(shirt|sshirt)$/.test(shape);
-      if(!folded&&!slvIn&&hole<hn*0.04&&far<fn2*0.22&&!(tn>20&&tf>tn*0.35)&&skB<FW*FH*0.4*0.03&&wtag<fn2*2*0.004){fx.putImageData(fd,0,0);L.front={cv:fc,url:fc.toDataURL("image/png"),ar:fw2/fh2};}}}
+      if(!folded&&!slvIn&&hole<hn*0.04&&far<fn2*0.22&&!(tn>20&&tf>tn*0.35)&&skB<FW*FH*0.4*0.03&&wtag<fn2*2*0.004){
+        /* the background caught between a sleeve and the body of a flat-lay is closed off from the photo's edge, so the
+           flood above never reaches it, and it showed as pale slivers down his sides: it is cleared from the cut-out's
+           left and right edges inward, through what matches the background (a print in the middle is never reached;
+           not for cloth near the background's colour, which it would eat into), and given the cloth's colour so no
+           pale edge is left round it */
+        if(dist(m,bg)>80)(function(){var st=[],seen=new Uint8Array(FW*FH),y0s=Math.round(FH*0.12);for(var yy4=y0s;yy4<FH;yy4++){st.push(0,yy4,FW-1,yy4);}
+          while(st.length){var y4=st.pop(),x4=st.pop(),k4=y4*FW+x4;if(seen[k4])continue;seen[k4]=1;var q4=k4*4;
+            if(FD[q4+3]>0){if(dist([FDo[q4],FDo[q4+1],FDo[q4+2]],bg)>30)continue;FD[q4+3]=0;}FD[q4]=m[0];FD[q4+1]=m[1];FD[q4+2]=m[2];   /* (through what is already clear, as the faded edge) */
+            if(x4>0)st.push(x4-1,y4);if(x4<FW-1)st.push(x4+1,y4);if(y4>y0s)st.push(x4,y4-1);if(y4<FH-1)st.push(x4,y4+1);}
+          /* (and the blended pixels round what was cleared, where the photo's edge mixes the background into the cloth) */
+          for(var it4=0;it4<2;it4++){var grow=[];for(var k5=0;k5<FW*FH;k5++){if(FD[k5*4+3]!==0||!seen[k5])continue;var x5=k5%FW,y5=(k5-x5)/FW;
+              for(var d5=0;d5<4;d5++){var xn=x5+[1,-1,0,0][d5],yn=y5+[0,0,1,-1][d5];if(xn<0||yn<y0s||xn>=FW||yn>=FH)continue;var kn=yn*FW+xn,qn=kn*4;
+                if(FD[qn+3]>0&&dist([FDo[qn],FDo[qn+1],FDo[qn+2]],m)>45)grow.push(kn);}}
+            grow.forEach(function(kn){var qn=kn*4;FD[qn+3]=0;FD[qn]=m[0];FD[qn+1]=m[1];FD[qn+2]=m[2];seen[kn]=1;});}})();
+        fx.putImageData(fd,0,0);L.front={cv:fc,url:fc.toDataURL("image/png"),ar:fw2/fh2};}}}
   /* the sleeves, where a flat photo shows them in another colour (raglan, colour-block, two-tone) */
   if(UPs&&!open&&!model){var sl=[];[[0.02,0.14],[0.86,0.98]].forEach(function(xr){var a3=[0,0,0],c6=0,tot=0;for(j=by[0]+Math.round(gh*0.12);j<by[0]+gh*0.32;j++)for(i=bx[0]+Math.round(gw*xr[0]);i<bx[0]+gw*xr[1];i++){tot++;if(M[j*W+i])continue;var pv2=px(i,j);a3[0]+=pv2[0];a3[1]+=pv2[1];a3[2]+=pv2[2];c6++;}
       if(c6>tot*0.45)sl.push(a3.map(function(v){return v/c6;}));});
