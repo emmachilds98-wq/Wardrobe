@@ -2659,7 +2659,7 @@
  },
  "g-mod-03": {
   "name": "Black gilet and stone trousers",
-  "note": "6 pieces for £162.44, £216 below full price.",
+  "note": "6 pieces for £194.39, £220 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -2676,7 +2676,7 @@
    },
    {
     "col": "black",
-    "item": "luke1977-kings-vintage-trim-sweat-shorts-black",
+    "item": "80scasualc-weekend-offender-castillos-knitted-jumper-black",
     "shape": "jumper",
     "what": "Black jumper"
    },
@@ -2866,7 +2866,7 @@
  },
  "g-mod-08": {
   "name": "Grey jumper and stone trousers",
-  "note": "4 pieces for £125.45, £146 below full price.",
+  "note": "4 pieces for £126.65, £109 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -2883,7 +2883,7 @@
    },
    {
     "col": "grey",
-    "item": "luke1977-kings-vintage-trim-sweat-shorts-mid-mrl-grey",
+    "item": "pc-argyle",
     "shape": "jumper",
     "what": "Grey jumper"
    },
@@ -2989,7 +2989,7 @@
  },
  "g-mod-11": {
   "name": "Navy jacket and navy trousers",
-  "note": "5 pieces for £190, £185 below full price.",
+  "note": "5 pieces for £220, £195 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -3006,7 +3006,7 @@
    },
    {
     "col": "green",
-    "item": "luke1977-staggering-soft-cotton-sweat-shorts-teal",
+    "item": "80scasualc-farah-maidstone-crew-knit-tarragon-green",
     "shape": "jumper",
     "what": "Teal jumper"
    },
@@ -3241,7 +3241,7 @@
  },
  "g-mod-17": {
   "name": "Green jacket and black trousers",
-  "note": "5 pieces for £131.7, £160 below full price.",
+  "note": "5 pieces for £163.65, £163 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -3258,7 +3258,7 @@
    },
    {
     "col": "black",
-    "item": "luke1977-kings-vintage-trim-sweat-shorts-black",
+    "item": "80scasualc-weekend-offender-castillos-knitted-jumper-black",
     "shape": "jumper",
     "what": "Black jumper"
    },
@@ -3331,7 +3331,7 @@
  },
  "g-mod-19": {
   "name": "Teal jumper and navy trousers",
-  "note": "4 pieces for £104, £111 below full price.",
+  "note": "4 pieces for £134, £121 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -3348,7 +3348,7 @@
    },
    {
     "col": "green",
-    "item": "luke1977-staggering-soft-cotton-sweat-shorts-teal",
+    "item": "80scasualc-farah-maidstone-crew-knit-tarragon-green",
     "shape": "jumper",
     "what": "Teal jumper"
    },
@@ -3694,7 +3694,7 @@
  },
  "g-mod-28": {
   "name": "Mustard jacket and black trousers",
-  "note": "5 pieces for £165, £154 below full price.",
+  "note": "5 pieces for £166.2, £117 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -3711,7 +3711,7 @@
    },
    {
     "col": "grey",
-    "item": "luke1977-kings-vintage-trim-sweat-shorts-mid-mrl-grey",
+    "item": "pc-argyle",
     "shape": "jumper",
     "what": "Grey jumper"
    },
@@ -3856,12 +3856,12 @@
  },
  "g-rave-04": {
   "name": "Purple T-shirt and grey trousers",
-  "note": "3 pieces for £92.48, £117 below full price.",
+  "note": "3 pieces for £92.49, £93 below full price.",
   "occ": "party",
   "pieces": [
    {
     "col": "burgundy",
-    "item": "cernucci-relaxed-jersey-short-dusty-purple",
+    "item": "fila-pepe-tee-with-flock-logo-ss26mh029-640",
     "shape": "tee",
     "what": "Purple T-shirt"
    },
@@ -3973,12 +3973,12 @@
  },
  "g-rave-07": {
   "name": "Brown jumper and navy trousers",
-  "note": "5 pieces for £97.87, £135 below full price.",
+  "note": "5 pieces for £115.87, £98 below full price.",
   "occ": "party",
   "pieces": [
    {
     "col": "blue",
-    "item": "cernucci-jersey-jort-with-pocket-detail-light-blue",
+    "item": "montirex-glitch-seamless-t-shirt-vivid-aqua-neon-blue-875982-2383",
     "shape": "tee",
     "what": "Blue T-shirt"
    },
@@ -3990,7 +3990,7 @@
    },
    {
     "col": "brown",
-    "item": "cernucci-embroidered-knitted-jogger-chocolate",
+    "item": "cernucci-cernucci-fluffy-intarsia-sweater-chocolate",
     "shape": "jumper",
     "what": "Brown jumper"
    },
@@ -4018,12 +4018,12 @@
  },
  "g-rave-08": {
   "name": "Purple T-shirt and indigo trousers",
-  "note": "4 pieces for £113.98, £107 below full price.",
+  "note": "4 pieces for £113.99, £82 below full price.",
   "occ": "party",
   "pieces": [
    {
     "col": "burgundy",
-    "item": "cernucci-relaxed-jersey-short-dusty-purple",
+    "item": "fila-pepe-tee-with-flock-logo-ss26mh029-640",
     "shape": "tee",
     "what": "Purple T-shirt"
    },
@@ -4264,12 +4264,12 @@
  },
  "g-rave-14": {
   "name": "Blue T-shirt and navy trousers",
-  "note": "3 pieces for £106.98, £68 below full price.",
+  "note": "3 pieces for £108.98, £49 below full price.",
   "occ": "party",
   "pieces": [
    {
     "col": "blue",
-    "item": "cernucci-jersey-jort-with-pocket-detail-light-blue",
+    "item": "montirex-trail-2-0-t-shirt-summer-mist-charcoal-blue-cloudy-blue-white",
     "shape": "tee",
     "what": "Blue T-shirt"
    },
@@ -4297,7 +4297,7 @@
  },
  "g-rave-15": {
   "name": "Grey jacket and olive trousers",
-  "note": "6 pieces for £274.16, £158 below full price.",
+  "note": "6 pieces for £292.16, £135 below full price.",
   "occ": "party",
   "pieces": [
    {
@@ -4314,7 +4314,7 @@
    },
    {
     "col": "brown",
-    "item": "cernucci-embroidered-knitted-jogger-chocolate",
+    "item": "cernucci-cernucci-fluffy-intarsia-sweater-chocolate",
     "shape": "jumper",
     "what": "Brown jumper"
    },
@@ -4675,7 +4675,7 @@
  },
  "g-outdoor-08": {
   "name": "Navy hoodie and indigo trousers",
-  "note": "4 pieces for £187.91, £182 below full price.",
+  "note": "4 pieces for £193.93, £196 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -4686,7 +4686,7 @@
    },
    {
     "col": "indigo",
-    "item": "passengerc-dawning-organic-cotton-trucker-cap-faded-denim",
+    "item": "tog24-silas-mens-trousers-dark-indigo",
     "shape": "trousers",
     "what": "Indigo trousers"
    },
@@ -4972,7 +4972,7 @@
  },
  "g-outdoor-15": {
   "name": "Olive hoodie and indigo trousers",
-  "note": "5 pieces for £105.95, £154 below full price.",
+  "note": "5 pieces for £149.93, £150 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -4983,7 +4983,7 @@
    },
    {
     "col": "indigo",
-    "item": "passengerc-dawning-organic-cotton-trucker-cap-faded-denim",
+    "item": "r11-passenge-jeans",
     "shape": "trousers",
     "what": "Indigo trousers"
    },
@@ -7588,12 +7588,12 @@
  },
  "g-lounge-03": {
   "name": "Blue T-shirt and brown trousers",
-  "note": "3 pieces for £57.98, £106 below full price.",
+  "note": "3 pieces for £52.99, £86 below full price.",
   "occ": "lounge",
   "pieces": [
    {
     "col": "blue",
-    "item": "cernucci-washed-rope-embroidered-relaxed-jersey-short-light-blue",
+    "item": "lambrettac-geo-aop-tee-1",
     "shape": "tee",
     "what": "Blue T-shirt"
    },
@@ -7621,12 +7621,12 @@
  },
  "g-lounge-04": {
   "name": "Black jumper and grey trousers",
-  "note": "4 pieces for £68.92, £146 below full price.",
+  "note": "4 pieces for £63.93, £126 below full price.",
   "occ": "lounge",
   "pieces": [
    {
     "col": "blue",
-    "item": "cernucci-washed-rope-embroidered-relaxed-jersey-short-light-blue",
+    "item": "lambrettac-geo-aop-tee-1",
     "shape": "tee",
     "what": "Blue T-shirt"
    },
@@ -7659,7 +7659,7 @@
   "look": "men blue T-shirt grey trousers black jumper stone slippers outfit"
  },
  "g-lounge-05": {
-  "name": "Purple T-shirt and stone trousers",
+  "name": "Purple T-shirt and stone shorts",
   "note": "3 pieces for £40.18, £72 below full price.",
   "occ": "lounge",
   "pieces": [
@@ -7672,8 +7672,8 @@
    {
     "col": "stone",
     "item": "r9-dc-jogshort",
-    "shape": "trousers",
-    "what": "Stone trousers"
+    "shape": "shorts",
+    "what": "Stone shorts"
    },
    {
     "col": "stone",
@@ -7689,7 +7689,7 @@
   "wx": [
    "mild"
   ],
-  "look": "men purple T-shirt stone trousers stone slippers outfit"
+  "look": "men purple T-shirt stone shorts stone slippers outfit"
  },
  "g-lounge-06": {
   "name": "Grey jumper and stone trousers",

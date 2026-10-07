@@ -1,7 +1,8 @@
 # Handover: finishing the wardrobe upgrade
 
-For the next agent picking up Dave's wardrobe planner. Read this first, then `UPGRADE_PLAN.md`
-section 4 (the review and order of work) and its latest entries (2zu to 2zx), then `REFRESH.md`.
+For the next agent picking up Dave's wardrobe planner. Read this first, then `CONTRIBUTING.md` (how
+outfits are made, matched to their shop photos and fitted, and the checks every change must pass), then
+`UPGRADE_PLAN.md` section 4 (the review and order of work) and its latest entries, then `REFRESH.md`.
 
 - **Live page (GitHub Pages):** <https://emmachilds98-wq.github.io/Wardrobe/>. It is served from
   `main`; the root `index.html` opens `docs/`.
@@ -63,8 +64,12 @@ should match. Emma asked for the upgrade to continue until that is done.
      the new build and diff them whenever you touch the photo reader (`sampleLook`).
 6. Run the 3D check:
    - Single outfits: `node tools/check_3d.js --site <dir> --ids a,b --out <dir> [--debug]`. It
-     flags pokes (an inner layer showing through), holes, stray parts and colour drift. With
-     `--debug` it also saves an ID image with the faults in red.
+     renders five views and flags skin where clothes should be, see-through cloth, sunk cloth at the
+     outline, pokes (an inner layer showing through), holes, stray parts and colour drift. With
+     `--debug` it also saves an ID image with the faults in red. Limits and what each count means
+     are in `CONTRIBUTING.md`; never raise a limit to make a change pass.
+   - Every pull request runs the build's data checks and the 3D check on the outfits it touches plus
+     `tools/qa/gate.txt` (`.github/workflows/check-3d.yml`).
    - The full run over all 574 outfits takes 45–80 min. Run it in the background on a snapshot
      copy of `docs/`.
 7. Ship it:
@@ -129,8 +134,8 @@ should match. Emma asked for the upgrade to continue until that is done.
 2. **Store what is read (Phase 1 / step 3):**
    - Write each piece's reading (colour, pattern, cloth square, fit, length, collar) into
      `data/specs.json` at build time, with its source and a confidence.
-   - Add a manual override field for wrong colours.
-   - Add data checks in `build_site.py`.
+   - Done: the manual override (`data/fixes.json`, applied by `pieceLook`) and the data checks in
+     `build_site.py` (outfits and fixes).
    - This also makes the page faster, since photos are no longer read on every visit.
 3. **Faster page (step 4):**
    - Load photo packs per screen.

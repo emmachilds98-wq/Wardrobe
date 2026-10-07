@@ -13547,6 +13547,12 @@
     "shape": "trousers",
     "col": "navy",
     "what": "Levone pant"
+   },
+   {
+    "col": "white",
+    "item": "r11-matalan-trainers",
+    "shape": "trainers",
+    "what": "Retro trainers"
    }
   ]
  },
@@ -13582,6 +13588,12 @@
     "shape": "trousers",
     "col": "cream",
     "what": "Cream trousers"
+   },
+   {
+    "col": "sand",
+    "item": "r11-lambrett-boots",
+    "shape": "boots",
+    "what": "Desert boots"
    }
   ]
  },
@@ -14392,6 +14404,12 @@
     "shape": "trousers",
     "col": "grey",
     "what": "Cotton linen trousers"
+   },
+   {
+    "col": "brown",
+    "item": "r11-tog24-boots",
+    "shape": "boots",
+    "what": "Hiking boots"
    }
   ]
  },

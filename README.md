@@ -13,6 +13,7 @@ that refresh them every week (see `REFRESH.md`).
 | `page.html` | The page source as published. Opened directly in a browser it shows the layout; picks and outfits load only inside the artifact, where its database lives. |
 | `data/items.json` | Every pick (name, shop, price, link, styles, occasion, weather, sizes). |
 | `data/outfits.json` | Every outfit and the picks it uses. A piece marked `"own"` is something he already has (his work T-shirt), with nothing to buy. |
+| `data/fixes.json` | Corrections for items whose shop photo the page reads wrongly (colour, pattern, stripe spacing), each with why and when it was checked. The build checks them. |
 | `photos/` | Listing photos, shrunk to small WebP files and packed into JSON files the page loads. |
 | `tools/fetch_photos.py` | Downloads and packs the listing photos. `--browser` retries refused shops in headless Chromium. |
 | `tools/shopify_pull.py` | Downloads a whole catalogue (prices, stock by size, photos) from shops that publish a product feed. |
@@ -21,15 +22,17 @@ that refresh them every week (see `REFRESH.md`).
 | `tools/ld_reader.py` | Reads price, photo and stock per size from product pages with schema.org data. |
 | `data/styletags.json` | Older picks that also belong to the Mod and skate, Holiday or Workwear styles. |
 | `tools/asos_photos.py` | Fetches ASOS photos through wsrv.nl, since ASOS blocks cloud servers. |
-| `tools/build_site.py` | Builds `site/` (the page plus its data and photo files, in load groups of under 900) for publishing. |
+| `tools/build_site.py` | Builds `site/` (the page plus its data and photo files, in load groups of under 900) for publishing. Stops on bad outfit data (unknown picks, shapes or colours, no top or legwear) and bad corrections. |
 | `tools/browser_fetch.js` | The headless-browser fallback used by `--browser`. |
 | `tools/weekly_refresh.py` | The weekly refresh: downloads catalogues, re-checks every pick (price, his size, still sold), applies the Workwear rules and mends outfits. |
 | `tools/browser_check.js` | Headless-Chromium fallback for product pages that refuse a plain request. |
-| `tools/check_3d.js` | Automatic 3D checks: renders outfits from the front, side and back and flags inner layers or skin showing through, holes, floating parts and colours that drift from the listing (`node tools/check_3d.js --site docs --sample 80 --out qa`). |
+| `tools/check_3d.js` | Automatic 3D checks: renders outfits from five views and flags skin where clothes should be, see-through cloth, inner layers poking through, holes, floating parts and colours that drift from the listing (`node tools/check_3d.js --site docs --ids a,b --out qa --debug`). |
+| `.github/workflows/check-3d.yml` | Runs on every pull request: the build's data checks, docs/ up to date, and the 3D check on the outfits the change touches plus a fixed set covering every garment shape (`tools/qa/gate.txt`). |
 | `data/items-YYYY-MM-DD*.json`, `data/outfits-YYYY-MM-DD.json` | Each week's new picks and outfits. |
 | `data/refresh-report.json` | What the last refresh changed: price moves, removals, renames, Workwear changes, shops not checked. |
 | `docs/` | The built site (page plus data and photo files), served by GitHub Pages and published to the artifact. |
-| `tools/qa/` | QA scripts for a served test copy of the site (`serve.sh`): close-up renders, items beside their shop photos, layer probes, a 2D/3D smoke test and a dump of every photo reading for before/after comparison. |
+| `tools/qa/` | QA scripts for a served test copy of the site (`serve.sh`): close-up renders, items beside their shop photos, layer probes, a 2D/3D smoke test, a dump of every photo reading for before/after comparison, and the outfits a change touches (`changed_outfits.py`). |
+| `CONTRIBUTING.md` | How to add picks and outfits that look like the shop's clothes and fit Dave, how fitting works, and the checks every change must pass. Read it before changing anything. |
 | `HANDOFF.md` | Where the upgrade stands and how the next agent should carry on. |
 | `REFRESH.md` | The weekly refresh, step by step. |
 | `UPGRADE_PLAN.md` | The review, what has been done, and what is next. |
