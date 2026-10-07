@@ -4,14 +4,20 @@
      - poke: an inner layer (or his skin) showing through a piece worn over it, as islands inside the outer piece;
      - holes: background showing through the clothes;
      - stray: small bits of a piece standing off on their own;
+     - skin: his skin seen where the outfit covers him (his torso under a top, his arms under long sleeves, his legs
+       under trousers): a gap at a hem, a cuff or a waistband, or a hole in the cloth;
+     - seethrough: places where the background shows but his (hidden) body would: a hole in the cloth, or cloth that
+       has sunk inside him there;
      - colour: a plain piece whose rendered colour is far from its shop colour (hue, or much too light or dark).
-   Each view is drawn twice: once as the page shows it, and once with every piece in its own flat colour (an "ID"
-   pass), which is what the counts are made on.
+   Each view is drawn as the page shows it and in flat colours (one per piece, an "ID" pass), which is what the
+   counts are made on; skin and see-through are also checked from both three-quarter views.
 
      node tools/check_3d.js [--site docs] [--ids a,b] [--sample N] [--out qa] [--report]
 
    --site     the built site to serve (default docs/, built by tools/build_site.py)
-   --ids      only these outfits; --sample N: every outfit's N-th share (a spread of N outfits)
+   --ids      only these outfits (a,b or @file, one per line); --sample N: every outfit's N-th share (a spread of N outfits); --shard k/n: every
+              n-th outfit from the k-th, to run n checks at once (each with its own --out)
+   --fail     exit with an error when anything is flagged or the page throws (for the pull-request check)
    --out      where the report and the pictures of flagged outfits go (default qa/)
    --report   also write the summary into data/refresh-report.json ("checks_3d")
    Needs Playwright and Chromium (CHROME_PATH to use a particular Chromium). */
@@ -23,7 +29,7 @@ try { ({ chromium } = require("playwright")); } catch (e) {
 const ROOT = path.join(__dirname, "..");
 const arg = (k, d) => { const i = process.argv.indexOf("--" + k); return i < 0 ? d : (process.argv[i + 1] && !process.argv[i + 1].startsWith("--") ? process.argv[i + 1] : true); };
 const SITE = path.resolve(ROOT, arg("site", "docs")), OUT = path.resolve(ROOT, arg("out", "qa"));
-const LIMITS = { poke: 30, holes: 25, stray: 40 };
+const LIMITS = { poke: 30, holes: 25, stray: 40, skin: 12, seethrough: 12, sunk: 60 };
 
 function serve(dir) {
   const types = { ".html": "text/html", ".json": "application/json", ".js": "text/javascript", ".png": "image/png", ".webp": "image/webp" };
@@ -38,7 +44,7 @@ function serve(dir) {
 
 /* runs in the page: builds the outfit, renders the three views (as shown, and the ID pass) and measures them */
 async function checkOutfit(arg) {
-  const id = arg.id, dbg = arg.dbg;
+  const id = arg.id, dbg = arg.dbg, LIMITS = arg.lim;
   const X = window.__qa(), T = window.THREE, f = X.fitById[id];
   if (!f) return { id, error: "no such outfit" };
   const ps = X.effPieces(f);
@@ -60,7 +66,9 @@ async function checkOutfit(arg) {
     const k = n.userData.kind || "body"; if (k === "body") return 20; if (k === "lo") return 40; if (k === "ft") return 50; if (k === "acc") return 140;
     const m = /^up(\d+)(o?)$/.exec(k); if (m) return 60 + 10 * (m[2] ? upN : +m[1]); return 140; }
   const orig = new Map(); kinds.forEach(n => orig.set(n, n.material));
-  const openC = {}; kinds.forEach(n => { if (n.userData.open) openC[cls(n)] = 1; });   // pieces worn open (their front shows what is under them)
+  /* (each mesh's class is fixed before any pass swaps its material: the floor is known by its shadow material) */
+  const CLS = new Map(); kinds.forEach(n => CLS.set(n, cls(n))); const clsOf = n => CLS.get(n);
+  const openC = {}; kinds.forEach(n => { if (n.userData.open) openC[clsOf(n)] = 1; });   // pieces worn open (their front shows what is under them)
   /* which meshes hang from an arm (sleeves, cuffs, hands, the arm itself): a gap between an arm and his body is the
      background seen past his side, not a hole in the clothes */
   const onArm = n => { for (let a = n; a; a = a.parent) if (a.userData && a.userData.arm) return true; return false; };
@@ -74,26 +82,90 @@ async function checkOutfit(arg) {
     if (am && !n.isInstancedMesh && g && g.attributes.position && am.length === g.attributes.position.count) {
       if (!g.attributes.armF) g.setAttribute("armF", new T.Float32BufferAttribute(Float32Array.from(am), 1)); return maskM; }
     return restM; };
+  /* what the outfit covers (for the skin count): a top always covers his torso below the collarbones (he is never
+     shirtless); long sleeves cover his arms down to the wrist, short sleeves the top of his arm; trousers cover his legs
+     down to the ankle, shorts to just above the knee */
+  const B = X.body(), RG = B.regions, footR = RG.indexOf("foot"), crotch = B.lm.crotch, wrist = B.lm.wrist[1];
+  const dp = X.dressed(ps), nmOf = q => (((X.byId[q.item] || {}).name || "") + " " + (q.what || "")).toLowerCase();
+  const tops = dp.filter(q => /^(coat|jacket|blazer|gilet|gown|waistcoat|cardigan|hoodie|jumper|rollneck|halfzip|shirt|sshirt|polo|tee|vest)$/.test(q.shape));
+  const sleeveless = q => /^(vest|waistcoat|gilet)$/.test(q.shape) || /knitted vest|knit vest|sweater vest|slipover|tank ?top|sleeveless/.test(nmOf(q));
+  const shortSl = q => /^(tee|polo|sshirt)$/.test(q.shape) && !/long/.test(nmOf(q));
+  const longSl = tops.some(q => !sleeveless(q) && !shortSl(q)), shortOnly = !longSl && tops.some(q => !sleeveless(q));
+  // (worn on its own, a vest's armholes and scoop show his chest down to the armhole's foot, about 1.19 m on a muscle vest)
+  const torsoTop = tops.length && tops.every(sleeveless) ? 1.17 : 1.42;
+  const lo = dp.find(q => /^(trousers|shorts)$/.test(q.shape));
+  const covered = (reg, y) => { const r = RG[reg];
+    if (r === "chest" || r === "belly" || r === "hips") return tops.length > 0 && y < torsoTop;
+    if (r === "uarm") return longSl || (shortOnly && y > 1.3);
+    if (r === "farm") return longSl && y > wrist + 0.04;
+    if (r === "thigh") return !!lo && (lo.shape === "trousers" || y > crotch - 0.25);
+    if (r === "shin") return !!lo && lo.shape === "trousers" && y > 0.17;
+    return false; };
+  /* the body drawn by part and height (red: its part, green: its height, blue: 255 marks the body) */
+  const bodyN = kinds.find(n => n.userData.isBody);
+  let regM = null, fullIdx = null, cutIdx = null;
+  if (bodyN) { const g = bodyN.geometry, nv = g.attributes.position.count, P0 = B.cache && B.cache.pos ? B.cache.pos : g.attributes.position.array, rgA = new Float32Array(nv * 3);
+    for (let t = 0; t < B.idx.length / 3; t++) for (let j = 0; j < 3; j++) { const v = B.idx[t * 3 + j]; rgA[v * 3] = (B.treg[t] * 20 + 10) / 255; }
+    for (let v = 0; v < nv; v++) { rgA[v * 3 + 1] = Math.max(0, Math.min(1, P0[v * 3 + 1] / 1.9)); rgA[v * 3 + 2] = 1; }
+    g.setAttribute("regC", new T.Float32BufferAttribute(rgA, 3));
+    regM = new T.ShaderMaterial({ side: T.DoubleSide, vertexShader: "attribute vec3 regC; varying vec3 vR; void main(){ vR = regC; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }",
+      fragmentShader: "varying vec3 vR; void main(){ gl_FragColor = vec4(vR, 1.0); }" });
+    cutIdx = g.index; fullIdx = new T.BufferAttribute(B.idx, 1); }
+  /* the ID pass as greys, with what was counted marked in red */
+  /* the ID image with the faults in red (sunk cloth at the outline in yellow) */
+  function dbgImg(C, marks, soft) { const cv = document.createElement("canvas"); cv.width = W; cv.height = H; const cx = cv.getContext("2d"), im = cx.createImageData(W, H);
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const k = ((H - 1 - y) * W + x) * 4, c = C[y * W + x]; im.data[k] = im.data[k + 1] = im.data[k + 2] = c; im.data[k + 3] = 255; }
+    const paint = (L, g) => { for (let i = 0; i < L.length; i += 2) { const k = ((H - 1 - L[i + 1]) * W + L[i]) * 4; im.data[k] = 255; im.data[k + 1] = g; im.data[k + 2] = 0; } };
+    paint(soft || [], 200); paint(marks, 0);
+    cx.putImageData(im, 0, 0); return cv.toDataURL("image/png"); }
   const idMat = {}; function idm(c) { return idMat[c] || (idMat[c] = new T.MeshBasicMaterial({ color: new T.Color(c / 255, 0, 0), side: T.DoubleSide })); }
-  const views = { front: 0.15, side: 1.2, back: Math.PI }, res = { id, name: f.name, views: {}, colour: [] }, px = new Uint8Array(W * H * 4);
+  const views = { front: 0.15, fq: 0.8, side: 1.2, bq: 2.4, back: Math.PI }, quarter = { fq: 1, bq: 1 }, res = { id, name: f.name, views: {}, colour: [] }, px = new Uint8Array(W * H * 4);
   const bgN = o.scene.background;
   for (const v in views) {
     o.man.rotation.y = views[v];
     // as the page shows it
     r.toneMapping = T.ACESFilmicToneMapping; r.toneMappingExposure = 1.08; r.outputEncoding = T.sRGBEncoding; r.shadowMap.enabled = true;
     o.scene.background = new T.Color("#e6dfd0"); kinds.forEach(n => { n.material = orig.get(n); });
-    r.render(o.scene, cam); const shot = r.domElement.toDataURL("image/png"); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px); const lit = px.slice();
+    r.render(o.scene, cam); const shot = r.domElement.toDataURL("image/png"); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px); const lit = px.slice(), marks = [], soft = [];
+    let skin = 0, see = 0, sunk = 0; const where = {};   // (which part of him each fault is over, for the report)
     // the ID pass
     r.toneMapping = T.NoToneMapping; r.outputEncoding = T.LinearEncoding; r.shadowMap.enabled = false; o.scene.background = new T.Color(0, 0, 0);
-    kinds.forEach(n => { n.material = idm(cls(n)); });
+    kinds.forEach(n => { n.material = idm(clsOf(n)); });
     r.render(o.scene, cam); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px);
     const C = new Uint8Array(W * H); for (let i = 0; i < W * H; i++) C[i] = Math.round(px[i * 4] / 10) * 10;
+    if (bodyN) {
+      /* skin: each visible skin pixel's body part and height, against what the outfit covers */
+      kinds.forEach(n => { n.material = n === bodyN ? regM : idm(clsOf(n) === 0 ? 0 : 1); });
+      r.render(o.scene, cam); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px);
+      for (let i = 0; i < W * H; i++) { if (px[i * 4 + 2] < 200) continue; const reg = Math.round((px[i * 4] - 10) / 20), y = px[i * 4 + 1] / 255 * 1.9;
+        if (covered(reg, y)) { skin++; marks.push(i % W, (i - i % W) / W); where["skin " + RG[reg]] = (where["skin " + RG[reg]] || 0) + 1; } }
+      /* see-through: drawn again with the whole of his body; background that turns into body is a hole or sunken cloth */
+      /* (his feet are left out: a shoe is a shell over the foot, and the hidden foot reaching past its outline is never seen) */
+      bodyN.geometry.setIndex(fullIdx); kinds.forEach(n => { n.material = n === bodyN ? regM : idm(clsOf(n)); });
+      r.render(o.scene, cam); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px); bodyN.geometry.setIndex(cutIdx);
+      const S = new Uint8Array(W * H); for (let i = 0; i < W * H; i++) if (C[i] === 0 && px[i * 4 + 2] > 200 && Math.round((px[i * 4] - 10) / 20) !== footR) S[i] = 1;
+      /* only background shut in by the outfit counts (a hole); his hidden body poking past the outline (a foot past a
+         shoe, a shoulder past a tight top) cannot be seen, and is only noted as "sunk" */
+      const outside = new Uint8Array(W * H), st0 = [];
+      for (let x = 0; x < W; x++) st0.push(x, 0, x, H - 1); for (let y = 0; y < H; y++) st0.push(0, y, W - 1, y);
+      while (st0.length) { const y = st0.pop(), x = st0.pop(), k = y * W + x; if (outside[k] || C[k]) continue; outside[k] = 1;
+        if (x > 0) st0.push(x - 1, y); if (x < W - 1) st0.push(x + 1, y); if (y > 0) st0.push(x, y - 1); if (y < H - 1) st0.push(x, y + 1); }
+      /* (single stray pixels are rounding, not holes: only patches of 3 or more count) */
+      for (let i = 0; i < W * H; i++) { if (!S[i]) continue; const x = i % W, y = (i - x) / W; let nb = 0;
+        for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) { if (!dx && !dy) continue; const xx = x + dx, yy = y + dy; if (xx >= 0 && yy >= 0 && xx < W && yy < H && S[yy * W + xx]) nb++; }
+        if (nb < 2) continue; const wk = (outside[i] ? "sunk " : "seethrough ") + RG[Math.round((px[i * 4] - 10) / 20)]; where[wk] = (where[wk] || 0) + 1;
+        if (outside[i]) { sunk++; soft.push(x, y); } else { see++; marks.push(x, y); } }
+    }
+    if (quarter[v]) {   // the three-quarter views count skin and see-through only
+      res.views[v] = { skin, seethrough: see, sunk, where, shot: (skin > LIMITS.skin || see > LIMITS.seethrough || sunk > LIMITS.sunk) ? shot : "" };
+      if (dbg) res.views[v].dbg = dbgImg(C, marks, soft);
+      continue; }
     // the arm pass: 255 arm, 128 the rest, 0 background
-    kinds.forEach(n => { n.material = cls(n) === 0 ? idm(0) : armMat(n); });
+    kinds.forEach(n => { n.material = clsOf(n) === 0 ? idm(0) : armMat(n); });
     r.render(o.scene, cam); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px);
     const A = new Uint8Array(W * H); for (let i = 0; i < W * H; i++) A[i] = px[i * 4] > 190 ? 2 : (px[i * 4] > 60 ? 1 : 0);
     const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : C[y * W + x], D = 4, dirs = [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]];
-    let poke = 0, holes = 0, stray = 0; const marks = [];
+    let poke = 0, holes = 0, stray = 0;
     /* poke: a pixel of an inner layer (or his skin) with a piece worn over it on all four sides, above and below in
        its column and left and right in its row (so a collar above a jumper, a hem below it or an open front are not
        counted, but a layer showing through the middle of the back is) */
@@ -124,13 +196,8 @@ async function checkOutfit(arg) {
       if (byArm && byRest) continue;   // between an arm and his body: background seen past his side
       if (!nearSkin && comp.length <= 80 && x1 - x0 <= 14 && y1 - y0 <= 14) { holes += comp.length; comp.forEach(k => marks.push(k % W, (k - k % W) / W)); }
     }
-    res.views[v] = { poke, holes, stray, shot: (poke > 30 || holes > 25 || stray > 40) ? shot : "" };
-    if (dbg) {   // the ID pass as greys, with what was counted marked in red
-      const cv = document.createElement("canvas"); cv.width = W; cv.height = H; const cx = cv.getContext("2d"), im = cx.createImageData(W, H);
-      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const k = ((H - 1 - y) * W + x) * 4, c = C[y * W + x]; im.data[k] = im.data[k + 1] = im.data[k + 2] = c; im.data[k + 3] = 255; }
-      for (let i = 0; i < marks.length; i += 2) { const k = ((H - 1 - marks[i + 1]) * W + marks[i]) * 4; im.data[k] = 255; im.data[k + 1] = 0; im.data[k + 2] = 0; }
-      cx.putImageData(im, 0, 0); res.views[v].dbg = cv.toDataURL("image/png");
-    }
+    res.views[v] = { poke, holes, stray, skin, seethrough: see, sunk, where, shot: (poke > LIMITS.poke || holes > LIMITS.holes || stray > LIMITS.stray || skin > LIMITS.skin || see > LIMITS.seethrough || sunk > LIMITS.sunk) ? shot : "" };
+    if (dbg) res.views[v].dbg = dbgImg(C, marks, soft);
     // colour of each plain piece, front view only, from the inside of its area (3x3 all the same class)
     if (v === "front") {
       const pieces = ps.map((p, i) => p).filter(p => p.item); const sums = {};
@@ -142,7 +209,9 @@ async function checkOutfit(arg) {
   }
   // which class each piece drew in, with its colour and whether it is plain (only plain pieces are colour-checked)
   const ups = []; o.scene.traverse(n => { if (n.isMesh && n.userData.item && /^up\d+$/.test(n.userData.kind || "") && ups.indexOf(n.userData.kind + "|" + n.userData.item) < 0) ups.push(n.userData.kind + "|" + n.userData.item); });
-  ps.forEach(p => { const L = X.LOOK[p.item], hx = X.TRUE[p.item], col = hx ? hx.split("|")[0] : X.cc(p.col)[0];
+  // (the colour aimed for is the one the page draws: the photo reading, or the item's correction in data/fixes.json)
+  ps.forEach(p0 => { const p = X.pieceLook ? X.pieceLook(p0) : p0, L = p.look || X.LOOK[p.item], hx = X.TRUE[p.item];
+    const col = p.look && p.look.fix ? p.col : (hx ? hx.split("|")[0] : X.cc(p.col)[0]);
     let c = null; if (/^(trousers|shorts)$/.test(p.shape)) c = 40; else { const u = ups.find(s => s.endsWith("|" + p.item)); if (u) c = 60 + 10 * +u.split("|")[0].slice(2); }
     if (c == null || !res.sums || !res.sums[c] || res.sums[c][3] < 150) return;
     const s = res.sums[c]; res.colour.push({ item: p.item, shape: p.shape, want: col, got: [s[0] / s[3], s[1] / s[3], s[2] / s[3]].map(Math.round), plain: !L || L.pat === "plain", px: s[3] });
@@ -185,16 +254,25 @@ function colourOff(c) {
   await p.evaluate(() => window.__qa().loadThree());
   await p.waitForFunction(() => !!window.__qa().body(), null, { timeout: 120000 });
   let ids = await p.evaluate(() => Object.keys(window.__qa().fitById));
-  if (arg("ids")) ids = String(arg("ids")).split(",");
+  if (arg("ids")) { const v = String(arg("ids"));   // a list, or @file with one id per line or comma (blank lines and # notes left out)
+    ids = (v.startsWith("@") ? fs.readFileSync(path.resolve(ROOT, v.slice(1)), "utf8").replace(/#.*/g, "") : v).split(/[\s,]+/).filter(Boolean);
+    const all = new Set(await p.evaluate(() => Object.keys(window.__qa().fitById))), gone = ids.filter(k => !all.has(k));
+    if (gone.length) console.log("not outfits (left out): " + gone.join(", "));
+    ids = [...new Set(ids.filter(k => all.has(k)))]; }
   else if (arg("sample")) { const n = +arg("sample"), st = Math.max(1, Math.floor(ids.length / n)); ids = ids.filter((_, i) => i % st === 0).slice(0, n); }
+  if (arg("shard")) { const sh = String(arg("shard")).split("/").map(Number); ids = ids.filter((_, i) => i % sh[1] === sh[0]); }   // --shard k/n: every n-th outfit from the k-th (run n at once)
+  if (!ids.length) { console.log("No outfits to check."); await b.close(); srv.close(); return; }
   const out = [], t0 = Date.now();
   for (let i = 0; i < ids.length; i++) {
     let r;
-    try { r = await p.evaluate(checkOutfit, { id: ids[i], dbg: !!arg("debug") }); } catch (e) { r = { id: ids[i], error: String(e.message || e).slice(0, 200) }; }
+    try { r = await p.evaluate(checkOutfit, { id: ids[i], dbg: !!arg("debug"), lim: LIMITS }); } catch (e) { r = { id: ids[i], error: String(e.message || e).slice(0, 200) }; }
     if (r.views) {
       r.flags = [];
       for (const v in r.views) { const m = r.views[v];
-        for (const k of ["poke", "holes", "stray"]) if (m[k] > LIMITS[k]) r.flags.push(v + " " + k + " " + m[k]);
+        for (const k of ["poke", "holes", "stray", "skin", "seethrough", "sunk"]) if (m[k] > LIMITS[k]) {
+          // (for skin and see-through, the part of him it is over: "front skin 40 (belly 30, hips 10)")
+          const on = Object.entries(m.where || {}).filter(e => e[0].startsWith(k + " ")).sort((a, b) => b[1] - a[1]).map(e => e[0].slice(k.length + 1) + " " + e[1]).join(", ");
+          r.flags.push(v + " " + k + " " + m[k] + (on ? " (" + on + ")" : "")); }
         if (m.dbg) { fs.writeFileSync(path.join(OUT, r.id + "-" + v + "-id.png"), Buffer.from(m.dbg.split(",")[1], "base64")); delete m.dbg; }
         if (m.shot) { fs.writeFileSync(path.join(OUT, r.id + "-" + v + ".png"), Buffer.from(m.shot.split(",")[1], "base64")); m.shot = r.id + "-" + v + ".png"; } else delete m.shot; }
       r.colour.forEach(c => { const why = colourOff(c); if (why) { c.off = why; r.flags.push("colour " + c.item + ": " + why); } });
@@ -206,7 +284,7 @@ function colourOff(c) {
   const flagged = out.filter(r => r.error || (r.flags && r.flags.length));
   const count = k => out.filter(r => r.flags && r.flags.some(f => f.includes(k))).length;
   const summary = { date: new Date().toISOString().slice(0, 10), outfits: out.length, flagged: flagged.length,
-    poke: count("poke"), holes: count("holes"), stray: count("stray"), colour: count("colour"), errors: out.filter(r => r.error).length, page_errors: errs.slice(0, 5) };
+    poke: count("poke"), holes: count("holes"), stray: count("stray"), skin: count("skin"), seethrough: count("seethrough"), sunk: count("sunk"), colour: count("colour"), errors: out.filter(r => r.error).length, page_errors: errs.slice(0, 5) };
   fs.writeFileSync(path.join(OUT, "report.json"), JSON.stringify({ summary, outfits: out }, null, 1));
   console.log(JSON.stringify(summary));
   flagged.slice(0, 40).forEach(r => console.log(" ", r.id, "-", r.error || r.flags.join("; ")));
@@ -216,4 +294,6 @@ function colourOff(c) {
     fs.writeFileSync(rp, JSON.stringify(rep, null, 1));
   }
   await b.close(); srv.close();
+  if (errs.length) console.log("page errors: " + errs.slice(0, 5).join(" | "));
+  if (arg("fail") && (flagged.length || errs.length)) process.exitCode = 1;
 })();

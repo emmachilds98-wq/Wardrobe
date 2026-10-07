@@ -1,0 +1,27 @@
+# The outfits the pull-request 3D check always renders (.github/workflows/check-3d.yml), on top of the ones a change
+# touches. Together they cover every garment shape and the ways pieces are worn: open and closed, tucked, layered
+# three deep, sleeveless on its own, shorts with a jacket, hoods, padded jackets, wide, cropped and cuffed legs,
+# trousers over boots, checks and stripes. When you add a shape or a way of wearing one, add an outfit here.
+w20261006-casual-04   # padded jacket worn open over a hoodie and a shirt, hood down, jeans over boots, beanie
+festival              # long coat over a short-sleeved shirt with shorts, bag, sunglasses
+wk-lounge             # open check shirt over a long-sleeved tee, wide trousers, slippers
+smart-casual          # blazer, tucked striped shirt, belt, shoes
+g-job-09              # workwear: gilet over a polo, cargo trousers, boots, cap
+rv-field              # hooded jacket worn open over a vest, shorts, boots, bucket hat
+g-lounge-04           # knitted vest over a tee, joggers, slippers
+m10-oxford-tiebar     # tucked shirt with a tie and chain
+mn-smart              # blazer over a roll neck
+od-hike               # jacket over a half zip, backpack, beanie
+c6-denim              # denim jacket worn open over a striped shirt, jeans
+ca-beer-garden        # short-sleeved shirt worn open over a tee, shorts
+evening-in            # dressing gown over a check shirt, slippers
+h10-surf              # tee and shorts, cap
+jb11-winter           # workwear: jacket over a jumper, scarf, cargo trousers, boots
+lazy-sunday           # jumper, cropped trousers, slippers
+mn9-knitzip           # cardigan over a tee, jeans
+wedding-guest         # blazer, tucked shirt, tie, pocket square
+n4-summer-warehouse   # a muscle vest on its own (deep armholes), shorts, boots, bag
+cold-commute          # coat over a jumper over a shirt, boots
+barrel-chore          # overshirt over a tee, barrel-leg trousers
+h10-cuban             # Cuban-collar shirt, shorts
+jb11-cheapest         # workwear: jumper, trousers, safety boots

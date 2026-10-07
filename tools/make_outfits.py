@@ -15,6 +15,8 @@ Writes data/outfits-new.json (merged by build_site.py).
 """
 import argparse, glob, json, os, random, re
 
+from build_site import garment_kind
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COLW = [["off white", "cream"], ["navy", "navy"], ["midnight", "navy"], ["black", "black"], ["white", "white"],
         ["ecru", "cream"], ["cream", "cream"], ["bone", "cream"], ["oatmeal", "cream"], ["charcoal", "charcoal"],
@@ -56,6 +58,13 @@ def colour(name):
 def shape(v):
     n, c = v["name"].lower(), v["cat"]
     t = lambda r: re.search(r, n)
+    # (the garment the name says comes first: a shop's category can be wrong, sweat shorts filed with the knitwear,
+    # a cap with the trousers; build_site.py stops on any piece drawn as another kind of garment)
+    gk = garment_kind(v["name"])
+    if gk in ("shorts", "trousers") and c not in ("swim",):
+        return gk
+    if (gk == "acc" and c != "acc") or (gk == "feet" and c not in ("shoe", "lounge")) or (gk == "top" and c in ("trouser", "shoe", "acc")):
+        return None
     if c == "knit":
         return "hoodie" if t(r"hood") else "polo" if t(r"knitted polo|polo shirt") else "rollneck" if t(r"roll|turtle|funnel|mock|polo neck") \
             else "cardigan" if t(r"cardigan") else "halfzip" if t(r"zip|snap") else "jumper"

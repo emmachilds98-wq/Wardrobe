@@ -1,0 +1,80 @@
+# The 3D check on every pull request that changes the page, its data or the checks themselves.
+# It builds the site (which also runs the data checks in tools/build_site.py), makes sure docs/ was rebuilt,
+# then renders the outfits the change touches plus a fixed spread of outfits covering every garment shape
+# (tools/qa/gate.txt) on Dave's 3D model, and fails if any shows skin, holes, an inner layer poking through,
+# stray parts or colour drift. The pictures of anything flagged are kept as the run's "qa" artifact.
+# How to read and fix a failure: CONTRIBUTING.md, "When the 3D check fails".
+name: 3D check
+
+on:
+  pull_request:
+    paths:
+      - page.html
+      - data/**
+      - photos/**
+      - docs/**
+      - tools/build_site.py
+      - tools/check_3d.js
+      - tools/qa/**
+      - .github/workflows/check-3d.yml
+  workflow_dispatch:
+
+jobs:
+  data:
+    name: Data checks and docs/ up to date
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build (runs the outfit and fixes checks)
+        run: python3 tools/build_site.py --out docs
+      - name: docs/ matches page.html and data/
+        run: |
+          if ! git diff --quiet -- docs; then
+            echo "::error::docs/ is out of date. Run: python3 tools/build_site.py --out docs, and commit docs/."
+            git diff --stat -- docs | tail -20
+            exit 1
+          fi
+
+  render:
+    name: 3D check (part ${{ matrix.shard }} of 3)
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Playwright and Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Build
+        run: python3 tools/build_site.py --out "$RUNNER_TEMP/site"
+      - name: Outfits to check
+        run: |
+          base="origin/${{ github.base_ref || 'main' }}"
+          python3 tools/qa/changed_outfits.py "$base" --max 60 > "$RUNNER_TEMP/ids.txt"
+          echo "Changed outfits: $(grep -c . "$RUNNER_TEMP/ids.txt" || true)"
+          cat tools/qa/gate.txt >> "$RUNNER_TEMP/ids.txt"
+      - name: Render and check
+        run: node tools/check_3d.js --site "$RUNNER_TEMP/site" --ids "@$RUNNER_TEMP/ids.txt" --shard ${{ matrix.shard }}/3 --out qa --debug --fail
+      - name: Keep the pictures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-${{ matrix.shard }}
+          path: qa/
+          if-no-files-found: ignore
+          retention-days: 14
