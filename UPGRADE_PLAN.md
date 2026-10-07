@@ -1510,6 +1510,31 @@ Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fit
   - The 31 outfits touched after that run (sunglasses, the Keir set, open shirts with a tuck) pass.
   - The pull-request check (gate set on five builds) passes.
 
+## 2zz. Visual survey fixes: outer layers, cargo pockets, model photos by shape (7 Oct 2026)
+
+A survey of 16 random outfits beside their shop photos found these, now fixed:
+
+- **An overcoat under the suit jacket** (`winter-formal`): outer layers had no order among themselves, so the suit
+  jacket was built outside the overcoat and only the coat's skirt showed below it. Outer layers now go on in wearing
+  order (blazer, gilet, jacket, coat or gown), in 3D and 2D.
+- **The overcoat's colour:** "Blue Navy" read as mid blue from its first word. It is corrected in `data/fixes.json`;
+  two-word colourways mix both orders ("navy blue", "olive green", "charcoal grey"), so the reader was not changed.
+- **Blazer pocket flaps** sat at the depth of the body's middle and stood proud of the blazer at the sides, pushing
+  bumps into a coat worn over it. They now lie on the blazer where they are.
+- **Cargo pockets** were thin slabs standing out from the thigh like fins. They are now a patch round the outside of
+  the thigh, filled out a little in the middle and flush at its edges, with a darker flap across the top and a
+  stitched edge.
+- **Model photos found by shape:** a shop photo of a model has a head above a narrower neck above the shoulders,
+  whatever his skin colour; a flat-lay widens from the collar straight to the shoulders. Its front is no longer laid
+  over Dave's chest. Compared over every outfit piece: four model-photo tees (stone, sand, orange and yellow, where the
+  colour-based skin test had to stand down) lost their fronts, and nothing else changed. A Ted Baker shirt on a
+  darker-skinned model, whose hand and trousers used to show on the chest, is now read as a model photo too. Hoodies
+  are left out (a hood up on a mannequin is the same shape).
+- **A pale yellow sweatshirt** laid flat with its sleeves over the body put the sleeves' outlines on his chest; its
+  front is turned off in `data/fixes.json`.
+- **Looked at and right as drawn:** a striped bomber (it is striped), a dark teal "black" gilet (the photo is teal),
+  two-tone half-zips, and day-pack straps over a waterproof.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
