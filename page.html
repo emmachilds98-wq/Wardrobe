@@ -1562,7 +1562,7 @@ function figure(pieces,hi){
      on the waistband over it, under anything worn open on top */
   var kitB=ac.belt&&/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/i.test(((byId[ac.belt.item]||{}).name||"")+" "+ac.belt.what),
     tuck2=!!lo&&lo.shape!=="shorts"&&(!!(ac.tie||(ac.belt&&!kitB))||up.some(function(q){return /^(blazer|waistcoat)$/.test(q.shape);})||/suit|tailored|formal|dress trouser|wool trouser/i.test(((byId[lo.item]||{}).name||"")+" "+lo.what));
-  up=up.map(function(p,k){if(tuck2&&(LAYER[p.shape]||0)===0&&/^(shirt|sshirt|polo)$/.test(p.shape)&&!(overshirt(p)&&up.slice(0,k).some(function(q){return /^(shirt|sshirt|polo)$/.test(q.shape);})))return Object.assign({},p,{_tuck:true});return p;});
+  var TK2=tuckList(up,tuck2);up=up.map(function(p,k){return TK2[k]?Object.assign({},p,{_tuck:true}):p;});
   up.forEach(function(p,k){
     h+=upperArt(p,dim(p));
     if(p._tuck&&ac.belt&&!kitB&&!(up[k+1]&&up[k+1]._tuck)){h+=grp(ac.belt,P("g","M81 222 H159 V231 H81 Z"))+'<rect x="116" y="221.5" width="8" height="10" rx="1" fill="'+(dim(ac.belt)?fade(COL.silver[0]):COL.silver[0])+'" stroke="rgba(20,32,27,.45)" stroke-width=".6"/>';}
@@ -3167,6 +3167,13 @@ function warpMan(man,PW,hzc){var T=window.THREE,v=new T.Vector3(),mi=new T.Matri
 /* The 3D view's Zip up / Unzip button overrides this for everything that opens (ZIPM "up" or "open"; "" is as worn). */
 var ZIPM="",HOODRE=/parka|hooded|\bhood\b|active jacket|anorak/;
 /* an overshirt (shacket, chore shirt, flannel) over a tee or shirt is worn open, as a jacket is */
+/* which of the tops (inner first) are tucked in, when the outfit tucks (on): a shirt or polo next to him, but not one
+   worn open (it hangs loose over what is under it) or an overshirt over another shirt; and a tee or vest under a
+   tucked shirt goes in with it, or it would hang out below the shirt */
+function tuckList(up,on){var t=up.map(function(){return false;});if(!on)return t;var last=-1;
+  up.forEach(function(p,k){if((LAYER[p.shape]||0)===0&&/^(shirt|sshirt|polo)$/.test(p.shape)&&!openWorn(p,up)&&!(overshirt(p)&&up.slice(0,k).some(function(q){return /^(shirt|sshirt|polo)$/.test(q.shape);}))){t[k]=true;last=k;}});
+  up.forEach(function(p,k){if(k<last&&(LAYER[p.shape]||0)===0&&/^(tee|vest)$/.test(p.shape)&&!kvest(p))t[k]=true;});
+  return t;}
 function overshirt(p){return p.shape==="shirt"&&/overshirt|over-shirt|chore|shacket|shirt jacket|worker|flannel|\bcpo\b|utility shirt|work shirt/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
 /* no sleeves: vests, waistcoats, gilets, and knitted vests (sweater vests, slipovers) */
 function kvest(p){return p.shape==="jumper"&&/knitted vest|knit vest|sweater vest|slipover|tank ?top|sleeveless (jumper|knit|sweater)/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
@@ -4053,7 +4060,7 @@ function make3Dcore(pieces){
      pockets, is worn over the clothes and changes nothing) */
   var KITRE=/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/;
   var tuckIn=!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!KITRE.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo)));
-  var tE=tuckIn&&up.some(function(q){return (LAYER[q.shape]||0)===0&&/^(shirt|sshirt|polo)$/.test(q.shape);})?0.012:0;   /* (a shirt tucked in sits inside the waistband and seat, so they stand out by its thickness) */
+  var TUCK=tuckList(up,tuckIn),tE=TUCK.some(Boolean)?0.012:0;   /* (a shirt tucked in sits inside the waistband and seat, so they stand out by its thickness) */
   /* trousers or shorts */
   var waistE=0;
   if(lo){
@@ -4275,7 +4282,7 @@ function make3Dcore(pieces){
     if(bodyOn){var dH={tee:0.075,polo:0.075,vest:0.08,sshirt:0.065,shirt:0.035,jumper:0.08,rollneck:0.08,halfzip:0.08,hoodie:0.07,cardigan:0.055,jacket:0.05,gilet:0.065,waistcoat:0.13,blazer:-0.025}[p.shape];if(dH!=null)hem=BL.crotch+dH;}
     if(/crop|boxy/.test(n0))hem+=0.03;if(/longline/.test(n0))hem-=0.05;if(p.shape==="jacket"&&/parka|mac|trench/.test(n0))hem=0.6;
     /* (only the shirt next to him goes in: an overshirt worn over another shirt hangs loose over the waistband) */
-    var tucked=tuckIn&&L===0&&/^(shirt|sshirt|polo)$/.test(p.shape)&&!(overshirt(p)&&up.slice(0,k).some(function(q){return (LAYER[q.shape]||0)===0&&/^(shirt|sshirt|polo)$/.test(q.shape);}));if(tucked)hem=1.005;
+    var tucked=!!TUCK[k];if(tucked)hem=1.005;
     var n52=bodyOn?NK(1.525):null;
     var t10=B3.torso[10];
     var t11=B3.torso[11],n54=bodyOn?NK(1.54):null;
