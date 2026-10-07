@@ -61,6 +61,19 @@ async function checkOutfit(arg) {
     const m = /^up(\d+)(o?)$/.exec(k); if (m) return 60 + 10 * (m[2] ? upN : +m[1]); return 140; }
   const orig = new Map(); kinds.forEach(n => orig.set(n, n.material));
   const openC = {}; kinds.forEach(n => { if (n.userData.open) openC[cls(n)] = 1; });   // pieces worn open (their front shows what is under them)
+  /* which meshes hang from an arm (sleeves, cuffs, hands, the arm itself): a gap between an arm and his body is the
+     background seen past his side, not a hole in the clothes */
+  const onArm = n => { for (let a = n; a; a = a.parent) if (a.userData && a.userData.arm) return true; return false; };
+  const armOf = new Map(); kinds.forEach(n => armOf.set(n, onArm(n)));
+  const armM = new T.MeshBasicMaterial({ color: new T.Color(1, 1, 1), side: T.DoubleSide }), restM = new T.MeshBasicMaterial({ color: new T.Color(0.5, 0.5, 0.5), side: T.DoubleSide });
+  /* a top is one piece, sleeves and all: its own arm mask (per vertex) says which parts are sleeve */
+  const maskM = new T.ShaderMaterial({ side: T.DoubleSide,
+    vertexShader: "attribute float armF; varying float vA; void main(){ vA = armF; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }",
+    fragmentShader: "varying float vA; void main(){ gl_FragColor = vec4(vA > 0.5 ? 1.0 : 0.5, 0.0, 0.0, 1.0); }" });
+  const armMat = n => { if (armOf.get(n)) return armM; const am = n.userData.armMask, g = n.geometry;
+    if (am && !n.isInstancedMesh && g && g.attributes.position && am.length === g.attributes.position.count) {
+      if (!g.attributes.armF) g.setAttribute("armF", new T.Float32BufferAttribute(Float32Array.from(am), 1)); return maskM; }
+    return restM; };
   const idMat = {}; function idm(c) { return idMat[c] || (idMat[c] = new T.MeshBasicMaterial({ color: new T.Color(c / 255, 0, 0), side: T.DoubleSide })); }
   const views = { front: 0.15, side: 1.2, back: Math.PI }, res = { id, name: f.name, views: {}, colour: [] }, px = new Uint8Array(W * H * 4);
   const bgN = o.scene.background;
@@ -75,6 +88,10 @@ async function checkOutfit(arg) {
     kinds.forEach(n => { n.material = idm(cls(n)); });
     r.render(o.scene, cam); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px);
     const C = new Uint8Array(W * H); for (let i = 0; i < W * H; i++) C[i] = Math.round(px[i * 4] / 10) * 10;
+    // the arm pass: 255 arm, 128 the rest, 0 background
+    kinds.forEach(n => { n.material = cls(n) === 0 ? idm(0) : armMat(n); });
+    r.render(o.scene, cam); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px);
+    const A = new Uint8Array(W * H); for (let i = 0; i < W * H; i++) A[i] = px[i * 4] > 190 ? 2 : (px[i * 4] > 60 ? 1 : 0);
     const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? 0 : C[y * W + x], D = 4, dirs = [[1, 0], [-1, 0], [0, 1], [0, -1], [1, 1], [1, -1], [-1, 1], [-1, -1]];
     let poke = 0, holes = 0, stray = 0; const marks = [];
     /* poke: a pixel of an inner layer (or his skin) with a piece worn over it on all four sides, above and below in
@@ -99,10 +116,12 @@ async function checkOutfit(arg) {
     while (st.length) { const y = st.pop(), x = st.pop(), k = y * W + x; if (seen[k] || C[k]) continue; seen[k] = 1;
       if (x > 0) st.push(x - 1, y); if (x < W - 1) st.push(x + 1, y); if (y > 0) st.push(x, y - 1); if (y < H - 1) st.push(x, y + 1); }
     for (let k0 = 0; k0 < W * H; k0++) { if (seen[k0] || C[k0]) continue;
-      const comp = [], q = [k0]; seen[k0] = 1; let x0 = W, x1 = 0, y0 = H, y1 = 0, nearSkin = false;
+      const comp = [], q = [k0]; seen[k0] = 1; let x0 = W, x1 = 0, y0 = H, y1 = 0, nearSkin = false, byArm = false, byRest = false;
       while (q.length) { const k = q.pop(), x = k % W, y = (k - x) / W; comp.push(k); x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y);
         for (const d of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { const xx = x + d[0], yy = y + d[1]; if (xx < 0 || yy < 0 || xx >= W || yy >= H) continue; const kk = yy * W + xx;
-          if (C[kk] === 20) nearSkin = true; if (!seen[kk] && !C[kk]) { seen[kk] = 1; q.push(kk); } } }
+          if (C[kk] === 20) nearSkin = true; if (C[kk]) { if (A[kk] === 2) byArm = true; else if (A[kk] === 1) byRest = true; }
+          if (!seen[kk] && !C[kk]) { seen[kk] = 1; q.push(kk); } } }
+      if (byArm && byRest) continue;   // between an arm and his body: background seen past his side
       if (!nearSkin && comp.length <= 80 && x1 - x0 <= 14 && y1 - y0 <= 14) { holes += comp.length; comp.forEach(k => marks.push(k % W, (k - k % W) / W)); }
     }
     res.views[v] = { poke, holes, stray, shot: (poke > 30 || holes > 25 || stray > 40) ? shot : "" };
@@ -135,17 +154,21 @@ async function checkOutfit(arg) {
 }
 
 function hsl(c) { const r = c[0] / 255, g = c[1] / 255, b = c[2] / 255, mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, d = mx - mn, s = d ? d / (1 - Math.abs(2 * l - 1)) : 0; let h = 0;
-  if (d) { h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h *= 60; if (h < 0) h += 360; } return [h, s, l]; }
+  if (d) { h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h *= 60; if (h < 0) h += 360; } return [h, s, l, d]; }
 function rgb(hex) { return [1, 3, 5].map(i => parseInt(hex.substr(i, 2), 16)); }
 /* a plain piece's colour is off when a clearly coloured piece comes out another hue, or a piece comes out far lighter or darker
    than it is (the studio light and shade make every piece read a little darker, so the band is generous) */
 function colourOff(c) {
   if (!c.plain || !/^#[0-9a-f]{6}$/i.test(c.want)) return "";
   const w = hsl(rgb(c.want)), g = hsl(c.got); let dh = Math.abs(w[0] - g[0]); dh = Math.min(dh, 360 - dh);
-  if (w[1] > 0.3 && w[2] > 0.15 && w[2] < 0.85 && g[1] > 0.12 && dh > 35) return "hue " + Math.round(dh) + "°";
-  if (w[1] > 0.35 && g[1] < 0.08 && w[2] > 0.2) return "lost its colour";
+  /* (colourfulness is judged on chroma, the spread between the strongest and weakest channel: by HSL saturation
+     alone an off-white reads as strongly coloured) */
+  if (w[3] > 0.12 && w[2] > 0.15 && w[2] < 0.85 && g[3] > 0.05 && dh > 35) return "hue " + Math.round(dh) + "°";
+  if (w[3] > 0.18 && g[3] < 0.04 && w[2] > 0.2) return "lost its colour";
   const lw = w[2], lg = g[2];
-  if (lw > 0.12 && (lg < lw * 0.42 || lg > lw * 1.45 + 0.05)) return "lightness " + lw.toFixed(2) + " → " + lg.toFixed(2);
+  /* (very dark cloth always reads a little lighter on the lit model: the sky light and sheen lift it) */
+  const up = lw < 0.25 ? 1.9 : 1.45;
+  if (lw > 0.12 && (lg < lw * 0.42 || lg > lw * up + 0.05)) return "lightness " + lw.toFixed(2) + " → " + lg.toFixed(2);
   if (lw <= 0.12 && lg > 0.4) return "much too light";
   return "";
 }

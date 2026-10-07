@@ -1364,6 +1364,110 @@ Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fit
   - The gap under the crotch on some trousers and shorts, and the small collar glitches at the side of the neck.
   - Phase 2 (draped garment library, cloth settling, fabrics) as set out in section 4 and in Emma's review doc.
 
+## 2zw. 3D check failures fixed; boots, ties and denim; 2D Dave from Edit Dave; fabric search (7 Oct 2026)
+
+- **The full 3D check (574 outfits) and what it found:**
+  - 93 outfits were flagged.
+  - Holes: 64 outfits with small holes at the back, nearly all gaps of background between his arm and his side.
+    The checker now tells an arm from a body (a top is one piece, so it reads each piece's own arm mask), and
+    counts only holes in the clothes.
+  - The crotch: a real opening under the crotch, between the seat and the legs. A gusset now fills it, in the
+    cloth's shadow colour so it reads as the inside of the crease.
+  - Show-through:
+    - A hoodie's hood under an open overshirt poked through its back. The hood now lies out over every layer worn
+      over the hoodie (it works out how far out each later layer will sit).
+    - A tucked-in shirt let the trouser waistband show through. When a shirt is tucked, the waistband and seat now
+      stand out by its thickness.
+  - Colour: 24 flags, mostly near-white shirts marked "lost its colour". By HSL saturation an off-white counts as
+    strongly coloured; the checker now judges colourfulness by chroma, and allows very dark cloth to read a little
+    lighter under the studio light.
+  - Re-checked: all the flagged outfits pass.
+- **Seams welded:** the body has duplicate vertices along its region seams. Tops and trousers built from it now use
+  one vertex per position, with averaged normals.
+- **Boots read as boots:**
+  - Over boots the trouser hem stops higher and stands clear of the shaft, so the toe, laces and start of the
+    shaft show.
+  - Laces criss-cross up the front of the shaft between metal hooks, with a padded collar. Chelsea and dealer
+    boots get elastic side gussets instead.
+- **Ties:**
+  - A tie is one ribbon lying on the shirt, from a knot under the collar to a pointed blade (narrower when slim or
+    knitted). The shirt's buttons are not drawn under it.
+  - A bow tie is a bow at the collar.
+  - A tie bar or clip is a bar across the tie, not a necklace.
+- **Denim colour:** studio shadows and model shots made denim read too dark, or as stripes. Denim now stays within
+  its wash: raw, dark and indigo; mid; or light and stonewash. It takes no stripes or checks from the photo
+  unless the listing names them.
+- **Photo fronts:** a flat-lay photo with its sleeves laid down over the body is no longer laid over his chest
+  (cuffs showed on it). A long sleeve edge down the sides of a plain long-sleeved top rules it out.
+- **Pattern words:**
+  - "Button-down" no longer reads as down-filled: no quilting, nylon shine or down-wash care.
+  - Cordura, drawcords and records are no longer corduroy.
+  - A gilet is quilted only when the listing says so; duck, canvas and fleece gilets are plain.
+- **2D Dave follows Edit Dave:**
+  - The drawing takes his skin, hair and moustache colour from Edit Dave.
+  - His moustache style (chevron, walrus, handlebar or pencil) and beard (stubble or short beard) match.
+  - His eye colour, his brow weight and arch, and his glasses (round or square) match too.
+  - Saving Edit Dave redraws the 2D figures as well.
+  - The drawing board's background is back (it was lost when the figure became a button), in light and dark mode.
+- **2D trousers by cut:** wide legs flare to the hem, barrel legs bow out at the knee, cuffed joggers taper to a
+  cuff, and relaxed and regular pairs hang straight. The cut comes from the pick's fit label and name, as in 3D.
+  Jeans, joggers and cargos lose the pressed crease.
+- **Shop:**
+  - A Fabric filter: 100% cotton, natural fibres only, or no polyester or stretch. It is read from each listing's
+    fibre composition.
+  - Search matches whole words for short words and word starts for longer ones ("red" no longer finds Fred Perry
+    or "reduced"). It knows a few synonyms (jeans and denim; cord, cords, corduroy and needlecord), and fabric and
+    fit are searchable.
+  - "Price drop" needs at least 5% or £1, so a drop of a few pence is not promoted.
+- **Sunglasses by shape:** wrap (one curved shield), aviator (teardrops in a thin metal rim), round or square, from
+  the listing name, with the frame and lens colours it names (gold, silver, tortoiseshell; amber, green, blue,
+  mirrored).
+- **Weekly routine:** now runs `weekly_refresh.py fabric` and the 3D checks, and reports their result.
+- **Collar leaf:** the folded leaf of shirt and polo collars had a toothed edge over the shoulders. The cloth under it
+  is measured from a coarse map, and neighbouring points jumped in and out. Each fold row is now smoothed round
+  the neck (a median, then a mean), keeping it just clear of the cloth.
+- **Still to do:** one small notch at the back of some polo collars, and then Phase 2.
+
+## 2zx. Full 3D check clean; checks woven from the photo; folded shirts; why each pick suits him (7 Oct 2026)
+
+- **The full 3D check after 2zw:** 3 of 574 outfits flagged (down from 93), no colour faults and no page errors.
+  All three were real, and are fixed:
+  - **An overshirt over a formal shirt** was tucked in with it, so the trouser waistband (wider for the tucked
+    shirt) showed through its back hem. Only the shirt next to him goes in now; an overshirt worn over another
+    shirt hangs loose over the waistband.
+  - **A gilet over a jumper:** the jumper showed through two patches at the front of the gilet's armholes. That part
+    of the gilet is the arm's part of the body mesh, which a top lies closer to; for a gilet it is the body of the
+    gilet, so above the armhole it now keeps the gilet's full thickness.
+  - **A bag strap** stood off his upper chest (a gap showed from the side). It now follows the outside of what he
+    wears, from the top of his shoulder across his chest to the bag.
+  - All 76 outfits with a gilet, waistcoat, vest, bag or two shirts were re-checked: none flagged.
+- **Checks woven from the photo:** a check's cloth used to be a square cut from the shop photo and mirrored into a
+  tile. Cut from a model shot or a folded shirt, it carried folds, buttons, a tee under an open shirt or a size
+  badge's lettering, and repeated them as blobs and rows of text. A check is now rebuilt as a weave: each point is
+  half the colour of the thread across and half the thread down. Those colours are read from the photo's rows and
+  columns; a band that does not vary along its length is dropped. Flannels, ginghams, tartans and Prince of Wales
+  checks come out crisp, in their own colours, and repeat cleanly.
+- **Prints repeat as they are:** a print's square of photo used to be mirrored into a 2 x 2 tile, which turned a
+  floral or a geometric print into a kaleidoscope. The square now repeats as it is, its edges faded into a copy of
+  itself shifted by half, so there is no seam and no mirror symmetry. A shirt the listing calls striped, but whose
+  photo read as a print (a close-up of the collar sets the stripes at a slant), has its stripes' direction found
+  and laid upright.
+- **Checked against the last build:** every outfit piece's photo reading (1,370) was compared before and after.
+  Colours, patterns and photo fronts are unchanged; only the cloth squares of checks and prints differ.
+- **Known limit, skin in model photos:** skin is found by colour, and only lighter skin is caught. A wider rule
+  that caught deeper skin tones also caught cream, stone, tan and khaki cloth (a tool belt read as black, khaki
+  joggers as grey, several flat-lay tees lost their photo front), so it was not kept. A shop photo of a
+  darker-skinned model can still be taken as a flat-lay: one Ted Baker shirt shows the model's hand and trousers
+  on its front. The fix needs a check by shape (a head at the top middle, hands at the sides), not by colour.
+- **No lettering in fabric tiles:** the square of photo used for a print or check is the one with least "ink":
+  pixels far from both of the cloth's colours, such as a size badge, label or lettering.
+- **Folded shop photos:** Savile Row Company and T.M. Lewin photograph formal shirts folded in the packet (collar up,
+  a cuff across, a square of the cloth in a corner) or as close-ups of the collar. These photos are no longer laid
+  over his chest as the shirt's front, which drew a collar and cuff on it.
+- **This week list:** each new pick now has a line saying why it suits him: the fit he likes (relaxed or wide
+  legs, which don't grip), 100% cotton or natural fibres, extra-wide fittings, his size in stock, and how much is
+  off.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
