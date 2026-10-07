@@ -115,7 +115,7 @@ is drawn from its name and the outfit's palette colour only, so it will rarely m
 | `gilet` | 2 | Gilets and bodywarmers |
 | `gown` | 2 | Dressing gowns |
 | `trousers`, `shorts` | | Legwear (exactly one) |
-| `boots`, `shoes`, `trainers`, `slippers` | | Footwear (at most one) |
+| `boots`, `shoes`, `trainers`, `slippers` | | Footwear (at most one). Sliders, slides, sandals and flip-flops (by name) are drawn open: his own bare foot on a footbed, with the strap fitted to his foot. |
 | `scarf`, `snood`, `cap`, `bcap`, `beanie`, `bucket`, `belt`, `watch`, `tie`, `square`, `bag`, `backpack`, `sunglasses`, `chain`, `kneepads` | | Accessories |
 
 Layer 2 pieces and cardigans are worn open over what is under them, in wearing order: a blazer, then a gilet, a
@@ -124,6 +124,13 @@ jacket, and a coat or gown outermost (`OUTERK`). A layer 0 or 1 piece is worn op
 waistcoat, tie or belt, or tailored or suit trousers (never with shorts); a shirt worn open, or an overshirt over
 another shirt, is not tucked, and a tee or vest under a tucked shirt goes in with it (`tuckList`). The 2D drawing
 follows the same rule.
+
+Overshirts (named overshirt, chore, shacket, flannel, CPO...) go over a tee or polo; a jacket-weight one (chore
+jacket, shacket, nylon, canvas, insulated, borg-lined) goes over a jumper or hoodie too, worn open, as a light jacket is.
+The order tops go on is one rule for 3D and 2D (`layRank`).
+
+Argyle (by name) is drawn as argyle, diamonds in the cloth's two colours with thin crossing lines, not copied from the
+photo. A model photo gives neither a photo front nor a chest print.
 
 A `belt` is drawn by its name. A trouser belt goes round the waistband (its loops over it) and shows when the top is
 tucked in. **Workwear kit** (a name with holster, nail pocket, pouch, hammer or knife holder, tool belt or apron) is

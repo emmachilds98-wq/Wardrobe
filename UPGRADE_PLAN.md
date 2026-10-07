@@ -1549,6 +1549,32 @@ A survey of 16 random outfits beside their shop photos found these, now fixed:
 - **Looked at and right as drawn:** a striped bomber (it is striped), a dark teal "black" gilet (the photo is teal),
   two-tone half-zips, and day-pack straps over a waterproof.
 
+## 2zzz. Open footwear, overshirts over knits, argyle (7 Oct 2026)
+
+A third survey of 16 random outfits, in 3D and in the 2D drawing, found these, now fixed:
+
+- **Sliders, sandals and flip-flops were closed shoes** (in 3D a shoe shape, in 2D laced shoes). They are now open:
+  his own bare foot stands on a footbed, held by a slider's wide band, a sandal's straps across the toes and instep and
+  round the heel, or a flip-flop's thin Y. The straps and footbed are fitted to his foot's outline, measured on the
+  body slice by slice, so they fit any build; in 2D the foot shows bare under the straps. 19 outfits; all pass the 3D
+  check on his saved, slim and heavier builds. `h10-resort` joins the pull-request gate set.
+- **A chore jacket under a knit** (`wk-chore`): every overshirt was drawn under knits, so a chore jacket's collar came
+  through a jumper's neckband on the loose fit. A jacket-weight overshirt (chore jacket, shacket, nylon, canvas,
+  insulated, borg-lined) now goes over a jumper or hoodie, worn open; flannels and light overshirts stay under, collar
+  out. 3D and 2D share one layer order (`layRank`).
+- **Collar bands dipping into the collar below:** each point of a knit's neckband was pushed out on its own to stand
+  on the collar under it, so the band followed that collar's outline and showed it through teeth on the loose fit. The
+  rows are now evened out round the neck. On the loose fit, three of four collar-under-knit flags cleared; the fourth
+  (`ramsey-street`, poke 31 against a limit of 30, a collar peeking out of a hood) is noted in the handover.
+- **Argyle** was a square of the model photo: folds, an arm, smears. It is now drawn as argyle, diamonds in the
+  cloth's two colours (the second taken from the whole garment, not the square) with thin crossing lines, in 3D and 2D.
+- **Model photos give no chest print:** a graphic tee photographed from behind on a model put his hand and the back
+  print on Dave's chest. One item changed.
+- **2D: open short-sleeved shirts** were drawn with full-length sleeves; they keep short sleeves now.
+- **Corduroy trim** ("with corduroy trim", "cord collar") no longer makes the whole garment corduroy (a quilted jacket
+  showed pinstripes in 2D).
+- **A jacquard scarf** listed as "Lilac" is a deep navy-purple in its photo; corrected in `data/fixes.json`.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
