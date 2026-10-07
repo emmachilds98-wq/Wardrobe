@@ -140,6 +140,12 @@ should match. Emma asked for the upgrade to continue until that is done.
      prints, stripes and checks run evenly over the shoulders and sleeve heads; a gilet's shoulder
      clears the jumper under it on every build; trainers get their sole (black, gum, white) and
      accent (red stripes) from the photo.
+   - Done (Emma's comments, see `UPGRADE_PLAN.md` 2zzzzz): colour from the shop's link and from the legs in
+     trouser model shots, cloth swatches in `fixes.json`, plain shirts without crumpled photo fronts, neckbands off
+     the shoulders, the crotch slot closed on all trousers and shorts, a hoodie's hood rim, caps made on his head,
+     holster pockets as sold, matte nylon, waffle cloth, tonal buttons.
+   - **Hats still to do:** beanies and bucket hats are still fixed shapes; make them on the skull map as caps now are.
+     A tech cap with a neck flap (Saltrock Warp) draws as a plain cap.
    - **Footwear still to do:**
      - Every shoe is one generic last: a hiking shoe, a skate shoe and a runner look alike, and a
        Nike's tick is a bar. Shoe lasts by type are Phase 6.

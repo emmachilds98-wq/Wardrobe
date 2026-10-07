@@ -116,7 +116,7 @@ is drawn from its name and the outfit's palette colour only, so it will rarely m
 | `gown` | 2 | Dressing gowns |
 | `trousers`, `shorts` | | Legwear (exactly one) |
 | `boots`, `shoes`, `trainers`, `slippers` | | Footwear (at most one). Sliders, slides, sandals and flip-flops (by name) are drawn open: his own bare foot on a footbed, with the strap fitted to his foot. |
-| `scarf`, `snood`, `cap`, `bcap`, `beanie`, `bucket`, `belt`, `watch`, `tie`, `square`, `bag`, `backpack`, `sunglasses`, `chain`, `kneepads` | | Accessories |
+| `scarf`, `snood`, `cap`, `bcap`, `beanie`, `bucket`, `belt`, `watch`, `tie`, `square`, `bag`, `backpack`, `sunglasses`, `chain`, `kneepads` | | Accessories. `cap` is a flat cap, `bcap` any other cap (baseball, trucker, 5-panel, tech); a watch cap or swimming cap is a `beanie`. The build checks a hat's shape against its name. |
 
 Layer 2 pieces and cardigans are worn open over what is under them, in wearing order: a blazer, then a gilet, a
 jacket, and a coat or gown outermost (`OUTERK`). A layer 0 or 1 piece is worn open when its
@@ -170,13 +170,20 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
      denim/jean, fleece/sherpa/borg, wool/merino/cashmere/lambswool/tweed, satin/silk, waffle; chunky/cable/aran;
    - the named colour (the colourway after the last comma or dash first), a second colour ("white and black",
      "navy with white trim") and trim colours. Brand names that contain a colour word (Pretty Green, Red Wing,
-     White Stuff) are ignored.
+     White Stuff) are ignored. A name with no colour takes the colourway the shop's link selects (M&S
+     `?color=DARKINDIGO`, Uniqlo's `colorDisplayCode`, a path ending `/dark-grey/`), as a hue family at any depth.
+     Only for legwear on a model shot does the outfit's own `col` stand in after that: elsewhere the photo is read as
+     it is (outfit colour words are often a generator's guess). A neutral name (black, grey, charcoal) agrees only with a
+     neutral photo.
 2. **The shop photo** (`sampleLook` / `readLook`): the background is flooded away from the corners, skin is found and
    left out, and the cloth that is left gives the main colour (`c1`), a second colour (`c2`), the pattern (`pat`:
    plain, hstripe, vstripe, check or print), the stripe or check spacing (`per`, a share of the garment's length) and
    how much of it is the stripe colour (`duty`), a swatch of a print, a cut-out of a chest graphic (`decal`), a photo
    front for flat-lays (`front`; not when the outline shows a model, a head above a narrower neck above the
-   shoulders, whatever the skin colour) and the sleeve colour where it differs (`slv`). If the listing names a colour and
+   shoulders, whatever the skin colour; not for a plain woven shirt, whose flat-lay adds only creases; the creases of
+   any other front are softened; on a knit with a ribbed hem it stops at the band) and the sleeve colour where it
+   differs (`slv`). Trousers on a model are read from his legs: down the figure the photo splits into bands of colour
+   and the lowest one long enough to be trousers is read, not his top. If the listing names a colour and
    the photo disagrees (a black mesh vest on a model against white reads as skin and white), the named colour wins.
    Navy and indigo read darker than the named colour are taken halfway back toward it (they photograph nearly
    black). Denim follows its own rule (washes are read from the photo, never replaced by the name). **Stripes and
@@ -226,6 +233,7 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    | `front` | `false` drops the photo front (when a model photo was taken for a flat-lay). |
    | `decal` | `false` drops the chest graphic cut from the photo (when it picked up something that is not a print). |
    | `shapes` | For a set sold as one listing and worn as two pieces (a tee and shorts, one photo): corrections for one garment shape only, as `{"shorts": {"col": "#5f5f62"}}`, laid over the item's own. |
+   | `swatch` | A small square of the cloth itself, as a `data:image/jpeg;base64,...` (under 16,000 characters), repeated as the garment's cloth at `per` of its length: for a woven pattern the listing photo cannot show (a lifestyle shot of a jacquard). Cut it from the shop's own close-up product image, flat and evenly lit, and make it repeat without a seam. |
 | `why` | Required: what the shop photo shows, in a sentence. |
    | `checked` | Required: the date you checked it against the shop's page. |
 
@@ -446,5 +454,15 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
   a contact sheet of all 61 trainers, 85 shoes and 95 boots beside their readings showed it wrong on many pairs, model
   shots and shoes with reflections. Make one before and after a reader change: `node tools/qa/dump.js look.json`, then
   `python3 tools/qa/sheet.py look.json trainers sheet.png` (each photo with its read colours, 30 to a sheet).
+- **A comment on one item is a symptom of a rule.** Each of Emma's ten comments (7 October) traced to a rule that
+  drew a whole kind wrongly: the outfit's colour word winning over the photo, every neckband pushed out over the
+  shoulders, every pair of trousers following the body into a slot at the crotch, every hat a fixed dome above any
+  head, crumpled flat-lays laid on as shirt fronts. Find the rule, fix it, and check every item of that kind.
+- **Fit to his real head and body, never to fixed numbers.** Hats were fixed-size domes placed at a height that
+  matched no head; they are now made on the skull map (`headRad`). Anything new that sits on him (glasses, hats,
+  straps) should read the body maps the same way.
+- **Watch for what follows the body too closely.** The body dips between his legs at the front; cloth built from the
+  body's own triangles followed it into a slot. Cloth bridges hollows: where a mesh is made from the body, look at it
+  from the front, the side and below.
 - **One item looking right is not proof.** Check every item of that kind with `multi.js`, and every outfit with
   `check_3d.js`.

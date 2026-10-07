@@ -1613,6 +1613,36 @@ fixed:
 - **Checks:** on the final build, the full 3D check over all 574 outfits flagged none, with no errors; the pull-request
   gate set passed on all five builds, as did every gilet and vest outfit and the 26 footwear outfits touched.
 
+## 2zzzzz. Emma's comments on the 3D model, and why they happened (7 Oct 2026)
+
+Emma left ten comments on the artifact about pieces that did not look like the real thing. Each was traced to its
+cause, and the cause fixed for every item it affects, not only the one commented on.
+
+| Comment | Cause | Fix (for every item it affects) |
+| --- | --- | --- |
+| Ringer tee "merging the listing background" | Its photo is padded with black bars and smeared edge pixels, laid on the tee as its front; ringers had no trims | `fixes.json`: no photo front; ringers draw their contrast neck and cuff bands (3 tees) |
+| Shorts blue, listing beige | A name with no colour fell back to the outfit's own colour word ("navy"), which won over the photo | The outfit's word only stands in for legwear on a model shot; the colourway in the shop's link (M&S `?color=`, Uniqlo colour codes) is used; trouser photos on models read the legs, not his top (93 readings corrected, all checked against their photos) |
+| Resort shirt pattern wrong | A lifestyle photo with no close-up; the name does not say striped | `fixes.json` takes a cloth swatch (`swatch`), cut from the shop's close-up product image |
+| Shirt wrinkled, not fitted | A crumpled flat-lay photo laid on as the shirt's front | Plain woven shirts no longer use a photo front (15 shirts); every other photo front has its creases softened |
+| Shoulder "hem" not normal | Each neckband pushed out to the body's surface, which at the sides is the slope of the shoulder: a flat tab over each shoulder | Neckbands and collars measure only his neck there |
+| Crotch looks like a hole | The body dips back between the legs at the front and the trousers followed it into a narrow slot; a dark filler showed through it | The cloth is brought level across, and a panel of the trouser's own cloth closes the slot behind it (all trousers and shorts) |
+| Hoodie hem and hood | A crew rib neckband and a flat triangle on the back | A hood worn down: a rim standing round his neck, low at the front where its edges meet and higher behind, turned over at the top, with the hood lying on his back below it |
+| Rain mac like leather | Nylon was almost as glossy as leather; rain jackets had no hood unless the name said "hood" | Nylon is matte with a fine crinkle; rain jackets, cagoules and "waterproof jacket"s have their hood |
+| Hat wrong, not on the head or hair | A fixed-size dome floating above any head; ten baseball caps listed as flat caps | Caps are made on his head (from the skull map), with the band from brows to nape, a baseball cap's six panels, button and curved peak, a flat cap's low crown carried forward; curls show below the band; the build now checks a hat's shape against its name (13 corrected) |
+| Clip-on holsters not like the images | A plain box with a flap | Holster pockets drawn as sold: open-topped, two layered pockets with slanted taped tops, belt straps; the pair mirror each other |
+
+Further faults found while fixing these, fixed the same way:
+
+- **Waffle cloth** drew as vertical ribs; it is now a small grid (47 items). **Self and tonal stripes** ("self stripe")
+  drew as contrast stripes; they read plain.
+- **Shirt buttons** were white on every shirt; they are tonal (a shade of the cloth, pearl on white) and sit on the cloth.
+- **Knit hem bands** showed broken, patchy ribs where a photo front ran over them; photo fronts now stop at the band.
+- **Two hats** listed as baseball caps are a watch cap and a swimming cap; they draw as beanies.
+- **Named neutral colours** (black, grey, charcoal) agreed with strongly coloured photos by distance alone (a red
+  check shirt "dark grey"); a neutral name now wants a neutral photo.
+- **QA:** `inject.py` exposes `descOf` and `byId`; `dump.js` reports the photo's colour when the name's wins (`c1p`).
+- **Checks:** CHECKS_PLACEHOLDER
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

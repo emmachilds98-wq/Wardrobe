@@ -4431,11 +4431,14 @@ function make3Dcore(pieces){
      width of the body, so it keeps that width up the chest; its sides fade where the garment turns away. */
   function frontPhoto(F,hem,s0,m,secsAll){var cv=document.createElement("canvas");cv.width=F.cv.width;cv.height=F.cv.height;cv.getContext("2d").drawImage(F.cv,0,0);gCv(cv);
     var tx=new T.CanvasTexture(cv);if(T.sRGBEncoding)tx.encoding=T.sRGBEncoding;tx.anisotropy=4;
-    var pt=s0==="hoodie"?[1.66,0.24]:(s0==="rollneck"?[1.565,0.14]:(/^(shirt|sshirt)$/.test(s0)?[1.55,0.2]:(s0==="polo"?[1.545,0.14]:[1.535,0.11]))),yP=pt[0]-pt[1]*(pt[0]-hem),yB=hem+0.006,yT=Math.min(1.47,yP);
+    /* (a knit with a ribbed hem band: the photo stops at the band, and its own hem strip is left out, or it lay over the
+       drawn band in patches and doubled its ribs) */
+    var bandH=/^(jumper|hoodie|halfzip|rollneck|cardigan)$/.test(s0)?0.045:0,cropB=bandH?0.07:0;
+    var pt=s0==="hoodie"?[1.66,0.24]:(s0==="rollneck"?[1.565,0.14]:(/^(shirt|sshirt)$/.test(s0)?[1.55,0.2]:(s0==="polo"?[1.545,0.14]:[1.535,0.11]))),yP=pt[0]-pt[1]*(pt[0]-hem),yB=hem+0.006+bandH,yT=Math.min(1.47,yP);
     var dS=smoothSecs(secsAll,4),hw0=secAt(dS,hem+0.35*(1.4-hem))[1]*0.985,NX=16,rows=[],v=[],uv=[],ix=[];
     for(var y=yT;y>yB+0.0001;y-=0.02)rows.push(y);rows.push(yB);
     rows.forEach(function(y){var hw=Math.min(hw0,secAt(dS,y)[1]*0.985),vv=(yP-y)/(yP-yB);
-      for(var i=0;i<=NX;i++){var u=i/NX,x=(u-0.5)*2*hw;v.push(x,y,surfZ(y,x,0)+0.0012);uv.push(0.5+(u-0.5)*hw/hw0,1-vv);}});
+      for(var i=0;i<=NX;i++){var u=i/NX,x=(u-0.5)*2*hw;v.push(x,y,surfZ(y,x,0)+0.0012);uv.push(0.5+(u-0.5)*hw/hw0,cropB+(1-cropB)*(1-vv));}});
     for(var j=0;j<rows.length-1;j++)for(var i=0;i<NX;i++){var a0=j*(NX+1)+i;ix.push(a0,a0+NX+1,a0+1,a0+1,a0+NX+1,a0+NX+2);}
     var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(v,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setIndex(ix);g.computeVertexNormals();
     var pm2=new T.MeshStandardMaterial({map:tx,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2,roughness:m.roughness!=null?m.roughness:0.9,metalness:0});
