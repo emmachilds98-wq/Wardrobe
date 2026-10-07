@@ -1579,6 +1579,40 @@ A third survey of 16 random outfits, in 3D and in the 2D drawing, found these, n
   final build, the full 3D check over all 574 outfits flagged none, with no errors, and the pull-request check passed on
   all five builds.
 
+## 2zzzz. Prints, cloth over the shoulders, gilet shoulders, trainer soles (7 Oct 2026)
+
+A fourth survey, of more outfits in 3D and 2D and of every trainer, shoe and boot beside its photo, found these, now
+fixed:
+
+- **Shorts worn as trousers:** the three Ted Baker Halbak listings are chino shorts. Three outfits now draw them as
+  shorts, and three that wanted trousers wear full-length chinos or cords instead (names and price notes follow).
+- **An all-over geo print read as a tartan:** a print that repeats both ways looked like a check to the photo reader.
+  When the listing names a print that is not a grid (all-over, AOP, geo, floral, paisley, camo, spots) and no check, it
+  is now drawn from a square of the photo itself. Two Lambretta tees changed; no other reading moved.
+- **Prints and stripes smeared over the shoulders:** the cloth's texture ran up the body by height, and across the
+  nearly flat tops of the shoulders the height hardly changes, so a print or stripe was pulled into streaks there and
+  on the sleeve head. It now runs by length along the cloth, over the shoulders and up each sleeve, and round each
+  sleeve row by that row's own length. Stripes and checks now carry on evenly over the shoulder.
+- **A jumper through a gilet** (`g-quiet-26`, loose fit, also on `main`): the front of a gilet's shoulder lies on the
+  arm's part of the body mesh, and those points only cleared his arm, not the shoulders of the jumper under them. They
+  now clear both. All 46 gilet and vest outfits pass the 3D check on all five builds.
+- **Trainer soles were always white** and their side stripes white or black. The photo reader now finds a trainer's
+  sole (the commonest colour at the bottom of its outline, column by column, in product shots only; a tan gum sole was
+  being taken for skin) and a bright accent too small to be a second colour. A black hiking sole, a gum cupsole and red
+  stripes on blue now show in 3D and 2D. Shoes and boots keep their dark (or named crepe, gum or wedge) soles: their
+  photos' floors and reflections read as soles.
+- **Pale garments on pale backdrops:** M&S ecru pleated cords (the backdrop took the trousers, and one outfit called
+  them brown) and the Farah Netherton ecru shirt (its photo's middle is the tee under it) are corrected in
+  `data/fixes.json`, with the adidas VL Court (white with green stripes), the Columbia Konos Trillium (not its pale
+  midsole) and Grafters brogue Chelsea boots (tan, not their elastic sides). Two summer outfits wore M&S Oxfords as
+  "grey": the photo is the brown colourway.
+- **Checked and left as they are:** the dark olive and fudge cords read as their photos (dark photos, not a reader
+  fault); a corduroy-specific colour rule moved nothing and was dropped.
+- **QA tools:** `multi.js` takes a view (`chest`, `legs` or `feet`, the feet turned to show the shoe's side as shop
+  photos do) and waits for the photo reading; `dump.js` reports footwear soles and accents.
+- **Checks:** on the final build, the full 3D check over all 574 outfits flagged none, with no errors; the pull-request
+  gate set passed on all five builds, as did every gilet and vest outfit and the 26 footwear outfits touched.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
