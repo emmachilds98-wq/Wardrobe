@@ -3704,7 +3704,7 @@ function make3Dcore(pieces){
     var YV=[],FQ3=[0,0,0,0,0];for(var k2=0;k2<nY;k2++)YV.push(new Array(NC));
     for(j=0;j<NC;j++){var t4=cols[j],vs=V[iS][j],xs=pos[vs*3],ys=pos[vs*3+1],zs=pos[vs*3+2],rs=Math.sqrt(xs*xs+(zs-FX.zc)*(zs-FX.zc)),gs=Math.atan2(ys-FX.cy,rs),rhoS=Math.sqrt(rs*rs+(ys-FX.cy)*(ys-FX.cy)),yt=F.ytop(t4);
       /* the neckline: on his neck at its height, a little out from it (and outside any neckline under it) */
-      var nk=secAtF(B3.neck,yt,FQ3),sn=Math.sin(t4),cn=Math.cos(t4),Rn=1/Math.sqrt(sn*sn/(nk[1]*nk[1])+cn*cn/(nk[2]*nk[2]))+eN,on=fmGet(OM.N,yt,t4);if(on>0&&on+gp>Rn)Rn=on+gp;
+      var nk=secAtF(B3.neck,yt,FQ3),sn=Math.sin(t4),cn=Math.cos(t4),Rn=1/Math.sqrt(sn*sn/(nk[1]*nk[1])+cn*cn/(nk[2]*nk[2]))+eN,on=Math.max(fmGet(OM.N,yt-0.006,t4),fmGet(OM.N,yt,t4),fmGet(OM.N,yt+0.006,t4),fmGet(OM.N,yt,t4-0.05),fmGet(OM.N,yt,t4+0.05));if(on>0&&on+gp+0.0015>Rn)Rn=on+gp+0.0015;   /* (clear of what is under it a little above and below and to either side, not at one point of a coarse map: a neckband hugging the neck under an open coat came through at its neckline) */
       var Pn=[sn*Rn,yt,nk[4]+cn*Rn],hn=Math.sqrt(Pn[0]*Pn[0]+(Pn[2]-FX.zc)*(Pn[2]-FX.zc)),gn=Math.atan2(yt-FX.cy,hn),rhoN=Math.sqrt(hn*hn+(yt-FX.cy)*(yt-FX.cy)),tn=Math.atan2(Pn[0],Pn[2]-FX.zc);
       while(tn-t4>Math.PI)tn-=TW;while(tn-t4<-Math.PI)tn+=TW;
       if(yt<=ys+0.003||gn<=gs+0.02){for(k2=0;k2<nY;k2++)YV[k2][j]=[xs,ys,zs];continue;}   /* (a neckline lower than this, as a V: the yoke closes up at it) */

@@ -1641,7 +1641,11 @@ Further faults found while fixing these, fixed the same way:
 - **Named neutral colours** (black, grey, charcoal) agreed with strongly coloured photos by distance alone (a red
   check shirt "dark grey"); a neutral name now wants a neutral photo.
 - **QA:** `inject.py` exposes `descOf` and `byId`; `dump.js` reports the photo's colour when the name's wins (`c1p`).
-- **Checks:** CHECKS_PLACEHOLDER
+- **Coat necklines on a jumper:** on the athletic body a coat's neckline met a jumper's neckband (cold-commute,
+  back poke 40). The coat now clears the neckband measured a little above, below and either side of the neck point.
+- **Checks:** CI (60 changed outfits plus the gate list, on all five bodies) flagged only that neckline. Rerun on
+  this build, the three jobs that flagged it come back with 0 flagged.
+  The full 574-outfit run was stopped part-way to ship this. The weekly routine runs it in full.
 
 ## 3. Next steps
 
