@@ -43,5 +43,16 @@
   "col": "#3a3458",
   "why": "A flat-lay of a dark navy and purple jacquard scarf with lettering; the listing's 'Lilac' made it light lilac, but the cloth reads as a deep blue-purple.",
   "checked": "2026-10-07"
+ },
+ "ms-cord-pleat": {
+  "col": "#e0dacd",
+  "pat": "plain",
+  "why": "A model shot of ecru cords (the listing's colour is ECRU) on a pale grey backdrop almost the same colour, so the backdrop took the trousers and the black jumper and belt above them were read; they drew brown.",
+  "checked": "2026-10-07"
+ },
+ "fa-netherton-cord": {
+  "col": "#e0dacd",
+  "why": "A model shot of an ecru cord shirt worn open over a beige tee; the middle of the photo is the tee, which was read as the shirt's colour.",
+  "checked": "2026-10-07"
  }
 }
