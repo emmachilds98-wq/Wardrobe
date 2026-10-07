@@ -2310,7 +2310,7 @@ function readLook(im,shape,DW){
       var headM=false;if(shape!=="hoodie")(function(){var rows=[],j0=-1,j1=-1;for(var j5=0;j5<H;j5++){var a5=-1,b5=-1;for(var i5=0;i5<W;i5++){if(M[j5*W+i5]!==1){if(a5<0)a5=i5;b5=i5;}}rows.push(a5<0?0:b5-a5+1);if(a5>=0){if(j0<0)j0=j5;j1=j5;}}
         if(j0<0)return;var ht=j1-j0+1,ws=0;for(var j6=j0+Math.round(ht*0.3);j6<j0+Math.round(ht*0.6);j6++)ws=Math.max(ws,rows[j6]);if(ws<W*0.2)return;
         var hm=0,hmY=-1,nk=9e9,nkY=-1;for(var j7=j0;j7<j0+Math.round(ht*0.4);j7++){var w7=rows[j7];if(w7>ws*0.75)break;if(nkY<0&&w7>hm){hm=w7;hmY=j7;}if(hmY>=0&&w7<hm*0.8&&w7<nk){nk=w7;nkY=j7;}if(nkY>=0&&w7>nk*1.25&&w7<ws*0.75&&j7-j0>ht*0.08){headM=hm<ws*0.55&&hmY-j0>ht*0.03&&nk>W*0.02;if(headM)return;}}})();
-      L.model=headM;
+      L.model=headM;if(headM)delete L.decal;   /* (nor its print: a model may be turned away, the print his back's, and his hands are in it) */
       if(!folded&&!headM&&!slvIn&&hole<hn*0.04&&far<fn2*0.22&&!(tn>20&&tf>tn*0.35)&&skB<FW*FH*0.4*0.03&&wtag<fn2*2*0.004){
         /* the background caught between a sleeve and the body of a flat-lay is closed off from the photo's edge, so the
            flood above never reaches it, and it showed as pale slivers down his sides: it is cleared from the cut-out's
