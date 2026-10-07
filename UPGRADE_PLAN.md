@@ -1574,6 +1574,10 @@ A third survey of 16 random outfits, in 3D and in the 2D drawing, found these, n
 - **Corduroy trim** ("with corduroy trim", "cord collar") no longer makes the whole garment corduroy (a quilted jacket
   showed pinstripes in 2D).
 - **A jacquard scarf** listed as "Lilac" is a deep navy-purple in its photo; corrected in `data/fixes.json`.
+- **Checks:** the first push turned the pull-request check red. The new strap code declared its own `band`, which
+  shadowed the shared helper, so boots and socks failed to build. It is fixed, and the lesson is in the guide. On the
+  final build, the full 3D check over all 574 outfits flagged none, with no errors, and the pull-request check passed on
+  all five builds.
 
 ## 3. Next steps
 
