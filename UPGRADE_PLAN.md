@@ -1498,8 +1498,17 @@ Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fit
 - **Trousers:** the press that closes the legs at the inner thigh was measured in steps of height and jumped from one
   ring of the leg to the next, leaving thin creases across the inner thighs on most trousers. It is now evened out
   over the cloth (never less than it needs, so no light shows between the legs).
-- **Checks:** all 55 belted outfits pass the 3D check on his saved build and on the slim, athletic and heavier builds;
-  on the loose fit one flag, `wk-chore`'s collar, is the same on `main`.
+- **Tucking, one rule for 3D and 2D (`tuckList`):** a shirt worn open hangs loose. In `rv-black-smart` an open shirt
+  was tucked in over a vest left hanging out, and the vest came through it (poke 167, also on `main`). A tee or vest
+  under a tucked shirt now goes in with it.
+- **Sunglasses:** the arms run back along the side of his head to the ears, measured on his head slice by slice; they
+  used to go straight out to the ears' width and stood off his temples.
+- **Checks:**
+  - All 55 belted outfits pass the 3D check on his saved build and on the slim, athletic and heavier builds. On the
+    loose fit the one flag, `wk-chore`'s collar, is the same on `main`.
+  - Full run, all 574 outfits on his saved build: one flag (`rv-black-smart`, above), now fixed.
+  - The 31 outfits touched after that run (sunglasses, the Keir set, open shirts with a tuck) pass.
+  - The pull-request check (gate set on five builds) passes.
 
 ## 3. Next steps
 

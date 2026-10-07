@@ -120,8 +120,9 @@ is drawn from its name and the outfit's palette colour only, so it will rarely m
 
 Layer 2 pieces and cardigans are worn open over what is under them. A layer 0 or 1 piece is worn open when its
 `what` says **"worn open"** (an open shirt over a tee). Shirts and polos are tucked in when the outfit has a blazer,
-waistcoat, tie or belt, or tailored or suit trousers (never with shorts); an overshirt over another shirt is not
-tucked. The 2D drawing follows the same rule.
+waistcoat, tie or belt, or tailored or suit trousers (never with shorts); a shirt worn open, or an overshirt over
+another shirt, is not tucked, and a tee or vest under a tucked shirt goes in with it (`tuckList`). The 2D drawing
+follows the same rule.
 
 A `belt` is drawn by its name. A trouser belt goes round the waistband (its loops over it) and shows when the top is
 tucked in. **Workwear kit** (a name with holster, nail pocket, pouch, hammer or knife holder, tool belt or apron) is
