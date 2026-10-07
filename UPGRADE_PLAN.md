@@ -1364,6 +1364,65 @@ Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fit
   - The gap under the crotch on some trousers and shorts, and the small collar glitches at the side of the neck.
   - Phase 2 (draped garment library, cloth settling, fabrics) as set out in section 4 and in Emma's review doc.
 
+## 2zw. 3D check failures fixed; boots, ties and denim; 2D Dave from Edit Dave; fabric search (7 Oct 2026)
+
+- **The full 3D check (574 outfits) and what it found:**
+  - 93 outfits were flagged.
+  - Holes: 64 outfits with small holes at the back, nearly all gaps of background between his arm and his side.
+    The checker now tells an arm from a body (a top is one piece, so it reads each piece's own arm mask), and
+    counts only holes in the clothes.
+  - The crotch: a real opening under the crotch, between the seat and the legs. A gusset now fills it, in the
+    cloth's shadow colour so it reads as the inside of the crease.
+  - Show-through:
+    - A hoodie's hood under an open overshirt poked through its back. The hood now lies out over every layer worn
+      over the hoodie (it works out how far out each later layer will sit).
+    - A tucked-in shirt let the trouser waistband show through. When a shirt is tucked, the waistband and seat now
+      stand out by its thickness.
+  - Colour: 24 flags, mostly near-white shirts marked "lost its colour". By HSL saturation an off-white counts as
+    strongly coloured; the checker now judges colourfulness by chroma, and allows very dark cloth to read a little
+    lighter under the studio light.
+  - Re-checked: all the flagged outfits pass.
+- **Seams welded:** the body has duplicate vertices along its region seams. Tops and trousers built from it now use
+  one vertex per position, with averaged normals.
+- **Boots read as boots:**
+  - Over boots the trouser hem stops higher and stands clear of the shaft, so the toe, laces and start of the
+    shaft show.
+  - Laces criss-cross up the front of the shaft between metal hooks, with a padded collar. Chelsea and dealer
+    boots get elastic side gussets instead.
+- **Ties:**
+  - A tie is one ribbon lying on the shirt, from a knot under the collar to a pointed blade (narrower when slim or
+    knitted). The shirt's buttons are not drawn under it.
+  - A bow tie is a bow at the collar.
+  - A tie bar or clip is a bar across the tie, not a necklace.
+- **Denim colour:** studio shadows and model shots made denim read too dark, or as stripes. Denim now stays within
+  its wash: raw, dark and indigo; mid; or light and stonewash. It takes no stripes or checks from the photo
+  unless the listing names them.
+- **Photo fronts:** a flat-lay photo with its sleeves laid down over the body is no longer laid over his chest
+  (cuffs showed on it). A long sleeve edge down the sides of a plain long-sleeved top rules it out.
+- **Pattern words:**
+  - "Button-down" no longer reads as down-filled: no quilting, nylon shine or down-wash care.
+  - Cordura, drawcords and records are no longer corduroy.
+  - A gilet is quilted only when the listing says so; duck, canvas and fleece gilets are plain.
+- **2D Dave follows Edit Dave:**
+  - The drawing takes his skin, hair and moustache colour from Edit Dave.
+  - His moustache style (chevron, walrus, handlebar or pencil) and beard (stubble or short beard) match.
+  - His eye colour, his brow weight and arch, and his glasses (round or square) match too.
+  - Saving Edit Dave redraws the 2D figures as well.
+  - The drawing board's background is back (it was lost when the figure became a button), in light and dark mode.
+- **Shop:**
+  - A Fabric filter: 100% cotton, natural fibres only, or no polyester or stretch. It is read from each listing's
+    fibre composition.
+  - Search matches whole words for short words and word starts for longer ones ("red" no longer finds Fred Perry
+    or "reduced"). It knows a few synonyms (jeans and denim; cord, cords, corduroy and needlecord), and fabric and
+    fit are searchable.
+  - "Price drop" needs at least 5% or £1, so a drop of a few pence is not promoted.
+- **Sunglasses by shape:** wrap (one curved shield), aviator (teardrops in a thin metal rim), round or square, from
+  the listing name, with the frame and lens colours it names (gold, silver, tortoiseshell; amber, green, blue,
+  mirrored).
+- **Weekly routine:** now runs `weekly_refresh.py fabric` and the 3D checks, and reports their result.
+- **Still to do:** the small collar spikes at the side of the neck on some shirts (in the folded collar,
+  `fitCollar`), and then Phase 2.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
