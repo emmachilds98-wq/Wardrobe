@@ -1610,7 +1610,8 @@ fixed:
   fault); a corduroy-specific colour rule moved nothing and was dropped.
 - **QA tools:** `multi.js` takes a view (`chest`, `legs` or `feet`, the feet turned to show the shoe's side as shop
   photos do) and waits for the photo reading; `dump.js` reports footwear soles and accents.
-- **Checks:** CHECKS_PLACEHOLDER
+- **Checks:** on the final build, the full 3D check over all 574 outfits flagged none, with no errors; the pull-request
+  gate set passed on all five builds, as did every gilet and vest outfit and the 26 footwear outfits touched.
 
 ## 3. Next steps
 
