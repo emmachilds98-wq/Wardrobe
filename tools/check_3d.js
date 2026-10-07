@@ -20,6 +20,7 @@
    --fail     exit with an error when anything is flagged or the page throws (for the pull-request check)
    --out      where the report and the pictures of flagged outfits go (default qa/)
    --report   also write the summary into data/refresh-report.json ("checks_3d")
+   --body     check on another of Edit Dave's body types (slim, average, athletic, heavier) or cloth fits (close, loose)
    Needs Playwright and Chromium (CHROME_PATH to use a particular Chromium). */
 const fs = require("fs"), path = require("path"), http = require("http");
 let chromium;
@@ -249,6 +250,18 @@ function colourOff(c) {
   const b = await chromium.launch({ executablePath: process.env.CHROME_PATH || (fs.existsSync("/opt/pw-browsers/chromium-1194/chrome-linux/chrome") ? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" : undefined),
     args: ["--use-gl=swiftshader", "--enable-unsafe-swiftshader"] });
   const p = await b.newPage(), errs = []; p.on("pageerror", e => errs.push(e.message));
+  // --body: check on another of Edit Dave's body types (or cloth fit) instead of his saved one, set as the page would
+  // set it; the types are read from the page itself, so they never fall out of step with it
+  const BODY = arg("body");
+  if (BODY && BODY !== "dave") {
+    const src = fs.readFileSync(path.join(SITE, "index.html"), "utf8"), lit = n => { const m = src.match(new RegExp("var " + n + "=(\\{[\\s\\S]*?\\});")); return m ? Function("return " + m[1])() : null; };
+    const DEF = lit("CHAR_DEF"), PRE = lit("PRESETS"), KEYS = (src.match(/var BODY_KEYS=(\[[^\]]*\])/) || [])[1];
+    const ch = Object.assign({}, DEF);
+    if (BODY === "close" || BODY === "loose") ch.clothFit = BODY === "close" ? -1 : 1;
+    else if (PRE && PRE[BODY]) JSON.parse(KEYS).forEach(k => { ch[k] = PRE[BODY][k] != null ? PRE[BODY][k] : 0; });
+    else { console.error("--body is one of dave, " + Object.keys(PRE || {}).filter(k => k !== "dave").join(", ") + ", close, loose"); process.exit(1); }
+    await p.addInitScript(c => { try { localStorage.setItem("dw-char", JSON.stringify(c)); } catch (e) {} }, ch);
+  }
   await p.goto("http://localhost:" + port + "/index.html?qa=1#fits");
   await p.waitForFunction(() => window.__qa && Object.keys(window.__qa().fitById).length > 0, null, { timeout: 120000 });
   await p.evaluate(() => window.__qa().loadThree());
@@ -283,7 +296,7 @@ function colourOff(c) {
   process.stdout.write("\n");
   const flagged = out.filter(r => r.error || (r.flags && r.flags.length));
   const count = k => out.filter(r => r.flags && r.flags.some(f => f.includes(k))).length;
-  const summary = { date: new Date().toISOString().slice(0, 10), outfits: out.length, flagged: flagged.length,
+  const summary = { date: new Date().toISOString().slice(0, 10), body: BODY || "dave", outfits: out.length, flagged: flagged.length,
     poke: count("poke"), holes: count("holes"), stray: count("stray"), skin: count("skin"), seethrough: count("seethrough"), sunk: count("sunk"), colour: count("colour"), errors: out.filter(r => r.error).length, page_errors: errs.slice(0, 5) };
   fs.writeFileSync(path.join(OUT, "report.json"), JSON.stringify({ summary, outfits: out }, null, 1));
   console.log(JSON.stringify(summary));
