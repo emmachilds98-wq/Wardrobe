@@ -1447,6 +1447,18 @@ Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fit
   half the colour of the thread across and half the thread down. Those colours are read from the photo's rows and
   columns; a band that does not vary along its length is dropped. Flannels, ginghams, tartans and Prince of Wales
   checks come out crisp, in their own colours, and repeat cleanly.
+- **Prints repeat as they are:** a print's square of photo used to be mirrored into a 2 x 2 tile, which turned a
+  floral or a geometric print into a kaleidoscope. The square now repeats as it is, its edges faded into a copy of
+  itself shifted by half, so there is no seam and no mirror symmetry. A shirt the listing calls striped, but whose
+  photo read as a print (a close-up of the collar sets the stripes at a slant), has its stripes' direction found
+  and laid upright.
+- **Checked against the last build:** every outfit piece's photo reading (1,370) was compared before and after.
+  Colours, patterns and photo fronts are unchanged; only the cloth squares of checks and prints differ.
+- **Known limit, skin in model photos:** skin is found by colour, and only lighter skin is caught. A wider rule
+  that caught deeper skin tones also caught cream, stone, tan and khaki cloth (a tool belt read as black, khaki
+  joggers as grey, several flat-lay tees lost their photo front), so it was not kept. A shop photo of a
+  darker-skinned model can still be taken as a flat-lay: one Ted Baker shirt shows the model's hand and trousers
+  on its front. The fix needs a check by shape (a head at the top middle, hands at the sides), not by colour.
 - **No lettering in fabric tiles:** the square of photo used for a print or check is the one with least "ink":
   pixels far from both of the cloth's colours, such as a size badge, label or lettering.
 - **Folded shop photos:** Savile Row Company and T.M. Lewin photograph formal shirts folded in the packet (collar up,
