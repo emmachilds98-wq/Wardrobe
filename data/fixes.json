@@ -29,5 +29,14 @@
   "front": false,
   "why": "A flat-lay of a pale canary-yellow sweatshirt with its sleeves laid down over the body; on white the sleeves' edges are too faint to be seen as sleeves, so the photo front put their outlines on his chest.",
   "checked": "2026-10-07"
+ },
+ "hs-bb-shirwell": {
+  "col": "#86a3c9",
+  "col2": "#eef1f5",
+  "pat": "vstripe",
+  "per": 0.03,
+  "duty": 0.22,
+  "why": "A lifestyle photo by the sea: a mid-blue resort shirt with thin white stripes. The sky and sea behind the model were read into the cloth, which came out grey.",
+  "checked": "2026-10-07"
  }
 }

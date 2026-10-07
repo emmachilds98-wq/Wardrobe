@@ -2115,6 +2115,10 @@ function readLook(im,shape,DW){
      (a charcoal fleece is not black) */
   if(mx<120&&mx-mn<20&&!(DW.grey&&!DW.black)){var dk=DW.black||mx<60?(mx>70?0.6:0.85):0.88;t=t.map(function(v){return v*dk;});}else{t=t.map(function(v){return 255*Math.pow(v/255,1.12);});}
   var L={c1:hx(t),c2:c2?hx(c2):"",pat:"plain"};
+  /* a close-up (of a collar, or of the cloth) fills the frame: almost no background, and nearly all of it in the
+     cloth's own colours (a lifestyle shot's busy background is neither) */
+  (function(){var bgN=0,nearN=0;for(var k8=0;k8<W*H;k8++){if(M[k8]===1){bgN++;continue;}var x8=k8%W,q8=px(x8,(k8-x8)/W);if(dist(q8,m)<60||(c2&&dist(q8,c2)<60))nearN++;}
+    L.close=bgN<W*H*0.06&&nearN>(W*H-bgN)*0.8;})();
   /* stripes and checks: how strongly the brightness repeats down the rows and across the columns */
   function lumAt(i2,j2){var k2=(j2*W+i2)*4;return 0.3*d[k2]+0.59*d[k2+1]+0.11*d[k2+2];}
   function prof(alongRows){var out=[];if(alongRows){for(j=t0;j<t1;j++){var s2=0,c=0;for(i=r0;i<r1;i++)if(!M[j*W+i]){s2+=lumAt(i,j);c++;}out.push(c>3?s2/c:null);}}
@@ -2217,6 +2221,20 @@ function readLook(im,shape,DW){
   /* an all-over print the stripes and checks do not explain: keep a small swatch of the cloth itself */
   if(L.pat==="plain"&&!L.decal&&far>(DW.print?0.1:0.22)&&!FEETs&&(DW.print||DW.check)){L.pat="print";swatch();}
   if(L.pat==="check"&&!FEETs)swatch();
+  /* stripes the listing names that the photo could not measure (a slanted close-up of the collar, folds, a model in
+     shot) came out as a blurred, mirrored square of the photo. On a shirt they are drawn instead as fine upright
+     stripes: the ground is the cloth's main colour, the stripe the colour of the darkest tenth of the square's
+     threads, about a third of the cloth */
+  if(L.pat==="print"&&L.swCv&&DW.stripe&&!DW.check&&!/print|floral|paisley|camo|geometric|tie[- ]?dye|all[- ]?over/.test(DW.nm||"")&&/^(shirt|sshirt)$/.test(shape)){
+    var dS=L.swCv.getContext("2d").getImageData(0,0,64,64).data,lum7=[],q7;for(q7=0;q7<4096;q7++)lum7.push([0.3*dS[q7*4]+0.59*dS[q7*4+1]+0.11*dS[q7*4+2],q7]);
+    lum7.sort(function(a,b){return a[0]-b[0];});var dk=[0,0,0];for(q7=0;q7<410;q7++){var i7=lum7[q7][1]*4;dk[0]+=dS[i7]/410;dk[1]+=dS[i7+1]/410;dk[2]+=dS[i7+2]/410;}
+    /* (the stripe is a deeper shade of the cloth's own hue unless the darkest threads are clearly of another colour and
+       not skin: on a model a hand or neck can be the darkest thing in the square) */
+    var sat7=function(c){var mx=Math.max(c[0],c[1],c[2]),mn=Math.min(c[0],c[1],c[2]);return mx?(mx-mn)/mx:0;},skin7=dk[0]>dk[1]+8&&dk[1]>dk[2]+4;
+    if(skin7||sat7(dk)<0.08)dk=m.map(function(v){return v*0.62;});
+    /* (a random, bold, wide, block, awning or candy stripe is broad; the rest of a shirt's stripes are fine) */
+    var wideS=/random stripe|bold stripe|wide stripe|block stripe|awning|deckchair|candy stripe/.test(DW.nm||"");
+    if(dist(dk,m)>28){L.pat="vstripe";L.per=wideS?0.05:0.018;L.duty=wideS?0.45:0.3;L.c2=hx(dk);delete L.swCv;delete L.swatch;delete L.wrap;}}
   /* the front of a closed top as photographed flat (or on a ghost mannequin, not a model): the torso cut out of the
      photo, from below the collar to the hem, background made clear, edges softened and the studio lighting evened
      out, so the 3D and 2D figures can wear the actual front of the piece (panels, prints, pockets, plackets, logos) */
@@ -2322,6 +2340,9 @@ function readLook(im,shape,DW){
       c9=[parseInt(L.c1.substr(1,2),16),parseInt(L.c1.substr(3,2),16),parseInt(L.c1.substr(5,2),16)],r9=c9[0]/255,g9=c9[1]/255,b9=c9[2]/255,l9=(Math.max(r9,g9,b9)+Math.min(r9,g9,b9))/2,blue9=b9>r9+0.04;
     if(!blue9||l9<dw[1]||l9>dw[2]){L.c1p=L.c1;L.c1=dw[0];L.named="denim";delete L.front;}
     if(!(DW.stripe||DW.check||DW.print)){L.pat="plain";delete L.swCv;delete L.swatch;L.c2="";}}
+  /* (a close-up's stripes and checks were measured against a garment far longer than what is in frame: about a
+     quarter of the size) */
+  if(L.close){if(L.per)L.per*=0.28;if(L.swPer)L.swPer*=0.28;}
   L.str=L.c1+(L.c2?"|"+L.c2:"");
   return L;
 }
