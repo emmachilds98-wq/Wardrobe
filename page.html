@@ -1533,9 +1533,18 @@ function figure(pieces,hi){
     h+=grp(ft,fg);
   }else{var fL="M85 451 H108 L110 462 Q111 471 102 471 H90 Q80 471 82 462 Z";h+='<g class="sk">'+P("",fL)+P("",mir(fL))+'</g>'+'<path class="sd" style="fill:none" d="M88 466 Q90 468 92 466 M95 467 Q97 469 99 467 M141 467 Q143 469 145 467 M148 466 Q150 468 152 466"/>';}
   if(lo){
-    var tr=lo.shape==="trousers",ld=tr?"M82 222 H158 L163 300 L167 449 L127 449 L120 304 L113 449 L73 449 L77 300 Z":"M82 222 H158 L163 300 L164 349 L125 349 L120 302 L115 349 L76 349 L77 300 Z";
+    /* the leg's cut, as the 3D model has it: wide, relaxed, regular, barrel, or a cuffed jogger, from the pick's fit
+       label and its name (a hem outer and inner x for his left leg; the right is its mirror) */
+    var tr=lo.shape==="trousers",lnm0=(((byId[lo.item]||{}).name||"")+" "+lo.what).toLowerCase(),lfit=(byId[lo.item]||{}).fit||"",
+      jog0=/jogger|track ?(pant|bottom)|sweatpant/.test(lnm0)&&!/wide|straight|open hem|relaxed|loose/.test(lnm0),
+      cut0=jog0?"jog":(/barrel|balloon/.test(lnm0)?"barrel":(lfit==="Wide leg"||/wide|baggy|parachute|flare|skate/.test(lnm0)?"wide":(lfit==="Relaxed"||/relaxed|loose|carpenter|cargo|painter|work/.test(lnm0)?"relaxed":"regular"))),
+      HX={regular:[74,113],relaxed:[71.5,114.5],wide:[63,117],barrel:[77,112.5],jog:[80,111.5]}[cut0],xo=HX[0],xi=HX[1],M=function(x){return (240-x).toFixed(1);},
+      knee=cut0==="barrel"?" L"+M(68.5)+" 372":"",kneeL=cut0==="barrel"?" L68.5 372":"",
+      ld=tr?"M82 222 H158 L163 300"+knee+" L"+M(xo)+" 449 L"+M(xi)+" 449 L120 304 L"+xi+" 449 L"+xo+" 449"+kneeL+" L77 300 Z":"M82 222 H158 L163 300 L164 349 L125 349 L120 302 L115 349 L76 349 L77 300 Z",
+      hemL=function(y,dy){return " M"+(xo+1)+" "+y+" Q"+((xo+xi)/2).toFixed(1)+" "+(y+dy)+" "+(xi-1)+" "+y+" M"+M(xi-1)+" "+y+" Q"+M((xo+xi)/2)+" "+(y+dy)+" "+M(xo+1)+" "+y;},
+      crease=/jean|denim|jogger|track|sweat|cargo|parachute/.test(lnm0)?"":" M"+((xo+xi)/2+2).toFixed(1)+" 250 L"+((xo+xi)/2).toFixed(1)+" 444 M"+M((xo+xi)/2+2)+" 250 L"+M((xo+xi)/2)+" 444";
     h+=grp(lo,body(ld,lo,dim(lo))+P("d","M82 230 H158 M120 230 V296 M113 232 Q116 262 120 272 M88 232 Q92 248 84 256 M152 232 Q148 248 156 256"+
-      (tr?" M95 250 L93 444 M145 250 L147 444 M74 441 Q93 446 112 441 M128 441 Q147 446 166 441  M92 360 Q97 366 104 365 M148 360 Q143 366 136 365 M77 432 Q93 426 111 432 M129 432 Q147 426 163 432":" M77 343 H115 M125 343 H163 M84 330 Q94 334 106 329 M134 329 Q146 334 156 330")+
+      (tr?crease+hemL(441,5)+" M92 360 Q97 366 104 365 M148 360 Q143 366 136 365"+(cut0==="jog"?" M"+(xo+0.5)+" 434 H"+(xi-0.5)+" M"+M(xi-0.5)+" 434 H"+M(xo+0.5):hemL(432,-6)):" M77 343 H115 M125 343 H163 M84 330 Q94 334 106 329 M134 329 Q146 334 156 330")+
       (/cargo|parachute|utility|combat/i.test(lo.what+" "+((byId[lo.item]||{}).name||""))?(tr?" M77 322 H96 V352 H77 Z M77 329 H96 M144 322 H163 V352 H144 Z M144 329 H163":" M77 296 H95 V322 H77 Z M77 302 H95 M145 296 H163 V322 H145 Z M145 302 H163"):"")));
   }
   /* what the photos show on trousers: jeans' gold topstitching, scooped pockets and rivets; chinos' slanted pockets;

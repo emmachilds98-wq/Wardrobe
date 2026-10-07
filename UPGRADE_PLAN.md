@@ -1409,6 +1409,9 @@ Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fit
   - His eye colour, his brow weight and arch, and his glasses (round or square) match too.
   - Saving Edit Dave redraws the 2D figures as well.
   - The drawing board's background is back (it was lost when the figure became a button), in light and dark mode.
+- **2D trousers by cut:** wide legs flare to the hem, barrel legs bow out at the knee, cuffed joggers taper to a
+  cuff, and relaxed and regular pairs hang straight. The cut comes from the pick's fit label and name, as in 3D.
+  Jeans, joggers and cargos lose the pressed crease.
 - **Shop:**
   - A Fabric filter: 100% cotton, natural fibres only, or no polyester or stretch. It is read from each listing's
     fibre composition.
