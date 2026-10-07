@@ -130,12 +130,11 @@ should match. Emma asked for the upgrade to continue until that is done.
      pull-request check does not see it.
    - Done: sets listed as one item and worn as two pieces can be corrected per garment shape
      (`"shapes"` in `data/fixes.json`); the Tokyo Laundry Keir set is (black tee, grey marl shorts).
-   - **Close-up stripe photos** (for example `ct-poplin-stripe`): they give stripes that are too
-     wide. Scale the stripe period down when the photo is a close-up.
-   - **Model photos with darker-skinned models:** they can pass as flat-lays, because skin is
-     found by colour only (see 2zx). Add a shape test instead of widening the colour rule: a head
-     at the top middle and hands at the sides. Verify with `dump.js` that no cream, stone, tan or
-     khaki item changes.
+   - Done: named stripes the photo cannot measure (close-ups, folds, a model in shot) are drawn as
+     clean stripes in the cloth's colours, and close-up photos scale their pattern down (`L.close`).
+   - Done: model photos are found by the shape of a head and neck (`headM`), whatever the skin
+     colour, and their fronts are not used (hoodies excepted: a hood up looks the same). Hands at
+     the sides are not looked for yet.
 2. **Store what is read (Phase 1 / step 3):**
    - Write each piece's reading (colour, pattern, cloth square, fit, length, collar) into
      `data/specs.json` at build time, with its source and a confidence.

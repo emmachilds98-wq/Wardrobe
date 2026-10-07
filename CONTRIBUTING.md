@@ -118,7 +118,8 @@ is drawn from its name and the outfit's palette colour only, so it will rarely m
 | `boots`, `shoes`, `trainers`, `slippers` | | Footwear (at most one) |
 | `scarf`, `snood`, `cap`, `bcap`, `beanie`, `bucket`, `belt`, `watch`, `tie`, `square`, `bag`, `backpack`, `sunglasses`, `chain`, `kneepads` | | Accessories |
 
-Layer 2 pieces and cardigans are worn open over what is under them. A layer 0 or 1 piece is worn open when its
+Layer 2 pieces and cardigans are worn open over what is under them, in wearing order: a blazer, then a gilet, a
+jacket, and a coat or gown outermost (`OUTERK`). A layer 0 or 1 piece is worn open when its
 `what` says **"worn open"** (an open shirt over a tee). Shirts and polos are tucked in when the outfit has a blazer,
 waistcoat, tie or belt, or tailored or suit trousers (never with shorts); a shirt worn open, or an overshirt over
 another shirt, is not tucked, and a tee or vest under a tucked shirt goes in with it (`tuckList`). The 2D drawing
@@ -167,7 +168,8 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    left out, and the cloth that is left gives the main colour (`c1`), a second colour (`c2`), the pattern (`pat`:
    plain, hstripe, vstripe, check or print), the stripe or check spacing (`per`, a share of the garment's length) and
    how much of it is the stripe colour (`duty`), a swatch of a print, a cut-out of a chest graphic (`decal`), a photo
-   front for flat-lays (`front`) and the sleeve colour where it differs (`slv`). If the listing names a colour and
+   front for flat-lays (`front`; not when the outline shows a model, a head above a narrower neck above the
+   shoulders, whatever the skin colour) and the sleeve colour where it differs (`slv`). If the listing names a colour and
    the photo disagrees (a black mesh vest on a model against white reads as skin and white), the named colour wins.
    Navy and indigo read darker than the named colour are taken halfway back toward it (they photograph nearly
    black). Denim follows its own rule (washes are read from the photo, never replaced by the name). **Stripes and
@@ -386,7 +388,11 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
 - **Radial offsets square the shoulders**: dilate the map (`fmDilate`) rather than pushing points out along rays.
 - **Collars tip forward** if they are built round a centre that moves with the neck; use the fixed neck-base centre.
 - **Skin colour alone does not find skin in photos** for darker-skinned models; widening the colour range broke cream,
-  stone, tan and khaki items. It was reverted.
+  stone, tan and khaki items. It was reverted. A model is now found by shape instead: above the shoulders the outline
+  narrows to a neck and widens to a head (`headM`), which no flat-lay does. Hoodies are left out: a hood up on a
+  mannequin has the same outline.
+- **Place a detail at its own point on the cloth** (`surfZ(y, x, e)`), not at the depth of the body's middle
+  (`frontZ`), or it stands proud at the sides: a blazer's pocket flaps did, and pushed bumps into a coat over them.
 - **Dropping a photo's cloth square when the colour disagrees** made more items worse than better. It was reverted.
 - **A bulky top can stand its armhole out past the line of his arm.** The sleeve's directions used to be read from
   the armhole's points round the arm; on a puffer the armhole no longer went round it and the sleeve came out flat,
