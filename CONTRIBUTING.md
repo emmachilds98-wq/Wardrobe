@@ -182,7 +182,13 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    black). Denim follows its own rule (washes are read from the photo, never replaced by the name). **Stripes and
    checks are only read when the listing names a pattern** (stripe, Breton, check, plaid, gingham, print...): an
    unnamed repeat in a photo is nearly always something else, such as a zip and drawcords, a ribbed knit, or another
-   piece the model wears. So if a striped or checked item is drawn plain, its name is missing the pattern word.
+   piece the model wears. So if a striped or checked item is drawn plain, its name is missing the pattern word. A
+   repeat both ways is a check only when the name says check or does not name another print: an all-over, AOP, geo,
+   floral, paisley, camo or spot print is drawn from a square of the photo instead (`DW.aop`). For footwear the
+   photo also gives a trainer's sole (`sole`: the commonest colour at the bottom of the shoe's outline, column by
+   column, in product shots only) and a bright accent too small to be a second colour (`acc`: red stripes, a neon
+   tab), used for its side stripes or panel when the listing names no second colour. Shoes and boots are not read for
+   soles (their photos' floors and reflections read as soles); a crepe, gum, wedge or white sole comes from the name.
 3. **The correction** (`data/fixes.json`, applied by `pieceLook`): anything you have set for the item replaces what
    the photo gave.
 4. **Drawing:** the 3D builder (`make3Dcore`) and the 2D drawing (`figure`) both use the result, so they agree.
@@ -245,7 +251,8 @@ All fitting happens in `make3Dcore` in `page.html`, on the real body in `data/bo
   lengths follow his body. "cropped" or "boxy" raise the hem, "longline" lowers it; parkas, macs and trenches are
   long. Short sleeves for `tee`, `polo` and `sshirt` (unless named long).
 - **Layering.** As each piece is made it is added to maps of what he is wearing (`occAddMesh`), and the next piece is
-  pushed outside them (`occPushPt`), so nothing underneath can come through. Collars (`fitCollar`) are built round the
+  pushed outside them (`occPushPt`), so nothing underneath can come through. A garment's body that lies on his arm's
+  part of the body mesh (the front of a gilet's shoulder) clears the shoulders of what is under it as well as his arm. Collars (`fitCollar`) are built round the
   neck base and stand on what is under them. Sleeves under a long-sleeved outer layer are not built.
 - **Trousers and shorts.** The seat, hips and tops of the thighs are one draped piece (`lowerWrap`); each leg carries
   on below it (`legSecs`), with the crotch sealed where the legs meet. The leg's cut comes from `fit` and the name:
@@ -297,7 +304,10 @@ runs the build checks and the 3D check automatically, but run them yourself firs
 3. **Look at it:**
    - `node tools/qa/zoom.js out.png <outfit id> "rotY,camY,camZ,lookY;..."`: close-ups from any angle (front
      `0,1.3,1.4,1.25`; back `3.14159,1.3,1.4,1.25`).
-   - `node tools/qa/multi.js out.png shirt id1,id2`: items beside their shop photos.
+   - `node tools/qa/multi.js out.png shirt id1,id2 [chest|legs|feet]`: items beside their shop photos (`legs` for
+     trousers and shorts, `feet` for footwear, turned to show the side as shop photos do).
+   - `python3 tools/qa/sheet.py look.json <shape> out.png [start]`: a contact sheet of photos beside their readings
+     (from `dump.js`), to judge a reader change on every item of a kind.
    - `node tools/qa/ray.js <outfit> "[[x,y],...]"`: which layers sit at a point, front to back.
    - `node tools/qa/smoke.js`: the Outfits view in 2D and 3D, with any page errors.
 4. **Run the 3D check** on the outfits you touched:
@@ -426,5 +436,15 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
   sock failed with "band is not a function". A check on only the 19 open-footwear outfits passed; the pull-request
   check, which renders the gate set, caught it. Run `--ids @tools/qa/gate.txt` (plus your outfits) before pushing,
   and use names that cannot collide with `make3Dcore`'s helpers (`band`, `tube`, `sec`, `add`, `put`, `strap`...).
+- **Cloth texture runs by length along the cloth, not by height.** Over the nearly flat tops of the shoulders and
+  round a sleeve's head the height hardly changes, so a print, stripe or check laid by height smeared into streaks
+  there. The yoke and sleeves now measure their texture's rows along the cloth itself, and each sleeve row round by
+  its own length. Any new mesh that uses a cloth texture should do the same where it turns away from upright.
+- **A gum sole is tan, and tan reads as skin.** The photo reader's skin mask took gum soles out, so the sole reading
+  landed on the upper above them. Footwear's sole scan counts skin-coloured pixels as the shoe.
+- **Look at the whole set of a kind before trusting a reading.** The first sole reader looked right on five trainers;
+  a contact sheet of all 61 trainers, 85 shoes and 95 boots beside their readings showed it wrong on many pairs, model
+  shots and shoes with reflections. Make one before and after a reader change: `node tools/qa/dump.js look.json`, then
+  `python3 tools/qa/sheet.py look.json trainers sheet.png` (each photo with its read colours, 30 to a sheet).
 - **One item looking right is not proof.** Check every item of that kind with `multi.js`, and every outfit with
   `check_3d.js`.

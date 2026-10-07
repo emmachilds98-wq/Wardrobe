@@ -136,6 +136,22 @@ should match. Emma asked for the upgrade to continue until that is done.
    - Done: model photos are found by the shape of a head and neck (`headM`), whatever the skin
      colour, and their fronts are not used (hoodies excepted: a hood up looks the same). Hands at
      the sides are not looked for yet.
+   - Done (round 4, see `UPGRADE_PLAN.md` 2zzzz): all-over and geo prints no longer read as checks;
+     prints, stripes and checks run evenly over the shoulders and sleeve heads; a gilet's shoulder
+     clears the jumper under it on every build; trainers get their sole (black, gum, white) and
+     accent (red stripes) from the photo.
+   - **Footwear still to do:**
+     - Every shoe is one generic last: a hiking shoe, a skate shoe and a runner look alike, and a
+       Nike's tick is a bar. Shoe lasts by type are Phase 6.
+     - Shoes and boots are not read for soles (their photos' floors and reflections read as
+       soles), so a crepe-soled desert boot is drawn with a dark sole unless its name says crepe.
+     - Tan and cognac leather reads a little dark and red (shop lighting correction).
+   - **Data to fix at the next refresh:**
+     - Three M and M Direct picks (`mm-timberland-alden`, `mm-timberland-chukka`,
+       `mm-converse-star`) link to brand pages, not products, and their "photos" are the shop's
+       logo. Find the product pages (direct requests or headless Chromium only) or replace them.
+     - `ms-oxford-shoe` links to the black colourway, but its stored photo is the brown one (the
+       two outfits that use it now say brown).
 2. **Store what is read (Phase 1 / step 3):**
    - Write each piece's reading (colour, pattern, cloth square, fit, length, collar) into
      `data/specs.json` at build time, with its source and a confidence.
