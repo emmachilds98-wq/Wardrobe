@@ -161,7 +161,11 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    how much of it is the stripe colour (`duty`), a swatch of a print, a cut-out of a chest graphic (`decal`), a photo
    front for flat-lays (`front`) and the sleeve colour where it differs (`slv`). If the listing names a colour and
    the photo disagrees (a black mesh vest on a model against white reads as skin and white), the named colour wins.
-   Denim follows its own rule (washes are read from the photo, never replaced by the name).
+   Navy and indigo read darker than the named colour are taken halfway back toward it (they photograph nearly
+   black). Denim follows its own rule (washes are read from the photo, never replaced by the name). **Stripes and
+   checks are only read when the listing names a pattern** (stripe, Breton, check, plaid, gingham, print...): an
+   unnamed repeat in a photo is nearly always something else, such as a zip and drawcords, a ribbed knit, or another
+   piece the model wears. So if a striped or checked item is drawn plain, its name is missing the pattern word.
 3. **The correction** (`data/fixes.json`, applied by `pieceLook`): anything you have set for the item replaces what
    the photo gave.
 4. **Drawing:** the 3D builder (`make3Dcore`) and the 2D drawing (`figure`) both use the result, so they agree.

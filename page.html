@@ -2276,7 +2276,11 @@ function readLook(im,shape,DW){
     if(/^(grey|gray)$/.test(DW.colRef.w))agree=hs9[1]<0.2&&hs9[2]>0.12&&hs9[2]<0.86;
     else if(fam){var dh=Math.abs(hs9[0]-hr9[0]);dh=Math.min(dh,360-dh);agree=hs9[1]>0.08&&dh<(DW.colRef.w==="green"?105:38)&&Math.abs(hs9[2]-hr9[2])<(DW.colRef.pal?0.58:0.42);}
     else agree=dist(c19,cr9)<=DW.colRef.tol;
-    if(!agree){L.c1p=L.c1;L.c1=DW.colRef.hex;L.named=DW.colRef.w;delete L.front;delete L.slv;if(!(DW.stripe||DW.check||DW.print)){L.pat="plain";delete L.swCv;delete L.swatch;}if(L.c2&&dist([parseInt(L.c2.substr(1,2),16),parseInt(L.c2.substr(3,2),16),parseInt(L.c2.substr(5,2),16)],cr9)<60)L.c2="";}}
+    if(!agree){L.c1p=L.c1;L.c1=DW.colRef.hex;L.named=DW.colRef.w;delete L.front;delete L.slv;if(!(DW.stripe||DW.check||DW.print)){L.pat="plain";delete L.swCv;delete L.swatch;}if(L.c2&&dist([parseInt(L.c2.substr(1,2),16),parseInt(L.c2.substr(3,2),16),parseInt(L.c2.substr(5,2),16)],cr9)<60)L.c2="";}
+    /* (navy and indigo photograph nearly black under studio light, and then drew as black: a reading darker than the
+       named colour is taken halfway back toward it, so a navy suit stays navy; denim keeps its own rule below) */
+    else if(/^(navy|dark navy|indigo)$/.test(DW.colRef.w)&&!/denim|jean|selvedge|chambray/.test(DW.nm||"")){var lu9=function(c){return 0.3*c[0]+0.59*c[1]+0.11*c[2];};
+      if(lu9(c19)<lu9(cr9)*0.8){L.c1p=L.c1;L.c1=hx(c19.map(function(v,i){return v+(cr9[i]-v)*0.5;}));}}}
   /* denim keeps to denim: studio shadows and a model's legs make the photo read too dark, or as stripes, so the
      colour is kept within the range of its wash (raw and dark, mid, light, black or grey) and no stripes or checks are
      taken from it unless the listing names them */
@@ -4535,6 +4539,12 @@ function make3Dcore(pieces){
       var tme=put(new T.Mesh(tg,tm));tme.material.side=T.DoubleSide;
       add(new T.SphereGeometry(1,14,10),tm,0,1.448,frontZ(1.448,0)+0.012,0.0125,0.014,0.008);}   /* the knot */
     else if(p.shape==="belt"){if(!waistHid){var tb=bodyOn?TO(0.99):null;band(0.99,0.035,(bodyOn?tb[1]+0.014:0.172)+(lo?0.006:0),(bodyOn?tb[2]+0.014:0.117)+(lo?0.006:0),mat(cc(p.col)[0],0.5),{z:bodyOn?tb[4]:-0.004,sq:bodyOn?2.3:2,seg:44});}if(!waistHid)add(new T.BoxGeometry(0.045,0.036,0.006),metal,0,1.007,frontZ(1.0,0.02)+0.006);}
+    else if(p.shape==="square"){   /* a pocket square: two folded points standing out of a tailored jacket's breast pocket, on
+         his left (only with a blazer, or a tailored jacket or coat, worn over it) */
+      var jk=up.filter(function(q){return q.shape==="blazer"||(/^(jacket|coat)$/.test(q.shape)&&/suit|tailor|sport coat|overcoat|wool|tweed/.test(nm(q)));}).pop();
+      if(jk){var sqx=0.095,sqy=1.335,sqz=surfZ(sqy,sqx,0)+0.003,sqm=pm(p),wm=mat(shade(jk.look&&jk.look.c1&&/^#[0-9a-f]{6}$/i.test(jk.look.c1)?jk.look.c1:cc(jk.col)[0],0.8),0.85);
+        add(new T.BoxGeometry(0.022,0.03,0.003),sqm,sqx-0.008,sqy+0.011,sqz,1,1,1,0,0.28,0.32);add(new T.BoxGeometry(0.022,0.026,0.003),sqm,sqx+0.009,sqy+0.009,sqz-0.001,1,1,1,0,0.28,-0.28);
+        add(new T.BoxGeometry(0.056,0.007,0.004),wm,sqx,sqy,sqz+0.0015,1,1,1,0,0.28,0);}}   /* (the pocket's welt in front of their feet) */
     else if(p.shape==="kneepads"){[-1,1].forEach(function(s){add(new T.BoxGeometry(0.1,0.13,0.03),m,s*0.096,0.5,0.07,1,1,1,0,0,0);});}
   });
   tgt=man;curIt=null;curKind="body";
