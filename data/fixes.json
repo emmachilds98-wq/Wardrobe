@@ -1,3 +1,23 @@
 {
- "_about": "Corrections to how an item looks on Dave's 2D drawing and 3D model, for shop photos the page reads wrongly. Keyed by item id (as in data/items*.json). Fields: col and col2 (#rrggbb, the main and second colour as the shop photo shows the cloth in daylight), pat (plain, hstripe, vstripe, check or print), per and duty (stripe spacing and stripe width, as shares of the garment's length), front:false (never lay the shop photo's own front on the garment), decal:false (no chest print or logo), why (what the shop photo shows, and what was read wrongly), checked (YYYY-MM-DD). tools/build_site.py refuses the build if an entry is malformed. See CONTRIBUTING.md, 'Correcting how an item looks'."
+ "_about": "Corrections to how an item looks on Dave's 2D drawing and 3D model, for shop photos the page reads wrongly. Keyed by item id (as in data/items*.json). Fields: col and col2 (#rrggbb, the main and second colour as the shop photo shows the cloth in daylight), pat (plain, hstripe, vstripe, check or print), per and duty (stripe spacing and stripe width, as shares of the garment's length), front:false (never lay the shop photo's own front on the garment), decal:false (no chest print or logo), why (what the shop photo shows, and what was read wrongly), checked (YYYY-MM-DD). tools/build_site.py refuses the build if an entry is malformed. See CONTRIBUTING.md, 'Correcting how an item looks'.",
+ "sw-open-polo": {
+  "col": "#2e2f45",
+  "pat": "plain",
+  "front": false,
+  "why": "A flat-lay of a navy knitted polo on a grey gradient background; part of the background was read as cloth, giving a grey panel on the chest and lilac sleeves.",
+  "checked": "2026-10-07"
+ },
+ "r7-tl-keir": {
+  "front": false,
+  "shapes": {
+   "tee": {
+    "col": "#242426"
+   },
+   "shorts": {
+    "col": "#5f5f62"
+   }
+  },
+  "why": "The listing is a set: one photo of a black tee over grey marl shorts. Taken as the tee's front, the shorts showed as a band across the bottom of the tee, and the shorts drew black; the tee is black and the shorts grey marl.",
+  "checked": "2026-10-07"
+ }
 }
