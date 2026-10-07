@@ -76,29 +76,44 @@ def load_groups(items):
 FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal")
 
 
+def check_fix_fields(k, fx, bad):
+    """The look fields of one correction (or of one shape's part of it)."""
+    for f in ("col", "col2"):
+        if f in fx and fx[f] != "" and not re.fullmatch(r"#[0-9a-fA-F]{6}", str(fx[f])):
+            bad.append(f"{k}: {f} must be #rrggbb")
+    if "pat" in fx and fx["pat"] not in ("plain", "hstripe", "vstripe", "check", "print"):
+        bad.append(f"{k}: pat must be plain, hstripe, vstripe, check or print")
+    for f in ("per", "duty"):
+        if f in fx and not (isinstance(fx[f], (int, float)) and 0 < fx[f] < 1):
+            bad.append(f"{k}: {f} must be a share between 0 and 1")
+    for f in ("front", "decal"):
+        if f in fx and fx[f] is not False:
+            bad.append(f"{k}: {f} can only be false")
+
+
 def check_fixes(fixes, items):
     """What is wrong in data/fixes.json: an unknown item, a colour that is not #rrggbb, an unknown pattern, a share
-    out of range, or a fix with no reason ("why") or date ("checked")."""
+    out of range, or a fix with no reason ("why") or date ("checked"). "shapes" holds corrections for one garment
+    shape only, for a listing that is a set worn as two pieces (a tee and shorts sold together, one photo)."""
     bad = []
     for k, fx in fixes.items():
         if k.startswith("_"):
             continue
         if k not in items:
             bad.append(f"{k}: no such item")
-        for f in ("col", "col2"):
-            if f in fx and fx[f] != "" and not re.fullmatch(r"#[0-9a-fA-F]{6}", str(fx[f])):
-                bad.append(f"{k}: {f} must be #rrggbb")
-        if "pat" in fx and fx["pat"] not in ("plain", "hstripe", "vstripe", "check", "print"):
-            bad.append(f"{k}: pat must be plain, hstripe, vstripe, check or print")
-        for f in ("per", "duty"):
-            if f in fx and not (isinstance(fx[f], (int, float)) and 0 < fx[f] < 1):
-                bad.append(f"{k}: {f} must be a share between 0 and 1")
-        for f in ("front", "decal"):
-            if f in fx and fx[f] is not False:
-                bad.append(f"{k}: {f} can only be false")
+        check_fix_fields(k, fx, bad)
+        for sh, sub in (fx.get("shapes") or {}).items():
+            if sh not in SHAPE_CATS:
+                bad.append(f"{k}: shapes: {sh} is not a garment shape")
+            if not isinstance(sub, dict):
+                bad.append(f"{k}: shapes: {sh} must hold fields"); continue
+            check_fix_fields(f"{k} ({sh})", sub, bad)
+            extra = [f for f in sub if f not in FIX_FIELDS]
+            if extra:
+                bad.append(f"{k} ({sh}): unknown field {', '.join(extra)}")
         if not fx.get("why") or not fx.get("checked"):
             bad.append(f"{k}: say why (what the shop photo shows) and when it was checked")
-        extra = [f for f in fx if f not in FIX_FIELDS + ("why", "checked")]
+        extra = [f for f in fx if f not in FIX_FIELDS + ("why", "checked", "shapes")]
         if extra:
             bad.append(f"{k}: unknown field {', '.join(extra)}")
     return bad
@@ -262,6 +277,8 @@ def main():
     for k, fx in fixes.items():
         if not k.startswith("_"):
             items[k]["fix"] = {f: v for f, v in fx.items() if f in FIX_FIELDS}
+            if fx.get("shapes"):
+                items[k]["fix"]["shapes"] = {sh: {f: v for f, v in sub.items() if f in FIX_FIELDS} for sh, sub in fx["shapes"].items()}
     bad, odd = check_outfits(outfits, items)
     for w in odd:
         print("note:", w)

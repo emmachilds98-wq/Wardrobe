@@ -2363,6 +2363,7 @@ function sampleCol(src,shape){
    reading. */
 function pieceLook(p0){var q=Object.assign({},p0);if(p0.fixed){q.look=null;return q;}
   var hx=TRUE[p0.item],it=byId[p0.item],F=it&&it.fix;if(hx){var two=hx.split("|");q.col=two[0];q.col2=two[1]||"";}
+  if(F&&F.shapes){var Fs=F.shapes[p0.shape];F=Object.assign({},F,Fs||{});delete F.shapes;if(!Object.keys(F).length)F=null;}   /* (a set's piece: its own shape's corrections over the item's) */
   q.look=LOOK[p0.item]||null;if(!F)return q;
   var L=Object.assign({},q.look||{pat:"plain"});
   if(F.col){q.col=F.col;L.c1=F.col;delete L.c1p;delete L.front;delete L.slv;}
@@ -2405,6 +2406,8 @@ function normFix(f){if(!f||typeof f!=="object")return null;var o={},hx=/^#[0-9a-
   if(/^(plain|hstripe|vstripe|check|print)$/.test(f.pat||"")){o.pat=f.pat;n++;}
   ["per","duty"].forEach(function(k){var v=Number(f[k]);if(v>0&&v<1){o[k]=v;n++;}});
   ["front","decal"].forEach(function(k){if(f[k]===false){o[k]=false;n++;}});
+  /* (a set sold as one listing and worn as two pieces: corrections for one garment shape only) */
+  if(f.shapes&&typeof f.shapes==="object"){var sh={},m=0;Object.keys(f.shapes).forEach(function(k){var sub=normFix(f.shapes[k]);if(sub&&/^[a-z]+$/.test(k)){delete sub.shapes;sh[k]=sub;m++;}});if(m){o.shapes=sh;n++;}}
   return n?o:null;}
 function norm(id,d){
   if(!d||typeof d!=="object")return null;

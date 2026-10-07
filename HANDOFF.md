@@ -128,9 +128,8 @@ should match. Emma asked for the upgrade to continue until that is done.
    - **`wk-chore` on the loose cloth fit:** the shirt collar shows through the jumper's neckband in two
      spots (poke 33, limit 30; the same on `main` before PR #13). It is not in the gate set, so the
      pull-request check does not see it.
-   - **Sets listed as one item** (for example `r7-tl-keir`, a black tee with grey marl shorts) give both pieces one
-     photo reading, so the shorts draw black. `data/fixes.json` is per item; a per-shape correction (or reading the
-     legwear from the lower part of the photo) would fix it.
+   - Done: sets listed as one item and worn as two pieces can be corrected per garment shape
+     (`"shapes"` in `data/fixes.json`); the Tokyo Laundry Keir set is (black tee, grey marl shorts).
    - **Close-up stripe photos** (for example `ct-poplin-stripe`): they give stripes that are too
      wide. Scale the stripe period down when the photo is a close-up.
    - **Model photos with darker-skinned models:** they can pass as flat-lays, because skin is

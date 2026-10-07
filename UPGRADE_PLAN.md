@@ -1492,7 +1492,14 @@ Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fit
   Every outfit piece's reading (1,369) was compared with `main` before and after: none changed.
 - **One correction** in `data/fixes.json`: Samuel Windsor's open-collar knitted polo, a navy flat-lay on a grey
   gradient, read with a grey panel and lilac sleeves. A corrected colour now also drops the photo's sleeve colour.
-- **Checks:** all 55 belted outfits pass the 3D check on his saved build.
+- **Sets worn as two pieces:** a correction can now hold `shapes`, corrections for one garment shape only, so a set
+  sold as one listing (Tokyo Laundry's Keir tee and shorts, one photo) draws a black tee and grey marl shorts. The
+  build checks them like the rest.
+- **Trousers:** the press that closes the legs at the inner thigh was measured in steps of height and jumped from one
+  ring of the leg to the next, leaving thin creases across the inner thighs on most trousers. It is now evened out
+  over the cloth (never less than it needs, so no light shows between the legs).
+- **Checks:** all 55 belted outfits pass the 3D check on his saved build and on the slim, athletic and heavier builds;
+  on the loose fit one flag, `wk-chore`'s collar, is the same on `main`.
 
 ## 3. Next steps
 

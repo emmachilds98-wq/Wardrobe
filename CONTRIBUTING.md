@@ -209,7 +209,8 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    | `duty` | How much of each stripe repeat is the second colour, between 0 and 1. |
    | `front` | `false` drops the photo front (when a model photo was taken for a flat-lay). |
    | `decal` | `false` drops the chest graphic cut from the photo (when it picked up something that is not a print). |
-   | `why` | Required: what the shop photo shows, in a sentence. |
+   | `shapes` | For a set sold as one listing and worn as two pieces (a tee and shorts, one photo): corrections for one garment shape only, as `{"shorts": {"col": "#5f5f62"}}`, laid over the item's own. |
+| `why` | Required: what the shop photo shows, in a sentence. |
    | `checked` | Required: the date you checked it against the shop's page. |
 
    The build checks every entry (a known item, `#rrggbb` colours, a known pattern, shares between 0 and 1, `why` and
