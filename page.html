@@ -1490,7 +1490,7 @@ function figure(pieces,hi){
   pieces.forEach(function(p){
     if(UPPER[p.shape]){up.push(p);}else if(LOWER[p.shape]){lo=lo||p;}else if(FEET[p.shape]){ft=ft||p;}else if(!ac[p.shape]){ac[p.shape]=p;}
   });
-  function rank(p){return /worn open/i.test(p.what)&&!LAYER[p.shape]?1.5:(LAYER[p.shape]||0)+(OUTERK[p.shape]||0);}
+  function rank(p){return layRank(p);}
   function dim(p){return !!hi&&p.item!==hi;}
   function grp(p,inner){return '<g '+tone(p.col,dim(p))+'>'+inner+'</g>';}
   up=up.map(function(p,k){return {p:p,k:k};}).sort(function(a,b){return rank(a.p)-rank(b.p)||b.k-a.k;}).map(function(x){return x.p;});
@@ -3201,9 +3201,15 @@ var ZIPM="",HOODRE=/parka|hooded|\bhood\b|active jacket|anorak/;
    worn open (it hangs loose over what is under it) or an overshirt over another shirt; and a tee or vest under a
    tucked shirt goes in with it, or it would hang out below the shirt */
 function tuckList(up,on){var t=up.map(function(){return false;});if(!on)return t;var last=-1;
-  up.forEach(function(p,k){if((LAYER[p.shape]||0)===0&&/^(shirt|sshirt|polo)$/.test(p.shape)&&!openWorn(p,up)&&!(overshirt(p)&&up.slice(0,k).some(function(q){return /^(shirt|sshirt|polo)$/.test(q.shape);}))){t[k]=true;last=k;}});
+  up.forEach(function(p,k){if((LAYER[p.shape]||0)===0&&/^(shirt|sshirt|polo)$/.test(p.shape)&&!jacketShirt(p)&&!openWorn(p,up)&&!(overshirt(p)&&up.slice(0,k).some(function(q){return /^(shirt|sshirt|polo)$/.test(q.shape);}))){t[k]=true;last=k;}});
   up.forEach(function(p,k){if(k<last&&(LAYER[p.shape]||0)===0&&/^(tee|vest)$/.test(p.shape)&&!kvest(p))t[k]=true;});
   return t;}
+/* a jacket-weight overshirt (a chore jacket, a shacket, nylon, canvas, insulated or borg-lined) is worn over a jumper
+   or hoodie, as a light jacket is; a flannel or light overshirt goes under one, its collar out */
+function jacketShirt(p){return overshirt(p)&&/shacket|shirt jacket|chore|insulated|padded|quilted|borg|sherpa|fleece[- ]lined|nylon|canvas|\bduck\b|waxed|jacket/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
+/* the order tops go on, inner first, one rule for the 3D model and the 2D drawing: next to him, an overshirt over
+   that, knits, a jacket-weight overshirt or anything else "worn open" over those, then outer layers in wearing order */
+function layRank(p){var L0=LAYER[p.shape]||0;if(overshirt(p))L0=Math.max(L0,jacketShirt(p)?1.4:0.6);return L0+(OUTERK[p.shape]||0)+(/worn open/i.test(p.what||"")&&!LAYER[p.shape]&&L0<1?0.5:0);}
 function overshirt(p){return p.shape==="shirt"&&/overshirt|over-shirt|chore|shacket|shirt jacket|worker|flannel|\bcpo\b|utility shirt|work shirt/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
 /* no sleeves: vests, waistcoats, gilets, and knitted vests (sweater vests, slipovers) */
 function kvest(p){return p.shape==="jumper"&&/knitted vest|knit vest|sweater vest|slipover|tank ?top|sleeveless (jumper|knit|sweater)/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
@@ -3211,7 +3217,8 @@ function slvless(p){return /^(vest|waistcoat|gilet)$/.test(p.shape)||kvest(p);}
 function zipable(p){return /^(jacket|blazer|coat|gilet|cardigan)$/.test(p.shape)||overshirt(p);}
 function openWorn(p,ups){if(ZIPM&&zipable(p))return ZIPM==="open";
   if(/worn open/i.test(p.what||""))return true;
-  if(overshirt(p))return (ups||[]).some(function(q){return q!==p&&(LAYER[q.shape]||0)===0&&UPPER[q.shape]&&!overshirt(q);});
+  /* (an overshirt is worn open over a tee or polo; a jacket-weight one is worn open over anything, as a jacket is) */
+  if(overshirt(p))return (ups||[]).some(function(q){return q!==p&&UPPER[q.shape]&&((LAYER[q.shape]||0)===0?!overshirt(q):jacketShirt(p)&&layRank(q)<layRank(p));});
   if(!((LAYER[p.shape]===2&&p.shape!=="gilet")||p.shape==="cardigan"))return false;
   return (ups||[]).some(function(q){return q!==p&&UPPER[q.shape]&&q.shape!==p.shape&&(LAYER[q.shape]||0)<=(LAYER[p.shape]||0);});}
 function make3D(pieces){var keep={torso:B3.torso,arm:B3.arm,leg:B3.leg,neck:B3.neck,hand:B3.hand};bodyOn=!!BODY;
@@ -3770,7 +3777,15 @@ function make3Dcore(pieces){
     function at(y,an,r){return [Math.sin(an)*r,y,zc0+Math.cos(an)*r];}
     for(k=0;k<=K;k++){var f=k/K,row=[];C.forEach(function(c){if(!k){row.push([c.x,c.y,c.z,c.r]);return;}var y=c.y+o.h*f,rn=neckR(y,c.an),rk=c.r+(rn+0.004-c.r)*o.lean*f+(o.flare||0)*f*f;
         var P=at(y,c.an,Math.max(rk,rn+0.005));for(var it=0;it<2;it++){var q2=[0,0,0];fmCoord(OCC.N,P[0],P[1],P[2],q2);var a2=Math.atan2(q2[1],q2[2]),r2=Math.hypot(q2[1],q2[2]),oc=Math.max(fmGet(OCC.N,y,a2),fmGet(OCC.N,y+0.006,a2),fmGet(OCC.N,y-0.006,a2)),bn=fmGet(fitMaps().N,y,a2),need=Math.max(oc>0?oc+0.003:0,bn>0?bn+0.004:0);
-          if(need>r2){var d2=need-r2;rk+=d2;P=at(y,c.an,rk);}}P.push(rk);row.push(P);});rows.push(row);}
+          if(need>r2){var d2=need-r2;rk+=d2;P=at(y,c.an,rk);}}P.push(rk);row.push(P);});
+      /* (each point is pushed out on its own to stand on what is under it, so a band followed the outline of the collar
+         beneath, dipping into its front opening and showing it through teeth on the looser fits; the row is evened out
+         round his neck, a local maximum that bridges such gaps and then a mean, never inside what it has to clear) */
+      if(k>0){var rkB=row.map(function(P){return P[3];}),nB=rkB.length,wr=function(i){return closed?(i+nB)%nB:Math.max(0,Math.min(nB-1,i));},
+          dl=rkB.map(function(v,i){var mx=v;for(var d=-4;d<=4;d++)mx=Math.max(mx,rkB[wr(i+d)]);return mx;}),
+          sm=dl.map(function(v,i){return (dl[wr(i-2)]+2*dl[wr(i-1)]+3*v+2*dl[wr(i+1)]+dl[wr(i+2)])/9;});
+        row=row.map(function(P,ci){var rk3=Math.max(sm[ci],P[3]);if(rk3-P[3]<1e-6)return P;var P3=at(P[1],C[ci].an,rk3);P3.push(rk3);return P3;});}
+      rows.push(row);}
     if(o.fold){var Fd=o.fold,KF=4,tp=rows[K],OWN=ownNeck(FT);for(k=0;k<=KF;k++){var f2=k/KF,row2=[];C.forEach(function(c,ci){var T0=tp[ci],cf=Math.max(0,Math.cos(c.an)),y=T0[1]-(Fd.drop+Fd.front*cf*cf)*f2,
           rk=T0[3]+0.0028+Fd.out*Math.sin(f2*Math.PI/2);for(var kk=0;kk<=K;kk++){var S=rows[kk][ci];if(Math.abs(S[1]-y)<o.h/K)rk=Math.max(rk,S[3]+0.0028);}var P=at(y,c.an,rk);
           for(var it3=0;it3<2;it3++){var q3=[0,0,0];fmCoord(OWN,P[0],P[1],P[2],q3);var a3=Math.atan2(q3[1],q3[2]),r3=Math.hypot(q3[1],q3[2]),nd=fmGet(OWN,y,a3)+0.003;if(nd>0.003&&r3<nd){rk+=nd-r3;P=at(y,c.an,rk);}}
@@ -4075,7 +4090,7 @@ function make3Dcore(pieces){
     if(UPPER[p.shape])up.push(p);else if(LOWER[p.shape])lo=lo||p;else if(FEET[p.shape])ft=ft||p;else acc.push(p);});
   /* overshirts, chore jackets, shackets and flannels go over a tee or polo, under knits and hoodies */
   /* (outer layers in the order they go on: a blazer, a gilet over it, a jacket, and a coat or gown over everything) */
-  function lay(p){var L0=LAYER[p.shape]||0;if(p.shape==="shirt"&&/overshirt|over-shirt|chore|shacket|shirt jacket|worker|flannel|cpo|utility shirt|work shirt/.test(nm(p)))L0=Math.max(L0,0.6);return L0+(OUTERK[p.shape]||0)+(/worn open/i.test(p.what)&&!LAYER[p.shape]?0.5:0);}
+  function lay(p){return layRank(p);}
   up.sort(function(a,b){return lay(a)-lay(b);});
   function nm(p){return (((byId[p.item]||{}).name||"")+" "+p.what).toLowerCase();}
   /* the cloth of a piece, as its shop photo and listing show it: stripes at their real spacing and colours, a check or
