@@ -1428,6 +1428,34 @@ Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fit
   the neck (a median, then a mean), keeping it just clear of the cloth.
 - **Still to do:** one small notch at the back of some polo collars, and then Phase 2.
 
+## 2zx. Full 3D check clean; checks woven from the photo; folded shirts; why each pick suits him (7 Oct 2026)
+
+- **The full 3D check after 2zw:** 3 of 574 outfits flagged (down from 93), no colour faults and no page errors.
+  All three were real, and are fixed:
+  - **An overshirt over a formal shirt** was tucked in with it, so the trouser waistband (wider for the tucked
+    shirt) showed through its back hem. Only the shirt next to him goes in now; an overshirt worn over another
+    shirt hangs loose over the waistband.
+  - **A gilet over a jumper:** the jumper showed through two patches at the front of the gilet's armholes. That part
+    of the gilet is the arm's part of the body mesh, which a top lies closer to; for a gilet it is the body of the
+    gilet, so above the armhole it now keeps the gilet's full thickness.
+  - **A bag strap** stood off his upper chest (a gap showed from the side). It now follows the outside of what he
+    wears, from the top of his shoulder across his chest to the bag.
+  - All 76 outfits with a gilet, waistcoat, vest, bag or two shirts were re-checked: none flagged.
+- **Checks woven from the photo:** a check's cloth used to be a square cut from the shop photo and mirrored into a
+  tile. Cut from a model shot or a folded shirt, it carried folds, buttons, a tee under an open shirt or a size
+  badge's lettering, and repeated them as blobs and rows of text. A check is now rebuilt as a weave: each point is
+  half the colour of the thread across and half the thread down. Those colours are read from the photo's rows and
+  columns; a band that does not vary along its length is dropped. Flannels, ginghams, tartans and Prince of Wales
+  checks come out crisp, in their own colours, and repeat cleanly.
+- **No lettering in fabric tiles:** the square of photo used for a print or check is the one with least "ink":
+  pixels far from both of the cloth's colours, such as a size badge, label or lettering.
+- **Folded shop photos:** Savile Row Company and T.M. Lewin photograph formal shirts folded in the packet (collar up,
+  a cuff across, a square of the cloth in a corner) or as close-ups of the collar. These photos are no longer laid
+  over his chest as the shirt's front, which drew a collar and cuff on it.
+- **This week list:** each new pick now has a line saying why it suits him: the fit he likes (relaxed or wide
+  legs, which don't grip), 100% cotton or natural fibres, extra-wide fittings, his size in stock, and how much is
+  off.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
