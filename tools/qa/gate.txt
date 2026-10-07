@@ -25,3 +25,5 @@ cold-commute          # coat over a jumper over a shirt, boots
 barrel-chore          # overshirt over a tee, barrel-leg trousers
 h10-cuban             # Cuban-collar shirt, shorts
 jb11-cheapest         # workwear: jumper, trousers, safety boots
+h10-resort            # short-sleeved resort shirt worn open over a tee, swim shorts, sport sandals (bare feet in open footwear)
+m5-argyle             # argyle jumper over an overshirt, chinos, loafers

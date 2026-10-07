@@ -1275,7 +1275,7 @@ function texOf(p){
   if(/mesh/.test(s))return "mesh";
   if(/strip|breton/.test(s))return "stripe";
   if(/cable|aran|guernsey/.test(s))return "cable";
-  if(/\bcords?\b|corduroy|needlecord|jumbo cord|\bcord\b/.test(s))return "cord";
+  if(/\bcords?\b|corduroy|needlecord|jumbo cord|\bcord\b/.test(s.replace(/(corduroy|cord) (trim|collar|cuffs?|detail|piping|panel|yoke)s?|with (corduroy|cord) [a-z]+/g," ")))return "cord";   /* (a corduroy collar or trim does not make the garment corduroy) */
   if(/check|flannel|tattersall|gingham|plaid|houndstooth|lumberjack|ensign/.test(s))return "check";
   if(/denim|jean|501|555|569|selvedge|carpenter|jort|trucker/.test(s))return "denim";
   if(/fleece|borg|pile/.test(s))return "fleece";
@@ -1293,6 +1293,11 @@ function lookFill(p){var L=p.look,D=p.desc||{},FL=(FL_CM[p.shape]||72)/100,id,pp
   if((L.pat==="check"||L.pat==="print")&&L.swatch){var t2=Math.max(6,Math.min(60,(L.swPer||0.3)*FL*220));id="lks-"+(p.item||"x").replace(/[^\w-]/g,"")+p.shape;
     pp='<pattern id="'+id+'" patternUnits="userSpaceOnUse" width="'+(2*t2).toFixed(1)+'" height="'+(2*t2).toFixed(1)+'">'+
       (L.wrap?[[1,1,0,0],[1,1,1,0],[1,1,0,1],[1,1,1,1]]:[[1,1,0,0],[-1,1,2,0],[1,-1,0,2],[-1,-1,2,2]]).map(function(m){return '<image href="'+L.swatch+'" width="'+t2.toFixed(1)+'" height="'+t2.toFixed(1)+'" preserveAspectRatio="none" transform="translate('+(m[2]*t2).toFixed(1)+' '+(m[3]*t2).toFixed(1)+') scale('+m[0]+' '+m[1]+')"/>';}).join("")+'</pattern>';
+    return {id:id,defs:pp};}
+  if(L.pat==="argyle"&&L.c2){var ah=Math.max(14,Math.min(70,(L.per||0.3)*FL*220)),aw=ah*0.72,c3=L.c3||"#e8e6e0";id="lka-"+(p.item||"x").replace(/[^\w-]/g,"")+p.shape;
+    pp='<pattern id="'+id+'" patternUnits="userSpaceOnUse" width="'+aw.toFixed(1)+'" height="'+ah.toFixed(1)+'"><rect width="'+aw.toFixed(1)+'" height="'+ah.toFixed(1)+'" fill="'+L.c2+'"/>'+
+      '<path d="M'+(aw/2).toFixed(1)+' 0 L'+aw.toFixed(1)+' '+(ah/2).toFixed(1)+' L'+(aw/2).toFixed(1)+' '+ah.toFixed(1)+' L0 '+(ah/2).toFixed(1)+' Z" fill="'+L.c1+'"/>'+
+      '<path d="M0 0 L'+aw.toFixed(1)+' '+ah.toFixed(1)+' M'+aw.toFixed(1)+' 0 L0 '+ah.toFixed(1)+'" stroke="'+c3+'" stroke-width=".7" fill="none"/></pattern>';
     return {id:id,defs:pp};}
   if((L.pat==="hstripe"||L.pat==="vstripe")&&L.per){var per=Math.max(2,Math.min(40,L.per*FL*220)),sw=Math.max(0.8,per*(L.duty||0.35)),c2=L.c2||(cc(L.c1)[1]?"#efeae0":"#20212a");
     id="lkt-"+(p.item||"x").replace(/[^\w-]/g,"")+p.shape;
@@ -1320,6 +1325,8 @@ function closedTop(H,long){
 }
 function panelL(H,sleeves,v){
   var edge=v?"L117 "+H+" L117 166 L108 92":"L103 "+H+" L105 150 L112 92";
+  /* (short sleeves, as closedTop draws them, for a short-sleeved shirt or polo worn open) */
+  if(sleeves==="short")return "M98 90 L80 96 Q69 100 66 114 L60 152 L78 157 L81 134 L80 "+H+" "+edge+" Z";
   return sleeves?"M98 90 L80 96 Q69 100 66 114 Q58 152 57 198 Q54 226 54 256 L71 260 L75 204 L81 134 L80 "+H+" "+edge+" Z":"M98 90 L83 95 Q89 118 82 140 L80 "+H+" "+edge+" Z";
 }
 var FIGUPS=null;function isOpen(p){return FIGUPS?openWorn(p,FIGUPS):(LAYER[p.shape]===2||p.shape==="cardigan"||/worn open/i.test(p.what));}
@@ -1351,7 +1358,7 @@ function upperArt(p,dim){
   }
   var cuffs=long?"M54 247 L71 251 M186 247 L169 251 M59 196 Q66 192 76 197 M181 196 Q174 192 164 197 M58 206 Q64 204 70 207 M182 206 Q176 204 170 207":"M61 146 L78 151 M179 146 L162 151 M70 132 Q74 136 80 135 M170 132 Q166 136 160 135";
   if(isOpen(p)){
-    var v=s==="cardigan",sl=s!=="gilet";l=panelL(H,sl,v);r=mir(l);
+    var v=s==="cardigan",sl=s==="gilet"?false:(long?true:"short");l=panelL(H,sl,v);r=mir(l);
     h='<path d="'+(v?"M117 "+H+" L117 166 L108 92 L113 92 L123 166 L123 "+H:"M103 "+H+" L105 150 L112 92 L118 92 L112 150 L110 "+H)+' Z" fill="rgba(0,0,0,'+(dim?".04":".16")+')"/>';
     h+=body(l,p,dim)+body(r,p,dim);
     var nmU=(((byId[p.item]||{}).name||"")+" "+p.what).toLowerCase();
@@ -1458,6 +1465,7 @@ var HAIR,HAIRHL;(function(){
 var OPENUP={jacket:1,blazer:1,coat:1,gilet:1,cardigan:1,waistcoat:1},BASEUP={tee:1,polo:1,sshirt:1,shirt:1,rollneck:1,jumper:1,hoodie:1,halfzip:1,vest:1};
 function bareChest(ps){return ps.some(function(p){return OPENUP[p.shape];})&&!ps.some(function(p){return BASEUP[p.shape];});}
 var OUTERK={gilet:0.1,jacket:0.3,coat:0.5,gown:0.5};   /* (the order of outer layers, over a blazer) */
+var OPENFT=/\bsliders?\b|\bslides?\b|sandals?|flip[- ]?flops?|\bflips?\b/;   /* (open footwear: his bare foot shows) */
 function dressed(ps){return bareChest(ps)?ps.concat([{item:"",shape:"tee",col:"white",what:"Plain T-shirt",fixed:true}]):ps;}
 /* The drawing's face follows Edit Dave, as the 3D model does: his beard and moustache style, eye and brow colour,
    brow weight and arch, and glasses (skin and hair colours come through the page's colour settings, applyChar2D). */
@@ -1490,7 +1498,7 @@ function figure(pieces,hi){
   pieces.forEach(function(p){
     if(UPPER[p.shape]){up.push(p);}else if(LOWER[p.shape]){lo=lo||p;}else if(FEET[p.shape]){ft=ft||p;}else if(!ac[p.shape]){ac[p.shape]=p;}
   });
-  function rank(p){return /worn open/i.test(p.what)&&!LAYER[p.shape]?1.5:(LAYER[p.shape]||0)+(OUTERK[p.shape]||0);}
+  function rank(p){return layRank(p);}
   function dim(p){return !!hi&&p.item!==hi;}
   function grp(p,inner){return '<g '+tone(p.col,dim(p))+'>'+inner+'</g>';}
   up=up.map(function(p,k){return {p:p,k:k};}).sort(function(a,b){return rank(a.p)-rank(b.p)||b.k-a.k;}).map(function(x){return x.p;});
@@ -1505,10 +1513,18 @@ function figure(pieces,hi){
   h+='<path class="sd" style="fill:none" d="M120 80 Q119 84 120 87 M110 79 Q112 86 107 92 M130 79 Q128 86 133 92"/>';
   /* crew socks with shorts, white or (with dark shoes) black, a little way up the calf */
   var ftn=ft?(((byId[ft.item]||{}).name||"")+" "+ft.what).toLowerCase():"";
-  if(bare&&ft&&ft.shape!=="slippers"&&lo&&!/loafer|slider|slide|sandal|mule|deck|boat|espadrille|flip/.test(ftn)){var dkS=lum(cc(ft.col)[0])<0.3,sc2=dkS?"#1e1d20":"#f2efe8",sk="M85.5 420 H110 L109.3 451 H86.2 Z";
+  if(bare&&ft&&ft.shape!=="slippers"&&lo&&!OPENFT.test(ftn)&&!/loafer|mule|deck|boat|espadrille/.test(ftn)){var dkS=lum(cc(ft.col)[0])<0.3,sc2=dkS?"#1e1d20":"#f2efe8",sk="M85.5 420 H110 L109.3 451 H86.2 Z";
     h+='<path d="'+sk+'" fill="'+sc2+'"/><path d="'+mir(sk)+'" fill="'+sc2+'"/><path d="M86 424 H109.8 M130.2 424 H154 M90 427 V448 M95 427 V448 M100 427 V448 M105 427 V448 M135 427 V448 M140 427 V448 M145 427 V448 M150 427 V448" stroke="'+(dkS?"rgba(255,255,255,.12)":"rgba(20,32,27,.14)")+'" stroke-width=".7" fill="none"/>';}
   if(ft){
     var fs=ft.shape,fnm=(((byId[ft.item]||{}).name||"")+" "+ft.what).toLowerCase(),safe=/safety|toe cap|steel|composite|dealer|s1p|s3|rigger/.test(fnm);
+    /* sliders, sandals and flip-flops: his bare foot on a footbed, with the slider's band, the sandal's straps or the
+       flip-flop's thin Y over it */
+    if(fs!=="boots"&&OPENFT.test(fnm)){var fL0="M85 451 H108 L110 462 Q111 471 102 471 H90 Q80 471 82 462 Z",fb="M80 470 Q79 477 87 477 H104 Q112 477 111 470 Q96 474 80 470 Z",st=
+        /flip/.test(fnm)?"M95 452 L94.2 453 L86 462 L87.4 463 L95 455.5 L102.6 463 L104 462 L95.8 453 Z":
+        /sandal/.test(fnm)?"M83 457 Q96 453 109 457 L109.6 460.5 Q96 456.5 82.4 460.5 Z M82 465 Q96 461 110 465 L110 468 Q96 464 82 468 Z":
+        "M84 453 Q96 448 108 453 L110 462 Q96 457.5 82 462 Z";
+      h+='<g class="sk">'+P("",fL0)+P("",mir(fL0))+'</g>'+grp(ft,P("g",fb)+P("g",mir(fb))+P("g",st)+P("g",mir(st))+P("d","M80 471 Q96 475 111 471 M129 471 Q144 475 160 471"));}
+    else{
     var upL="M83 444 Q95 439 107 444 L111 455 Q115 465 111 471 Q95 474 79 471 Q75 465 79 455 Z";
     var soleL=fs==="trainers"?"M76 465 Q75 477 84 477 H106 Q115 477 114 465 Q95 471 76 465 Z":"M77 469 Q76 477 84 477 H106 Q114 477 113 469 Q95 474 77 469 Z";
     var shaftL="M83 418 H107 L108 450 H82 Z",fg="";
@@ -1531,7 +1547,7 @@ function figure(pieces,hi){
     if(fs==="trainers"&&/samba|gazelle|campus|spezial|superstar|adidas/.test(fnm)&&!dim(ft)){var s3=ft.col2&&Math.abs(lum(ft.col2)-lum(cc(ft.col)[0]))>0.18?ft.col2:(cc(ft.col)[1]?"#f2efe8":"#1e1d20"),st3="M90 467 L96 452 M94 467.5 L100 452.5 M98 468 L104 453.5";
       fg+='<path d="'+st3+' '+mir(st3)+'" stroke="'+s3+'" stroke-width="1.8" stroke-linecap="round" fill="none"/>';}
     fg+=P("d",lace+" "+mir(lace));
-    h+=grp(ft,fg);
+    h+=grp(ft,fg);}
   }else{var fL="M85 451 H108 L110 462 Q111 471 102 471 H90 Q80 471 82 462 Z";h+='<g class="sk">'+P("",fL)+P("",mir(fL))+'</g>'+'<path class="sd" style="fill:none" d="M88 466 Q90 468 92 466 M95 467 Q97 469 99 467 M141 467 Q143 469 145 467 M148 466 Q150 468 152 466"/>';}
   if(lo){
     /* the leg's cut, as the 3D model has it: wide, relaxed, regular, barrel, or a cuffed jogger, from the pick's fit
@@ -2221,6 +2237,16 @@ function readLook(im,shape,DW){
   /* an all-over print the stripes and checks do not explain: keep a small swatch of the cloth itself */
   if(L.pat==="plain"&&!L.decal&&far>(DW.print?0.1:0.22)&&!FEETs&&(DW.print||DW.check)){L.pat="print";swatch();}
   if(L.pat==="check"&&!FEETs)swatch();
+  /* argyle: a fixed pattern of diamonds, drawn rather than copied from the photo (worn on a model the square of photo
+     is a jumble of folds and arms): the cloth's main colour and the other diamond colour from the square's threads (a
+     middling share of those furthest from the main colour, not the thin overcheck lines), diamonds about a third of
+     the garment's length (about two and a half across his chest) */
+  if(/argyle/.test(DW.nm||"")&&(L.pat==="print"||L.pat==="check")&&L.swCv&&!FEETs){
+    /* (from the whole garment's cloth, not the square, which can fall inside one diamond) */
+    var lA=0.3*m[0]+0.59*m[1]+0.11*m[2],byD=use.map(function(pA){return [dist(pA,m),pA];}).sort(function(a,b){return a[0]-b[0];}),NA=byD.length;
+    var oc=[0,0,0],nA=0;for(var qA=Math.round(NA*0.7);qA<Math.round(NA*0.88);qA++){oc[0]+=byD[qA][1][0];oc[1]+=byD[qA][1][1];oc[2]+=byD[qA][1][2];nA++;}oc=nA?oc.map(function(v){return v/nA;}):m;
+    if(dist(oc,m)>30){var lO=0.3*oc[0]+0.59*oc[1]+0.11*oc[2];L.pat="argyle";L.c2=hx(oc);L.per=0.5;
+      L.c3=hx((lA>lO?m:oc).map(function(v){return Math.min(255,v*1.25+18);}));delete L.swCv;delete L.swatch;delete L.wrap;}}
   /* stripes the listing names that the photo could not measure (a slanted close-up of the collar, folds, a model in
      shot) came out as a blurred, mirrored square of the photo. On a shirt they are drawn instead as fine upright
      stripes: the ground is the cloth's main colour, the stripe the colour of the darkest tenth of the square's
@@ -2295,7 +2321,7 @@ function readLook(im,shape,DW){
       var headM=false;if(shape!=="hoodie")(function(){var rows=[],j0=-1,j1=-1;for(var j5=0;j5<H;j5++){var a5=-1,b5=-1;for(var i5=0;i5<W;i5++){if(M[j5*W+i5]!==1){if(a5<0)a5=i5;b5=i5;}}rows.push(a5<0?0:b5-a5+1);if(a5>=0){if(j0<0)j0=j5;j1=j5;}}
         if(j0<0)return;var ht=j1-j0+1,ws=0;for(var j6=j0+Math.round(ht*0.3);j6<j0+Math.round(ht*0.6);j6++)ws=Math.max(ws,rows[j6]);if(ws<W*0.2)return;
         var hm=0,hmY=-1,nk=9e9,nkY=-1;for(var j7=j0;j7<j0+Math.round(ht*0.4);j7++){var w7=rows[j7];if(w7>ws*0.75)break;if(nkY<0&&w7>hm){hm=w7;hmY=j7;}if(hmY>=0&&w7<hm*0.8&&w7<nk){nk=w7;nkY=j7;}if(nkY>=0&&w7>nk*1.25&&w7<ws*0.75&&j7-j0>ht*0.08){headM=hm<ws*0.55&&hmY-j0>ht*0.03&&nk>W*0.02;if(headM)return;}}})();
-      L.model=headM;
+      L.model=headM;if(headM)delete L.decal;   /* (nor its print: a model may be turned away, the print his back's, and his hands are in it) */
       if(!folded&&!headM&&!slvIn&&hole<hn*0.04&&far<fn2*0.22&&!(tn>20&&tf>tn*0.35)&&skB<FW*FH*0.4*0.03&&wtag<fn2*2*0.004){
         /* the background caught between a sleeve and the body of a flat-lay is closed off from the photo's edge, so the
            flood above never reaches it, and it showed as pale slivers down his sides: it is cleared from the cut-out's
@@ -2433,7 +2459,7 @@ document.addEventListener("error",function(e){
 /* a correction to how the item looks (data/fixes.json, put on the item by the build), kept only in its known shape */
 function normFix(f){if(!f||typeof f!=="object")return null;var o={},hx=/^#[0-9a-f]{6}$/i,n=0;
   ["col","col2"].forEach(function(k){if(typeof f[k]==="string"&&(hx.test(f[k])||(k==="col2"&&f[k]===""))){o[k]=f[k];n++;}});
-  if(/^(plain|hstripe|vstripe|check|print)$/.test(f.pat||"")){o.pat=f.pat;n++;}
+  if(/^(plain|hstripe|vstripe|check|print|argyle)$/.test(f.pat||"")){o.pat=f.pat;n++;}
   ["per","duty"].forEach(function(k){var v=Number(f[k]);if(v>0&&v<1){o[k]=v;n++;}});
   ["front","decal"].forEach(function(k){if(f[k]===false){o[k]=false;n++;}});
   /* (a set sold as one listing and worn as two pieces: corrections for one garment shape only) */
@@ -2872,8 +2898,12 @@ function lookTex(p,L){var T=window.THREE,FL=(FL_CM[p.shape]||72)/100,key=p.item+
     var c2=gC(L.c2||(cc(L.c1)[1]?"#efeae0":"#20212a")),pw=128/n,sw=Math.max(1.5,pw*(L.duty||0.35));x.fillStyle=c2;
     for(var k=0;k<n;k++){if(L.pat==="hstripe")x.fillRect(0,k*pw,128,sw);else x.fillRect(k*pw,0,sw,128);}
     t=new T.CanvasTexture(cv);}
+  /* argyle: one diamond of each colour to a tile (a checkerboard turned 45 degrees), thin lines through the corners */
+  else if(L.pat==="argyle"&&L.c2){S=Math.max(0.08,Math.min(0.3,(L.per||0.3)*FL));cv.width=cv.height=128;x=cv.getContext("2d");
+    x.fillStyle=gC(L.c2);x.fillRect(0,0,128,128);x.fillStyle=gC(L.c1);x.beginPath();x.moveTo(64,0);x.lineTo(128,64);x.lineTo(64,128);x.lineTo(0,64);x.closePath();x.fill();
+    x.strokeStyle=gC(L.c3||"#e8e6e0");x.lineWidth=2.2;x.beginPath();x.moveTo(0,0);x.lineTo(128,128);x.moveTo(128,0);x.lineTo(0,128);x.stroke();t=new T.CanvasTexture(cv);}
   else return null;
-  t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(1/(1.2*S),1/(3.33*S));if(T.sRGBEncoding)t.encoding=T.sRGBEncoding;t.keep=true;LTX[key]=t;return t;}
+  t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(1/(1.2*S*(L.pat==="argyle"?0.72:1)),1/(3.33*S));if(T.sRGBEncoding)t.encoding=T.sRGBEncoding;t.keep=true;LTX[key]=t;return t;}
 /* Cloth colours as the scene shows them: the key light lifts mid-tones by about a fifth, so cloth is laid down a
    little deeper (a gamma of 1.2, which barely moves whites and blacks) and the rendered piece reads as the photo does */
 function gC(h){if(typeof h!=="string"||!/^#[0-9a-f]{6}$/i.test(h))return h;return "#"+[1,3,5].map(function(i){var v=parseInt(h.substr(i,2),16)/255;return ("0"+Math.round(255*Math.pow(v,1.2)).toString(16)).slice(-2);}).join("");}
@@ -3201,9 +3231,15 @@ var ZIPM="",HOODRE=/parka|hooded|\bhood\b|active jacket|anorak/;
    worn open (it hangs loose over what is under it) or an overshirt over another shirt; and a tee or vest under a
    tucked shirt goes in with it, or it would hang out below the shirt */
 function tuckList(up,on){var t=up.map(function(){return false;});if(!on)return t;var last=-1;
-  up.forEach(function(p,k){if((LAYER[p.shape]||0)===0&&/^(shirt|sshirt|polo)$/.test(p.shape)&&!openWorn(p,up)&&!(overshirt(p)&&up.slice(0,k).some(function(q){return /^(shirt|sshirt|polo)$/.test(q.shape);}))){t[k]=true;last=k;}});
+  up.forEach(function(p,k){if((LAYER[p.shape]||0)===0&&/^(shirt|sshirt|polo)$/.test(p.shape)&&!jacketShirt(p)&&!openWorn(p,up)&&!(overshirt(p)&&up.slice(0,k).some(function(q){return /^(shirt|sshirt|polo)$/.test(q.shape);}))){t[k]=true;last=k;}});
   up.forEach(function(p,k){if(k<last&&(LAYER[p.shape]||0)===0&&/^(tee|vest)$/.test(p.shape)&&!kvest(p))t[k]=true;});
   return t;}
+/* a jacket-weight overshirt (a chore jacket, a shacket, nylon, canvas, insulated or borg-lined) is worn over a jumper
+   or hoodie, as a light jacket is; a flannel or light overshirt goes under one, its collar out */
+function jacketShirt(p){return overshirt(p)&&/shacket|shirt jacket|chore|insulated|padded|quilted|borg|sherpa|fleece[- ]lined|nylon|canvas|\bduck\b|waxed|jacket/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
+/* the order tops go on, inner first, one rule for the 3D model and the 2D drawing: next to him, an overshirt over
+   that, knits, a jacket-weight overshirt or anything else "worn open" over those, then outer layers in wearing order */
+function layRank(p){var L0=LAYER[p.shape]||0;if(overshirt(p))L0=Math.max(L0,jacketShirt(p)?1.4:0.6);return L0+(OUTERK[p.shape]||0)+(/worn open/i.test(p.what||"")&&!LAYER[p.shape]&&L0<1?0.5:0);}
 function overshirt(p){return p.shape==="shirt"&&/overshirt|over-shirt|chore|shacket|shirt jacket|worker|flannel|\bcpo\b|utility shirt|work shirt/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
 /* no sleeves: vests, waistcoats, gilets, and knitted vests (sweater vests, slipovers) */
 function kvest(p){return p.shape==="jumper"&&/knitted vest|knit vest|sweater vest|slipover|tank ?top|sleeveless (jumper|knit|sweater)/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
@@ -3211,7 +3247,8 @@ function slvless(p){return /^(vest|waistcoat|gilet)$/.test(p.shape)||kvest(p);}
 function zipable(p){return /^(jacket|blazer|coat|gilet|cardigan)$/.test(p.shape)||overshirt(p);}
 function openWorn(p,ups){if(ZIPM&&zipable(p))return ZIPM==="open";
   if(/worn open/i.test(p.what||""))return true;
-  if(overshirt(p))return (ups||[]).some(function(q){return q!==p&&(LAYER[q.shape]||0)===0&&UPPER[q.shape]&&!overshirt(q);});
+  /* (an overshirt is worn open over a tee or polo; a jacket-weight one is worn open over anything, as a jacket is) */
+  if(overshirt(p))return (ups||[]).some(function(q){return q!==p&&UPPER[q.shape]&&((LAYER[q.shape]||0)===0?!overshirt(q):jacketShirt(p)&&layRank(q)<layRank(p));});
   if(!((LAYER[p.shape]===2&&p.shape!=="gilet")||p.shape==="cardigan"))return false;
   return (ups||[]).some(function(q){return q!==p&&UPPER[q.shape]&&q.shape!==p.shape&&(LAYER[q.shape]||0)<=(LAYER[p.shape]||0);});}
 function make3D(pieces){var keep={torso:B3.torso,arm:B3.arm,leg:B3.leg,neck:B3.neck,hand:B3.hand};bodyOn=!!BODY;
@@ -3770,7 +3807,15 @@ function make3Dcore(pieces){
     function at(y,an,r){return [Math.sin(an)*r,y,zc0+Math.cos(an)*r];}
     for(k=0;k<=K;k++){var f=k/K,row=[];C.forEach(function(c){if(!k){row.push([c.x,c.y,c.z,c.r]);return;}var y=c.y+o.h*f,rn=neckR(y,c.an),rk=c.r+(rn+0.004-c.r)*o.lean*f+(o.flare||0)*f*f;
         var P=at(y,c.an,Math.max(rk,rn+0.005));for(var it=0;it<2;it++){var q2=[0,0,0];fmCoord(OCC.N,P[0],P[1],P[2],q2);var a2=Math.atan2(q2[1],q2[2]),r2=Math.hypot(q2[1],q2[2]),oc=Math.max(fmGet(OCC.N,y,a2),fmGet(OCC.N,y+0.006,a2),fmGet(OCC.N,y-0.006,a2)),bn=fmGet(fitMaps().N,y,a2),need=Math.max(oc>0?oc+0.003:0,bn>0?bn+0.004:0);
-          if(need>r2){var d2=need-r2;rk+=d2;P=at(y,c.an,rk);}}P.push(rk);row.push(P);});rows.push(row);}
+          if(need>r2){var d2=need-r2;rk+=d2;P=at(y,c.an,rk);}}P.push(rk);row.push(P);});
+      /* (each point is pushed out on its own to stand on what is under it, so a band followed the outline of the collar
+         beneath, dipping into its front opening and showing it through teeth on the looser fits; the row is evened out
+         round his neck, a local maximum that bridges such gaps and then a mean, never inside what it has to clear) */
+      if(k>0){var rkB=row.map(function(P){return P[3];}),nB=rkB.length,wr=function(i){return closed?(i+nB)%nB:Math.max(0,Math.min(nB-1,i));},
+          dl=rkB.map(function(v,i){var mx=v;for(var d=-4;d<=4;d++)mx=Math.max(mx,rkB[wr(i+d)]);return mx;}),
+          sm=dl.map(function(v,i){return (dl[wr(i-2)]+2*dl[wr(i-1)]+3*v+2*dl[wr(i+1)]+dl[wr(i+2)])/9;});
+        row=row.map(function(P,ci){var rk3=Math.max(sm[ci],P[3]);if(rk3-P[3]<1e-6)return P;var P3=at(P[1],C[ci].an,rk3);P3.push(rk3);return P3;});}
+      rows.push(row);}
     if(o.fold){var Fd=o.fold,KF=4,tp=rows[K],OWN=ownNeck(FT);for(k=0;k<=KF;k++){var f2=k/KF,row2=[];C.forEach(function(c,ci){var T0=tp[ci],cf=Math.max(0,Math.cos(c.an)),y=T0[1]-(Fd.drop+Fd.front*cf*cf)*f2,
           rk=T0[3]+0.0028+Fd.out*Math.sin(f2*Math.PI/2);for(var kk=0;kk<=K;kk++){var S=rows[kk][ci];if(Math.abs(S[1]-y)<o.h/K)rk=Math.max(rk,S[3]+0.0028);}var P=at(y,c.an,rk);
           for(var it3=0;it3<2;it3++){var q3=[0,0,0];fmCoord(OWN,P[0],P[1],P[2],q3);var a3=Math.atan2(q3[1],q3[2]),r3=Math.hypot(q3[1],q3[2]),nd=fmGet(OWN,y,a3)+0.003;if(nd>0.003&&r3<nd){rk+=nd-r3;P=at(y,c.an,rk);}}
@@ -3809,7 +3854,7 @@ function make3Dcore(pieces){
     else if(ups0.some(shortS)){rules.push(["uarm",1.27]);}
     if(lo0){if(lo0.under)rules.push(["hips",null,1.02],["belly",null,1.02],["chest",null,1.02],["thigh",BL.crotch-0.126,1.02]);   /* (underwear: only the skin under the briefs goes) */
       else if(lo0.shape==="shorts")rules.push(["hips"],["thigh",Math.max(0.5,BL.crotch-0.29)+0.012]);else rules.push(["hips"],["thigh"],["shin",0.075]);}
-    if(ft0){rules.push(["foot"]);if(ft0.shape==="boots")rules.push(["shin",null,0.2]);else if(lo0&&lo0.shape==="shorts"&&ft0.shape!=="slippers"&&!/loafer|slider|slide|sandal|mule|deck|boat|espadrille|flip/.test((((byId[ft0.item]||{}).name||"")+" "+ft0.what).toLowerCase()))rules.push(["shin",null,0.235]);}   /* (socks with shorts) */
+    if(ft0){if(ft0.shape==="boots"||!OPENFT.test((((byId[ft0.item]||{}).name||"")+" "+ft0.what).toLowerCase()))rules.push(["foot"]);   /* (in open footwear his own foot shows) */if(ft0.shape==="boots")rules.push(["shin",null,0.2]);else if(lo0&&lo0.shape==="shorts"&&ft0.shape!=="slippers"&&!/loafer|slider|slide|sandal|mule|deck|boat|espadrille|flip/.test((((byId[ft0.item]||{}).name||"")+" "+ft0.what).toLowerCase()))rules.push(["shin",null,0.235]);}   /* (socks with shorts) */
     var bg=new T.BufferGeometry();bg.setAttribute("position",new T.BufferAttribute(bc.pos,3));bg.setAttribute("normal",new T.BufferAttribute(bc.nrm,3));
     bg.setAttribute("color",new T.BufferAttribute(bodyCols(bc),3));bg.setIndex(new T.BufferAttribute(bodyIdx(bc,rules),1));
     var bme=put(new T.Mesh(bg,skinMaterial()));bme.userData.isBody=true;bme.userData.armMask=bodyArmMask();   /* a little warmth in the shadows, as light passes through skin */
@@ -4075,7 +4120,7 @@ function make3Dcore(pieces){
     if(UPPER[p.shape])up.push(p);else if(LOWER[p.shape])lo=lo||p;else if(FEET[p.shape])ft=ft||p;else acc.push(p);});
   /* overshirts, chore jackets, shackets and flannels go over a tee or polo, under knits and hoodies */
   /* (outer layers in the order they go on: a blazer, a gilet over it, a jacket, and a coat or gown over everything) */
-  function lay(p){var L0=LAYER[p.shape]||0;if(p.shape==="shirt"&&/overshirt|over-shirt|chore|shacket|shirt jacket|worker|flannel|cpo|utility shirt|work shirt/.test(nm(p)))L0=Math.max(L0,0.6);return L0+(OUTERK[p.shape]||0)+(/worn open/i.test(p.what)&&!LAYER[p.shape]?0.5:0);}
+  function lay(p){return layRank(p);}
   up.sort(function(a,b){return lay(a)-lay(b);});
   function nm(p){return (((byId[p.item]||{}).name||"")+" "+p.what).toLowerCase();}
   /* the cloth of a piece, as its shop photo and listing show it: stripes at their real spacing and colours, a check or
@@ -4548,9 +4593,37 @@ function make3Dcore(pieces){
      collar and a side stripe; shoes a slim sole with a heel block and a welt; boots a lugged sole and a shaft round
      the ankle; slippers stay soft. With shorts he wears crew socks, white or black, a little way up the calf. */
   var shoeK=ft&&!slip&&!trainer&&!boot,dark=lum(fcol)<0.33;
+  /* sliders, sandals and flip-flops are open: his bare foot stands on a footbed, held by a strap (a slider's wide band
+     over the instep, a sandal's straps across the toes, the instep and round the heel, a flip-flop's thin Y) */
+  var openF=ft&&!boot&&OPENFT.test(fn),bareS=[[-0.07,0.028,0.03],[-0.04,0.036,0.034],[0.04,0.045,0.026],[0.12,0.048,0.018],[0.18,0.044,0.013],[0.205,0.03,0.01]];
+  if(openF)shoeK=false;
+  /* his foot's outline from the body: for each slice from heel to toe, [z, half its width, its height, the x of its
+     middle]; the front of the ankle is left out (a strap goes over the foot, not round his shin) */
+  function footProf(s){if(!bodyOn||!bc||!bc.pos)return [];var P=bc.pos,I=BODY.idx,rf=BODY.regions.indexOf("foot"),NB=14,lo=9,hi=-9,vs=[];
+    for(var t=0;t<I.length/3;t++){if(BODY.treg[t]!==rf)continue;for(var k=0;k<3;k++){var v=I[t*3+k];if(P[v*3]*s<=0.01)continue;vs.push(v);var zv=P[v*3+2];if(zv<lo)lo=zv;if(zv>hi)hi=zv;}}
+    if(!vs.length||hi-lo<0.05)return [];var B=[];for(var b=0;b<NB;b++)B.push({x0:9,x1:-9,y:0});
+    vs.forEach(function(v){var b=Math.min(NB-1,Math.floor((P[v*3+2]-lo)/(hi-lo)*NB)),q=B[b];if(P[v*3+1]>0.09)return;q.x0=Math.min(q.x0,P[v*3]);q.x1=Math.max(q.x1,P[v*3]);q.y=Math.max(q.y,P[v*3+1]);});
+    var R=B.map(function(q,b){return q.x1>q.x0?[lo+(hi-lo)*(b+0.5)/NB,(q.x1-q.x0)/2+0.002,q.y+0.002,(q.x0+q.x1)/2]:null;}).filter(Boolean);
+    /* (evened out along the foot, never inside it, so a strap's edge is a clean line) */
+    return R.map(function(q,i){var o=q.slice();for(var j=1;j<4;j++){var sm=0,c=0;for(var d=-1;d<=1;d++){var r=R[Math.max(0,Math.min(R.length-1,i+d))];sm+=r[j]*(d?1:2);c+=d?1:2;}o[j]=j<3?Math.max(q[j],sm/c):sm/c;}return o;});}
+  function bareAt(z){for(var i=0;i<bareS.length-1;i++){if(z>=bareS[i][0]&&z<=bareS[i+1][0]){var f=(z-bareS[i][0])/(bareS[i+1][0]-bareS[i][0]);return [z,bareS[i][1]*(1-f)+bareS[i+1][1]*f,bareS[i][2]*(1-f)+bareS[i+1][2]*f];}}return bareS[0];}
   var sockOn=ft&&!slip&&lo&&lo.shape==="shorts"&&!/loafer|slider|slide|sandal|mule|deck|boat|espadrille|flip/.test(fn),sockCol=lum(fcol)<0.3?"#1e1d20":"#f2efe8";
   [-1,1].forEach(function(s){
     var x=s*(bodyOn?BL.foot.x:0.1),rot=s*0.1,lift=ft?(trainer?0.03:(boot?0.024:0.015)):0;
+    if(openF){
+      /* his own foot shows; its outline, slice by slice from heel to toe, is measured on the body so the footbed and
+         straps fit it whatever Edit Dave makes of him (the drawn foot stands in without the real body) */
+      var prof=footProf(s),pAt=function(z){for(var i=0;i<prof.length-1;i++){if(z>=prof[i][0]&&z<=prof[i+1][0]){var f=(z-prof[i][0])/(prof[i+1][0]-prof[i][0]);return prof[i].map(function(v,j){return v*(1-f)+prof[i+1][j]*f;});}}return z<prof[0][0]?prof[0]:prof[prof.length-1];},
+        strap=function(z0,z1,g){var r=[];for(var k=0;k<=4;k++){var q=pAt(z0+(z1-z0)*k/4);r.push([q[0],q[1]+g,q[2]/2+g,q[3],-(q[2]/2+g)]);}var gb=secGeo(r,{seg:28,sq:2.6,top:true,bottom:true,k:3});gb.rotateX(Math.PI/2);return gb;};
+      if(!prof.length){prof=bareS.map(function(q){return [q[0],q[1],q[2]*2,x];});add(shoeGeo(bareS,0.004),skin,x,0,0,1,1,1,0,rot,0);}
+      var z0=prof[0][0]-0.006,z1=prof[prof.length-1][0]+0.008,fbR=[];for(var k5=0;k5<=10;k5++){var qz=pAt(z0+(z1-z0)*k5/10);fbR.push([qz[0]+(k5===0?-0.006:(k5===10?0.008:0)),qz[1]+0.008,0.0045,qz[3],-0.0045]);}
+      var fbG=secGeo(fbR,{seg:28,sq:2.6,top:true,bottom:true,k:3});fbG.rotateX(Math.PI/2);fbG.translate(0,-0.002,0);
+      add(fbG,mat(/flip/.test(fn)?fcol:shade(fcol,0.82),0.8),0,0,0);   /* the footbed */
+      var L5=prof[prof.length-1][0]-prof[0][0],zf=function(f){return prof[0][0]+L5*f;};
+      if(/flip/.test(fn)){add(strap(zf(0.62),zf(0.68),0.0015),fm,0,0,0);}
+      else if(/sandal/.test(fn)){add(strap(zf(0.7),zf(0.78),0.003),fm,0,0,0);add(strap(zf(0.38),zf(0.47),0.003),fm,0,0,0);add(strap(zf(0.0),zf(0.06),0.003),fm,0,0,0);}
+      else add(strap(zf(0.42),zf(0.68),0.0035),fm,0,0,0);   /* a slider's band */
+      return;}
     var rows=shoeS;if(ft&&shoeK)rows=shoeS.map(function(q,i){return [q[0],q[1]*(i>=5?0.92:1),q[2]*(i>=4?0.9:1)];});   /* (a dress shoe: a slimmer, lower toe) */
     add(shoeGeo(rows,lift),fm,x,0,0.0,1,1,1,0,rot,0);
     if(!ft)return;

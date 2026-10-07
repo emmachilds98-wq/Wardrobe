@@ -81,8 +81,8 @@ def check_fix_fields(k, fx, bad):
     for f in ("col", "col2"):
         if f in fx and fx[f] != "" and not re.fullmatch(r"#[0-9a-fA-F]{6}", str(fx[f])):
             bad.append(f"{k}: {f} must be #rrggbb")
-    if "pat" in fx and fx["pat"] not in ("plain", "hstripe", "vstripe", "check", "print"):
-        bad.append(f"{k}: pat must be plain, hstripe, vstripe, check or print")
+    if "pat" in fx and fx["pat"] not in ("plain", "hstripe", "vstripe", "check", "print", "argyle"):
+        bad.append(f"{k}: pat must be plain, hstripe, vstripe, check, print or argyle")
     for f in ("per", "duty"):
         if f in fx and not (isinstance(fx[f], (int, float)) and 0 < fx[f] < 1):
             bad.append(f"{k}: {f} must be a share between 0 and 1")

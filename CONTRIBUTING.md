@@ -115,7 +115,7 @@ is drawn from its name and the outfit's palette colour only, so it will rarely m
 | `gilet` | 2 | Gilets and bodywarmers |
 | `gown` | 2 | Dressing gowns |
 | `trousers`, `shorts` | | Legwear (exactly one) |
-| `boots`, `shoes`, `trainers`, `slippers` | | Footwear (at most one) |
+| `boots`, `shoes`, `trainers`, `slippers` | | Footwear (at most one). Sliders, slides, sandals and flip-flops (by name) are drawn open: his own bare foot on a footbed, with the strap fitted to his foot. |
 | `scarf`, `snood`, `cap`, `bcap`, `beanie`, `bucket`, `belt`, `watch`, `tie`, `square`, `bag`, `backpack`, `sunglasses`, `chain`, `kneepads` | | Accessories |
 
 Layer 2 pieces and cardigans are worn open over what is under them, in wearing order: a blazer, then a gilet, a
@@ -124,6 +124,13 @@ jacket, and a coat or gown outermost (`OUTERK`). A layer 0 or 1 piece is worn op
 waistcoat, tie or belt, or tailored or suit trousers (never with shorts); a shirt worn open, or an overshirt over
 another shirt, is not tucked, and a tee or vest under a tucked shirt goes in with it (`tuckList`). The 2D drawing
 follows the same rule.
+
+Overshirts (named overshirt, chore, shacket, flannel, CPO...) go over a tee or polo; a jacket-weight one (chore
+jacket, shacket, nylon, canvas, insulated, borg-lined) goes over a jumper or hoodie too, worn open, as a light jacket is.
+The order tops go on is one rule for 3D and 2D (`layRank`).
+
+Argyle (by name) is drawn as argyle, diamonds in the cloth's two colours with thin crossing lines, not copied from the
+photo. A model photo gives neither a photo front nor a chest print.
 
 A `belt` is drawn by its name. A trouser belt goes round the waistband (its loops over it) and shows when the top is
 tucked in. **Workwear kit** (a name with holster, nail pocket, pouch, hammer or knife holder, tool belt or apron) is
@@ -414,5 +421,10 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
 - **The outfit cards draw lighter hair.** Dave's curls were about 1.9 million of the 2 million triangles in each
   render. The small card renders use two hairs a lock on a coarser spiral (`LITE3D`), which looks the same at that
   size; the 3D view and the 3D check keep the full hair.
+- **Check the gate set too, not only the outfits you changed.** New footwear code declared its own `band`, which
+  shadowed the shared `band()` helper for the whole per-foot function: open footwear was fine, but every boot and
+  sock failed with "band is not a function". A check on only the 19 open-footwear outfits passed; the pull-request
+  check, which renders the gate set, caught it. Run `--ids @tools/qa/gate.txt` (plus your outfits) before pushing,
+  and use names that cannot collide with `make3Dcore`'s helpers (`band`, `tube`, `sec`, `add`, `put`, `strap`...).
 - **One item looking right is not proof.** Check every item of that kind with `multi.js`, and every outfit with
   `check_3d.js`.

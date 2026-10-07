@@ -125,9 +125,10 @@ should match. Emma asked for the upgrade to continue until that is done.
      backgrounds on photo fronts.
    - **Tee under shirt:** check that a tee under an open shirt never covers the shirt
      (barrel-chore, ox-open, ramsey-weekend, x11-passenger).
-   - **`wk-chore` on the loose cloth fit:** the shirt collar shows through the jumper's neckband in two
-     spots (poke 33, limit 30; the same on `main` before PR #13). It is not in the gate set, so the
-     pull-request check does not see it.
+   - **`ramsey-street` on the loose cloth fit:** a few pixels of the overshirt's collar show inside the hoodie's neck
+     opening (poke 31, limit 30; the same on `main`). It looks right (a collar peeking out), but the check counts collar
+     bits enclosed by the hood as pokes. Done: `wk-chore` (a chore jacket now goes over the knit) and three other
+     collar-under-knit outfits (collar rows are evened out round the neck).
    - Done: sets listed as one item and worn as two pieces can be corrected per garment shape
      (`"shapes"` in `data/fixes.json`); the Tokyo Laundry Keir set is (black tee, grey marl shorts).
    - Done: named stripes the photo cannot measure (close-ups, folds, a model in shot) are drawn as
