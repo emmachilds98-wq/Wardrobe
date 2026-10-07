@@ -4131,12 +4131,18 @@ function make3Dcore(pieces){
       /* (how close each side's cloth comes to the middle, measured on the cloth itself at each height and depth: the
          seam down the front and back of the crotch does not count for the inside of the thighs between them) */
       LM.forEach(function(me){var pa=me.geometry.attributes.position;for(var i=0;i<pa.count;i++){var y=pa.getY(i),x=pa.getX(i);if(y<B0||y>cr0+0.02||Math.abs(x)>0.08)continue;var b=bin(y,pa.getZ(i)),sd=x<0?"-1":"1";if(Math.abs(x)<G[sd][b])G[sd][b]=Math.abs(x);}});
-      LM.forEach(function(me){var pa=me.geometry.attributes.position,mv=false;
-        for(var i=0;i<pa.count;i++){var y=pa.getY(i);if(y>cr0+0.015||y<B0)continue;var x=pa.getX(i),ax=Math.abs(x),z=pa.getZ(i),sd=x<0?"-1":"1",od=sd==="1"?"-1":"1",gs=9,go=9;
+      LM.forEach(function(me){var pa=me.geometry.attributes.position,mv=false,nP=pa.count,DP=new Float32Array(nP);
+        for(var i=0;i<nP;i++){var y=pa.getY(i);if(y>cr0+0.015||y<B0)continue;var x=pa.getX(i),ax=Math.abs(x),z=pa.getZ(i),sd=x<0?"-1":"1",od=sd==="1"?"-1":"1",gs=9,go=9;
           for(var dy=-1;dy<=1;dy++)for(var dz=-1;dz<=1;dz++){var b=bin(y+dy*BS,z+dz*ZB);gs=Math.min(gs,G[sd][b]);go=Math.min(go,G[od][b]);}if(gs>=9||go>=9)continue;
           var f=sstep(0.05,0.03,gs+go)*(1-sstep(cr0+0.005,cr0+0.015,y)),w=sstep(gs+0.045,gs+0.004,ax);if(f*w<=0)continue;
-          var nx=ax-(gs+0.002)*f*w;if(nx<ax){pa.setX(i,(x<0?-1:1)*nx);mv=true;}}   /* (a hair past the middle: the two sides overlap, so no crack of light) */
-        if(mv){pa.needsUpdate=true;ZV++;}});}
+          DP[i]=(gs+0.002)*f*w;mv=true;}   /* (a hair past the middle: the two sides overlap, so no crack of light) */
+        /* (how far each point goes in is evened out with its neighbours on the cloth, never less than it needs: measured
+           in steps of height, it jumped from one ring of the leg to the next and left thin creases across the inner
+           thighs where the legs meet) */
+        if(mv&&me.geometry.index){var IX=me.geometry.index.array;for(var it=0;it<3;it++){var SM=new Float32Array(nP),CN=new Uint16Array(nP);
+            for(var t=0;t<IX.length;t+=3)for(var e3=0;e3<3;e3++){var va=IX[t+e3],vb=IX[t+(e3+1)%3];SM[va]+=DP[vb];CN[va]++;SM[vb]+=DP[va];CN[vb]++;}
+            for(i=0;i<nP;i++)if(CN[i]){var av=SM[i]/CN[i];if(av>DP[i])DP[i]=DP[i]*0.4+av*0.6;}}}
+        if(mv){for(i=0;i<nP;i++){if(!DP[i])continue;var x2=pa.getX(i),ax2=Math.abs(x2);pa.setX(i,(x2<0?-1:1)*Math.max(-0.003,ax2-DP[i]));}pa.needsUpdate=true;ZV++;}});}
     /* the gusset: where the seat and the two legs meet under the crotch they left a small opening, seen straight through
        from front to back; a soft piece of the same cloth fills it, sized to sit inside the cloth around it */
     if(bodyOn&&LWme){var gp=LWme.geometry.attributes.position,gzn=9,gzx=-9;
