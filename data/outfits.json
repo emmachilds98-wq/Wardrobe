@@ -1184,7 +1184,7 @@
    },
    {
     "item": "r10-sr-cap",
-    "shape": "cap",
+    "shape": "bcap",
     "col": "black",
     "what": "Tech cap"
    }
@@ -1227,7 +1227,7 @@
    },
    {
     "item": "p6-folk-cap",
-    "shape": "cap",
+    "shape": "bcap",
     "col": "blue",
     "what": "Cap"
    }
@@ -1425,7 +1425,7 @@
    },
    {
     "item": "r7-lb-cap",
-    "shape": "cap",
+    "shape": "bcap",
     "col": "navy",
     "what": "Stripe cap"
    }
@@ -1505,7 +1505,7 @@
    },
    {
     "item": "r7-tg-cap",
-    "shape": "cap",
+    "shape": "bcap",
     "col": "olive",
     "what": "Cap"
    }
@@ -1585,7 +1585,7 @@
    },
    {
     "item": "r8-tg-cap",
-    "shape": "cap",
+    "shape": "bcap",
     "col": "stone",
     "what": "Cap"
    }
@@ -2636,7 +2636,7 @@
   "pieces": [
    {
     "item": "r12-bw-hhcap",
-    "shape": "cap",
+    "shape": "bcap",
     "col": "black",
     "what": "Work cap"
    },
@@ -5917,7 +5917,7 @@
    },
    {
     "item": "r8-lb-cap",
-    "shape": "cap",
+    "shape": "bcap",
     "col": "olive",
     "what": "Cap"
    }
@@ -6135,7 +6135,7 @@
    },
    {
     "item": "p6-us-cap",
-    "shape": "cap",
+    "shape": "bcap",
     "col": "navy",
     "what": "Cap"
    }
@@ -11599,7 +11599,7 @@
    },
    {
     "item": "asos-cap-brown",
-    "shape": "cap",
+    "shape": "bcap",
     "col": "brown",
     "what": "Cap"
    }
@@ -12040,7 +12040,7 @@
    },
    {
     "item": "r9-bk-cap",
-    "shape": "cap",
+    "shape": "bcap",
     "col": "stone",
     "what": "Embroidered cap"
    }
@@ -14323,7 +14323,7 @@
    },
    {
     "item": "r10-sr-cap",
-    "shape": "cap",
+    "shape": "bcap",
     "col": "black",
     "what": "Tech cap"
    },
