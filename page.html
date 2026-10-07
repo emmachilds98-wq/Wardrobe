@@ -4555,7 +4555,15 @@ function make3Dcore(pieces){
         if(sgK==="round")add(new T.CylinderGeometry(0.019,0.019,0.003,28),lnM,s*E2[0],E2[1],sz,1,1,1,Math.PI/2,0,0),add(new T.TorusGeometry(0.019,0.0016,6,28),gl2,s*E2[0],E2[1],sz+0.001);
         else if(sgK==="aviator"){add(new T.CylinderGeometry(0.021,0.021,0.003,28),lnM,s*(E2[0]+0.002),E2[1]-0.004,sz,1.05,1,1.2,Math.PI/2,0,s*0.18);add(new T.TorusGeometry(0.021,0.0011,6,28),gl2,s*(E2[0]+0.002),E2[1]-0.004,sz+0.001,1.05,1.2,1,0,0,s*0.18);}
         else if(sgK==="square"){add(new T.BoxGeometry(0.042,0.03,0.003),lnM,s*E2[0],E2[1],sz);add(new T.BoxGeometry(0.046,0.007,0.005),gl2,s*E2[0],E2[1]+0.016,sz+0.001);[-1,1].forEach(function(e2){add(new T.BoxGeometry(0.004,0.032,0.005),gl2,s*E2[0]+e2*0.022,E2[1],sz+0.001);});}
-        tube([[s*(E2[0]+(sgK==="wrap"?0.032:0.022)),E2[1]+0.004,sz-(sgK==="wrap"?0.011:0.004)],[s*(ea[0]+0.005),E2[1]+0.005,sz-0.045],[s*(ea[0]+0.006),ea[1]+0.012,ea[2]+0.012],[s*(ea[0]+0.002),ea[1]+0.004,ea[2]-0.012]],sgK==="aviator"?0.0012:0.0018,gl2,10);});
+        /* the arm runs back along the side of his head, just off it (measured on his head at eye height, slice by slice
+           from the lenses to the ear), then over and behind the ear: it used to go straight out to the ear's width
+           and stood off his temple */
+        var aP=[[s*(E2[0]+(sgK==="wrap"?0.032:0.022)),E2[1]+0.004,sz-(sgK==="wrap"?0.011:0.004)]],zA=sz-0.012,zB=ea[2]+0.014,BP=bc&&bc.pos;
+        for(var ai=0;ai<=4;ai++){var zq=zA+(zB-zA)*ai/4,yq=E2[1]+0.005+(ea[1]+0.012-E2[1]-0.005)*Math.pow(ai/4,2),wq=0;
+          if(BP)for(var vq=0;vq<BP.length;vq+=3){var vx=BP[vq]*s;if(vx<0.03||Math.abs(BP[vq+1]-yq)>0.008||Math.abs(BP[vq+2]-zq)>0.008)continue;if(vx>wq)wq=vx;}
+          if(!wq)wq=ea[0];aP.push([s*(Math.max(wq,Math.abs(aP[aP.length-1][0])*(ai?0:1))+0.003),yq,zq]);}
+        aP.push([s*(ea[0]+0.002),ea[1]+0.004,ea[2]-0.012]);
+        tube(aP,sgK==="aviator"?0.0012:0.0018,gl2,14);});
       if(sgK!=="wrap")add(new T.BoxGeometry(0.018,sgK==="aviator"?0.0025:0.004,0.004),gl2,0,E2[1]+0.005,Math.max(sz+0.001,hzN(0,E2[1]+0.005)+0.004));}   /* the bridge */
     else if(p.shape==="sunglasses"){var gl=mat("#111",0.1,{metalness:0.4});[-1,1].forEach(function(s){add(new T.CylinderGeometry(0.019,0.019,0.004,24),gl,s*0.031,1.722,0.116,1,1,0.8,Math.PI/2,0,0);tube([[s*0.05,1.727,0.112],[s*0.08,1.728,0.06],[s*0.083,1.72,-0.01]],0.0018,gl,8);});add(new T.BoxGeometry(0.022,0.004,0.004),gl,0,1.728,0.117);}
     else if(p.shape==="watch"&&bodyOn){var wy2=BL.wrist[1]+0.012,aw=AT(wy2);band(wy2,0.018,aw[1]+0.004,aw[2]+0.004,mat("#5b3a26",0.7),{x:-aw[3],z:aw[4]});add(new T.CylinderGeometry(0.016,0.016,0.006,20),mat("#c3c7cc",0.25,{metalness:0.8}),-(aw[3]+aw[1]+0.006),wy2+0.009,aw[4],1,1,1,0,0,Math.PI/2);}
