@@ -1544,6 +1544,8 @@ A survey of 16 random outfits beside their shop photos found these, now fixed:
   close-ups today, all plain, so nothing visible changed yet.
 - **Brakeburn's Shirwell resort shirt**, photographed by the sea, read grey from the sky and water; it is corrected in
   `data/fixes.json` to mid blue with thin white stripes.
+- **Checks:** the full 3D check over all 574 outfits on his saved build flagged none (no skin, holes, pokes, stray parts
+  or colour drift, no page errors), and the pull-request check passed on all five builds.
 - **Looked at and right as drawn:** a striped bomber (it is striped), a dark teal "black" gilet (the photo is teal),
   two-tone half-zips, and day-pack straps over a waterproof.
 
