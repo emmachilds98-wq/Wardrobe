@@ -1468,6 +1468,32 @@ Status: parts 1a (checks), 1b (tops) and most of 1c (trousers) are done; 1d (fit
   legs, which don't grip), 100% cotton or natural fibres, extra-wide fittings, his size in stock, and how much is
   off.
 
+## 2zy. Workwear kit, belts, lighter card renders, cleaner photo fronts (7 Oct 2026)
+
+- **Synced with the other session's work (PR #12):** the contributor guide, the pull-request 3D check on five body
+  builds, `data/fixes.json` corrections, pocket squares, navy kept navy, and tucked shirts kept inside the trousers.
+  The claude.ai artifact was republished from `main` (version 32), and the GitHub Pages copy was confirmed to match it
+  byte for byte.
+- **Workwear kit is worn over the clothes.** 24 Workwear outfits have tool belts, clip-on holster or nail pockets,
+  pouches, hammer holders or a half apron. They were drawn as a thin belt that any untucked top hid. Now:
+  - a tool belt goes round his hips over the top, with a buckle and a pouch each side;
+  - clip-on pockets hang from the waistband (just under a top worn over it) at the front of each hip, leaning in to
+    lie on the thigh and narrowing to the bottom;
+  - a hammer holder has its steel ring, and a half apron hangs in front with two pockets.
+  All are placed outside what he wears there, read from the maps of his clothes, so they fit any build.
+- **Belts show.** With a trouser belt, a shirt or polo is tucked in (never with shorts), in 3D and in the 2D drawing.
+  The belt goes round the waistband with its loops over it and a buckle at the front, and in 2D it is drawn on the
+  waistband under anything worn open on top.
+- **Lighter hair on the outfit cards.** Dave's curls were about 1.9 million of the 2.0 million triangles in each
+  card render. Cards now use two hairs a lock on a coarser spiral, which looks the same at card size: about 0.45
+  million triangles a card. The 3D view and the 3D check keep the full hair.
+- **Cleaner photo fronts.** On a flat-lay the background between a sleeve and the body is closed off, so it was laid
+  on his sides as pale slivers. It is now cleared from the front's sides inward once the front has passed its checks.
+  Every outfit piece's reading (1,369) was compared with `main` before and after: none changed.
+- **One correction** in `data/fixes.json`: Samuel Windsor's open-collar knitted polo, a navy flat-lay on a grey
+  gradient, read with a grey panel and lilac sleeves. A corrected colour now also drops the photo's sleeve colour.
+- **Checks:** all 55 belted outfits pass the 3D check on his saved build.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

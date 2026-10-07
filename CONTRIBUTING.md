@@ -120,7 +120,14 @@ is drawn from its name and the outfit's palette colour only, so it will rarely m
 
 Layer 2 pieces and cardigans are worn open over what is under them. A layer 0 or 1 piece is worn open when its
 `what` says **"worn open"** (an open shirt over a tee). Shirts and polos are tucked in when the outfit has a blazer,
-waistcoat or tie, or tailored or suit trousers (never with shorts); an overshirt over another shirt is not tucked.
+waistcoat, tie or belt, or tailored or suit trousers (never with shorts); an overshirt over another shirt is not
+tucked. The 2D drawing follows the same rule.
+
+A `belt` is drawn by its name. A trouser belt goes round the waistband (its loops over it) and shows when the top is
+tucked in. **Workwear kit** (a name with holster, nail pocket, pouch, hammer or knife holder, tool belt or apron) is
+worn over the clothes at the hips: a tool belt round them with its pouches, clip-on pockets hanging from the waistband
+just under a top worn over it, or a half apron. It is placed on the outside of what he wears there, read from the maps
+of his clothes, so it fits any build.
 
 Pick the shape for what the garment is, not where it is listed (shops file sweat shorts with knitwear and caps
 with denim, and `tools/make_outfits.py` now reads the garment word in the name before the category): a knitted polo is `polo`, a shacket is `shirt`, a
@@ -239,7 +246,7 @@ All fitting happens in `make3Dcore` in `page.html`, on the real body in `data/bo
   vest's armhole or a cropped hem never opens onto the background. If you add a garment with a new opening, this is
   what keeps his skin there; check it from the side and the back.
 - **Hidden parts.** A closed outer layer hides the front details of what is under it (pockets, plackets, cords). A
-  top worn over the waistband hides the belt.
+  top worn over the waistband hides a trouser belt (not workwear kit, which is worn over it).
 
 ### Rules for fitting changes
 
@@ -391,5 +398,13 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
 - **A tucked shirt must stay inside the trousers whatever the fit.** With the cloth fit at "looser" a tucked shirt
   hung straight from the chest, over the waistband, and the waistband showed through it. It is now gathered in
   above the waistband and kept just inside the trousers below it.
+- **A flat-lay's background can be closed off.** Between a sleeve and the body the background is often enclosed, so
+  the flood from the photo's edge never reaches it, and it was laid on his sides as pale slivers. It is now cleared
+  from the photo front's sides inward, only after the front has passed its checks (clearing it first let a jumper's
+  front through that looked worse), only for cloth well away from the background's colour (on white cloth it ate in
+  and dropped six fronts), and tested on the colours as photographed, before the lighting is evened out.
+- **The outfit cards draw lighter hair.** Dave's curls were about 1.9 million of the 2 million triangles in each
+  render. The small card renders use two hairs a lock on a coarser spiral (`LITE3D`), which looks the same at that
+  size; the 3D view and the 3D check keep the full hair.
 - **One item looking right is not proof.** Check every item of that kind with `multi.js`, and every outfit with
   `check_3d.js`.

@@ -119,10 +119,10 @@ should match. Emma asked for the upgrade to continue until that is done.
 
 1. **Close the small known faults.** Check each with `zoom.js` and `check_3d.js`.
    - **Polo collars:** a small notch at the back of some (`fitCollar`).
-   - **Belts:** hidden in all 55 belted outfits whenever the top is untucked (`waistHid`). Tuck
-     smart shirts when a belt is worn, or show the buckle under a short hem.
-   - **Pocket squares:** in the data (shape `square`) but not drawn in 3D. Put them in the
-     blazer's breast pocket.
+   - Done: belts (a shirt or polo is tucked when a belt is worn, in 2D and 3D, and the belt goes
+     round the waistband), workwear kit drawn over the clothes (tool belts, holster pockets,
+     pouches, aprons), pocket squares in the breast pocket (PR #12), and pale slivers from flat-lay
+     backgrounds on photo fronts.
    - **Tee under shirt:** check that a tee under an open shirt never covers the shirt
      (barrel-chore, ox-open, ramsey-weekend, x11-passenger).
    - **Close-up stripe photos** (for example `ct-poplin-stripe`): they give stripes that are too
@@ -139,7 +139,9 @@ should match. Emma asked for the upgrade to continue until that is done.
    - This also makes the page faster, since photos are no longer read on every visit.
 3. **Faster page (step 4):**
    - Load photo packs per screen.
-   - Merge Dave's curls with a level of detail (about 432k of the 0.5M triangles per frame).
+   - Done for the outfit cards: lighter hair (`LITE3D`) cut each card render from about 2.0 million
+     triangles to 0.45 million. The 3D view still draws the full hair (about 1.9 million triangles
+     of curls); a level of detail by distance would help phones there too.
    - Build the body and hair once and swap only the clothes.
 4. **Engine and poses (Phase 2):**
    - Three.js r128 → r160+. `encoding` becomes `colorSpace`, the `if(T.sRGBEncoding)` guards
