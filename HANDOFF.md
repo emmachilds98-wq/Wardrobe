@@ -125,6 +125,9 @@ should match. Emma asked for the upgrade to continue until that is done.
      backgrounds on photo fronts.
    - **Tee under shirt:** check that a tee under an open shirt never covers the shirt
      (barrel-chore, ox-open, ramsey-weekend, x11-passenger).
+   - **`wk-chore` on the loose cloth fit:** the shirt collar shows through the jumper's neckband in two
+     spots (poke 33, limit 30; the same on `main` before PR #13). It is not in the gate set, so the
+     pull-request check does not see it.
    - **Sets listed as one item** (for example `r7-tl-keir`, a black tee with grey marl shorts) give both pieces one
      photo reading, so the shorts draw black. `data/fixes.json` is per item; a per-shape correction (or reading the
      legwear from the lower part of the photo) would fix it.
