@@ -125,6 +125,9 @@ should match. Emma asked for the upgrade to continue until that is done.
      backgrounds on photo fronts.
    - **Tee under shirt:** check that a tee under an open shirt never covers the shirt
      (barrel-chore, ox-open, ramsey-weekend, x11-passenger).
+   - **Sets listed as one item** (for example `r7-tl-keir`, a black tee with grey marl shorts) give both pieces one
+     photo reading, so the shorts draw black. `data/fixes.json` is per item; a per-shape correction (or reading the
+     legwear from the lower part of the photo) would fix it.
    - **Close-up stripe photos** (for example `ct-poplin-stripe`): they give stripes that are too
      wide. Scale the stripe period down when the photo is a close-up.
    - **Model photos with darker-skinned models:** they can pass as flat-lays, because skin is
