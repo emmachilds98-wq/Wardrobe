@@ -130,8 +130,8 @@ should match. Emma asked for the upgrade to continue until that is done.
      pull-request check does not see it.
    - Done: sets listed as one item and worn as two pieces can be corrected per garment shape
      (`"shapes"` in `data/fixes.json`); the Tokyo Laundry Keir set is (black tee, grey marl shorts).
-   - **Close-up stripe photos** (for example `ct-poplin-stripe`): they give stripes that are too
-     wide. Scale the stripe period down when the photo is a close-up.
+   - Done: named stripes the photo cannot measure (close-ups, folds, a model in shot) are drawn as
+     clean stripes in the cloth's colours, and close-up photos scale their pattern down (`L.close`).
    - Done: model photos are found by the shape of a head and neck (`headM`), whatever the skin
      colour, and their fronts are not used (hoodies excepted: a hood up looks the same). Hands at
      the sides are not looked for yet.

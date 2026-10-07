@@ -1532,6 +1532,18 @@ A survey of 16 random outfits beside their shop photos found these, now fixed:
   are left out (a hood up on a mannequin is the same shape).
 - **A pale yellow sweatshirt** laid flat with its sleeves over the body put the sleeves' outlines on his chest; its
   front is turned off in `data/fixes.json`.
+- **Stripes the photo could not measure:** a shirt whose listing names stripes, but whose photo is a slanted close-up
+  of the collar, a folded shirt or a model in shot, was read as a print: a blurred, mirrored square of the photo, on
+  one shirt tinted by the model's skin. Such shirts are now drawn as clean upright stripes. The ground is the cloth's
+  main colour and the stripe the colour of the darkest tenth of its threads, kept a deeper shade of the cloth when
+  those threads are skin or grey. The stripes are fine on most shirts and broad for a random, bold, block or awning
+  stripe. Seven outfit shirts changed, each checked beside its photo (Charles Tyrwhitt poplin and Oxford, Brakeburn,
+  Uniqlo, M&S, Savile Row's random stripe).
+- **Close-up photos** (the frame filled with cloth, almost no background) now scale their stripes and checks to about a
+  quarter, since they were measured against a garment far longer than what is in frame. Three outfit pieces are
+  close-ups today, all plain, so nothing visible changed yet.
+- **Brakeburn's Shirwell resort shirt**, photographed by the sea, read grey from the sky and water; it is corrected in
+  `data/fixes.json` to mid blue with thin white stripes.
 - **Looked at and right as drawn:** a striped bomber (it is striped), a dark teal "black" gilet (the photo is teal),
   two-tone half-zips, and day-pack straps over a waterproof.
 
