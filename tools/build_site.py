@@ -73,7 +73,7 @@ def load_groups(items):
     return groups
 
 
-FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal")
+FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch")
 
 
 def check_fix_fields(k, fx, bad):
@@ -89,6 +89,9 @@ def check_fix_fields(k, fx, bad):
     for f in ("front", "decal"):
         if f in fx and fx[f] is not False:
             bad.append(f"{k}: {f} can only be false")
+    if "swatch" in fx and not (isinstance(fx["swatch"], str) and re.match(r"data:image/(jpeg|png);base64,", fx["swatch"])
+                               and len(fx["swatch"]) <= 16000):
+        bad.append(f"{k}: swatch must be a small data:image/jpeg or png (a square of the cloth, under 16,000 characters)")
 
 
 def check_fixes(fixes, items):
@@ -168,6 +171,24 @@ def garment_kind(name):
     return None
 
 
+HAT_WORDS = {"cap": "flat cap", "bcap": "baseball cap", "beanie": "beanie", "bucket": "bucket hat"}
+
+
+def hat_kind(name):
+    """The hat shape a listing's name says: a flat cap ("cap"), a beanie or watch cap, a bucket hat, or any other cap (a
+    baseball, trucker, 5-panel or tech cap: "bcap"). None for a name that is not a hat."""
+    n = (name or "").lower()
+    if re.search(r"flat cap|tweed cap|baker boy|newsboy|peaky|ivy cap|driving cap", n):
+        return "cap"
+    if re.search(r"beanie|watch cap|swimming cap|swim cap|bobble", n):
+        return "beanie"
+    if re.search(r"bucket", n):
+        return "bucket"
+    if re.search(r"\bcap\b|snapback|trucker|9forty|9fifty", n):
+        return "bcap"
+    return None
+
+
 def page_tables():
     """The shapes and palette the page knows, read from page.html so the checks never fall out of step with it."""
     with open(os.path.join(ROOT, "page.html"), encoding="utf-8") as f:
@@ -219,6 +240,9 @@ def check_outfits(outfits, items):
             fits = {"shorts": {"shorts"}, "trousers": {"trousers"}, "top": tb["upper"], "feet": tb["feet"], "acc": tb["accs"]}
             if gk and sh in shapes and sh not in fits[gk]:
                 bad.append(f"{oid}: {it} ({(items.get(it) or {}).get('name')}) is {gk} by its name but drawn as '{sh}'")
+            hk = hat_kind((items.get(it) or {}).get("name"))
+            if sh in ("cap", "bcap", "beanie", "bucket") and hk and sh != hk:
+                bad.append(f"{oid}: {it} ({(items.get(it) or {}).get('name')}) is a {HAT_WORDS[hk]} by its name but drawn as '{sh}'")
         sh = [p.get("shape") for p in ps]
         if not any(s in tb["upper"] for s in sh):
             bad.append(f"{oid}: no top")
