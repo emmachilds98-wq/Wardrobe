@@ -421,5 +421,10 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
 - **The outfit cards draw lighter hair.** Dave's curls were about 1.9 million of the 2 million triangles in each
   render. The small card renders use two hairs a lock on a coarser spiral (`LITE3D`), which looks the same at that
   size; the 3D view and the 3D check keep the full hair.
+- **Check the gate set too, not only the outfits you changed.** New footwear code declared its own `band`, which
+  shadowed the shared `band()` helper for the whole per-foot function: open footwear was fine, but every boot and
+  sock failed with "band is not a function". A check on only the 19 open-footwear outfits passed; the pull-request
+  check, which renders the gate set, caught it. Run `--ids @tools/qa/gate.txt` (plus your outfits) before pushing,
+  and use names that cannot collide with `make3Dcore`'s helpers (`band`, `tube`, `sec`, `add`, `put`, `strap`...).
 - **One item looking right is not proof.** Check every item of that kind with `multi.js`, and every outfit with
   `check_3d.js`.
