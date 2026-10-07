@@ -195,7 +195,7 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
 
    | Field | What it sets |
    | --- | --- |
-   | `col` | The main colour, `#rrggbb`, sampled from the cloth in the shop photo (not the shadows or highlights). |
+   | `col` | The main colour, `#rrggbb`, sampled from the cloth in the shop photo (not the shadows or highlights). It also drops the photo's front and sleeve colour, read from the same wrong reading. |
    | `col2` | The second colour (stripes, checks, trim), `#rrggbb`, or `""` for none. |
    | `pat` | `plain`, `hstripe` (across), `vstripe` (down), `check` or `print`. `plain` also drops a read swatch or front. |
    | `per` | Stripe or check spacing as a share of the garment's length, between 0 and 1 (a Breton is about 0.04). |
