@@ -2034,6 +2034,11 @@ var TRUE={},TRUEQ={},LOOK={};
 /* What the listing's name and notes say about a piece, in the terms the drawings use: its collar, neckline,
    fastening, pockets, fit, sleeves, pattern, any print or logo, trims in another colour, and the cloth. */
 var DESCC={};
+/* Uniqlo's colour codes (colorDisplayCode), by tens: greys, reds, oranges, browns, yellows, greens, blues, purples */
+var UQCOL=[["white","ecru","light grey","grey","grey","grey","grey","grey","dark grey","black"],["pink","pink","pink","red","red","red","red","red","burgundy","burgundy"],
+  ["orange","orange","orange","orange","orange","orange","orange","orange","orange","orange"],["ecru","beige","beige","brown","brown","brown","brown","brown","dark brown","dark brown"],
+  ["yellow","yellow","yellow","yellow","yellow","yellow","yellow","yellow","mustard","mustard"],["green","green","green","green","green","green","olive","olive","green","green"],
+  ["blue","blue","blue","blue","blue","blue","blue","blue","navy","navy"],["purple","purple","purple","purple","purple","purple","purple","purple","purple","purple"]];
 function descOf(it,p){var key=(it&&it.id||"")+"|"+(p&&p.what||"");if(DESCC[key])return DESCC[key];
   var n=(((it&&it.name)||"")+" "+((p&&p.what)||"")+" "+((it&&it.fabric)||"")).toLowerCase().replace(/sleeve[- ]stripe[sd]?|striped sleeves?|arm stripes?|taped sleeves?|sleeve tape/g,"sleeve-band"),nt=((it&&it.note)||"").toLowerCase(),a=n+" "+nt,D={};
   function hasA(re){return re.test(n)||re.test(nt);}
@@ -2042,7 +2047,7 @@ function descOf(it,p){var key=(it&&it.id||"")+"|"+(p&&p.what||"");if(DESCC[key])
   D.zip=/full[- ]?zip|zip[- ]?(through|up)|zip hood/.test(a)?"full":/half[- ]?zip|quarter[- ]?zip|1\/4 zip|zip neck/.test(a)?"half":"";
   D.pockets=/cargo|combat|utility/.test(n)?"cargo":/two (chest )?pockets|twin pockets|double pocket|patch pockets|chore|overshirt|cpo/.test(a)?"two":/pocket/.test(n)?"one":"";
   D.fit=/oversized|boxy|baggy|loose|wide/.test(n)?"loose":/relaxed/.test(n)?"relaxed":/slim|skinny|muscle|fitted/.test(n)?"slim":"";
-  D.tipped=/tipped|tipping/.test(a);D.rugby=/rugby/.test(n);D.raglan=/raglan|baseball|ringer/.test(n);D.ringer=/ringer/.test(n);
+  D.tipped=/tipped|tipping/.test(a);D.rugby=/rugby/.test(n);D.raglan=/raglan|baseball/.test(n);D.ringer=/ringer/.test(n);
   D.pleat=/pleat/.test(n);D.turnup=/turn[- ]?up|cuffed hem/.test(n);D.drawcord=/drawstring|drawcord|elastic/.test(n);
   D.check=/check|plaid|tartan|gingham|houndstooth|herringbone|madras|buffalo/.test(n);
   D.print=D.check||/print|camo|floral|paisley|fair ?isle|majolica|argyle|jacquard|zig ?zag|geometric|leopard|tie[- ]?dye|all[- ]?over|aop|intarsia|pattern|spot|dot|stripe/.test(n);
@@ -2057,16 +2062,26 @@ function descOf(it,p){var key=(it&&it.id||"")+"|"+(p&&p.what||"");if(DESCC[key])
   var NAMED=[["off white","#ece6d6",90],["off-white","#ece6d6",90],["light grey","#b9b9b7",100],["light gray","#b9b9b7",100],["dark grey","#4a4b4f",100],["grey marl","#9a9a98",110],["light blue","#a6c4e0",110],["sky blue","#93bde3",110],["dark green","#2c4a32",100],["dark navy","#1b2236",90],["army green","#5b5c38",100],["forage green","#6b6a4c",100],["khaki green","#6b6a45",100],["olive green","#5b5c34",100],["bottle green","#1f4a33",100],["forest green","#2c4a32",100],["sage green","#8f9e82",100],["mint green","#a8d6bf",100],["deep teal","#2a5f63",110],["royal blue","#2a4fa0",120],["gunmetal","#46484c",90],["pebble","#b8ad9a",90],["natural","#e4dac6",90],["ivory","#ece6d6",90],["dark wash","#24314d",100],["mid wash","#4a6488",110],["light wash","#8aa4c4",110],["ocean blue","#2f5a8a",120],["washed black","#2e2d30",120],
     ["black","#1e1d20",110],["white","#efede8",95],["cream","#ece3cf",90],["ecru","#e8dfc9",90],["navy","#1f2a44",100],["charcoal","#3d3e42",100],["grey","#8a8a89",130],["gray","#8a8a89",130],["stone","#cbbfa3",95],["sand","#d1bf9a",95],["beige","#cdbb9b",95],["oatmeal","#d6c9b0",90],
     ["khaki","#8b8152",110],["olive","#5b5c34",100],["sage","#8f9e82",100],["mint","#a8d6bf",100],["green","#2f5a3a",120],["teal","#2a6f73",110],["indigo","#2f4466",110],["denim","#3d5a80",130],["blue","#35558f",130],["burgundy","#5e1b26",100],["maroon","#5e1b26",100],["wine","#5e1b26",100],
-    ["brown","#5a3a24",110],["chocolate","#4a2e1e",100],["tan","#b08a5a",100],["camel","#b48a58",100],["rust","#a0522d",100],["red","#a8242c",120],["pink","#d98aa0",120],["orange","#d0652c",120],["mustard","#c79a2a",110],["yellow","#d9b23a",120],["purple","#5d3a7a",120],["lilac","#b3a0d0",110],["lavender","#b3a0d0",110]];
+    ["brown","#5a3a24",110],["chocolate","#4a2e1e",100],["tan","#b08a5a",100],["camel","#b48a58",100],["rust","#a0522d",100],["red","#a8242c",120],["pink","#d98aa0",120],["orange","#d0652c",120],["mustard","#c79a2a",110],["yellow","#d9b23a",120],["purple","#5d3a7a",120],["lilac","#b3a0d0",110],["lavender","#b3a0d0",110],
+    ["wheat","#b98c55",100],["honey","#b07a40",100],["taupe","#8b7a69",95],["seafoam","#a3d2c2",100],["azure","#4f8fc8",120],["thyme","#5d6a50",100],
+    ["dark grey","#4a4b4e",100],["dark gray","#4a4b4e",100],["light grey","#c4c4c2",100],["dark brown","#4a3022",100],["chambray","#7f97b5",110],["putty","#b9ad98",90],
+    ["chestnut","#7a4a2c",100],["espresso","#3b2a22",90]];
   /* (the colour after the last comma or dash is the colourway, so it is looked for first; brand names that contain a
      colour word do not count) */
   var cn0=((it&&it.name)||"").toLowerCase().replace(/pretty green|red wing|black diamond|white stuff|blue inc|red tape|black eyed|blue harbour|green jelly|whitestuff|brown's|grey's/g," "),cut9=Math.max(cn0.lastIndexOf(","),cn0.lastIndexOf(" - ")),best9=null;
   function findCol(str){var b=null;NAMED.forEach(function(c){var r9=new RegExp("\\b"+c[0]+"\\b").exec(str);if(r9&&(!b||r9.index<b.i||(r9.index===b.i&&c[0].length>b.c[0].length)))b={i:r9.index,c:c};});return b;}
   if(cut9>0)best9=findCol(cn0.slice(cut9));if(!best9)best9=findCol(cn0);
-  /* (no colour in the name: the colour the outfit records for the piece stands in) */
-  if(!best9&&p&&p.col&&COL[p.col])best9={i:0,c:[p.col,COL[p.col][0],135],pal:1};
+  /* (no colour in the name: the colourway the shop's link selects, as M&S's "?color=DARKINDIGO", Uniqlo's colour code or
+     a path ending "/dark-grey/". The stored photo is often the shop's first colourway, not the one linked) */
+  if(!best9){var uu=((it&&it.url)||"").toLowerCase(),um=/[?&](?:colou?r|colourway)=([^&#]+)/.exec(uu),uq=/uniqlo\.com.*[?&]colordisplaycode=(\d\d)/.exec(uu),uc="";
+    if(um)uc=decodeURIComponent(um[1]).replace(/[_+-]/g," ").replace(/mix$/,"").replace(/^(dark|light|mid|pale|deep|midnight)(?=[a-z])/,"$1 ");
+    else if(uq)uc=UQCOL[Math.floor(+uq[1]/10)]?UQCOL[Math.floor(+uq[1]/10)][+uq[1]%10]||"":"";
+    else{var ps=/\/([a-z]+(?:-[a-z]+)?)\/?$/.exec(uu.split("?")[0]);if(ps)uc=ps[1].replace("-"," ");}
+    if(uc&&!(p&&p.shape==="sunglasses")){var fu=findCol(uc);if(fu&&(um||uq||fu.c[0]===uc)){best9=fu;best9.pal=1;}}}   /* (a hue family at any depth: Uniqlo's "blue" Oxford is pale; a pair of sunglasses' colour is its lenses') */
+  /* (no colour in the name or the link: the colour the outfit records for the piece stands in) */
+  if(!best9&&p&&p.col&&COL[p.col])best9={i:0,c:[p.col,COL[p.col][0],135],pal:1,out:1};
   D.nm=n;D.cn=cn0;D.pc=(p&&p.col)||"";D.shop=(it&&it.shop)||"";   /* (the name and the outfit's colour, for the colour reader's denim rule) */
-  D.colRef=best9&&!/print|pattern|stripe|check|camo|floral|flower|tie[- ]?dye|multi|aop|all[- ]?over|graphic|colour[- ]?block|two[- ]tone|contrast|paisley|leopard|geo\b|tropical|hawaiian/.test(cn0)?{w:best9.c[0],hex:best9.c[1],tol:best9.c[2],pal:best9.pal}:null;
+  D.colRef=best9&&!/print|pattern|stripe|check|camo|floral|flower|tie[- ]?dye|multi|aop|all[- ]?over|graphic|colour[- ]?block|two[- ]tone|contrast|paisley|leopard|geo\b|tropical|hawaiian/.test(cn0)?{w:best9.c[0],hex:best9.c[1],tol:best9.c[2],pal:best9.pal,out:best9.out}:null;
   D.black=/\bblack\b|\bjet\b|\bonyx\b/.test(n);D.grey=/gr[ae]y|charcoal|marl|slate|graphite|\bash\b|steel|smoke/.test(n);
   /* a second colour named in the listing ("white and black", "navy with white trim") */
   var CW={black:"#1e1d20",white:"#f2efe8",navy:"#1f2a44",cream:"#efe6d2",ecru:"#ece3cf",grey:"#8a8a8a",gray:"#8a8a8a",red:"#a8242c",green:"#2f5a3a",blue:"#2f5aa8",burgundy:"#5e1b26",brown:"#5a3a24",tan:"#b08a5a",yellow:"#d9b23a",orange:"#d0652c",pink:"#d98aa0",gold:"#c49a3a",silver:"#b8bcc0",khaki:"#8a7f55",olive:"#5a5a32",stone:"#c8bea8",beige:"#d4c4a4"};
@@ -2112,6 +2127,18 @@ function readLook(im,shape,DW){
   var FEETs=FEET[shape],LOWs=LOWER[shape],UPs=UPPER[shape],open=UPs&&(LAYER[shape]===2||shape==="cardigan");
   var R=FEETs?[0.12,0.88,0.1,0.62]:LOWs?(shape==="shorts"?[0.18,0.82,0.18,0.72]:[0.2,0.8,0.32,0.8]):/^(cap|bcap|beanie|bucket)$/.test(shape)?[0.2,0.8,0.05,0.4]:UPs?(open?[0.12,0.36,0.22,0.72]:[0.3,0.7,0.2,0.62]):[0.2,0.8,0.2,0.8];
   var r0=bx[0]+Math.floor(R[0]*gw),r1=bx[0]+Math.ceil(R[1]*gw),t0=by[0]+Math.floor(R[2]*gh),t1=by[0]+Math.ceil(R[3]*gh);
+  /* trousers on a model: his top fills the upper part of the photo (a hoodie, a jacket's hem), and in a cropped shot the
+     trousers are only its lower third. Down the figure each row's commonest colour is found (in the middle columns;
+     rows of cloth across the whole photo are a studio floor and are left out), the rows are split into bands where the
+     colour changes, and the lowest band long enough to be trousers is read. A check or print breaks into short bands
+     and is read as before. */
+  if(LOWs&&shape!=="shorts"){var rowC=[],segs=[],cur=null;
+    for(j=by[0];j<=by[1];j++){var full=0,bb={},bst=null,nn=0;for(i=0;i<W;i++)if(!M[j*W+i])full++;
+      if(full<W*0.88)for(i=r0;i<r1;i++){k=j*W+i;if(M[k])continue;var v=px(i,j),kk=(v[0]>>5)+"_"+(v[1]>>5)+"_"+(v[2]>>5),b=bb[kk]||(bb[kk]={n:0,r:0,g:0,b:0});b.n++;b.r+=v[0];b.g+=v[1];b.b+=v[2];nn++;if(!bst||b.n>bst.n)bst=b;}
+      rowC.push(bst&&nn>=4?[bst.r/bst.n,bst.g/bst.n,bst.b/bst.n]:null);}
+    rowC.forEach(function(c,ri){if(!c){cur=null;return;}if(cur&&dist(c,cur.m)<60){cur.n++;cur.j1=ri;cur.m=cur.m.map(function(v,h){return v+(c[h]-v)/cur.n;});}else{cur={j0:ri,j1:ri,n:1,m:c.slice()};segs.push(cur);}});
+    var lo=null;segs.forEach(function(sg){if(sg.j1-sg.j0+1>=gh*0.2&&(!lo||sg.j1>lo.j1))lo=sg;});
+    if(lo&&segs.length>1&&lo.j0>gh*0.25){t0=by[0]+lo.j0+Math.round((lo.j1-lo.j0)*0.08);t1=by[0]+lo.j1-Math.round((lo.j1-lo.j0)*0.08);}}
   var use=[],skinN=0;for(j=t0;j<t1;j++)for(i=r0;i<r1;i++){k=j*W+i;if(M[k]===0)use.push(px(i,j));else if(M[k]===2)skinN++;}
   if(use.length<25)return null;
   /* main colour: the commonest group, its darker middle (shop lighting reads light); a second colour well away from it */
@@ -2300,6 +2327,23 @@ function readLook(im,shape,DW){
       function cmAt(x,y){var gx3=Math.max(0,Math.min(GX-1.001,x/CS-0.5)),gy3=Math.max(0,Math.min(GY-1.001,y/CS-0.5)),x0=Math.floor(gx3),y0=Math.floor(gy3),fx3=gx3-x0,fy3=gy3-y0,x1=Math.min(GX-1,x0+1),y1=Math.min(GY-1,y0+1);
         return (cmb[y0*GX+x0]*(1-fx3)+cmb[y0*GX+x1]*fx3)*(1-fy3)+(cmb[y1*GX+x0]*(1-fx3)+cmb[y1*GX+x1]*fx3)*fy3;}   /* (smoothly between cells, so no blocks show) */
       for(yy2=0;yy2<FH;yy2++)for(xx2=0;xx2<FW;xx2++){var q9=(yy2*FW+xx2)*4,f9=Math.max(0.7,Math.min(1.45,gmn/cmAt(xx2,yy2)));FD[q9]=Math.min(255,FD[q9]*f9);FD[q9+1]=Math.min(255,FD[q9+1]*f9);FD[q9+2]=Math.min(255,FD[q9+2]*f9);}
+      /* (and the creases of a crumpled flat-lay: the cloth's own shading at the scale of a fold is mostly taken out.
+         Only pixels in the cloth's own colour are touched, so a contrast pocket, a badge or a print keeps every pixel, and
+         fine detail (stitching, a pocket's edge) stays, being smaller than the fold scale) */
+      var plainFr=(function(){var cn=function(r,g,b){var t=r+g+b+3;return [r/t,g/t];},c1n=cn(m[0],m[1],m[2]),dk=Math.max(m[0],m[1],m[2])<70,
+          mine=function(q){if(FD[q+3]<128)return false;var r=FD[q],g=FD[q+1],b=FD[q+2];if(dk)return Math.max(r,g,b)<110;var n2=cn(r,g,b);return Math.abs(n2[0]-c1n[0])<0.06&&Math.abs(n2[1]-c1n[1])<0.06;},
+          CF=4,GXf=Math.ceil(FW/CF),GYf=Math.ceil(FH/CF),fs=new Float32Array(GXf*GYf),fn=new Float32Array(GXf*GYf),tot=0,tn=0;
+        for(var y=0;y<FH;y++)for(var x=0;x<FW;x++){var q=(y*FW+x)*4;if(!mine(q))continue;var l=0.3*FD[q]+0.59*FD[q+1]+0.11*FD[q+2],c=Math.floor(y/CF)*GXf+Math.floor(x/CF);fs[c]+=l;fn[c]++;tot+=l;tn++;}
+        var opq=0;for(var q0=0;q0<FD.length;q0+=4)if(FD[q0+3]>=128)opq++;
+        if(tn<FW*FH*0.2)return false;var mean=tot/tn,RF=Math.max(1,Math.round(GXf*0.05)),fb=new Float32Array(GXf*GYf);
+        for(var gy=0;gy<GYf;gy++)for(var gx=0;gx<GXf;gx++){var s6=0,n6=0;for(var dy=-RF;dy<=RF;dy++)for(var dx=-RF;dx<=RF;dx++){var yy=gy+dy,xx=gx+dx;if(yy<0||xx<0||yy>=GYf||xx>=GXf)continue;s6+=fs[yy*GXf+xx];n6+=fn[yy*GXf+xx];}fb[gy*GXf+gx]=n6?s6/n6:mean;}
+        for(y=0;y<FH;y++)for(x=0;x<FW;x++){var q2=(y*FW+x)*4;if(!mine(q2))continue;var gx2=Math.min(GXf-1.001,Math.max(0,x/CF-0.5)),gy2=Math.min(GYf-1.001,Math.max(0,y/CF-0.5)),x0=Math.floor(gx2),y0=Math.floor(gy2),x1=Math.min(GXf-1,x0+1),y1=Math.min(GYf-1,y0+1),ax=gx2-x0,ay=gy2-y0,
+            lm=(fb[y0*GXf+x0]*(1-ax)+fb[y0*GXf+x1]*ax)*(1-ay)+(fb[y1*GXf+x0]*(1-ax)+fb[y1*GXf+x1]*ax)*ay,l2=0.3*FD[q2]+0.59*FD[q2+1]+0.11*FD[q2+2]+1,f=Math.max(0.55,Math.min(1.7,(l2-(lm-mean)*0.85)/l2));
+          FD[q2]=Math.min(255,FD[q2]*f);FD[q2+1]=Math.min(255,FD[q2+1]*f);FD[q2+2]=Math.min(255,FD[q2+2]*f);}
+        /* (nothing but folds to show: all but a sliver of the cloth is its own colour, and no small mark stands out (a
+           logo, a badge, a pocket in contrast, a tipped collar or the contrast panel of a sleeve)) */
+        var odd=0;for(var y5=0;y5<FH;y5+=2)for(var x5=0;x5<FW;x5+=2){var q5=(y5*FW+x5)*4;if(FD[q5+3]<128||mine(q5))continue;var l5=0.3*FD[q5]+0.59*FD[q5+1]+0.11*FD[q5+2];if(Math.abs(l5-mean)>38)odd++;}
+        return opq>0&&tn>opq*0.975&&odd<opq/4*0.004;})();
       /* a folded shirt in its packaging, or a photo the background flood ate into, has holes in the middle: not used */
       var hole=0,hn=0;for(yy2=Math.round(FH*0.1);yy2<FH*0.9;yy2+=2)for(xx2=Math.round(FW*0.2);xx2<FW*0.8;xx2+=2){hn++;if(LUm[yy2*FW+xx2]<0)hole++;}
       /* and one worn by a model with other clothes in shot (a tee under an open overshirt, jeans, hands): much of
@@ -2341,13 +2385,20 @@ function readLook(im,shape,DW){
               for(var d5=0;d5<4;d5++){var xn=x5+[1,-1,0,0][d5],yn=y5+[0,0,1,-1][d5];if(xn<0||yn<y0s||xn>=FW||yn>=FH)continue;var kn=yn*FW+xn,qn=kn*4;
                 if(FD[qn+3]>0&&dist([FDo[qn],FDo[qn+1],FDo[qn+2]],m)>45)grow.push(kn);}}
             grow.forEach(function(kn){var qn=kn*4;FD[qn+3]=0;FD[qn]=m[0];FD[qn+1]=m[1];FD[qn+2]=m[2];seen[kn]=1;});}})();
-        fx.putImageData(fd,0,0);L.front={cv:fc,url:fc.toDataURL("image/png"),ar:fw2/fh2};}}}
+        /* (a plain woven shirt's front, all of it the cloth's own colour, adds only the creases of a flat-lay: the 3D draws its
+           own placket, buttons and pocket. Kept when it shows something else: a contrast pocket, a badge, a print; and
+           for knits and tees, whose fronts carry tipping, panels and ribs) */
+        if(!(plainFr&&/^(shirt|sshirt)$/.test(shape)&&L.pat==="plain"&&!L.decal&&!DW.graphic)){fx.putImageData(fd,0,0);L.front={cv:fc,url:fc.toDataURL("image/png"),ar:fw2/fh2};}}}}
   /* the sleeves, where a flat photo shows them in another colour (raglan, colour-block, two-tone) */
   if(UPs&&!open&&!model){var sl=[];[[0.02,0.14],[0.86,0.98]].forEach(function(xr){var a3=[0,0,0],c6=0,tot=0;for(j=by[0]+Math.round(gh*0.12);j<by[0]+gh*0.32;j++)for(i=bx[0]+Math.round(gw*xr[0]);i<bx[0]+gw*xr[1];i++){tot++;if(M[j*W+i])continue;var pv2=px(i,j);a3[0]+=pv2[0];a3[1]+=pv2[1];a3[2]+=pv2[2];c6++;}
       if(c6>tot*0.45)sl.push(a3.map(function(v){return v/c6;}));});
     if(sl.length===2&&dist(sl[0],sl[1])<45&&dist(sl[0],m)>65&&dist(sl[1],m)>65)L.slv=hx(sl[0].map(function(v){return 255*Math.pow(v/255,1.12);}));}
   /* the listing's named colour wins when the photo reading is far from it (the photo shows another colourway, a model
      in shot, or skin and background through a mesh); the photo's own front and swatch are then not trusted either */
+  /* (the outfit's word stands in for a name with no colour only for legwear on a model shot, where the photo is mostly
+     his top; a product shot, or a top on a model, is read as it is: outfit words are often a generator's guess, and
+     "grey" is what it writes when it has none) */
+  if(DW.colRef&&DW.colRef.out&&!(L.model&&LOWs))DW=Object.assign({},DW,{colRef:null});
   if(DW.colRef){var cr9=[parseInt(DW.colRef.hex.substr(1,2),16),parseInt(DW.colRef.hex.substr(3,2),16),parseInt(DW.colRef.hex.substr(5,2),16)],c19=[parseInt(L.c1.substr(1,2),16),parseInt(L.c1.substr(3,2),16),parseInt(L.c1.substr(5,2),16)];
     /* (a hue family, as green or blue or brown, agrees when the photo has that hue at any depth; grey at any depth of
        neutral; the rest by how far the colours are apart) */
@@ -2355,7 +2406,7 @@ function readLook(im,shape,DW){
     var hs9=hsl9(c19),hr9=hsl9(cr9),fam=/^(green|blue|red|pink|orange|yellow|purple|teal|mint|lilac|lavender|sage|light blue|sky blue|dark green|brown|tan|camel|rust|mustard|chocolate|army green|forage green|khaki green|olive green|bottle green|forest green|sage green|mint green|deep teal|royal blue|ocean blue)$/.test(DW.colRef.w)||(DW.colRef.pal&&/^(burgundy|olive|indigo|navy)$/.test(DW.colRef.w)),agree;
     if(/^(grey|gray)$/.test(DW.colRef.w))agree=hs9[1]<0.2&&hs9[2]>0.12&&hs9[2]<0.86;
     else if(fam){var dh=Math.abs(hs9[0]-hr9[0]);dh=Math.min(dh,360-dh);agree=hs9[1]>0.08&&dh<(DW.colRef.w==="green"?105:38)&&Math.abs(hs9[2]-hr9[2])<(DW.colRef.pal?0.58:0.42);}
-    else agree=dist(c19,cr9)<=DW.colRef.tol;
+    else agree=dist(c19,cr9)<=DW.colRef.tol&&!(/^(black|white|charcoal|(dark |light )?gr[ae]y)$/.test(DW.colRef.w)&&Math.max(c19[0],c19[1],c19[2])-Math.min(c19[0],c19[1],c19[2])>45);   /* (a neutral name wants a neutral photo: dark red is near dark grey by distance alone) */
     if(!agree){L.c1p=L.c1;L.c1=DW.colRef.hex;L.named=DW.colRef.w;delete L.front;delete L.slv;if(!(DW.stripe||DW.check||DW.print)){L.pat="plain";delete L.swCv;delete L.swatch;}if(L.c2&&dist([parseInt(L.c2.substr(1,2),16),parseInt(L.c2.substr(3,2),16),parseInt(L.c2.substr(5,2),16)],cr9)<60)L.c2="";}
     /* (navy and indigo photograph nearly black under studio light, and then drew as black: a reading darker than the
        named colour is taken halfway back toward it, so a navy suit stays navy; denim keeps its own rule below) */
@@ -2448,12 +2499,18 @@ function pieceLook(p0){var q=Object.assign({},p0);if(p0.fixed){q.look=null;retur
   if(F.col2!=null){q.col2=F.col2;L.c2=F.col2;}
   if(F.pat){L.pat=F.pat;if(F.pat==="plain"){delete L.swatch;delete L.swCv;delete L.front;}}
   if(F.per)L.per=F.per;if(F.duty)L.duty=F.duty;
+  /* (a square of the cloth cut from a clearer product image, repeated as it is, at "per" of the garment's length) */
+  if(F.swatch){L.pat="print";L.swatch=F.swatch;delete L.swCv;L.swPer=F.per||0.12;L.wrap=true;delete L.front;delete L.decal;var swi=swImg(F.swatch);if(swi.complete&&swi.naturalWidth)L.swCv=swi;}
   if(F.front===false)delete L.front;if(F.decal===false)delete L.decal;
   L.fix=1;q.look=L;return q;}
+/* a correction's square of cloth (fixes.json "swatch"), loaded once; drawing waits for it with the photo readings */
+var SWIMG={};function swImg(u){var im=SWIMG[u];if(!im){im=new Image();im.src=u;SWIMG[u]=im;}return im;}
 function trueFor(pieces,cb){
   var jobs=[],seen={};
   (pieces||[]).forEach(function(p){
-    var it=byId[p.item];if(!it||p.fixed||seen[p.item]||has(TRUE,p.item)||TRUEQ[p.item]||!hasPh(it))return;
+    var it=byId[p.item],F0=it&&it.fix;
+    if(F0)[F0.swatch].concat(F0.shapes?Object.keys(F0.shapes).map(function(k){return F0.shapes[k].swatch;}):[]).forEach(function(u){if(!u||seen["sw:"+u])return;var im=swImg(u);if(im.complete&&im.naturalWidth)return;seen["sw:"+u]=1;
+      jobs.push(new Promise(function(done){im.addEventListener("load",function(){done(1);});im.addEventListener("error",function(){done(0);});}));});if(!it||p.fixed||seen[p.item]||has(TRUE,p.item)||TRUEQ[p.item]||!hasPh(it))return;
     seen[p.item]=1;TRUEQ[p.item]=1;
     jobs.push(new Promise(function(done){getPh(p.item,function(src){if(!src){TRUE[p.item]="";done(0);return;}sampleLook(src,p.shape,descOf(it,p)).then(function(L){LOOK[p.item]=L||null;TRUE[p.item]=L?L.str:"";done(L?1:0);});});}));
   });
@@ -2484,6 +2541,7 @@ function normFix(f){if(!f||typeof f!=="object")return null;var o={},hx=/^#[0-9a-
   if(/^(plain|hstripe|vstripe|check|print|argyle)$/.test(f.pat||"")){o.pat=f.pat;n++;}
   ["per","duty"].forEach(function(k){var v=Number(f[k]);if(v>0&&v<1){o[k]=v;n++;}});
   ["front","decal"].forEach(function(k){if(f[k]===false){o[k]=false;n++;}});
+  if(typeof f.swatch==="string"&&/^data:image\/(jpeg|png);base64,/.test(f.swatch)&&f.swatch.length<=16000){o.swatch=f.swatch;n++;}
   /* (a set sold as one listing and worn as two pieces: corrections for one garment shape only) */
   if(f.shapes&&typeof f.shapes==="object"){var sh={},m=0;Object.keys(f.shapes).forEach(function(k){var sub=normFix(f.shapes[k]);if(sub&&/^[a-z]+$/.test(k)){delete sub.shapes;sh[k]=sub;m++;}});if(m){o.shapes=sh;n++;}}
   return n?o:null;}
@@ -3796,7 +3854,7 @@ function make3Dcore(pieces){
   /* the fitted piece's own reach round his neck (for laying its collars on it) */
   function ownNeck(FT){if(FT.ownN)return FT.ownN;var own=fmNew("N",1.38,1.66,0.005,96),a=[0,0,0],b=[0,0,0],c=[0,0,0],g=FT.geo,pa=g.attributes.position.array,ix=g.index.array;
     for(var t=0;t<ix.length;t+=3){var i0=ix[t]*3,i1=ix[t+1]*3,i2=ix[t+2]*3;if(Math.max(pa[i0+1],pa[i1+1],pa[i2+1])<1.38)continue;fmCoord(own,pa[i0],pa[i0+1],pa[i0+2],a);fmCoord(own,pa[i1],pa[i1+1],pa[i1+2],b);fmCoord(own,pa[i2],pa[i2+1],pa[i2+2],c);
-      if(Math.hypot(a[1],a[2])>0.16||Math.hypot(b[1],b[2])>0.16||Math.hypot(c[1],c[2])>0.16)continue;fmTri(own,a,b,c);}
+      if(Math.hypot(a[1],a[2])>0.105||Math.hypot(b[1],b[2])>0.105||Math.hypot(c[1],c[2])>0.105)continue;fmTri(own,a,b,c);}   /* (the neck only: at the sides the tops of his shoulders are as high as the neckline, and counting them pushed a neckband or collar out over the shoulder in a flat tab) */
     FT.ownN=own;return own;}
   function collarSnap(list,keep){if(!keep||!keep.userData.fit)return;var FT=keep.userData.fit,own=ownNeck(FT);
     var o=[0,0,0],v=new T.Vector3();list.forEach(function(me){if(me===keep||me.userData.noOcc||!me.geometry||!me.geometry.attributes||me.isInstancedMesh)return;me.updateMatrixWorld(true);
@@ -3840,7 +3898,7 @@ function make3Dcore(pieces){
       return D>0?(-B+Math.sqrt(D))/(2*A):nk[1];}
     function at(y,an,r){return [Math.sin(an)*r,y,zc0+Math.cos(an)*r];}
     for(k=0;k<=K;k++){var f=k/K,row=[];C.forEach(function(c){if(!k){row.push([c.x,c.y,c.z,c.r]);return;}var y=c.y+o.h*f,rn=neckR(y,c.an),rk=c.r+(rn+0.004-c.r)*o.lean*f+(o.flare||0)*f*f;
-        var P=at(y,c.an,Math.max(rk,rn+0.005));for(var it=0;it<2;it++){var q2=[0,0,0];fmCoord(OCC.N,P[0],P[1],P[2],q2);var a2=Math.atan2(q2[1],q2[2]),r2=Math.hypot(q2[1],q2[2]),oc=Math.max(fmGet(OCC.N,y,a2),fmGet(OCC.N,y+0.006,a2),fmGet(OCC.N,y-0.006,a2)),bn=fmGet(fitMaps().N,y,a2),need=Math.max(oc>0?oc+0.003:0,bn>0?bn+0.004:0);
+        var P=at(y,c.an,Math.max(rk,rn+0.005));for(var it=0;it<2;it++){var q2=[0,0,0];fmCoord(OCC.N,P[0],P[1],P[2],q2);var a2=Math.atan2(q2[1],q2[2]),r2=Math.hypot(q2[1],q2[2]),oc=Math.max(fmGet(OCC.N,y,a2),fmGet(OCC.N,y+0.006,a2),fmGet(OCC.N,y-0.006,a2)),bn=fmGet(fitMaps().N,y,a2),need=Math.max(oc>0?oc+0.003:0,bn>0?Math.min(bn+0.004,c.r+0.01):0);   /* (low on his neck at the sides his body map is the slope of his shoulders, which the neckline already lies over: pushed out to it, a crew neckband ran out over each shoulder in a flat tab) */
           if(need>r2){var d2=need-r2;rk+=d2;P=at(y,c.an,rk);}}P.push(rk);row.push(P);});
       /* (each point is pushed out on its own to stand on what is under it, so a band followed the outline of the collar
          beneath, dipping into its front opening and showing it through teeth on the looser fits; the row is evened out
@@ -4371,6 +4429,11 @@ function make3Dcore(pieces){
       if(s0==="polo"){var k2=NK(1.548);band(1.545,0.0028,k2[1]+0.0105+e*0.4,k2[2]+0.0105+e*0.4,tm,{z:k2[4],seg:48,gap:0.7});band(1.538,0.0022,k2[1]+0.0118+e*0.4,k2[2]+0.0118+e*0.4,tm,{z:k2[4],seg:48,gap:0.7});}
       else{var k3=NK(1.528);band(1.526,0.0028,k3[1]+0.0145+e*0.5,k3[2]+0.0145+e*0.5,tm,{z:k3[4],seg:56,dipAll:0.024});band(1.519,0.0022,k3[1]+0.0165+e*0.5,k3[2]+0.0165+e*0.5,tm,{z:k3[4],seg:56,dipAll:0.024});}
       if(/^(polo|tee|sshirt)$/.test(s0)&&!/long/.test(nm(p)))[-1,1].forEach(function(sd){tgt=armG[sd];var a2=AT(1.25),se2=e*0.55+0.004;[1.252,1.259].forEach(function(yy,ii){band(yy,ii?0.0022:0.0028,a2[1]+0.0105+se2,a2[2]+0.0105+se2,tm,{x:sd*a2[3],z:a2[4]});});tgt=man;});}
+    /* a ringer: one wide contrast band round the neck and round each sleeve end, in the second colour (white on dark
+       cloth, black on light when the listing and photo give none) */
+    if(DS.ringer&&!DS.tipped&&/^(tee|sshirt)$/.test(s0)){var rc=p.col2&&p.col2!==p.col?p.col2:(cc(p.col)[1]?"#f2efe8":"#1f2026"),rm=mat(rc,0.85),k4=NK(1.528);
+      band(1.522,0.0085,k4[1]+0.0145+e*0.5,k4[2]+0.0145+e*0.5,rm,{z:k4[4],seg:56,dipAll:0.024});
+      if(!/long/.test(nm(p)))[-1,1].forEach(function(sd){tgt=armG[sd];var a3=AT(1.25),se3=e*0.55+0.004;band(1.256,0.0075,a3[1]+0.0108+se3,a3[2]+0.0108+se3,rm,{x:sd*a3[3],z:a3[4]});tgt=man;});}
     /* a henley's short placket, or a grandad's */
     if(!proj&&(DS.neck==="henley"||DS.collar==="band")&&/^(tee|jumper|shirt|sshirt|polo)$/.test(s0)){var pz=[];for(var py=1.5;py>=1.39;py-=0.02)pz.push([0,py,surfZ(py,0,0)+0.0015]);tube(pz,0.004,m,8);
       [1.48,1.45,1.42].forEach(function(by){add(new T.SphereGeometry(0.0035,8,6),mat(shade(cc(p.col)[0],0.75),0.5),0,by,surfZ(by,0,0)+0.004);});}
