@@ -1717,6 +1717,44 @@ started.
 outfits with corrected pieces and all 57 hat outfits; CI on all five body types for the changed outfits and the gate
 list.
 
+## 2zzzzzzz. Emma's eight comments of 8 October, the rule behind each, and a guard for each (8 Oct 2026)
+
+Each comment was traced to the rule that drew a whole kind wrongly, fixed for every item of that kind, and given an
+automatic check so it cannot come back unnoticed (CONTRIBUTING.md, "Lessons learned"). Every check was run on the
+build before the fix, where it must flag the fault, and after, where it must pass.
+
+| Comment | Cause | Fix | Guard |
+| --- | --- | --- | --- |
+| Fair Isle jumper drawn without its pattern | the listing's "camel" (the yoke only) overrode the navy photo, and the reader refused a front that is mostly not camel | `named:false` and `front:true` in `data/fixes.json`; the reader honours both | specs check refuses any `unseen` piece; all 18 were looked at: 9 now drawn with their stripes, checks or prints, 9 confirmed plain (tonal, pin-spot, trim only) |
+| Shirt collar over the scarf at the back | the scarf cleared the tops' bodies, not their collars, and only straight back and front; its lower edge sank into the jumper's shoulders | every collar is measured too, in 24 directions round the neck; the lower edge rests on the shoulders; the loop narrows gently going up (the figure is warped to his proportions after it is built, which carried a steeply narrowing neck warmer inside a padded collar) | `under` in `check_3d.js` |
+| Gaps in the knit jacket show the shirt as it turns | the tee's photo front had a depth offset that grows at glancing angles, so it came through the jacket as dark streaks (the check's ID pass had no offsets and never saw it); a slit along the open zip tape | a constant small offset for photo fronts and prints; the tape laid over the edges | `offset` in `check_3d.js`; its ID pass keeps each piece's depth settings |
+| Sunglasses not the Wellington shape | unknown frame names fell through to a flat box | frames drawn from their named shape (round, oval, Wellington, square, wayfarer, browline, aviator, wrap), acetate or wire, sized to his face; wraps a curved shield with a nose cut-out | `build_site.py` stops on a frame shape the model cannot draw; specs record each pair's frame |
+| Jacket and shirt stand out too far | knits hung straight from the chest to the hem | a ribbed hem draws in round his hips; outer layers 5 mm less ease | (look at the side view) |
+| Trousers stretched, crotch sticks out | the legs were pressed together down to the shin, and the hip cloth's inner thighs followed his body between the parted legs | the press works only just under the crotch; the legs part below it; the hip cloth follows the legs | `legs` in `check_3d.js` |
+| Legs stuck together at the thighs | as above | as above | `legs` |
+| A baseball cap, not a flat cap | a tall dome stopping at the band, its peak standing out in front | a low top, highest over the back of his head, carried forward to a lip over a short peak; herringbone cloth | `form` in `check_3d.js` (how far the peak reaches past the crown) |
+
+**Checked for the same faults across the catalogue**
+- *Named colour over the photo* (the Fair Isle jumper's cause): all 137 pieces whose listing's colour word won over a
+  photo that disagreed (`"src": "name"` in `data/specs.json`) were put on contact sheets beside their photos. 37 were
+  wrong and now have entries in `data/fixes.json`: generic words drawn as the wrong shade (a pale sage "green" drawn
+  forest green, a sky-blue "blue" polo drawn mid blue, "stone" drawn pale on tan and shale cloth), caps and a tee whose
+  named colour is only the peak or the sleeves (`named: false`; a new `slv` field gives raglan sleeves their own
+  colour), and four patterns drawn plain (stripes, a patchwork print, knitted chains). The other 100 are right: mostly
+  shop photos of another colourway than the one linked, where the named colour is the one he would buy.
+- *Patterns named but drawn plain*: all 18 `unseen` pieces (see the table above).
+- *A pick filed as the wrong kind of clothing*: a denim bucket hat was filed under trousers and worn as the trousers
+  of two outfits. It is now an accessory, the two outfits wear dark jeans, and `build_site.py` stops on a hat drawn as
+  anything else and notes any hat filed under another kind.
+- *Picks that are not his*: 37 women's picks had come in by routes other than the shop sweeps (whose filter already
+  refuses them): 30 Jack Wolfskin "W" lines, "Women" in Sergio Tacchini and Fila titles, River Island cinch-back
+  pieces, an adidas "Japan W". Removed; `build_site.py` now stops on a women's listing.
+- *Size check on things that are not tops*: socks, boxers, slippers and shorts share categories with tops and were
+  given a chest chart's line; it now shows on upper-body garments only (2,585 picks). 20 more shops' charts were read
+  (81 in all).
+- *Sunglasses*: all seven pairs drawn in their named frame; one with no shape word (A.Kjaerbede Noah) is now described
+  as slim rectangular silver with pale blue lenses, as its photo shows.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

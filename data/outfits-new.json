@@ -78,8 +78,8 @@
   "look": "men blue shirt black trousers black shoes outfit"
  },
  "g-quiet-03": {
-  "name": "Brown shirt and indigo trousers",
-  "note": "3 pieces for £56.44, £108 below full price.",
+  "name": "Brown shirt and indigo jeans",
+  "note": "3 pieces for £62.45, £82 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -90,9 +90,9 @@
    },
    {
     "col": "indigo",
-    "item": "slamcity-passport-workers-club-denim-bucket-overdye-choc",
+    "item": "mt-jeans-straight",
     "shape": "trousers",
-    "what": "Indigo trousers"
+    "what": "Dark wash jeans"
    },
    {
     "col": "navy",
@@ -108,11 +108,11 @@
   "wx": [
    "mild"
   ],
-  "look": "men brown shirt indigo trousers navy shoes outfit"
+  "look": "men brown shirt indigo jeans navy shoes outfit"
  },
  "g-quiet-04": {
-  "name": "Brown jacket and indigo trousers",
-  "note": "5 pieces for £106.43, £274 below full price.",
+  "name": "Brown jacket and indigo jeans",
+  "note": "5 pieces for £105.24, £251 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -123,9 +123,9 @@
    },
    {
     "col": "indigo",
-    "item": "slamcity-passport-workers-club-denim-bucket-overdye-choc",
+    "item": "pc-jeans-indigo",
     "shape": "trousers",
-    "what": "Indigo trousers"
+    "what": "Indigo jeans"
    },
    {
     "col": "brown",
@@ -153,7 +153,7 @@
   "wx": [
    "mild"
   ],
-  "look": "men brown shirt indigo trousers brown jacket camel trainers outfit"
+  "look": "men brown shirt indigo jeans brown jacket camel trainers outfit"
  },
  "g-quiet-05": {
   "name": "Navy jacket and indigo trousers",

@@ -243,6 +243,8 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    | --- | --- |
    | `col` | The main colour, `#rrggbb`, sampled from the cloth in the shop photo (not the shadows or highlights). It also drops the photo's front and sleeve colour, read from the same wrong reading. |
    | `col2` | The second colour (stripes, checks, trim), `#rrggbb`, or `""` for none. |
+   | `slv` | The sleeves' own colour, `#rrggbb`, when they differ from the body (raglan sleeves in another colour). |
+   | `named` | `false` when the colour the listing names is only part of the piece (a yoke, a peak, the sleeves): the photo is then read as it is. |
    | `pat` | `plain`, `hstripe` (across), `vstripe` (down), `check` or `print`. `plain` also drops a read swatch or front. |
    | `per` | Stripe or check spacing as a share of the garment's length, between 0 and 1 (a Breton is about 0.04). |
    | `duty` | How much of each stripe repeat is the second colour, between 0 and 1. |
@@ -368,8 +370,16 @@ shows it and in flat ID colours (one per piece, the body by region). It counts, 
 | `seethrough` | Where the background shows inside the clothes but his body would be there: a hole in the cloth, cloth sunk inside him, or skin cut away where no cloth covers it. | 12 |
 | `sunk` | The same at the outline of the figure (cloth sunk inside him at an edge, or a sleeve too short). His feet are left out: a shoe is a shell over the foot. | 60 |
 | `colour` | A plain piece whose rendered colour is far from its target (another hue, much too light or dark, or lost its colour). The target is the photo reading or the `data/fixes.json` colour. | — |
+| `under` | A scarf or snood with a top's collar over it: rays round the back and sides of his neck, over the scarf's top 9 cm, that meet a top and then the scarf just behind it. | 2 rays |
+| `legs` | Trousers whose legs are joined down the thighs: rays between his legs, front and back, from 15 to 30 cm below the crotch (higher up a heavier build's thighs meet), that meet the trousers instead of passing between them. | 2 |
+| `form` | A flat cap drawn as a baseball cap: its peak reaching more than 2 cm past the front of its crown (a flat cap's crown is carried forward over its peak; 0.7 cm now, 4.6 cm for the old dome). | 0 |
+| `offset` | An inner layer drawn over the piece worn over it because of a depth offset (a photo front or print laid on the cloth): the view is drawn with and without the offsets and compared. | 8 |
 
-`poke`, `holes` and `stray` are counted on the front, side and back views; `skin`, `seethrough` and `sunk` on all five.
+`poke`, `holes` and `stray` are counted on the front, side and back views (from three-quarters a gilet's armhole
+wraps round the sleeve coming out of it, which poke would misread); `offset` on all five, where it shows as the model
+turns; `skin`, `seethrough` and `sunk` on all five. `under`, `legs` and `form` are
+measured on the model itself with rays, not on the pictures. The ID pass draws each piece with its own depth settings,
+so what wins in the page's picture wins in the check.
 A count over its limit flags the outfit, and the flag names the part of him it is over ("front skin 40 (belly 30,
 hips 10)"). `report.json` in the output folder has every count; with `--debug` the ID image of each view is saved
 with the faults marked in red, and sunk cloth at the outline in yellow (`<id>-<view>-id.png`), next to the render.
@@ -493,3 +503,48 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
   from the front, the side and below.
 - **One item looking right is not proof.** Check every item of that kind with `multi.js`, and every outfit with
   `check_3d.js`.
+- **Eight comments on 8 October, and the guard each one now has.** Each traced to a rule, was fixed for every item of
+  its kind, and is now caught automatically:
+  - *A Fair Isle jumper drawn plain navy.* The listing's colour word (camel, the yoke only) overrode the photo, and
+    the reader refused the photo's front because most of it was not camel. `named:false` and `front:true` in
+    `data/fixes.json` say so for one item. Guard: the stored-specs check (`specs_diff.py --ci`) refuses any piece read
+    `unseen` (a pattern its listing names, drawn plain) until it has a `fixes.json` entry; all 18 such pieces were
+    looked at against their photos then.
+  - *A shirt collar over the scarf at the back.* The scarf was kept clear of the tops' bodies but not of their collars,
+    and only straight back and front. It now measures every top's collar too, all the way round. Guard: `under`.
+  - *Gaps in a knit jacket showing the shirt as it turns.* The tee's photo front was laid on with a depth offset that
+    grows as the cloth turns away, so at a glancing angle it came through the jacket as dark streaks; the ID pass of
+    the 3D check, drawn without offsets, never saw it. The photo front and chest prints now sit a constant hair off the
+    cloth (also a slit along the open zip's tape was closed). Guard: `offset`, and the ID pass keeps each piece's own
+    depth settings.
+  - *Wellington sunglasses drawn as two flat rectangles.* An unknown frame name fell through to a default box. Frames
+    are now drawn from their named shape (round, oval, Wellington, square, wayfarer, browline, aviator, wrap), in
+    acetate or wire as the listing says, sized to his face. Guards: `build_site.py` stops on a frame shape the model
+    cannot draw (cat-eye, hexagonal...) and checks the page still knows every frame word; the stored specs record each
+    pair's frame (`form`).
+  - *A jacket and jumper standing out from him.* Knits hung straight from the chest to the hem; a ribbed hem now
+    draws in round his hips, and outer layers have less ease. Look at the side view of any change to how tops hang.
+  - *Trousers stretched, the crotch sticking out, the legs stuck together down the thighs.* A step pressed the two
+    legs together all the way down to the shin; it now works only just under the crotch, the legs part below it, and
+    the hip cloth's inner thighs follow the legs rather than the body. Guard: `legs`.
+  - *A flat cap that looked like a baseball cap.* Its crown was a tall dome stopping at the band, with the peak
+    standing out in front of it; it is now a low top, highest over the back of his head and carried forward to a lip
+    over a short peak. Guard: `form`.
+  - *A scarf under a collar at the back.* Its loop is kept outside every top and collar round his neck, and its lower
+    edge now rests on top of his shoulders rather than sinking into a jumper's shoulders. Guard: `under`.
+- **The figure is warped to his proportions after the clothes are built** (`warpMan`: heights, the slope of his
+  shoulders, the depth of his torso). Anything placed by measuring against the clothes at build time can move
+  relative to them afterwards: the shoulder slope drops cloth 7 to 19 cm from the middle more than cloth by his
+  neck. A neck warmer that narrowed steeply above its wide band was carried down inside a padded jacket's collar
+  that way. Keep shapes that rest against other layers gently sloped, and check them on Dave as saved (his own
+  proportions), not only on the plain builds.
+- **A check that passes on the old code catches nothing.** Each guard above was run on the build before the fix (it
+  must flag the fault) and after (it must pass); two first attempts (a cap's height for its length, and poke on the
+  three-quarter views) passed the broken build and were replaced. Then run it on the other builds the pull-request
+  check uses (`--body slim|athletic|heavier|loose`) before pushing: on the heavier build a first legs rule flagged
+  thighs that meet (now measured lower down), and a "slit" count flagged a collar's tip in a neckline and a polo
+  collar laid over a gilet; narrowed until it passed correct outfits, it no longer caught the fault either, so it
+  was dropped. Do the same for any new check.
+- **Keep a test copy of the site separate from `docs/` while a long check runs.** `check_3d.js` serves the folder it
+  is given; rebuilding `docs/` under a running check mixes two versions. Build to a scratch folder
+  (`python3 tools/build_site.py --out /tmp/site`) and check that.

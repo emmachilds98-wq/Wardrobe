@@ -1,5 +1,5 @@
 {
- "_about": "Corrections to how an item looks on Dave's 2D drawing and 3D model, for shop photos the page reads wrongly. Keyed by item id (as in data/items*.json). Fields: col and col2 (#rrggbb, the main and second colour as the shop photo shows the cloth in daylight), pat (plain, hstripe, vstripe, check or print), per and duty (stripe spacing and stripe width, as shares of the garment's length), front:false (never lay the shop photo's own front on the garment), decal:false (no chest print or logo), why (what the shop photo shows, and what was read wrongly), checked (YYYY-MM-DD). tools/build_site.py refuses the build if an entry is malformed. See CONTRIBUTING.md, 'Correcting how an item looks'.",
+ "_about": "Corrections to how an item looks on Dave's 2D drawing and 3D model, for shop photos the page reads wrongly. Keyed by item id (as in data/items*.json). Fields: col and col2 (#rrggbb, the main and second colour as the shop photo shows the cloth in daylight), pat (plain, hstripe, vstripe, check or print), per and duty (stripe spacing and stripe width, as shares of the garment's length), front:false (never lay the shop photo's own front on the garment) or front:true (always lay it on, for a front the reader refuses because most of it is another colour, as a Fair Isle yoke), decal:false (no chest print or logo), named:false (the colour the listing names is only part of the piece, as a yoke or trim: the photo is read as it is), slv (#rrggbb, the sleeves' own colour, as raglan sleeves of another colour), why (what the shop photo shows, and what was read wrongly), checked (YYYY-MM-DD). tools/build_site.py refuses the build if an entry is malformed. See CONTRIBUTING.md, 'Correcting how an item looks'.",
  "sw-open-polo": {
   "col": "#2e2f45",
   "pat": "plain",
@@ -130,6 +130,341 @@
   "per": 0.016,
   "duty": 0.45,
   "why": "No shop photo is stored for this shirt; the listing is a 'washed Oxford shirt, blue and white stripe', which was drawn plain white (the outfit's colour word). A standard Oxford stripe: mid blue and white of about equal width.",
+  "checked": "2026-10-08"
+ },
+ "r7-tl-peric": {
+  "named": false,
+  "front": true,
+  "col": "#1d2133",
+  "pat": "plain",
+  "why": "A flat-lay of a quarter-zip: navy body and sleeves, a camel yoke and collar, a Fair Isle band across the chest and a camel hem band. The listing's 'camel' names only the yoke, so it overrode the photo and the jumper drew plain camel with no front. Now the photo's own front (yoke, band, hem) is laid on, and the rest is navy and plain, since the pattern is a band, not all over (named:false, front:true, col, pat).",
+  "checked": "2026-10-08"
+ },
+ "cernucci-cernucci-fluffy-intarsia-sweater-chocolate": {
+  "pat": "plain",
+  "why": "The intarsia is a big fluffy CERNUCCI logo across the back (the shop photo is of the back); the front and sleeves are plain chocolate knit, as drawn.",
+  "checked": "2026-10-08"
+ },
+ "hufworldwi-monogram-jacquard-zip-sweater-kn00485": {
+  "pat": "plain",
+  "why": "A flat-lay of a black knitted zip polo; the monogram jacquard is black on black and does not show, so plain black is right.",
+  "checked": "2026-10-08"
+ },
+ "lambrettac-paisley-field-jacket": {
+  "col": "#2e3c57",
+  "pat": "plain",
+  "why": "A flat-lay of a navy hooded field jacket with a tonal paisley a shade lighter than the ground: at the size it is drawn the paisley reads as the cloth's mottle, and a cut of it repeats the pocket flaps; the navy was read a little dark.",
+  "checked": "2026-10-08"
+ },
+ "ms-pyjamas": {
+  "shapes": {
+   "shirt": {
+    "pat": "plain",
+    "named": false
+   },
+   "trousers": {
+    "col": "#4f5e6d",
+    "col2": "#c9d3dc",
+    "pat": "print",
+    "per": 0.14,
+    "swatch": "data:image/jpeg;base64,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"
+   }
+  },
+  "why": "A model shot of the set: a plain navy henley top and blue-and-white checked shorts (the listing's 'striped' is not what the photo shows). The top drew right; the bottoms drew plain.",
+  "checked": "2026-10-08"
+ },
+ "r11-oliverbr-trousers": {
+  "col": "#c9cfdb",
+  "col2": "#eef0f4",
+  "pat": "vstripe",
+  "per": 0.012,
+  "duty": 0.5,
+  "why": "A model shot of pleated trousers in a fine pale blue and white seersucker stripe on a grey backdrop: too fine for the reader, they drew plain grey.",
+  "checked": "2026-10-08"
+ },
+ "r9-tm-tie": {
+  "pat": "plain",
+  "why": "A pink silk tie with a pin-spot too small to show at the size it is drawn; plain pink is right.",
+  "checked": "2026-10-08"
+ },
+ "routeone-carhartt-wip-snake-landon-pant-snake-camo-black-heavy-stone-w": {
+  "pat": "plain",
+  "why": "A model shot of black trousers; the snake camo is black on black and does not show, so plain black is right.",
+  "checked": "2026-10-08"
+ },
+ "savilerowc-grey-pinstripe-moccasin-slippers-msp751ceg": {
+  "pat": "plain",
+  "why": "Grey moccasin slippers with a fine pale pinstripe on the upper only, too small to show on the drawn slipper; plain grey is right.",
+  "checked": "2026-10-08"
+ },
+ "savilerowc-light-blue-pinpoint-cotton-slim-fit-stripe-formal-shirt-sin": {
+  "col": "#e4e9f1",
+  "col2": "#a9b8d2",
+  "pat": "vstripe",
+  "per": 0.02,
+  "duty": 0.25,
+  "why": "A folded formal shirt: white with fine light-blue stripes in pairs. The reader saw it as plain pale blue.",
+  "checked": "2026-10-08"
+ },
+ "savilerowc-white-cotton-classic-fit-printed-casual-shirt-5011whn": {
+  "col": "#d6d6e0",
+  "col2": "#3b3f5c",
+  "pat": "print",
+  "per": 0.06,
+  "swatch": "data:image/jpeg;base64,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",
+  "why": "A lifestyle shot of a white shirt covered in a small navy geometric print; it drew plain grey.",
+  "checked": "2026-10-08"
+ },
+ "tmlewin-the-non-iron-pique-striped-polo-dusky-blue": {
+  "col": "#b6c1ce",
+  "col2": "#eef1f4",
+  "pat": "hstripe",
+  "per": 0.022,
+  "duty": 0.45,
+  "why": "A flat-lay of a pique polo in fine dusky-blue and white stripes with a white collar: too fine for the reader, it drew plain.",
+  "checked": "2026-10-08"
+ },
+ "tmlewin-the-non-iron-pique-striped-polo-dusky-green": {
+  "col": "#c3c5ad",
+  "col2": "#eeefe6",
+  "pat": "hstripe",
+  "per": 0.022,
+  "duty": 0.45,
+  "why": "A flat-lay of a pique polo in fine dusky-green and white stripes with a white collar: too fine for the reader, it drew plain.",
+  "checked": "2026-10-08"
+ },
+ "tokyolaund-frewin-striped-ribbed-detail-bomber-jacket-in-stone-kensing": {
+  "pat": "plain",
+  "why": "A flat-lay of a plain stone bomber; the stripes are only on the ribbed collar, cuffs and hem, so the body is right plain.",
+  "checked": "2026-10-08"
+ },
+ "twistedtai-twisted-tailor-albon-navy-floral-flocked-short-sleeve-shirt": {
+  "col": "#1f1e30",
+  "col2": "#11101c",
+  "pat": "print",
+  "per": 0.2,
+  "swatch": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCABgAGADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD57u5BdxHzD86/dpNGVYYrgunLAgP6e1QyuGYCM7s+1W7JSEaIjJPOa7RFJIisvmO+5x39KtxTutws2PmFQSfJIR6GhZOaANP+0CLvzhwZBhz/AHaQobmRYbf5LcfNJJ/eNUN9aGmyqFZD1NAF5VAACnIHSnsfKXLED8aQHCgYFQXS29khe43PnkLmgZUuJ/PJCNkdzUVrHLdMViG7HUZqq9y87fuYioJ9aaqT2DNObhI8j5VBzk0XEbSQspwwKmiVjGhYDp2qnY6pPeMkcgBLd+9A1MQ3hR0JCnrnipuybsi3wSxoYkAb+I1PYxBHYjv1qjEn2aXA6HrWhB1JHTFMsz5eZHPvUC8yVYYbY5GbjDZ5qNIWJ+6ckZApk3JFXNWrRcSD9wx9wetJHGyqiMuGPIBqHdcrfIqRuQORj0oGbUkixIXb5QBzmsTVJGvyJY2JiHBFbF9B9pVIxwD9/wBqrXWnLcqEztAGBjjNAzKg1D7OjJFbkBhtOTmomneSBbfYgjHQFcn86unw7OGKmYDAyRnoKdD9ktkKRuspIxmk2BStJ/sc6PgsEPK+tTzrDds0wcRlj92oQAjyZHBpmM8DmpJsXJSrnINT2Uyg+Wep6GqO/jk0yCciXOcFen0poGzRmspJGCAjBOT7ipvsEsTh3ICAcNVy1lWaNZeM0t3M7x7eMelVcVjP1K4hW3Xy5AZU/iHpTLSXz7iKYZA24warvFcs7GO1R07EnrT4VuYGDyIqY52gdKLjNRbxGkkDAoidZD0+lTcYyORjIPrWRYWokvgLibMbNv254rdKLkgAbR0+lJjucxcrdXdyZHMijpgGkW1njmXbEXXPLLxiumZECk7QcDNUEt5LtjKxMSDoBxmoC5l6jBJE6BI2kLnA21VuIXR0hkR1d+mOorpmUMqgj7vQ1Uu5w0imREO3o2OaYGXdOWCHZtA7gdaqqQGqy7tIMHpVJ1McgUn73IoJsbukSr9lKlxnd0Jq5IwzhiBWTYwsbbdGyq2e9PZLnPzOje4qirmmjA8L+lMv96NFFgNHIPmA+9+FR2IbIDctT723juSXilPnR9vQ0CGG0t1bAWQY4GeorRRwIwM9BVHPlxqztliOaWe7W2UFkdwRn5aQy2TR7dvSqcV+j7S8MsKN0eQcVMt3HnvTSAJmC8VUZVmOCetT3CiRS6ngc1TBz7AU7AZ8fOc9arXpxcxj/Zqz0Y4qG7h3IJe6nHvWTYi9YAyIMkgZxxVuWIRPtBJAHequn3CeSJNuAOPxqy8wnh83pniqTGKtwtrJCx5jY/Of7pqtdXjJcTrCV2sfvDqaXzporaVWtFkif+IHn8aox4Ea8Y+pzVoRM93K6BSeg61CZpf+ejGlpvGaLDL/AM93phjeRmfOQvYY9KgW4QKBKJBIPvAdKdbXHlNnPSrzzwOn2gRo5x8wxyaAIopQ0ZZA+wdSasQRQzLnc2T6VTi1JXfy1ULFJwUxyPwq9bRiFyuOOxp3AynGHNRP8/yjrT5yRkiq0DHzOawsBbs2ezjEEyKyM27g5q7cOisuF2x9lFZ9w/79E2kgDORViWbzApYbQtWkBI5vUUlHiWNuoqjIvlAlmU/SrAc3TbdxUdOKs2lnAN5mXcq9z3rRAZ0itHtBVvnGRgU3YalupnkmyjYVThR7VYWwuGg83K0gKigbgG6E8/Sr6S+WzR2SRMgHJc4P4e9QizfjP40mbWZzFITAU5DJ1NJgJZrALvMquJCflyO9bCjrnrWXJC8cakSF4z91iOa0Ldi6KT6YqQP/2Q==",
+  "why": "A model shot of a navy short-sleeve shirt with a large darker flocked floral all over; it drew plain navy.",
+  "checked": "2026-10-08"
+ },
+ "universalw-navy-kennedy-stripe-duke-pant": {
+  "col": "#c6cad3",
+  "col2": "#8e98ab",
+  "pat": "vstripe",
+  "per": 0.012,
+  "duty": 0.18,
+  "why": "A flat-lay of pale blue-grey trousers with a fine darker stripe (the 'navy' is the stripe): too fine for the reader, they drew plain.",
+  "checked": "2026-10-08"
+ },
+ "uq-stripe-ls": {
+  "pat": "plain",
+  "why": "The shop photo for the colour linked is a close-up of a dark charcoal tee whose stripe is tonal and does not show; plain is right.",
+  "checked": "2026-10-08"
+ },
+ "80scasualc-patrick-finn-jacket-green": {
+  "col": "#b7bea6",
+  "why": "A model shot of an overshirt jacket in pale sage; the listing's plain 'green' drew it dark green.",
+  "checked": "2026-10-08"
+ },
+ "asos-twill-overshirt": {
+  "col": "#5c6150",
+  "why": "A model shot of a heavyweight twill overshirt in olive; the listing's 'khaki' drew it a yellow sand.",
+  "checked": "2026-10-08"
+ },
+ "blacks-columbia-mens-fuse-t-shirt-grey-447286": {
+  "col": "#c2c4c3",
+  "why": "A model shot of a light heather-grey tee; the listing's 'grey' drew it mid grey, and the reader caught his skin.",
+  "checked": "2026-10-08"
+ },
+ "millets-columbia-mens-fuse-t-shirt-grey-447286": {
+  "col": "#c2c4c3",
+  "why": "A model shot of a light heather-grey tee; the listing's 'grey' drew it mid grey, and the reader caught his skin.",
+  "checked": "2026-10-08"
+ },
+ "goodhoodst-purple-mountain-observatory-stinger-pant-cream": {
+  "col": "#a8976f",
+  "why": "A flat-lay of nylon trousers in a sandy khaki; the listing's 'cream' drew them near white.",
+  "checked": "2026-10-08"
+ },
+ "js-carhartt-singleknee": {
+  "col": "#6e605a",
+  "why": "A model shot of canvas trousers in a grey-brown; the listing's 'stone' drew them pale.",
+  "checked": "2026-10-08"
+ },
+ "js-lee-brooklyn": {
+  "col": "#81a0b8",
+  "why": "A model shot of straight jeans in a mid-light wash; the listing's 'dark wash' drew them dark navy.",
+  "checked": "2026-10-08"
+ },
+ "md-cc-harrington": {
+  "col": "#a8865f",
+  "why": "A model shot of a Harrington in tan; the listing's 'stone' drew it pale.",
+  "checked": "2026-10-08"
+ },
+ "ms-gant-oxford-shirt-taupe": {
+  "col": "#cbbfae",
+  "why": "A model shot of a light stone Oxford shirt with a dark tie; the listing's 'taupe' drew it dark brown-grey and the reader took the tie.",
+  "checked": "2026-10-08"
+ },
+ "mt-chore-stone": {
+  "col": "#9c8662",
+  "why": "A model shot of a canvas chore jacket in a khaki tan; the listing's 'stone' drew it pale.",
+  "checked": "2026-10-08"
+ },
+ "mt-jeans-vintage": {
+  "col": "#2f4a62",
+  "why": "A model shot of relaxed jeans in a dark vintage wash; drawn light blue.",
+  "checked": "2026-10-08"
+ },
+ "neweracap-paris-saint-germain-cherry-blossom-navy-9forty-adjustable-ca": {
+  "col": "#ece6ea",
+  "named": false,
+  "why": "A white cap with a pink cherry-blossom print and a navy peak; the listing's 'navy' (the peak) drew the whole cap navy.",
+  "checked": "2026-10-08"
+ },
+ "p6-us-cap": {
+  "col": "#e6e1d6",
+  "named": false,
+  "why": "A cream cap with a navy peak and lettering; the listing's 'navy' (the peak) drew the whole cap navy.",
+  "checked": "2026-10-08"
+ },
+ "pe-harry-crew": {
+  "col": "#949d9f",
+  "why": "A model shot of a washed-denim crew jumper, a light grey-blue; the listing's 'denim' drew it navy.",
+  "checked": "2026-10-08"
+ },
+ "r10-pc-pyjama": {
+  "col": "#7d8199",
+  "col2": "#eceef4",
+  "pat": "vstripe",
+  "per": 0.018,
+  "duty": 0.5,
+  "why": "A model shot of a pyjama shirt in blue-grey and white stripes; drawn plain mid blue.",
+  "checked": "2026-10-08"
+ },
+ "r11-passenge-shirt": {
+  "col": "#3e4743",
+  "col2": "#7e8682",
+  "pat": "print",
+  "per": 0.16,
+  "swatch": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCABgAGADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDz3xd53hqwSGz12XUwqn7RHIBsjPoCK4drm4ljhlu7UwRyn5SvQj1ruvHrtF4hi8ORaeradCNwcf8ALT6nvXItCxaeEZBiYlMnIA9KDE0rN4zpzLn+MVga+iRzCRRkg81e0q7tFtfJvvNhLtlJFGQx96m1iyt0SIugRiQQ+cg0AUtLt3tV+2gOd8RChfvK3bNdbDYqlvaiQIyzIDLz8zk9j7VRvtMFlaGXzm82aAudo+9j2o0jUn1e2gdSq+UAhTPII7mgDpdK0aHSMLb3cZgf5/7Pn4WRvUGsnxd4rguryGG+0J7GPiOeGHlblewz6V1UEMlxZxIhhkuAR+7i+ZnX+lcB4r1uO+ZrIW0sBjlKsso+YEUAbmn/ANrM76Xp1rZ2UITzI33EqkfdPxqGO0ng0tbSe/P2G7n2rZHGN+fvA1ytnd6ta6sltFd7PtaeSiseOfU9q0W8NX8Opro+p3ofyP3qpE2VXP8AtUAdglo09zfWFx4iuJI7GLLnC7unC/Ssm60rQLfw6t/c3CzS3LbVTP3RWJNpEFlq/wBmlvXgtbthmcsfk9ie9SWOgQS6o8cIku9Ot3PkyucLK/f8KAM+z8RTX7XUl7emEN1D/eb6HtWfJf7LR/slu5GfvM3LD1rNu9PnkZEDRzNJ91gfvVUuF1CxcRSsykdADnFAJHTWF3bmAxpKGyPmilXn8KkCeSVaG9DDIJhcbto/pWJbXdreFRdnEoIxMvH51qTzXUYQtFBcFzhWj4OPf1oHY39e1OxnSKO0vAJhFyD/ACFYfh7UZIpfLlYxqX67MZqpFPaSapB58LIcgZKd66qTSrknbHprS5OVOdoxQB0vhPVJr3VL6exkjP2PCZPyg8djVbxB4S/tzU21HzFRplAdYzuAI9T2qDS/CV8+RFbNaGTlysvGauW3gTX7NDHFriwozlmQruyPrSuJs4WaxN14mjsIisSQDMj7shQP9r1rf0zTYrO7uhP9omtXAJkyS2PrXSQ+AjC80g1GFWn5lBhzn6elTp4OmM8ckeqsFgU7VEfytx3HegRx2v6nG+s2tk1kq2iDMMA+Yn3Y/wBKttBqOj6NNPos8Xll97QT8CNj1IP9KJIoLXWNMaAGRWc/aJJRzNz1X2Fbs6tJoepW1zFHcyyTFoXVdoSPsCKEM8i1LS7rR5I7tWE0b8q6KdoqmWvrybzT83t61uaVqc0Znt7iZp7faSFk52/Sq5RXO5MqD0xTGjNhsftYcMpjmXjyyOTUUxktpkQPLA69Oea3Gs5wplkumCxoSJB1Y+hrFmu3ZA7qruOcnrQUW7a91CZ443jMqKwYN/Fn617Jp0zyWFs7Sln2glT0FeQ6Tqfzjz08uMDJYCvRoPFmlwWcGQ7fKACg6/WkyZHYxSBgpYYA7DiriXSAYVG/E1xq+LRIF+zWruO4I5P0qQX+o3hE39l38cfT5SAKmxB0d9rlrZcPlpO0Y6mjSdcvIRNJNpsjIyMQN3IBFczLLqCTgR6UZA3RpuXFa8Wo3klk4AWO5VSoicdRimCZx+ufaVsNBnlmSaJpz5MkQ5gXdyjV0U8Tx3z2ASWfzEEm9DwAe2aw7wgjRLe0t5oZ55CZIJPuz89Vrf1O7uLKK4MMLRxw8ER87W9CfWmijxjVrafR7yW0kbBUYyOciqqXcyqFeSaNR0IHap7xpILhWhuPtCxfdd+S31qG7vo5vmMTSO3JBGAD7VRSNnTr22miNtK4kSQ45PQ+tRaqlrYXYiSKFkCgllOTWZp1ot0rMsrqyDOxBmq9yrmXkNn37UDsbNtfwo2MjYwwRjtXcaNc2C6JbXEFukpaUoSR0xXlRBHA7nFej+GrrbpFvatarKob5CTgZqWKx2mnXi3RXbbQoV4DEdK1bmDUXGI75dmO3QVyF1q0+itGhjjSGUbjKh3LG3YMe1bdrfave2guVncrGudkaAow7EH0pXIaLX/E0jO3yRMU6P61at7i/nWRbqyVQEbnj0rnJdU1G5Q51fzhbnNzcgAQwr/cU9zUXiDN3ZRxaHqsq3067lFwdvmr6L70xJFeW9uLa+8O3F3LFOiFhGI/vRHd0+lbtzLFBpmqraoYI5n82SBPm8xj1PNcPaeRJqeiwPHJb3VsCtzHLwWOeoFegXKy2h1G6hlhj09olEMUv3jJ3NCKPB5MvmRsLu9RioGjbZ5gIZc4+U5roLfRZJnBvzGQ33SGwrfjVZ9GOn3DSWsgnTPMeOn41TKRTtNLmkucRSmJZFyCO4qxcWF7ZxmIhZY24L45q5ZKU+RuBuBVe6+1a1wHNu0hjGR3qblXONMDFwu0qQc5PArqvD09xcaU0KEAmT92WOB781i3biVirjjrx610/gONLuwu7adQYk+dhj5vw9KGIv6pEElsbmCKWCBYysvmjImPptPX61teHtNl/wCEUv7e4ubiIyuWjWMk+Up6D/61cxr9/qasAk/2izRgsaMmGi/GtW20tiq2zavIFSL7RuR9u5iPun1pWEI+mTT29lp12wtntW/0ae3+aC8bPAk7Zrb8WWCXC2E2tNFHaWgDJHanDed3BYdFrCTTtPjs7GC4uZsX8vKLPtRTnqP7tPmi0tbLUJXnkkFm4ijLTZHXnI/i+tMkqX0Et/e/2kt5a2mpQsBEzOGUp7mrN/PrL+ZE2sadMtwg+QuOW749KuwweD7bWdMs55UksrhRM7nk7h6+g9qfNdeEbg6qZBbho3xaxrFgsM9QaEBy9td26K9lfLA0oUvHbr0iHufWql9epBbNLGoQgA/nVQ6fpSxhIpj9qxhz61kyx3h3xRlpkHG1j2qhplya4aWaVo5E8qPBUjrmrEOswfZX+0mR+PuKcE1zpBjJXmMnqo6GmFto3daVirmj5puEeQxmMZwuT2rpvA1wqXlwjsQpQcjrXLXCGCONT99+c1c0G9NlfFm5UjBFImTOv1eyuTbzM7SNbyH92AMsW7AVzlxZ3diYBdX+24mIj8lTkovua9B0yZ3s4AZmZp42KKOoHqK4/wARwfZ9SgtgI9zMC4X7zj1NBFyxp3h6BNYWyuLh75IyGZlb5FY9Fpp8P2cWtpb39ybaxnlb950CH+771q2MMWj329Y8afdEb0bnZL2H41PqcMWq6wkEkayWVgBKQem49RQMo+FdBtpNanuwI5tOt8xQSSoSsn196dc6fo2m+IrKPVopxojyMwuoh86Sd1HtW3pWpQ+HtbaG4IbSLnDRAj5EfsoFOvrj+2tXkuLWJrix08b02YAEh6gZoQz/2Q==",
+  "named": false,
+  "why": "A model shot of a short-sleeve shirt in a faded sage-and-black patchwork print; the listing's 'black' drew it plain black.",
+  "checked": "2026-10-08"
+ },
+ "r11-saltrock-shorts": {
+  "col": "#58807a",
+  "why": "A model shot of chino shorts in a sage teal; the listing's 'dark green' drew them a forest green.",
+  "checked": "2026-10-08"
+ },
+ "r13-ne-chambray": {
+  "col": "#4d6688",
+  "why": "A model shot of a chambray short-sleeve shirt in mid blue; drawn navy.",
+  "checked": "2026-10-08"
+ },
+ "r7-ml-gunnar": {
+  "col": "#efede8",
+  "col2": "#8f9195",
+  "pat": "hstripe",
+  "per": 0.06,
+  "duty": 0.2,
+  "why": "A model shot of a cream quarter-zip with grey and navy stripes across it; drawn plain cream.",
+  "checked": "2026-10-08"
+ },
+ "rg-cera": {
+  "col": "#34363a",
+  "why": "A model shot of a softshell in a dark seal grey; the listing's 'grey marl' drew it mid grey.",
+  "checked": "2026-10-08"
+ },
+ "rg-newhill": {
+  "col": "#6a6b5e",
+  "why": "A model shot of a full-zip fleece in a grey-olive heather; drawn beige.",
+  "checked": "2026-10-08"
+ },
+ "routeone-carhartt-wip-single-knee-pant-shale-stone-canvas-001188614": {
+  "col": "#665b55",
+  "why": "A model shot of canvas trousers in shale, a grey-brown; the listing's 'stone' drew them pale.",
+  "checked": "2026-10-08"
+ },
+ "routeone-route-one-chains-knitted-cardigan-forest-green-orange-1160767": {
+  "col": "#4d4e2e",
+  "col2": "#ad8041",
+  "pat": "print",
+  "per": 0.4,
+  "swatch": "data:image/jpeg;base64,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",
+  "why": "A model shot of a forest-green cardigan with orange chain links knitted down the front; drawn plain green.",
+  "checked": "2026-10-08"
+ },
+ "sc-polar-ezra": {
+  "col": "#5d6670",
+  "why": "A flat-lay of a denim chore jacket in blue-grey; the listing's 'blue' drew it mid blue.",
+  "checked": "2026-10-08"
+ },
+ "siksilk-loose-fit-jeans-ss-28670": {
+  "col": "#4d5d70",
+  "why": "A model shot of loose jeans in a dark grey-blue vintage wash; drawn light blue.",
+  "checked": "2026-10-08"
+ },
+ "sk-farah-danny": {
+  "col": "#987965",
+  "why": "A model shot of a tee in a warm tan-brown; the listing's 'stone' drew it pale.",
+  "checked": "2026-10-08"
+ },
+ "slamcity-passport-workers-club-denim-bucket-overdye-choc": {
+  "col": "#4a3628",
+  "why": "A brown (chocolate overdyed) denim bucket hat; it was filed and worn as trousers, and drawn navy.",
+  "checked": "2026-10-08"
+ },
+ "tml-garment-dyed": {
+  "col": "#79908a",
+  "why": "A shirt in dusky green, a grey sage; the listing's 'green' drew it forest green.",
+  "checked": "2026-10-08"
+ },
+ "tog24-mcgill-mens-t-shirt-warm-cloud-garnet-red": {
+  "col": "#e2dacb",
+  "named": false,
+  "why": "A cream tee with garnet-red raglan sleeves; the listing's 'red' (the sleeves) drew the whole tee red.",
+  "checked": "2026-10-08",
+  "slv": "#9a2a35"
+ },
+ "tu-birdseye-polo": {
+  "col": "#c3d5e6",
+  "why": "A model shot of a pale sky-blue polo; the listing's 'blue' drew it mid blue.",
+  "checked": "2026-10-08"
+ },
+ "universalt-humanrace-mens-mock-neck-sweatshirt": {
+  "col": "#dcb7cc",
+  "why": "A flat-lay of a mock-neck sweatshirt in a pink lilac; drawn a blue lilac.",
+  "checked": "2026-10-08"
+ },
+ "universalt-threadbare-mens-moss-stitch-crew-neck-t-shirt": {
+  "col": "#1e2131",
+  "why": "A model shot of a moss-stitch tee in navy; the listing's 'denim' drew it mid blue.",
+  "checked": "2026-10-08"
+ },
+ "uq-barrel-jeans": {
+  "col": "#2a2b2f",
+  "why": "A model shot of barrel-leg jeans in black, as the link's colour; drawn denim blue.",
+  "checked": "2026-10-08"
+ },
+ "urbanindus-dickies-madison-denim-trousers-vintage-blue": {
+  "col": "#9fb9d0",
+  "why": "A model shot of wide jeans in a light vintage blue; the listing's 'denim' drew them navy.",
+  "checked": "2026-10-08"
+ },
+ "urbanindus-dickies-madison-denim-trousers-yellow-fade-indigo": {
+  "col": "#6f705e",
+  "why": "A flat-lay of wide jeans in a yellow-faded indigo that reads olive grey; the listing's 'denim' drew them navy.",
+  "checked": "2026-10-08"
+ },
+ "wk-hikerdelic-worker": {
+  "col": "#a37e5a",
+  "why": "A flat-lay of worker shorts in tan; the listing's 'stone' drew them pale.",
+  "checked": "2026-10-08"
+ },
+ "zl-bdg-vintage": {
+  "col": "#55708e",
+  "why": "A flat-lay of relaxed jeans in a mid vintage blue; drawn light blue.",
   "checked": "2026-10-08"
  }
 }

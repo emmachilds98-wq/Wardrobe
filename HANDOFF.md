@@ -125,12 +125,25 @@ should match. Emma asked for the upgrade to continue until that is done.
   dialog labels, focus return; axe-core finds nothing on any view).
 - **Formality:** one scale (`FORMALITY` in `tools/build_site.py`, shipped to the page in `meta.json`) used by the
   builder's suggestions, `make_outfits.py` and the build's notes. Change it there only.
-- **Size check:** `data/sizecharts.json` (`tools/size_charts.py`, 61 shops so far) drives a "Size check" line on
-  every top's card, personal when his chest is on the measuring card. Extend it shop by shop (REFRESH.md step 4b).
+- **Size check:** `data/sizecharts.json` (`tools/size_charts.py`, 81 shops since 8 Oct) drives a "Size check" line on
+  every top's card (upper-body garments only: 2,585 picks), personal when his chest is on the measuring card. Extend
+  it shop by shop (REFRESH.md step 4b); the shops still to read are under `_missing` with the reason.
 - **Colour reader:** shade words, denim washes, colourway lists, model names with colour words and olive/khaki
   families fixed (UPGRADE_PLAN 2zzzzzz); 41 pieces moved, all checked against their photos.
 - **Phase 1, stored specs:** `data/specs.json`, made by `node tools/specs.js` and checked on every pull request.
   Its `unseen` and `name` sources are the labelling worklist; the first five pieces from it are corrected.
+
+## Emma's comments of 8 Oct 2026 (after PR #18)
+
+Eight comments on the 3D model (Fair Isle pattern, scarf at the back, zip gap, Wellington sunglasses, jacket
+standing out, trousers and crotch, legs together, flat cap). Each was fixed at its rule for every item of its kind,
+and each now has a guard: `under`, `legs`, `form` and `offset` in `check_3d.js` (whose ID pass now keeps each
+piece's depth settings), the specs check refusing `unseen` pieces, and `build_site.py` refusing sunglasses shapes the
+model cannot draw. Each guard was shown to flag the build before the fix and pass the build after it. Details and the
+table: UPGRADE_PLAN 2zzzzzzz; lessons: CONTRIBUTING.md.
+
+Also 8 Oct: 37 women's picks removed (30 Jack Wolfskin "W" lines, "Women" in Sergio Tacchini and Fila titles, River
+Island cinch-back pieces, an adidas "Japan W"); `build_site.py` now stops on a women's listing.
 
 ## What to do next, in order
 
@@ -178,8 +191,10 @@ should match. Emma asked for the upgrade to continue until that is done.
 2. **Store what is read (Phase 1 / step 3):**
    - Done: each piece's reading (colours, pattern and spacing, cut, collar, cloth, details, what the photo showed)
      is in `data/specs.json` with its source and a confidence (`tools/specs.js`), and the pull-request check keeps
-     it current. Next: work through its low-confidence pieces (`"src": "name"`, 156 at first; `"unseen"`, 18 left,
-     most right as plain), and let the page load the stored readings instead of reading photos on every visit.
+     it current. The low-confidence pieces have been worked through (8 Oct): every `"unseen"` piece has a `fixes.json`
+     entry (the specs check now refuses new ones), and all 137 `"src": "name"` pieces were checked against their
+     photos (37 corrected; the rest are photos of another colourway). Next: let the page load the stored readings
+     instead of reading photos on every visit.
    - Done: the manual override (`data/fixes.json`, applied by `pieceLook`) and the data checks in
      `build_site.py` (outfits and fixes).
    - This also makes the page faster, since photos are no longer read on every visit.
