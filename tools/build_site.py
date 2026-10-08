@@ -73,20 +73,22 @@ def load_groups(items):
     return groups
 
 
-FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch")
+FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch", "named", "slv")
 
 
 def check_fix_fields(k, fx, bad):
     """The look fields of one correction (or of one shape's part of it)."""
-    for f in ("col", "col2"):
-        if f in fx and fx[f] != "" and not re.fullmatch(r"#[0-9a-fA-F]{6}", str(fx[f])):
+    for f in ("col", "col2", "slv"):
+        if f in fx and (fx[f] != "" or f == "slv") and not re.fullmatch(r"#[0-9a-fA-F]{6}", str(fx[f])):
             bad.append(f"{k}: {f} must be #rrggbb")
     if "pat" in fx and fx["pat"] not in ("plain", "hstripe", "vstripe", "check", "print", "argyle"):
         bad.append(f"{k}: pat must be plain, hstripe, vstripe, check, print or argyle")
     for f in ("per", "duty"):
         if f in fx and not (isinstance(fx[f], (int, float)) and 0 < fx[f] < 1):
             bad.append(f"{k}: {f} must be a share between 0 and 1")
-    for f in ("front", "decal"):
+    if "front" in fx and fx["front"] not in (True, False):
+        bad.append(f"{k}: front must be true or false")
+    for f in ("decal", "named"):
         if f in fx and fx[f] is not False:
             bad.append(f"{k}: {f} can only be false")
     if "swatch" in fx and not (isinstance(fx["swatch"], str) and re.match(r"data:image/(jpeg|png);base64,", fx["swatch"])
@@ -257,6 +259,31 @@ def check_sizecharts(sc):
     return bad
 
 
+# Sunglasses frames the 3D model has a shape for (page.html: sgKind picks one from the listing's words, SGF draws it),
+# and frame shapes it has none for. A listing naming one of those stops the build until the model draws it: a
+# Wellington pair was once drawn as two flat rectangles, as an unknown name fell through to the default.
+FRAME_WORDS = ("wrap", "shield", "sport", "visor", "aviator", "pilot", "teardrop", "clubmaster", "browline", "wellington",
+               "keyhole", "panto", "wayfarer", "round", "circle", "lennon", "oval", "square", "rectangle", "rectangular",
+               "chunky", "navigator", "slim", "narrow")
+FRAME_OTHER = r"cat[- ]?eye|hexagon\w*|octagon\w*|geometric|butterfly|flat[- ]?top|\bmask\b|pentagon\w*"
+
+
+def is_hat(name):
+    """A listing that is a hat by its name, with no garment noun of its own ("Denim Bucket OverDye Choc"); a trucker
+    jacket ("Borg Lined Trucker") is not one."""
+    n = (name or "").lower()
+    hk = hat_kind(n)
+    if not hk or garment_kind(n):
+        return False
+    return not (hk == "bcap" and "trucker" in n and not re.search(r"\bcap\b|snapback|9forty|9fifty", n))
+
+
+def frame_unknown(name):
+    """A frame shape the listing names that the 3D model cannot draw, or None."""
+    m = re.search(FRAME_OTHER, (name or "").lower())
+    return m.group(0) if m else None
+
+
 def page_tables():
     """The shapes and palette the page knows, read from page.html so the checks never fall out of step with it."""
     with open(os.path.join(ROOT, "page.html"), encoding="utf-8") as f:
@@ -266,9 +293,11 @@ def page_tables():
         m = re.search(r"var %s=\{(.*?)\}" % name, src, re.S)
         return set(re.findall(r"(\w+):", m.group(1))) if m else set()
     col = re.search(r"var COL=\{(.*?)\};", src, re.S)
+    sg = re.search(r"function sgKind\(n\)\{(.*?)\}", src, re.S)
     return {
         "upper": keys("UPPER"), "lower": keys("LOWER"), "feet": keys("FEET"), "accs": keys("ACCS"),
         "col": set(re.findall(r"(\w+):\[\"#", col.group(1))) if col else set(),
+        "sgkind": sg.group(1) if sg else "",
     }
 
 
@@ -277,10 +306,17 @@ def check_outfits(outfits, items):
     Errors: a piece whose item is not a pick (unless it is marked "own"), an unknown shape, a piece drawn as a
     different kind of garment from the one its name says (shorts drawn as a jumper, a cap as trousers), a colour not in
     the page's palette (COL), a piece with no "what", an outfit with no top or no legwear (he is never drawn
-    shirtless), two pairs of legwear or shoes, and occasion, style or weather words the page does not use."""
+    shirtless), two pairs of legwear or shoes, occasion, style or weather words the page does not use, and sunglasses
+    whose name says a frame shape the 3D model cannot draw."""
     tb = page_tables()
     shapes = tb["upper"] | tb["lower"] | tb["feet"] | tb["accs"]
     bad, odd = [], []
+    for k, v in items.items():   # (a hat filed under another kind of clothing shows in the wrong place in the catalogue)
+        if isinstance(v, dict) and v.get("cat") not in (None, "acc") and is_hat(v.get("name")):
+            odd.append(f"{k} ({v.get('name')}) is a hat by its name but filed under '{v.get('cat')}'")
+    gone = [w for w in FRAME_WORDS if w not in tb["sgkind"]]
+    if gone:   # (the page and these checks must agree on the frames the 3D model can draw)
+        bad.append("page.html sgKind no longer knows the frame words " + ", ".join(gone) + " (FRAME_WORDS in tools/build_site.py)")
     for oid, o in outfits.items():
         for f in ("name", "note", "pieces", "occ", "style", "wx"):
             if not o.get(f):
@@ -308,8 +344,15 @@ def check_outfits(outfits, items):
             fits = {"shorts": {"shorts"}, "trousers": {"trousers"}, "top": tb["upper"], "feet": tb["feet"], "acc": tb["accs"]}
             if gk and sh in shapes and sh not in fits[gk]:
                 bad.append(f"{oid}: {it} ({(items.get(it) or {}).get('name')}) is {gk} by its name but drawn as '{sh}'")
+            if sh == "sunglasses" and frame_unknown((items.get(it) or {}).get("name")):
+                bad.append(f"{oid}: {it} ({(items.get(it) or {}).get('name')}) has "
+                           f"{frame_unknown((items.get(it) or {}).get('name'))} frames by its name, which the 3D model has no "
+                           "shape for: add it to SGF and sgKind in page.html (and FRAME_WORDS here)")
             hk = hat_kind((items.get(it) or {}).get("name"))
             if sh in ("cap", "bcap", "beanie", "bucket") and hk and sh != hk:
+                bad.append(f"{oid}: {it} ({(items.get(it) or {}).get('name')}) is a {HAT_WORDS[hk]} by its name but drawn as '{sh}'")
+            # (a hat drawn as something else: a denim bucket hat filed under trousers was once worn as an outfit's trousers)
+            if sh in shapes and sh not in ("cap", "bcap", "beanie", "bucket") and not gk and is_hat((items.get(it) or {}).get("name")):
                 bad.append(f"{oid}: {it} ({(items.get(it) or {}).get('name')}) is a {HAT_WORDS[hk]} by its name but drawn as '{sh}'")
         sh = [p.get("shape") for p in ps]
         if not any(s in tb["upper"] for s in sh):

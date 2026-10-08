@@ -18,7 +18,9 @@
      node tools/specs.js [--site docs] [--out data/specs.json]
 
    The pull-request check runs it on the built site and compares with data/specs.json (tools/qa/specs_diff.py);
-   after a change to the readers, fixes.json or the outfits, run it and commit data/specs.json with the change. */
+   after a change to the readers, fixes.json or the outfits, run it and commit data/specs.json with the change. That
+   check also refuses any piece read "unseen" (a pattern its listing names drawn plain): look at its photo and record in
+   data/fixes.json either the pattern or that plain is right. A Fair Isle jumper once drew plain navy that way. */
 const fs = require("fs"), path = require("path"), http = require("http");
 let chromium;
 try { ({ chromium } = require("playwright")); } catch (e) {
@@ -87,6 +89,8 @@ async function specOf(q) {
     ["sole", "acc", "slv"].forEach(k => { if (L[k]) ph[k] = L[k]; });
     if (Object.keys(ph).length) out.photo = ph;
   } else out.photo = { none: true };
+  /* (the frame shape a pair of sunglasses is drawn with, from its listing: a change shows in the pull request) */
+  if (q.shape === "sunglasses" && X.sgKind) out.form = X.sgKind(((it.name || "") + " " + (q.what || "")).toLowerCase());
   if (it.fix) out.fixed = Object.keys(Fs).filter(k => k !== "shapes").sort();
   return out;
 }

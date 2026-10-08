@@ -6,7 +6,9 @@ Colours count as changed when they move more than COLOUR_TOL apart (RGB distance
 when it moves more than SPACE_TOL; anything else (pattern kind, source, cut, details, photo findings, corrections)
 when it differs at all. With --ci it exits with an error when anything changed, for the pull-request check: a change
 to the readers, data/fixes.json or the outfits must come with the regenerated data/specs.json, so the reviewer sees
-what it moved.
+what it moved. It also fails while any piece is read "unseen": a pattern the listing names (stripe, check, print,
+Fair Isle...) that the photo reader drew plain. Each one is looked at against its shop photo and given an entry in
+data/fixes.json: the pattern (pat, col2, per, duty, or a swatch), or pat "plain" with why plain is right.
 """
 import json, sys
 
@@ -45,7 +47,7 @@ def changes(a, b):
     for k in ("per", "duty"):
         if abs((pa.get(k) or 0) - (pb.get(k) or 0)) > SPACE_TOL:
             out.append("pattern %s %s -> %s" % (k, pa.get(k), pb.get(k)))
-    for k in ("cut", "details", "photo", "fixed", "shape"):
+    for k in ("cut", "details", "photo", "fixed", "shape", "form"):
         if a.get(k) != b.get(k):
             out.append("%s %s -> %s" % (k, json.dumps(a.get(k)), json.dumps(b.get(k))))
     return out
@@ -67,9 +69,17 @@ def main():
         print("changed  %s: %s" % (k, "; ".join(v)))
     n = len(added) + len(gone) + len(moved)
     print("%d pieces: %d new, %d gone, %d read differently" % (len(new), len(added), len(gone), len(moved)))
+    unseen = sorted(k for k, v in new.items() if (v.get("pattern") or {}).get("src") == "unseen")
+    for k in unseen:
+        print("unseen   %s: its listing names a pattern the photo reader drew plain" % k)
+    if ci and unseen:
+        print("::error::%d piece(s) read 'unseen' (a pattern named in the listing, drawn plain): look at each shop photo"
+              " and add an entry to data/fixes.json, with the pattern or with pat 'plain' and why plain is right"
+              " (CONTRIBUTING.md, 'Correcting how an item looks')." % len(unseen))
     if ci and n:
         print("::error::data/specs.json is out of date. Run: python3 tools/build_site.py --out docs && node tools/specs.js,"
               " look at what moved (python3 tools/qa/specs_diff.py <old> data/specs.json) and commit data/specs.json.")
+    if ci and (n or unseen):
         sys.exit(1)
 
 

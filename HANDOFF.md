@@ -132,6 +132,15 @@ should match. Emma asked for the upgrade to continue until that is done.
 - **Phase 1, stored specs:** `data/specs.json`, made by `node tools/specs.js` and checked on every pull request.
   Its `unseen` and `name` sources are the labelling worklist; the first five pieces from it are corrected.
 
+## Emma's comments of 8 Oct 2026 (after PR #18)
+
+Eight comments on the 3D model (Fair Isle pattern, scarf at the back, zip gap, Wellington sunglasses, jacket
+standing out, trousers and crotch, legs together, flat cap). Each was fixed at its rule for every item of its kind,
+and each now has a guard: `under`, `legs`, `form`, `slit` and `offset` in `check_3d.js` (whose ID pass now keeps each
+piece's depth settings), the specs check refusing `unseen` pieces, and `build_site.py` refusing sunglasses shapes the
+model cannot draw. Each guard was shown to flag the build before the fix and pass the build after it. Details and the
+table: UPGRADE_PLAN 2zzzzzzz; lessons: CONTRIBUTING.md.
+
 ## What to do next, in order
 
 1. **Close the small known faults.** Check each with `zoom.js` and `check_3d.js`.
@@ -178,8 +187,10 @@ should match. Emma asked for the upgrade to continue until that is done.
 2. **Store what is read (Phase 1 / step 3):**
    - Done: each piece's reading (colours, pattern and spacing, cut, collar, cloth, details, what the photo showed)
      is in `data/specs.json` with its source and a confidence (`tools/specs.js`), and the pull-request check keeps
-     it current. Next: work through its low-confidence pieces (`"src": "name"`, 156 at first; `"unseen"`, 18 left,
-     most right as plain), and let the page load the stored readings instead of reading photos on every visit.
+     it current. The low-confidence pieces have been worked through (8 Oct): every `"unseen"` piece has a `fixes.json`
+     entry (the specs check now refuses new ones), and all 137 `"src": "name"` pieces were checked against their
+     photos (37 corrected; the rest are photos of another colourway). Next: let the page load the stored readings
+     instead of reading photos on every visit.
    - Done: the manual override (`data/fixes.json`, applied by `pieceLook`) and the data checks in
      `build_site.py` (outfits and fixes).
    - This also makes the page faster, since photos are no longer read on every visit.
