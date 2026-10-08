@@ -22,6 +22,10 @@ Each entry in SHOPS says where the chart is and how to read it:
           heading), or an int (the n-th table that has a chest row or column)
   text    for charts drawn without <table>: (anchor regex, value position) - reads "L 42 106.7"
           style runs in the page text after the anchor
+  row     for charts drawn without <table> with sizes across the top: (anchor regex, row label regex) -
+          reads "S M L XL Chest 88-96 96-104 104-112 112-124" after the anchor
+  json    for charts kept as JSON records in the page: (size key, chest key), e.g. ("size", "chest")
+  col     the chest column's index, for tables whose header row does not line up with the data
   unit    "cm" or "in" when the chart does not say
   kind    "body" or "garment"; half=True when the chart gives half the chest (pit to pit)
   collar  regex for the collar/neck column in the same chart (L's collar is stored)
@@ -280,6 +284,55 @@ def read_text(text, anchor, pos=0, relabel=None):
     return out
 
 
+SIZE_TOKEN = r"(?:\d?X{0,4}[SL]|M)"
+
+
+def read_row(text, anchor, label, relabel=None):
+    """Charts drawn with divs, sizes across the top: after `anchor` a run of size labels, then `label` and one
+    value per label ("XS S M L XL Chest 84-88 88-96 96-104 104-112 112-124"). A size named twice (its cm and
+    its inch column) keeps its first value."""
+    m = re.search(anchor, text, re.I)
+    if not m:
+        return {}
+    seg = text[m.end(): m.end() + 3000]
+    labels, pos = [], 0
+    for t in re.finditer(r"\S+", seg):
+        if not re.fullmatch(SIZE_TOKEN, t.group(0), re.I):
+            break
+        labels.append(t.group(0))
+        pos = t.end()
+    lm = re.search(label, seg[pos:], re.I)
+    if len(labels) < 3 or not lm:
+        return {}
+    cells = re.findall(RANGE + r"|(?<!\S)[-–](?!\S)", seg[pos + lm.end():])[:len(labels)]
+    out = {}
+    for lbl, cell in zip(labels, cells):
+        k = size_of(lbl, relabel)
+        if k and k not in out and numbers(cell):
+            out[k] = {"v": numbers(cell), "unit": None, "head": label, "all": [], "collar": None}
+    return out
+
+
+def read_json(raw, keys, relabel=None):
+    """Charts kept as JSON records in the page, e.g. {"size":"L","chest":"102 - 108"} with keys ("size",
+    "chest"): the first record for each size, so a chart given in cm and then in inches is read in cm."""
+    sk, ck = keys
+    out = {}
+    for m in re.finditer(r"\{[^{}]*\}", raw):
+        if '"%s"' % ck not in m.group(0):
+            continue
+        try:
+            rec = json.loads(m.group(0))
+        except ValueError:
+            continue
+        if not isinstance(rec, dict) or sk not in rec or ck not in rec:
+            continue
+        k = size_of(str(rec[sk]), relabel)
+        if k and k not in out and numbers(str(rec[ck])):
+            out[k] = {"v": numbers(str(rec[ck])), "unit": None, "head": ck, "all": [], "collar": None}
+    return out
+
+
 def to_inches(v, unit, half=False):
     """[lo, hi] in inches (cm / 2.54, doubled for half-chest charts), rounded to 0.5."""
     v = v[:2]
@@ -292,7 +345,12 @@ def to_inches(v, unit, half=False):
     return [int(x) if x == int(x) else x for x in r]
 
 
-def pick_chart(cfg, tables, text):
+def pick_chart(cfg, tables, text, raw=""):
+    if cfg.get("json"):
+        return read_json(raw, cfg["json"], cfg.get("sizes")), "json"
+    if cfg.get("row"):
+        anchor, label = cfg["row"]
+        return read_row(text, anchor, label, cfg.get("sizes")), anchor
     if cfg.get("text"):
         anchor, pos = cfg["text"]
         return read_text(text, anchor, pos, cfg.get("sizes")), anchor
@@ -380,7 +438,7 @@ def read_shop(name, cfg, pages):
     except Exception as ex:  # noqa: BLE001 - any fetch error just marks the shop missing
         return None, f"could not fetch the size guide ({str(ex)[:60]})"
     tables, text = parse_html(raw)
-    got, _ = pick_chart(cfg, tables, text)
+    got, _ = pick_chart(cfg, tables, text, raw)
     return entry(cfg, got)
 
 # ---------------------------------------------------------------- the shops
@@ -546,6 +604,56 @@ SHOPS.update({
     "Thought": dict(url="https://www.wearethought.com/pages/size-guide-mens", table=0, collar="neck",
                     note="men's guide in UK sizes (the site may open its US page)"),
     "Seasalt": dict(url="https://www.seasaltcornwall.com/need-help/size-guide", table=0, unit="cm"),
+    "SikSilk": dict(url="https://siksilk.gorgias.help/en-US/siksilk-menswear-size-guide-28255", table=0, unit="cm",
+                    note="menswear tops chart in the shop's help centre (linked from its size-guide page); the cm "
+                         "ranges are used, its inch column gives one value per size (L 42in)"),
+    "Passenger": dict(url="https://www.passenger-clothing.com/products/acreage-organic-cotton-shirt-khaki",
+                      via="browser", click="Size & Fit Guide", pause=6000, table=0, unit="cm",
+                      note="body chart in the product page's Size & Fit Guide"),
+    "Blue Inc": dict(url="https://www.blueinc.co.uk/pages/size-guide", table=0,
+                     note="one chart for all tops, knitwear, jackets, coats and shirts"),
+    "O'Neill": dict(url="https://uk.oneill.com/pages/mens-tees-shortsleeve", table=0, unit="cm",
+                    note="men's tees chart; its hoodies, shirts and jackets charts give the same chest"),
+    "Superdry": dict(url="https://cdn.superdry.com/size_guides/mens_en_310.html", table=r"Chest\s*$",
+                     chest=r"^inches$", unit="in", note="men's size guide shown on product pages (chest table)"),
+    "River Island": dict(url="https://www.riverisland.com/how-can-we-help/size-guides/mens",
+                         table=r"Tops & Shirts\s*$", note="men's tops and shirts chart"),
+    "Regatta": dict(url="https://www.regatta.com/size-guide/", table=r"Men's - Jackets, Fleeces", unit="in",
+                    note="men's jackets, fleeces, gilets, shirts and T-shirts chart"),
+    "TuffStuff": dict(url="https://www.tuffstuffworkwear.co.uk/products/tuffstuff-logo-t-shirt", table=0, unit="in",
+                      note="chest (approx) chart shown on its product pages; workwear sizing runs large"),
+    "AllSaints": dict(url="https://www.allsaints.com/sizeguide.html", table=1, unit="in", collar="neck",
+                      note="menswear clothing chart in inches, one chest value per size"),
+    "Weekend Offender": dict(url="https://www.weekendoffender.com/pages/t-shirts-polos-size-guide", table=0, col=1,
+                             unit="cm", half=True, kind=G,
+                             note="T-shirts and polos chart: chest laid flat (pit to pit), doubled"),
+    "Mountain Warehouse": dict(url="https://www.mountainwarehouse.com/help/size-guide/",
+                               table=r"Mens Jackets & Tops\s*$", note="men's jackets and tops chart (cm row used)"),
+    "Nike": dict(url="https://www.nike.com/gb/size-fit/mens-tops-alpha", table=0, unit="in",
+                 note="men's tops chart (body measurements)"),
+    "DeWalt Workwear": dict(url="https://www.dewaltworkwear.co.uk/pages/size-guide", table=r"Tops and Jackets\s*$",
+                            unit="in", collar="neck", note="tops and jackets chart; workwear sizing runs large"),
+    "Burton": dict(url="https://www.burton.co.uk/pages/informational/size-guide", table=r"Sweatshirts and Hoodies\s*$",
+                   unit="in", note="tops, shirts, T-shirts, polos, sweatshirts and hoodies chart (to fit chest)"),
+    "Uskees": dict(url="https://uskees.com/products/6010-technique-trek-shirt-onyx", via="browser", click="Size chart",
+                   pause=8000, table=0, half=True, kind=G,
+                   note="no general chart; chest laid flat from the Technique trek shirt's chart, doubled"),
+    "Jack Wolfskin": dict(url="https://www.jack-wolfskin.co.uk/products/1404031_t0386", json=("size", "chest"),
+                          note="men's body chart kept on its product pages (Norbo shirt); the same on its other "
+                               "men's shirts"),
+    "New Era": dict(url="https://www.neweracap.co.uk/products/new-era-resort-natural-short-sleeve-shirt-14891298",
+                    row=(r"MEN \(EU\) MEN \(EU\) MEN \(ASIA\).{0,80}?Region: Show all Size", r"\bChest\b"),
+                    note="Men (EU) apparel chart in a product page's size guide"),
+    "Rains": dict(url="https://www.rains.com/products/classic-t-shirt-rains-male", table=0, chest="chest width",
+                  unit="cm", half=True, kind=G,
+                  note="no general chart; chest width from the Classic T-shirt's chart, doubled"),
+    "Community Clothing": dict(url="https://communityclothing.co.uk/products/tom-short-sleeve-military-two-pocket-shirt-"
+                                   "stone", via="browser", click="Size Guide", pause=10000, table=0, kind=G,
+                               note="men's T-shirt chart shown in a product page's size guide: the garment's own "
+                                    "chest, length and sleeve (XS is 39.4in round)"),
+    "Spoke": dict(url="https://spoke-london.com/pages/tops-size-chart?type=box-tee", via="browser", pause=8000,
+                  table=r"laid flat\.\s*$", half=True, kind=G,
+                  note="Box Tee product measurements: chest laid flat, doubled"),
 })
 
 MULTI = "sells many brands, each with its own chart; no shop-wide chart"
@@ -560,7 +668,6 @@ MISSING = {
     "Vinted": "second-hand marketplace; sizes are the sellers' own",
     "Military Kit": "army-surplus shop selling several makers; no shop-wide chart found",
     "Military Mart": "army-surplus shop selling several makers; no shop-wide chart found",
-    "Jack Wolfskin": "the product chart shows only the size picked; no general chart found",
     "Trueface": "its product chart gives L as 15.7-16.5in 'chest', which is not a chest measurement",
     "Moss": "only a suit-jacket chart in numbered sizes; no S/M/L tops chart found",
     "Cyberjammies": "nightwear shop; its men's size guide has no chest table that could be read",
@@ -568,10 +675,32 @@ MISSING = {
     "London Sock Company": "no tops size chart found",
 }
 NONE_FOUND = "no size chart found on its product pages or size-guide pages"
-for _s in ("SikSilk", "Community Clothing", "Fila", "Passenger", "Lambretta", "HUF", "Uskees", "Henri Lloyd",
-           "New Era", "O'Neill", "Matalan", "Brave Soul", "River Island", "Albam", "Superdry", "Twisted Tailor",
-           "Sunspel", "Peter Christian"):
+for _s in ("HUF", "Sunspel", "Peter Christian"):
     MISSING[_s] = NONE_FOUND
+for _s in ("END.", "size?", "USC", "JD Sports", "Sports Direct", "BrandAlley", "Summits", "Wynsors", "Hirst Footwear",
+           "Stuarts London", "Herring Shoes", "Lifting Equipment Store", "Workwear Express"):
+    MISSING[_s] = MULTI
+IMAGE = "its size chart is only a picture, so it cannot be read"
+MISSING.update({
+    "Debenhams": "marketplace selling many brands, each with its own chart; no shop-wide chart",
+    "eBay": "marketplace; sizes are the sellers' own",
+    "Rokit": "vintage shop; each piece is one-off and measured on its own",
+    "Fila": IMAGE + " (men's size guide image on its product pages)",
+    "Lambretta": IMAGE + " (an SVG drawn as shapes, in its product pages' size guide)",
+    "Henri Lloyd": IMAGE + " (men's size chart image)",
+    "Albam": IMAGE + " (one image per product in its Size Chart tab)",
+    "Kestin": IMAGE + " (size-chart app images on its product pages)",
+    "Scruffs": IMAGE + " (men's tops and jackets size guide image)",
+    "Solovair": IMAGE + " (polo shirt size chart image)",
+    "Brave Soul": "its product pages' size-guide pop-up is empty; no size-guide page found",
+    "Matalan": "its products carry no size guide (empty in the page data) and no size-guide page was found",
+    "Twisted Tailor": "its shirt and polo pages have no size chart, only a size picker; no size-guide page found",
+    "BOSS": "its menswear chart gives only size conversions (L is UK 40R), no chest measurement",
+    "Carhartt WIP": "garment measurements are kept per product in script data that the tool cannot read",
+    "Cotton Traders": "its size-chart page shows no chart table, in plain requests or headless Chromium",
+    "WoolOvers": "its pages refuse plain requests and headless Chromium (403)",
+    "Admiral": "its size guide is a pop-up app that showed no chart in headless Chromium",
+})
 
 
 def pick_shops():

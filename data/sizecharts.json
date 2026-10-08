@@ -18,6 +18,25 @@
   "checked": "2026-10-08",
   "note": "ASOS DESIGN men's guide (ASOS's own label); other brands on ASOS use their own charts"
  },
+ "AllSaints": {
+  "M": [
+   38,
+   38
+  ],
+  "L": [
+   40,
+   40
+  ],
+  "XL": [
+   42,
+   42
+  ],
+  "kind": "body",
+  "collar": "16",
+  "src": "https://www.allsaints.com/sizeguide.html",
+  "checked": "2026-10-08",
+  "note": "menswear clothing chart in inches, one chest value per size"
+ },
  "Alpkit": {
   "M": [
    40,
@@ -88,6 +107,24 @@
   "checked": "2026-10-08",
   "note": "men's chart for jackets, fleeces, base layers, shirts and tees (shown on product pages)"
  },
+ "Blue Inc": {
+  "M": [
+   38,
+   40
+  ],
+  "L": [
+   40,
+   42
+  ],
+  "XL": [
+   42,
+   44
+  ],
+  "kind": "body",
+  "src": "https://www.blueinc.co.uk/pages/size-guide",
+  "checked": "2026-10-08",
+  "note": "one chart for all tops, knitwear, jackets, coats and shirts"
+ },
  "Brakeburn": {
   "M": [
    38,
@@ -124,6 +161,24 @@
   "src": "https://www.brooktaverner.co.uk/size-guide/",
   "checked": "2026-10-08",
   "note": "shirts chart; the collar is the shirt's own measurement"
+ },
+ "Burton": {
+  "M": [
+   40,
+   42
+  ],
+  "L": [
+   44,
+   46
+  ],
+  "XL": [
+   48,
+   50
+  ],
+  "kind": "body",
+  "src": "https://www.burton.co.uk/pages/informational/size-guide",
+  "checked": "2026-10-08",
+  "note": "tops, shirts, T-shirts, polos, sweatshirts and hoodies chart (to fit chest)"
  },
  "Cernucci": {
   "M": [
@@ -180,6 +235,24 @@
   "checked": "2026-10-08",
   "note": "one chest value per size"
  },
+ "Community Clothing": {
+  "M": [
+   43.5,
+   43.5
+  ],
+  "L": [
+   45.5,
+   45.5
+  ],
+  "XL": [
+   47,
+   47
+  ],
+  "kind": "garment",
+  "src": "https://communityclothing.co.uk/products/tom-short-sleeve-military-two-pocket-shirt-stone",
+  "checked": "2026-10-08",
+  "note": "men's T-shirt chart shown in a product page's size guide: the garment's own chest, length and sleeve (XS is 39.4in round)"
+ },
  "Criminal Damage": {
   "M": [
    45,
@@ -197,6 +270,25 @@
   "src": "https://www.criminaldamage.co.uk/pages/size-guide",
   "checked": "2026-10-08",
   "note": "T-shirt garment chest (full round)"
+ },
+ "DeWalt Workwear": {
+  "M": [
+   39,
+   41
+  ],
+  "L": [
+   42,
+   44
+  ],
+  "XL": [
+   45,
+   47
+  ],
+  "kind": "body",
+  "collar": "17.5",
+  "src": "https://www.dewaltworkwear.co.uk/pages/size-guide",
+  "checked": "2026-10-08",
+  "note": "tops and jackets chart; workwear sizing runs large"
  },
  "Dubarry": {
   "M": [
@@ -373,6 +465,24 @@
   "kind": "body",
   "src": "https://www.hikerdelic.com/pages/size-guide",
   "checked": "2026-10-08"
+ },
+ "Jack Wolfskin": {
+  "M": [
+   38,
+   40
+  ],
+  "L": [
+   40,
+   42.5
+  ],
+  "XL": [
+   42.5,
+   45
+  ],
+  "kind": "body",
+  "src": "https://www.jack-wolfskin.co.uk/products/1404031_t0386",
+  "checked": "2026-10-08",
+  "note": "men's body chart kept on its product pages (Norbo shirt); the same on its other men's shirts"
  },
  "Jump the Gun": {
   "M": [
@@ -570,6 +680,78 @@
   "src": "https://www.mountain-equipment.co.uk/pages/size-chart",
   "checked": "2026-10-08"
  },
+ "Mountain Warehouse": {
+  "M": [
+   38,
+   40
+  ],
+  "L": [
+   40,
+   43.5
+  ],
+  "XL": [
+   43.5,
+   46.5
+  ],
+  "kind": "body",
+  "src": "https://www.mountainwarehouse.com/help/size-guide/",
+  "checked": "2026-10-08",
+  "note": "men's jackets and tops chart (cm row used)"
+ },
+ "New Era": {
+  "M": [
+   38,
+   41
+  ],
+  "L": [
+   41,
+   44
+  ],
+  "XL": [
+   44,
+   49
+  ],
+  "kind": "body",
+  "src": "https://www.neweracap.co.uk/products/new-era-resort-natural-short-sleeve-shirt-14891298",
+  "checked": "2026-10-08",
+  "note": "Men (EU) apparel chart in a product page's size guide"
+ },
+ "Nike": {
+  "M": [
+   37.5,
+   41
+  ],
+  "L": [
+   41,
+   44
+  ],
+  "XL": [
+   44,
+   48.5
+  ],
+  "kind": "body",
+  "src": "https://www.nike.com/gb/size-fit/mens-tops-alpha",
+  "checked": "2026-10-08",
+  "note": "men's tops chart (body measurements)"
+ },
+ "O'Neill": {
+  "M": [
+   38.5,
+   40
+  ],
+  "L": [
+   40.5,
+   42
+  ],
+  "XL": [
+   42.5,
+   45
+  ],
+  "kind": "body",
+  "src": "https://uk.oneill.com/pages/mens-tees-shortsleeve",
+  "checked": "2026-10-08",
+  "note": "men's tees chart; its hoodies, shirts and jackets charts give the same chest"
+ },
  "Original Penguin": {
   "M": [
    38,
@@ -586,6 +768,24 @@
   "kind": "body",
   "src": "https://www.originalpenguin.co.uk/pages/size-guide",
   "checked": "2026-10-08"
+ },
+ "Passenger": {
+  "M": [
+   38,
+   40
+  ],
+  "L": [
+   40,
+   41.5
+  ],
+  "XL": [
+   41.5,
+   43.5
+  ],
+  "kind": "body",
+  "src": "https://www.passenger-clothing.com/products/acreage-organic-cotton-shirt-khaki",
+  "checked": "2026-10-08",
+  "note": "body chart in the product page's Size & Fit Guide"
  },
  "Peacocks": {
   "M": [
@@ -675,6 +875,60 @@
   "src": "https://uk.puma.com/uk/en/pd/tad-essentials-solid-cat-tee-men/525908",
   "checked": "2026-10-08",
   "note": "no general chest chart; garment chest from a T-shirt's product measurements"
+ },
+ "Rains": {
+  "M": [
+   44,
+   44
+  ],
+  "L": [
+   46.5,
+   46.5
+  ],
+  "XL": [
+   49,
+   49
+  ],
+  "kind": "garment",
+  "src": "https://www.rains.com/products/classic-t-shirt-rains-male",
+  "checked": "2026-10-08",
+  "note": "no general chart; chest width from the Classic T-shirt's chart, doubled"
+ },
+ "Regatta": {
+  "M": [
+   39,
+   40
+  ],
+  "L": [
+   41,
+   42
+  ],
+  "XL": [
+   43,
+   44
+  ],
+  "kind": "body",
+  "src": "https://www.regatta.com/size-guide/",
+  "checked": "2026-10-08",
+  "note": "men's jackets, fleeces, gilets, shirts and T-shirts chart"
+ },
+ "River Island": {
+  "M": [
+   38,
+   40
+  ],
+  "L": [
+   41,
+   43
+  ],
+  "XL": [
+   44.5,
+   46
+  ],
+  "kind": "body",
+  "src": "https://www.riverisland.com/how-can-we-help/size-guides/mens",
+  "checked": "2026-10-08",
+  "note": "men's tops and shirts chart"
  },
  "Rydale": {
   "M": [
@@ -802,6 +1056,24 @@
   "src": "https://www.seasaltcornwall.com/need-help/size-guide",
   "checked": "2026-10-08"
  },
+ "SikSilk": {
+  "M": [
+   38,
+   40
+  ],
+  "L": [
+   40,
+   41.5
+  ],
+  "XL": [
+   41.5,
+   43.5
+  ],
+  "kind": "body",
+  "src": "https://siksilk.gorgias.help/en-US/siksilk-menswear-size-guide-28255",
+  "checked": "2026-10-08",
+  "note": "menswear tops chart in the shop's help centre (linked from its size-guide page); the cm ranges are used, its inch column gives one value per size (L 42in)"
+ },
  "Skechers": {
   "M": [
    38,
@@ -837,6 +1109,24 @@
   "checked": "2026-10-08",
   "note": "chart shown on product pages"
  },
+ "Spoke": {
+  "M": [
+   45.5,
+   45.5
+  ],
+  "L": [
+   48,
+   48
+  ],
+  "XL": [
+   50.5,
+   50.5
+  ],
+  "kind": "garment",
+  "src": "https://spoke-london.com/pages/tops-size-chart?type=box-tee",
+  "checked": "2026-10-08",
+  "note": "Box Tee product measurements: chest laid flat, doubled"
+ },
  "Stan Ray": {
   "M": [
    50,
@@ -854,6 +1144,24 @@
   "src": "https://www.stanray.com/products/quilted-plaid-overshirt-brown-aw25",
   "checked": "2026-10-08",
   "note": "no general chart; pit-to-pit from the quilted overshirt's chart, doubled"
+ },
+ "Superdry": {
+  "M": [
+   38,
+   40
+  ],
+  "L": [
+   40,
+   42
+  ],
+  "XL": [
+   42,
+   44
+  ],
+  "kind": "body",
+  "src": "https://cdn.superdry.com/size_guides/mens_en_310.html",
+  "checked": "2026-10-08",
+  "note": "men's size guide shown on product pages (chest table)"
  },
  "T.M. Lewin": {
   "M": [
@@ -981,6 +1289,24 @@
   "src": "https://www.trespass.com/size-chart",
   "checked": "2026-10-08"
  },
+ "TuffStuff": {
+  "M": [
+   40,
+   42
+  ],
+  "L": [
+   44,
+   46
+  ],
+  "XL": [
+   48,
+   50
+  ],
+  "kind": "body",
+  "src": "https://www.tuffstuffworkwear.co.uk/products/tuffstuff-logo-t-shirt",
+  "checked": "2026-10-08",
+  "note": "chest (approx) chart shown on its product pages; workwear sizing runs large"
+ },
  "Uniqlo": {
   "M": [
    49,
@@ -1035,6 +1361,24 @@
   "checked": "2026-10-08",
   "note": "no general chart; chest width laid flat from a shirt's garment chart, doubled"
  },
+ "Uskees": {
+  "M": [
+   45.5,
+   45.5
+  ],
+  "L": [
+   47.5,
+   47.5
+  ],
+  "XL": [
+   49.5,
+   49.5
+  ],
+  "kind": "garment",
+  "src": "https://uskees.com/products/6010-technique-trek-shirt-onyx",
+  "checked": "2026-10-08",
+  "note": "no general chart; chest laid flat from the Technique trek shirt's chart, doubled"
+ },
  "Volcom": {
   "M": [
    38,
@@ -1052,6 +1396,24 @@
   "src": "https://www.volcom.co.uk/pages/size-chart-all",
   "checked": "2026-10-08",
   "note": "apparel tops chart (US sizing)"
+ },
+ "Weekend Offender": {
+  "M": [
+   43.5,
+   43.5
+  ],
+  "L": [
+   47,
+   47
+  ],
+  "XL": [
+   50,
+   50
+  ],
+  "kind": "garment",
+  "src": "https://www.weekendoffender.com/pages/t-shirts-polos-size-guide",
+  "checked": "2026-10-08",
+  "note": "T-shirts and polos chart: chest laid flat (pit to pit), doubled"
  },
  "Weird Fish": {
   "M": [
@@ -1090,35 +1452,30 @@
  },
  "_missing": {
   "80s Casual Classics": "sells many brands, each with its own chart; no shop-wide chart",
-  "Admiral": "not looked at yet: no chart source recorded in SHOPS",
-  "Albam": "no size chart found on its product pages or size-guide pages",
-  "AllSaints": "not looked at yet: no chart source recorded in SHOPS",
+  "Admiral": "its size guide is a pop-up app that showed no chart in headless Chromium",
+  "Albam": "its size chart is only a picture, so it cannot be read (one image per product in its Size Chart tab)",
   "Amblers Safety": "not looked at yet: no chart source recorded in SHOPS",
   "Arket": "not looked at yet: no chart source recorded in SHOPS",
-  "BOSS": "not looked at yet: no chart source recorded in SHOPS",
+  "BOSS": "its menswear chart gives only size conversions (L is UK 40R), no chest measurement",
   "Barbour": "not looked at yet: no chart source recorded in SHOPS",
   "Best Workwear": "sells many brands, each with its own chart; no shop-wide chart",
   "Big Boots": "not looked at yet: no chart source recorded in SHOPS",
   "Blacks": "sells many brands, each with its own chart; no shop-wide chart (and plain requests are refused)",
-  "Blue Inc": "not looked at yet: no chart source recorded in SHOPS",
-  "BrandAlley": "not looked at yet: no chart source recorded in SHOPS",
-  "Brave Soul": "no size chart found on its product pages or size-guide pages",
-  "Burton": "not looked at yet: no chart source recorded in SHOPS",
+  "BrandAlley": "sells many brands, each with its own chart; no shop-wide chart",
+  "Brave Soul": "its product pages' size-guide pop-up is empty; no size-guide page found",
   "COS": "not looked at yet: no chart source recorded in SHOPS",
-  "Carhartt WIP": "not looked at yet: no chart source recorded in SHOPS",
+  "Carhartt WIP": "garment measurements are kept per product in script data that the tool cannot read",
   "Clarks": "not looked at yet: no chart source recorded in SHOPS",
   "Colorful Standard": "not looked at yet: no chart source recorded in SHOPS",
-  "Community Clothing": "no size chart found on its product pages or size-guide pages",
   "Corgi": "knitwear size guide has no chest table that could be read",
   "Cosyfeet": "not looked at yet: no chart source recorded in SHOPS",
-  "Cotton Traders": "not looked at yet: no chart source recorded in SHOPS",
+  "Cotton Traders": "its size-chart page shows no chart table, in plain requests or headless Chromium",
   "Crew Clothing": "not looked at yet: no chart source recorded in SHOPS",
   "Cyberjammies": "nightwear shop; its men's size guide has no chest table that could be read",
-  "DeWalt Workwear": "not looked at yet: no chart source recorded in SHOPS",
-  "Debenhams": "not looked at yet: no chart source recorded in SHOPS",
+  "Debenhams": "marketplace selling many brands, each with its own chart; no shop-wide chart",
   "Decathlon": "not looked at yet: no chart source recorded in SHOPS",
-  "END.": "not looked at yet: no chart source recorded in SHOPS",
-  "Fila": "no size chart found on its product pages or size-guide pages",
+  "END.": "sells many brands, each with its own chart; no shop-wide chart",
+  "Fila": "its size chart is only a picture, so it cannot be read (men's size guide image on its product pages)",
   "Flatspot": "sells many brands, each with its own chart; no shop-wide chart",
   "Foot Locker": "sells many brands, each with its own chart; no shop-wide chart",
   "George at Asda": "not looked at yet: no chart source recorded in SHOPS",
@@ -1128,79 +1485,64 @@
   "H&M": "not looked at yet: no chart source recorded in SHOPS",
   "HUF": "no size chart found on its product pages or size-guide pages",
   "Hawes & Curtis": "not looked at yet: no chart source recorded in SHOPS",
-  "Henri Lloyd": "no size chart found on its product pages or size-guide pages",
-  "Herring Shoes": "not looked at yet: no chart source recorded in SHOPS",
-  "Hirst Footwear": "not looked at yet: no chart source recorded in SHOPS",
+  "Henri Lloyd": "its size chart is only a picture, so it cannot be read (men's size chart image)",
+  "Herring Shoes": "sells many brands, each with its own chart; no shop-wide chart",
+  "Hirst Footwear": "sells many brands, each with its own chart; no shop-wide chart",
   "Hollands Country Clothing": "sells many brands, each with its own chart; no shop-wide chart",
-  "JD Sports": "not looked at yet: no chart source recorded in SHOPS",
-  "Jack Wolfskin": "the product chart shows only the size picked; no general chart found",
+  "JD Sports": "sells many brands, each with its own chart; no shop-wide chart",
   "Jean Store": "sells many brands, each with its own chart; no shop-wide chart",
   "Jones Bootmaker": "not looked at yet: no chart source recorded in SHOPS",
   "Joseph Turner": "not looked at yet: no chart source recorded in SHOPS",
   "Joules": "not looked at yet: no chart source recorded in SHOPS",
-  "Kestin": "not looked at yet: no chart source recorded in SHOPS",
-  "Lambretta": "no size chart found on its product pages or size-guide pages",
-  "Lifting Equipment Store": "not looked at yet: no chart source recorded in SHOPS",
+  "Kestin": "its size chart is only a picture, so it cannot be read (size-chart app images on its product pages)",
+  "Lambretta": "its size chart is only a picture, so it cannot be read (an SVG drawn as shapes, in its product pages' size guide)",
+  "Lifting Equipment Store": "sells many brands, each with its own chart; no shop-wide chart",
   "London Sock Company": "no tops size chart found",
   "Marrkt": "sells many brands, each with its own chart; no shop-wide chart",
-  "Matalan": "no size chart found on its product pages or size-guide pages",
+  "Matalan": "its products carry no size guide (empty in the page data) and no size-guide page was found",
   "Military Kit": "army-surplus shop selling several makers; no shop-wide chart found",
   "Military Mart": "army-surplus shop selling several makers; no shop-wide chart found",
   "Millets": "sells many brands, each with its own chart; no shop-wide chart (and plain requests are refused)",
   "Moss": "only a suit-jacket chart in numbered sizes; no S/M/L tops chart found",
-  "Mountain Warehouse": "not looked at yet: no chart source recorded in SHOPS",
-  "New Era": "no size chart found on its product pages or size-guide pages",
   "Next": "not looked at yet: no chart source recorded in SHOPS",
-  "Nike": "not looked at yet: no chart source recorded in SHOPS",
-  "O'Neill": "no size chart found on its product pages or size-guide pages",
   "Oi Polloi": "sells many brands, each with its own chart; no shop-wide chart",
-  "Passenger": "no size chart found on its product pages or size-guide pages",
   "Pavers": "not looked at yet: no chart source recorded in SHOPS",
   "Peter Christian": "no size chart found on its product pages or size-guide pages",
   "Philip Morris Direct": "sells many brands, each with its own chart; no shop-wide chart",
-  "Rains": "not looked at yet: no chart source recorded in SHOPS",
-  "Regatta": "not looked at yet: no chart source recorded in SHOPS",
   "Represent": "not looked at yet: no chart source recorded in SHOPS",
-  "River Island": "no size chart found on its product pages or size-guide pages",
   "Rock Solid Safety": "sells many brands, each with its own chart; no shop-wide chart",
-  "Rokit": "not looked at yet: no chart source recorded in SHOPS",
+  "Rokit": "vintage shop; each piece is one-off and measured on its own",
   "Route One": "sells many brands, each with its own chart; no shop-wide chart",
-  "Scruffs": "not looked at yet: no chart source recorded in SHOPS",
+  "Scruffs": "its size chart is only a picture, so it cannot be read (men's tops and jackets size guide image)",
   "Sebago": "not looked at yet: no chart source recorded in SHOPS",
   "Shoe Zone": "not looked at yet: no chart source recorded in SHOPS",
-  "SikSilk": "no size chart found on its product pages or size-guide pages",
   "Slam City Skates": "sells many brands, each with its own chart; no shop-wide chart",
-  "Solovair": "not looked at yet: no chart source recorded in SHOPS",
+  "Solovair": "its size chart is only a picture, so it cannot be read (polo shirt size chart image)",
   "Spartoo": "sells many brands, each with its own chart; no shop-wide chart",
-  "Spoke": "not looked at yet: no chart source recorded in SHOPS",
-  "Sports Direct": "not looked at yet: no chart source recorded in SHOPS",
-  "Stuarts London": "not looked at yet: no chart source recorded in SHOPS",
-  "Summits": "not looked at yet: no chart source recorded in SHOPS",
+  "Sports Direct": "sells many brands, each with its own chart; no shop-wide chart",
+  "Stuarts London": "sells many brands, each with its own chart; no shop-wide chart",
+  "Summits": "sells many brands, each with its own chart; no shop-wide chart",
   "Sunspel": "no size chart found on its product pages or size-guide pages",
-  "Superdry": "no size chart found on its product pages or size-guide pages",
   "TBCo": "not looked at yet: no chart source recorded in SHOPS",
   "The North Face": "not looked at yet: no chart source recorded in SHOPS",
   "Timberland PRO": "not looked at yet: no chart source recorded in SHOPS",
   "Trade Workwear": "sells many brands, each with its own chart; no shop-wide chart",
   "Trueface": "its product chart gives L as 15.7-16.5in 'chest', which is not a chest measurement",
   "Tu at Sainsbury's": "not looked at yet: no chart source recorded in SHOPS",
-  "TuffStuff": "not looked at yet: no chart source recorded in SHOPS",
-  "Twisted Tailor": "no size chart found on its product pages or size-guide pages",
-  "USC": "not looked at yet: no chart source recorded in SHOPS",
+  "Twisted Tailor": "its shirt and polo pages have no size chart, only a size picker; no size-guide page found",
+  "USC": "sells many brands, each with its own chart; no shop-wide chart",
   "Urban Excess": "sells many brands, each with its own chart; no shop-wide chart",
   "Urban Industry": "sells many brands, each with its own chart; no shop-wide chart",
-  "Uskees": "no size chart found on its product pages or size-guide pages",
   "Vinted": "second-hand marketplace; sizes are the sellers' own",
   "Voi Jeans": "not looked at yet: no chart source recorded in SHOPS",
-  "Weekend Offender": "not looked at yet: no chart source recorded in SHOPS",
   "White Stuff": "not looked at yet: no chart source recorded in SHOPS",
-  "WoolOvers": "not looked at yet: no chart source recorded in SHOPS",
-  "Workwear Express": "not looked at yet: no chart source recorded in SHOPS",
+  "WoolOvers": "its pages refuse plain requests and headless Chromium (403)",
+  "Workwear Express": "sells many brands, each with its own chart; no shop-wide chart",
   "Workwear Gurus": "sells many brands, each with its own chart; no shop-wide chart",
-  "Wynsors": "not looked at yet: no chart source recorded in SHOPS",
+  "Wynsors": "sells many brands, each with its own chart; no shop-wide chart",
   "Zara": "not looked at yet: no chart source recorded in SHOPS",
   "boohooMAN": "not looked at yet: no chart source recorded in SHOPS",
-  "eBay": "not looked at yet: no chart source recorded in SHOPS",
-  "size?": "not looked at yet: no chart source recorded in SHOPS"
+  "eBay": "marketplace; sizes are the sellers' own",
+  "size?": "sells many brands, each with its own chart; no shop-wide chart"
  }
 }
