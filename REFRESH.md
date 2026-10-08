@@ -58,6 +58,14 @@ Use today's date as `D` (YYYY-MM-DD). Work on a branch, then merge to `main` so 
    on a contact sheet and look: drop women's, children's and anything that is not his clothing,
    and add a rule to `sweep_filter.py` for each kind of mistake so it does not come back.
 
+4b. **Size charts** for shops with new picks (direct requests and headless Chromium only):
+
+       python3 tools/size_charts.py --shops "<shop>,<shop>"
+
+   Shops whose pages refuse plain requests are opened in headless Chromium (`via: "browser"` in its `SHOPS` table).
+   It keeps the other shops' entries. A shop it cannot read goes under `_missing` with the reason; the card then
+   shows no size check for it.
+
 5. **Outfits:** first mend outfits that lost a piece, then add some built on the new picks:
 
        python3 tools/weekly_refresh.py outfits

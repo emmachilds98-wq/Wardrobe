@@ -30,6 +30,8 @@ fit as the shop's photo, layered as it would really be worn, with no skin or hol
 | `data/items.json`, `data/items-*.json` | Every pick. The build merges them; the first file to define an id wins. |
 | `data/outfits.json`, `data/outfits-*.json` | Every outfit. Merged the same way. |
 | `data/fixes.json` | Corrections for items whose shop photo the page reads wrongly. |
+| `data/sizecharts.json` | What M, L and XL mean at each shop (the chest in inches, from the shop's own size guide, body or garment), with its source page. Made by `python3 tools/size_charts.py`; the cards show it as the size check. |
+| `data/specs.json` | The stored specs: how every piece worn in an outfit is read (colours, pattern, cut, cloth, details), with where each reading came from and how far to trust it. Made by `node tools/specs.js`; never edit it by hand. |
 | `photos/*-NN.json` | Listing photos (small WebP data URLs, keyed by item id), made by `tools/fetch_photos.py`. |
 | `data/body.json` | Dave's 3D body (MakeHuman CC0), made by `tools/build_body.py`. |
 | `page.html` | The whole page: styles, the 2D drawing, the Three.js 3D builder, the shop. |
@@ -93,6 +95,13 @@ is drawn from its name and the outfit's palette colour only, so it will rarely m
   blazer, coat, gilet, cardigan or waistcoat with nothing under it gets a plain white tee added, but put a real
   pick under it instead.
 - Order does not matter. The page sorts tops by layer.
+- **Keep to one dress code.** Every piece has a formality level, from 0 (lounge: joggers, slippers, slides) to 4
+  (tailored: suit trousers, blazers, brogues, derbies), set by `FORMALITY` in `tools/build_site.py`: the first name
+  rule that matches, else the shape. An outfit's clothes and shoes should be within 2 levels of each other (3 for
+  Rave and Lounge), so no brogues with shorts, no hoodie with suit trousers, no running trainers with a blazer. The
+  build notes any outfit outside this. The builder's suggestions and `tools/make_outfits.py` keep to it, and the
+  page gets the same table through `meta.json`, so change the rule in `FORMALITY` only (never in the page) and check
+  the build's notes.
 
 ### Shapes
 
@@ -168,9 +177,14 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
      badge, varsity;
    - material: leather, suede/nubuck, nylon/shell/waterproof/ripstop/puffer/padded/down, linen, cord/corduroy,
      denim/jean, fleece/sherpa/borg, wool/merino/cashmere/lambswool/tweed, satin/silk, waffle; chunky/cable/aran;
-   - the named colour (the colourway after the last comma or dash first), a second colour ("white and black",
-     "navy with white trim") and trim colours. Brand names that contain a colour word (Pretty Green, Red Wing,
-     White Stuff) are ignored. A name with no colour takes the colourway the shop's link selects (M&S
+   - the named colour (the colourway after the last comma, or after the first dash), a second colour ("white and
+     black", "navy with white trim") and trim colours. Brand and model names that contain a colour word (Pretty Green,
+     Red Wing, White Stuff, Red Rock) are ignored. A colour is read whole with its shade word ("light olive", "dark
+     khaki", "ice blue", "stone green"), and a wash is not a colour: "stone wash" and "70's stone" are light denim, and
+     "denim" or a wash gives way to a real colour named with it ("stonewash black" is black, "Denim Bucket Overdye
+     Choc" is brown). A list of colours after dashes ("Pant - Deep Sea Blue - Urban Grey") is checked against the photo
+     colour by colour, since shops differ on which comes first. Add a shade or colour the reader lacks to `NAMED` in
+     `descOf`, with its hex and how far a photo may stray from it. A name with no colour takes the colourway the shop's link selects (M&S
      `?color=DARKINDIGO`, Uniqlo's `colorDisplayCode`, a path ending `/dark-grey/`), as a hue family at any depth.
      Only for legwear on a model shot does the outfit's own `col` stand in after that: elsewhere the photo is read as
      it is (outfit colour words are often a generator's guess). A neutral name (black, grey, charcoal) agrees only with a
@@ -185,6 +199,8 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    differs (`slv`). Trousers on a model are read from his legs: down the figure the photo splits into bands of colour
    and the lowest one long enough to be trousers is read, not his top. If the listing names a colour and
    the photo disagrees (a black mesh vest on a model against white reads as skin and white), the named colour wins.
+   Hue families (green, blue, brown, olive, khaki and the like) agree at any depth of their hue; olive and khaki also
+   agree by distance, since a dark olive photo has too little colour for the hue test.
    Navy and indigo read darker than the named colour are taken halfway back toward it (they photograph nearly
    black). Denim follows its own rule (washes are read from the photo, never replaced by the name). **Stripes and
    checks are only read when the listing names a pattern** (stripe, Breton, check, plaid, gingham, print...): an
@@ -305,8 +321,19 @@ runs the build checks and the 3D check automatically, but run them yourself firs
    - an `occ`, `style` or `wx` word the page does not use;
    - a wrong `data/fixes.json` entry.
 
-   It prints a note for outfits with no shoes and for unusual pick/shape pairs. Commit `docs/` with your change: the
-   live site is served from it, and the pull-request check fails if it is out of date.
+   It prints a note for outfits with no shoes, for unusual pick/shape pairs and for outfits that mix dress codes (see
+   "Keep to one dress code"). Commit `docs/` with your change: the live site is served from it, and the pull-request
+   check fails if it is out of date.
+1b. **Stored specs:** `node tools/specs.js` (about 20 seconds) after any change to the photo reader, `descOf`,
+   `pieceLook`, `data/fixes.json`, the outfits or the picks they use. It reads every outfit piece as the page does
+   and rewrites `data/specs.json`. Look at what moved: `python3 tools/qa/specs_diff.py <old copy> data/specs.json`
+   lists every piece read differently (a colour more than 12 apart, another pattern or source, a changed cut or
+   detail). Every line must be one you meant; then commit `data/specs.json` with the change. The pull-request check
+   reads every piece again and fails if `data/specs.json` does not match.
+   - Its sources are a worklist: `"src": "unseen"` (a pattern named in the listing that the photo reading drew
+     plain) and `"src": "name"` (the photo disagreed with the named colour) are where to look for pieces that do not
+     match their shop photo. Look at each against its photo before correcting it: many are tonal, too fine to see or
+     on the back only, and right as they are.
 2. **Serve a test copy:** `sh tools/qa/serve.sh /tmp/wardrobe-qa 8770` (in the background). All QA scripts read
    `QA_PORT` (default 8770).
 3. **Look at it:**

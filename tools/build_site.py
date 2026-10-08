@@ -235,6 +235,28 @@ def formality_spread(pieces):
     return max(lv) - min(lv) if lv else 0
 
 
+def check_sizecharts(sc):
+    """What is wrong in data/sizecharts.json (tools/size_charts.py): each shop's M, L and XL a [low, high] chest in
+    inches, "kind" body or garment, and the page it was read from."""
+    bad = []
+    for shop, c in sc.items():
+        if shop.startswith("_"):
+            continue
+        for k in ("M", "L", "XL"):
+            v = c.get(k)
+            if v is None:
+                continue
+            if not (isinstance(v, list) and len(v) == 2 and all(isinstance(x, (int, float)) for x in v) and 30 <= v[0] <= v[1] <= 64):
+                bad.append(f"{shop}: {k} must be [low, high] inches")
+        if "L" not in c:
+            bad.append(f"{shop}: no L")
+        if c.get("kind") not in ("body", "garment"):
+            bad.append(f"{shop}: kind must be body or garment")
+        if not str(c.get("src", "")).startswith("https://"):
+            bad.append(f"{shop}: no source page")
+    return bad
+
+
 def page_tables():
     """The shapes and palette the page knows, read from page.html so the checks never fall out of step with it."""
     with open(os.path.join(ROOT, "page.html"), encoding="utf-8") as f:
@@ -355,6 +377,14 @@ def main():
             items[k]["fix"] = {f: v for f, v in fx.items() if f in FIX_FIELDS}
             if fx.get("shapes"):
                 items[k]["fix"]["shapes"] = {sh: {f: v for f, v in sub.items() if f in FIX_FIELDS} for sh, sub in fx["shapes"].items()}
+    # What M, L and XL mean at each shop (data/sizecharts.json, read from the shops' own size guides by
+    # tools/size_charts.py), for the size check on the cards
+    if os.path.exists(os.path.join(ROOT, "data", "sizecharts.json")):
+        sc = load("data/sizecharts.json")
+        bad = check_sizecharts(sc)
+        if bad:
+            raise SystemExit("data/sizecharts.json: " + "; ".join(bad))
+        meta["sizes"] = {k: {f: v[f] for f in ("M", "L", "XL", "kind", "collar") if f in v} for k, v in sc.items() if not k.startswith("_")}
     bad, odd = check_outfits(outfits, items)
     for w in odd:
         print("note:", w)

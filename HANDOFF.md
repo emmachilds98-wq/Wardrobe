@@ -125,6 +125,10 @@ should match. Emma asked for the upgrade to continue until that is done.
   dialog labels, focus return; axe-core finds nothing on any view).
 - **Formality:** one scale (`FORMALITY` in `tools/build_site.py`, shipped to the page in `meta.json`) used by the
   builder's suggestions, `make_outfits.py` and the build's notes. Change it there only.
+- **Size check:** `data/sizecharts.json` (`tools/size_charts.py`, 61 shops so far) drives a "Size check" line on
+  every top's card, personal when his chest is on the measuring card. Extend it shop by shop (REFRESH.md step 4b).
+- **Colour reader:** shade words, denim washes, colourway lists, model names with colour words and olive/khaki
+  families fixed (UPGRADE_PLAN 2zzzzzz); 41 pieces moved, all checked against their photos.
 - **Phase 1, stored specs:** `data/specs.json`, made by `node tools/specs.js` and checked on every pull request.
   Its `unseen` and `name` sources are the labelling worklist; the first five pieces from it are corrected.
 

@@ -266,6 +266,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
 .tag-like{background:var(--green);color:var(--on-green)}
 .sz-ok{color:var(--green);font-weight:600}
 .sz-out{color:var(--claret);font-weight:600}
+.sz-warn{color:var(--tan)}
 .card.is-out{border-style:dashed}
 .acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:9px;margin-top:2px}
 .act{font:inherit;font-size:.82rem;font-weight:600;line-height:1;display:inline-flex;align-items:center;gap:5px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
@@ -2072,7 +2073,12 @@ function descOf(it,p){var key=(it&&it.id||"")+"|"+(p&&p.what||"");if(DESCC[key])
   D.chunky=/chunky|cable|aran|fisherman/.test(n);D.slvStripe=/sleeve-band|sleeve[- ]stripe|striped sleeve|arm stripe|taped sleeve|sleeve tape/.test(a);   /* (only the sleeves: the body is not striped) */
   /* the colour the listing names (the first one, longest name first): the photo reading must agree with it, or it
      gives way (a black mesh vest photographed on a man against white reads as skin and white) */
-  var NAMED=[["off white","#ece6d6",90],["off-white","#ece6d6",90],["light grey","#b9b9b7",100],["light gray","#b9b9b7",100],["dark grey","#4a4b4f",100],["grey marl","#9a9a98",110],["light blue","#a6c4e0",110],["sky blue","#93bde3",110],["dark green","#2c4a32",100],["dark navy","#1b2236",90],["army green","#5b5c38",100],["forage green","#6b6a4c",100],["khaki green","#6b6a45",100],["olive green","#5b5c34",100],["bottle green","#1f4a33",100],["forest green","#2c4a32",100],["sage green","#8f9e82",100],["mint green","#a8d6bf",100],["deep teal","#2a5f63",110],["royal blue","#2a4fa0",120],["gunmetal","#46484c",90],["pebble","#b8ad9a",90],["natural","#e4dac6",90],["ivory","#ece6d6",90],["dark wash","#24314d",100],["mid wash","#4a6488",110],["light wash","#8aa4c4",110],["ocean blue","#2f5a8a",120],["washed black","#2e2d30",120],
+  /* (a shade word changes the colour: "light olive" is pale sage, not olive; a denim wash called "stone" is light blue
+     denim, not the colour stone; a two-word colour is read whole, "stone green" being a dark green) */
+  var NAMED=[["light olive","#bdbd9a",160],["dark olive","#3b3d27",100],["dark khaki","#4d4c33",100],["light khaki","#c8b98f",100],["ice blue","#c3d2df",100],["pale blue","#b9cde0",100],
+    ["stone wash","#7f9bbf",130],["stonewash","#7f9bbf",130],["stone washed","#7f9bbf",130],["70's stone","#8aa4c4",130],["70s stone","#8aa4c4",130],["stone green","#4f5440",100],
+    ["fig","#5b2d3b",60],["angora","#e6dccb",90],["herb","#8f9a78",100],["choc","#4a2e1e",100],
+    ["off white","#ece6d6",90],["off-white","#ece6d6",90],["light grey","#b9b9b7",100],["light gray","#b9b9b7",100],["dark grey","#4a4b4f",100],["grey marl","#9a9a98",110],["light blue","#a6c4e0",110],["sky blue","#93bde3",110],["dark green","#2c4a32",100],["dark navy","#1b2236",90],["army green","#5b5c38",100],["forage green","#6b6a4c",100],["khaki green","#6b6a45",100],["olive green","#5b5c34",100],["bottle green","#1f4a33",100],["forest green","#2c4a32",100],["sage green","#8f9e82",100],["mint green","#a8d6bf",100],["deep teal","#2a5f63",110],["royal blue","#2a4fa0",120],["gunmetal","#46484c",90],["pebble","#b8ad9a",90],["natural","#e4dac6",90],["ivory","#ece6d6",90],["dark wash","#24314d",100],["mid wash","#4a6488",110],["light wash","#8aa4c4",110],["ocean blue","#2f5a8a",120],["washed black","#2e2d30",120],
     ["black","#1e1d20",110],["white","#efede8",95],["cream","#ece3cf",90],["ecru","#e8dfc9",90],["navy","#1f2a44",100],["charcoal","#3d3e42",100],["grey","#8a8a89",130],["gray","#8a8a89",130],["stone","#cbbfa3",95],["sand","#d1bf9a",95],["beige","#cdbb9b",95],["oatmeal","#d6c9b0",90],
     ["khaki","#8b8152",110],["olive","#5b5c34",100],["sage","#8f9e82",100],["mint","#a8d6bf",100],["green","#2f5a3a",120],["teal","#2a6f73",110],["indigo","#2f4466",110],["denim","#3d5a80",130],["blue","#35558f",130],["burgundy","#5e1b26",100],["maroon","#5e1b26",100],["wine","#5e1b26",100],
     ["brown","#5a3a24",110],["chocolate","#4a2e1e",100],["tan","#b08a5a",100],["camel","#b48a58",100],["rust","#a0522d",100],["red","#a8242c",120],["pink","#d98aa0",120],["orange","#d0652c",120],["mustard","#c79a2a",110],["yellow","#d9b23a",120],["purple","#5d3a7a",120],["lilac","#b3a0d0",110],["lavender","#b3a0d0",110],
@@ -2081,9 +2087,14 @@ function descOf(it,p){var key=(it&&it.id||"")+"|"+(p&&p.what||"");if(DESCC[key])
     ["chestnut","#7a4a2c",100],["espresso","#3b2a22",90]];
   /* (the colour after the last comma or dash is the colourway, so it is looked for first; brand names that contain a
      colour word do not count) */
-  var cn0=((it&&it.name)||"").toLowerCase().replace(/pretty green|red wing|black diamond|white stuff|blue inc|red tape|black eyed|blue harbour|green jelly|whitestuff|brown's|grey's/g," "),cut9=Math.max(cn0.lastIndexOf(","),cn0.lastIndexOf(" - ")),best9=null;
+  var cn0=((it&&it.name)||"").toLowerCase().replace(/pretty green|red wing|black diamond|white stuff|blue inc|red tape|black eyed|blue harbour|green jelly|whitestuff|brown's|grey's|red rock/g," "),cut9=cn0.lastIndexOf(",")>=0?cn0.lastIndexOf(","):cn0.indexOf(" - "),best9=null;   /* (after the last comma, or after the first dash: a list of colours after dashes starts with the main one) */
   function findCol(str){var b=null;NAMED.forEach(function(c){var r9=new RegExp("\\b"+c[0]+"\\b").exec(str);if(r9&&(!b||r9.index<b.i||(r9.index===b.i&&c[0].length>b.c[0].length)))b={i:r9.index,c:c};});return b;}
   if(cut9>0)best9=findCol(cn0.slice(cut9));if(!best9)best9=findCol(cn0);
+  var CLOTH9=/\b(denim|stone ?wash(ed)?|70'?s stone)\b/g;
+  if(best9&&/^(denim|stone ?wash(ed)?|70'?s stone)$/.test(best9.c[0])){var bl9=function(x){return x.replace(CLOTH9,function(w){return new Array(w.length+1).join(" ");});},nd9=findCol(bl9(cut9>0?cn0.slice(cut9):cn0))||findCol(bl9(cn0));if(nd9)best9=nd9;}   /* (denim, or a wash, is the cloth when another colour is named: "stonewash black" is black) */
+  /* (the other colours of a colourway list, "Deep Sea Blue - Urban Grey": the photo is checked against each in turn,
+     since shops do not agree on which comes first) */
+  var alts9=[];if(cut9>0)cn0.slice(cut9).split(/ - |\/|,| and /).forEach(function(part){var f9=findCol(part);if(f9&&best9&&f9.c[0]!==best9.c[0]&&!alts9.some(function(a){return a.w===f9.c[0];}))alts9.push({w:f9.c[0],hex:f9.c[1],tol:f9.c[2]});});
   /* (no colour in the name: the colourway the shop's link selects, as M&S's "?color=DARKINDIGO", Uniqlo's colour code or
      a path ending "/dark-grey/". The stored photo is often the shop's first colourway, not the one linked) */
   if(!best9){var uu=((it&&it.url)||"").toLowerCase(),um=/[?&](?:colou?r|colourway)=([^&#]+)/.exec(uu),uq=/uniqlo\.com.*[?&]colordisplaycode=(\d\d)/.exec(uu),uc="";
@@ -2094,7 +2105,7 @@ function descOf(it,p){var key=(it&&it.id||"")+"|"+(p&&p.what||"");if(DESCC[key])
   /* (no colour in the name or the link: the colour the outfit records for the piece stands in) */
   if(!best9&&p&&p.col&&COL[p.col])best9={i:0,c:[p.col,COL[p.col][0],135],pal:1,out:1};
   D.nm=n;D.cn=cn0;D.pc=(p&&p.col)||"";D.shop=(it&&it.shop)||"";   /* (the name and the outfit's colour, for the colour reader's denim rule) */
-  D.colRef=best9&&!/print|pattern|stripe|check|camo|floral|flower|tie[- ]?dye|multi|aop|all[- ]?over|graphic|colour[- ]?block|two[- ]tone|contrast|paisley|leopard|geo\b|tropical|hawaiian/.test(cn0)?{w:best9.c[0],hex:best9.c[1],tol:best9.c[2],pal:best9.pal,out:best9.out}:null;
+  D.colRef=best9&&!/print|pattern|stripe|check|camo|floral|flower|tie[- ]?dye|multi|aop|all[- ]?over|graphic|colour[- ]?block|two[- ]tone|contrast|paisley|leopard|geo\b|tropical|hawaiian/.test(cn0)?{w:best9.c[0],hex:best9.c[1],tol:best9.c[2],pal:best9.pal,out:best9.out,alts:alts9.length?alts9:null}:null;
   D.black=/\bblack\b|\bjet\b|\bonyx\b/.test(n);D.grey=/gr[ae]y|charcoal|marl|slate|graphite|\bash\b|steel|smoke/.test(n);
   /* a second colour named in the listing ("white and black", "navy with white trim") */
   var CW={black:"#1e1d20",white:"#f2efe8",navy:"#1f2a44",cream:"#efe6d2",ecru:"#ece3cf",grey:"#8a8a8a",gray:"#8a8a8a",red:"#a8242c",green:"#2f5a3a",blue:"#2f5aa8",burgundy:"#5e1b26",brown:"#5a3a24",tan:"#b08a5a",yellow:"#d9b23a",orange:"#d0652c",pink:"#d98aa0",gold:"#c49a3a",silver:"#b8bcc0",khaki:"#8a7f55",olive:"#5a5a32",stone:"#c8bea8",beige:"#d4c4a4"};
@@ -2412,14 +2423,22 @@ function readLook(im,shape,DW){
      his top; a product shot, or a top on a model, is read as it is: outfit words are often a generator's guess, and
      "grey" is what it writes when it has none) */
   if(DW.colRef&&DW.colRef.out&&!(L.model&&LOWs))DW=Object.assign({},DW,{colRef:null});
-  if(DW.colRef){var cr9=[parseInt(DW.colRef.hex.substr(1,2),16),parseInt(DW.colRef.hex.substr(3,2),16),parseInt(DW.colRef.hex.substr(5,2),16)],c19=[parseInt(L.c1.substr(1,2),16),parseInt(L.c1.substr(3,2),16),parseInt(L.c1.substr(5,2),16)];
+  if(DW.colRef){var c19=[parseInt(L.c1.substr(1,2),16),parseInt(L.c1.substr(3,2),16),parseInt(L.c1.substr(5,2),16)];
     /* (a hue family, as green or blue or brown, agrees when the photo has that hue at any depth; grey at any depth of
-       neutral; the rest by how far the colours are apart) */
+       neutral; the rest by how far the colours are apart. Olive and khaki also agree by distance: a dark olive photo
+       has too little colour for the hue test) */
     function hsl9(c){var r=c[0]/255,g=c[1]/255,b=c[2]/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2,d=mx-mn,sa=d?d/(1-Math.abs(2*l-1)):0,h=0;if(d){h=mx===r?((g-b)/d)%6:mx===g?(b-r)/d+2:(r-g)/d+4;h*=60;if(h<0)h+=360;}return [h,sa,l];}
-    var hs9=hsl9(c19),hr9=hsl9(cr9),fam=/^(green|blue|red|pink|orange|yellow|purple|teal|mint|lilac|lavender|sage|light blue|sky blue|dark green|brown|tan|camel|rust|mustard|chocolate|army green|forage green|khaki green|olive green|bottle green|forest green|sage green|mint green|deep teal|royal blue|ocean blue)$/.test(DW.colRef.w)||(DW.colRef.pal&&/^(burgundy|olive|indigo|navy)$/.test(DW.colRef.w)),agree;
-    if(/^(grey|gray)$/.test(DW.colRef.w))agree=hs9[1]<0.2&&hs9[2]>0.12&&hs9[2]<0.86;
-    else if(fam){var dh=Math.abs(hs9[0]-hr9[0]);dh=Math.min(dh,360-dh);agree=hs9[1]>0.08&&dh<(DW.colRef.w==="green"?105:38)&&Math.abs(hs9[2]-hr9[2])<(DW.colRef.pal?0.58:0.42);}
-    else agree=dist(c19,cr9)<=DW.colRef.tol&&!(/^(black|white|charcoal|(dark |light )?gr[ae]y)$/.test(DW.colRef.w)&&Math.max(c19[0],c19[1],c19[2])-Math.min(c19[0],c19[1],c19[2])>45);   /* (a neutral name wants a neutral photo: dark red is near dark grey by distance alone) */
+    var hs9=hsl9(c19);
+    function agreeW(ref){var cr=[parseInt(ref.hex.substr(1,2),16),parseInt(ref.hex.substr(3,2),16),parseInt(ref.hex.substr(5,2),16)],hr=hsl9(cr),ok,
+        fam=/^(green|blue|red|pink|orange|yellow|purple|teal|mint|lilac|lavender|sage|olive|khaki|light blue|sky blue|dark green|brown|tan|camel|rust|mustard|chocolate|army green|forage green|khaki green|olive green|bottle green|forest green|sage green|mint green|deep teal|royal blue|ocean blue)$/.test(ref.w)||(ref.pal&&/^(burgundy|olive|indigo|navy)$/.test(ref.w));
+      if(/^(grey|gray)$/.test(ref.w))ok=hs9[1]<0.2&&hs9[2]>0.12&&hs9[2]<0.86;
+      else if(fam){var dh=Math.abs(hs9[0]-hr[0]);dh=Math.min(dh,360-dh);ok=hs9[1]>0.08&&dh<(ref.w==="green"?105:38)&&Math.abs(hs9[2]-hr[2])<(ref.pal?0.58:0.42);
+        if(!ok&&/olive|khaki/.test(ref.w))ok=dist(c19,cr)<=ref.tol;}
+      else ok=dist(c19,cr)<=ref.tol&&!(/^(black|white|charcoal|(dark |light )?gr[ae]y)$/.test(ref.w)&&Math.max(c19[0],c19[1],c19[2])-Math.min(c19[0],c19[1],c19[2])>45);   /* (a neutral name wants a neutral photo: dark red is near dark grey by distance alone) */
+      return ok;}
+    var agree=agreeW(DW.colRef);
+    var alts9=DW.colRef.alts||[];for(var ai9=0;ai9<alts9.length&&!agree;ai9++)if(agreeW(alts9[ai9])){DW=Object.assign({},DW,{colRef:alts9[ai9]});agree=true;}
+    var cr9=[parseInt(DW.colRef.hex.substr(1,2),16),parseInt(DW.colRef.hex.substr(3,2),16),parseInt(DW.colRef.hex.substr(5,2),16)];
     if(!agree){L.c1p=L.c1;L.c1=DW.colRef.hex;L.named=DW.colRef.w;delete L.front;delete L.slv;if(!(DW.stripe||DW.check||DW.print)){L.pat="plain";delete L.swCv;delete L.swatch;}if(L.c2&&dist([parseInt(L.c2.substr(1,2),16),parseInt(L.c2.substr(3,2),16),parseInt(L.c2.substr(5,2),16)],cr9)<60)L.c2="";}
     /* (navy and indigo photograph nearly black under studio light, and then drew as black: a reading darker than the
        named colour is taken halfway back toward it, so a navy suit stays navy; denim keeps its own rule below) */
@@ -2792,6 +2811,25 @@ function jobOne(it,j){
   return false;
 }
 function sizeFor(it){var m=profile&&profile.bycat;return m&&typeof m==="object"&&typeof m[it.cat]==="string"?m[it.cat]:"";}
+/* The size check: what an L means at this shop, from its own size chart (meta.json "sizes", from data/sizecharts.json,
+   read by tools/size_charts.py). A body chart gives the chest it fits, a garment chart the garment's own chest. With
+   his chest on the measuring card it says which size fits him there; without it, a shop whose L is for a smaller or
+   larger chest than most shops' is flagged. */
+var SIZES={},TOPCAT={knit:1,polo:1,shirt:1,coat:1,basics:1,lounge:1,sport:1};
+function inches(a){return a[0]===a[1]?a[0]+"in":a[0]+"–"+a[1]+"in";}
+function hisChest(){var m=profile.measure&&typeof profile.measure==="object"?profile.measure:(loadMeasure()||{});return Number(m.chest)>0?Number(m.chest):0;}
+function shopSize(it){
+  var c=SIZES[it.shop];if(!c||!c.L||!TOPCAT[it.cat])return null;
+  var col=c.collar&&it.cat==="shirt"?", collar "+c.collar+"in":"";
+  if(c.kind==="garment")return {t:"Size check: an L here measures "+inches(c.L)+" round the garment itself"+col+".",warn:false};
+  var t="Size check: L here fits a "+inches(c.L)+" chest"+col,ch=hisChest(),warn=false;
+  if(ch){var fit=["M","L","XL"].filter(function(k){return c[k]&&ch>=c[k][0]-0.5&&ch<=c[k][1]+0.5;});
+    /* (between two sizes: the nearest) */
+    if(!fit.length){var gap=function(k){return c[k]?Math.max(c[k][0]-ch,ch-c[k][1],0):99;};fit=["M","L","XL"].filter(function(k){return c[k];}).sort(function(x,y){return gap(x)-gap(y);}).slice(0,1);}
+    if(fit.indexOf("L")>=0)t+=", and his "+ch+"in chest is in it";else if(fit.length){t+=". For his "+ch+"in chest, "+fit[0]+" here is nearer";warn=true;}}
+  else{var mid=(c.L[0]+c.L[1])/2;if(mid<41.5){t+=": this shop runs small";warn=true;}else if(mid>44.5){t+=": this shop runs large";warn=true;}}
+  return {t:t+".",warn:warn};
+}
 function sizeLine(it){
   if(it.insize===true)return '<span class="sz-ok">In his size: '+esc(it.sizes||"in stock")+'</span>';
   if(it.insize===false)return '<span class="sz-out">His size: '+esc(it.sizes||"sold out")+'</span>';
@@ -2810,14 +2848,14 @@ function card(it){
     price='<span class="now">'+money(it.price)+'</span>'+(p>0?'<s class="was">'+money(it.was)+'</s><span class="cut">'+p+'% off</span>':"")+(isDrop(it)?'<span class="typ">was '+money(it.prev)+' last week</span>':"");
   }
   var where=it.occ.map(function(o){return label(OCC,o);}).concat(it.wx.length>=4?["Any weather"]:it.wx.map(function(w){return label(WX,w);})).join(" · ");
-  var chk=niceDate(it.checked),sz=sizeLine(it),wide=state.q||state.set==="gifts",old=stale(it),cr=careOf(it),hl=histLine(it);
+  var chk=niceDate(it.checked),sz=sizeLine(it),ssz=shopSize(it),wide=state.q||state.set==="gifts",old=stale(it),cr=careOf(it),hl=histLine(it);
   return '<article class="'+cls+'">'+photoBox(it,"",true)+
     '<div class="kicker"><span class="label">'+esc(it.shop)+'</span><span class="tags">'+tags+'</span></div>'+
     '<h4>'+esc(it.name)+'</h4>'+
     (it.note?'<p class="note">'+esc(it.note)+'</p>':"")+
     '<div class="price">'+price+'</div>'+
     (it.offer?'<p class="offer">'+esc(it.offer)+'</p>':"")+
-    '<p class="meta">'+(sz?sz+'<br>':"")+(it.fit?'<span class="fitnote">Fit: '+esc(it.fit.toLowerCase())+'</span><br>':"")+(it.fabric?'<span class="fitnote">Fabric: '+esc(it.fabric)+'</span><br>':"")+(it.sizeNote?'<span class="fitnote">Fit tip: '+esc(it.sizeNote)+'</span><br>':"")+(hl?'<span class="hist">'+esc(hl)+'</span><br>':"")+(cr?'<span class="care">Care: '+esc(cr)+'</span><br>':"")+esc(where)+(wide?'<br>'+esc(it.style.map(function(s){return label(STYLE,s);}).join(", ")):"")+(chk?'<br>'+(old?'<span class="stale">Price seen '+esc(chk)+', over a month ago. Check before buying.</span>':'Checked '+esc(chk)):"")+'</p>'+
+    '<p class="meta">'+(sz?sz+'<br>':"")+(ssz?'<span class="'+(ssz.warn?"sz-warn":"fitnote")+'">'+esc(ssz.t)+'</span><br>':"")+(it.fit?'<span class="fitnote">Fit: '+esc(it.fit.toLowerCase())+'</span><br>':"")+(it.fabric?'<span class="fitnote">Fabric: '+esc(it.fabric)+'</span><br>':"")+(it.sizeNote?'<span class="fitnote">Fit tip: '+esc(it.sizeNote)+'</span><br>':"")+(hl?'<span class="hist">'+esc(hl)+'</span><br>':"")+(cr?'<span class="care">Care: '+esc(cr)+'</span><br>':"")+esc(where)+(wide?'<br>'+esc(it.style.map(function(s){return label(STYLE,s);}).join(", ")):"")+(chk?'<br>'+(old?'<span class="stale">Price seen '+esc(chk)+', over a month ago. Check before buying.</span>':'Checked '+esc(chk)):"")+'</p>'+
     '<a class="buy" href="'+esc(it.url)+'" target="_blank" rel="noopener">'+(pre?"Search ":"View at ")+esc(it.shop)+' <span aria-hidden="true">↗</span></a>'+
     (heroCount[it.id]?'<button class="linkbtn mixlink" type="button" data-mix="'+esc(it.id)+'">See it in '+heroCount[it.id]+' outfits</button>':"")+
     '<button class="linkbtn mixlink" type="button" data-goes="'+esc(it.id)+'" aria-expanded="false">What goes with it, and cheaper like this</button><div class="goes" hidden></div>'+
@@ -6430,7 +6468,7 @@ async function loadStatic(){
     byId={};derived={};items.forEach(function(it){byId[it.id]=it;});
     styleTags=M.styletags||{};applyTags();
     fits=Object.keys(O).map(function(k){return normFit(k,O[k]);}).filter(Boolean);fitById={};fits.forEach(function(f){fitById[f.id]=f;});fitsSeen=true;usage=null;
-    meta=M.status||{};profile=M.profile||{};baseProfile=profile;shopInfo=M.shops||{};setFormal(M.formality);
+    meta=M.status||{};profile=M.profile||{};baseProfile=profile;shopInfo=M.shops||{};setFormal(M.formality);SIZES=M.sizes||{};
     phase=items.length?"ready":"empty";renderAll();
     if(pendFit){var pf=pendFit;pendFit="";if(fitById[pf])openZoom(pf);}
     return true;
