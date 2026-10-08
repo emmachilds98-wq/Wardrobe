@@ -20,7 +20,9 @@ import argparse, glob, json, os, random, re
 from build_site import FORMALITY, formality_spread, garment_kind
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-COLW = [["off white", "cream"], ["navy", "navy"], ["midnight", "navy"], ["black", "black"], ["white", "white"],
+# (a denim wash is not a colour: "Blue Stone Washed" is denim, so the washes come before "stone")
+COLW = [["stone wash", "indigo"], ["stonewash", "indigo"], ["stone-wash", "indigo"], ["70's stone", "indigo"], ["merlot", "burgundy"],
+        ["off white", "cream"], ["navy", "navy"], ["midnight", "navy"], ["black", "black"], ["white", "white"],
         ["ecru", "cream"], ["cream", "cream"], ["bone", "cream"], ["oatmeal", "cream"], ["charcoal", "charcoal"],
         ["gunmetal", "charcoal"], ["grey", "grey"], ["gray", "grey"], ["marl", "grey"], ["silver", "silver"],
         ["olive", "olive"], ["khaki", "olive"], ["army", "olive"], ["sage", "olive"], ["green", "green"],
@@ -82,7 +84,7 @@ def shape(v):
     if c == "tailor":
         return "trousers" if t(r"trouser") else None if t(r"waistcoat|suit\b") else "blazer"
     if c == "shoe":
-        return "slippers" if t(r"slipper") else "boots" if t(r"boot") else \
+        return "slippers" if t(r"slipper") else "boots" if t(r"\bboots?\b") else \
             "trainers" if t(r"trainer|sneaker|samba|vans|court|converse|old skool|skate|runner|running|plimsoll|gazelle|campus") else \
             None if t(r"sandal|slide|flip") else "shoes"
     if c == "lounge":
@@ -201,11 +203,13 @@ def main():
             if not low:
                 continue
             add(low)
-            if wx in ("cold", "wet", "mild") and not (wx == "mild" and rnd.random() < 0.5):
+            # (no knit or jacket over shorts, as in the page's builder, except for Rave)
+            layer_ok = low[2] != "shorts" or style == "rave"
+            if layer_ok and wx in ("cold", "wet", "mild") and not (wx == "mild" and rnd.random() < 0.5):
                 mid = pick(style, MID, wx, {low[3]} if bright() else set(), taken, suits)
                 if mid and (not bright() or mid[3] in NEUTRAL):
                     add(mid)
-            if wx in ("cold", "wet") or (wx == "mild" and rnd.random() < 0.4):
+            if layer_ok and (wx in ("cold", "wet") or (wx == "mild" and rnd.random() < 0.4)):
                 outer = pick(style, OUT if not lounge else set(), wx, set(), taken,
                              (lambda v, sh: not re.search(r"hi[- ]?vis", v["name"], re.I) and suits(v, sh)))
                 if outer and (not bright() or outer[3] in NEUTRAL):

@@ -1,0 +1,356 @@
+{
+ "w20261008-quiet-01": {
+  "name": "Black jacket and indigo trousers",
+  "note": "6 pieces for £230.7, £282 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "charcoal",
+    "item": "fa-milners-check",
+    "shape": "shirt",
+    "what": "Charcoal shirt"
+   },
+   {
+    "col": "indigo",
+    "item": "siksilk-loose-fit-jeans-ss-28670",
+    "shape": "trousers",
+    "what": "Indigo trousers"
+   },
+   {
+    "col": "green",
+    "item": "ba-lyle-scott-cotton-crew-jumper-green",
+    "shape": "jumper",
+    "what": "Green jumper"
+   },
+   {
+    "col": "black",
+    "item": "jeanstore-napapijri-bisenzio-short-jacket-black-beauty",
+    "shape": "jacket",
+    "what": "Black jacket, worn open"
+   },
+   {
+    "col": "grey",
+    "item": "samuelwind-langley-chukka-boots-tan-suede",
+    "shape": "boots",
+    "what": "boots"
+   },
+   {
+    "col": "grey",
+    "item": "herringsho-herring-malin-beanie-hat-in-seaweed",
+    "shape": "beanie",
+    "what": "beanie"
+   }
+  ],
+  "rank": 400,
+  "style": [
+   "quiet"
+  ],
+  "wx": [
+   "cold"
+  ],
+  "look": "men charcoal shirt indigo trousers green jumper black jacket boots outfit"
+ },
+ "w20261008-quiet-02": {
+  "name": "Green jumper and indigo trousers",
+  "note": "4 pieces for £142.5, £140 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "stone",
+    "item": "ms-gant-oxford-shirt-taupe",
+    "shape": "shirt",
+    "what": "Stone shirt"
+   },
+   {
+    "col": "indigo",
+    "item": "siksilk-loose-fit-jeans-ss-28670",
+    "shape": "trousers",
+    "what": "Indigo trousers"
+   },
+   {
+    "col": "green",
+    "item": "ba-lyle-scott-cotton-crew-jumper-green",
+    "shape": "jumper",
+    "what": "Green jumper"
+   },
+   {
+    "col": "brown",
+    "item": "baselondon-drum-suede-brown-loafers-shoes",
+    "shape": "shoes",
+    "what": "Brown shoes"
+   }
+  ],
+  "rank": 403,
+  "style": [
+   "quiet"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men stone shirt indigo trousers green jumper brown shoes outfit"
+ },
+ "w20261008-quiet-04": {
+  "name": "Grey half-zip and indigo trousers",
+  "note": "5 pieces for £183.96, £221 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "blue",
+    "item": "brakeburn-blue-check-short-sleeve-shirt-ss24",
+    "shape": "sshirt",
+    "what": "Blue short-sleeve shirt"
+   },
+   {
+    "col": "indigo",
+    "item": "jeanstore-stan-ray-og-painter-relaxed-fit-jeans-70s-stone-denim",
+    "shape": "trousers",
+    "what": "Indigo trousers"
+   },
+   {
+    "col": "grey",
+    "item": "ba-gant-lambswool-quarter-zip-grey",
+    "shape": "halfzip",
+    "what": "Grey half-zip"
+   },
+   {
+    "col": "navy",
+    "item": "baselondon-garfield-nubuck-navy-loafers-shoes",
+    "shape": "shoes",
+    "what": "Navy shoes"
+   },
+   {
+    "col": "olive",
+    "item": "slamcity-passport-whip-logo-rpet-bucket-hat-olive",
+    "shape": "bucket",
+    "what": "Olive bucket hat"
+   }
+  ],
+  "rank": 409,
+  "style": [
+   "quiet"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men blue short-sleeve shirt indigo trousers grey half-zip navy shoes outfit"
+ },
+ "w20261008-casual-01": {
+  "name": "Stone jacket and cream trousers",
+  "note": "6 pieces for £217.97, £244 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "fa-spencer-cord",
+    "shape": "shirt",
+    "what": "Navy shirt"
+   },
+   {
+    "col": "cream",
+    "item": "goodhoodst-purple-mountain-observatory-stinger-pant-cream",
+    "shape": "trousers",
+    "what": "Cream trousers"
+   },
+   {
+    "col": "green",
+    "item": "ms-seasalt-striped-crew-jumper-green",
+    "shape": "jumper",
+    "what": "Green jumper"
+   },
+   {
+    "col": "stone",
+    "item": "tokyolaund-frewin-striped-ribbed-detail-bomber-jacket-in-stone-kensing",
+    "shape": "jacket",
+    "what": "Stone jacket, worn open"
+   },
+   {
+    "col": "black",
+    "item": "marrkt-vintage-2976-chelsea-boots",
+    "shape": "boots",
+    "what": "Black boots"
+   },
+   {
+    "col": "grey",
+    "item": "js-cs-beanie",
+    "shape": "beanie",
+    "what": "Grey beanie"
+   }
+  ],
+  "rank": 400,
+  "style": [
+   "casual"
+  ],
+  "wx": [
+   "cold"
+  ],
+  "look": "men navy shirt cream trousers green jumper stone jacket black boots outfit"
+ },
+ "w20261008-casual-02": {
+  "name": "Green jumper and olive trousers",
+  "note": "4 pieces for £142.97, £206 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "stone",
+    "item": "duckandcov-sudbury-t-shirt-light-stone-1",
+    "shape": "tee",
+    "what": "Stone T-shirt"
+   },
+   {
+    "col": "olive",
+    "item": "volcom-frickin-modern-stret-34",
+    "shape": "trousers",
+    "what": "Olive trousers"
+   },
+   {
+    "col": "green",
+    "item": "ms-seasalt-striped-crew-jumper-green",
+    "shape": "jumper",
+    "what": "Green jumper"
+   },
+   {
+    "col": "grey",
+    "item": "universalt-clae-unisex-adult-leather-moc-toe-derby-shoes",
+    "shape": "shoes",
+    "what": "shoes"
+   }
+  ],
+  "rank": 403,
+  "style": [
+   "casual"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men stone T-shirt olive trousers green jumper shoes outfit"
+ },
+ "w20261008-casual-03": {
+  "name": "Red jacket and indigo trousers",
+  "note": "5 pieces for £252.39, £305 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "navy",
+    "item": "fa-sands-check",
+    "shape": "shirt",
+    "what": "Navy shirt"
+   },
+   {
+    "col": "indigo",
+    "item": "stanray-og-painter-pant-mid-stonewash-denim-fw22",
+    "shape": "trousers",
+    "what": "Indigo trousers"
+   },
+   {
+    "col": "grey",
+    "item": "ba-gant-lambswool-quarter-zip-grey",
+    "shape": "halfzip",
+    "what": "Grey half-zip"
+   },
+   {
+    "col": "burgundy",
+    "item": "hollandsco-craghoppers-mens-vamos-hybrid-insulating-jacket",
+    "shape": "jacket",
+    "what": "Red jacket, worn open"
+   },
+   {
+    "col": "brown",
+    "item": "hollandsco-amblers-mens-dorking-casual-boots",
+    "shape": "boots",
+    "what": "Brown boots"
+   }
+  ],
+  "rank": 406,
+  "style": [
+   "casual"
+  ],
+  "wx": [
+   "cold"
+  ],
+  "look": "men navy shirt indigo trousers grey half-zip red jacket brown boots outfit"
+ },
+ "w20261008-outdoor-01": {
+  "name": "Grey jumper and black trousers",
+  "note": "4 pieces for £207.97, £164 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "stone",
+    "item": "tog24-hop-mens-t-shirt-classic-beige",
+    "shape": "tee",
+    "what": "Stone T-shirt"
+   },
+   {
+    "col": "black",
+    "item": "urbanexces-bhode-two-pleat-pant-black",
+    "shape": "trousers",
+    "what": "Black trousers"
+   },
+   {
+    "col": "grey",
+    "item": "berghaus-mens-prism-micro-interactive-polartec-fleece-jacket-grey-4222",
+    "shape": "jumper",
+    "what": "Grey jumper"
+   },
+   {
+    "col": "grey",
+    "item": "r11-blacks-trainers",
+    "shape": "trainers",
+    "what": "Grey trainers"
+   }
+  ],
+  "rank": 400,
+  "style": [
+   "outdoor"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men stone T-shirt black trousers grey jumper grey trainers outfit"
+ },
+ "w20261008-outdoor-02": {
+  "name": "Grey jumper and indigo trousers",
+  "note": "5 pieces for £170.8, £195 below full price.",
+  "occ": "everyday",
+  "pieces": [
+   {
+    "col": "white",
+    "item": "r11-urbanexc-polo",
+    "shape": "polo",
+    "what": "White polo"
+   },
+   {
+    "col": "indigo",
+    "item": "r11-philipmo-jeans",
+    "shape": "trousers",
+    "what": "Indigo trousers"
+   },
+   {
+    "col": "grey",
+    "item": "berghaus-mens-prism-micro-interactive-polartec-fleece-jacket-grey-4222",
+    "shape": "jumper",
+    "what": "Grey jumper"
+   },
+   {
+    "col": "black",
+    "item": "hirstfootw-mens-roamers-black-leather-chelsea-boots-twin-gusset-slip-o",
+    "shape": "boots",
+    "what": "Black boots"
+   },
+   {
+    "col": "silver",
+    "item": "urbanexces-a-kjaerbede-noah-sunglasses-silver-crystal",
+    "shape": "sunglasses",
+    "what": "Silver sunglasses"
+   }
+  ],
+  "rank": 403,
+  "style": [
+   "outdoor"
+  ],
+  "wx": [
+   "mild"
+  ],
+  "look": "men white polo indigo trousers grey jumper black boots outfit"
+ }
+}
