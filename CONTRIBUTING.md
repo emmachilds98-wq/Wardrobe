@@ -371,14 +371,13 @@ shows it and in flat ID colours (one per piece, the body by region). It counts, 
 | `sunk` | The same at the outline of the figure (cloth sunk inside him at an edge, or a sleeve too short). His feet are left out: a shoe is a shell over the foot. | 60 |
 | `colour` | A plain piece whose rendered colour is far from its target (another hue, much too light or dark, or lost its colour). The target is the photo reading or the `data/fixes.json` colour. | — |
 | `under` | A scarf or snood with a top's collar over it: rays round the back and sides of his neck, over the scarf's top 9 cm, that meet a top and then the scarf just behind it. | 2 rays |
-| `legs` | Trousers whose legs are joined down the thighs: rays between his legs, front and back, from 12 to 30 cm below the crotch, that meet the trousers instead of passing between them. | 2 |
+| `legs` | Trousers whose legs are joined down the thighs: rays between his legs, front and back, from 15 to 30 cm below the crotch (higher up a heavier build's thighs meet), that meet the trousers instead of passing between them. | 2 |
 | `form` | A flat cap drawn as a baseball cap: its peak reaching more than 2 cm past the front of its crown (a flat cap's crown is carried forward over its peak; 0.7 cm now, 4.6 cm for the old dome). | 0 |
-| `slit` | A thin line (1 to 3 px) of an inner layer between two parts of a closed piece worn over it: a seam that has opened. | 20 |
 | `offset` | An inner layer drawn over the piece worn over it because of a depth offset (a photo front or print laid on the cloth): the view is drawn with and without the offsets and compared. | 8 |
 
-`poke` is counted on the front, side and back views, and (cloth through cloth only, his skin left out) on both
-three-quarter views; `slit` and `offset` on all five, where faults of this kind show as the model turns; `holes` and
-`stray` on the front, side and back; `skin`, `seethrough` and `sunk` on all five. `under`, `legs` and `form` are
+`poke`, `holes` and `stray` are counted on the front, side and back views (from three-quarters a gilet's armhole
+wraps round the sleeve coming out of it, which poke would misread); `offset` on all five, where it shows as the model
+turns; `skin`, `seethrough` and `sunk` on all five. `under`, `legs` and `form` are
 measured on the model itself with rays, not on the pictures. The ID pass draws each piece with its own depth settings,
 so what wins in the page's picture wins in the check.
 A count over its limit flags the outfit, and the flag names the part of him it is over ("front skin 40 (belly 30,
@@ -516,8 +515,8 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
   - *Gaps in a knit jacket showing the shirt as it turns.* The tee's photo front was laid on with a depth offset that
     grows as the cloth turns away, so at a glancing angle it came through the jacket as dark streaks; the ID pass of
     the 3D check, drawn without offsets, never saw it. The photo front and chest prints now sit a constant hair off the
-    cloth (also a slit along the open zip's tape was closed). Guards: `offset` and `slit`, and the ID pass keeps each
-    piece's own depth settings.
+    cloth (also a slit along the open zip's tape was closed). Guard: `offset`, and the ID pass keeps each piece's own
+    depth settings.
   - *Wellington sunglasses drawn as two flat rectangles.* An unknown frame name fell through to a default box. Frames
     are now drawn from their named shape (round, oval, Wellington, square, wayfarer, browline, aviator, wrap), in
     acetate or wire as the listing says, sized to his face. Guards: `build_site.py` stops on a frame shape the model
@@ -533,9 +532,19 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
     over a short peak. Guard: `form`.
   - *A scarf under a collar at the back.* Its loop is kept outside every top and collar round his neck, and its lower
     edge now rests on top of his shoulders rather than sinking into a jumper's shoulders. Guard: `under`.
+- **The figure is warped to his proportions after the clothes are built** (`warpMan`: heights, the slope of his
+  shoulders, the depth of his torso). Anything placed by measuring against the clothes at build time can move
+  relative to them afterwards: the shoulder slope drops cloth 7 to 19 cm from the middle more than cloth by his
+  neck. A neck warmer that narrowed steeply above its wide band was carried down inside a padded jacket's collar
+  that way. Keep shapes that rest against other layers gently sloped, and check them on Dave as saved (his own
+  proportions), not only on the plain builds.
 - **A check that passes on the old code catches nothing.** Each guard above was run on the build before the fix (it
   must flag the fault) and after (it must pass); two first attempts (a cap's height for its length, and poke on the
-  three-quarter views) passed the broken build and were replaced. Do the same for any new check.
+  three-quarter views) passed the broken build and were replaced. Then run it on the other builds the pull-request
+  check uses (`--body slim|athletic|heavier|loose`) before pushing: on the heavier build a first legs rule flagged
+  thighs that meet (now measured lower down), and a "slit" count flagged a collar's tip in a neckline and a polo
+  collar laid over a gilet; narrowed until it passed correct outfits, it no longer caught the fault either, so it
+  was dropped. Do the same for any new check.
 - **Keep a test copy of the site separate from `docs/` while a long check runs.** `check_3d.js` serves the folder it
   is given; rebuilding `docs/` under a running check mixes two versions. Build to a scratch folder
   (`python3 tools/build_site.py --out /tmp/site`) and check that.

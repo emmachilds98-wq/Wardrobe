@@ -136,7 +136,7 @@ should match. Emma asked for the upgrade to continue until that is done.
 
 Eight comments on the 3D model (Fair Isle pattern, scarf at the back, zip gap, Wellington sunglasses, jacket
 standing out, trousers and crotch, legs together, flat cap). Each was fixed at its rule for every item of its kind,
-and each now has a guard: `under`, `legs`, `form`, `slit` and `offset` in `check_3d.js` (whose ID pass now keeps each
+and each now has a guard: `under`, `legs`, `form` and `offset` in `check_3d.js` (whose ID pass now keeps each
 piece's depth settings), the specs check refusing `unseen` pieces, and `build_site.py` refusing sunglasses shapes the
 model cannot draw. Each guard was shown to flag the build before the fix and pass the build after it. Details and the
 table: UPGRADE_PLAN 2zzzzzzz; lessons: CONTRIBUTING.md.

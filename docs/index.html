@@ -4593,7 +4593,7 @@ function make3Dcore(pieces){
   function underLong0(k){return up.slice(k+1).some(function(q){return !slvless(q)&&!(/^(tee|polo|sshirt)$/.test(q.shape)&&!/long/.test(nm(q)));});}
   up.forEach(function(p,k){
     curIt=p.item;curWhat=p.what;curKind="up"+k;PIECE=bodyOn?[]:null;var FT=null,FTme=null;
-    var m=pm(p),n0=nm(p),L=LAYER[p.shape]||0,e=[0.008,0.017,0.025][L]+0.004*k+(lay(p)%1?0.006:0)+(L===0&&waistE?0.006:0),DS=p.desc||{};
+    var m=pm(p),n0=nm(p),L=LAYER[p.shape]||0,e=[0.008,0.017,p.shape==="gilet"?0.03:0.025][L]+0.004*k+(lay(p)%1?0.006:0)+(L===0&&waistE?0.006:0),DS=p.desc||{};
     /* (oversized and boxy pieces hang further off him, unless something is worn closed over them) */
     if(bodyOn&&!up.slice(k+1).some(function(q){return !isOpen3(q);}))e+=DS.fit==="loose"?0.012:(DS.fit==="relaxed"?0.006:0);if(bodyOn&&DS.fit==="slim")e-=0.003;
     if(bodyOn){e=Math.max(e,lastE+0.007);lastE=e;}   /* (each layer always a little further out than the one under it) */
@@ -5060,11 +5060,15 @@ function make3Dcore(pieces){
       var NA9=24,tabR=ys.map(function(y){var row=[];for(var ia=0;ia<NA9;ia++)row.push(bodyOn?outR(y,ia/NA9*Math.PI*2):0);
         /* (each direction takes the most of it and its neighbours, then a smoothing, so the scarf's edge runs clean) */
         var mx=row.map(function(v,ia){return Math.max(v,row[(ia+1)%NA9],row[(ia+NA9-1)%NA9]);});
-        return mx.map(function(v,ia){return (mx[(ia+NA9-2)%NA9]+2*mx[(ia+NA9-1)%NA9]+3*v+2*mx[(ia+1)%NA9]+mx[(ia+2)%NA9])/9;});});
+        return mx.map(function(v,ia){return Math.max(row[ia],(mx[(ia+NA9-2)%NA9]+2*mx[(ia+NA9-1)%NA9]+3*v+2*mx[(ia+1)%NA9]+mx[(ia+2)%NA9])/9);});});   /* (never below what was measured in that direction: a padded collar's narrow corner was smoothed away under it) */
+      /* (and narrowing no faster than 2 cm a ring going up: the figure is warped to his proportions after it is built,
+         which drops cloth out over the shoulders a little more than cloth by the neck, and a loop narrowing steeply above
+         its wide band was carried down inside a padded jacket's collar) */
+      for(var r9=1;r9<tabR.length;r9++)for(var ia9=0;ia9<NA9;ia9++)tabR[r9][ia9]=Math.max(tabR[r9][ia9],tabR[r9-1][ia9]-0.02);
       var wrS=bodyOn?function(y,t){var i=0;while(i<ys.length-2&&y>ys[i+1])i++;var f=Math.max(0,Math.min(1,(y-ys[i])/(ys[i+1]-ys[i])));
         var a=((t%(2*Math.PI))+2*Math.PI)%(2*Math.PI),ai=a/(2*Math.PI)*NA9,a0=Math.floor(ai)%NA9,a1=(a0+1)%NA9,fa=ai-Math.floor(ai);
         function o(r){return tabR[r][a0]*(1-fa)+tabR[r][a1]*fa;}
-        var need=o(i)*(1-f)+o(i+1)*f,rx=ring[i][1]*(1-f)+ring[i+1][1]*f,rz=ring[i][2]*(1-f)+ring[i+1][2]*f,re=Math.hypot(rx*Math.sin(t),rz*Math.cos(t)),want=Math.min(need+0.012,re+0.03);
+        var need=o(i)*(1-f)+o(i+1)*f,rx=ring[i][1]*(1-f)+ring[i+1][1]*f,rz=ring[i][2]*(1-f)+ring[i+1][2]*f,re=Math.hypot(rx*Math.sin(t),rz*Math.cos(t)),want=Math.min(need+0.012,re+0.05);   /* (a padded collar on the diagonals behind reaches past the oval; up to 5 cm more) */
         return want>re?want/re-1:0;}:null;
       var scM=sec(ring,sm2,{seg:72,sq:2,k:2,wr:wrS});
       /* (its lower edge rests on top of what is under it: where his shoulders slope out wider than the loop may reach, a
