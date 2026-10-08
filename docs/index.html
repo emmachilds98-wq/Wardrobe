@@ -4013,8 +4013,10 @@ function make3Dcore(pieces){
   });
   }
   var hatOn=pieces.some(function(p){return /^(beanie|bcap|cap|bucket)$/.test(p.shape);}),capOn=pieces.some(function(p){return /^(bcap|cap)$/.test(p.shape);});
-  /* (under a cap the curls show below its band, which tilts from his brows to his nape: the same line the cap is made on) */
-  function hatLim(ux,uz){if(!capOn)return 0.3;var an=Math.atan2(ux,uz);return 0.11+0.28*(1+Math.cos(an))/2-0.03;}
+  /* (under a hat the curls show below its lower edge, which tilts from his brows to the back of his head: the same
+     line the hat is made on; [front, back] in skull units, as HATBAND below) */
+  var HATBAND={beanie:[0.3,0.0,0.01],bucket:[0.44,0.22,0.09]},hatB=null;pieces.forEach(function(p){if(/^(bcap|cap)$/.test(p.shape))hatB=[0.39,0.11];else if(bodyOn&&HATBAND[p.shape]&&!hatB)hatB=[HATBAND[p.shape][0]-HATBAND[p.shape][2],HATBAND[p.shape][1]-HATBAND[p.shape][2]];});   /* (the curls stop a little further below a bucket hat's edge, clear of its brim) */
+  function hatLim(ux,uz){if(!hatB)return 0.3;var an=Math.atan2(ux,uz);return hatB[1]+(hatB[0]-hatB[1])*(1+Math.cos(an))/2-0.03;}
   var SKL=bodyOn?BL.skull:null,Sx=1,Sy=1,Sz=1,SKy=0;
   if(bodyOn){Sx=SKL[2]/0.084;Sy=SKL[3]/0.12;Sz=SKL[4]/0.106;SKy=SKL[0]-Sy*1.71;
     headG=new T.Group();headG.position.set(0,SKy,SKL[1]);headG.scale.set(Sx,Sy,Sz);man.add(headG);}
@@ -4835,9 +4837,40 @@ function make3Dcore(pieces){
         var ct=secAt(sl,0.235);band(0.222,0.014,ct[1]+0.0045,ct[2]+0.0045,sk,{x:ct[3],z:ct[4]});}   /* ribbed cuff */
       else sec([[0.07,0.034,0.04,x,0.0],[0.2,0.036,0.042,x,0.0]],sk,{seg:20});}
   });
+  /* a beanie or a bucket hat made on his own head, as caps are (below): its crown over his skull and the flattened hair
+     under it (cl, in skull units), its lower edge tilting from just above his brows (front) to the back of his head
+     (back); f runs from that edge (0) to the top of his head (1) */
+  function hatShell(front,back,flat){
+    var CRX=0.084,CRY=0.12,CRZ=0.106,ring=0,k9;
+    /* (over the top of his head the cloth is smoothed toward the average of a ring around it: the skull map dips at
+       the crown, which put a dent in the top of the hat) */
+    for(k9=0;k9<24;k9++){var a9=k9/24*Math.PI*2;ring+=HRAD(Math.cos(1.15)*Math.sin(a9),Math.sin(1.15),Math.cos(1.15)*Math.cos(a9))/24;}
+    var topR=Math.max(ring,HRAD(0,1,0));
+    function at(an,f,cl){var bu=back+(front-back)*(1+Math.cos(an))/2,el=Math.asin(Math.max(-1,Math.min(1,bu))),e2=el+(Math.PI/2-el)*f,cx=Math.cos(e2)*Math.sin(an),cy=Math.sin(e2),cz=Math.cos(e2)*Math.cos(an),
+        hr=HRAD(cx,cy,cz),sm=Math.max(0,Math.min(1,(e2-1.0)/0.45));hr=hr+(Math.max(hr,topR)-hr)*sm*sm*(3-2*sm);
+      var rr=hr+cl,X=cx*CRX*rr,Y=1.71+cy*CRY*rr,Z=cz*CRZ*rr;
+      if(flat){var top=1.71+CRY*(topR+cl)+0.002;if(Y>top-0.008)Y=top-0.008+(Y-top+0.008)*0.4;}   /* (a bucket hat's crown: flat on top, still clear of his head) */
+      return [X,Y,Z];}
+    /* a band of cloth from f0 to f1 at clearance cl (cl1 at f1, to taper), u around him in `wrap` repeats */
+    function band(f0,f1,cl,cl1,NV,m,wrap){var NU=56,v=[],uv=[],ix=[];for(var j=0;j<=NV;j++){var f=f0+(f1-f0)*j/NV,c=cl+(cl1-cl)*j/NV;for(var i=0;i<=NU;i++){var P=at(-Math.PI+2*Math.PI*i/NU,f,c);v.push(P[0],P[1],P[2]);uv.push(i/NU*wrap,f);}}
+      for(j=0;j<NV;j++)for(i=0;i<NU;i++){var a0=j*(NU+1)+i;ix.push(a0,a0+1,a0+NU+1,a0+1,a0+NU+2,a0+NU+1);}
+      var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(v,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setIndex(ix);g.computeVertexNormals();
+      /* (at the top of his head the last row meets at one point, whose normals came out every which way: it takes the
+         average of the row below, so the top is shaded smoothly) */
+      if(f1>0.999){var nr=g.attributes.normal,ax=0,ay=0,az=0;for(i=0;i<=NU;i++){var q9=(NV-1)*(NU+1)+i;ax+=nr.getX(q9);ay+=nr.getY(q9);az+=nr.getZ(q9);}var al=Math.sqrt(ax*ax+ay*ay+az*az)||1;for(i=0;i<=NU;i++)nr.setXYZ(NV*(NU+1)+i,ax/al,ay/al,az/al);nr.needsUpdate=true;}
+      return add(g,m);}
+    return {at:at,band:band};}
   /* accessories */
   acc.forEach(function(p){var m=mat(cc(p.col)[0],0.8);curIt=p.item;curWhat=p.what;curKind="acc";tgt=/^(beanie|bcap|cap|bucket|sunglasses)$/.test(p.shape)?headG:(p.shape==="watch"?armG[-1]:man);
-    if(p.shape==="beanie"){add(new T.SphereGeometry(1,30,18,0,Math.PI*2,0,Math.PI/2),cloth(cc(p.col)[0],"rib","",0.95),0,1.79,0.002,0.1,0.085,0.121);band(1.762,0.042,0.101,0.122,cloth(cc(p.col)[0],"rib","",0.95),{z:0.002});}
+    if(p.shape==="beanie"&&HRAD){
+      /* a knitted crown snug over his head, with its cuff turned up: a double layer of rib standing a little out from
+         the crown, from the lower edge to about a third of the way up, and rolled at its top */
+      var rb=cloth(cc(p.col)[0],"rib","",0.95);rb.side=T.DoubleSide;var hb=hatShell(HATBAND.beanie[0],HATBAND.beanie[1],false);
+      hb.band(0,1,0.09,0.1,14,rb,10);
+      var cf=cloth(cc(p.col)[0],"rib","",0.95);cf.side=T.DoubleSide;hb.band(0,0.36,0.118,0.122,5,cf,10);
+      var rim=[];for(var ib=0;ib<=56;ib++){var Pb=hb.at(-Math.PI+2*Math.PI*ib/56,0.36,0.112);rim.push(Pb);}tube(rim,0.0035,cf,96);
+      var low=[];for(ib=0;ib<=56;ib++){low.push(hb.at(-Math.PI+2*Math.PI*ib/56,0,0.105));}tube(low,0.0028,cf,96);}   /* (the fold at the top of the cuff, and its lower edge) */
+    else if(p.shape==="beanie"){add(new T.SphereGeometry(1,30,18,0,Math.PI*2,0,Math.PI/2),cloth(cc(p.col)[0],"rib","",0.95),0,1.79,0.002,0.1,0.085,0.121);band(1.762,0.042,0.101,0.122,cloth(cc(p.col)[0],"rib","",0.95),{z:0.002});}
     else if((p.shape==="bcap"||p.shape==="cap")&&HRAD){var flatC=p.shape==="cap",cm3=cloth(cc(p.col)[0],flatC?(texOf(p)||"plain"):"plain","",0.9);cm3.side=T.DoubleSide;
       /* a cap made on his own head (the head group's space is the reference head, centre 1.71, radii 0.084 x 0.12 x
          0.106, scaled to his): the crown lies over his skull and the flattened hair under it, its band tilting from just
@@ -4865,6 +4898,18 @@ function make3Dcore(pieces){
       var pg2=pg.clone();pg2.translate(0,-0.003,0);add(pg2,mat(shade(cc(p.col)[0],0.75),0.9,{side:T.DoubleSide}));}   /* (its underside, a shade darker) */
     else if(p.shape==="bcap"||p.shape==="cap"){add(new T.SphereGeometry(1,30,18,0,Math.PI*2,0,Math.PI/2),m,0,1.775,0.004,0.097,p.shape==="cap"?0.058:0.08,0.117);
       add(new T.CylinderGeometry(0.08,0.08,0.006,28,1,false,-Math.PI/2,Math.PI),m,0,1.778,0.098,1,1,0.9,0.12,0,0);}
+    else if(p.shape==="bucket"&&HRAD){
+      /* its crown sits level over his head with a flat top, and the brim slopes down and out all round from its lower
+         edge (about 5 cm), the underside a shade darker */
+      var bk=cloth(cc(p.col)[0],texOf(p)||"plain","",0.9);bk.side=T.DoubleSide;var hs=hatShell(HATBAND.bucket[0],HATBAND.bucket[1],true);
+      hs.band(0,1,0.115,0.115,12,bk,3);
+      var NUb=56,NTb=5,bv=[],bix=[],buv=[];
+      for(var tb=0;tb<=NTb;tb++)for(var ub=0;ub<=NUb;ub++){var an4=-Math.PI+2*Math.PI*ub/NUb,P4=hs.at(an4,0,0.115),rl=Math.sqrt(P4[0]*P4[0]+P4[2]*P4[2])||1,t4=tb/NTb,fr4=Math.max(0,Math.cos(an4)),w4=0.05-0.008*fr4;
+        bv.push(P4[0]+P4[0]/rl*w4*t4,P4[1]-(0.02-0.006*fr4)*t4-0.003*t4*t4,P4[2]+P4[2]/rl*w4*t4);buv.push(ub/NUb*3,t4*0.3);}   /* (a little shorter and flatter over his face, so his eyes show under it) */
+      for(tb=0;tb<NTb;tb++)for(ub=0;ub<NUb;ub++){var b0=tb*(NUb+1)+ub;bix.push(b0,b0+1,b0+NUb+1,b0+1,b0+NUb+2,b0+NUb+1);}
+      var bg=new T.BufferGeometry();bg.setAttribute("position",new T.Float32BufferAttribute(bv,3));bg.setAttribute("uv",new T.Float32BufferAttribute(buv,2));bg.setIndex(bix);bg.computeVertexNormals();add(bg,bk);
+      var bg2=bg.clone();bg2.translate(0,-0.0025,0);add(bg2,mat(shade(cc(p.col)[0],0.78),0.9,{side:T.DoubleSide}));
+      var seam=[];for(var sb=0;sb<=NUb;sb++)seam.push(hs.at(-Math.PI+2*Math.PI*sb/NUb,0.02,0.121));tube(seam,0.0012,mat(shade(cc(p.col)[0],0.8),0.9),96);}   /* (the stitched seam where the brim meets the crown) */
     else if(p.shape==="bucket"){var bm=cloth(cc(p.col)[0],texOf(p)||"plain","",0.9);add(new T.SphereGeometry(1,30,16,0,Math.PI*2,0,Math.PI/2),bm,0,1.79,0.004,0.104,0.07,0.122);band(1.77,0.022,0.106,0.124,bm,{z:0.004});
       add(new T.CylinderGeometry(0.108,0.16,0.035,40,1,true),bm,0,1.757,0.004,1,1,1.08,0.06,0,0);}
     else if(p.shape==="sunglasses"&&bodyOn){tgt=man;var sn=nm(p),E2=BL.eye,sz=E2[2]+E2[3]*0.9+0.012,ea=BL.ear,

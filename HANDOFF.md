@@ -91,6 +91,9 @@ should match. Emma asked for the upgrade to continue until that is done.
 | Accessories, shoes, boots, ties, bags | The long `else if(p.shape===...)` chain near the end of `make3Dcore` |
 | 2D drawing | `figure()`, `face2D`, `applyChar2D` |
 | Edit Dave and fitting room | `CHAR`, `openCE`, `UNDERWEAR` |
+| Views, Back button and links | `setView` (history steps), `route` (reads `#shop`, `#fits`…, `#fit/<id>`), `openZoom` / `closeZoom` / `zoomGone` |
+| Builder | `suggest` (budget, kept pieces, formality via `FORMAL` / `formalRange`), `budgetSet` (the £60/£100/£150 sets), `teeFor` |
+| His wardrobe | `ownPieces`, `ownFits`, `renderMine`; the wear log is `wearOwn` / `wearLine` (`wears` and `log` on each owned piece) |
 
 ## Where it stands (7 Oct 2026, PR #11)
 
@@ -114,6 +117,16 @@ should match. Emma asked for the upgrade to continue until that is done.
 - 2D: Dave from Edit Dave, trousers by cut.
 - Shop: fabric filter, better search, real price drops, a "why it suits him" line.
 - Data: fabric backfill.
+
+## Round of 8 Oct 2026 (PR #18)
+
+- **Page:** Back and Forward move between views; `#fit/<id>` opens an outfit large and can be shared; £60/£100/£150
+  budget sets as flat lays; a wear log with cost per wear in His wardrobe; accessibility (landmarks, skip link,
+  dialog labels, focus return; axe-core finds nothing on any view).
+- **Formality:** one scale (`FORMALITY` in `tools/build_site.py`, shipped to the page in `meta.json`) used by the
+  builder's suggestions, `make_outfits.py` and the build's notes. Change it there only.
+- **Phase 1, stored specs:** `data/specs.json`, made by `node tools/specs.js` and checked on every pull request.
+  Its `unseen` and `name` sources are the labelling worklist; the first five pieces from it are corrected.
 
 ## What to do next, in order
 
@@ -144,8 +157,8 @@ should match. Emma asked for the upgrade to continue until that is done.
      trouser model shots, cloth swatches in `fixes.json`, plain shirts without crumpled photo fronts, neckbands off
      the shoulders, the crotch slot closed on all trousers and shorts, a hoodie's hood rim, caps made on his head,
      holster pockets as sold, matte nylon, waffle cloth, tonal buttons.
-   - **Hats still to do:** beanies and bucket hats are still fixed shapes; make them on the skull map as caps now are.
-     A tech cap with a neck flap (Saltrock Warp) draws as a plain cap.
+   - Done (PR #18): beanies and bucket hats are made on the skull map as caps are (`hatShell`, `HATBAND`).
+     **Hats still to do:** a tech cap with a neck flap (Saltrock Warp) draws as a plain cap.
    - **Footwear still to do:**
      - Every shoe is one generic last: a hiking shoe, a skate shoe and a runner look alike, and a
        Nike's tick is a bar. Shoe lasts by type are Phase 6.
@@ -159,8 +172,10 @@ should match. Emma asked for the upgrade to continue until that is done.
      - `ms-oxford-shoe` links to the black colourway, but its stored photo is the brown one (the
        two outfits that use it now say brown).
 2. **Store what is read (Phase 1 / step 3):**
-   - Write each piece's reading (colour, pattern, cloth square, fit, length, collar) into
-     `data/specs.json` at build time, with its source and a confidence.
+   - Done: each piece's reading (colours, pattern and spacing, cut, collar, cloth, details, what the photo showed)
+     is in `data/specs.json` with its source and a confidence (`tools/specs.js`), and the pull-request check keeps
+     it current. Next: work through its low-confidence pieces (`"src": "name"`, 156 at first; `"unseen"`, 18 left,
+     most right as plain), and let the page load the stored readings instead of reading photos on every visit.
    - Done: the manual override (`data/fixes.json`, applied by `pieceLook`) and the data checks in
      `build_site.py` (outfits and fixes).
    - This also makes the page faster, since photos are no longer read on every visit.
