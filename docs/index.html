@@ -426,7 +426,7 @@ details.filt > summary small{font-weight:400}
 .own .thumb{width:52px;height:52px}
 .own .glyph{width:52px;height:52px;background:var(--board);border-radius:3px;padding:4px}
 .own b{font-weight:600;font-size:.88rem;line-height:1.25;display:block;overflow-wrap:anywhere}
-.own small{color:var(--muted);font-size:.78rem}
+.own small{color:var(--muted);font-size:.78rem}.own small.wear{display:block;margin:2px 0 4px}.own .act{margin-right:6px}.mixcard .act{margin-top:6px}
 .mine-block{display:flex;flex-direction:column;gap:12px;margin-top:22px}
 .mine-block h3{font-family:var(--f-display);font-weight:400;font-size:1.4rem}
 .care{color:var(--muted)}
@@ -2603,6 +2603,24 @@ function setOwn(id,data){
   if(has(local.owned,id)){local.owned[id]=data||{_del:true};storeLocal();afterMark();return;}
   remote(function(){var doc=db.collection("owned").doc(id);return data?doc.set(data):doc.delete();},function(){local.owned[id]=data||{_del:true};});
   afterMark();
+}
+/* The wear log: each piece he has keeps a count of the days he wore it and the last WEARLOG dates, so the page can
+   show cost per wear and what has not been worn lately. Pressing again on the same day takes the day off. */
+var WEARLOG=60;
+function isDay(x){return typeof x==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(x);}
+function today(){var d=new Date();return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
+function woreToday(o){return !!o&&Array.isArray(o.log)&&o.log[o.log.length-1]===today();}
+function wearOwn(id,on){
+  var o=ownOf(id);if(!o)return;var d=today(),log=(Array.isArray(o.log)?o.log:[]).filter(isDay),was=log[log.length-1]===d;
+  if(on===undefined)on=!was;if(on===was)return;
+  var n=Math.max(0,(Number(o.wears)||0)+(on?1:-1));log=on?log.concat([d]).slice(-WEARLOG):log.slice(0,-1);
+  var nx={k:o.k,wears:n,log:log};["name","shape","col","at"].forEach(function(f){if(o[f])nx[f]=o[f];});setOwn(id,nx);
+}
+function wearLine(x){
+  var o=ownOf(x.id)||{},n=Number(o.wears)||0,last=(o.log||[])[(o.log||[]).length-1];
+  if(!n)return "Not worn yet";
+  var c=x.it?cost(x.it):0;
+  return "Worn "+(n===1?"once":n+" times")+(last?", last "+niceDate(last):"")+(c>0?" · "+money(c/n)+" a wear":"");
 }
 function savedOf(key){if(has(local.saved,key)){return local.saved[key]._del?null:local.saved[key];}return has(saved,key)?saved[key]:null;}
 function savedKeys(){var k={};Object.keys(saved).forEach(function(x){k[x]=1;});Object.keys(local.saved).forEach(function(x){k[x]=1;});return Object.keys(k).filter(function(x){return !!savedOf(x);});}
@@ -5934,15 +5952,19 @@ function renderMine(){
     '<label class="field" for="own-col">Colour <select id="own-col">'+Object.keys(COL).map(function(c){return '<option value="'+c+'">'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join("")+'</select></label>'+
     '<button class="btn" type="button" data-ownadd>Add</button></div>'+
     (quick.length?'<p class="msg">Quick add: '+quick.map(function(q){return '<button class="linkbtn" type="button" data-ownq="'+esc(q)+'">'+esc(q)+'</button>';}).join(" · ")+'</p>':"");
-  h+='<div class="mine-block"><h3>What he has <span class="msg">('+list.length+')</span></h3>'+(list.length?'<div class="own-grid">'+list.map(function(x){
-    return '<div class="own">'+(x.it?(photoBox(x.it,"thumb",false)||glyphFor(x.shape,x.col)):glyphFor(x.shape,x.col))+'<span><b>'+esc(x.name)+'</b><small>'+esc(x.k==="similar"?"Has one like it":(x.it?esc(x.it.shop)+" · he has it":label([[x.shape,WHAT[x.shape]||x.shape]],x.shape)+", "+x.col))+'</small><br><button class="linkbtn" type="button" data-own-del="'+esc(x.id)+'">Remove</button></span></div>';
+  var worn=list.filter(function(x){return (Number((ownOf(x.id)||{}).wears)||0)>0;}).sort(function(a,b){return (ownOf(b.id).wears||0)-(ownOf(a.id).wears||0);});
+  var month=new Date(Date.now()-30*864e5),mk=month.getFullYear()+"-"+("0"+(month.getMonth()+1)).slice(-2)+"-"+("0"+month.getDate()).slice(-2);
+  var idle=list.filter(function(x){var l=(ownOf(x.id)||{}).log||[];return !l.length||l[l.length-1]<mk;}).length;
+  h+='<div class="mine-block"><h3>What he has <span class="msg">('+list.length+')</span></h3>'+
+    (list.length?'<p class="msg">'+(worn.length?"Worn most: "+esc(worn.slice(0,3).map(function(x){return x.name+" ("+ownOf(x.id).wears+")";}).join(", "))+". ":"Press “Wore it today” on what he wears to keep a wear log. ")+(idle?idle+(idle===1?" piece has":" pieces have")+" not been worn in the last 30 days.":"")+'</p>':"")+(list.length?'<div class="own-grid">'+list.map(function(x){
+    return '<div class="own">'+(x.it?(photoBox(x.it,"thumb",false)||glyphFor(x.shape,x.col)):glyphFor(x.shape,x.col))+'<span><b>'+esc(x.name)+'</b><small>'+esc(x.k==="similar"?"Has one like it":(x.it?esc(x.it.shop)+" · he has it":label([[x.shape,WHAT[x.shape]||x.shape]],x.shape)+", "+x.col))+'</small><small class="wear">'+esc(wearLine(x))+'</small><button class="act" type="button" data-wear="'+esc(x.id)+'" aria-pressed="'+woreToday(ownOf(x.id))+'">'+(woreToday(ownOf(x.id))?"Worn today ✓":"Wore it today")+'</button> <button class="linkbtn" type="button" data-own-del="'+esc(x.id)+'">Remove</button></span></div>';
   }).join("")+'</div>':'<p class="msg">Nothing yet. Add his own clothes above, or press "He has this?" on any pick.</p>')+'</div>';
   h+='<div class="mine-block"><h3>Outfits from his wardrobe</h3>'+
     '<div class="fgroup"><span class="label">Occasion</span><div class="chips">'+OCC.slice(1).map(function(o){return '<button type="button" class="chip" data-mocc="'+o[0]+'" aria-pressed="'+(state.mocc===o[0])+'">'+esc(o[1])+'</button>';}).join("")+'</div></div>'+
     '<div class="fgroup"><span class="label">Weather</span><div class="chips">'+WX.map(function(o){return '<button type="button" class="chip" data-mwx="'+o[0]+'" aria-pressed="'+(state.mwx===o[0])+'">'+esc(o[1])+'</button>';}).join("")+'</div></div>';
   var fl=ownFits(list);
   h+=fl.length?'<div class="mine-grid">'+fl.map(function(ps,i){
-    return '<article class="mixcard"><svg class="fig" viewBox="0 0 240 490" role="img" aria-label="'+esc("Drawing of an outfit from his wardrobe: "+ps.map(function(p){return p.what;}).join(", "))+'">'+figOut(ps)+'</svg><span class="label">Outfit '+(i+1)+'</span><b>'+esc(ps.map(function(p){return p.what;}).join(", "))+'</b></article>';
+    return '<article class="mixcard"><svg class="fig" viewBox="0 0 240 490" role="img" aria-label="'+esc("Drawing of an outfit from his wardrobe: "+ps.map(function(p){return p.what;}).join(", "))+'">'+figOut(ps)+'</svg><span class="label">Outfit '+(i+1)+'</span><b>'+esc(ps.map(function(p){return p.what;}).join(", "))+'</b><button class="act" type="button" data-wearfit="'+esc(ps.map(function(p){return p.item;}).join("|"))+'">He wore this today</button></article>';
   }).join("")+'</div>':'<p class="msg">Outfits appear here once there is at least one top, one pair of trousers or shorts, and one pair of shoes for this occasion and weather.</p>';
   box.innerHTML=h+'</div>';
 }
@@ -6124,8 +6146,10 @@ document.addEventListener("click",function(e){
   if((b=t.closest("[data-twx]"))){state.twx=b.getAttribute("data-twx");renderToday();return;}
   if((b=t.closest("[data-mocc]"))){state.mocc=b.getAttribute("data-mocc");renderMine();return;}
   if((b=t.closest("[data-mwx]"))){state.mwx=b.getAttribute("data-mwx");renderMine();return;}
-  if((b=t.closest("[data-own]"))){var oid=b.getAttribute("data-own"),oo=ownOf(oid),nx=!oo?"has":(oo.k==="has"?"similar":"");setOwn(oid,nx?{k:nx,at:new Date().toISOString().slice(0,10)}:null);return;}
+  if((b=t.closest("[data-own]"))){var oid=b.getAttribute("data-own"),oo=ownOf(oid),nx=!oo?"has":(oo.k==="has"?"similar":"");setOwn(oid,nx?Object.assign({},oo||{},{k:nx,at:new Date().toISOString().slice(0,10)}):null);return;}
   if((b=t.closest("[data-own-del]"))){setOwn(b.getAttribute("data-own-del"),null);return;}
+  if((b=t.closest("[data-wear]"))){wearOwn(b.getAttribute("data-wear"));return;}
+  if((b=t.closest("[data-wearfit]"))){b.getAttribute("data-wearfit").split("|").forEach(function(id){wearOwn(id,true);});b.textContent="Logged for today ✓";return;}
   if((b=t.closest("[data-ownq]"))){$("own-name").value=b.getAttribute("data-ownq");$("own-name").focus();return;}
   if((b=t.closest("[data-ownadd]"))){var on=($("own-name").value||"").trim().slice(0,60),osh=$("own-shape").value,oc=$("own-col").value;if(!on){$("own-name").focus();return;}setOwn("m_"+Date.now(),{k:"own",name:on,shape:osh,col:oc,at:new Date().toISOString().slice(0,10)});return;}
   if((b=t.closest("[data-dl]"))){var dm=$("dl-msg");saveFile("buy-list.csv",buyList()).then(function(m){if(dm)dm.textContent=m;});return;}
@@ -6378,7 +6402,7 @@ var baseProfile={};
     db.doc("meta/settings").onSnapshot(function(sn){var d=(sn&&sn.exists&&sn.data())||null;if(d&&typeof d.allow2d==="boolean"&&d.allow2d!==FIG.allow2d){FIG.allow2d=d.allow2d;if(!FIG.allow2d)FIG.mode="3d";figChanged();}},function(){});
     db.doc("meta/profile").onSnapshot(function(s){var d=(s&&s.exists&&s.data())||null;profile=d?Object.assign({},baseProfile,d):baseProfile;schedule();},function(){});
     db.collection("owned").limit(1000).onSnapshot(function(snap){
-      var m={};snap.docs.forEach(function(doc){var d=doc.data()||{};if(d.k==="has"||d.k==="similar"||d.k==="own"){m[doc.id]={k:d.k,name:String(d.name||""),shape:String(d.shape||""),col:String(d.col||"")};}});
+      var m={};snap.docs.forEach(function(doc){var d=doc.data()||{};if(d.k==="has"||d.k==="similar"||d.k==="own"){m[doc.id]={k:d.k,name:String(d.name||""),shape:String(d.shape||""),col:String(d.col||""),wears:Math.max(0,Number(d.wears)||0),log:Array.isArray(d.log)?d.log.filter(isDay).slice(-WEARLOG):[]};}});
       owned=m;schedule();
     },function(){});
     db.collection("saved").limit(1000).onSnapshot(function(snap){
