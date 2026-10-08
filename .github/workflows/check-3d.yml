@@ -3,7 +3,8 @@
 # then renders the outfits the change touches plus a fixed spread of outfits covering every garment shape
 # (tools/qa/gate.txt) on Dave's 3D model, as saved and on Edit Dave's other builds, and fails if any shows skin,
 # holes, an inner layer poking through, stray parts or colour drift. The pictures of anything flagged are kept as
-# the run's "qa-..." artifacts.
+# the run's "qa-..." artifacts. It also reads every outfit piece as the page does (tools/specs.js) and fails when
+# that differs from data/specs.json, so a change to how pieces are read is committed, and reviewed, with the change.
 # How to read and fix a failure: CONTRIBUTING.md, "When the 3D check fails".
 name: 3D check
 
@@ -16,6 +17,7 @@ on:
       - docs/**
       - tools/build_site.py
       - tools/check_3d.js
+      - tools/specs.js
       - tools/qa/**
       - .github/workflows/check-3d.yml
   workflow_dispatch:
@@ -43,6 +45,29 @@ jobs:
             git diff --stat -- docs | tail -20
             exit 1
           fi
+
+  specs:
+    name: Stored specs up to date
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Playwright and Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Build
+        run: python3 tools/build_site.py --out "$RUNNER_TEMP/site"
+      - name: Read every outfit piece
+        run: node tools/specs.js --site "$RUNNER_TEMP/site" --out "$RUNNER_TEMP/specs.json"
+      - name: data/specs.json matches
+        run: python3 tools/qa/specs_diff.py data/specs.json "$RUNNER_TEMP/specs.json" --ci
 
   render:
     name: 3D check, ${{ matrix.body }} (part ${{ matrix.part }} of 3)

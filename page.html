@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en-GB"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>The Wardrobe</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&display=swap">
 <style>
@@ -266,6 +266,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
 .tag-like{background:var(--green);color:var(--on-green)}
 .sz-ok{color:var(--green);font-weight:600}
 .sz-out{color:var(--claret);font-weight:600}
+.sz-warn{color:var(--tan)}
 .card.is-out{border-style:dashed}
 .acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:9px;margin-top:2px}
 .act{font:inherit;font-size:.82rem;font-weight:600;line-height:1;display:inline-flex;align-items:center;gap:5px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
@@ -300,6 +301,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
 .b-total b{font-size:1.3rem}
 .b-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .b-row .b-budget{width:6.5rem}
+.b-sets{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.b-sets>span{color:var(--muted);font-size:.85rem}
 .btn{font:inherit;font-size:.9rem;font-weight:600;padding:9px 14px;border-radius:4px;border:1px solid var(--green);background:var(--green);color:var(--on-green);cursor:pointer}
 .btn.ghost{background:transparent;color:var(--green)}
 .btn:disabled{opacity:.5;cursor:default}
@@ -425,7 +427,7 @@ details.filt > summary small{font-weight:400}
 .own .thumb{width:52px;height:52px}
 .own .glyph{width:52px;height:52px;background:var(--board);border-radius:3px;padding:4px}
 .own b{font-weight:600;font-size:.88rem;line-height:1.25;display:block;overflow-wrap:anywhere}
-.own small{color:var(--muted);font-size:.78rem}
+.own small{color:var(--muted);font-size:.78rem}.own small.wear{display:block;margin:2px 0 4px}.own .act{margin-right:6px}.mixcard .act{margin-top:6px}
 .mine-block{display:flex;flex-direction:column;gap:12px;margin-top:22px}
 .mine-block h3{font-family:var(--f-display);font-weight:400;font-size:1.4rem}
 .care{color:var(--muted)}
@@ -557,9 +559,12 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 @media (min-width:900px){.bar .tabs{flex-wrap:wrap;overflow:visible}}
 @media (max-width:899px){.bar .tabs{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}}
 @media (min-width:1500px){.wrap{max-width:1380px}}
+.skip{position:absolute;left:8px;top:-60px;z-index:50;background:var(--surface);color:var(--ink);padding:8px 12px;border-radius:4px;border:2px solid var(--green)}.skip:focus{top:8px}
+main:focus{outline:none}
 </style>
 
 <div class="stripe" aria-hidden="true"></div>
+<a class="skip" href="#main" data-skip>Skip to the page's content</a>
 <div class="wrap">
 
   <header class="mast">
@@ -573,7 +578,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
       <label class="search" for="q"><span class="vh">Search every style</span><input id="q" type="search" placeholder="Search every style: cord, Vans, navy, M&amp;S…" autocomplete="off"></label>
       <div class="figmode" id="figmode" role="group" aria-label="How Dave is shown"><span class="label">Dave</span><button type="button" data-figmode="2d">2D<span class="fm-long"> drawing</span></button><button type="button" data-figmode="3d">3D<span class="fm-long"> model</span></button></div>
     </div>
-    <div class="views" role="tablist" aria-label="Parts of the page">
+    <div class="views" role="group" aria-label="Parts of the page">
       <button class="vbtn" type="button" data-go="shop">Shop</button>
       <button class="vbtn" type="button" data-go="sale">Sale</button>
       <button class="vbtn" type="button" data-go="fits">Outfits</button>
@@ -583,6 +588,8 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
       <button class="vbtn" type="button" data-go="mine">His wardrobe</button>
     </div>
   </nav>
+
+  <main id="main" tabindex="-1">
 
   <section class="week" id="week" aria-labelledby="h-week" data-view="sale" hidden>
     <h2 id="h-week">This week</h2>
@@ -627,6 +634,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
     <div class="sec-head">
       <h2 id="h-fits">Outfits</h2>
       <p>Each outfit is drawn on a figure, with the pieces numbered, priced and linked. Swap any piece for another, save one to the shortlist, or change its pieces in the builder.</p>
+      <p class="b-sets" role="group" aria-label="Quick outfits by budget"><span>Shop by budget, from photographed picks in his size:</span> <button class="act" type="button" data-bset="60">£60 outfit</button><button class="act" type="button" data-bset="100">£100 outfit</button><button class="act" type="button" data-bset="150">£150 outfit</button></p>
     </div>
     <div class="filters" style="padding-block:14px">
       <div class="fgroup"><span class="label" id="l-fit">Occasion</span><div class="chips" id="f-fit" role="group" aria-labelledby="l-fit"></div></div>
@@ -664,6 +672,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
           <label class="field" for="b-budget">Budget £ <input class="b-budget" id="b-budget" type="number" min="20" max="600" step="5" value="100" inputmode="numeric"></label>
           <button class="btn" id="b-suggest" type="button">Suggest an outfit</button>
           <button class="btn ghost" id="b-clear" type="button">Clear</button>
+          <span class="b-sets" role="group" aria-label="Quick outfits by budget"><button class="act" type="button" data-bset="60">£60 outfit</button><button class="act" type="button" data-bset="100">£100 outfit</button><button class="act" type="button" data-bset="150">£150 outfit</button></span>
           <label class="check" for="b-all"><input type="checkbox" id="b-all">Use every style</label>
         </div>
         <p class="msg" id="b-hint"></p>
@@ -675,6 +684,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
         <button class="linkbtn b3d-edit" type="button" data-chared hidden id="b-3d-edit">Edit Dave's 3D look</button>
         <ul class="b-list" id="b-list"></ul>
         <div class="b-total"><span>Total</span><b id="b-total">£0</b></div>
+        <p class="msg" id="b-formal" hidden></p>
         <div class="b-row"><input class="b-name" id="b-name" type="text" maxlength="60" placeholder="Name this outfit" aria-label="Outfit name"></div>
         <div class="b-row"><button class="btn" id="b-save" type="button" disabled>Save to shortlist</button><span class="msg" id="b-msg"></span></div>
       </div>
@@ -1147,6 +1157,8 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
     </div>
   </details>
 
+  </main>
+
   <footer class="foot" data-view="guide">
     <p>Prices, sizes and stock change quickly, and sale colours sell out first. Each card shows the date its price was last checked. Open the link to confirm before buying.</p>
     <p>A green size line means his size was in stock at the last check. Where a shop does not publish stock by size, the card shows his usual size to look for.</p>
@@ -1164,7 +1176,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
   <div id="ce-form" role="tabpanel"></div>
   <div class="b-row ce-acts"><button class="btn" type="button" id="ce-save">Save</button><button class="btn ghost" type="button" id="ce-undo" disabled>Undo</button><button class="btn ghost" type="button" id="ce-reset">Back to his defaults</button><button class="btn ghost" type="button" id="ce-next">Try another outfit</button><span class="msg" id="ce-msg" role="status"></span></div></div></div>
 </div></dialog>
-<dialog class="zoom" id="zoom" aria-labelledby="zoom-body"><div class="zoom-in"><button class="act zx" type="button" data-zclose>Close</button><div id="zoom-body"></div></div></dialog>
+<dialog class="zoom" id="zoom" aria-labelledby="zoom-h"><div class="zoom-in"><button class="act zx" type="button" data-zclose>Close</button><div id="zoom-body"></div></div></dialog>
 <script>
 (function(){
 "use strict";
@@ -2061,7 +2073,12 @@ function descOf(it,p){var key=(it&&it.id||"")+"|"+(p&&p.what||"");if(DESCC[key])
   D.chunky=/chunky|cable|aran|fisherman/.test(n);D.slvStripe=/sleeve-band|sleeve[- ]stripe|striped sleeve|arm stripe|taped sleeve|sleeve tape/.test(a);   /* (only the sleeves: the body is not striped) */
   /* the colour the listing names (the first one, longest name first): the photo reading must agree with it, or it
      gives way (a black mesh vest photographed on a man against white reads as skin and white) */
-  var NAMED=[["off white","#ece6d6",90],["off-white","#ece6d6",90],["light grey","#b9b9b7",100],["light gray","#b9b9b7",100],["dark grey","#4a4b4f",100],["grey marl","#9a9a98",110],["light blue","#a6c4e0",110],["sky blue","#93bde3",110],["dark green","#2c4a32",100],["dark navy","#1b2236",90],["army green","#5b5c38",100],["forage green","#6b6a4c",100],["khaki green","#6b6a45",100],["olive green","#5b5c34",100],["bottle green","#1f4a33",100],["forest green","#2c4a32",100],["sage green","#8f9e82",100],["mint green","#a8d6bf",100],["deep teal","#2a5f63",110],["royal blue","#2a4fa0",120],["gunmetal","#46484c",90],["pebble","#b8ad9a",90],["natural","#e4dac6",90],["ivory","#ece6d6",90],["dark wash","#24314d",100],["mid wash","#4a6488",110],["light wash","#8aa4c4",110],["ocean blue","#2f5a8a",120],["washed black","#2e2d30",120],
+  /* (a shade word changes the colour: "light olive" is pale sage, not olive; a denim wash called "stone" is light blue
+     denim, not the colour stone; a two-word colour is read whole, "stone green" being a dark green) */
+  var NAMED=[["light olive","#bdbd9a",160],["dark olive","#3b3d27",100],["dark khaki","#4d4c33",100],["light khaki","#c8b98f",100],["ice blue","#c3d2df",100],["pale blue","#b9cde0",100],
+    ["stone wash","#7f9bbf",130],["stonewash","#7f9bbf",130],["stone washed","#7f9bbf",130],["70's stone","#8aa4c4",130],["70s stone","#8aa4c4",130],["stone green","#4f5440",100],
+    ["fig","#5b2d3b",60],["angora","#e6dccb",90],["herb","#8f9a78",100],["choc","#4a2e1e",100],
+    ["off white","#ece6d6",90],["off-white","#ece6d6",90],["light grey","#b9b9b7",100],["light gray","#b9b9b7",100],["dark grey","#4a4b4f",100],["grey marl","#9a9a98",110],["light blue","#a6c4e0",110],["sky blue","#93bde3",110],["dark green","#2c4a32",100],["dark navy","#1b2236",90],["army green","#5b5c38",100],["forage green","#6b6a4c",100],["khaki green","#6b6a45",100],["olive green","#5b5c34",100],["bottle green","#1f4a33",100],["forest green","#2c4a32",100],["sage green","#8f9e82",100],["mint green","#a8d6bf",100],["deep teal","#2a5f63",110],["royal blue","#2a4fa0",120],["gunmetal","#46484c",90],["pebble","#b8ad9a",90],["natural","#e4dac6",90],["ivory","#ece6d6",90],["dark wash","#24314d",100],["mid wash","#4a6488",110],["light wash","#8aa4c4",110],["ocean blue","#2f5a8a",120],["washed black","#2e2d30",120],
     ["black","#1e1d20",110],["white","#efede8",95],["cream","#ece3cf",90],["ecru","#e8dfc9",90],["navy","#1f2a44",100],["charcoal","#3d3e42",100],["grey","#8a8a89",130],["gray","#8a8a89",130],["stone","#cbbfa3",95],["sand","#d1bf9a",95],["beige","#cdbb9b",95],["oatmeal","#d6c9b0",90],
     ["khaki","#8b8152",110],["olive","#5b5c34",100],["sage","#8f9e82",100],["mint","#a8d6bf",100],["green","#2f5a3a",120],["teal","#2a6f73",110],["indigo","#2f4466",110],["denim","#3d5a80",130],["blue","#35558f",130],["burgundy","#5e1b26",100],["maroon","#5e1b26",100],["wine","#5e1b26",100],
     ["brown","#5a3a24",110],["chocolate","#4a2e1e",100],["tan","#b08a5a",100],["camel","#b48a58",100],["rust","#a0522d",100],["red","#a8242c",120],["pink","#d98aa0",120],["orange","#d0652c",120],["mustard","#c79a2a",110],["yellow","#d9b23a",120],["purple","#5d3a7a",120],["lilac","#b3a0d0",110],["lavender","#b3a0d0",110],
@@ -2070,9 +2087,14 @@ function descOf(it,p){var key=(it&&it.id||"")+"|"+(p&&p.what||"");if(DESCC[key])
     ["chestnut","#7a4a2c",100],["espresso","#3b2a22",90]];
   /* (the colour after the last comma or dash is the colourway, so it is looked for first; brand names that contain a
      colour word do not count) */
-  var cn0=((it&&it.name)||"").toLowerCase().replace(/pretty green|red wing|black diamond|white stuff|blue inc|red tape|black eyed|blue harbour|green jelly|whitestuff|brown's|grey's/g," "),cut9=Math.max(cn0.lastIndexOf(","),cn0.lastIndexOf(" - ")),best9=null;
+  var cn0=((it&&it.name)||"").toLowerCase().replace(/pretty green|red wing|black diamond|white stuff|blue inc|red tape|black eyed|blue harbour|green jelly|whitestuff|brown's|grey's|red rock/g," "),cut9=cn0.lastIndexOf(",")>=0?cn0.lastIndexOf(","):cn0.indexOf(" - "),best9=null;   /* (after the last comma, or after the first dash: a list of colours after dashes starts with the main one) */
   function findCol(str){var b=null;NAMED.forEach(function(c){var r9=new RegExp("\\b"+c[0]+"\\b").exec(str);if(r9&&(!b||r9.index<b.i||(r9.index===b.i&&c[0].length>b.c[0].length)))b={i:r9.index,c:c};});return b;}
   if(cut9>0)best9=findCol(cn0.slice(cut9));if(!best9)best9=findCol(cn0);
+  var CLOTH9=/\b(denim|stone ?wash(ed)?|70'?s stone)\b/g;
+  if(best9&&/^(denim|stone ?wash(ed)?|70'?s stone)$/.test(best9.c[0])){var bl9=function(x){return x.replace(CLOTH9,function(w){return new Array(w.length+1).join(" ");});},nd9=findCol(bl9(cut9>0?cn0.slice(cut9):cn0))||findCol(bl9(cn0));if(nd9)best9=nd9;}   /* (denim, or a wash, is the cloth when another colour is named: "stonewash black" is black) */
+  /* (the other colours of a colourway list, "Deep Sea Blue - Urban Grey": the photo is checked against each in turn,
+     since shops do not agree on which comes first) */
+  var alts9=[];if(cut9>0)cn0.slice(cut9).split(/ - |\/|,| and /).forEach(function(part){var f9=findCol(part);if(f9&&best9&&f9.c[0]!==best9.c[0]&&!alts9.some(function(a){return a.w===f9.c[0];}))alts9.push({w:f9.c[0],hex:f9.c[1],tol:f9.c[2]});});
   /* (no colour in the name: the colourway the shop's link selects, as M&S's "?color=DARKINDIGO", Uniqlo's colour code or
      a path ending "/dark-grey/". The stored photo is often the shop's first colourway, not the one linked) */
   if(!best9){var uu=((it&&it.url)||"").toLowerCase(),um=/[?&](?:colou?r|colourway)=([^&#]+)/.exec(uu),uq=/uniqlo\.com.*[?&]colordisplaycode=(\d\d)/.exec(uu),uc="";
@@ -2083,7 +2105,7 @@ function descOf(it,p){var key=(it&&it.id||"")+"|"+(p&&p.what||"");if(DESCC[key])
   /* (no colour in the name or the link: the colour the outfit records for the piece stands in) */
   if(!best9&&p&&p.col&&COL[p.col])best9={i:0,c:[p.col,COL[p.col][0],135],pal:1,out:1};
   D.nm=n;D.cn=cn0;D.pc=(p&&p.col)||"";D.shop=(it&&it.shop)||"";   /* (the name and the outfit's colour, for the colour reader's denim rule) */
-  D.colRef=best9&&!/print|pattern|stripe|check|camo|floral|flower|tie[- ]?dye|multi|aop|all[- ]?over|graphic|colour[- ]?block|two[- ]tone|contrast|paisley|leopard|geo\b|tropical|hawaiian/.test(cn0)?{w:best9.c[0],hex:best9.c[1],tol:best9.c[2],pal:best9.pal,out:best9.out}:null;
+  D.colRef=best9&&!/print|pattern|stripe|check|camo|floral|flower|tie[- ]?dye|multi|aop|all[- ]?over|graphic|colour[- ]?block|two[- ]tone|contrast|paisley|leopard|geo\b|tropical|hawaiian/.test(cn0)?{w:best9.c[0],hex:best9.c[1],tol:best9.c[2],pal:best9.pal,out:best9.out,alts:alts9.length?alts9:null}:null;
   D.black=/\bblack\b|\bjet\b|\bonyx\b/.test(n);D.grey=/gr[ae]y|charcoal|marl|slate|graphite|\bash\b|steel|smoke/.test(n);
   /* a second colour named in the listing ("white and black", "navy with white trim") */
   var CW={black:"#1e1d20",white:"#f2efe8",navy:"#1f2a44",cream:"#efe6d2",ecru:"#ece3cf",grey:"#8a8a8a",gray:"#8a8a8a",red:"#a8242c",green:"#2f5a3a",blue:"#2f5aa8",burgundy:"#5e1b26",brown:"#5a3a24",tan:"#b08a5a",yellow:"#d9b23a",orange:"#d0652c",pink:"#d98aa0",gold:"#c49a3a",silver:"#b8bcc0",khaki:"#8a7f55",olive:"#5a5a32",stone:"#c8bea8",beige:"#d4c4a4"};
@@ -2401,14 +2423,22 @@ function readLook(im,shape,DW){
      his top; a product shot, or a top on a model, is read as it is: outfit words are often a generator's guess, and
      "grey" is what it writes when it has none) */
   if(DW.colRef&&DW.colRef.out&&!(L.model&&LOWs))DW=Object.assign({},DW,{colRef:null});
-  if(DW.colRef){var cr9=[parseInt(DW.colRef.hex.substr(1,2),16),parseInt(DW.colRef.hex.substr(3,2),16),parseInt(DW.colRef.hex.substr(5,2),16)],c19=[parseInt(L.c1.substr(1,2),16),parseInt(L.c1.substr(3,2),16),parseInt(L.c1.substr(5,2),16)];
+  if(DW.colRef){var c19=[parseInt(L.c1.substr(1,2),16),parseInt(L.c1.substr(3,2),16),parseInt(L.c1.substr(5,2),16)];
     /* (a hue family, as green or blue or brown, agrees when the photo has that hue at any depth; grey at any depth of
-       neutral; the rest by how far the colours are apart) */
+       neutral; the rest by how far the colours are apart. Olive and khaki also agree by distance: a dark olive photo
+       has too little colour for the hue test) */
     function hsl9(c){var r=c[0]/255,g=c[1]/255,b=c[2]/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2,d=mx-mn,sa=d?d/(1-Math.abs(2*l-1)):0,h=0;if(d){h=mx===r?((g-b)/d)%6:mx===g?(b-r)/d+2:(r-g)/d+4;h*=60;if(h<0)h+=360;}return [h,sa,l];}
-    var hs9=hsl9(c19),hr9=hsl9(cr9),fam=/^(green|blue|red|pink|orange|yellow|purple|teal|mint|lilac|lavender|sage|light blue|sky blue|dark green|brown|tan|camel|rust|mustard|chocolate|army green|forage green|khaki green|olive green|bottle green|forest green|sage green|mint green|deep teal|royal blue|ocean blue)$/.test(DW.colRef.w)||(DW.colRef.pal&&/^(burgundy|olive|indigo|navy)$/.test(DW.colRef.w)),agree;
-    if(/^(grey|gray)$/.test(DW.colRef.w))agree=hs9[1]<0.2&&hs9[2]>0.12&&hs9[2]<0.86;
-    else if(fam){var dh=Math.abs(hs9[0]-hr9[0]);dh=Math.min(dh,360-dh);agree=hs9[1]>0.08&&dh<(DW.colRef.w==="green"?105:38)&&Math.abs(hs9[2]-hr9[2])<(DW.colRef.pal?0.58:0.42);}
-    else agree=dist(c19,cr9)<=DW.colRef.tol&&!(/^(black|white|charcoal|(dark |light )?gr[ae]y)$/.test(DW.colRef.w)&&Math.max(c19[0],c19[1],c19[2])-Math.min(c19[0],c19[1],c19[2])>45);   /* (a neutral name wants a neutral photo: dark red is near dark grey by distance alone) */
+    var hs9=hsl9(c19);
+    function agreeW(ref){var cr=[parseInt(ref.hex.substr(1,2),16),parseInt(ref.hex.substr(3,2),16),parseInt(ref.hex.substr(5,2),16)],hr=hsl9(cr),ok,
+        fam=/^(green|blue|red|pink|orange|yellow|purple|teal|mint|lilac|lavender|sage|olive|khaki|light blue|sky blue|dark green|brown|tan|camel|rust|mustard|chocolate|army green|forage green|khaki green|olive green|bottle green|forest green|sage green|mint green|deep teal|royal blue|ocean blue)$/.test(ref.w)||(ref.pal&&/^(burgundy|olive|indigo|navy)$/.test(ref.w));
+      if(/^(grey|gray)$/.test(ref.w))ok=hs9[1]<0.2&&hs9[2]>0.12&&hs9[2]<0.86;
+      else if(fam){var dh=Math.abs(hs9[0]-hr[0]);dh=Math.min(dh,360-dh);ok=hs9[1]>0.08&&dh<(ref.w==="green"?105:38)&&Math.abs(hs9[2]-hr[2])<(ref.pal?0.58:0.42);
+        if(!ok&&/olive|khaki/.test(ref.w))ok=dist(c19,cr)<=ref.tol;}
+      else ok=dist(c19,cr)<=ref.tol&&!(/^(black|white|charcoal|(dark |light )?gr[ae]y)$/.test(ref.w)&&Math.max(c19[0],c19[1],c19[2])-Math.min(c19[0],c19[1],c19[2])>45);   /* (a neutral name wants a neutral photo: dark red is near dark grey by distance alone) */
+      return ok;}
+    var agree=agreeW(DW.colRef);
+    var alts9=DW.colRef.alts||[];for(var ai9=0;ai9<alts9.length&&!agree;ai9++)if(agreeW(alts9[ai9])){DW=Object.assign({},DW,{colRef:alts9[ai9]});agree=true;}
+    var cr9=[parseInt(DW.colRef.hex.substr(1,2),16),parseInt(DW.colRef.hex.substr(3,2),16),parseInt(DW.colRef.hex.substr(5,2),16)];
     if(!agree){L.c1p=L.c1;L.c1=DW.colRef.hex;L.named=DW.colRef.w;delete L.front;delete L.slv;if(!(DW.stripe||DW.check||DW.print)){L.pat="plain";delete L.swCv;delete L.swatch;}if(L.c2&&dist([parseInt(L.c2.substr(1,2),16),parseInt(L.c2.substr(3,2),16),parseInt(L.c2.substr(5,2),16)],cr9)<60)L.c2="";}
     /* (navy and indigo photograph nearly black under studio light, and then drew as black: a reading darker than the
        named colour is taken halfway back toward it, so a navy suit stays navy; denim keeps its own rule below) */
@@ -2531,7 +2561,7 @@ function photoBox(it,cls,label){
   if(!src)return '<span class="ph '+cls+'">'+g+'</span>';
   return '<span class="ph '+cls+'"><img src="'+esc(src)+'" alt="'+esc(label?it.name:"")+'" loading="lazy" decoding="async" data-fallback="'+esc(g)+'">'+(label?'<span class="src">Shop photo</span>':"")+'</span>';
 }
-(function(){var zd=document.getElementById("zoom");if(zd)zd.addEventListener("close",function(){stop3D();});})();
+(function(){var zd=document.getElementById("zoom");if(zd)zd.addEventListener("close",function(){stop3D();zoomGone();});})();
 document.addEventListener("error",function(e){
   var t=e.target;if(!t||t.tagName!=="IMG"||!t.hasAttribute("data-fallback"))return;
   var box=t.parentNode;if(box){box.innerHTML=t.getAttribute("data-fallback");}
@@ -2592,6 +2622,24 @@ function setOwn(id,data){
   if(has(local.owned,id)){local.owned[id]=data||{_del:true};storeLocal();afterMark();return;}
   remote(function(){var doc=db.collection("owned").doc(id);return data?doc.set(data):doc.delete();},function(){local.owned[id]=data||{_del:true};});
   afterMark();
+}
+/* The wear log: each piece he has keeps a count of the days he wore it and the last WEARLOG dates, so the page can
+   show cost per wear and what has not been worn lately. Pressing again on the same day takes the day off. */
+var WEARLOG=60;
+function isDay(x){return typeof x==="string"&&/^\d{4}-\d{2}-\d{2}$/.test(x);}
+function today(){var d=new Date();return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);}
+function woreToday(o){return !!o&&Array.isArray(o.log)&&o.log[o.log.length-1]===today();}
+function wearOwn(id,on){
+  var o=ownOf(id);if(!o)return;var d=today(),log=(Array.isArray(o.log)?o.log:[]).filter(isDay),was=log[log.length-1]===d;
+  if(on===undefined)on=!was;if(on===was)return;
+  var n=Math.max(0,(Number(o.wears)||0)+(on?1:-1));log=on?log.concat([d]).slice(-WEARLOG):log.slice(0,-1);
+  var nx={k:o.k,wears:n,log:log};["name","shape","col","at"].forEach(function(f){if(o[f])nx[f]=o[f];});setOwn(id,nx);
+}
+function wearLine(x){
+  var o=ownOf(x.id)||{},n=Number(o.wears)||0,last=(o.log||[])[(o.log||[]).length-1];
+  if(!n)return "Not worn yet";
+  var c=x.it?cost(x.it):0;
+  return "Worn "+(n===1?"once":n+" times")+(last?", last "+niceDate(last):"")+(c>0?" · "+money(c/n)+" a wear":"");
 }
 function savedOf(key){if(has(local.saved,key)){return local.saved[key]._del?null:local.saved[key];}return has(saved,key)?saved[key]:null;}
 function savedKeys(){var k={};Object.keys(saved).forEach(function(x){k[x]=1;});Object.keys(local.saved).forEach(function(x){k[x]=1;});return Object.keys(k).filter(function(x){return !!savedOf(x);});}
@@ -2763,6 +2811,25 @@ function jobOne(it,j){
   return false;
 }
 function sizeFor(it){var m=profile&&profile.bycat;return m&&typeof m==="object"&&typeof m[it.cat]==="string"?m[it.cat]:"";}
+/* The size check: what an L means at this shop, from its own size chart (meta.json "sizes", from data/sizecharts.json,
+   read by tools/size_charts.py). A body chart gives the chest it fits, a garment chart the garment's own chest. With
+   his chest on the measuring card it says which size fits him there; without it, a shop whose L is for a smaller or
+   larger chest than most shops' is flagged. */
+var SIZES={},TOPCAT={knit:1,polo:1,shirt:1,coat:1,basics:1,lounge:1,sport:1};
+function inches(a){return a[0]===a[1]?a[0]+"in":a[0]+"–"+a[1]+"in";}
+function hisChest(){var m=profile.measure&&typeof profile.measure==="object"?profile.measure:(loadMeasure()||{});return Number(m.chest)>0?Number(m.chest):0;}
+function shopSize(it){
+  var c=SIZES[it.shop];if(!c||!c.L||!TOPCAT[it.cat])return null;
+  var col=c.collar&&it.cat==="shirt"?", collar "+c.collar+"in":"";
+  if(c.kind==="garment")return {t:"Size check: an L here measures "+inches(c.L)+" round the garment itself"+col+".",warn:false};
+  var t="Size check: L here fits a "+inches(c.L)+" chest"+col,ch=hisChest(),warn=false;
+  if(ch){var fit=["M","L","XL"].filter(function(k){return c[k]&&ch>=c[k][0]-0.5&&ch<=c[k][1]+0.5;});
+    /* (between two sizes: the nearest) */
+    if(!fit.length){var gap=function(k){return c[k]?Math.max(c[k][0]-ch,ch-c[k][1],0):99;};fit=["M","L","XL"].filter(function(k){return c[k];}).sort(function(x,y){return gap(x)-gap(y);}).slice(0,1);}
+    if(fit.indexOf("L")>=0)t+=", and his "+ch+"in chest is in it";else if(fit.length){t+=". For his "+ch+"in chest, "+fit[0]+" here is nearer";warn=true;}}
+  else{var mid=(c.L[0]+c.L[1])/2;if(mid<41.5){t+=": this shop runs small";warn=true;}else if(mid>44.5){t+=": this shop runs large";warn=true;}}
+  return {t:t+".",warn:warn};
+}
 function sizeLine(it){
   if(it.insize===true)return '<span class="sz-ok">In his size: '+esc(it.sizes||"in stock")+'</span>';
   if(it.insize===false)return '<span class="sz-out">His size: '+esc(it.sizes||"sold out")+'</span>';
@@ -2781,14 +2848,14 @@ function card(it){
     price='<span class="now">'+money(it.price)+'</span>'+(p>0?'<s class="was">'+money(it.was)+'</s><span class="cut">'+p+'% off</span>':"")+(isDrop(it)?'<span class="typ">was '+money(it.prev)+' last week</span>':"");
   }
   var where=it.occ.map(function(o){return label(OCC,o);}).concat(it.wx.length>=4?["Any weather"]:it.wx.map(function(w){return label(WX,w);})).join(" · ");
-  var chk=niceDate(it.checked),sz=sizeLine(it),wide=state.q||state.set==="gifts",old=stale(it),cr=careOf(it),hl=histLine(it);
+  var chk=niceDate(it.checked),sz=sizeLine(it),ssz=shopSize(it),wide=state.q||state.set==="gifts",old=stale(it),cr=careOf(it),hl=histLine(it);
   return '<article class="'+cls+'">'+photoBox(it,"",true)+
     '<div class="kicker"><span class="label">'+esc(it.shop)+'</span><span class="tags">'+tags+'</span></div>'+
     '<h4>'+esc(it.name)+'</h4>'+
     (it.note?'<p class="note">'+esc(it.note)+'</p>':"")+
     '<div class="price">'+price+'</div>'+
     (it.offer?'<p class="offer">'+esc(it.offer)+'</p>':"")+
-    '<p class="meta">'+(sz?sz+'<br>':"")+(it.fit?'<span class="fitnote">Fit: '+esc(it.fit.toLowerCase())+'</span><br>':"")+(it.fabric?'<span class="fitnote">Fabric: '+esc(it.fabric)+'</span><br>':"")+(it.sizeNote?'<span class="fitnote">Fit tip: '+esc(it.sizeNote)+'</span><br>':"")+(hl?'<span class="hist">'+esc(hl)+'</span><br>':"")+(cr?'<span class="care">Care: '+esc(cr)+'</span><br>':"")+esc(where)+(wide?'<br>'+esc(it.style.map(function(s){return label(STYLE,s);}).join(", ")):"")+(chk?'<br>'+(old?'<span class="stale">Price seen '+esc(chk)+', over a month ago. Check before buying.</span>':'Checked '+esc(chk)):"")+'</p>'+
+    '<p class="meta">'+(sz?sz+'<br>':"")+(ssz?'<span class="'+(ssz.warn?"sz-warn":"fitnote")+'">'+esc(ssz.t)+'</span><br>':"")+(it.fit?'<span class="fitnote">Fit: '+esc(it.fit.toLowerCase())+'</span><br>':"")+(it.fabric?'<span class="fitnote">Fabric: '+esc(it.fabric)+'</span><br>':"")+(it.sizeNote?'<span class="fitnote">Fit tip: '+esc(it.sizeNote)+'</span><br>':"")+(hl?'<span class="hist">'+esc(hl)+'</span><br>':"")+(cr?'<span class="care">Care: '+esc(cr)+'</span><br>':"")+esc(where)+(wide?'<br>'+esc(it.style.map(function(s){return label(STYLE,s);}).join(", ")):"")+(chk?'<br>'+(old?'<span class="stale">Price seen '+esc(chk)+', over a month ago. Check before buying.</span>':'Checked '+esc(chk)):"")+'</p>'+
     '<a class="buy" href="'+esc(it.url)+'" target="_blank" rel="noopener">'+(pre?"Search ":"View at ")+esc(it.shop)+' <span aria-hidden="true">↗</span></a>'+
     (heroCount[it.id]?'<button class="linkbtn mixlink" type="button" data-mix="'+esc(it.id)+'">See it in '+heroCount[it.id]+' outfits</button>':"")+
     '<button class="linkbtn mixlink" type="button" data-goes="'+esc(it.id)+'" aria-expanded="false">What goes with it, and cheaper like this</button><div class="goes" hidden></div>'+
@@ -3984,8 +4051,10 @@ function make3Dcore(pieces){
   });
   }
   var hatOn=pieces.some(function(p){return /^(beanie|bcap|cap|bucket)$/.test(p.shape);}),capOn=pieces.some(function(p){return /^(bcap|cap)$/.test(p.shape);});
-  /* (under a cap the curls show below its band, which tilts from his brows to his nape: the same line the cap is made on) */
-  function hatLim(ux,uz){if(!capOn)return 0.3;var an=Math.atan2(ux,uz);return 0.11+0.28*(1+Math.cos(an))/2-0.03;}
+  /* (under a hat the curls show below its lower edge, which tilts from his brows to the back of his head: the same
+     line the hat is made on; [front, back] in skull units, as HATBAND below) */
+  var HATBAND={beanie:[0.3,0.0,0.01],bucket:[0.44,0.22,0.09]},hatB=null;pieces.forEach(function(p){if(/^(bcap|cap)$/.test(p.shape))hatB=[0.39,0.11];else if(bodyOn&&HATBAND[p.shape]&&!hatB)hatB=[HATBAND[p.shape][0]-HATBAND[p.shape][2],HATBAND[p.shape][1]-HATBAND[p.shape][2]];});   /* (the curls stop a little further below a bucket hat's edge, clear of its brim) */
+  function hatLim(ux,uz){if(!hatB)return 0.3;var an=Math.atan2(ux,uz);return hatB[1]+(hatB[0]-hatB[1])*(1+Math.cos(an))/2-0.03;}
   var SKL=bodyOn?BL.skull:null,Sx=1,Sy=1,Sz=1,SKy=0;
   if(bodyOn){Sx=SKL[2]/0.084;Sy=SKL[3]/0.12;Sz=SKL[4]/0.106;SKy=SKL[0]-Sy*1.71;
     headG=new T.Group();headG.position.set(0,SKy,SKL[1]);headG.scale.set(Sx,Sy,Sz);man.add(headG);}
@@ -4806,9 +4875,40 @@ function make3Dcore(pieces){
         var ct=secAt(sl,0.235);band(0.222,0.014,ct[1]+0.0045,ct[2]+0.0045,sk,{x:ct[3],z:ct[4]});}   /* ribbed cuff */
       else sec([[0.07,0.034,0.04,x,0.0],[0.2,0.036,0.042,x,0.0]],sk,{seg:20});}
   });
+  /* a beanie or a bucket hat made on his own head, as caps are (below): its crown over his skull and the flattened hair
+     under it (cl, in skull units), its lower edge tilting from just above his brows (front) to the back of his head
+     (back); f runs from that edge (0) to the top of his head (1) */
+  function hatShell(front,back,flat){
+    var CRX=0.084,CRY=0.12,CRZ=0.106,ring=0,k9;
+    /* (over the top of his head the cloth is smoothed toward the average of a ring around it: the skull map dips at
+       the crown, which put a dent in the top of the hat) */
+    for(k9=0;k9<24;k9++){var a9=k9/24*Math.PI*2;ring+=HRAD(Math.cos(1.15)*Math.sin(a9),Math.sin(1.15),Math.cos(1.15)*Math.cos(a9))/24;}
+    var topR=Math.max(ring,HRAD(0,1,0));
+    function at(an,f,cl){var bu=back+(front-back)*(1+Math.cos(an))/2,el=Math.asin(Math.max(-1,Math.min(1,bu))),e2=el+(Math.PI/2-el)*f,cx=Math.cos(e2)*Math.sin(an),cy=Math.sin(e2),cz=Math.cos(e2)*Math.cos(an),
+        hr=HRAD(cx,cy,cz),sm=Math.max(0,Math.min(1,(e2-1.0)/0.45));hr=hr+(Math.max(hr,topR)-hr)*sm*sm*(3-2*sm);
+      var rr=hr+cl,X=cx*CRX*rr,Y=1.71+cy*CRY*rr,Z=cz*CRZ*rr;
+      if(flat){var top=1.71+CRY*(topR+cl)+0.002;if(Y>top-0.008)Y=top-0.008+(Y-top+0.008)*0.4;}   /* (a bucket hat's crown: flat on top, still clear of his head) */
+      return [X,Y,Z];}
+    /* a band of cloth from f0 to f1 at clearance cl (cl1 at f1, to taper), u around him in `wrap` repeats */
+    function band(f0,f1,cl,cl1,NV,m,wrap){var NU=56,v=[],uv=[],ix=[];for(var j=0;j<=NV;j++){var f=f0+(f1-f0)*j/NV,c=cl+(cl1-cl)*j/NV;for(var i=0;i<=NU;i++){var P=at(-Math.PI+2*Math.PI*i/NU,f,c);v.push(P[0],P[1],P[2]);uv.push(i/NU*wrap,f);}}
+      for(j=0;j<NV;j++)for(i=0;i<NU;i++){var a0=j*(NU+1)+i;ix.push(a0,a0+1,a0+NU+1,a0+1,a0+NU+2,a0+NU+1);}
+      var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(v,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setIndex(ix);g.computeVertexNormals();
+      /* (at the top of his head the last row meets at one point, whose normals came out every which way: it takes the
+         average of the row below, so the top is shaded smoothly) */
+      if(f1>0.999){var nr=g.attributes.normal,ax=0,ay=0,az=0;for(i=0;i<=NU;i++){var q9=(NV-1)*(NU+1)+i;ax+=nr.getX(q9);ay+=nr.getY(q9);az+=nr.getZ(q9);}var al=Math.sqrt(ax*ax+ay*ay+az*az)||1;for(i=0;i<=NU;i++)nr.setXYZ(NV*(NU+1)+i,ax/al,ay/al,az/al);nr.needsUpdate=true;}
+      return add(g,m);}
+    return {at:at,band:band};}
   /* accessories */
   acc.forEach(function(p){var m=mat(cc(p.col)[0],0.8);curIt=p.item;curWhat=p.what;curKind="acc";tgt=/^(beanie|bcap|cap|bucket|sunglasses)$/.test(p.shape)?headG:(p.shape==="watch"?armG[-1]:man);
-    if(p.shape==="beanie"){add(new T.SphereGeometry(1,30,18,0,Math.PI*2,0,Math.PI/2),cloth(cc(p.col)[0],"rib","",0.95),0,1.79,0.002,0.1,0.085,0.121);band(1.762,0.042,0.101,0.122,cloth(cc(p.col)[0],"rib","",0.95),{z:0.002});}
+    if(p.shape==="beanie"&&HRAD){
+      /* a knitted crown snug over his head, with its cuff turned up: a double layer of rib standing a little out from
+         the crown, from the lower edge to about a third of the way up, and rolled at its top */
+      var rb=cloth(cc(p.col)[0],"rib","",0.95);rb.side=T.DoubleSide;var hb=hatShell(HATBAND.beanie[0],HATBAND.beanie[1],false);
+      hb.band(0,1,0.09,0.1,14,rb,10);
+      var cf=cloth(cc(p.col)[0],"rib","",0.95);cf.side=T.DoubleSide;hb.band(0,0.36,0.118,0.122,5,cf,10);
+      var rim=[];for(var ib=0;ib<=56;ib++){var Pb=hb.at(-Math.PI+2*Math.PI*ib/56,0.36,0.112);rim.push(Pb);}tube(rim,0.0035,cf,96);
+      var low=[];for(ib=0;ib<=56;ib++){low.push(hb.at(-Math.PI+2*Math.PI*ib/56,0,0.105));}tube(low,0.0028,cf,96);}   /* (the fold at the top of the cuff, and its lower edge) */
+    else if(p.shape==="beanie"){add(new T.SphereGeometry(1,30,18,0,Math.PI*2,0,Math.PI/2),cloth(cc(p.col)[0],"rib","",0.95),0,1.79,0.002,0.1,0.085,0.121);band(1.762,0.042,0.101,0.122,cloth(cc(p.col)[0],"rib","",0.95),{z:0.002});}
     else if((p.shape==="bcap"||p.shape==="cap")&&HRAD){var flatC=p.shape==="cap",cm3=cloth(cc(p.col)[0],flatC?(texOf(p)||"plain"):"plain","",0.9);cm3.side=T.DoubleSide;
       /* a cap made on his own head (the head group's space is the reference head, centre 1.71, radii 0.084 x 0.12 x
          0.106, scaled to his): the crown lies over his skull and the flattened hair under it, its band tilting from just
@@ -4836,6 +4936,18 @@ function make3Dcore(pieces){
       var pg2=pg.clone();pg2.translate(0,-0.003,0);add(pg2,mat(shade(cc(p.col)[0],0.75),0.9,{side:T.DoubleSide}));}   /* (its underside, a shade darker) */
     else if(p.shape==="bcap"||p.shape==="cap"){add(new T.SphereGeometry(1,30,18,0,Math.PI*2,0,Math.PI/2),m,0,1.775,0.004,0.097,p.shape==="cap"?0.058:0.08,0.117);
       add(new T.CylinderGeometry(0.08,0.08,0.006,28,1,false,-Math.PI/2,Math.PI),m,0,1.778,0.098,1,1,0.9,0.12,0,0);}
+    else if(p.shape==="bucket"&&HRAD){
+      /* its crown sits level over his head with a flat top, and the brim slopes down and out all round from its lower
+         edge (about 5 cm), the underside a shade darker */
+      var bk=cloth(cc(p.col)[0],texOf(p)||"plain","",0.9);bk.side=T.DoubleSide;var hs=hatShell(HATBAND.bucket[0],HATBAND.bucket[1],true);
+      hs.band(0,1,0.115,0.115,12,bk,3);
+      var NUb=56,NTb=5,bv=[],bix=[],buv=[];
+      for(var tb=0;tb<=NTb;tb++)for(var ub=0;ub<=NUb;ub++){var an4=-Math.PI+2*Math.PI*ub/NUb,P4=hs.at(an4,0,0.115),rl=Math.sqrt(P4[0]*P4[0]+P4[2]*P4[2])||1,t4=tb/NTb,fr4=Math.max(0,Math.cos(an4)),w4=0.05-0.008*fr4;
+        bv.push(P4[0]+P4[0]/rl*w4*t4,P4[1]-(0.02-0.006*fr4)*t4-0.003*t4*t4,P4[2]+P4[2]/rl*w4*t4);buv.push(ub/NUb*3,t4*0.3);}   /* (a little shorter and flatter over his face, so his eyes show under it) */
+      for(tb=0;tb<NTb;tb++)for(ub=0;ub<NUb;ub++){var b0=tb*(NUb+1)+ub;bix.push(b0,b0+1,b0+NUb+1,b0+1,b0+NUb+2,b0+NUb+1);}
+      var bg=new T.BufferGeometry();bg.setAttribute("position",new T.Float32BufferAttribute(bv,3));bg.setAttribute("uv",new T.Float32BufferAttribute(buv,2));bg.setIndex(bix);bg.computeVertexNormals();add(bg,bk);
+      var bg2=bg.clone();bg2.translate(0,-0.0025,0);add(bg2,mat(shade(cc(p.col)[0],0.78),0.9,{side:T.DoubleSide}));
+      var seam=[];for(var sb=0;sb<=NUb;sb++)seam.push(hs.at(-Math.PI+2*Math.PI*sb/NUb,0.02,0.121));tube(seam,0.0012,mat(shade(cc(p.col)[0],0.8),0.9),96);}   /* (the stitched seam where the brim meets the crown) */
     else if(p.shape==="bucket"){var bm=cloth(cc(p.col)[0],texOf(p)||"plain","",0.9);add(new T.SphereGeometry(1,30,16,0,Math.PI*2,0,Math.PI/2),bm,0,1.79,0.004,0.104,0.07,0.122);band(1.77,0.022,0.106,0.124,bm,{z:0.004});
       add(new T.CylinderGeometry(0.108,0.16,0.035,40,1,true),bm,0,1.757,0.004,1,1,1.08,0.06,0,0);}
     else if(p.shape==="sunglasses"&&bodyOn){tgt=man;var sn=nm(p),E2=BL.eye,sz=E2[2]+E2[3]*0.9+0.012,ea=BL.ear,
@@ -5129,11 +5241,12 @@ function hydrate3D(){
 }
 /* The large view: the figure drawn at full height next to the real listing photos, each one big enough to see the fabric. */
 function openZoom(id){
-  var f=fitById[id],dlg=$("zoom");if(!f||!dlg)return;zoomId=id;
+  var f=fitById[id],dlg=$("zoom");if(!f||!dlg)return;var was=dlg.open;zoomId=id;if(!was)zoomFrom=document.activeElement;
+  try{if(id.charAt(0)!=="_"&&location.hash!==fitHash(id))history[was&&history.state&&history.state.fit?"replaceState":"pushState"]({fit:id},"",fitHash(id));}catch(e){}
   var ps=effPieces(f),seen={},order=ps.filter(function(p){if(seen[p.item])return false;seen[p.item]=1;return true;}),t=fitSum(ps);
   var mode=order.some(function(p){return hasPh(byId[p.item]);})?"1":(figMode()==="3d"?"3":"0");try{var lv=localStorage.getItem("dw-zlay");if(lv==="0"||lv==="3")mode=figMode()==="3d"?"3":"0";}catch(e){}
   if(!FIG.allow2d&&mode==="0")mode="3";
-  $("zoom-body").innerHTML='<div class="zoom-head"><span class="label">'+esc(f.styles.map(function(s){return label(STYLE,s);}).join(" · "))+'</span><h2>'+esc(f.name)+'</h2>'+(f.note?'<p>'+esc(f.note)+'</p>':"")+'<p class="zoom-tot"><b>'+money(t.tot)+'</b> for the whole outfit</p></div>'+
+  $("zoom-body").innerHTML='<div class="zoom-head"><span class="label">'+esc(f.styles.map(function(s){return label(STYLE,s);}).join(" · "))+'</span><h2 id="zoom-h">'+esc(f.name)+'</h2>'+(f.note?'<p>'+esc(f.note)+'</p>':"")+'<p class="zoom-tot"><b>'+money(t.tot)+'</b> for the whole outfit</p>'+(shareable()&&id.charAt(0)!=="_"?'<p class="zoom-link"><button class="linkbtn" type="button" data-fitlink="'+esc(f.id)+'">Copy a link to this outfit</button> <span class="msg" aria-live="polite"></span></p>':"")+'</div>'+
     '<div class="zoom-grid"><div class="zoom-fig" data-mode="'+mode+'"><div class="zoom-tabs" role="group" aria-label="How to show the outfit"><button type="button" class="act" data-zlay="1" aria-pressed="'+(mode==="1")+'">Real photos, to scale</button>'+(FIG.allow2d?'<button type="button" class="act" data-zlay="0" aria-pressed="'+(mode==="0")+'">Drawing (2D)</button>':"")+'<button type="button" class="act" data-zlay="3" aria-pressed="'+(mode==="3")+'">3D model</button></div><div class="zf-lay">'+flatLay(order)+'</div><div class="zf-3d"><p class="msg zf-3dmsg">Loading the 3D model…</p></div><button class="linkbtn zf-3dedit" type="button" data-chared data-chared-fit="'+esc(f.id)+'">Edit Dave (fitting room)</button><div class="zf-fig"><svg viewBox="0 0 268 486" role="img" aria-label="'+esc("Drawing of the outfit: "+order.map(function(p){return p.what;}).join(", "))+'"><g transform="translate(14,4)">'+figure(ps)+'</g></svg></div></div>'+
     '<ol class="zoom-ph">'+order.map(function(p,i){var it=byId[p.item];if(!it)return '<li><span class="zn">'+(i+1)+'</span><span class="zi"><b>'+esc(p.what)+'</b><small>'+(p.own?"Already his, nothing to buy":"No longer listed")+'</small></span></li>';
       return '<li data-zitem="'+esc(p.item)+'"><span class="zn">'+(i+1)+'</span>'+(photoBox(it,"zbig",true)||'<span class="ph zbig"></span>')+'<span class="zi"><b>'+esc(p.what)+'</b><a href="'+esc(it.url)+'" target="_blank" rel="noopener">'+esc(it.name)+' ↗</a><small>'+esc(it.shop)+(it.insize===true?" · in his size":"")+(pct(it)>0?" · "+pct(it)+"% off":"")+'</small><b class="zp">'+money(cost(it))+'</b></span></li>';}).join("")+'</ol></div>';
@@ -5405,6 +5518,8 @@ function buildPieces(){
 }
 function drawBuild(){
   var ps=buildPieces(),tot=0,draw=ps.slice();
+  var fr=formalRange(ps.map(function(p){return {name:(byId[p.item]||{}).name||"",shape:p.shape,what:p.what};})),fm=$("b-formal");
+  if(fm){fm.hidden=!(fr.spread>formalLimit());if(!fm.hidden)fm.textContent="Mixed dress codes: the "+fr.lo.what.toLowerCase()+" is much more casual than the "+fr.hi.what.toLowerCase()+". Suggest keeps the pieces closer together.";}
   if(!draw.some(function(p){return UPPER[p.shape];})){draw.push({item:"",shape:"tee",col:"white",what:""});}
   if(!draw.some(function(p){return LOWER[p.shape];})){draw.push({item:"",shape:"trousers",col:"stone",what:""});}
   if(figMode()==="3d"){
@@ -5424,12 +5539,29 @@ function drawBuild(){
   $("b-save").disabled=ps.length<2;
   trueFor(ps,drawBuild);
 }
-function suggest(){
-  var budget=Math.max(20,Number($("b-budget").value)||100),msg=$("b-msg");
-  var pools={},keep={},kt=0;
+/* How dressed-up a piece is, 0 (lounge) to 4 (tailored), from the table build_site.py writes into meta.json
+   (FORMALITY there, which make_outfits.py uses too): the first name rule that matches, else the shape. Accessories
+   have none. Suggestions keep the clothes and shoes within the style's spread, so no hoodie with suit trousers. */
+var FORMAL={names:[],shapes:{},spread:2,styles:{}},SPORTY=/jogger|track ?(pant|bottom|top)|sweatpant|tracksuit|tricot/i,OPENFOOT=/sandal|\bslides?\b|slider|flip[- ]?flop/i;
+function setFormal(t){if(!t||!t.shapes)return;FORMAL={names:(t.names||[]).map(function(r){try{return [new RegExp(r[0],"i"),r[1]];}catch(e){return null;}}).filter(Boolean),shapes:t.shapes,spread:t.spread||2,styles:t.styles||{}};}
+function formalOf(name,shape){if(!has(FORMAL.shapes,shape))return null;for(var i=0;i<FORMAL.names.length;i++){if(FORMAL.names[i][0].test(name||""))return FORMAL.names[i][1];}return FORMAL.shapes[shape];}
+function formalRange(list){var lo=null,hi=null;list.forEach(function(x){var f=formalOf(x.name,x.shape);if(f===null)return;if(!lo||f<lo.f)lo={f:f,x:x};if(!hi||f>hi.f)hi={f:f,x:x};});return {spread:hi?hi.f-lo.f:0,lo:lo&&lo.x,hi:hi&&hi.x};}
+function formalLimit(){var ss=$("b-all").checked?[]:selStyles();return ss.length?Math.max.apply(null,ss.map(function(s){return FORMAL.styles[s]||FORMAL.spread;})):FORMAL.spread;}
+function suggest(opt){
+  opt=opt||{};
+  var budget=opt.budget||Math.max(20,Number($("b-budget").value)||100),msg=$("b-msg");
+  var pools={},keep={},kt=0,flim=formalLimit(),ss=selStyles(),lng=ss.indexOf("lounge")>=0;
   SLOTS.forEach(function(s){var b=build[s[0]];if(locked[s[0]]&&b&&byId[b.item]){keep[s[0]]=b;kt+=cost(byId[b.item]);}});
+  /* (kept pieces that are already far apart are left as they are; the rest must not widen the gap) */
+  flim=Math.max(flim,formalRange(Object.keys(keep).map(function(k){var it=byId[keep[k].item],d=derive(it);return {name:it.name,shape:keep[k].shape||(d&&d.shape)};})).spread);
   SLOTS.slice(0,5).forEach(function(s){
-    pools[s[0]]=slotItems(s).filter(function(it){return it.price>0;}).map(function(it){
+    pools[s[0]]=slotItems(s).filter(function(it){
+      if(!(it.price>0)||(opt.photos&&!hasPh(it)))return false;
+      /* as in make_outfits.py: slippers only for Lounge, joggers and track pants only for Lounge and Rave */
+      var d=derive(it);if(d&&d.shape==="slippers"&&!lng)return false;
+      if(s[0]==="bottom"&&SPORTY.test(it.name)&&!lng&&ss.indexOf("rave")<0)return false;
+      return true;
+    }).map(function(it){
       return {it:it,sc:(it.fit?(it.fit==="Wide leg"||it.fit==="Relaxed"?1.4:1):0)+(voteOf(it.id)===1?3:0)+(it.insize===true?1.5:0)+(pct(it)>=30?1:0)+Math.max(0,1-it.rank/800)+(it.price<=25?1:it.price<=50?0.5:0)};
     }).sort(function(a,b){return b.sc-a.sc;}).slice(0,40);
   });
@@ -5447,17 +5579,30 @@ function suggest(){
       if(!ch.bottom||!ch.feet||!(ch.top||ch.mid))continue;
       if(!ch.top&&ch.mid&&OPENUP[derive(ch.mid).shape])continue;
       if((ch.outer||ch.mid)&&derive(ch.bottom).shape==="shorts")continue;
+      if(!keep.feet&&OPENFOOT.test(ch.feet.name)&&derive(ch.bottom).shape!=="shorts")continue;
       var tb=ch.top||ch.mid;
       if(state.style!=="rave"&&tb&&cols.bottom===(cols.top||cols.mid)&&cols.bottom!=="black")sc-=2;
-      sc+=tot/budget;
+      var fr=formalRange(Object.keys(ch).filter(function(k){return SLOTS.slice(0,5).some(function(s){return s[0]===k;});}).map(function(k){var d=derive(ch[k]);return {name:ch[k].name,shape:(keep[k]&&keep[k].shape)||(d&&d.shape)};}));
+      if(fr.spread>flim)continue;
+      sc+=tot/budget-fr.spread*0.4;
       if(!best||sc>best.sc){best={sc:sc,ch:ch,tot:tot};}
     }
   }
   if(!best){msg.textContent="Nothing in this style fits "+money(budget)+(kt?" with the kept pieces":"")+" in his size. Try a bigger budget or tick Use every style.";return;}
   build={};
   Object.keys(best.ch).forEach(function(k){var it=best.ch[k];build[k]=keep[k]||{item:it.id,col:derive(it).col};});
-  msg.textContent=Object.keys(best.ch).length+" pieces for "+money(best.tot)+(Object.keys(keep).length?", keeping the ticked pieces":"")+". Press Suggest again for another.";
+  msg.textContent=Object.keys(best.ch).length+" pieces for "+money(best.tot)+(Object.keys(keep).length?", keeping the ticked pieces":"")+". Press "+(opt.photos?"the same button":"Suggest")+" again for another.";
   renderBuilder();
+  /* the quick sets open as a flat lay of the shop photos, to scale */
+  if(opt.show){var ss=selStyles();fitById._build={id:"_build",name:"A "+money(budget)+" outfit",styles:ss.length?ss:["casual"],occ:"everyday",wx:[],tags:[],rank:0,look:"",
+    note:"Picked from photographed pieces in his size, "+money(best.tot)+" in all. Change any piece in Build, or press the "+money(budget)+" button again for another.",pieces:buildPieces()};openZoom("_build");}
+}
+/* "Shop by budget": a whole outfit for £60, £100 or £150 from the photographed picks in his size, shown as a flat lay. */
+function budgetSet(v){
+  if(phase!=="ready")return;
+  $("b-budget").value=v;budgetHint();if(state.view!=="build")setView("build");
+  build={};Object.keys(locked).forEach(function(k){delete locked[k];});
+  suggest({budget:v,photos:true,show:true});
 }
 /* "Add a T-shirt" under a jacket, gilet or cardigan left with nothing under it: a plain tee in his size and the
    chosen styles, white unless the outer piece is pale, cheapest well-photographed first. */
@@ -5650,14 +5795,37 @@ function renderDept(counts,dcount,nf){
 }
 /* ---- views ---- */
 var VIEWS=["shop","sale","fits","build","list","guide","mine"];
-function setView(v,keep){
+/* Each move between views is a step in the browser's history, so Back returns to the last view; "init" and "pop"
+   (the page opening, or Back and Forward themselves) only bring the address in line. */
+function setView(v,keep,how){
   if(VIEWS.indexOf(v)<0)v="shop";
+  var was=state.view;
   state.view=v;document.body.setAttribute("data-v",v);
   Array.prototype.forEach.call(document.querySelectorAll("[data-go]"),function(b){if(b.getAttribute("data-go")===v){b.setAttribute("aria-current","page");}else{b.removeAttribute("aria-current");}});
   try{localStorage.setItem("dw-view",v);}catch(e){}
-  try{if(location.hash!=="#"+v)history.replaceState(null,"","#"+v);}catch(e){}
+  try{if(how!=="pop"&&location.hash!=="#"+v)history[how==="init"||was===v?"replaceState":"pushState"]({v:v},"","#"+v);}catch(e){}
   if(!keep){window.scrollTo(0,0);}
 }
+/* Addresses the page understands: #shop, #fits and the other views, a style (#classic), and one outfit shown large
+   (#fit/<outfit id>), which can be shared as a link or reached with Back and Forward. */
+var pendFit="",zoomFrom=null,afterPop=null;
+function fitHash(id){return "#fit/"+encodeURIComponent(id);}
+function hashFit(){var m=/^#fit\/(.+)$/.exec(location.hash||"");if(!m)return "";try{return decodeURIComponent(m[1]);}catch(e){return m[1];}}
+function closeZoom(){stop3D();var zd=$("zoom");if(zd&&zd.open){if(zd.close)zd.close();else{zd.removeAttribute("open");zoomGone();}}}
+/* when the large view closes (its button, Escape or a tap outside), the address goes back to the view under it */
+function refocus(el){if(el&&el.isConnected&&(document.activeElement===document.body||!document.activeElement)){try{el.focus({preventScroll:true});}catch(e){}}}
+function zoomGone(){
+  /* keyboard users land back on the button that opened it (after Back, which moves focus to the page) */
+  var from=zoomFrom;zoomFrom=null;refocus(from);
+  try{if(history.state&&history.state.fit){afterPop=from;history.back();}else if(hashFit()){history.replaceState({v:state.view},"","#"+state.view);}}catch(e){}}
+function route(how){
+  var id=hashFit(),h=(location.hash||"").slice(1);
+  if(id){if(state.view!=="fits")setView("fits",true,how);if(fitById[id]){openZoom(id);}else{pendFit=id;}return;}
+  var zd=$("zoom");if(zd&&zd.open)closeZoom();
+  if(VIEWS.indexOf(h)>=0&&h!==state.view)setView(h,false,how);
+}
+window.addEventListener("popstate",function(){route("pop");var el=afterPop;afterPop=null;if(el)setTimeout(function(){refocus(el);},0);});
+function shareable(){try{return /^https?:$/.test(location.protocol)&&window.top===window;}catch(e){return false;}}
 
 /* ---- picks ---- */
 function filtered(){return state.shop!=="all"||state.col!=="all"||state.tfit!=="all"||(state.fab&&state.fab!=="all")||state.occ!=="all"||state.wx!=="all"||state.cats.length>0||state.src!=="all"||state.sale||state.size||state.fresh||state.max>0||state.jx.length>0;}
@@ -5867,15 +6035,19 @@ function renderMine(){
     '<label class="field" for="own-col">Colour <select id="own-col">'+Object.keys(COL).map(function(c){return '<option value="'+c+'">'+c.charAt(0).toUpperCase()+c.slice(1)+'</option>';}).join("")+'</select></label>'+
     '<button class="btn" type="button" data-ownadd>Add</button></div>'+
     (quick.length?'<p class="msg">Quick add: '+quick.map(function(q){return '<button class="linkbtn" type="button" data-ownq="'+esc(q)+'">'+esc(q)+'</button>';}).join(" · ")+'</p>':"");
-  h+='<div class="mine-block"><h3>What he has <span class="msg">('+list.length+')</span></h3>'+(list.length?'<div class="own-grid">'+list.map(function(x){
-    return '<div class="own">'+(x.it?(photoBox(x.it,"thumb",false)||glyphFor(x.shape,x.col)):glyphFor(x.shape,x.col))+'<span><b>'+esc(x.name)+'</b><small>'+esc(x.k==="similar"?"Has one like it":(x.it?esc(x.it.shop)+" · he has it":label([[x.shape,WHAT[x.shape]||x.shape]],x.shape)+", "+x.col))+'</small><br><button class="linkbtn" type="button" data-own-del="'+esc(x.id)+'">Remove</button></span></div>';
+  var worn=list.filter(function(x){return (Number((ownOf(x.id)||{}).wears)||0)>0;}).sort(function(a,b){return (ownOf(b.id).wears||0)-(ownOf(a.id).wears||0);});
+  var month=new Date(Date.now()-30*864e5),mk=month.getFullYear()+"-"+("0"+(month.getMonth()+1)).slice(-2)+"-"+("0"+month.getDate()).slice(-2);
+  var idle=list.filter(function(x){var l=(ownOf(x.id)||{}).log||[];return !l.length||l[l.length-1]<mk;}).length;
+  h+='<div class="mine-block"><h3>What he has <span class="msg">('+list.length+')</span></h3>'+
+    (list.length?'<p class="msg">'+(worn.length?"Worn most: "+esc(worn.slice(0,3).map(function(x){return x.name+" ("+ownOf(x.id).wears+")";}).join(", "))+". ":"Press “Wore it today” on what he wears to keep a wear log. ")+(idle?idle+(idle===1?" piece has":" pieces have")+" not been worn in the last 30 days.":"")+'</p>':"")+(list.length?'<div class="own-grid">'+list.map(function(x){
+    return '<div class="own">'+(x.it?(photoBox(x.it,"thumb",false)||glyphFor(x.shape,x.col)):glyphFor(x.shape,x.col))+'<span><b>'+esc(x.name)+'</b><small>'+esc(x.k==="similar"?"Has one like it":(x.it?esc(x.it.shop)+" · he has it":label([[x.shape,WHAT[x.shape]||x.shape]],x.shape)+", "+x.col))+'</small><small class="wear">'+esc(wearLine(x))+'</small><button class="act" type="button" data-wear="'+esc(x.id)+'" aria-pressed="'+woreToday(ownOf(x.id))+'">'+(woreToday(ownOf(x.id))?"Worn today ✓":"Wore it today")+'</button> <button class="linkbtn" type="button" data-own-del="'+esc(x.id)+'">Remove</button></span></div>';
   }).join("")+'</div>':'<p class="msg">Nothing yet. Add his own clothes above, or press "He has this?" on any pick.</p>')+'</div>';
   h+='<div class="mine-block"><h3>Outfits from his wardrobe</h3>'+
     '<div class="fgroup"><span class="label">Occasion</span><div class="chips">'+OCC.slice(1).map(function(o){return '<button type="button" class="chip" data-mocc="'+o[0]+'" aria-pressed="'+(state.mocc===o[0])+'">'+esc(o[1])+'</button>';}).join("")+'</div></div>'+
     '<div class="fgroup"><span class="label">Weather</span><div class="chips">'+WX.map(function(o){return '<button type="button" class="chip" data-mwx="'+o[0]+'" aria-pressed="'+(state.mwx===o[0])+'">'+esc(o[1])+'</button>';}).join("")+'</div></div>';
   var fl=ownFits(list);
   h+=fl.length?'<div class="mine-grid">'+fl.map(function(ps,i){
-    return '<article class="mixcard"><svg class="fig" viewBox="0 0 240 490" role="img" aria-label="'+esc("Drawing of an outfit from his wardrobe: "+ps.map(function(p){return p.what;}).join(", "))+'">'+figOut(ps)+'</svg><span class="label">Outfit '+(i+1)+'</span><b>'+esc(ps.map(function(p){return p.what;}).join(", "))+'</b></article>';
+    return '<article class="mixcard"><svg class="fig" viewBox="0 0 240 490" role="img" aria-label="'+esc("Drawing of an outfit from his wardrobe: "+ps.map(function(p){return p.what;}).join(", "))+'">'+figOut(ps)+'</svg><span class="label">Outfit '+(i+1)+'</span><b>'+esc(ps.map(function(p){return p.what;}).join(", "))+'</b><button class="act" type="button" data-wearfit="'+esc(ps.map(function(p){return p.item;}).join("|"))+'">He wore this today</button></article>';
   }).join("")+'</div>':'<p class="msg">Outfits appear here once there is at least one top, one pair of trousers or shorts, and one pair of shoes for this occasion and weather.</p>';
   box.innerHTML=h+'</div>';
 }
@@ -5981,7 +6153,7 @@ $("s-sort").addEventListener("change",function(e){sale.sort=e.target.value;sale.
 $("fit-more").addEventListener("click",function(){lim.fits+=FITPAGE;renderFits();syncMarks();});
 $("b-all").addEventListener("change",renderBuilder);
 $("b-clear").addEventListener("click",function(){build={};$("b-name").value="";$("b-msg").textContent="";renderBuilder();});
-$("b-suggest").addEventListener("click",suggest);
+$("b-suggest").addEventListener("click",function(){suggest();});
 $("b-slots").addEventListener("click",function(e){
   var b;
   if((b=e.target.closest("[data-bslot]"))){bslot=b.getAttribute("data-bslot");bshow=24;renderBuilder();return;}
@@ -6019,6 +6191,7 @@ $("b-save").addEventListener("click",function(){
 });
 document.addEventListener("click",function(e){
   var t=e.target,b;
+  if((b=t.closest("[data-skip]"))){e.preventDefault();var mn=$("main");if(mn){mn.focus();mn.scrollIntoView({block:"start"});}return;}
   if((b=t.closest("[data-go]"))){setView(b.getAttribute("data-go"));return;}
   if((b=t.closest("[data-dept]"))){state.dept=b.getAttribute("data-dept");state.cats=[];lim.picks=PAGE;renderPicks();syncMarks();$("picks").scrollIntoView({block:"start"});return;}
   if((b=t.closest("[data-cat]"))){var ck=b.getAttribute("data-cat"),ci=state.cats.indexOf(ck);if(ci>=0){state.cats.splice(ci,1);}else{state.cats.push(ck);}lim.picks=PAGE;renderPicks();syncMarks();return;}
@@ -6028,7 +6201,10 @@ document.addEventListener("click",function(e){
   if((b=t.closest("[data-bought]"))){var kb=b.getAttribute("data-bought"),s=savedOf(kb);if(s){var nb={kind:"item",ref:kb.slice(2),state:s.state==="bought"?"want":"bought",at:new Date().toISOString()};if(s.price>0){nb.price=s.price;}if(s.insize===true||s.insize===false){nb.insize=s.insize;}setSaved(kb,nb);renderFits();}return;}
   if((b=t.closest("[data-vote]"))){var id=b.getAttribute("data-vote"),v=Number(b.getAttribute("data-v"));setVote(id,voteOf(id)===v?0:v);if(v===-1||voteOf(id)===0){renderPicks();}return;}
   if((b=t.closest("[data-mix]"))){state.mix=b.getAttribute("data-mix");renderMix();syncMarks();if(b.classList.contains("mixlink")){setView("fits",true);$("mix").scrollIntoView({block:"start"});}return;}
-  if((b=t.closest("[data-zclose]"))||t.id==="zoom"){stop3D();var zd=$("zoom");if(zd){if(zd.close)zd.close();else zd.removeAttribute("open");}return;}
+  if((b=t.closest("[data-zclose]"))||t.id==="zoom"){closeZoom();return;}
+  if((b=t.closest("[data-bset]"))){budgetSet(Number(b.getAttribute("data-bset")));return;}
+  if((b=t.closest("[data-fitlink]"))){var lu=location.href.split("#")[0]+fitHash(b.getAttribute("data-fitlink")),lm=b.parentNode.querySelector(".msg");
+    var said=function(ok){if(lm)lm.textContent=ok?"Copied.":lu;};try{navigator.clipboard.writeText(lu).then(function(){said(true);},function(){said(false);});}catch(e){said(false);}return;}
   if((b=t.closest("[data-zoom]"))){openZoom(b.getAttribute("data-zoom"));return;}
   if((b=t.closest("[data-zlay]"))){var md=b.getAttribute("data-zlay"),zf=b.closest(".zoom-fig");if(zf){zf.setAttribute("data-mode",md);zf.querySelectorAll("[data-zlay]").forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});}
     if(md==="3"&&fitById[zoomId]){show3D(effPieces(fitById[zoomId]));}else{stop3D();}
@@ -6053,8 +6229,10 @@ document.addEventListener("click",function(e){
   if((b=t.closest("[data-twx]"))){state.twx=b.getAttribute("data-twx");renderToday();return;}
   if((b=t.closest("[data-mocc]"))){state.mocc=b.getAttribute("data-mocc");renderMine();return;}
   if((b=t.closest("[data-mwx]"))){state.mwx=b.getAttribute("data-mwx");renderMine();return;}
-  if((b=t.closest("[data-own]"))){var oid=b.getAttribute("data-own"),oo=ownOf(oid),nx=!oo?"has":(oo.k==="has"?"similar":"");setOwn(oid,nx?{k:nx,at:new Date().toISOString().slice(0,10)}:null);return;}
+  if((b=t.closest("[data-own]"))){var oid=b.getAttribute("data-own"),oo=ownOf(oid),nx=!oo?"has":(oo.k==="has"?"similar":"");setOwn(oid,nx?Object.assign({},oo||{},{k:nx,at:new Date().toISOString().slice(0,10)}):null);return;}
   if((b=t.closest("[data-own-del]"))){setOwn(b.getAttribute("data-own-del"),null);return;}
+  if((b=t.closest("[data-wear]"))){wearOwn(b.getAttribute("data-wear"));return;}
+  if((b=t.closest("[data-wearfit]"))){b.getAttribute("data-wearfit").split("|").forEach(function(id){wearOwn(id,true);});b.textContent="Logged for today ✓";return;}
   if((b=t.closest("[data-ownq]"))){$("own-name").value=b.getAttribute("data-ownq");$("own-name").focus();return;}
   if((b=t.closest("[data-ownadd]"))){var on=($("own-name").value||"").trim().slice(0,60),osh=$("own-shape").value,oc=$("own-col").value;if(!on){$("own-name").focus();return;}setOwn("m_"+Date.now(),{k:"own",name:on,shape:osh,col:oc,at:new Date().toISOString().slice(0,10)});return;}
   if((b=t.closest("[data-dl]"))){var dm=$("dl-msg");saveFile("buy-list.csv",buyList()).then(function(m){if(dm)dm.textContent=m;});return;}
@@ -6272,7 +6450,7 @@ $("ce-reset").addEventListener("click",function(){cePush();ceLastPush=0;Object.k
 /* see the changes on other kinds of clothes: tailoring, knits, coats, shorts */
 $("ce-next").addEventListener("click",function(){if(!fits.length)return;ceFit=(ceFit+1+Math.floor(Math.random()*7))%fits.length;ceOut=effPieces(fits[ceFit]);ceWearSet("outfit");$("ce-msg").textContent="Showing him in “"+fits[ceFit].name+"”.";});
 syncChips();paintStyle();
-(function(){var v="";try{v=(location.hash||"").slice(1)||localStorage.getItem("dw-view")||"";}catch(e){}setView(v||"shop",true);})();
+(function(){var v="";try{pendFit=hashFit();v=pendFit?"fits":(location.hash||"").slice(1)||localStorage.getItem("dw-view")||"";}catch(e){}setView(v||"shop",true,"init");})();
 renderAll();
 
 /* The GitHub Pages copy has no database: it reads the exported files next to the page, and keeps marks on the device. */
@@ -6290,8 +6468,10 @@ async function loadStatic(){
     byId={};derived={};items.forEach(function(it){byId[it.id]=it;});
     styleTags=M.styletags||{};applyTags();
     fits=Object.keys(O).map(function(k){return normFit(k,O[k]);}).filter(Boolean);fitById={};fits.forEach(function(f){fitById[f.id]=f;});fitsSeen=true;usage=null;
-    meta=M.status||{};profile=M.profile||{};baseProfile=profile;shopInfo=M.shops||{};
-    phase=items.length?"ready":"empty";renderAll();return true;
+    meta=M.status||{};profile=M.profile||{};baseProfile=profile;shopInfo=M.shops||{};setFormal(M.formality);SIZES=M.sizes||{};
+    phase=items.length?"ready":"empty";renderAll();
+    if(pendFit){var pf=pendFit;pendFit="";if(fitById[pf])openZoom(pf);}
+    return true;
   }catch(e){return false;}
 }
 /* The picks, outfits and photos are files published with the page. The database holds only what people mark: the shortlist, thumbs, saved outfits, his wardrobe and his measurements. */
@@ -6305,7 +6485,7 @@ var baseProfile={};
     db.doc("meta/settings").onSnapshot(function(sn){var d=(sn&&sn.exists&&sn.data())||null;if(d&&typeof d.allow2d==="boolean"&&d.allow2d!==FIG.allow2d){FIG.allow2d=d.allow2d;if(!FIG.allow2d)FIG.mode="3d";figChanged();}},function(){});
     db.doc("meta/profile").onSnapshot(function(s){var d=(s&&s.exists&&s.data())||null;profile=d?Object.assign({},baseProfile,d):baseProfile;schedule();},function(){});
     db.collection("owned").limit(1000).onSnapshot(function(snap){
-      var m={};snap.docs.forEach(function(doc){var d=doc.data()||{};if(d.k==="has"||d.k==="similar"||d.k==="own"){m[doc.id]={k:d.k,name:String(d.name||""),shape:String(d.shape||""),col:String(d.col||"")};}});
+      var m={};snap.docs.forEach(function(doc){var d=doc.data()||{};if(d.k==="has"||d.k==="similar"||d.k==="own"){m[doc.id]={k:d.k,name:String(d.name||""),shape:String(d.shape||""),col:String(d.col||""),wears:Math.max(0,Number(d.wears)||0),log:Array.isArray(d.log)?d.log.filter(isDay).slice(-WEARLOG):[]};}});
       owned=m;schedule();
     },function(){});
     db.collection("saved").limit(1000).onSnapshot(function(snap){

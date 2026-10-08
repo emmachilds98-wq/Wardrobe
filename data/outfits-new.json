@@ -2710,7 +2710,7 @@
  },
  "g-mod-04": {
   "name": "Indigo jacket and black trousers",
-  "note": "6 pieces for £125.48, £149 below full price.",
+  "note": "6 pieces for £122.98, £162 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -2738,10 +2738,10 @@
     "what": "Indigo jacket, worn open"
    },
    {
-    "col": "navy",
-    "item": "r7-bl-drake",
-    "shape": "shoes",
-    "what": "Navy shoes"
+    "col": "olive",
+    "item": "lambrettac-tackle-trainer-copy-4",
+    "shape": "trainers",
+    "what": "Olive trainers"
    },
    {
     "col": "grey",
@@ -2757,7 +2757,7 @@
   "wx": [
    "mild"
   ],
-  "look": "men brown T-shirt black trousers blue jumper indigo jacket navy shoes outfit"
+  "look": "men brown T-shirt black trousers blue jumper indigo jacket olive trainers outfit"
  },
  "g-mod-05": {
   "name": "Green T-shirt and navy shorts",
@@ -3302,10 +3302,10 @@
     "what": "Black trousers"
    },
    {
-    "col": "grey",
-    "item": "luke1977-massachusetts-tape-detail-sweat-mid-mrl-grey",
-    "shape": "jumper",
-    "what": "Grey jumper"
+    "col": "charcoal",
+    "item": "luke1977-watton-plated-quarter-zip-knt-charcoal",
+    "shape": "halfzip",
+    "what": "Charcoal half-zip"
    },
    {
     "col": "brown",
@@ -3327,7 +3327,7 @@
   "wx": [
    "cold"
   ],
-  "look": "men sand shirt black trousers grey jumper brown blazer green boots outfit"
+  "look": "men sand shirt black trousers charcoal half-zip brown blazer green boots outfit"
  },
  "g-mod-19": {
   "name": "Teal jumper and navy trousers",
@@ -5920,7 +5920,7 @@
  },
  "g-summer-07": {
   "name": "Black T-shirt and mustard shorts",
-  "note": "3 pieces for £79, £88 below full price.",
+  "note": "3 pieces for £58.99, £111 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -5936,10 +5936,10 @@
     "what": "Mustard shorts"
    },
    {
-    "col": "grey",
-    "item": "ms-derby",
-    "shape": "shoes",
-    "what": "shoes"
+    "col": "navy",
+    "item": "sc-warrington",
+    "shape": "trainers",
+    "what": "Navy trainers"
    }
   ],
   "rank": 418,
@@ -5949,7 +5949,7 @@
   "wx": [
    "warm"
   ],
-  "look": "men black T-shirt mustard shorts shoes outfit"
+  "look": "men black T-shirt mustard shorts navy trainers outfit"
  },
  "g-summer-08": {
   "name": "White T-shirt and green shorts",
@@ -5992,7 +5992,7 @@
  },
  "g-summer-09": {
   "name": "Stone T-shirt and navy shorts",
-  "note": "3 pieces for £83.99, £43 below full price.",
+  "note": "3 pieces for £54.98, £73 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -6008,10 +6008,10 @@
     "what": "Navy shorts"
    },
    {
-    "col": "burgundy",
-    "item": "sw-brogue",
-    "shape": "shoes",
-    "what": "Burgundy shoes"
+    "col": "navy",
+    "item": "r13-pd-trainers",
+    "shape": "trainers",
+    "what": "Navy trainers"
    }
   ],
   "rank": 424,
@@ -6021,7 +6021,7 @@
   "wx": [
    "warm"
   ],
-  "look": "men stone T-shirt navy shorts burgundy shoes outfit"
+  "look": "men stone T-shirt navy shorts navy trainers outfit"
  },
  "g-summer-10": {
   "name": "Olive T-shirt and black shorts",
@@ -6064,7 +6064,7 @@
  },
  "g-summer-11": {
   "name": "Olive T-shirt and stone shorts",
-  "note": "3 pieces for £88.47, £51 below full price.",
+  "note": "3 pieces for £68.48, £81 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -6080,10 +6080,10 @@
     "what": "Stone shorts"
    },
    {
-    "col": "brown",
-    "item": "bl-sloane-brown",
-    "shape": "shoes",
-    "what": "Brown shoes"
+    "col": "navy",
+    "item": "op-gaz",
+    "shape": "trainers",
+    "what": "Navy trainers"
    }
   ],
   "rank": 430,
@@ -6093,7 +6093,7 @@
   "wx": [
    "warm"
   ],
-  "look": "men olive T-shirt stone shorts brown shoes outfit"
+  "look": "men olive T-shirt stone shorts navy trainers outfit"
  },
  "g-summer-12": {
   "name": "Grey short-sleeve shirt and black shorts",
@@ -6136,7 +6136,7 @@
  },
  "g-summer-13": {
   "name": "Sand T-shirt and cream shorts",
-  "note": "4 pieces for £86.94, £74 below full price.",
+  "note": "4 pieces for £89.94, £84 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -6152,10 +6152,10 @@
     "what": "Cream shorts"
    },
    {
-    "col": "grey",
-    "item": "ms-derby",
-    "shape": "shoes",
-    "what": "shoes"
+    "col": "white",
+    "item": "op-giovanni",
+    "shape": "trainers",
+    "what": "White trainers"
    },
    {
     "col": "camel",
@@ -6171,11 +6171,11 @@
   "wx": [
    "warm"
   ],
-  "look": "men sand T-shirt cream shorts shoes outfit"
+  "look": "men sand T-shirt cream shorts white trainers outfit"
  },
  "g-summer-14": {
   "name": "Navy short-sleeve shirt and green shorts",
-  "note": "3 pieces for £108.46, £87 below full price.",
+  "note": "3 pieces for £118.45, £137 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -6191,10 +6191,10 @@
     "what": "Green shorts"
    },
    {
-    "col": "grey",
-    "item": "ms-brogues",
-    "shape": "shoes",
-    "what": "shoes"
+    "col": "navy",
+    "item": "sc-rl-aera",
+    "shape": "trainers",
+    "what": "Navy trainers"
    }
   ],
   "rank": 439,
@@ -6204,7 +6204,7 @@
   "wx": [
    "warm"
   ],
-  "look": "men navy short-sleeve shirt green shorts shoes outfit"
+  "look": "men navy short-sleeve shirt green shorts navy trainers outfit"
  },
  "g-summer-15": {
   "name": "Black T-shirt and stone shorts",
@@ -6241,7 +6241,7 @@
  },
  "g-summer-16": {
   "name": "Green short-sleeve shirt and grey shorts",
-  "note": "4 pieces for £109, £81 below full price.",
+  "note": "4 pieces for £143, £171 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -6257,10 +6257,10 @@
     "what": "Grey shorts"
    },
    {
-    "col": "grey",
-    "item": "ms-brogues",
-    "shape": "shoes",
-    "what": "shoes"
+    "col": "white",
+    "item": "herring-amalfi",
+    "shape": "trainers",
+    "what": "White trainers"
    },
    {
     "col": "grey",
@@ -6276,7 +6276,7 @@
   "wx": [
    "warm"
   ],
-  "look": "men green short-sleeve shirt grey shorts shoes outfit"
+  "look": "men green short-sleeve shirt grey shorts white trainers outfit"
  },
  "g-summer-17": {
   "name": "Olive T-shirt and stone shorts",
@@ -6313,7 +6313,7 @@
  },
  "g-summer-18": {
   "name": "Grey short-sleeve shirt and stone shorts",
-  "note": "4 pieces for £119.99, £60 below full price.",
+  "note": "4 pieces for £102.6, £60 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -6330,9 +6330,9 @@
    },
    {
     "col": "brown",
-    "item": "bl-sloane-brown",
-    "shape": "shoes",
-    "what": "Brown shoes"
+    "item": "sp-adidas-vl",
+    "shape": "trainers",
+    "what": "trainers"
    },
    {
     "col": "grey",
@@ -6348,7 +6348,7 @@
   "wx": [
    "warm"
   ],
-  "look": "men grey short-sleeve shirt stone shorts brown shoes outfit"
+  "look": "men grey short-sleeve shirt stone shorts trainers outfit"
  },
  "g-summer-19": {
   "name": "Sand T-shirt and navy shorts",
@@ -6457,7 +6457,7 @@
  },
  "g-summer-22": {
   "name": "Black shirt and stone shorts",
-  "note": "4 pieces for £138.98, £74 below full price.",
+  "note": "4 pieces for £84.98, £84 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -6473,10 +6473,10 @@
     "what": "Stone shorts"
    },
    {
-    "col": "black",
-    "item": "sw-oxford-black",
+    "col": "brown",
+    "item": "threadbare-threadbare-mens-biscuit-brown-faux-suede-slip-on-espadrille",
     "shape": "shoes",
-    "what": "Black shoes"
+    "what": "Brown shoes"
    },
    {
     "col": "blue",
@@ -6492,7 +6492,7 @@
   "wx": [
    "warm"
   ],
-  "look": "men black shirt stone shorts black shoes outfit"
+  "look": "men black shirt stone shorts brown shoes outfit"
  },
  "g-summer-23": {
   "name": "Grey short-sleeve shirt and stone shorts",
@@ -6535,7 +6535,7 @@
  },
  "g-summer-24": {
   "name": "Stone T-shirt and olive shorts",
-  "note": "4 pieces for £135.98, £43 below full price.",
+  "note": "4 pieces for £105.98, £43 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -6552,9 +6552,9 @@
    },
    {
     "col": "brown",
-    "item": "ms-oxford-shoe",
-    "shape": "shoes",
-    "what": "Brown shoes"
+    "item": "sw-trainer",
+    "shape": "trainers",
+    "what": "Brown trainers"
    },
    {
     "col": "grey",
@@ -6570,11 +6570,11 @@
   "wx": [
    "warm"
   ],
-  "look": "men stone T-shirt olive shorts shoes outfit"
+  "look": "men stone T-shirt olive shorts brown trainers outfit"
  },
  "g-summer-25": {
   "name": "Indigo T-shirt and stone shorts",
-  "note": "4 pieces for £123.99, £61 below full price.",
+  "note": "4 pieces for £103.94, £61 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -6590,10 +6590,10 @@
     "what": "Stone shorts"
    },
    {
-    "col": "brown",
-    "item": "ms-oxford-shoe",
-    "shape": "shoes",
-    "what": "Brown shoes"
+    "col": "white",
+    "item": "ro-nike-heritage",
+    "shape": "trainers",
+    "what": "White trainers"
    },
    {
     "col": "silver",
@@ -6609,7 +6609,7 @@
   "wx": [
    "warm"
   ],
-  "look": "men indigo T-shirt stone shorts shoes outfit"
+  "look": "men indigo T-shirt stone shorts white trainers outfit"
  },
  "g-summer-26": {
   "name": "Navy short-sleeve shirt and stone shorts",

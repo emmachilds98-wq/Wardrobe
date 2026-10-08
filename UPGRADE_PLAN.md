@@ -1647,6 +1647,76 @@ Further faults found while fixing these, fixed the same way:
   this build, the three jobs that flagged it come back with 0 flagged.
   The full 574-outfit run was stopped part-way to ship this. The weekly routine runs it in full.
 
+## 2zzzzzz. Page features from the plan, one dress code, a wear log, stored specs, hats on his head (8 Oct 2026)
+
+Pull request #18. Everything here needed no decision from Emma; the Three.js upgrade and Blender templates were not
+started.
+
+**Page**
+- **Back button and links to an outfit.** Moving between views is a step in the browser's history, so Back and
+  Forward work; `#fit/<id>` opens one outfit large (Back closes it), and "Copy a link to this outfit" shares it from
+  GitHub Pages. The root page's redirect keeps the address.
+- **Shop by budget.** £60, £100 and £150 buttons (Outfits and Build) suggest a whole outfit from photographed picks
+  in his size and open it as a flat lay of the shop photos, to scale.
+- **One dress code.** A formality scale from 0 (lounge) to 4 (tailored), defined once (`FORMALITY` in
+  `tools/build_site.py`) and shipped to the page in `meta.json`. The builder's suggestions and `make_outfits.py` keep
+  an outfit's clothes and shoes within 2 of each other (3 for Rave and Lounge), and the build notes outfits outside
+  it. 14 of 574 outfits were; 13 generated ones (mostly brogues or derbies with shorts) had the clashing piece
+  swapped for a photographed one in his size, and the curated Street "smart" look stays as it is. Python and the page
+  give every one of the 7,474 picks the same level. Suggestions also stopped offering slippers outside Lounge,
+  joggers outside Lounge and Rave, and slides without shorts (60 sample sets checked).
+- **His wardrobe: a wear log.** "Wore it today" on each piece, "He wore this today" on an outfit from his wardrobe;
+  each piece shows times worn, the last date and the price per wear, and the list says what he wears most and what
+  has not been worn in 30 days.
+- **Accessibility.** `lang="en-GB"`, a main landmark and a skip link, the view buttons as a group (not a tab list),
+  the large view labelled by its title and focus returned to the button that opened it. axe-core: 0 violations on
+  all seven views, light and dark.
+- Whole-word search for short words was already in (re-tested: "red" no longer finds Fred Perry or "reduced").
+- **Size check per shop.** `tools/size_charts.py` reads each shop's own men's size guide (direct requests and headless
+  Chromium only) into `data/sizecharts.json`: what M, L and XL mean there, as the chest it fits (body charts) or the
+  garment's own chest, with the collar where the chart gives it and the page it came from. 61 shops so far, covering
+  2,486 of the 4,497 tops; 113 are still to read or have no chart. Each top's card says "Size check: L here fits a
+  41–43in chest". With his chest on the measuring card it says whether it is in his L there, or which size is
+  nearer; without it, shops whose L is for a smaller or larger chest than most (Closure London, Cernucci, Ted Baker,
+  howies...) are marked as running small or large.
+
+**Shops**
+- 16 picks: BrandAlley (new: Lyle & Scott, GANT, Oliver Sweeney), the M&S sale (Seasalt, GANT, Tommy Hilfiger,
+  Timberland, BOSS, Lacoste, Jones Bootmaker) and Berghaus, all checked in his size from the size buttons the pages
+  show. A pair of M&S chinos was left out (31in leg only, 25% stretch). Gap, Next, Levi's, Vans, Timberland, Dr
+  Martens, New Balance, TK Maxx, Very, Urban Outfitters, Pull&Bear, Bershka and F&F refuse direct requests and
+  headless Chromium alike: they need a home computer, as the blocked photos do.
+
+**Phase 1: stored product specs**
+- `tools/specs.js` runs the page's own readers over every item worn in an outfit (1,358 pieces, about 20 seconds,
+  the same file every run) and writes `data/specs.json`: colours, pattern and spacing, cut, collar, neck, zip,
+  pockets, cloth, details and what the photo showed, each colour and pattern with its source and a confidence.
+- The pull-request check reads every piece again and fails when that differs from `data/specs.json`
+  (`tools/qa/specs_diff.py`), so a change to how pieces are read is committed, and reviewed, with what it moved.
+- First labelling pass from it: 23 pieces had a pattern named in the listing that the photo reading drew plain.
+  Looked at against their photos, 18 are right as plain (tonal, too fine to see, or on the back only). Five were
+  corrected in `data/fixes.json`: the Lambretta Geo AOP and Paisley tees, the Tog24 camo ski jacket and the Service
+  Works polka-dot chef trousers take a square of the cloth cut from their shop photo, and the Hawes & Curtis striped
+  Oxford (no photo stored) draws its blue and white stripe. 156 pieces where the photo disagreed with the named
+  colour (and the name won) were looked at next, on contact sheets against their photos. Most were right (the
+  stored photo shows another colourway than the link). The wrong ones had causes in the reader, now fixed for every
+  item: a shade word was dropped ("light olive" drew dark olive, "ice blue" mid blue, "dark khaki" pale khaki); a
+  denim wash read as a colour ("Stone Wash" shorts and Stan Ray "70's Stone" jeans drew beige); a colourway list was
+  read from its last colour ("Black - Asphalt - Platinum Grey" drew grey; "Forest Green - Orange" orange); a model
+  name read as a colour (Luke 1977 "Red Rock" boots drew red); "denim" named the cloth, not the colour, in
+  "Denim Bucket Overdye Choc"; and olive and khaki had to match one exact shade. 41 pieces now read differently,
+  every one checked against its photo; the 64 outfits that use them pass the 3D check.
+
+**3D**
+- **Beanies and bucket hats are made on his head,** as caps already were: a snug ribbed crown with its cuff turned up
+  and rolled, or a level crown with a flat top and a brim sloping down and out (shorter over his face, so his eyes
+  show), each with its lower edge tilting from his brows to the back of his head and the curls showing below it.
+  The top of the skull map dips at the crown, which dented the hats; it is smoothed under them.
+
+**Checks:** build clean; smoke test 2D and 3D with no page errors; 3D check (Dave) on the 13 swapped outfits, the 11
+outfits with corrected pieces and all 57 hat outfits; CI on all five body types for the changed outfits and the gate
+list.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -1673,20 +1743,16 @@ from a home computer usually gets past them. Then add the new pack to the page a
 
 ### Step 4: Page features worth adding
 1. ~~**Photo-first view.**~~ Done in round two as the compact grid.
-2. **Photo strip on outfit cards:** under the drawing, a row of the pieces' listing photos, once
-   coverage is good.
+2. ~~**Photo strip on outfit cards.**~~ Done: the card's board shows the listing photos whenever a piece has one.
 3. ~~**Price-drop watch on the shortlist.**~~ Done in round two.
-4. **"Shop by budget" quick sets:** an outfit for £60, £100 or £150, drawn from the builder's
-   suggestion engine and refreshed weekly.
+4. ~~**"Shop by budget" quick sets.**~~ Done in 2zzzzzz.
 5. ~~**Shop filter in Picks.**~~ Done in round two.
 
 ### Step 4b: Features suggested for next round
-1. **Shop-by-budget sets:** "£60 / £100 / £150 outfit" buttons that run the builder's suggest engine
-   over the photo-backed picks and show the set as a flat lay.
+1. ~~**Shop-by-budget sets.**~~ Done in 2zzzzzz.
 2. **Price-drop alerts on the shortlist:** re-run `shopify_pull.py` weekly for the shops behind
    saved picks and set `prev` and `hist`, so the shortlist's "Down £x since it was saved" lights up.
-3. **Size check per shop:** store each Shopify shop's size-chart page and show "L at this shop is
-   a 42 to 44in chest" on the card; flag shops that run small.
+3. ~~**Size check per shop.**~~ Done in 2zzzzzz for 61 shops; `tools/size_charts.py` adds more.
 4. **Outfits from the new picks:** generate outfits per style from the 4,282 new picks, using
    only pieces with photos, so every outfit shows a full flat lay.
 5. **Non-Shopify shops:** M&S, Next, Uniqlo, ASOS and the other big shops are not on Shopify; a
