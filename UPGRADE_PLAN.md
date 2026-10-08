@@ -1746,6 +1746,12 @@ build before the fix, where it must flag the fault, and after, where it must pas
 - *A pick filed as the wrong kind of clothing*: a denim bucket hat was filed under trousers and worn as the trousers
   of two outfits. It is now an accessory, the two outfits wear dark jeans, and `build_site.py` stops on a hat drawn as
   anything else and notes any hat filed under another kind.
+- *Picks that are not his*: 37 women's picks had come in by routes other than the shop sweeps (whose filter already
+  refuses them): 30 Jack Wolfskin "W" lines, "Women" in Sergio Tacchini and Fila titles, River Island cinch-back
+  pieces, an adidas "Japan W". Removed; `build_site.py` now stops on a women's listing.
+- *Size check on things that are not tops*: socks, boxers, slippers and shorts share categories with tops and were
+  given a chest chart's line; it now shows on upper-body garments only (2,585 picks). 20 more shops' charts were read
+  (81 in all).
 - *Sunglasses*: all seven pairs drawn in their named frame; one with no shape word (A.Kjaerbede Noah) is now described
   as slim rectangular silver with pale blue lenses, as its photo shows.
 

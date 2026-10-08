@@ -268,6 +268,12 @@ FRAME_WORDS = ("wrap", "shield", "sport", "visor", "aviator", "pilot", "teardrop
 FRAME_OTHER = r"cat[- ]?eye|hexagon\w*|octagon\w*|geometric|butterfly|flat[- ]?top|\bmask\b|pentagon\w*"
 
 
+# A women's listing (the wardrobe is Dave's): Jack Wolfskin's "... T W", "Women" in a brand's title, a cinch-back
+# shirt. The shop sweeps filter these out (tools/sweep_filter.py), but 37 came in by other routes once.
+WOMENS = re.compile(r"\bwomen'?s?\b|\bwomens\b|\bladies'?\b|\bwmns\b|\sW$|\bcinch[- ]back\b|\bskorts?\b|\bblouse\b|"
+                    r"\bbralette\b|\bleggings\b|\bmaternity\b|^adidas japan w\b", re.I)
+
+
 def is_hat(name):
     """A listing that is a hat by its name, with no garment noun of its own ("Denim Bucket OverDye Choc"); a trucker
     jacket ("Borg Lined Trucker") is not one."""
@@ -311,6 +317,9 @@ def check_outfits(outfits, items):
     tb = page_tables()
     shapes = tb["upper"] | tb["lower"] | tb["feet"] | tb["accs"]
     bad, odd = [], []
+    for k, v in items.items():   # (picks are men's clothes)
+        if isinstance(v, dict) and WOMENS.search((v.get("name") or "").strip()):
+            bad.append(f"{k} ({v.get('name')}) is a women's listing: take it out of data/items*.json")
     for k, v in items.items():   # (a hat filed under another kind of clothing shows in the wrong place in the catalogue)
         if isinstance(v, dict) and v.get("cat") not in (None, "acc") and is_hat(v.get("name")):
             odd.append(f"{k} ({v.get('name')}) is a hat by its name but filed under '{v.get('cat')}'")

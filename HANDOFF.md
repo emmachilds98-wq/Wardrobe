@@ -125,8 +125,9 @@ should match. Emma asked for the upgrade to continue until that is done.
   dialog labels, focus return; axe-core finds nothing on any view).
 - **Formality:** one scale (`FORMALITY` in `tools/build_site.py`, shipped to the page in `meta.json`) used by the
   builder's suggestions, `make_outfits.py` and the build's notes. Change it there only.
-- **Size check:** `data/sizecharts.json` (`tools/size_charts.py`, 61 shops so far) drives a "Size check" line on
-  every top's card, personal when his chest is on the measuring card. Extend it shop by shop (REFRESH.md step 4b).
+- **Size check:** `data/sizecharts.json` (`tools/size_charts.py`, 81 shops since 8 Oct) drives a "Size check" line on
+  every top's card (upper-body garments only: 2,585 picks), personal when his chest is on the measuring card. Extend
+  it shop by shop (REFRESH.md step 4b); the shops still to read are under `_missing` with the reason.
 - **Colour reader:** shade words, denim washes, colourway lists, model names with colour words and olive/khaki
   families fixed (UPGRADE_PLAN 2zzzzzz); 41 pieces moved, all checked against their photos.
 - **Phase 1, stored specs:** `data/specs.json`, made by `node tools/specs.js` and checked on every pull request.
@@ -140,6 +141,9 @@ and each now has a guard: `under`, `legs`, `form` and `offset` in `check_3d.js` 
 piece's depth settings), the specs check refusing `unseen` pieces, and `build_site.py` refusing sunglasses shapes the
 model cannot draw. Each guard was shown to flag the build before the fix and pass the build after it. Details and the
 table: UPGRADE_PLAN 2zzzzzzz; lessons: CONTRIBUTING.md.
+
+Also 8 Oct: 37 women's picks removed (30 Jack Wolfskin "W" lines, "Women" in Sergio Tacchini and Fila titles, River
+Island cinch-back pieces, an adidas "Japan W"); `build_site.py` now stops on a women's listing.
 
 ## What to do next, in order
 

@@ -1916,7 +1916,7 @@ var state={view:"shop",dept:"all",shop:"all",col:"all",tfit:"all",fab:"all",comp
   tocc:"everyday",twx:(function(){var m=new Date().getMonth();return m>=10||m<=1?"cold":(m>=4&&m<=7?"warm":"mild");})(),mocc:"everyday",mwx:"all"};
 var lim={picks:PAGE,fits:FITPAGE};
 /* the automatic 3D checks (tools/check_3d.js) open the page with ?qa=1 and drive it through this */
-if(/[?&]qa=1\b/.test(location.search))window.__qa=function(){return {make3D:make3D,fitById:fitById,effPieces:effPieces,trueFor:trueFor,LOOK:LOOK,TRUE:TRUE,byId:byId,dressed:dressed,loadThree:loadThree,body:function(){return BODY;},cc:cc,descOf:descOf,getPh:getPh,sampleLook:sampleLook,pieceLook:pieceLook,sgKind:sgKind};};
+if(/[?&]qa=1\b/.test(location.search))window.__qa=function(){return {make3D:make3D,fitById:fitById,effPieces:effPieces,trueFor:trueFor,LOOK:LOOK,TRUE:TRUE,byId:byId,dressed:dressed,loadThree:loadThree,body:function(){return BODY;},cc:cc,descOf:descOf,getPh:getPh,sampleLook:sampleLook,pieceLook:pieceLook,sgKind:sgKind,shopSize:shopSize,guessShape:guessShape};};
 var items=[],fits=[],byId={},fitById={},meta={},profile={},phase="loading",fitsSeen=false;
 var db=null,canShare=true,saved={},votes={},myfits=[],local={saved:{},votes:{},myfits:{},owned:{}};
 var owned={},shopInfo={},staticMode=false,catFiles=false,swaps={},locked={},colCache={};
@@ -2828,7 +2828,7 @@ var SIZES={},TOPCAT={knit:1,polo:1,shirt:1,coat:1,basics:1,lounge:1,sport:1};
 function inches(a){return a[0]===a[1]?a[0]+"in":a[0]+"–"+a[1]+"in";}
 function hisChest(){var m=profile.measure&&typeof profile.measure==="object"?profile.measure:(loadMeasure()||{});return Number(m.chest)>0?Number(m.chest):0;}
 function shopSize(it){
-  var c=SIZES[it.shop];if(!c||!c.L||!TOPCAT[it.cat])return null;
+  var c=SIZES[it.shop];if(!c||!c.L||!TOPCAT[it.cat]||!UPPER[guessShape(it)])return null;   /* (a top's chest chart: not for the socks, boxers, slippers and shorts in the same categories) */
   var col=c.collar&&it.cat==="shirt"?", collar "+c.collar+"in":"";
   if(c.kind==="garment")return {t:"Size check: an L here measures "+inches(c.L)+" round the garment itself"+col+".",warn:false};
   var t="Size check: L here fits a "+inches(c.L)+" chest"+col,ch=hisChest(),warn=false;
