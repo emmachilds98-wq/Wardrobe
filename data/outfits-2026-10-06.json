@@ -130,7 +130,7 @@
  },
  "w20261006-casual-02": {
   "name": "Stone jacket and black trousers",
-  "note": "5 pieces for £130.99, £234 below full price.",
+  "note": "5 pieces for £107.99, £162 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -159,9 +159,9 @@
    },
    {
     "col": "grey",
-    "item": "universalt-clae-unisex-adult-leather-moc-toe-derby-shoes",
-    "shape": "shoes",
-    "what": "shoes"
+    "item": "r11-luke1977-trainers",
+    "shape": "trainers",
+    "what": "trainers"
    }
   ],
   "rank": 403,
@@ -171,7 +171,7 @@
   "wx": [
    "mild"
   ],
-  "look": "men grey T-shirt black trousers grey jumper stone jacket shoes outfit"
+  "look": "men grey T-shirt black trousers grey jumper stone jacket trainers outfit"
  },
  "w20261006-casual-03": {
   "name": "Stone T-shirt and black trousers",

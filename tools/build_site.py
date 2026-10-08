@@ -189,6 +189,52 @@ def hat_kind(name):
     return None
 
 
+# How dressed-up a piece is, from 0 (lounge) to 4 (tailored). The builder's suggestions (page.html, which gets this
+# table in meta.json) and the outfit maker (make_outfits.py) keep an outfit's clothes and shoes within SPREAD of each
+# other, so a hoodie never comes with suit trousers, or running trainers with a blazer. The first name rule that
+# matches decides; otherwise the shape does. Accessories are left out. The rules are plain regexes that read the same
+# in Python and JavaScript (no inline flags or lookbehinds); both match them case-insensitively.
+FORMALITY = {
+    "names": [
+        [r"pyjama|lounge|jogger|sweatpant|track ?(pant|bottom|top|suit)|tricot|slider|\bslides?\b|slipper|flip[- ]?flop|"
+         r"onesie|dressing gown|\brobe\b", 0],
+        [r"hoodie|hoody|sweatshirt|graphic|slogan|printed t|tank|basketball|sweat ?short|swim|running|\brunners?\b|\bgym\b|"
+         r"football|tie[- ]dye|festival|\bshorts?\b(?![- ]?sleeve)|water shoe|aqua shoe|sandal", 1],
+        [r"\bsuit\b|suit trouser|tuxedo|dinner jacket|double[- ]cuff|tailored|dress (shirt|trouser|shoe)|formal|"
+         r"wool[- ]?(blend )?trouser|pleated trouser|waistcoat|oxford shoe|derby|derbies|brogue|monk strap|blazer|sport ?coat", 4],
+        [r"overshirt|shacket|flannel|lumberjack|denim|chambray|western|cord(uroy)? shirt|work ?shirt|utility|cargo|carpenter|"
+         r"parka|puffer|padded|quilted|anorak|cagoule|waterproof|\brain|fleece|hiking|walking|work boot|safety|chore|bomber|"
+         r"varsity|coach jacket|windbreaker|track jacket", 2],
+        [r"oxford|chino|knit(ted)? polo|roll ?neck|turtle ?neck|merino|cashmere|lambswool|harrington|loafer|chelsea|"
+         r"desert boot|chukka|overcoat|wool coat|crombie|trench|\bmac\b|pea ?coat|car coat|linen trouser", 3],
+    ],
+    "shapes": {"slippers": 0, "gown": 0, "hoodie": 1, "vest": 1, "shorts": 1, "tee": 2, "polo": 2, "sshirt": 2,
+               "jumper": 2, "halfzip": 2, "cardigan": 2, "jacket": 2, "gilet": 2, "trainers": 2, "boots": 2,
+               "trousers": 2, "coat": 3, "shirt": 3, "rollneck": 3, "shoes": 3, "blazer": 4, "waistcoat": 4},
+    "spread": 2,
+    # Rave and Lounge mix on purpose (a knitted polo with joggers and slippers, a studded shirt with tailored trousers)
+    "styles": {"rave": 3, "lounge": 3},
+}
+FORMALITY_RX = [(re.compile(r, re.I), lv) for r, lv in FORMALITY["names"]]
+
+
+def formality(name, shape):
+    """0 (lounge) to 4 (tailored) for a piece worn as shape; None for accessories and unknown shapes."""
+    if shape not in FORMALITY["shapes"]:
+        return None
+    for rx, lv in FORMALITY_RX:
+        if rx.search(name or ""):
+            return lv
+    return FORMALITY["shapes"][shape]
+
+
+def formality_spread(pieces):
+    """How far apart the most and least dressed-up pieces are; pieces are (name, shape) pairs. An outfit is fine when
+    this is at most FORMALITY["styles"].get(style, FORMALITY["spread"]) for one of its styles."""
+    lv = [x for x in (formality(n, sh) for n, sh in pieces) if x is not None]
+    return max(lv) - min(lv) if lv else 0
+
+
 def page_tables():
     """The shapes and palette the page knows, read from page.html so the checks never fall out of step with it."""
     with open(os.path.join(ROOT, "page.html"), encoding="utf-8") as f:
@@ -252,6 +298,11 @@ def check_outfits(outfits, items):
             bad.append(f"{oid}: two pairs of shoes")
         if not any(s in tb["feet"] for s in sh) and o.get("occ") != "lounge":
             odd.append(f"{oid}: no shoes")
+        worn = [((items.get(p.get("item")) or {}).get("name") or p.get("what", ""), p.get("shape")) for p in ps]
+        spread, lim = formality_spread(worn), max(FORMALITY["styles"].get(st, FORMALITY["spread"]) for st in (o.get("style") or [""]))
+        if spread > lim:
+            lv = ", ".join("%s %s" % (sh, formality(n, sh)) for n, sh in worn if formality(n, sh) is not None)
+            odd.append(f"{oid}: pieces {spread} apart in formality ({lv}); the builder and make_outfits.py keep to {lim}")
     return bad, odd
 
 
@@ -279,6 +330,7 @@ def main():
         "profile": PROFILE,
         "shops": {},
         "styletags": tags,
+        "formality": FORMALITY,
     }
 
     photos = {}

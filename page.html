@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en-GB"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>The Wardrobe</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&display=swap">
 <style>
@@ -300,6 +300,7 @@ details.fold > summary small{font-family:var(--f-text);font-size:.82rem;color:va
 .b-total b{font-size:1.3rem}
 .b-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .b-row .b-budget{width:6.5rem}
+.b-sets{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.b-sets>span{color:var(--muted);font-size:.85rem}
 .btn{font:inherit;font-size:.9rem;font-weight:600;padding:9px 14px;border-radius:4px;border:1px solid var(--green);background:var(--green);color:var(--on-green);cursor:pointer}
 .btn.ghost{background:transparent;color:var(--green)}
 .btn:disabled{opacity:.5;cursor:default}
@@ -557,9 +558,12 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 @media (min-width:900px){.bar .tabs{flex-wrap:wrap;overflow:visible}}
 @media (max-width:899px){.bar .tabs{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}}
 @media (min-width:1500px){.wrap{max-width:1380px}}
+.skip{position:absolute;left:8px;top:-60px;z-index:50;background:var(--surface);color:var(--ink);padding:8px 12px;border-radius:4px;border:2px solid var(--green)}.skip:focus{top:8px}
+main:focus{outline:none}
 </style>
 
 <div class="stripe" aria-hidden="true"></div>
+<a class="skip" href="#main" data-skip>Skip to the page's content</a>
 <div class="wrap">
 
   <header class="mast">
@@ -573,7 +577,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
       <label class="search" for="q"><span class="vh">Search every style</span><input id="q" type="search" placeholder="Search every style: cord, Vans, navy, M&amp;S…" autocomplete="off"></label>
       <div class="figmode" id="figmode" role="group" aria-label="How Dave is shown"><span class="label">Dave</span><button type="button" data-figmode="2d">2D<span class="fm-long"> drawing</span></button><button type="button" data-figmode="3d">3D<span class="fm-long"> model</span></button></div>
     </div>
-    <div class="views" role="tablist" aria-label="Parts of the page">
+    <div class="views" role="group" aria-label="Parts of the page">
       <button class="vbtn" type="button" data-go="shop">Shop</button>
       <button class="vbtn" type="button" data-go="sale">Sale</button>
       <button class="vbtn" type="button" data-go="fits">Outfits</button>
@@ -583,6 +587,8 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
       <button class="vbtn" type="button" data-go="mine">His wardrobe</button>
     </div>
   </nav>
+
+  <main id="main" tabindex="-1">
 
   <section class="week" id="week" aria-labelledby="h-week" data-view="sale" hidden>
     <h2 id="h-week">This week</h2>
@@ -627,6 +633,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
     <div class="sec-head">
       <h2 id="h-fits">Outfits</h2>
       <p>Each outfit is drawn on a figure, with the pieces numbered, priced and linked. Swap any piece for another, save one to the shortlist, or change its pieces in the builder.</p>
+      <p class="b-sets" role="group" aria-label="Quick outfits by budget"><span>Shop by budget, from photographed picks in his size:</span> <button class="act" type="button" data-bset="60">£60 outfit</button><button class="act" type="button" data-bset="100">£100 outfit</button><button class="act" type="button" data-bset="150">£150 outfit</button></p>
     </div>
     <div class="filters" style="padding-block:14px">
       <div class="fgroup"><span class="label" id="l-fit">Occasion</span><div class="chips" id="f-fit" role="group" aria-labelledby="l-fit"></div></div>
@@ -664,6 +671,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
           <label class="field" for="b-budget">Budget £ <input class="b-budget" id="b-budget" type="number" min="20" max="600" step="5" value="100" inputmode="numeric"></label>
           <button class="btn" id="b-suggest" type="button">Suggest an outfit</button>
           <button class="btn ghost" id="b-clear" type="button">Clear</button>
+          <span class="b-sets" role="group" aria-label="Quick outfits by budget"><button class="act" type="button" data-bset="60">£60 outfit</button><button class="act" type="button" data-bset="100">£100 outfit</button><button class="act" type="button" data-bset="150">£150 outfit</button></span>
           <label class="check" for="b-all"><input type="checkbox" id="b-all">Use every style</label>
         </div>
         <p class="msg" id="b-hint"></p>
@@ -675,6 +683,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
         <button class="linkbtn b3d-edit" type="button" data-chared hidden id="b-3d-edit">Edit Dave's 3D look</button>
         <ul class="b-list" id="b-list"></ul>
         <div class="b-total"><span>Total</span><b id="b-total">£0</b></div>
+        <p class="msg" id="b-formal" hidden></p>
         <div class="b-row"><input class="b-name" id="b-name" type="text" maxlength="60" placeholder="Name this outfit" aria-label="Outfit name"></div>
         <div class="b-row"><button class="btn" id="b-save" type="button" disabled>Save to shortlist</button><span class="msg" id="b-msg"></span></div>
       </div>
@@ -1147,6 +1156,8 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
     </div>
   </details>
 
+  </main>
+
   <footer class="foot" data-view="guide">
     <p>Prices, sizes and stock change quickly, and sale colours sell out first. Each card shows the date its price was last checked. Open the link to confirm before buying.</p>
     <p>A green size line means his size was in stock at the last check. Where a shop does not publish stock by size, the card shows his usual size to look for.</p>
@@ -1164,7 +1175,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
   <div id="ce-form" role="tabpanel"></div>
   <div class="b-row ce-acts"><button class="btn" type="button" id="ce-save">Save</button><button class="btn ghost" type="button" id="ce-undo" disabled>Undo</button><button class="btn ghost" type="button" id="ce-reset">Back to his defaults</button><button class="btn ghost" type="button" id="ce-next">Try another outfit</button><span class="msg" id="ce-msg" role="status"></span></div></div></div>
 </div></dialog>
-<dialog class="zoom" id="zoom" aria-labelledby="zoom-body"><div class="zoom-in"><button class="act zx" type="button" data-zclose>Close</button><div id="zoom-body"></div></div></dialog>
+<dialog class="zoom" id="zoom" aria-labelledby="zoom-h"><div class="zoom-in"><button class="act zx" type="button" data-zclose>Close</button><div id="zoom-body"></div></div></dialog>
 <script>
 (function(){
 "use strict";
@@ -2531,7 +2542,7 @@ function photoBox(it,cls,label){
   if(!src)return '<span class="ph '+cls+'">'+g+'</span>';
   return '<span class="ph '+cls+'"><img src="'+esc(src)+'" alt="'+esc(label?it.name:"")+'" loading="lazy" decoding="async" data-fallback="'+esc(g)+'">'+(label?'<span class="src">Shop photo</span>':"")+'</span>';
 }
-(function(){var zd=document.getElementById("zoom");if(zd)zd.addEventListener("close",function(){stop3D();});})();
+(function(){var zd=document.getElementById("zoom");if(zd)zd.addEventListener("close",function(){stop3D();zoomGone();});})();
 document.addEventListener("error",function(e){
   var t=e.target;if(!t||t.tagName!=="IMG"||!t.hasAttribute("data-fallback"))return;
   var box=t.parentNode;if(box){box.innerHTML=t.getAttribute("data-fallback");}
@@ -5129,11 +5140,12 @@ function hydrate3D(){
 }
 /* The large view: the figure drawn at full height next to the real listing photos, each one big enough to see the fabric. */
 function openZoom(id){
-  var f=fitById[id],dlg=$("zoom");if(!f||!dlg)return;zoomId=id;
+  var f=fitById[id],dlg=$("zoom");if(!f||!dlg)return;var was=dlg.open;zoomId=id;if(!was)zoomFrom=document.activeElement;
+  try{if(id.charAt(0)!=="_"&&location.hash!==fitHash(id))history[was&&history.state&&history.state.fit?"replaceState":"pushState"]({fit:id},"",fitHash(id));}catch(e){}
   var ps=effPieces(f),seen={},order=ps.filter(function(p){if(seen[p.item])return false;seen[p.item]=1;return true;}),t=fitSum(ps);
   var mode=order.some(function(p){return hasPh(byId[p.item]);})?"1":(figMode()==="3d"?"3":"0");try{var lv=localStorage.getItem("dw-zlay");if(lv==="0"||lv==="3")mode=figMode()==="3d"?"3":"0";}catch(e){}
   if(!FIG.allow2d&&mode==="0")mode="3";
-  $("zoom-body").innerHTML='<div class="zoom-head"><span class="label">'+esc(f.styles.map(function(s){return label(STYLE,s);}).join(" · "))+'</span><h2>'+esc(f.name)+'</h2>'+(f.note?'<p>'+esc(f.note)+'</p>':"")+'<p class="zoom-tot"><b>'+money(t.tot)+'</b> for the whole outfit</p></div>'+
+  $("zoom-body").innerHTML='<div class="zoom-head"><span class="label">'+esc(f.styles.map(function(s){return label(STYLE,s);}).join(" · "))+'</span><h2 id="zoom-h">'+esc(f.name)+'</h2>'+(f.note?'<p>'+esc(f.note)+'</p>':"")+'<p class="zoom-tot"><b>'+money(t.tot)+'</b> for the whole outfit</p>'+(shareable()&&id.charAt(0)!=="_"?'<p class="zoom-link"><button class="linkbtn" type="button" data-fitlink="'+esc(f.id)+'">Copy a link to this outfit</button> <span class="msg" aria-live="polite"></span></p>':"")+'</div>'+
     '<div class="zoom-grid"><div class="zoom-fig" data-mode="'+mode+'"><div class="zoom-tabs" role="group" aria-label="How to show the outfit"><button type="button" class="act" data-zlay="1" aria-pressed="'+(mode==="1")+'">Real photos, to scale</button>'+(FIG.allow2d?'<button type="button" class="act" data-zlay="0" aria-pressed="'+(mode==="0")+'">Drawing (2D)</button>':"")+'<button type="button" class="act" data-zlay="3" aria-pressed="'+(mode==="3")+'">3D model</button></div><div class="zf-lay">'+flatLay(order)+'</div><div class="zf-3d"><p class="msg zf-3dmsg">Loading the 3D model…</p></div><button class="linkbtn zf-3dedit" type="button" data-chared data-chared-fit="'+esc(f.id)+'">Edit Dave (fitting room)</button><div class="zf-fig"><svg viewBox="0 0 268 486" role="img" aria-label="'+esc("Drawing of the outfit: "+order.map(function(p){return p.what;}).join(", "))+'"><g transform="translate(14,4)">'+figure(ps)+'</g></svg></div></div>'+
     '<ol class="zoom-ph">'+order.map(function(p,i){var it=byId[p.item];if(!it)return '<li><span class="zn">'+(i+1)+'</span><span class="zi"><b>'+esc(p.what)+'</b><small>'+(p.own?"Already his, nothing to buy":"No longer listed")+'</small></span></li>';
       return '<li data-zitem="'+esc(p.item)+'"><span class="zn">'+(i+1)+'</span>'+(photoBox(it,"zbig",true)||'<span class="ph zbig"></span>')+'<span class="zi"><b>'+esc(p.what)+'</b><a href="'+esc(it.url)+'" target="_blank" rel="noopener">'+esc(it.name)+' ↗</a><small>'+esc(it.shop)+(it.insize===true?" · in his size":"")+(pct(it)>0?" · "+pct(it)+"% off":"")+'</small><b class="zp">'+money(cost(it))+'</b></span></li>';}).join("")+'</ol></div>';
@@ -5405,6 +5417,8 @@ function buildPieces(){
 }
 function drawBuild(){
   var ps=buildPieces(),tot=0,draw=ps.slice();
+  var fr=formalRange(ps.map(function(p){return {name:(byId[p.item]||{}).name||"",shape:p.shape,what:p.what};})),fm=$("b-formal");
+  if(fm){fm.hidden=!(fr.spread>formalLimit());if(!fm.hidden)fm.textContent="Mixed dress codes: the "+fr.lo.what.toLowerCase()+" is much more casual than the "+fr.hi.what.toLowerCase()+". Suggest keeps the pieces closer together.";}
   if(!draw.some(function(p){return UPPER[p.shape];})){draw.push({item:"",shape:"tee",col:"white",what:""});}
   if(!draw.some(function(p){return LOWER[p.shape];})){draw.push({item:"",shape:"trousers",col:"stone",what:""});}
   if(figMode()==="3d"){
@@ -5424,12 +5438,29 @@ function drawBuild(){
   $("b-save").disabled=ps.length<2;
   trueFor(ps,drawBuild);
 }
-function suggest(){
-  var budget=Math.max(20,Number($("b-budget").value)||100),msg=$("b-msg");
-  var pools={},keep={},kt=0;
+/* How dressed-up a piece is, 0 (lounge) to 4 (tailored), from the table build_site.py writes into meta.json
+   (FORMALITY there, which make_outfits.py uses too): the first name rule that matches, else the shape. Accessories
+   have none. Suggestions keep the clothes and shoes within the style's spread, so no hoodie with suit trousers. */
+var FORMAL={names:[],shapes:{},spread:2,styles:{}},SPORTY=/jogger|track ?(pant|bottom|top)|sweatpant|tracksuit|tricot/i,OPENFOOT=/sandal|\bslides?\b|slider|flip[- ]?flop/i;
+function setFormal(t){if(!t||!t.shapes)return;FORMAL={names:(t.names||[]).map(function(r){try{return [new RegExp(r[0],"i"),r[1]];}catch(e){return null;}}).filter(Boolean),shapes:t.shapes,spread:t.spread||2,styles:t.styles||{}};}
+function formalOf(name,shape){if(!has(FORMAL.shapes,shape))return null;for(var i=0;i<FORMAL.names.length;i++){if(FORMAL.names[i][0].test(name||""))return FORMAL.names[i][1];}return FORMAL.shapes[shape];}
+function formalRange(list){var lo=null,hi=null;list.forEach(function(x){var f=formalOf(x.name,x.shape);if(f===null)return;if(!lo||f<lo.f)lo={f:f,x:x};if(!hi||f>hi.f)hi={f:f,x:x};});return {spread:hi?hi.f-lo.f:0,lo:lo&&lo.x,hi:hi&&hi.x};}
+function formalLimit(){var ss=$("b-all").checked?[]:selStyles();return ss.length?Math.max.apply(null,ss.map(function(s){return FORMAL.styles[s]||FORMAL.spread;})):FORMAL.spread;}
+function suggest(opt){
+  opt=opt||{};
+  var budget=opt.budget||Math.max(20,Number($("b-budget").value)||100),msg=$("b-msg");
+  var pools={},keep={},kt=0,flim=formalLimit(),ss=selStyles(),lng=ss.indexOf("lounge")>=0;
   SLOTS.forEach(function(s){var b=build[s[0]];if(locked[s[0]]&&b&&byId[b.item]){keep[s[0]]=b;kt+=cost(byId[b.item]);}});
+  /* (kept pieces that are already far apart are left as they are; the rest must not widen the gap) */
+  flim=Math.max(flim,formalRange(Object.keys(keep).map(function(k){var it=byId[keep[k].item],d=derive(it);return {name:it.name,shape:keep[k].shape||(d&&d.shape)};})).spread);
   SLOTS.slice(0,5).forEach(function(s){
-    pools[s[0]]=slotItems(s).filter(function(it){return it.price>0;}).map(function(it){
+    pools[s[0]]=slotItems(s).filter(function(it){
+      if(!(it.price>0)||(opt.photos&&!hasPh(it)))return false;
+      /* as in make_outfits.py: slippers only for Lounge, joggers and track pants only for Lounge and Rave */
+      var d=derive(it);if(d&&d.shape==="slippers"&&!lng)return false;
+      if(s[0]==="bottom"&&SPORTY.test(it.name)&&!lng&&ss.indexOf("rave")<0)return false;
+      return true;
+    }).map(function(it){
       return {it:it,sc:(it.fit?(it.fit==="Wide leg"||it.fit==="Relaxed"?1.4:1):0)+(voteOf(it.id)===1?3:0)+(it.insize===true?1.5:0)+(pct(it)>=30?1:0)+Math.max(0,1-it.rank/800)+(it.price<=25?1:it.price<=50?0.5:0)};
     }).sort(function(a,b){return b.sc-a.sc;}).slice(0,40);
   });
@@ -5447,17 +5478,30 @@ function suggest(){
       if(!ch.bottom||!ch.feet||!(ch.top||ch.mid))continue;
       if(!ch.top&&ch.mid&&OPENUP[derive(ch.mid).shape])continue;
       if((ch.outer||ch.mid)&&derive(ch.bottom).shape==="shorts")continue;
+      if(!keep.feet&&OPENFOOT.test(ch.feet.name)&&derive(ch.bottom).shape!=="shorts")continue;
       var tb=ch.top||ch.mid;
       if(state.style!=="rave"&&tb&&cols.bottom===(cols.top||cols.mid)&&cols.bottom!=="black")sc-=2;
-      sc+=tot/budget;
+      var fr=formalRange(Object.keys(ch).filter(function(k){return SLOTS.slice(0,5).some(function(s){return s[0]===k;});}).map(function(k){var d=derive(ch[k]);return {name:ch[k].name,shape:(keep[k]&&keep[k].shape)||(d&&d.shape)};}));
+      if(fr.spread>flim)continue;
+      sc+=tot/budget-fr.spread*0.4;
       if(!best||sc>best.sc){best={sc:sc,ch:ch,tot:tot};}
     }
   }
   if(!best){msg.textContent="Nothing in this style fits "+money(budget)+(kt?" with the kept pieces":"")+" in his size. Try a bigger budget or tick Use every style.";return;}
   build={};
   Object.keys(best.ch).forEach(function(k){var it=best.ch[k];build[k]=keep[k]||{item:it.id,col:derive(it).col};});
-  msg.textContent=Object.keys(best.ch).length+" pieces for "+money(best.tot)+(Object.keys(keep).length?", keeping the ticked pieces":"")+". Press Suggest again for another.";
+  msg.textContent=Object.keys(best.ch).length+" pieces for "+money(best.tot)+(Object.keys(keep).length?", keeping the ticked pieces":"")+". Press "+(opt.photos?"the same button":"Suggest")+" again for another.";
   renderBuilder();
+  /* the quick sets open as a flat lay of the shop photos, to scale */
+  if(opt.show){var ss=selStyles();fitById._build={id:"_build",name:"A "+money(budget)+" outfit",styles:ss.length?ss:["casual"],occ:"everyday",wx:[],tags:[],rank:0,look:"",
+    note:"Picked from photographed pieces in his size, "+money(best.tot)+" in all. Change any piece in Build, or press the "+money(budget)+" button again for another.",pieces:buildPieces()};openZoom("_build");}
+}
+/* "Shop by budget": a whole outfit for £60, £100 or £150 from the photographed picks in his size, shown as a flat lay. */
+function budgetSet(v){
+  if(phase!=="ready")return;
+  $("b-budget").value=v;budgetHint();if(state.view!=="build")setView("build");
+  build={};Object.keys(locked).forEach(function(k){delete locked[k];});
+  suggest({budget:v,photos:true,show:true});
 }
 /* "Add a T-shirt" under a jacket, gilet or cardigan left with nothing under it: a plain tee in his size and the
    chosen styles, white unless the outer piece is pale, cheapest well-photographed first. */
@@ -5650,14 +5694,37 @@ function renderDept(counts,dcount,nf){
 }
 /* ---- views ---- */
 var VIEWS=["shop","sale","fits","build","list","guide","mine"];
-function setView(v,keep){
+/* Each move between views is a step in the browser's history, so Back returns to the last view; "init" and "pop"
+   (the page opening, or Back and Forward themselves) only bring the address in line. */
+function setView(v,keep,how){
   if(VIEWS.indexOf(v)<0)v="shop";
+  var was=state.view;
   state.view=v;document.body.setAttribute("data-v",v);
   Array.prototype.forEach.call(document.querySelectorAll("[data-go]"),function(b){if(b.getAttribute("data-go")===v){b.setAttribute("aria-current","page");}else{b.removeAttribute("aria-current");}});
   try{localStorage.setItem("dw-view",v);}catch(e){}
-  try{if(location.hash!=="#"+v)history.replaceState(null,"","#"+v);}catch(e){}
+  try{if(how!=="pop"&&location.hash!=="#"+v)history[how==="init"||was===v?"replaceState":"pushState"]({v:v},"","#"+v);}catch(e){}
   if(!keep){window.scrollTo(0,0);}
 }
+/* Addresses the page understands: #shop, #fits and the other views, a style (#classic), and one outfit shown large
+   (#fit/<outfit id>), which can be shared as a link or reached with Back and Forward. */
+var pendFit="",zoomFrom=null,afterPop=null;
+function fitHash(id){return "#fit/"+encodeURIComponent(id);}
+function hashFit(){var m=/^#fit\/(.+)$/.exec(location.hash||"");if(!m)return "";try{return decodeURIComponent(m[1]);}catch(e){return m[1];}}
+function closeZoom(){stop3D();var zd=$("zoom");if(zd&&zd.open){if(zd.close)zd.close();else{zd.removeAttribute("open");zoomGone();}}}
+/* when the large view closes (its button, Escape or a tap outside), the address goes back to the view under it */
+function refocus(el){if(el&&el.isConnected&&(document.activeElement===document.body||!document.activeElement)){try{el.focus({preventScroll:true});}catch(e){}}}
+function zoomGone(){
+  /* keyboard users land back on the button that opened it (after Back, which moves focus to the page) */
+  var from=zoomFrom;zoomFrom=null;refocus(from);
+  try{if(history.state&&history.state.fit){afterPop=from;history.back();}else if(hashFit()){history.replaceState({v:state.view},"","#"+state.view);}}catch(e){}}
+function route(how){
+  var id=hashFit(),h=(location.hash||"").slice(1);
+  if(id){if(state.view!=="fits")setView("fits",true,how);if(fitById[id]){openZoom(id);}else{pendFit=id;}return;}
+  var zd=$("zoom");if(zd&&zd.open)closeZoom();
+  if(VIEWS.indexOf(h)>=0&&h!==state.view)setView(h,false,how);
+}
+window.addEventListener("popstate",function(){route("pop");var el=afterPop;afterPop=null;if(el)setTimeout(function(){refocus(el);},0);});
+function shareable(){try{return /^https?:$/.test(location.protocol)&&window.top===window;}catch(e){return false;}}
 
 /* ---- picks ---- */
 function filtered(){return state.shop!=="all"||state.col!=="all"||state.tfit!=="all"||(state.fab&&state.fab!=="all")||state.occ!=="all"||state.wx!=="all"||state.cats.length>0||state.src!=="all"||state.sale||state.size||state.fresh||state.max>0||state.jx.length>0;}
@@ -5981,7 +6048,7 @@ $("s-sort").addEventListener("change",function(e){sale.sort=e.target.value;sale.
 $("fit-more").addEventListener("click",function(){lim.fits+=FITPAGE;renderFits();syncMarks();});
 $("b-all").addEventListener("change",renderBuilder);
 $("b-clear").addEventListener("click",function(){build={};$("b-name").value="";$("b-msg").textContent="";renderBuilder();});
-$("b-suggest").addEventListener("click",suggest);
+$("b-suggest").addEventListener("click",function(){suggest();});
 $("b-slots").addEventListener("click",function(e){
   var b;
   if((b=e.target.closest("[data-bslot]"))){bslot=b.getAttribute("data-bslot");bshow=24;renderBuilder();return;}
@@ -6019,6 +6086,7 @@ $("b-save").addEventListener("click",function(){
 });
 document.addEventListener("click",function(e){
   var t=e.target,b;
+  if((b=t.closest("[data-skip]"))){e.preventDefault();var mn=$("main");if(mn){mn.focus();mn.scrollIntoView({block:"start"});}return;}
   if((b=t.closest("[data-go]"))){setView(b.getAttribute("data-go"));return;}
   if((b=t.closest("[data-dept]"))){state.dept=b.getAttribute("data-dept");state.cats=[];lim.picks=PAGE;renderPicks();syncMarks();$("picks").scrollIntoView({block:"start"});return;}
   if((b=t.closest("[data-cat]"))){var ck=b.getAttribute("data-cat"),ci=state.cats.indexOf(ck);if(ci>=0){state.cats.splice(ci,1);}else{state.cats.push(ck);}lim.picks=PAGE;renderPicks();syncMarks();return;}
@@ -6028,7 +6096,10 @@ document.addEventListener("click",function(e){
   if((b=t.closest("[data-bought]"))){var kb=b.getAttribute("data-bought"),s=savedOf(kb);if(s){var nb={kind:"item",ref:kb.slice(2),state:s.state==="bought"?"want":"bought",at:new Date().toISOString()};if(s.price>0){nb.price=s.price;}if(s.insize===true||s.insize===false){nb.insize=s.insize;}setSaved(kb,nb);renderFits();}return;}
   if((b=t.closest("[data-vote]"))){var id=b.getAttribute("data-vote"),v=Number(b.getAttribute("data-v"));setVote(id,voteOf(id)===v?0:v);if(v===-1||voteOf(id)===0){renderPicks();}return;}
   if((b=t.closest("[data-mix]"))){state.mix=b.getAttribute("data-mix");renderMix();syncMarks();if(b.classList.contains("mixlink")){setView("fits",true);$("mix").scrollIntoView({block:"start"});}return;}
-  if((b=t.closest("[data-zclose]"))||t.id==="zoom"){stop3D();var zd=$("zoom");if(zd){if(zd.close)zd.close();else zd.removeAttribute("open");}return;}
+  if((b=t.closest("[data-zclose]"))||t.id==="zoom"){closeZoom();return;}
+  if((b=t.closest("[data-bset]"))){budgetSet(Number(b.getAttribute("data-bset")));return;}
+  if((b=t.closest("[data-fitlink]"))){var lu=location.href.split("#")[0]+fitHash(b.getAttribute("data-fitlink")),lm=b.parentNode.querySelector(".msg");
+    var said=function(ok){if(lm)lm.textContent=ok?"Copied.":lu;};try{navigator.clipboard.writeText(lu).then(function(){said(true);},function(){said(false);});}catch(e){said(false);}return;}
   if((b=t.closest("[data-zoom]"))){openZoom(b.getAttribute("data-zoom"));return;}
   if((b=t.closest("[data-zlay]"))){var md=b.getAttribute("data-zlay"),zf=b.closest(".zoom-fig");if(zf){zf.setAttribute("data-mode",md);zf.querySelectorAll("[data-zlay]").forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});}
     if(md==="3"&&fitById[zoomId]){show3D(effPieces(fitById[zoomId]));}else{stop3D();}
@@ -6272,7 +6343,7 @@ $("ce-reset").addEventListener("click",function(){cePush();ceLastPush=0;Object.k
 /* see the changes on other kinds of clothes: tailoring, knits, coats, shorts */
 $("ce-next").addEventListener("click",function(){if(!fits.length)return;ceFit=(ceFit+1+Math.floor(Math.random()*7))%fits.length;ceOut=effPieces(fits[ceFit]);ceWearSet("outfit");$("ce-msg").textContent="Showing him in “"+fits[ceFit].name+"”.";});
 syncChips();paintStyle();
-(function(){var v="";try{v=(location.hash||"").slice(1)||localStorage.getItem("dw-view")||"";}catch(e){}setView(v||"shop",true);})();
+(function(){var v="";try{pendFit=hashFit();v=pendFit?"fits":(location.hash||"").slice(1)||localStorage.getItem("dw-view")||"";}catch(e){}setView(v||"shop",true,"init");})();
 renderAll();
 
 /* The GitHub Pages copy has no database: it reads the exported files next to the page, and keeps marks on the device. */
@@ -6290,8 +6361,10 @@ async function loadStatic(){
     byId={};derived={};items.forEach(function(it){byId[it.id]=it;});
     styleTags=M.styletags||{};applyTags();
     fits=Object.keys(O).map(function(k){return normFit(k,O[k]);}).filter(Boolean);fitById={};fits.forEach(function(f){fitById[f.id]=f;});fitsSeen=true;usage=null;
-    meta=M.status||{};profile=M.profile||{};baseProfile=profile;shopInfo=M.shops||{};
-    phase=items.length?"ready":"empty";renderAll();return true;
+    meta=M.status||{};profile=M.profile||{};baseProfile=profile;shopInfo=M.shops||{};setFormal(M.formality);
+    phase=items.length?"ready":"empty";renderAll();
+    if(pendFit){var pf=pendFit;pendFit="";if(fitById[pf])openZoom(pf);}
+    return true;
   }catch(e){return false;}
 }
 /* The picks, outfits and photos are files published with the page. The database holds only what people mark: the shortlist, thumbs, saved outfits, his wardrobe and his measurements. */

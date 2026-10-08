@@ -7,7 +7,9 @@ shows real photos in its flat lay and its drawing takes each piece's real colour
   - every piece suits the outfit's weather; no shorts in the cold, no coat in the heat;
   - at most one colour that is not a neutral, and the top and trousers in different colours;
   - Workwear uses only Workwear picks and safety footwear; Lounge uses lounge pieces and slippers;
-  - reduced pieces are preferred, and no pick is used in more than two new outfits.
+  - reduced pieces are preferred, and no pick is used in more than two new outfits;
+  - the clothes and shoes are within FORMALITY["spread"] of each other in how dressed-up they are (build_site.py),
+    so there are no brogues with shorts or running trainers with a blazer; the page's builder keeps the same rule.
 
     python3 tools/make_outfits.py [--per-style 30] [--seed 1]
 
@@ -15,7 +17,7 @@ Writes data/outfits-new.json (merged by build_site.py).
 """
 import argparse, glob, json, os, random, re
 
-from build_site import garment_kind
+from build_site import FORMALITY, formality_spread, garment_kind
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 COLW = [["off white", "cream"], ["navy", "navy"], ["midnight", "navy"], ["black", "black"], ["white", "white"],
@@ -184,6 +186,11 @@ def main():
             def bright():
                 return [c for c in cols if c not in NEUTRAL]
 
+            def suits(v, sh):
+                """Within the style's formality spread of the pieces chosen so far."""
+                worn = [(x[1]["name"], x[2]) for x in pieces] + [(v["name"], sh)]
+                return formality_spread(worn) <= FORMALITY["styles"].get(style, FORMALITY["spread"])
+
             top = pick(style, {"polo"} if job else (TOP if not lounge else {"tee", "polo"}), wx, set(), taken)
             if not top:
                 continue
@@ -195,17 +202,17 @@ def main():
                 continue
             add(low)
             if wx in ("cold", "wet", "mild") and not (wx == "mild" and rnd.random() < 0.5):
-                mid = pick(style, MID, wx, {low[3]} if bright() else set(), taken)
+                mid = pick(style, MID, wx, {low[3]} if bright() else set(), taken, suits)
                 if mid and (not bright() or mid[3] in NEUTRAL):
                     add(mid)
             if wx in ("cold", "wet") or (wx == "mild" and rnd.random() < 0.4):
                 outer = pick(style, OUT if not lounge else set(), wx, set(), taken,
-                             (lambda v, sh: not re.search(r"hi[- ]?vis", v["name"], re.I)))
+                             (lambda v, sh: not re.search(r"hi[- ]?vis", v["name"], re.I) and suits(v, sh)))
                 if outer and (not bright() or outer[3] in NEUTRAL):
                     add(outer)
             feet_shapes = {"slippers"} if lounge else ({"boots", "shoes"} if job else FEET - {"slippers"})
             feet = pick(style, feet_shapes, wx, set(), taken,
-                        (lambda v, sh: re.search(r"safety|s1p|s3|toe|4e|6e|wide", v["name"], re.I) is not None) if job else (lambda v, sh: True))
+                        (lambda v, sh: re.search(r"safety|s1p|s3|toe|4e|6e|wide", v["name"], re.I) is not None and suits(v, sh)) if job else suits)
             if not feet:
                 continue
             add(feet)
