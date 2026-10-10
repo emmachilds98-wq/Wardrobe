@@ -796,6 +796,43 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
   .ce-mg b{font-size:1.1rem}
   .ce-row{grid-template-columns:minmax(0,1fr)}
 }
+/* compare outfits */
+.cmp{height:100%;display:grid;grid-template-rows:6px auto minmax(0,1fr) auto;background:var(--surface)}
+.cmp-head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 24px;border-bottom:1px solid var(--line);min-height:68px}
+.cmp-head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.3rem,2.4vw,1.65rem);line-height:1.1;margin:0}
+.cmp-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));min-height:0}
+.cmp-col,.cmp-add{display:flex;flex-direction:column;border-right:1px solid var(--line);min-height:0;min-width:0}
+.cmp-stage{flex:1;position:relative;background-color:var(--board);min-height:0}
+.cmp-pic{position:absolute;inset:0;border:0;padding:0;background:none;cursor:pointer;display:grid;place-items:center}
+.cmp-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.cmp-pic img:not([src]){display:none}
+.cmp-pic .msg{position:absolute}
+.cmp-pic:focus-visible{outline:2px solid var(--green);outline-offset:-4px}
+.cmp-3d{position:absolute;inset:0;display:none;touch-action:none;cursor:grab}
+.cmp-3d canvas{display:block;width:100%!important;height:100%!important}
+.cmp-col.live .cmp-3d{display:block}.cmp-col.live .cmp-pic{visibility:hidden}
+.cmp-x{position:absolute;top:12px;right:12px;font:inherit;font-size:.75rem;font-weight:600;background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line);border-radius:999px;padding:4px 9px;cursor:pointer;color:var(--ink);z-index:1}
+.cmp-info{padding:12px 16px;display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--line)}
+.cmp-name{font-family:var(--f-serif);font-style:italic;font-size:1.05rem;line-height:1.2;color:var(--ink);text-decoration:none;text-align:left}
+.cmp-name:hover{text-decoration:underline}
+.cmp-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.cmp-row b{font-size:1.25rem;font-variant-numeric:tabular-nums}.cmp-row span{font-size:.75rem;color:var(--green);font-weight:600}
+.cmp-add{align-items:center;justify-content:center;gap:8px;background:var(--ground);color:var(--muted);padding:16px}
+.cmp-plus{width:56px;height:56px;border:1.5px dashed #9aa79f;border-radius:50%;display:grid;place-items:center;font-size:1.5rem}
+.cmp-add label{font-size:.88rem;font-weight:600}
+.cmp-add select{font:inherit;font-size:.82rem;max-width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink)}
+.cmp-empty{padding:24px;text-align:center}
+.cmp-foot{border-top:1px solid var(--line);display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;background:var(--ground);padding:14px 16px}
+.cmp-foot .fr-seg button{font-size:.82rem;padding:7px 13px}
+.cmp-foot .fr-seg button[aria-pressed="true"]{background:var(--badge);color:var(--on-badge)}
+.cmp-foot .act[aria-pressed="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.cmp-wx{cursor:default;background:var(--surface)}
+@media (max-width:720px){
+  dialog.cmp-dlg{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0;border-radius:0}
+  .cmp-head{padding:8px 16px;min-height:0}.cmp-head .msg{display:none}
+  .cmp-cols{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
+  .cmp-col,.cmp-add{flex:none;width:62vw;scroll-snap-align:start}
+  .cmp-foot{gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom))}.cmp-foot>.msg{display:none}
+}
 .ph.zbig{display:block;width:100%;aspect-ratio:4/5;border-radius:3px;overflow:hidden;background:#fff}
 .ph.zbig img{width:100%;height:100%;object-fit:contain;background:#fff}
 .ph.zbig svg{width:70%;height:70%;margin:15%}
@@ -1428,6 +1465,14 @@ main:focus{outline:none}
     <div class="ce-side"><div id="ce-form" role="tabpanel" aria-labelledby="chared-h"></div><p class="msg" id="ce-msg" role="status"></p></div>
   </div></div></dialog>
 <dialog class="zoom fr-dlg" id="zoom" aria-labelledby="zoom-h"><div id="zoom-body"></div></dialog>
+<dialog class="zoom fr-dlg cmp-dlg" id="cmp" aria-labelledby="cmp-h"><div class="cmp">
+  <div class="stripe fr-stripe"></div>
+  <header class="cmp-head"><div class="fr-title"><span class="label">Fitting room</span><h2 id="cmp-h">Compare outfits</h2></div>
+    <div class="fr-acts"><span class="msg">Up to 4 · from the shortlist or any outfit card</span><button class="act" type="button" data-cmpclose>Close</button></div></header>
+  <div class="cmp-cols" id="cmp-cols"></div><p class="msg cmp-empty" id="cmp-empty" hidden>Add an outfit with Compare on any outfit card.</p>
+  <footer class="cmp-foot"><span class="msg">All turn together</span><span class="fr-seg" role="group" aria-label="Angle"><button type="button" data-cmpang="0">Front</button><button type="button" data-cmpang="0.785">¾</button><button type="button" data-cmpang="1.571">Side</button><button type="button" data-cmpang="3.1416">Back</button></span>
+    <button class="act" type="button" data-cmpspin aria-pressed="false">Turn</button><span class="act cmp-wx" id="cmp-wx" hidden></span></footer>
+</div></dialog>
 <script>
 (function(){
 "use strict";
@@ -5585,9 +5630,11 @@ function live3DFail(box,msg,again){
 /* Still renders for outfit cards and small figures: one hidden renderer, cached by outfit and colours. */
 var snapR=null,snapCache={},snapQ=[],snapBusy=false,F3DP={},LITE3D=false;
 function snapKey(ps){return charKey()+"/"+ps.map(function(p){var F=(byId[p.item]||{}).fix;return p.item+":"+p.shape+":"+(TRUE[p.item]||p.col)+(F?":"+JSON.stringify(F):"");}).join("|");}
-function snap3D(ps,k){
+function snap3D(ps,k,rot,first){
+  if(rot!=null)k+="@"+rot;
   if(snapCache[k])return Promise.resolve(snapCache[k]);
-  return new Promise(function(ok){snapQ.push({ps:ps,k:k,ok:ok});pumpSnap();});
+  /* (first: the fitting room's own stills go ahead of the outfit cards') */
+  return new Promise(function(ok){snapQ[first?"unshift":"push"]({ps:ps,k:k,ok:ok,rot:rot});pumpSnap();});
 }
 function pumpSnap(){
   if(snapBusy||!snapQ.length)return;snapBusy=true;
@@ -5596,7 +5643,7 @@ function pumpSnap(){
     try{
       var T=window.THREE;
       if(!snapR){snapR=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});snapR.setPixelRatio(1);snapR.setSize(360,735);if(T.sRGBEncoding)snapR.outputEncoding=T.sRGBEncoding;snapR.toneMapping=T.ACESFilmicToneMapping;snapR.toneMappingExposure=1.08;snapR.shadowMap.enabled=true;snapR.shadowMap.type=T.PCFSoftShadowMap;snapR.domElement.addEventListener("webglcontextlost",function(e){e.preventDefault();snapR=null;},false);}
-      LITE3D=true;var o;try{o=make3D(j.ps);}finally{LITE3D=false;}var f=Math.max(1,o.k||1),cam=new T.PerspectiveCamera(13,240/490,0.1,50);cam.position.set(0,0.95*f,8.7*f);cam.lookAt(0,0.93*f,0);o.man.rotation.y=0.32;snapR.render(o.scene,cam);
+      LITE3D=true;var o;try{o=make3D(j.ps);}finally{LITE3D=false;}var f=Math.max(1,o.k||1),cam=new T.PerspectiveCamera(13,240/490,0.1,50);cam.position.set(0,0.95*f,8.7*f);cam.lookAt(0,0.93*f,0);o.man.rotation.y=j.rot!=null?j.rot:0.32;snapR.render(o.scene,cam);
       var url=snapR.domElement.toDataURL("image/webp",0.86);if(url.indexOf("image/webp")<0)url=snapR.domElement.toDataURL("image/png");
       dispose3D(o);
       var keys=Object.keys(snapCache);if(keys.length>240)delete snapCache[keys[0]];
@@ -5825,6 +5872,61 @@ function openZoom(id){
   trueFor(order,function(){if(dlg.open&&zoomId===id){var md=$("fr")&&$("fr").getAttribute("data-mode");if(md==="0"||md==="1"||md==="s")frModeSet(md);else if(z3&&z3.on){z3.update(frPieces());}}});
 }
 var zoomId="";
+/* ---- Compare: up to four outfits side by side, turning together ----
+   Each column is a still render from the angle chosen (cached, made one at a time by the still renderer); tapping a
+   column makes it the one live 3D view, which turns with the others. */
+var CMP={ids:[],ang:0,spin:false,live:"",tm:0};
+var CMPA=[0,0.785,1.571,2.356,3.1416,3.927,4.712,5.498];
+function cmpShortlist(){var ks={};Object.keys(saved||{}).concat(Object.keys(local.saved||{})).forEach(function(k){if(k.indexOf("o_")===0&&savedOf(k))ks[k.slice(2)]=1;});return Object.keys(ks).filter(function(id){return fitById[id];});}
+function cmpAdd(id){if(!fitById[id])return;if(CMP.ids.indexOf(id)<0){if(CMP.ids.length>=4)CMP.ids.shift();CMP.ids.push(id);}cmpOpen();}
+function cmpOpen(){var d=$("cmp");if(!d)return;var z=$("zoom");if(z&&z.open)closeZoom();if(typeof d.showModal==="function"){if(!d.open)d.showModal();}else d.setAttribute("open","");cmpRender();}
+function cmpClose(){cmpLive("");clearInterval(CMP.tm);CMP.tm=0;CMP.spin=false;var d=$("cmp");if(d&&d.open){if(d.close)d.close();else d.removeAttribute("open");}}
+function cmpWx(){var fs=CMP.ids.map(function(id){return fitById[id];}).filter(Boolean);if(fs.length<2)return "";
+  var common=WX.slice(1).map(function(w){return w[0];}).filter(function(w){return fs.every(function(f){return f.wx.indexOf(w)>=0;});});
+  return common.length?"Same weather: "+common.map(function(w){return label(WX,w).toLowerCase();}).join(", "):"Made for different weather";}
+function cmpRender(){
+  var cols=CMP.ids.map(function(id){var f=fitById[id];if(!f)return "";var ps=effPieces(f),t=fitSum(ps),its=ps.filter(function(p){return byId[p.item];}),ins=its.filter(function(p){return byId[p.item].insize===true;}).length;
+    return '<section class="cmp-col" aria-label="'+esc(f.name)+'"><div class="cmp-stage"><button type="button" class="cmp-pic" data-cmplive="'+esc(id)+'" aria-label="'+esc("Turn "+f.name+" in 3D")+'"><img alt="" data-cmpimg="'+esc(id)+'"><span class="msg">Loading…</span></button><div class="cmp-3d" data-cmp3d="'+esc(id)+'"></div>'+
+      '<button type="button" class="cmp-x" data-cmprm="'+esc(id)+'" aria-label="'+esc("Take "+f.name+" out")+'">✕</button></div>'+
+      '<div class="cmp-info"><button type="button" class="linkbtn cmp-name" data-zoom="'+esc(id)+'">'+esc(f.name)+'</button><div class="cmp-row"><b>'+money(t.tot)+'</b><span>'+ins+' of '+its.length+' in his size</span></div><span class="msg">'+esc(f.styles.map(function(s){return label(STYLE,s);}).join(", ")+(f.wx.length?" · "+f.wx.map(function(w){return label(WX,w).toLowerCase();}).join(", "):""))+'</span></div></section>';}).join("");
+  var opts=cmpShortlist().concat((state.view==="fits"?fitList():fits).slice(0,120).map(function(f){return f.id;})).filter(function(id,i,a){return a.indexOf(id)===i&&CMP.ids.indexOf(id)<0;});
+  var add=CMP.ids.length<4?'<section class="cmp-add"><span class="cmp-plus" aria-hidden="true">+</span><label for="cmp-pick">Add an outfit</label><select id="cmp-pick"><option value="">Choose…</option>'+
+    opts.map(function(id){return '<option value="'+esc(id)+'">'+esc(fitById[id].name)+(cmpShortlist().indexOf(id)>=0?" (shortlist)":"")+'</option>';}).join("")+'</select></section>':"";
+  $("cmp-cols").innerHTML=cols+add;$("cmp-cols").style.setProperty("--n",String(Math.max(1,CMP.ids.length+(add?1:0))));
+  $("cmp-wx").textContent=cmpWx();$("cmp-wx").hidden=!cmpWx();
+  $("cmp-empty").hidden=CMP.ids.length>0;
+  cmpSync();cmpStills();
+  if(CMP.live&&CMP.ids.indexOf(CMP.live)>=0){var l=CMP.live;CMP.live="";cmpLive(l);}else CMP.live="";
+}
+function cmpSync(){var a=CMPA.indexOf(CMP.ang);
+  Array.prototype.forEach.call(document.querySelectorAll("#cmp [data-cmpang]"),function(b){b.setAttribute("aria-pressed",String(!CMP.spin&&Number(b.getAttribute("data-cmpang"))===CMP.ang));});
+  var sb=document.querySelector("#cmp [data-cmpspin]");if(sb)sb.setAttribute("aria-pressed",String(CMP.spin));return a;}
+/* the stills at the current angle (the live column turns itself) */
+function cmpStills(){
+  if(!CMP.ids.length)return;loadThree().then(function(){CMP.ids.forEach(function(id){var f=fitById[id];if(!f)return;var ps=effPieces(f),ang=CMP.ang;
+    function one(){snap3D(ps,snapKey(ps),ang,true).then(function(url){if(ang!==CMP.ang)return;var im=document.querySelector('#cmp [data-cmpimg="'+id+'"]');if(im&&url){im.src=url;var m=im.nextElementSibling;if(m)m.hidden=true;}});}
+    one();trueFor(ps,one);});},function(){});}
+/* one column live at a time */
+function cmpLive(id){
+  if(z3&&z3.cmp){z3.stop();z3=null;}Array.prototype.forEach.call(document.querySelectorAll("#cmp .cmp-col"),function(c){c.classList.remove("live");});
+  CMP.live=id||"";if(!id)return;var box=document.querySelector('#cmp [data-cmp3d="'+id+'"]'),f=fitById[id];if(!box||!f)return;
+  loadThree().then(function(){if(CMP.live!==id||!$("cmp").open)return;stop3D();try{z3=Live3D(box,effPieces(f),{bar:false,spin:CMP.spin});z3.cmp=true;z3.setRot(CMP.ang);if(CMP.spin)z3.spinning(true);box.closest(".cmp-col").classList.add("live");}catch(e){z3=null;}},function(){});}
+function cmpAngle(a){CMP.ang=a;CMP.spin=false;clearInterval(CMP.tm);CMP.tm=0;cmpSync();cmpStills();if(z3&&z3.cmp)z3.turnTo(a);}
+/* Turn: the stills step round together (each angle is rendered once, then cached), the live one spins */
+function cmpSpin(){CMP.spin=!CMP.spin;clearInterval(CMP.tm);CMP.tm=0;cmpSync();if(z3&&z3.cmp)z3.spinning(CMP.spin);
+  if(CMP.spin)CMP.tm=setInterval(function(){var i=CMPA.indexOf(CMP.ang);CMP.ang=CMPA[(i+1)%CMPA.length];cmpStills();},900);}
+document.addEventListener("click",function(e){var b,t=e.target;
+  if((b=t.closest("[data-cmpadd]"))&&b.getAttribute("data-cmpadd")){cmpAdd(b.getAttribute("data-cmpadd"));return;}
+  if(!t.closest||!t.closest("#cmp"))return;
+  if(t.id==="cmp"||t.closest("[data-cmpclose]")){cmpClose();return;}
+  if((b=t.closest("[data-cmprm]"))){var id=b.getAttribute("data-cmprm");CMP.ids=CMP.ids.filter(function(x){return x!==id;});if(CMP.live===id)cmpLive("");cmpRender();return;}
+  if((b=t.closest("[data-cmplive]"))){cmpLive(b.getAttribute("data-cmplive"));return;}
+  if((b=t.closest("[data-cmpang]"))){cmpAngle(Number(b.getAttribute("data-cmpang")));return;}
+  if((b=t.closest("[data-cmpspin]"))){cmpSpin();return;}
+  if((b=t.closest("#cmp [data-zoom]"))){e.stopPropagation();cmpClose();openZoom(b.getAttribute("data-zoom"));return;}
+},true);
+document.addEventListener("change",function(e){if(e.target&&e.target.id==="cmp-pick"&&e.target.value){var v=e.target.value;CMP.ids.push(v);cmpRender();}});
+(function(){var d=$("cmp");if(!d)return;d.addEventListener("close",function(){cmpLive("");clearInterval(CMP.tm);CMP.tm=0;CMP.spin=false;});})();
 /* the fitting room's own buttons */
 document.addEventListener("click",function(e){var b,t=e.target;if(!t.closest||!t.closest("#fr"))return;
   if((b=t.closest("[data-frsel]"))){frSelect(b.getAttribute("data-frsel"));if(b.classList.contains("fr-mpin")&&FR.tab==="dave")frTab("pieces");return;}
@@ -5876,7 +5978,7 @@ function fitCard(f){
     '<div class="fit-total"><span>'+(t.complete?"Whole outfit":"Pieces still listed")+'</span><span><b>'+money(t.tot)+'</b>'+(save>=1?' <span class="cut">'+money(save)+' below full price</span>':"")+'</span></div>'+
     (t.bought?'<p class="left">'+t.bought+' of '+t.n+' bought. '+(t.left>0?money(t.left)+' to finish the outfit.':'Nothing left to buy.')+'</p>':"")+
     (sw?'<p class="swapped">Changed on this page. <button class="linkbtn" type="button" data-save-swap="'+esc(f.id)+'">Save as his own outfit</button> · <button class="linkbtn" type="button" data-unswap="'+esc(f.id)+'">Undo the swaps</button></p>':"")+
-    '<div class="fit-acts">'+saveBtn("o_"+f.id,"outfit")+'<button class="act" type="button" data-edit-fit="'+esc(f.id)+'">Change pieces</button><button class="act" type="button" data-zoom="'+esc(f.id)+'">View large</button></div>'+
+    '<div class="fit-acts">'+saveBtn("o_"+f.id,"outfit")+'<button class="act" type="button" data-edit-fit="'+esc(f.id)+'">Change pieces</button><button class="act" type="button" data-zoom="'+esc(f.id)+'">View large</button><button class="act" type="button" data-cmpadd="'+esc(f.id)+'">Compare</button></div>'+
     (f.look?'<p class="fit-photos">Real photos of this kind of outfit: <a href="https://www.google.com/search?udm=2&amp;q='+q+'" target="_blank" rel="noopener">Google Images</a> · <a href="https://www.pinterest.co.uk/search/pins/?q='+q+'" target="_blank" rel="noopener">Pinterest</a></p>':"")+
   '</div></article>';
 }
