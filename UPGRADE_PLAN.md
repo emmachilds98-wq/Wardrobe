@@ -1788,6 +1788,43 @@ keeper shows through (tops are tucked for a belt only with trousers, in 2D and 3
 collar's ends meet the shoulders; small specks on the Harrington; the 2D drawing reads the Brakeburn cords' wales as
 brown stripes rather than rust cord.
 
+## 2zzzzzzzzz. The fitting room upgrade, from the Claude Design proposal (10 Oct 2026)
+
+Emma asked for the "3D Fitting Room Upgrade" design to be built: one fitting room with three modes, the model taking
+most of the screen, pieces pinned to him, and Edit Dave cut down to the essentials.
+
+- **Outfit view** (the large view, `openZoom`, `FR`, `frShell`/`frFill`): the stripe, a header with the outfit's place
+  in the list, total and saving, and 3D model / Photos to scale / Split / Drawing. Pieces sit down the left, outermost
+  first, and are numbered as the **pins on him**. Each pin is put by rays on the front of the piece, so it never sits
+  on something covered (`anchor` in `Live3D`). Pins follow him as he turns and fade when the piece faces away.
+  - **How it's worn:** jacket open or done up, top tucked or untucked, trouser hems with a break or turned up. These
+    are global overrides (`ZIPM`, `TUCKM`, `TURNM`), read by the same rules as the as-worn look (`tuckOn`, `turnOn`,
+    `tuckList`) in 2D and 3D.
+  - **Light:** Studio (what the checks see), Daylight or Evening (`LIGHTM`, in `make3Dcore`).
+  - **Camera dock** (Front, ¾, Side, Back; Full, Top, Feet, Face; Turn), a **turn bar** and a height ruler.
+  - **Chosen piece:** its photo, price, Buy, Shortlist and Hide on him. "Try instead" swaps from `swapOpts` and shows
+    each on him while it is hovered.
+  - **Outfit strip:** still renders of the outfits round this one. ← and → (or a swipe on a phone) flip outfits and
+    keep the camera and light.
+- **Edit Dave** (`CES`, `ceForm`, `ceSlider`, `ceFrame`): sections down the left with a count of unsaved changes per
+  section. Body type cards with a figure each. Six sliders up front (height, weight, muscle, shoulders, waist, leg
+  length) with the average man (|) and his saved setting (◆) marked; the rest sit under Fine-tune. Measuring lines on
+  the model and a measurements card checked against the sizes he buys. **Compare with saved** shows a still of the
+  saved Dave from the same camera, wiped against the live one (`Live3D.still`). The header counts unsaved changes.
+- **Compare** (`CMP`, `cmpRender`): up to four outfits side by side, from Compare on any outfit card or in the
+  fitting room. Still renders at the chosen angle (`snap3D` takes a rotation and can jump the queue), one column live
+  at a time, Turn steps them all round together, and a weather line.
+- **On a phone:** the model on top and a sheet below (Pieces, Swap, Dave) with a full-width Save; Edit Dave has
+  Cancel / Save, sections as chips and larger sliders.
+- **Checks:** the as-worn 3D builds are unchanged (studio light, no overrides). The gate set passes as worn, with
+  `--wear tuck=in,turn=up` and with `--wear zip=up,tuck=out` (new options in `check_3d.js`).
+
+Known and left for later:
+- The model's measurements (chest about 34in on his saved shape) say S/M tops while he buys L. The card says so
+  plainly; either the measurement or his saved shape needs a look with Emma.
+- `swapOpts` offers some odd swaps (a denim hat for jeans): `derive` reads "Denim … Hat" as trousers.
+- The Fitting room fold under Style guide and the builder's small model still have their own controls.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
