@@ -1820,6 +1820,10 @@ most of the screen, pieces pinned to him, and Edit Dave cut down to the essentia
   `--wear tuck=in,turn=up` and with `--wear zip=up,tuck=out` (new options in `check_3d.js`).
 
 Known and left for later:
+- **A done-up blazer** (buttoned at the waist, shirt and tie in the V) is not drawn: the old Zip up button closed it to
+  the neck with the tie over it, and the new CI wear check caught it (collar poke on `wedding-guest`). Blazers now stay
+  as worn under Open / Done up (`zipBy`) until that front is built. A shirt worn with a tie also always stays tucked in
+  (`tuckOn`), so Untucked is not offered with a tie.
 - The model's measurements (chest about 34in on his saved shape) say S/M tops while he buys L. The card says so
   plainly; either the measurement or his saved shape needs a look with Emma.
 - `swapOpts` offers some odd swaps (a denim hat for jeans): `derive` reads "Denim … Hat" as trousers.

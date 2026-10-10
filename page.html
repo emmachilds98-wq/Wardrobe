@@ -1900,7 +1900,7 @@ function figure(pieces,hi){
      belt worn to be seen; never with shorts, and an overshirt over another shirt hangs loose), and a belt then shows
      on the waistband over it, under anything worn open on top */
   var kitB=ac.belt&&/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/i.test(((byId[ac.belt.item]||{}).name||"")+" "+ac.belt.what),
-    tuck2=tuckOn(lo,!!lo&&(!!(ac.belt&&!kitB)||(lo.shape!=="shorts"&&(!!ac.tie||up.some(function(q){return /^(blazer|waistcoat)$/.test(q.shape);})||/suit|tailored|formal|dress trouser|wool trouser/i.test(((byId[lo.item]||{}).name||"")+" "+lo.what)))));
+    tuck2=tuckOn(lo,!!lo&&(!!(ac.belt&&!kitB)||(lo.shape!=="shorts"&&(!!ac.tie||up.some(function(q){return /^(blazer|waistcoat)$/.test(q.shape);})||/suit|tailored|formal|dress trouser|wool trouser/i.test(((byId[lo.item]||{}).name||"")+" "+lo.what)))),!!ac.tie);
   var TK2=tuckList(up,tuck2);up=up.map(function(p,k){return TK2[k]?Object.assign({},p,{_tuck:true}):p;});
   up.forEach(function(p,k){
     h+=upperArt(p,dim(p));
@@ -3720,8 +3720,9 @@ function tuckList(up,on){var t=up.map(function(){return false;});if(!on)return t
   up.forEach(function(p,k){if((LAYER[p.shape]||0)===0&&/^(shirt|sshirt|polo)$/.test(p.shape)&&!jacketShirt(p)&&!openWorn(p,up)&&!(overshirt(p)&&up.slice(0,k).some(function(q){return /^(shirt|sshirt|polo)$/.test(q.shape);}))){t[k]=true;last=k;}});
   up.forEach(function(p,k){if((k<last||TUCKM==="in")&&(LAYER[p.shape]||0)===0&&/^(tee|vest)$/.test(p.shape)&&!kvest(p))t[k]=true;});
   return t;}
-/* whether the outfit tucks: as worn (with tailoring or a belt worn to be seen), or as set by hand; never into shorts */
-function tuckOn(lo,worn){return TUCKM?TUCKM==="in"&&!!lo&&lo.shape!=="shorts":worn;}
+/* whether the outfit tucks: as worn (with tailoring or a belt worn to be seen), or as set by hand; never into shorts by
+   hand, and never untucked with a tie (a shirt worn with a tie is always tucked in) */
+function tuckOn(lo,worn,tie){if(TUCKM==="out"&&tie)return worn;return TUCKM?TUCKM==="in"&&!!lo&&lo.shape!=="shorts":worn;}
 /* the tops that could be tucked in by hand (for the toggle): next to him, not worn open, not a jacket-weight overshirt */
 function tuckable(ps){var up=dressed(ps).filter(function(p){return UPPER[p.shape];}),lo=ps.filter(function(p){return LOWER[p.shape];})[0];
   if(!lo||lo.shape==="shorts"||lo.under)return [];
@@ -3741,7 +3742,10 @@ function overshirt(p){return p.shape==="shirt"&&/overshirt|over-shirt|chore|shac
 function kvest(p){return p.shape==="jumper"&&/knitted vest|knit vest|sweater vest|slipover|tank ?top|sleeveless (jumper|knit|sweater)/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
 function slvless(p){return /^(vest|waistcoat|gilet)$/.test(p.shape)||kvest(p);}
 function zipable(p){return /^(jacket|blazer|coat|gilet|cardigan)$/.test(p.shape)||overshirt(p);}
-function openWorn(p,ups){if(ZIPM&&zipable(p))return ZIPM==="open";
+/* what the Zip up / Unzip button and the fitting room's Open / Done up toggle change: not a blazer, whose done-up front
+   (buttoned at the waist, the shirt and tie showing in the V) is not drawn yet, so it stays as worn */
+function zipBy(p){return zipable(p)&&p.shape!=="blazer";}
+function openWorn(p,ups){if(ZIPM&&zipBy(p))return ZIPM==="open";
   if(/worn open/i.test(p.what||""))return true;
   /* (an overshirt is worn open over a tee or polo; a jacket-weight one is worn open over anything, as a jacket is) */
   if(overshirt(p))return (ups||[]).some(function(q){return q!==p&&UPPER[q.shape]&&((LAYER[q.shape]||0)===0?!overshirt(q):jacketShirt(p)&&layRank(q)<layRank(p));});
@@ -4699,7 +4703,7 @@ function make3Dcore(pieces){
   /* (a belt worn with a shirt or polo is worn to be seen, so the shirt goes in; workwear kit, tool belts and holster
      pockets, is worn over the clothes and changes nothing) */
   var KITRE=/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/;
-  var tuckIn=tuckOn(lo,!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!KITRE.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo))));
+  var tuckIn=tuckOn(lo,!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!KITRE.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo))),pieces.some(function(q){return q.shape==="tie";}));
   var TUCK=tuckList(up,tuckIn),tE=TUCK.some(Boolean)?0.012:0;   /* (a shirt tucked in sits inside the waistband and seat, so they stand out by its thickness) */
   /* trousers or shorts */
   var waistE=0;
@@ -5617,8 +5621,8 @@ function Live3D(box,pieces,opt){
   function syncBar(){if(!bar)return;var sb=bar.querySelector('[data-v3="spin"]');if(sb)sb.setAttribute("aria-pressed",String(spin));}
   /* the zip button shows when something can be done up; it reads "Zip up" while it is open and "Unzip" while it is closed */
   function zipOpen(){var ps=dressed(cur),ups=ps.filter(function(p){return UPPER[p.shape];});setG();
-    try{return ups.some(function(p){return zipable(p)&&openWorn(p,ups);});}finally{clrG();}}
-  function syncZip(){if(!bar)return;var zb2=bar.querySelector('[data-v3="zip"]'),sep=zb2&&zb2.previousElementSibling,can=cur.some(zipable),op=can&&zipOpen();
+    try{return ups.some(function(p){return zipBy(p)&&openWorn(p,ups);});}finally{clrG();}}
+  function syncZip(){if(!bar)return;var zb2=bar.querySelector('[data-v3="zip"]'),sep=zb2&&zb2.previousElementSibling,can=cur.some(zipBy),op=can&&zipOpen();
     if(!zb2)return;zb2.hidden=!can;if(sep)sep.hidden=!can;zb2.textContent=op?"Zip up":"Unzip";
     zb2.setAttribute("aria-label",op?"Show the jacket done up":"Show the jacket open");}
   syncZip();
@@ -5680,7 +5684,7 @@ function Live3D(box,pieces,opt){
   h.zoomTo=function(v){tZ=Math.max(0,Math.min(1,v));tPan=0;};
   /* for the fitting room's own controls: how he is worn and lit, the camera (kept when the outfit changes), pins */
   h.wear=function(w){if(!w)return Object.assign({},wear);var ch=false;Object.keys(w).forEach(function(k){if(k in wear&&wear[k]!==w[k]){wear[k]=w[k];ch=true;}});if(ch)h.update(cur);return Object.assign({},wear);};
-  h.zipState=function(){var can=dressed(cur).some(zipable);return {can:can,open:can&&zipOpen()};};
+  h.zipState=function(){var can=dressed(cur).some(zipBy);return {can:can,open:can&&zipOpen()};};
   h.pieces=function(){return cur;};
   h.turnTo=function(a){spin=false;var tw=Math.PI*2;tRot=a+Math.round((rot-a)/tw)*tw;syncBar();};
   h.setRot=function(a){spin=false;tRot=null;rot=a;syncBar();};
@@ -5791,10 +5795,10 @@ function wornTuck(ps){var lo=ps.filter(function(p){return LOWER[p.shape];})[0];i
 /* the "How it's worn" rows that apply to these pieces, each with its choices and the one showing now */
 function frWearRows(ps){var w=FR.wear,rows=[],ups=dressed(ps).filter(function(p){return UPPER[p.shape];});
   ZIPM=w.zip;try{
-    var zp=ups.filter(function(p){return zipable(p)&&!p.fixed;}).sort(function(a,b){return layRank(b)-layRank(a);})[0];
+    var zp=ups.filter(function(p){return zipBy(p)&&!p.fixed;}).sort(function(a,b){return layRank(b)-layRank(a);})[0];
     if(zp)rows.push({k:"zip",p:zp,l:frNoun(zp),o:[["open","Open"],["up","Done up"]],cur:openWorn(zp,ups)?"open":"up"});
     var tk=tuckable(ps);
-    if(tk.length){var tp=tk[tk.length-1],nat=wornTuck(ps)&&/^(shirt|sshirt|polo)$/.test(tp.shape);rows.push({k:"tuck",p:tp,l:frNoun(tp),o:[["in","Tucked"],["out","Untucked"]],cur:w.tuck||(nat?"in":"out")});}
+    if(tk.length&&!ps.some(function(p){return p.shape==="tie";})){var tp=tk[tk.length-1],nat=wornTuck(ps)&&/^(shirt|sshirt|polo)$/.test(tp.shape);rows.push({k:"tuck",p:tp,l:frNoun(tp),o:[["in","Tucked"],["out","Untucked"]],cur:w.tuck||(nat?"in":"out")});}
   }finally{ZIPM="";}
   var lo=ps.filter(function(p){return LOWER[p.shape];})[0];
   if(lo&&!lo.under&&lo.shape==="trousers"){TURNM="up";var can=false;try{can=turnOn(lo);}finally{TURNM="";}
