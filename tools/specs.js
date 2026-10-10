@@ -11,7 +11,8 @@
      colour  fix 1.0 (data/fixes.json) · photo+name 0.9 (the photo agrees with the colour the listing names) ·
              photo+navy 0.85 (a navy photo lifted toward the named navy) · photo 0.7 (the listing names no colour) ·
              name 0.6 (the photo disagreed and the named colour won) · outfit 0.4 (no photo: the outfit's colour word)
-     pattern fix 1.0 · swatch 1.0 (a cloth square from fixes.json) · plain 0.9 (no pattern named or seen) ·
+     pattern fix 1.0 · swatch 1.0 (a cloth square from fixes.json) · place 1.0 (the front panel from fixes.json,
+             laid on by height; kind "placed") · plain 0.9 (no pattern named or seen) ·
              photo+name 0.85 (named in the listing and drawn from the photo) · photo 0.6 (seen in the photo only) ·
              unseen 0.5 (named, but the photo read plain)
 
@@ -64,9 +65,10 @@ async function specOf(q) {
   out.colour = { main: (L && L.c1) || P.col || "", second: (L && L.c2) || P.col2 || "", named: (D.colRef && D.colRef.w) || "", src: cs, conf: cc };
   if (L && L.c1p) out.colour.photo = L.c1p;
   // pattern
-  const pat = (L && L.pat) || "plain", named = !!(D.stripe || D.check || D.print);
+  const pat = Fs.place ? "placed" : ((L && L.pat) || "plain"), named = !!(D.stripe || D.check || D.print);
   let ps, pc;
-  if (Fs.swatch) { ps = "swatch"; pc = 1; }
+  if (Fs.place) { ps = "place"; pc = 1; }   // the listing's front panel laid on by height (a yoke, a Fair Isle band, a hem band)
+  else if (Fs.swatch) { ps = "swatch"; pc = 1; }
   else if (Fs.pat) { ps = "fix"; pc = 1; }
   else if (pat === "plain") { ps = named ? "unseen" : "plain"; pc = named ? 0.5 : 0.9; }
   else if (named) { ps = "photo+name"; pc = 0.85; }
