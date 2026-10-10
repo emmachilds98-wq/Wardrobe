@@ -5152,9 +5152,10 @@ function make3Dcore(pieces){
       var pts=[];for(var py=top;py>=bot;py-=0.04){pts.push([0,py,frontZ(py,e)+0.003]);}if(pts.length>1)tube(pts,0.0035,m,24);
       var tieOn=acc.some(function(q){return q.shape==="tie"&&!/bow/.test(nm(q));}),btnC=cc(p.col)[0],btnM=lum(btnC)>0.82?mat("#f4f1ea",0.35):mat(shade(btnC,lum(btnC)<0.25?1.9:0.55),0.3);   /* (a tie covers the buttons down the placket) */
       for(var bi=tieOn?99:0;bi<(p.shape==="polo"?2:6);bi++){var by=1.44-bi*(p.shape==="polo"?0.05:0.09);if(by<bot)break;add(new T.SphereGeometry(0.0045,8,6),btnM,0,by,(bodyOn?surfZ(by,0,0)+0.0035:frontZ(by,e)+0.007),1,1,0.8);}}   /* (tonal, as most are: a shade of the cloth, pearl on white; on the cloth's own surface) */
-    /* a blazer's or coat's collar stands round the back of his neck, over the shirt collar, open at the front */
+    /* a blazer's or coat's collar stands round the back of his neck, over the shirt collar, open at the front (done up,
+       it comes further round, so the collar under it stays covered at the sides of his neck) */
     if(bodyOn&&!hid&&(p.shape==="blazer"||(p.shape==="coat"&&!/parka|puffer|padded|waterproof/.test(n0)))){var k0=NK(1.505),k1=NK(1.532),k2=NK(1.55);
-      var cm2=m.clone();cm2.side=T.DoubleSide;if(FT)fitCollar(FT,{h:0.046,lean:0.35,flare:0.01,gap:1.7,mat:m,rows:4});else sec([[1.5,k0[1]+eTop*0.6+0.016,k0[2]+eTop*0.6+0.016,0,k0[4]],[1.532,k1[1]+0.024+e*0.4,k1[2]+0.024+e*0.4,0,k1[4]],[1.552,k2[1]+0.028+e*0.35,k2[2]+0.028+e*0.35,0,k2[4]]],cm2,{seg:44,gap:1.7,k:1,sq:2});}
+      var cm2=m.clone();cm2.side=T.DoubleSide;if(FT)fitCollar(FT,{h:0.046,lean:0.35,flare:0.01,gap:open?1.7:1.0,mat:m,rows:4});else sec([[1.5,k0[1]+eTop*0.6+0.016,k0[2]+eTop*0.6+0.016,0,k0[4]],[1.532,k1[1]+0.024+e*0.4,k1[2]+0.024+e*0.4,0,k1[4]],[1.552,k2[1]+0.028+e*0.35,k2[2]+0.028+e*0.35,0,k2[4]]],cm2,{seg:44,gap:1.7,k:1,sq:2});}
     if(p.shape==="blazer"||(p.shape==="coat"&&!/parka|puffer|padded|waterproof/.test(n0))){
       [-1,1].forEach(function(s){
         if(bodyOn){var lm2=m.clone(),lv=[],li2=[];lm2.side=T.DoubleSide;if(lm2.color)lm2.color.multiplyScalar(0.8);var NR=8,yb=1.3,yt=1.5,pwq=function(v){return (v<0?-1:1)*Math.pow(Math.abs(v),2/2.3);};

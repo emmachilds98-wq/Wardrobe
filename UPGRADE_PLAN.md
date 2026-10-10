@@ -1824,6 +1824,9 @@ Known and left for later:
   the neck with the tie over it, and the new CI wear check caught it (collar poke on `wedding-guest`). Blazers now stay
   as worn under Open / Done up (`zipBy`) until that front is built. A shirt worn with a tie also always stays tucked in
   (`tuckOn`), so Untucked is not offered with a tie.
+- A coat done up kept its open-front collar gap, so the shirt collar showed at the sides of his neck (`cold-commute`,
+  poke 39). Its collar now comes further round when it is closed (gap 1.0 instead of 1.7); coats are open as worn, so
+  no as-worn build changes.
 - The model's measurements (chest about 34in on his saved shape) say S/M tops while he buys L. The card says so
   plainly; either the measurement or his saved shape needs a look with Emma.
 - `swapOpts` offers some odd swaps (a denim hat for jeans): `derive` reads "Denim … Hat" as trousers.
