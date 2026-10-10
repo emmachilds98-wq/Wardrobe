@@ -483,22 +483,6 @@ dialog.zoom{width:min(1180px,96vw);max-height:94vh;padding:0;border:1px solid va
 dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 .zoom-in{position:relative;padding:20px clamp(14px,3vw,28px) 26px}
 .zx{position:sticky;top:0;float:right;z-index:2}
-.zoom-head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.4rem,3vw,2rem);line-height:1.15;margin:4px 0 6px}
-.zoom-head p{color:var(--muted);max-width:60ch}
-.zoom-tot{color:var(--ink)!important}
-.zoom-grid{display:grid;grid-template-columns:minmax(220px,34%) minmax(0,1fr);gap:20px;margin-top:16px;align-items:start}
-.zoom-fig{background:var(--board);border-radius:4px;padding:10px;position:sticky;top:44px}
-.zoom-fig svg{display:block;width:100%;height:auto;max-height:78vh}
-.zoom-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
-.chared{width:min(1000px,96vw)}
-.ce-h{font-family:var(--f-display);font-weight:400;font-size:clamp(1.4rem,3vw,2rem);margin:4px 0 4px}
-.ce-lede{max-width:60ch;margin-bottom:12px}
-.ce-grid{display:grid;grid-template-columns:minmax(220px,36%) minmax(0,1fr);gap:22px;align-items:start}
-.ce-view{position:sticky;top:44px;display:flex;flex-direction:column;gap:6px}
-.ce-3d{position:relative;aspect-ratio:3/5;max-height:72vh;background:var(--board);border-radius:4px;touch-action:none;cursor:grab;overflow:hidden}
-.ce-3d canvas{display:block;width:100%!important;height:100%!important}
-.ce-load{position:absolute;inset:auto 0 10px 0;text-align:center}
-.ce-row{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:6px 12px;align-items:center;padding-block:9px;border-bottom:1px solid var(--line)}
 .ce-row .label{letter-spacing:.06em}
 .ce-opts{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .ce-opts .chip{padding:6px 11px;font-size:.86rem}
@@ -506,11 +490,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 .ce-sw[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px var(--surface) inset}
 .ce-opts input[type=color]{width:34px;height:30px;border:1px solid var(--line);border-radius:4px;background:var(--surface);padding:2px}
 .ce-opts input[type=range]{width:min(100%,260px);accent-color:var(--green)}
-.ce-val{font-variant-numeric:tabular-nums;font-weight:600;min-width:4.5rem}
-.ce-acts{margin-top:14px}
-.ce-wear{display:flex;gap:6px;flex-wrap:wrap}
 .b3d-edit{align-self:center}
-@media (max-width:720px){.ce-grid{grid-template-columns:1fr}.ce-view{position:static}.ce-3d{max-height:46vh;aspect-ratio:auto;height:46vh}.ce-row{grid-template-columns:minmax(0,1fr)}}
 .figmode{display:flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
 .figmode .label{padding:0 8px 0 12px}
 .figmode button{font:inherit;font-size:.82rem;font-weight:600;padding:7px 12px;border:0;border-left:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
@@ -519,13 +499,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 @media (max-width:560px){.bar .bar-row{flex-wrap:nowrap;gap:8px}.figmode .label,.figmode .fm-long{display:none}.figmode button{padding:7px 10px}}
 .b-3d{width:100%;max-width:300px;aspect-ratio:240/490;align-self:center;background:var(--board);border-radius:3px;touch-action:none;cursor:grab}
 .b-3d canvas{display:block;width:100%!important;height:100%!important}
-.zoom-tabs .act[aria-pressed="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
-.zoom-fig .zf-lay,.zoom-fig .zf-fig,.zoom-fig .zf-3d{display:none}.zoom-fig .zf-lay{color:var(--muted)}
-.zoom-fig[data-mode="1"] .zf-lay,.zoom-fig[data-mode="0"] .zf-fig,.zoom-fig[data-mode="3"] .zf-3d{display:block}
-.zoom-fig .zf-3dedit{display:none;margin-top:6px}.zoom-fig[data-mode="3"] .zf-3dedit{display:inline-block}
-.zf-3d{position:relative;aspect-ratio:3/5;max-height:78vh;margin-inline:auto;touch-action:none;cursor:grab}
 .zf-3d canvas{display:block;width:100%!important;height:100%!important}
-.zf-3d .zf-3dmsg{position:absolute;inset:auto 0 8px 0;text-align:center}
 .b-3d{position:relative;overflow:hidden}
 .v3-cv{display:block;width:100%!important;height:100%!important;outline:none}
 .zf-3d:focus-visible,.ce-3d:focus-visible,.b-3d:focus-visible{outline:2px solid var(--green);outline-offset:2px}
@@ -535,27 +509,339 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 .v3-bar button:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 .v3-sep{flex-basis:6px}
 .v3-tip{position:absolute;left:8px;right:8px;top:8px;margin:0;padding:7px 10px;border-radius:4px;background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);font-size:.82rem;line-height:1.35;color:var(--ink);pointer-events:none}
-.zoom-ph li.hot{border-color:var(--green);box-shadow:0 0 0 2px var(--green)}
-.ce-tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:4px}
-.ce-tab{font:inherit;font-weight:600;padding:8px 14px;border:0;border-bottom:3px solid transparent;background:none;color:var(--muted);cursor:pointer}
-.ce-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--green)}
-.ce-tab:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
-.ce-acts .btn[disabled]{opacity:.45;cursor:default}
 .ce-sub{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 2px;font-weight:600}
 .ce-meas{margin-top:10px;padding:9px 11px;border:1px dashed var(--line);border-radius:4px}
-.ce-rs{font-size:.8rem}
 @media (max-width:480px){.v3-bar{gap:3px;left:2px;right:2px}.v3-bar button{font-size:.7rem;padding:5px 7px}.v3-sep{flex-basis:2px}}
-.zoom-ph{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:14px}
-.zoom-ph li{position:relative;display:flex;flex-direction:column;gap:8px;background:var(--ground);border:1px solid var(--line);border-radius:4px;padding:8px}
-.zoom-ph .zn{position:absolute;top:14px;left:14px;z-index:1;width:24px;height:24px;border-radius:50%;background:var(--green);color:var(--on-green);display:grid;place-items:center;font-size:.8rem;font-weight:700}
+/* the fitting room (the large view of an outfit) */
+dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;overflow:hidden}
+#zoom-body{height:100%}
+.fr{height:100%;display:grid;grid-template-rows:6px auto minmax(0,1fr) 116px;background:var(--surface)}
+.fr-stripe{height:6px}
+.fr-head{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:20px;padding:12px 24px;border-bottom:1px solid var(--line);min-height:76px}
+.fr-back{display:none}
+.fr-title{display:flex;flex-direction:column;gap:2px;min-width:0}
+.fr-title h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.3rem,2.4vw,1.75rem);line-height:1.1;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr-of{display:none}
+.fr-seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface);flex:none}
+.fr-seg button{font:inherit;font-size:.82rem;font-weight:600;line-height:1.1;padding:7px 12px;border:0;border-left:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;white-space:nowrap}
+.fr-seg button:first-child{border-left:0}
+.fr-seg button[aria-pressed="true"]{background:var(--green);color:var(--on-green)}
+.fr-seg button:focus-visible{outline:2px solid var(--green);outline-offset:-3px}
+.fr-modes button{font-size:.88rem;padding:9px 16px}
+.fr-acts{display:flex;justify-content:flex-end;align-items:center;gap:10px;flex-wrap:wrap}
+.fr-tot{display:flex;flex-direction:column;align-items:flex-end;line-height:1.15}
+.fr-tot b{font-size:1.35rem;font-variant-numeric:tabular-nums}
+.fr-tot span{font-size:.75rem;color:var(--claret);font-weight:600}
+.fr-main{display:grid;grid-template-columns:296px minmax(0,1fr) 340px;grid-template-areas:"rail stage detail";min-height:0}
+.fr-rail{grid-area:rail;border-right:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+.fr-rh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.fr-rh>span:last-child{font-size:.75rem;color:var(--muted)}
+.fr-list{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.fr-row{font:inherit;color:inherit;text-align:left;width:100%;display:grid;grid-template-columns:24px 52px minmax(0,1fr);gap:10px;align-items:center;padding:8px;border:0;border-radius:5px;background:transparent;cursor:pointer}
+.fr-row:hover{background:var(--ground)}
+.fr-row[aria-pressed="true"]{background:var(--chip);box-shadow:inset 0 0 0 1.5px var(--green)}
+.fr-row.is-hid{opacity:.5}
+.fr-pin{width:24px;height:24px;border-radius:50%;background:var(--badge);color:var(--on-badge);display:grid;place-items:center;font-size:.75rem;font-weight:700;flex:none}
+[aria-pressed="true"]>.fr-pin,.fr-mpin.on .fr-pin{background:var(--green);color:var(--on-green)}
+.ph.fr-th{width:52px;height:64px;background:#fff;border:1px solid var(--line)}
+.ph.fr-th svg{width:80%;height:80%;margin:10%}
+.fr-rt{display:flex;flex-direction:column;gap:1px;min-width:0}
+.fr-rt b{font-size:.88rem;line-height:1.25}
+.fr-rp{display:flex;gap:8px;align-items:center;font-size:.75rem;color:var(--muted)}
+.fr-rp b{font-size:.78rem;color:var(--ink);font-variant-numeric:tabular-nums}
+.fr .is-cut{color:var(--claret)!important}
+.fr-link{display:flex;flex-direction:column;gap:6px;margin-top:10px;font-size:.82rem}
+.fr-note{color:var(--muted)}
+.fr-wear{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:10px}
+.fr-wr{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.88rem}
+.fr-wr .fr-seg button{font-size:.75rem;padding:5px 11px}
+.fr-ed{align-self:flex-start;font-size:.86rem}
+.fr-stage{grid-area:stage;position:relative;min-height:0;background-color:var(--board);overflow:hidden}
+.fr[data-light="eve"] .fr-stage{background-color:#a99f8f;background-image:linear-gradient(180deg,rgba(40,48,90,.18),transparent 60%)}
+.fr[data-light="day"] .fr-stage{background-color:#ece8de}
+.fr-live,.fr-lay,.fr-fig{position:absolute;inset:0;display:none}
+.fr[data-mode="3"] .fr-live,.fr[data-mode="s"] .fr-live,.fr[data-mode="1"] .fr-lay,.fr[data-mode="s"] .fr-lay,.fr[data-mode="0"] .fr-fig{display:block}
+.fr[data-mode="s"] .fr-live{right:50%}.fr[data-mode="s"] .fr-lay{left:50%;border-left:1px solid var(--line)}
+.fr-lay{overflow:auto;padding:16px;color:var(--muted)}.fr-lay svg{display:block;width:100%;height:auto;max-height:100%}
+.fr-fig svg{display:block;height:100%;width:auto;max-width:100%;margin-inline:auto;padding:12px 0}
+.fr .zf-3d{position:absolute;inset:0;aspect-ratio:auto;max-height:none;margin:0}
+.fr .zf-3d .v3-tip{left:auto;right:84px;top:56px;max-width:300px}
+.fr-over{position:absolute;inset:0;pointer-events:none}
+.fr-over>*{pointer-events:auto}
+#fr-pins{pointer-events:none;position:absolute;inset:0}
+.fr-mpin{position:absolute;left:0;top:0;margin:-12px 0 0 -12px;display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;font:inherit;color:var(--ink);cursor:pointer;pointer-events:auto;will-change:transform}
+.fr-mpin .fr-pin{box-shadow:0 0 0 3px color-mix(in srgb,var(--surface) 90%,transparent);transition:width .12s,height .12s}
+.fr-mpin.on .fr-pin{width:30px;height:30px;margin:-3px}
+.fr-mpin.back{opacity:.35}
+.fr-pl:empty{display:none}
+.fr-pl{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:5px 9px;font-size:.82rem;font-weight:600;white-space:nowrap;box-shadow:0 6px 16px -8px rgba(20,32,27,.4);pointer-events:none}
+.fr-ruler{position:absolute;left:28px;width:44px;border-right:1.5px solid rgba(20,32,27,.55);pointer-events:none}
+.fr-ruler::before,.fr-ruler::after{content:"";position:absolute;right:-1px;width:14px;border-top:1.5px solid rgba(20,32,27,.55)}
+.fr-ruler::before{top:0}.fr-ruler::after{bottom:0}
+.fr-ruler i{position:absolute;right:-1px;width:8px;border-top:1px solid rgba(20,32,27,.4)}
+.fr-ruler i:nth-of-type(1){top:25%}.fr-ruler i:nth-of-type(2){top:50%}.fr-ruler i:nth-of-type(3){top:75%}
+.fr-ruler b{position:absolute;right:12px;white-space:nowrap;top:6px;font-size:.72rem;line-height:1.25;text-align:right;font-variant-numeric:tabular-nums;color:#14201b}
+.fr-top{position:absolute;top:14px;left:84px;right:84px;display:flex;justify-content:space-between;align-items:center;gap:8px;pointer-events:none}
+.fr-top>*{pointer-events:auto}
+.fr-top .fr-seg{background:color-mix(in srgb,var(--surface) 92%,transparent)}
+.fr-top .fr-seg button{font-size:.75rem;padding:6px 11px}
+.fr-top .fr-seg button[aria-pressed="true"]{background:var(--badge);color:var(--on-badge)}
+.fr-hint{font-size:.75rem;color:var(--board-ink);background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line);border-radius:999px;padding:6px 11px}
+.fr-dock{position:absolute;right:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:4px;background:color-mix(in srgb,var(--surface) 95%,transparent);border:1px solid var(--line);border-radius:10px;padding:6px;box-shadow:0 10px 24px -14px rgba(20,32,27,.45)}
+.fr-dock button{font:inherit;font-size:.75rem;font-weight:600;width:52px;height:34px;border-radius:6px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.fr-dock button[data-frang][aria-pressed="true"]{background:var(--badge);color:var(--on-badge)}
+.fr-dock button[data-frcam][aria-pressed="true"],.fr-dock button[data-frspin][aria-pressed="true"]{background:var(--chip)}
+.fr-dock button:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
+.fr-dock i{height:1px;background:var(--line);margin:3px 4px}
+.fr-scrub{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);width:min(340px,60%);display:flex;flex-direction:column;gap:2px}
+.fr-scrub input{width:100%;margin:0;height:18px;-webkit-appearance:none;appearance:none;background:transparent;cursor:ew-resize}
+.fr-scrub input::-webkit-slider-runnable-track{height:2px;background:linear-gradient(90deg,rgba(20,32,27,.5) 0 1.5px,transparent 1.5px calc(25% - .5px),rgba(20,32,27,.4) calc(25% - .5px) calc(25% + .5px),transparent 0 calc(50% - .5px),rgba(20,32,27,.4) 0 calc(50% + .5px),transparent 0 calc(75% - .5px),rgba(20,32,27,.4) 0 calc(75% + .5px),transparent 0 calc(100% - 1.5px),rgba(20,32,27,.5) 0),rgba(20,32,27,.25)}
+.fr-scrub input::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;margin-top:-7px;border-radius:50%;background:#1c4a37;box-shadow:0 0 0 3px #fafbf8}
+.fr-scrub input::-moz-range-track{height:2px;background:rgba(20,32,27,.25)}
+.fr-scrub input::-moz-range-thumb{width:16px;height:16px;border:0;border-radius:50%;background:#1c4a37;box-shadow:0 0 0 3px #fafbf8}
+.fr-scrub input:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+.fr-scl{display:flex;justify-content:space-between;font-size:.7rem;font-weight:600;color:var(--board-ink)}
+.fr-hchip{display:none}
+.fr[data-mode="s"] .fr-hint,.fr[data-mode="s"] .fr-pl{display:none}
+.fr[data-mode="s"] .fr-top{left:12px;right:auto;top:auto;bottom:58px}
+.fr[data-mode="s"] .fr-dock{right:10px}
+.fr-detail{grid-area:detail;border-left:1px solid var(--line);padding:16px 20px;display:flex;flex-direction:column;gap:14px;min-height:0;overflow:auto}
+.fr-dh{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.fr-sz{font-size:.75rem;font-weight:600;color:var(--green)}
+.fr-dg{display:grid;grid-template-columns:132px minmax(0,1fr);gap:14px;align-items:start}
+.fr-dg .ph.zbig{border:1px solid var(--line)}
+.fr-di{display:flex;flex-direction:column;gap:5px;min-width:0}
+.fr-dn{font-size:1rem;line-height:1.3}
+.fr-dp{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.fr-dp b{font-size:1.5rem;font-variant-numeric:tabular-nums}
+.fr-dp s{color:var(--muted)}
+.fr-da{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.fr-da .btn{text-decoration:none;font-size:.82rem;padding:8px 12px}
+.fr-try{border-top:1px solid var(--line);padding-top:12px;display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.fr-try .linkbtn{align-self:flex-start;font-size:.82rem}
+.fr-sw{font:inherit;color:inherit;text-align:left;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:10px;align-items:center;padding:6px;border:1px solid var(--line);border-radius:4px;background:var(--surface);cursor:pointer}
+.fr-sw:hover,.fr-sw:focus-visible{border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+.fr-sw .ph.fr-th{width:44px;height:52px}
+.fr-swt{display:flex;flex-direction:column;min-width:0}.fr-swt b{font-size:.82rem;line-height:1.25}
+.fr-swp{display:flex;flex-direction:column;align-items:flex-end;font-size:.82rem}.fr-swp b{font-variant-numeric:tabular-nums}
+.fr-swp span{font-size:.7rem;font-weight:600;color:var(--muted)}.fr-swp .is-less{color:var(--green)}
+.fr-tabs{display:none}
+.fr-msave{display:none}
+.fr-strip{border-top:1px solid var(--line);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:0 16px;background:var(--ground);min-width:0}
+.fr-arr{font:inherit;font-size:1.25rem;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.fr-arr[disabled]{opacity:.4;cursor:default}
+.fr-film{position:relative;display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:6px 2px;align-items:center;scroll-snap-type:x proximity}
+.fr-fo{font:inherit;color:inherit;text-align:left;flex:none;width:148px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;align-items:center;padding:6px;border-radius:5px;background:var(--surface);border:1px solid var(--line);cursor:pointer;scroll-snap-align:center}
+.fr-film::-webkit-scrollbar{display:none}
+.fr-fo[aria-current="true"]{border-color:var(--green);box-shadow:0 0 0 1px var(--green)}
+.fr-fo svg{width:44px;height:72px;border-radius:3px;background:var(--board)}
+.fr-fo>span{display:flex;flex-direction:column;gap:2px;min-width:0}
+.fr-fo b{font-family:var(--f-serif);font-weight:400;font-style:italic;font-size:.8rem;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fr-fo>span>span{font-size:.75rem;font-weight:700;font-variant-numeric:tabular-nums}
+.fr-sh{display:flex;align-items:center;gap:10px}.fr-sh>span{font-size:.75rem;color:var(--muted);text-align:right;line-height:1.3}
+@media (max-width:1100px){.fr-main{grid-template-columns:240px minmax(0,1fr) 290px}.fr-hint{display:none}.fr-dg{grid-template-columns:96px minmax(0,1fr)}}
+@media (max-width:900px) and (min-width:721px){.fr-head{grid-template-columns:minmax(0,1fr) auto;row-gap:8px}.fr-modes{grid-column:1/-1;grid-row:2;justify-self:start}.fr-main{grid-template-columns:220px minmax(0,1fr) 260px}.fr-sh>span{display:none}}
+/* on a phone: the model on top and a sheet below with the pieces, swaps and how he wears them */
+@media (max-width:720px){
+  dialog.fr-dlg{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0;border-radius:0}
+  .fr{grid-template-rows:auto minmax(0,1fr)}
+  .fr-stripe{display:none}
+  .fr-head{grid-template-columns:44px minmax(0,1fr) auto;gap:6px;padding:6px 12px 8px;padding-top:max(6px,env(safe-area-inset-top));min-height:0;border-bottom:0}
+  .fr-back{display:grid;place-items:center;width:44px;height:44px;font:inherit;font-size:1.5rem;border:0;background:none;color:var(--ink);cursor:pointer}
+  .fr-title{align-items:center;text-align:center}.fr-title .label{display:none}
+  .fr-title h2{font-family:var(--f-serif);font-style:italic;font-size:1rem;max-width:100%}
+  .fr-of{display:block;font-size:.7rem;color:var(--muted)}
+  .fr-modes{grid-column:1/-1;grid-row:2;justify-self:center}.fr-modes button{font-size:.75rem;padding:6px 10px}.fr-modes [data-zlay="s"]{display:none}
+  .fr-acts{gap:0}.fr-acts>:not(.fr-tot){display:none}.fr-tot span{display:none}.fr-tot b{font-size:.95rem}
+  .fr-main{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto minmax(0,38dvh) auto;grid-template-areas:"stage" "tabs" "rail" "save"}
+  .fr-msave{grid-area:save;display:block;padding:8px 16px calc(12px + env(safe-area-inset-bottom));background:var(--surface)}
+  .fr-msave .act{width:100%;justify-content:center;font-size:.95rem;padding:13px;border-radius:6px;background:var(--green);color:var(--on-green);border-color:var(--green)}
+  .fr-pl{display:none}
+  .fr-stage{min-height:260px}
+  .fr-rail,.fr-detail{grid-area:rail;border:0;padding:8px 16px calc(16px + env(safe-area-inset-bottom));background:var(--surface)}
+  .fr-detail{grid-area:rail}
+  .fr[data-tab="pieces"] .fr-detail,.fr[data-tab="dave"] .fr-detail,.fr[data-tab="swap"] .fr-rail{display:none}
+  .fr[data-tab="pieces"] .fr-wear,.fr[data-tab="dave"] .fr-pieces{display:none}
+  .fr[data-tab="swap"] .fr-dg,.fr[data-tab="swap"] .fr-da{display:none}
+  .fr[data-tab="dave"] .fr-wear{border-top:0;padding-top:0}
+  .fr-tabs{grid-area:tabs;display:flex;gap:4px;padding:8px 16px 0;border-top:1px solid var(--line);border-radius:16px 16px 0 0;margin-top:-16px;position:relative;background:var(--surface);box-shadow:0 -10px 24px -16px rgba(20,32,27,.35)}
+  .fr-tabs::before{content:"";position:absolute;left:50%;top:6px;width:40px;height:4px;margin-left:-20px;border-radius:2px;background:var(--line)}
+  .fr-tabs button{font:inherit;font-size:.88rem;font-weight:600;padding:14px 12px 8px;border:0;border-bottom:3px solid transparent;background:none;color:var(--muted);cursor:pointer}
+  .fr-tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--claret)}
+  .fr-pieces .fr-rh{display:none}
+  .fr-list{flex-direction:row;overflow-x:auto;gap:8px;margin:0;padding-bottom:4px}
+  .fr-list li{flex:none}
+  .fr-row{width:118px;grid-template-columns:1fr;gap:4px;padding:6px;border:1px solid var(--line);position:relative}
+  .fr-row .fr-pin{position:absolute;top:10px;left:10px;width:18px;height:18px;font-size:.62rem;z-index:1}
+  .fr-row .ph.fr-th{width:100%;height:84px}
+  .fr-row .fr-rt .label{display:none}.fr-rt b{font-size:.75rem}.fr-rp span{display:none}
+  .fr-link{display:none}
+  .fr-strip{display:none}
+  .fr-top{left:12px;right:auto;top:auto;bottom:56px}.fr-hint{display:none}
+  .fr-top .fr-seg button{font-size:.7rem;padding:5px 9px}
+  .fr-dock{top:12px;right:10px;transform:none;padding:4px;gap:2px}
+  .fr-dock button{width:44px;height:44px;font-size:.75rem}
+  .fr-dock .fr-dk{display:none}
+  .fr-ruler{display:none}
+  .fr-hchip{display:block;position:absolute;left:12px;top:12px;font-size:.7rem;font-weight:700;background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line);border-radius:999px;padding:4px 9px}
+  .fr-scrub{bottom:22px;width:min(260px,64%)}
+  .fr .zf-3d .v3-tip{right:64px;left:12px;top:auto;bottom:90px}
+}
+/* Edit Dave: section list, the model with a saved/now wipe and measuring lines, and the controls */
+.ce{height:100%;display:grid;grid-template-rows:6px auto minmax(0,1fr);background:var(--surface)}
+.ce-head{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:20px;padding:12px 24px;border-bottom:1px solid var(--line);min-height:76px}
+.ce-cancel{display:none}
+.ce-short{display:none}
+.ce-wear button{font-size:.88rem;padding:9px 16px}
+.ce-acts{display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap}
+.ce-acts .btn[disabled]{opacity:.45;cursor:default}
+.ce-n{font-size:.82rem;font-weight:600;color:var(--tan);margin-right:6px}
+.ce-main{display:grid;grid-template-columns:208px minmax(0,1fr) 440px;min-height:0}
+.ce-nav{border-right:1px solid var(--line);padding:16px 10px;display:flex;flex-direction:column;gap:2px;min-height:0;overflow:auto}
+.ce-tab{font:inherit;font-size:.88rem;font-weight:500;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:6px;padding:10px 12px;border:0;border-radius:5px;background:transparent;color:var(--ink);cursor:pointer}
+.ce-tab:hover{background:var(--ground)}
+.ce-tab[aria-selected="true"]{background:var(--chip);font-weight:700}
+.ce-tab:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
+.ce-bdg{font-size:.7rem;font-weight:700;background:var(--tan);color:#fff;border-radius:999px;padding:1px 7px}
+.ce-own{margin-top:auto;padding:12px;font-size:.75rem;line-height:1.45;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.ce-own .linkbtn{font-size:.82rem;align-self:flex-start}
+.ce-stage{position:relative;overflow:hidden;background-color:var(--board);min-height:0}
+.ce-3d{position:absolute;inset:0;touch-action:none;cursor:grab}
+.ce-3d canvas{display:block;width:100%!important;height:100%!important}
+.ce-load{position:absolute;inset:auto 0 50% 0;text-align:center}
+.ce-wipe{position:absolute;inset:0;background:color-mix(in srgb,var(--board) 62%,#fafbf8);pointer-events:none;clip-path:inset(0 50% 0 0);transition:opacity .15s}
+.ce-wipe.stale{opacity:0}
+.ce-wipe img{display:block;width:100%;height:100%;object-fit:fill}
+.ce-div{position:absolute;top:0;bottom:0;left:50%;border-left:2px solid var(--badge);pointer-events:none}
+.ce-hand{position:absolute;top:84%;left:-19px;width:36px;height:36px;border-radius:50%;border:0;background:var(--badge);color:var(--on-badge);font:inherit;font-size:.82rem;font-weight:700;cursor:ew-resize;pointer-events:auto;touch-action:none}
+.ce-hand:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.ce-tagS,.ce-tagN{position:absolute;top:16px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-radius:999px;padding:5px 10px;pointer-events:none}
+.ce-tagS{left:20px;background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line);color:var(--muted)}
+.ce-tagN{right:20px;background:var(--badge);color:var(--on-badge)}
+.ce-lines{position:absolute;inset:0;pointer-events:none}
+.ce-ln{position:absolute;left:calc(50% - 130px);right:28px;display:flex;align-items:center;gap:8px;transform:translateY(-50%)}
+.ce-ln i{flex:1;border-top:1.5px dashed rgba(139,27,43,.6)}
+.ce-ln span{font-size:.75rem;font-weight:700;background:#fafbf8;color:#14201b;border:1px solid #cbd3cc;border-radius:3px;padding:3px 7px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ce-ln b{color:#8b1b2b}
+.ce-bot{position:absolute;left:24px;right:24px;bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;pointer-events:none}
+.ce-bot>*{pointer-events:auto}
+.ce-bot .fr-seg{background:color-mix(in srgb,var(--surface) 95%,transparent)}
+.ce-bot .fr-seg button{font-size:.75rem;padding:6px 11px}
+.ce-tg{display:flex;gap:6px}
+.ce-tg .act{background:color-mix(in srgb,var(--surface) 95%,transparent)}
+.ce-tg .act[aria-pressed="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.ce-side{border-left:1px solid var(--line);padding:16px 22px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+#ce-form{display:flex;flex-direction:column;gap:14px}
+.ce-blk{display:flex;flex-direction:column;gap:8px}
+.ce-blk .fr-rh>span:last-child{font-size:.75rem;color:var(--muted)}
+.ce-pre{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.ce-card{font:inherit;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 4px 7px;border-radius:5px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
+.ce-card svg{width:30px;height:56px;fill:color-mix(in srgb,var(--board-ink) 55%,var(--board))}
+.ce-card span{font-size:.75rem;font-weight:600}
+.ce-card[aria-pressed="true"]{border-color:var(--green);background:var(--chip)}
+.ce-card[aria-pressed="true"] svg{fill:var(--green)}
+.ce-sl{display:flex;flex-direction:column;gap:3px;padding:5px 0;border-bottom:1px solid var(--line)}
+.ce-slh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ce-slh label{font-size:.88rem;font-weight:600;display:flex;gap:6px;align-items:center}
+.ce-slh>span{display:flex;gap:10px;align-items:baseline}
+.ce-dot{width:7px;height:7px;border-radius:50%;background:var(--tan)}
+.ce-val{font-size:.82rem;font-weight:600;font-variant-numeric:tabular-nums;min-width:0}
+.ce-rs{font-size:.75rem}
+.ce-trk{position:relative;height:20px}
+.ce-trk::before{content:"";position:absolute;left:0;right:0;top:8px;height:3px;border-radius:2px;background:var(--chip)}
+.ce-avg{position:absolute;top:4px;height:11px;border-left:1.5px solid #9aa79f}
+.ce-fill{position:absolute;top:8px;height:3px;background:var(--green);border-radius:2px}
+.ce-sv{position:absolute;top:-3px;margin-left:-4px;font-size:9px;line-height:1;color:var(--tan)}
+.ce-trk input{position:absolute;inset:0;width:100%;height:20px;margin:0;-webkit-appearance:none;appearance:none;background:transparent;cursor:pointer}
+.ce-trk input::-webkit-slider-runnable-track{height:20px;background:transparent}
+.ce-trk input::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;margin-top:2px;border-radius:50%;background:var(--surface);border:2px solid var(--green);box-shadow:0 1px 3px rgba(20,32,27,.25)}
+.ce-trk input::-moz-range-track{background:transparent}
+.ce-trk input::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--green)}
+.ce-trk input:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.ce-ends{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);line-height:1.2}
+.ce-fine{padding:4px 0}
+.ce-fine summary{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;font-size:.88rem;font-weight:600;cursor:pointer;list-style:none}
+.ce-fine summary::-webkit-details-marker{display:none}
+.ce-fine summary::after{content:"▾";color:var(--muted)}.ce-fine[open] summary::after{content:"▴"}
+.ce-fine summary .msg{font-weight:400;font-size:.75rem;flex:1;text-align:right}
+.ce-mc{background:var(--chip);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.ce-mc .fr-rh>span:last-child{font-size:.75rem;color:var(--muted)}
+.ce-mg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ce-mg div{display:flex;flex-direction:column}.ce-mg b{font-size:1.35rem;line-height:1.1;font-variant-numeric:tabular-nums}.ce-mg span{font-size:.7rem;color:var(--muted)}
+.ce-szs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.75rem;border-top:1px solid var(--line);padding-top:10px}
+.ce-szs b.ok{color:var(--green)}.ce-szs b.no{color:var(--tan)}
+.ce-szs span{padding:3px 8px;border-radius:999px;background:var(--surface)}
+.ce-szs span.no{background:var(--claret-wash);color:var(--claret)}
+.ce-szs .ce-note{background:none;color:var(--muted);padding:0}
+.ce-row{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:6px 12px;align-items:center;padding-block:9px;border-bottom:1px solid var(--line)}
+@media (max-width:1100px){.ce-main{grid-template-columns:180px minmax(0,1fr) 360px}.ce-pre{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:900px) and (min-width:721px){.ce-head{grid-template-columns:minmax(0,1fr) auto}.ce-wear{grid-column:1/-1;grid-row:2;justify-self:start}.ce-main{grid-template-columns:minmax(0,1fr) 320px}.ce-nav{grid-column:1/-1;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px}.ce-own{display:none}.ce-tab{flex:none}}
+/* on a phone: Cancel, Edit Dave, Save; the model on top, sections as chips, then the sliders */
+@media (max-width:720px){
+  .ce{grid-template-rows:auto minmax(0,1fr)}
+  .ce-head{grid-template-columns:auto minmax(0,1fr) auto;gap:6px;padding:6px 16px 10px;padding-top:max(6px,env(safe-area-inset-top));min-height:0;border-bottom:0}
+  .ce-cancel{display:block;font:inherit;font-size:.88rem;font-weight:600;color:var(--green);background:none;border:0;padding:8px 0;cursor:pointer}
+  .ce-head .fr-title{align-items:center}.ce-head .fr-title .label{display:none}.ce-head h2{font-size:1.25rem}
+  .ce-wear{grid-column:1/-1;grid-row:2;justify-self:center}.ce-wear button{font-size:.75rem;padding:6px 10px}
+  .ce-acts{gap:0}.ce-acts>:not(#ce-save){display:none}
+  #ce-save{background:none;border:0;color:var(--green);font-weight:700;padding:8px 0}
+  .ce-long{display:none}.ce-short{display:inline}
+  .ce-main{grid-template-columns:minmax(0,1fr);grid-template-rows:330px auto minmax(0,1fr);overflow:auto}
+  .ce-stage{grid-row:1}
+  .ce-nav{grid-row:2;flex-direction:row;overflow-x:auto;border:0;padding:12px 16px 4px;gap:6px;scrollbar-width:none}
+  .ce-tab{flex:none;padding:8px 13px;border-radius:999px;border:1px solid var(--line);font-size:.88rem}
+  .ce-tab[aria-selected="true"]{background:var(--green);color:var(--on-green);border-color:var(--green);font-weight:500}
+  .ce-own{display:none}
+  .ce-side{grid-row:3;border:0;padding:4px 16px calc(24px + env(safe-area-inset-bottom));overflow:visible}
+  .ce-tagS,.ce-tagN{top:auto;bottom:12px;font-size:.7rem;padding:4px 9px}.ce-tagS{left:12px}.ce-tagN{right:12px}
+  .ce-bot{left:12px;right:12px;top:12px;bottom:auto}.ce-tg{display:none}
+  .ce-ln{left:calc(50% - 80px);right:12px}.ce-ln span{font-size:.7rem}
+  .ce-trk{height:28px}.ce-trk::before{top:12px;height:4px}.ce-fill{top:12px;height:4px}.ce-avg{top:8px;height:12px}.ce-sv{top:0}
+  .ce-trk input{height:28px}.ce-trk input::-webkit-slider-runnable-track{height:28px}.ce-trk input::-webkit-slider-thumb{width:24px;height:24px;margin-top:2px}
+  .ce-pre{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .ce-mg b{font-size:1.1rem}
+  .ce-row{grid-template-columns:minmax(0,1fr)}
+}
+/* compare outfits */
+.cmp{height:100%;display:grid;grid-template-rows:6px auto minmax(0,1fr) auto;background:var(--surface)}
+.cmp-head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 24px;border-bottom:1px solid var(--line);min-height:68px}
+.cmp-head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(1.3rem,2.4vw,1.65rem);line-height:1.1;margin:0}
+.cmp-cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));min-height:0}
+.cmp-col,.cmp-add{display:flex;flex-direction:column;border-right:1px solid var(--line);min-height:0;min-width:0}
+.cmp-stage{flex:1;position:relative;background-color:var(--board);min-height:0}
+.cmp-pic{position:absolute;inset:0;border:0;padding:0;background:none;cursor:pointer;display:grid;place-items:center}
+.cmp-pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.cmp-pic img:not([src]){display:none}
+.cmp-pic .msg{position:absolute}
+.cmp-pic:focus-visible{outline:2px solid var(--green);outline-offset:-4px}
+.cmp-3d{position:absolute;inset:0;display:none;touch-action:none;cursor:grab}
+.cmp-3d canvas{display:block;width:100%!important;height:100%!important}
+.cmp-col.live .cmp-3d{display:block}.cmp-col.live .cmp-pic{visibility:hidden}
+.cmp-x{position:absolute;top:12px;right:12px;font:inherit;font-size:.75rem;font-weight:600;background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line);border-radius:999px;padding:4px 9px;cursor:pointer;color:var(--ink);z-index:1}
+.cmp-info{padding:12px 16px;display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--line)}
+.cmp-name{font-family:var(--f-serif);font-style:italic;font-size:1.05rem;line-height:1.2;color:var(--ink);text-decoration:none;text-align:left}
+.cmp-name:hover{text-decoration:underline}
+.cmp-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.cmp-row b{font-size:1.25rem;font-variant-numeric:tabular-nums}.cmp-row span{font-size:.75rem;color:var(--green);font-weight:600}
+.cmp-add{align-items:center;justify-content:center;gap:8px;background:var(--ground);color:var(--muted);padding:16px}
+.cmp-plus{width:56px;height:56px;border:1.5px dashed #9aa79f;border-radius:50%;display:grid;place-items:center;font-size:1.5rem}
+.cmp-add label{font-size:.88rem;font-weight:600}
+.cmp-add select{font:inherit;font-size:.82rem;max-width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--ink)}
+.cmp-empty{padding:24px;text-align:center}
+.cmp-foot{border-top:1px solid var(--line);display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;background:var(--ground);padding:14px 16px}
+.cmp-foot .fr-seg button{font-size:.82rem;padding:7px 13px}
+.cmp-foot .fr-seg button[aria-pressed="true"]{background:var(--badge);color:var(--on-badge)}
+.cmp-foot .act[aria-pressed="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.cmp-wx{cursor:default;background:var(--surface)}
+@media (max-width:720px){
+  dialog.cmp-dlg{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0;border-radius:0}
+  .cmp-head{padding:8px 16px;min-height:0}.cmp-head .msg{display:none}
+  .cmp-cols{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
+  .cmp-col,.cmp-add{flex:none;width:62vw;scroll-snap-align:start}
+  .cmp-foot{gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom))}.cmp-foot>.msg{display:none}
+}
 .ph.zbig{display:block;width:100%;aspect-ratio:4/5;border-radius:3px;overflow:hidden;background:#fff}
 .ph.zbig img{width:100%;height:100%;object-fit:contain;background:#fff}
 .ph.zbig svg{width:70%;height:70%;margin:15%}
-.zi{display:flex;flex-direction:column;gap:2px;font-size:.88rem}
-.zi a{color:var(--ink)}
-.zi small{color:var(--muted)}
-.zi .zp{font-size:1rem}
-@media (max-width:720px){.zoom-grid{grid-template-columns:1fr}.zoom-fig{position:static}.zoom-fig svg{max-height:62vh;margin-inline:auto}}
 @media (min-width:900px){.bar .tabs{flex-wrap:wrap;overflow:visible}}
 @media (max-width:899px){.bar .tabs{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}}
 @media (min-width:1500px){.wrap{max-width:1380px}}
@@ -1168,15 +1454,31 @@ main:focus{outline:none}
   </footer>
 </div>
 
-<dialog class="zoom chared" id="chared" aria-labelledby="chared-h"><div class="zoom-in"><button class="act zx" type="button" data-cclose>Close</button>
-  <h2 id="chared-h" class="ce-h">Edit Dave</h2>
-  <p class="msg ce-lede">How Dave looks in the 3D model. The fitting room shows him in plain underwear, so his build and proportions are easy to judge; switch to an outfit to see clothes on him. Changes show straight away; Save puts them on every 3D figure on the page.</p>
-  <div class="ce-grid"><div class="ce-view"><div class="ce-wear" role="group" aria-label="What Dave wears in the preview"><button type="button" class="chip" data-cewear="under" aria-pressed="true">Fitting room</button><button type="button" class="chip" data-cewear="outfit" aria-pressed="false">In an outfit</button></div><div class="ce-3d" id="ce-3d" aria-label="3D preview of Dave. Drag to turn him round."><p class="msg ce-load">Loading the 3D model…</p></div><p class="msg">Drag across to turn him, scroll or pinch to zoom, then drag up or down to move along him (face to feet). Tap a piece to see what it is.</p></div>
-  <div class="ce-side"><div class="ce-tabs" role="tablist" aria-label="Parts of Dave to change"><button type="button" role="tab" class="ce-tab" data-cet="body" aria-selected="true">Body</button><button type="button" role="tab" class="ce-tab" data-cet="face" aria-selected="false">Face</button><button type="button" role="tab" class="ce-tab" data-cet="hair" aria-selected="false">Hair</button></div>
-  <div id="ce-form" role="tabpanel"></div>
-  <div class="b-row ce-acts"><button class="btn" type="button" id="ce-save">Save</button><button class="btn ghost" type="button" id="ce-undo" disabled>Undo</button><button class="btn ghost" type="button" id="ce-reset">Back to his defaults</button><button class="btn ghost" type="button" id="ce-next">Try another outfit</button><span class="msg" id="ce-msg" role="status"></span></div></div></div>
+<dialog class="zoom chared fr-dlg" id="chared" aria-labelledby="chared-h"><div class="ce">
+  <div class="stripe fr-stripe"></div>
+  <header class="ce-head"><button class="ce-cancel" type="button" data-cclose>Cancel</button>
+    <div class="fr-title"><span class="label">Fitting room</span><h2 id="chared-h">Edit Dave</h2></div>
+    <span class="fr-seg ce-wear" role="group" aria-label="What Dave wears in the preview"><button type="button" data-cewear="under" aria-pressed="true">In underwear</button><button type="button" data-cewear="outfit" aria-pressed="false">In this outfit</button><button type="button" id="ce-next">Another outfit</button></span>
+    <div class="ce-acts"><span class="ce-n" id="ce-n" aria-live="polite"></span><button class="btn ghost" type="button" id="ce-undo" disabled>Undo</button><button class="btn" type="button" id="ce-save"><span class="ce-long">Save for every outfit</span><span class="ce-short">Save</span></button><button class="act fr-x" type="button" data-cclose>Close</button></div></header>
+  <div class="ce-main">
+    <nav class="ce-nav" role="tablist" aria-label="Parts of Dave to change" aria-orientation="vertical"><button type="button" role="tab" class="ce-tab" data-cet="type" aria-selected="false"><span>Body type</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="size" aria-selected="false"><span>Size and shape</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="prop" aria-selected="false"><span>Proportions</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="fit" aria-selected="false"><span>Clothes fit</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="face" aria-selected="false"><span>Face</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="tache" aria-selected="false"><span>Moustache and beard</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="hair" aria-selected="false"><span>Hair</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="skin" aria-selected="false"><span>Skin and colouring</span><span class="ce-bdg" hidden></span></button><div class="ce-own msg">Saved by the page owner, so everyone sees the same Dave. Anyone else's changes stay on their own device.<button class="linkbtn" type="button" id="ce-reset">Back to his defaults</button></div></nav>
+    <div class="ce-stage"><div class="ce-3d" id="ce-3d" aria-label="3D preview of Dave. Drag to turn him round, scroll or pinch to zoom."><p class="msg ce-load">Loading the 3D model…</p></div>
+      <div class="ce-wipe" id="ce-wipe" hidden><img id="ce-wimg" alt="Dave as saved"></div><span class="ce-tagS" id="ce-savl">Saved</span><span class="ce-tagN" id="ce-nowl" hidden>Now</span>
+      <div class="ce-div" id="ce-div" hidden><button type="button" class="ce-hand" id="ce-hand" aria-label="Move the line between Dave as saved and now (arrow keys)">⇆</button></div>
+      <div class="ce-lines" id="ce-lines" aria-hidden="true"></div>
+      <div class="ce-bot"><span class="fr-seg" role="group" aria-label="Turn him"><button type="button" data-ceang="0">Front</button><button type="button" data-ceang="1.571">Side</button><button type="button" data-ceang="3.1416">Back</button></span>
+        <span class="ce-tg"><button type="button" class="act" data-celines aria-pressed="true">Measuring lines</button><button type="button" class="act" data-cecmp aria-pressed="true">Compare with saved</button></span></div></div>
+    <div class="ce-side"><div id="ce-form" role="tabpanel" aria-labelledby="chared-h"></div><p class="msg" id="ce-msg" role="status"></p></div>
+  </div></div></dialog>
+<dialog class="zoom fr-dlg" id="zoom" aria-labelledby="zoom-h"><div id="zoom-body"></div></dialog>
+<dialog class="zoom fr-dlg cmp-dlg" id="cmp" aria-labelledby="cmp-h"><div class="cmp">
+  <div class="stripe fr-stripe"></div>
+  <header class="cmp-head"><div class="fr-title"><span class="label">Fitting room</span><h2 id="cmp-h">Compare outfits</h2></div>
+    <div class="fr-acts"><span class="msg">Up to 4 · from the shortlist or any outfit card</span><button class="act" type="button" data-cmpclose>Close</button></div></header>
+  <div class="cmp-cols" id="cmp-cols"></div><p class="msg cmp-empty" id="cmp-empty" hidden>Add an outfit with Compare on any outfit card.</p>
+  <footer class="cmp-foot"><span class="msg">All turn together</span><span class="fr-seg" role="group" aria-label="Angle"><button type="button" data-cmpang="0">Front</button><button type="button" data-cmpang="0.785">¾</button><button type="button" data-cmpang="1.571">Side</button><button type="button" data-cmpang="3.1416">Back</button></span>
+    <button class="act" type="button" data-cmpspin aria-pressed="false">Turn</button><span class="act cmp-wx" id="cmp-wx" hidden></span></footer>
 </div></dialog>
-<dialog class="zoom" id="zoom" aria-labelledby="zoom-h"><div class="zoom-in"><button class="act zx" type="button" data-zclose>Close</button><div id="zoom-body"></div></div></dialog>
 <script>
 (function(){
 "use strict";
@@ -1591,14 +1893,14 @@ function figure(pieces,hi){
       '<circle cx="88" cy="233" r="1.1" fill="#b87333"/><circle cx="152" cy="233" r="1.1" fill="#b87333"/>';}
     else if(/chino|trouser|slack|tailor|suit/.test(lnm)&&!/jogger|cargo/.test(lnm)){h+='<path d="M90 231 L84 252 M150 231 L156 252" stroke="rgba(20,32,27,.35)" stroke-width="1" fill="none"/>';}
     if(LD.pleat){h+='<path d="M101 231 V266 M139 231 V266" stroke="rgba(20,32,27,.3)" stroke-width=".9" fill="none"/>';}
-    if(LD.turnup&&trs){h+='<path d="M73.6 '+(bot-8)+' H112.6 M127.4 '+(bot-8)+' H166.4" stroke="rgba(20,32,27,.4)" stroke-width="1.2" fill="none"/>';}}
+    if(turnOn(lo)){h+='<path d="M73.6 '+(bot-8)+' H112.6 M127.4 '+(bot-8)+' H166.4" stroke="rgba(20,32,27,.4)" stroke-width="1.2" fill="none"/>';}}
   if(ac.kneepads){var kp="M80 362 H110 Q113 362 113 366 V390 Q113 394 109 394 H81 Q77 394 77 390 V366 Q77 362 80 362 Z";h+=grp(ac.kneepads,P("g",kp)+P("g",mir(kp))+P("d","M78 372 H112 M128 372 H162 M78 384 H112 M128 384 H162"));}
   var base=null,covered=false;
   /* a shirt or polo next to him is tucked in as on the 3D model (with a blazer, waistcoat or tie, tailored trousers, or a
      belt worn to be seen; never with shorts, and an overshirt over another shirt hangs loose), and a belt then shows
      on the waistband over it, under anything worn open on top */
   var kitB=ac.belt&&/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/i.test(((byId[ac.belt.item]||{}).name||"")+" "+ac.belt.what),
-    tuck2=!!lo&&(!!(ac.belt&&!kitB)||(lo.shape!=="shorts"&&(!!ac.tie||up.some(function(q){return /^(blazer|waistcoat)$/.test(q.shape);})||/suit|tailored|formal|dress trouser|wool trouser/i.test(((byId[lo.item]||{}).name||"")+" "+lo.what))));
+    tuck2=tuckOn(lo,!!lo&&(!!(ac.belt&&!kitB)||(lo.shape!=="shorts"&&(!!ac.tie||up.some(function(q){return /^(blazer|waistcoat)$/.test(q.shape);})||/suit|tailored|formal|dress trouser|wool trouser/i.test(((byId[lo.item]||{}).name||"")+" "+lo.what)))));
   var TK2=tuckList(up,tuck2);up=up.map(function(p,k){return TK2[k]?Object.assign({},p,{_tuck:true}):p;});
   up.forEach(function(p,k){
     h+=upperArt(p,dim(p));
@@ -1921,7 +2223,7 @@ var state={view:"shop",dept:"all",shop:"all",col:"all",tfit:"all",fab:"all",comp
   tocc:"everyday",twx:(function(){var m=new Date().getMonth();return m>=10||m<=1?"cold":(m>=4&&m<=7?"warm":"mild");})(),mocc:"everyday",mwx:"all"};
 var lim={picks:PAGE,fits:FITPAGE};
 /* the automatic 3D checks (tools/check_3d.js) open the page with ?qa=1 and drive it through this */
-if(/[?&]qa=1\b/.test(location.search))window.__qa=function(){return {make3D:make3D,fitById:fitById,effPieces:effPieces,trueFor:trueFor,LOOK:LOOK,TRUE:TRUE,byId:byId,dressed:dressed,loadThree:loadThree,body:function(){return BODY;},cc:cc,descOf:descOf,getPh:getPh,sampleLook:sampleLook,pieceLook:pieceLook,sgKind:sgKind,shopSize:shopSize,guessShape:guessShape};};
+if(/[?&]qa=1\b/.test(location.search))window.__qa=function(){return {make3D:make3D,fitById:fitById,effPieces:effPieces,trueFor:trueFor,LOOK:LOOK,TRUE:TRUE,byId:byId,dressed:dressed,loadThree:loadThree,body:function(){return BODY;},cc:cc,descOf:descOf,getPh:getPh,sampleLook:sampleLook,pieceLook:pieceLook,sgKind:sgKind,shopSize:shopSize,guessShape:guessShape,wear:function(w){w=w||{};ZIPM=w.zip||"";TUCKM=w.tuck||"";TURNM=w.turn||"";}};};
 var items=[],fits=[],byId={},fitById={},meta={},profile={},phase="loading",fitsSeen=false;
 var db=null,canShare=true,saved={},votes={},myfits=[],local={saved:{},votes:{},myfits:{},owned:{}};
 var owned={},shopInfo={},staticMode=false,catFiles=false,swaps={},locked={},colCache={};
@@ -3405,16 +3707,29 @@ function warpMan(man,PW,hzc){var T=window.THREE,v=new T.Vector3(),mi=new T.Matri
         if(nl>1e-6){na[j*3]=nx/nl;na[j*3+1]=ny/nl;na[j*3+2]=nz/nl;}}NN.needsUpdate=true;}});}
 /* Is a piece worn open? Coats, jackets and cardigans are, over something; with nothing under them they are worn
    done up (no bare chest under an open fleece). A listing or outfit that says "worn open" always is. */
-/* The 3D view's Zip up / Unzip button overrides this for everything that opens (ZIPM "up" or "open"; "" is as worn). */
-var ZIPM="",HOODRE=/parka|hooded|\bhood\b|active jacket|anorak|stormbreak|cagoule|kagool|pac[- ]?a[- ]?mac|rain ?jacket|waterproof jacket|rain shell/;   /* (rain jackets and cagoules have hoods even when the name does not say so) */
+/* The 3D view's Zip up / Unzip button overrides this for everything that opens (ZIPM "up" or "open"; "" is as worn).
+   The fitting room's "How it's worn" toggles do the same for tucks (TUCKM "in" or "out") and trouser hems (TURNM "up"
+   for turn-ups, "down" for a plain hem with a break), and its light (LIGHTM "" studio, "day" or "eve"). */
+var ZIPM="",TUCKM="",TURNM="",LIGHTM="",HOODRE=/parka|hooded|\bhood\b|active jacket|anorak|stormbreak|cagoule|kagool|pac[- ]?a[- ]?mac|rain ?jacket|waterproof jacket|rain shell/;   /* (rain jackets and cagoules have hoods even when the name does not say so) */
 /* an overshirt (shacket, chore shirt, flannel) over a tee or shirt is worn open, as a jacket is */
 /* which of the tops (inner first) are tucked in, when the outfit tucks (on): a shirt or polo next to him, but not one
    worn open (it hangs loose over what is under it) or an overshirt over another shirt; and a tee or vest under a
-   tucked shirt goes in with it, or it would hang out below the shirt */
+   tucked shirt goes in with it, or it would hang out below the shirt. Tucked in by hand (TUCKM "in"), a tee or vest
+   next to him goes in too. */
 function tuckList(up,on){var t=up.map(function(){return false;});if(!on)return t;var last=-1;
   up.forEach(function(p,k){if((LAYER[p.shape]||0)===0&&/^(shirt|sshirt|polo)$/.test(p.shape)&&!jacketShirt(p)&&!openWorn(p,up)&&!(overshirt(p)&&up.slice(0,k).some(function(q){return /^(shirt|sshirt|polo)$/.test(q.shape);}))){t[k]=true;last=k;}});
-  up.forEach(function(p,k){if(k<last&&(LAYER[p.shape]||0)===0&&/^(tee|vest)$/.test(p.shape)&&!kvest(p))t[k]=true;});
+  up.forEach(function(p,k){if((k<last||TUCKM==="in")&&(LAYER[p.shape]||0)===0&&/^(tee|vest)$/.test(p.shape)&&!kvest(p))t[k]=true;});
   return t;}
+/* whether the outfit tucks: as worn (with tailoring or a belt worn to be seen), or as set by hand; never into shorts */
+function tuckOn(lo,worn){return TUCKM?TUCKM==="in"&&!!lo&&lo.shape!=="shorts":worn;}
+/* the tops that could be tucked in by hand (for the toggle): next to him, not worn open, not a jacket-weight overshirt */
+function tuckable(ps){var up=dressed(ps).filter(function(p){return UPPER[p.shape];}),lo=ps.filter(function(p){return LOWER[p.shape];})[0];
+  if(!lo||lo.shape==="shorts"||lo.under)return [];
+  return up.filter(function(p){return (LAYER[p.shape]||0)===0&&/^(shirt|sshirt|polo|tee|vest)$/.test(p.shape)&&!kvest(p)&&!p.fixed&&!jacketShirt(p)&&!openWorn(p,up);});}
+/* turn-ups on trousers: as listed, or as set by hand (not on cuffed joggers, which gather at the ankle) */
+function turnOn(lo){if(!lo||lo.shape!=="trousers"||lo.under)return false;var n=(((byId[lo.item]||{}).name||"")+" "+(lo.what||"")).toLowerCase();
+  if(/jogger|track|sweatpant|lounge|pyjama/.test(n)&&!/wide|straight|open hem/.test(n))return false;
+  return TURNM?TURNM==="up":!!(lo.desc&&lo.desc.turnup);}
 /* a jacket-weight overshirt (a chore jacket, a shacket, nylon, canvas, insulated or borg-lined) is worn over a jumper
    or hoodie, as a light jacket is; a flannel or light overshirt goes under one, its collar out */
 function jacketShirt(p){return overshirt(p)&&/shacket|shirt jacket|chore|insulated|padded|quilted|borg|sherpa|fleece[- ]lined|nylon|canvas|\bduck\b|waxed|jacket/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
@@ -3536,10 +3851,14 @@ function fitMaps(){var c=bodyPos();if(c.fm&&c.fmK===c.posK)return c.fm;
 function fmBlank(){return {T:fmNew("T",0.3,1.48,0.01,128),L:fmNew("T",0.3,1.48,0.01,128),Y:fmNew("Y",0.15,1.45,0.02,128),N:fmNew("N",1.44,1.66,0.005,96),A:{"-1":fmNew("A",0.76,1.46,0.01,64,-1),"1":fmNew("A",0.76,1.46,0.01,64,1)}};}
 function make3Dcore(pieces){
   var T=window.THREE,scene=new T.Scene();
-  scene.add(new T.HemisphereLight(0xffffff,0xb8a88a,bodyOn?0.52:0.6));
-  var key=new T.DirectionalLight(0xfff8f0,bodyOn?1.18:1.05);key.position.set(-2.2,3.4,3.2);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-1;key.shadow.camera.right=1;key.shadow.camera.top=2.2;key.shadow.camera.bottom=-0.2;key.shadow.bias=-0.0005;key.shadow.radius=3;scene.add(key);
-  var fill=new T.DirectionalLight(0xeef2ff,0.34);fill.position.set(2.6,1.4,2.6);scene.add(fill);
-  var rim=new T.DirectionalLight(0xffffff,0.5);rim.position.set(1.5,2.6,-3);scene.add(rim);
+  /* the light: studio (as the checks see him), daylight (cooler and softer, from higher up) or evening (a low warm
+     key with a blue sky fill); the fitting room's light buttons choose it */
+  var LG=LIGHTM==="day"?{sky:0xe6efff,gnd:0xb9bba8,hi:0.95,key:0xfffdf8,k:0.78,kp:[-0.8,5.2,2.2],fill:0xd6e4ff,f:0.5,rim:0.3}:
+    (LIGHTM==="eve"?{sky:0x6f80c0,gnd:0x3e2f24,hi:0.2,key:0xffa860,k:1.55,kp:[-3.4,1.5,2.0],fill:0x5f7fe0,f:0.38,rim:0.85}:null);
+  scene.add(new T.HemisphereLight(LG?LG.sky:0xffffff,LG?LG.gnd:0xb8a88a,LG?LG.hi:(bodyOn?0.52:0.6)));
+  var key=new T.DirectionalLight(LG?LG.key:0xfff8f0,LG?LG.k:(bodyOn?1.18:1.05));key.position.set(LG?LG.kp[0]:-2.2,LG?LG.kp[1]:3.4,LG?LG.kp[2]:3.2);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-1;key.shadow.camera.right=1;key.shadow.camera.top=2.2;key.shadow.camera.bottom=-0.2;key.shadow.bias=-0.0005;key.shadow.radius=3;scene.add(key);
+  var fill=new T.DirectionalLight(LG?LG.fill:0xeef2ff,LG?LG.f:0.34);fill.position.set(2.6,1.4,2.6);scene.add(fill);
+  var rim=new T.DirectionalLight(0xffffff,LG?LG.rim:0.5);rim.position.set(1.5,2.6,-3);scene.add(rim);
   var floor=new T.Mesh(new T.CircleGeometry(0.75,48),new T.ShadowMaterial({opacity:0.24}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
   var man=new T.Group();scene.add(man);
   function C(col){return new T.Color(col).convertSRGBToLinear();}
@@ -4380,7 +4699,7 @@ function make3Dcore(pieces){
   /* (a belt worn with a shirt or polo is worn to be seen, so the shirt goes in; workwear kit, tool belts and holster
      pockets, is worn over the clothes and changes nothing) */
   var KITRE=/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/;
-  var tuckIn=!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!KITRE.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo)));
+  var tuckIn=tuckOn(lo,!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!KITRE.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo))));
   var TUCK=tuckList(up,tuckIn),tE=TUCK.some(Boolean)?0.012:0;   /* (a shirt tucked in sits inside the waistband and seat, so they stand out by its thickness) */
   /* trousers or shorts */
   var waistE=0;
@@ -4522,7 +4841,7 @@ function make3Dcore(pieces){
           if(jean){[pk[0],pk[pk.length-1]].forEach(function(q){add(new T.SphereGeometry(0.0028,8,6),rvM,q[0],q[1],q[2]+0.001);});}}});}
     /* pleats from the waistband, and turn-ups at the hem, when the listing has them */
     if(bodyOn&&lo.desc&&lo.desc.pleat)[-1,1].forEach(function(s){var pl=[];[0.995,0.96,0.92,0.88].forEach(function(y){pl.push([s*0.05,y,surfZ(y,s*0.05,0)+0.001]);});tube(pl,0.0014,mat(shade(cc(lo.col)[0],0.7),0.9),8);});
-    if(bodyOn&&lo.desc&&lo.desc.turnup&&!sh)[-1,1].forEach(function(s){var lq=LS0[String(s)][0];band(lq[0],0.035,lq[1]+0.003,lq[2]+0.003,lm,{x:lq[3],z:lq[4]});});
+    if(bodyOn&&turnOn(lo)&&!sh)[-1,1].forEach(function(s){var lq=LS0[String(s)][0];band(lq[0],0.035,lq[1]+0.003,lq[2]+0.003,lm,{x:lq[3],z:lq[4]});});
     /* the fly: a stitched J from the waistband down to the crotch, on the cloth */
     if(!und){var flyM=mat(cc(lo.col)[1]?"#000":"#3a3a3a",0.9,{transparent:true,opacity:0.4});
       if(bodyOn){var fp=[];[[0.022,0.995],[0.024,0.95],[0.022,0.91],[0.012,BL.crotch+0.035],[0.002,BL.crotch+0.02]].forEach(function(q){fp.push([q[0],q[1],surfZ(q[1],q[0],0)+0.0015]);});tube(fp,0.0016,flyM,16);}
@@ -5265,8 +5584,22 @@ function liveRenderer(){
 function camAt(z,k){var f=Math.max(1,k||1),e=z*z*(3-2*z),fy=BODY?1.665:1.69;return {y:(1.0+(fy+0.015-1.0)*e)*f,look:(0.93+(fy-0.93)*e)*f,d:(4.75+(0.95-4.75)*Math.pow(z,0.8))*f};}
 function Live3D(box,pieces,opt){
   opt=opt||{};
-  /* zip: "" as worn, "up" or "open" (the Zip up / Unzip button), kept while the pieces change */
-  var zipm="",cur=pieces;function mk(ps){cur=ps;ZIPM=zipm;try{return make3D(ps);}finally{ZIPM="";}}
+  /* how it is worn, kept while the pieces change: zip "" as worn, "up" or "open" (the Zip up / Unzip button); tuck ""
+     as worn, "in" or "out"; turn "" as listed, "up" or "down" (trouser hems); light "" studio, "day" or "eve" */
+  var wear=Object.assign({zip:"",tuck:"",turn:"",light:""},opt.wear||{}),cur=pieces;
+  function setG(){ZIPM=wear.zip;TUCKM=wear.tuck;TURNM=wear.turn;LIGHTM=wear.light;}function clrG(){ZIPM="";TUCKM="";TURNM="";LIGHTM="";}
+  function mk(ps){cur=ps;setG();try{return anchor(make3D(ps));}finally{clrG();}}
+  /* where each piece's pin sits: a point on the front of the piece that is not covered by anything worn over it (rays
+     from the front over a grid across the piece, nearest the middle and upper part first), kept in his own frame */
+  function anchor(ob){var T=window.THREE,boxes={},ms=[];ob.man.rotation.y=0;ob.scene.updateMatrixWorld(true);
+    ob.man.traverse(function(n){if(n.isMesh&&n.visible){ms.push(n);var it=n.userData.item;if(it){(boxes[it]=boxes[it]||new T.Box3()).expandByObject(n);}}});
+    var all=new T.Box3();ms.forEach(function(n){if(n.userData.kind==="body")all.expandByObject(n);});ob.top=all.isEmpty()?1.83*(ob.k||1):all.max.y;
+    var rc2=new T.Raycaster(),dir=new T.Vector3(0,0,-1),FY=[0.42,0.3,0.55,0.2,0.68,0.12,0.8],FX=[0,0.1,-0.1,0.2,-0.2,0.3,-0.3,0.42,-0.42];ob.pins={};
+    Object.keys(boxes).forEach(function(it){var b=boxes[it],hY=b.max.y-b.min.y,cx=(b.min.x+b.max.x)/2,wX=b.max.x-b.min.x;
+      for(var i=0;i<FY.length;i++)for(var j=0;j<FX.length;j++){var x=cx+FX[j]*wX,y=b.max.y-FY[i]*hY;rc2.set(new T.Vector3(x,y,5),dir);
+        var h0=rc2.intersectObjects(ms,false).filter(function(q){return !(q.object.material&&q.object.material.type==="ShadowMaterial");})[0];
+        if(h0&&h0.object.userData.item===it){var nv0=h0.face?h0.face.normal.clone().transformDirection(h0.object.matrixWorld):new T.Vector3(0,0,1);ob.pins[it]={p:h0.point.clone(),n:nv0};return;}}});
+    return ob;}
   var T=window.THREE,r=liveRenderer(),cam=new T.PerspectiveCamera(24,1,0.05,50),o=mk(pieces);
   var h={box:box,on:true,raf:0,tm:0,active:false,o:o},rot=0.35,tRot=null,z=opt.zoom||0,tZ=z,W=0,H=0,ptr={},pinch=null,drag=null,down=null,flash=0,pan=0,tPan=0;
   var spin=opt.spin!==false&&!(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches);
@@ -5276,15 +5609,15 @@ function Live3D(box,pieces,opt){
     bar.innerHTML='<button type="button" data-v3="front">Front</button><button type="button" data-v3="side">Side</button><button type="button" data-v3="back">Back</button><button type="button" data-v3="spin" aria-pressed="'+spin+'">Turn</button><span class="v3-sep"></span><button type="button" data-v3="z0" aria-label="Whole figure">Full</button><button type="button" data-v3="z55" aria-label="Top half">Top</button><button type="button" data-v3="z1" aria-label="His face">Face</button><span class="v3-sep"></span><button type="button" data-v3="zip" hidden>Zip up</button>';
     box.appendChild(bar);
     bar.addEventListener("click",function(e){var b=e.target.closest("[data-v3]");if(!b)return;var v=b.getAttribute("data-v3");
-      if(v==="zip"){zipm=zipOpen()?"up":"open";var old=o;o=mk(cur);h.o=o;dispose3D(old);syncZip();return;}
+      if(v==="zip"){wear.zip=zipOpen()?"up":"open";var old=o;o=mk(cur);h.o=o;dispose3D(old);syncZip();return;}
       if(v==="spin"){spin=!spin;tRot=null;}
       else if(v==="front"||v==="side"||v==="back"){spin=false;var want={front:0.3,side:1.45,back:Math.PI}[v],tw=Math.PI*2;tRot=want+Math.round((rot-want)/tw)*tw;}
       else{tZ=v==="z0"?0:(v==="z1"?1:0.55);tPan=0;}
       syncBar();});}
   function syncBar(){if(!bar)return;var sb=bar.querySelector('[data-v3="spin"]');if(sb)sb.setAttribute("aria-pressed",String(spin));}
   /* the zip button shows when something can be done up; it reads "Zip up" while it is open and "Unzip" while it is closed */
-  function zipOpen(){var ps=dressed(cur),ups=ps.filter(function(p){return UPPER[p.shape];});ZIPM=zipm;
-    try{return ups.some(function(p){return zipable(p)&&openWorn(p,ups);});}finally{ZIPM="";}}
+  function zipOpen(){var ps=dressed(cur),ups=ps.filter(function(p){return UPPER[p.shape];});setG();
+    try{return ups.some(function(p){return zipable(p)&&openWorn(p,ups);});}finally{clrG();}}
   function syncZip(){if(!bar)return;var zb2=bar.querySelector('[data-v3="zip"]'),sep=zb2&&zb2.previousElementSibling,can=cur.some(zipable),op=can&&zipOpen();
     if(!zb2)return;zb2.hidden=!can;if(sep)sep.hidden=!can;zb2.textContent=op?"Zip up":"Unzip";
     zb2.setAttribute("aria-label",op?"Show the jacket done up":"Show the jacket open");}
@@ -5306,6 +5639,7 @@ function Live3D(box,pieces,opt){
     z+=(tZ-z)*0.16;if(!drag||drag.ax!=="y")pan+=(clampPan(tPan)-pan)*0.2;o.man.rotation.y=rot;place();
     if(flash&&Date.now()>flash){flash=0;glow(null);}
     try{r.render(o.scene,cam);}catch(e){}
+    if(opt.onFrame){try{opt.onFrame(h);}catch(e){}}
     h.raf=requestAnimationFrame(loop);}
   /* drag to turn, wheel or pinch to zoom, tap a garment to see which piece it is */
   var el=r.domElement;
@@ -5344,6 +5678,30 @@ function Live3D(box,pieces,opt){
     W=0;H=0;clearTimeout(h.tm);cancelAnimationFrame(h.raf);loop();};
   h.update=function(ps){var old=o;o=mk(ps);h.o=o;dispose3D(old);syncZip();};
   h.zoomTo=function(v){tZ=Math.max(0,Math.min(1,v));tPan=0;};
+  /* for the fitting room's own controls: how he is worn and lit, the camera (kept when the outfit changes), pins */
+  h.wear=function(w){if(!w)return Object.assign({},wear);var ch=false;Object.keys(w).forEach(function(k){if(k in wear&&wear[k]!==w[k]){wear[k]=w[k];ch=true;}});if(ch)h.update(cur);return Object.assign({},wear);};
+  h.zipState=function(){var can=dressed(cur).some(zipable);return {can:can,open:can&&zipOpen()};};
+  h.pieces=function(){return cur;};
+  h.turnTo=function(a){spin=false;var tw=Math.PI*2;tRot=a+Math.round((rot-a)/tw)*tw;syncBar();};
+  h.setRot=function(a){spin=false;tRot=null;rot=a;syncBar();};
+  h.rot=function(){return rot;};
+  h.spinning=function(v){if(v!=null){spin=!!v;tRot=null;syncBar();}return spin;};
+  h.frameTo=function(f){if(f==="full"){tZ=0;tPan=0;}else if(f==="top"){tZ=0.55;tPan=0;}else if(f==="face"){tZ=1;tPan=0;}
+    else if(f==="feet"){tZ=0.55;var c=camAt(0.55,o.k);tPan=0.16*o.k-c.look;}};
+  h.framing=function(){return tZ<0.2?"full":(tZ>0.9?"face":(tPan<-0.3?"feet":"top"));};
+  h.view=function(){return {rot:rot,z:tZ,pan:tPan};};
+  h.setView=function(v){if(!v)return;rot=v.rot;tRot=null;spin=false;z=tZ=v.z;pan=tPan=v.pan||0;syncBar();};
+  h.select=function(item){h.sel=item||null;};
+  /* a point in his own frame on the screen: x and y in pixels from the box's top left, and whether it faces the camera */
+  var pv=new window.THREE.Vector3(),nv2=new window.THREE.Vector3();
+  h.project=function(p,n){o.man.updateMatrixWorld(true);pv.copy(p).applyMatrix4(o.man.matrixWorld);var front=true;
+    if(n){nv2.copy(n).transformDirection(o.man.matrixWorld);front=nv2.dot(cam.position.clone().sub(pv).normalize())>-0.05;}
+    pv.project(cam);return {x:(pv.x+1)/2*W,y:(1-pv.y)/2*H,front:front};};
+  h.size=function(){return {w:W,h:H};};
+  /* a still of another figure (build() makes it) seen from this camera, as an image: Edit Dave's saved Dave beside now */
+  h.still=function(build){var ob=null,url="";try{ob=build();if(!ob)return "";fit();ob.man.rotation.y=rot;place();r.render(ob.scene,cam);url=r.domElement.toDataURL("image/png");}
+    catch(e){url="";}finally{if(ob)dispose3D(ob);try{r.render(o.scene,cam);}catch(e){}}return url;};
+  h.k=function(){return o.k;};
   h.lostCtx=function(){h.active=false;cancelAnimationFrame(h.raf);clearTimeout(h.tm);if(h.onLost)h.onLost();};
   h.stop=function(){if(!h.on)return;h.on=false;h.active=false;cancelAnimationFrame(h.raf);clearTimeout(h.tm);dispose3D(o);
     box.removeEventListener("keydown",onKey);if(bar&&bar.parentNode)bar.parentNode.removeChild(bar);if(tip.parentNode)tip.parentNode.removeChild(tip);
@@ -5353,32 +5711,19 @@ function Live3D(box,pieces,opt){
   liveStack.push(h);h.activate();
   return h;
 }
-function stop3D(){if(z3){z3.stop();z3=null;}}
-/* tapping a garment in the large view picks out its photo card on the right */
-function zoomPick(item){Array.prototype.forEach.call(document.querySelectorAll("#zoom-body .zoom-ph li"),function(li){var on=!!item&&li.getAttribute("data-zitem")===item;li.classList.toggle("hot",on);if(on&&li.scrollIntoView)li.scrollIntoView({block:"nearest",behavior:"smooth"});});}
 function live3DFail(box,msg,again){
   if(!msg){msg=document.createElement("p");msg.className="msg zf-3dmsg";box.appendChild(msg);}
   msg.hidden=false;msg.innerHTML='The 3D model stopped on this device. <button class="linkbtn" type="button" data-3dagain>Try again</button>';
   msg.querySelector("[data-3dagain]").onclick=function(){liveR=null;msg.textContent="Loading the 3D model…";again();};
 }
-function show3D(pieces){
-  var box=document.querySelector("#zoom-body .zf-3d");if(!box)return;
-  var msg=box.querySelector(".zf-3dmsg");
-  loadThree().then(function(){
-    if(!document.querySelector("#zoom-body .zf-3d"))return;
-    if(z3&&z3.box===box&&z3.on){z3.update(pieces);return;}
-    stop3D();
-    try{z3=Live3D(box,pieces,{onPick:zoomPick});z3.box=box;if(msg)msg.hidden=true;
-      z3.onLost=function(){var ps=pieces;stop3D();live3DFail(box,msg,function(){show3D(ps);});};}
-    catch(e){z3=null;live3DFail(box,msg,function(){show3D(pieces);});}
-  },function(){if(msg)msg.textContent="The 3D model could not load. Check the connection and try again.";});
-}
 /* Still renders for outfit cards and small figures: one hidden renderer, cached by outfit and colours. */
 var snapR=null,snapCache={},snapQ=[],snapBusy=false,F3DP={},LITE3D=false;
 function snapKey(ps){return charKey()+"/"+ps.map(function(p){var F=(byId[p.item]||{}).fix;return p.item+":"+p.shape+":"+(TRUE[p.item]||p.col)+(F?":"+JSON.stringify(F):"");}).join("|");}
-function snap3D(ps,k){
+function snap3D(ps,k,rot,first){
+  if(rot!=null)k+="@"+rot;
   if(snapCache[k])return Promise.resolve(snapCache[k]);
-  return new Promise(function(ok){snapQ.push({ps:ps,k:k,ok:ok});pumpSnap();});
+  /* (first: the fitting room's own stills go ahead of the outfit cards') */
+  return new Promise(function(ok){snapQ[first?"unshift":"push"]({ps:ps,k:k,ok:ok,rot:rot});pumpSnap();});
 }
 function pumpSnap(){
   if(snapBusy||!snapQ.length)return;snapBusy=true;
@@ -5387,7 +5732,7 @@ function pumpSnap(){
     try{
       var T=window.THREE;
       if(!snapR){snapR=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});snapR.setPixelRatio(1);snapR.setSize(360,735);if(T.sRGBEncoding)snapR.outputEncoding=T.sRGBEncoding;snapR.toneMapping=T.ACESFilmicToneMapping;snapR.toneMappingExposure=1.08;snapR.shadowMap.enabled=true;snapR.shadowMap.type=T.PCFSoftShadowMap;snapR.domElement.addEventListener("webglcontextlost",function(e){e.preventDefault();snapR=null;},false);}
-      LITE3D=true;var o;try{o=make3D(j.ps);}finally{LITE3D=false;}var f=Math.max(1,o.k||1),cam=new T.PerspectiveCamera(13,240/490,0.1,50);cam.position.set(0,0.95*f,8.7*f);cam.lookAt(0,0.93*f,0);o.man.rotation.y=0.32;snapR.render(o.scene,cam);
+      LITE3D=true;var o;try{o=make3D(j.ps);}finally{LITE3D=false;}var f=Math.max(1,o.k||1),cam=new T.PerspectiveCamera(13,240/490,0.1,50);cam.position.set(0,0.95*f,8.7*f);cam.lookAt(0,0.93*f,0);o.man.rotation.y=j.rot!=null?j.rot:0.32;snapR.render(o.scene,cam);
       var url=snapR.domElement.toDataURL("image/webp",0.86);if(url.indexOf("image/webp")<0)url=snapR.domElement.toDataURL("image/png");
       dispose3D(o);
       var keys=Object.keys(snapCache);if(keys.length>240)delete snapCache[keys[0]];
@@ -5414,22 +5759,288 @@ function hydrate3D(){
     });
   },function(){});
 }
-/* The large view: the figure drawn at full height next to the real listing photos, each one big enough to see the fabric. */
+/* ---- The fitting room: one outfit large, with Dave in 3D taking most of the screen ----
+   The live model in the middle, his pieces down the left (outermost first, numbered as the pins on him), the chosen
+   piece on the right with pieces to try instead, and a strip of outfits along the bottom that flips between them
+   keeping the camera where it is. It is the same dialog on a phone: the model on top and a sheet below. */
+var FR={id:"",sel:"",hide:{},wear:{zip:"",tuck:"",turn:"",light:""},view:null,prev:"",pt:0,tab:"pieces",list:[]};
+try{var lt0=localStorage.getItem("dw-light");if(lt0==="day"||lt0==="eve")FR.wear.light=lt0;}catch(e){}
+function frKey(p){return p.item||("_"+p.what);}
+/* where a piece is worn, for its label: outer layers, a mid layer (knits), the top next to him, legs, feet and extras */
+function frSlot(p){var s=p.shape;if(UPPER[s]){var L=layRank(p);return (LAYER[s]||0)>=2||L>=1.4?"Outer":((LAYER[s]||0)>=1||L>=0.6?"Mid layer":"Top");}
+  if(LOWER[s])return "Legs";if(FEET[s])return "Feet";return accCm(byId[p.item],p)[0]==="head"?"Head":"Extra";}
+/* his pieces, outermost first: outer layers, then what is under them, legwear, footwear, then the rest */
+function frOrder(ps){var seen={},u=[];ps.forEach(function(p){var k=frKey(p);if(seen[k])return;seen[k]=1;u.push(p);});
+  function rk(p){return UPPER[p.shape]?10-layRank(p):(LOWER[p.shape]?20:(FEET[p.shape]?30:40));}
+  return u.map(function(p,i){return {p:p,i:i};}).sort(function(a,b){return rk(a.p)-rk(b.p)||a.i-b.i;}).map(function(x){return x.p;});}
+/* a short name for a piece in the "How it's worn" rows */
+function frNoun(p){var n=(((byId[p.item]||{}).name||"")+" "+(p.what||"")).toLowerCase();
+  if(p.shape==="trousers")return /jean|denim|501/.test(n)?"Jeans":(/chino/.test(n)?"Chinos":(/cord/.test(n)?"Cords":"Trousers"));
+  if(p.shape==="shirt"&&overshirt(p))return "Overshirt";
+  return {jacket:"Jacket",coat:"Coat",blazer:"Blazer",gilet:"Gilet",cardigan:"Cardigan",shirt:"Shirt",sshirt:"Shirt",polo:"Polo",tee:"Tee",vest:"Vest"}[p.shape]||p.what;}
+/* the outfit as worn in the fitting room: hidden pieces left off (with his briefs if the legwear is hidden) */
+function frPieces(sw){var f=fitById[FR.id];if(!f)return [];var ps=effPieces(f);
+  if(sw)ps=ps.map(function(p){if(frKey(p)!==sw.k)return p;var it=byId[sw.id],d=it&&derive(it);return it?{item:sw.id,shape:p.shape,col:(d&&d.col)||p.col,what:p.what,orig:p.orig||p.item}:p;});
+  ps=ps.filter(function(p){return !FR.hide[frKey(p)];});
+  if(!ps.some(function(p){return LOWER[p.shape];}))ps=ps.concat(UNDERWEAR);
+  return ps;}
+/* whether the outfit tucks as worn (with tailoring, a tie, or a belt worn to be seen), as the 3D model decides it */
+function wornTuck(ps){var lo=ps.filter(function(p){return LOWER[p.shape];})[0];if(!lo||lo.shape==="shorts")return false;
+  var nq=function(q){return (((byId[q.item]||{}).name||"")+" "+(q.what||"")).toLowerCase();};
+  return ps.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/.test(nq(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nq(lo));}
+/* the "How it's worn" rows that apply to these pieces, each with its choices and the one showing now */
+function frWearRows(ps){var w=FR.wear,rows=[],ups=dressed(ps).filter(function(p){return UPPER[p.shape];});
+  ZIPM=w.zip;try{
+    var zp=ups.filter(function(p){return zipable(p)&&!p.fixed;}).sort(function(a,b){return layRank(b)-layRank(a);})[0];
+    if(zp)rows.push({k:"zip",p:zp,l:frNoun(zp),o:[["open","Open"],["up","Done up"]],cur:openWorn(zp,ups)?"open":"up"});
+    var tk=tuckable(ps);
+    if(tk.length){var tp=tk[tk.length-1],nat=wornTuck(ps)&&/^(shirt|sshirt|polo)$/.test(tp.shape);rows.push({k:"tuck",p:tp,l:frNoun(tp),o:[["in","Tucked"],["out","Untucked"]],cur:w.tuck||(nat?"in":"out")});}
+  }finally{ZIPM="";}
+  var lo=ps.filter(function(p){return LOWER[p.shape];})[0];
+  if(lo&&!lo.under&&lo.shape==="trousers"){TURNM="up";var can=false;try{can=turnOn(lo);}finally{TURNM="";}
+    if(can){var d=descOf(byId[lo.item],lo)||{};rows.push({k:"turn",p:lo,l:frNoun(lo),o:[["down","Break"],["up","Turned up"]],cur:w.turn||(d.turnup?"up":"down")});}}
+  return rows;}
+/* the note by the chosen piece's pin: how it is worn, or what it is made of */
+function frNote(p,rows){var r=rows.filter(function(x){return frKey(x.p)===frKey(p);})[0];
+  if(r)return {open:"worn open",up:r.k==="turn"?"turned up":"done up",in:"tucked in",out:"untucked",down:"with a break"}[r.cur]||"";
+  var it=byId[p.item];return it?(it.fabric||it.shop):(p.own?"already his":"");}
+function frSeg(attr,opts,cur,lab){return '<span class="fr-seg" role="group"'+(lab?' aria-label="'+esc(lab)+'"':"")+'>'+opts.map(function(o){return '<button type="button" '+attr+'="'+esc(o[0])+'" aria-pressed="'+(o[0]===cur)+'">'+esc(o[1])+'</button>';}).join("")+'</span>';}
+function frHeight(){var h=Number(CHAR.height)||183,i=Math.round(h/2.54),ft=Math.floor(i/12);return ft+"ft "+(i-ft*12)+"in · "+h+" cm";}
+/* the dialog's frame, made once; flipping outfits fills it again and leaves the live model (and its camera) in place */
+function frShell(){
+  $("zoom-body").innerHTML='<div class="fr" id="fr" data-mode="3" data-tab="pieces" data-light="'+esc(FR.wear.light)+'">'+
+    '<div class="stripe fr-stripe"></div>'+
+    '<header class="fr-head"><button class="fr-back" type="button" data-zclose aria-label="Close">‹</button>'+
+      '<div class="fr-title"><span class="label" id="fr-kick"></span><h2 id="zoom-h"></h2><span class="fr-of" id="fr-of"></span></div>'+
+      '<span class="fr-seg fr-modes" role="group" aria-label="How to show the outfit"><button type="button" data-zlay="3">3D model</button><button type="button" data-zlay="1">Photos, to scale</button><button type="button" data-zlay="s">Split</button><button type="button" data-zlay="0" class="fr-2d">Drawing</button></span>'+
+      '<div class="fr-acts"><div class="fr-tot" id="fr-tot"></div><span id="fr-save"></span><button class="act fr-cmp" type="button" data-cmpadd="">Compare</button><button class="act fr-x" type="button" data-zclose>Close</button></div></header>'+
+    '<div class="fr-main">'+
+      '<aside class="fr-rail" aria-label="The pieces"><div class="fr-pieces"><div class="fr-rh"><span class="label">On him, outside in</span><span id="fr-n"></span></div><ol class="fr-list" id="fr-list"></ol><p class="fr-link" id="fr-link"></p></div>'+
+        '<div class="fr-wear" id="fr-wear"></div></aside>'+
+      '<div class="fr-stage" id="fr-stage">'+
+        '<div class="fr-live"><div class="zf-3d" id="fr-3d" aria-label="3D model of Dave in the outfit. Drag to turn him, scroll to zoom, tap a piece."><p class="msg zf-3dmsg">Loading the 3D model…</p></div>'+
+          '<div class="fr-over"><div class="fr-ruler" id="fr-ruler" hidden><b id="fr-ht"></b><i></i><i></i><i></i></div><div id="fr-pins"></div>'+
+            '<div class="fr-top">'+frSeg("data-frlight",[["","Studio"],["day","Daylight"],["eve","Evening"]],FR.wear.light,"Light")+'<span class="fr-hint">Drag to turn · scroll to zoom · tap a piece</span></div>'+
+            '<div class="fr-dock" role="group" aria-label="Camera"><button type="button" data-frang="0">Front</button><button type="button" data-frang="0.785" class="fr-dk">¾</button><button type="button" data-frang="1.571">Side</button><button type="button" data-frang="3.1416">Back</button><i></i>'+
+              '<button type="button" data-frcam="full" class="fr-dk">Full</button><button type="button" data-frcam="top" class="fr-dk">Top</button><button type="button" data-frcam="feet" class="fr-dk">Feet</button><button type="button" data-frcam="face">Face</button><i class="fr-dk"></i><button type="button" data-frspin class="fr-dk" aria-pressed="false">Turn</button></div>'+
+            '<div class="fr-scrub"><label class="vh" for="fr-turn">Turn him round</label><input type="range" id="fr-turn" min="0" max="360" step="1" value="0"><span class="fr-scl" aria-hidden="true"><span>Front</span><span>Side</span><span>Back</span><span>Side</span><span>Front</span></span></div>'+
+            '<span class="fr-hchip" id="fr-hchip"></span></div></div>'+
+        '<div class="fr-lay" id="fr-lay"></div><div class="fr-fig" id="fr-fig"></div></div>'+
+      '<div class="fr-tabs" role="tablist" aria-label="Fitting room"><button type="button" role="tab" data-frtab="pieces">Pieces</button><button type="button" role="tab" data-frtab="swap">Swap</button><button type="button" role="tab" data-frtab="dave">Dave</button></div>'+
+      '<aside class="fr-detail" id="fr-detail" aria-label="The chosen piece"></aside><div class="fr-msave" id="fr-msave"></div>'+
+    '</div>'+
+    '<footer class="fr-strip"><button class="fr-arr" type="button" data-frstep="-1" aria-label="Previous outfit">‹</button><div class="fr-film" id="fr-film" role="list"></div>'+
+      '<div class="fr-sh"><span>← → flips outfits<br>camera angle stays put</span><button class="fr-arr" type="button" data-frstep="1" aria-label="Next outfit">›</button></div></footer>'+
+  '</div>';
+  var tr=$("fr-turn");tr.addEventListener("input",function(){if(z3&&z3.on)z3.setRot(Number(tr.value)*Math.PI/180);FR.drag=true;});tr.addEventListener("change",function(){FR.drag=false;});
+}
+/* fill the dialog for the outfit FR.id */
+function frFill(){
+  var f=fitById[FR.id];if(!f)return;var ps=effPieces(f),order=frOrder(ps),t=fitSum(ps),save=Math.round(t.full-t.tot);
+  if(!FR.sel||!order.some(function(p){return frKey(p)===FR.sel;}))FR.sel=order[0]?frKey(order[0]):"";
+  var li=FR.list.indexOf(f.id);
+  $("fr-kick").textContent=f.styles.map(function(s){return label(STYLE,s);}).join(" · ")+(li>=0?" · Outfit "+(li+1)+" of "+FR.list.length:"");
+  $("zoom-h").textContent=f.name;$("zoom-h").title=f.note||"";
+  $("fr-of").textContent=li>=0?(li+1)+" of "+FR.list.length+" · swipe for the next":"";
+  $("fr-tot").innerHTML='<b>'+money(t.tot)+'</b>'+(save>=1?'<span>'+money(save)+' off full price</span>':'<span>'+(t.complete?"the whole outfit":"pieces still listed")+'</span>');
+  $("fr-save").innerHTML=$("fr-msave").innerHTML=f.id.charAt(0)!=="_"?saveBtn("o_"+f.id,"outfit"):"";
+  var cb=document.querySelector("#fr .fr-cmp");if(cb){cb.setAttribute("data-cmpadd",f.id);cb.hidden=f.id.charAt(0)==="_";}
+  $("fr-link").innerHTML=(shareable()&&f.id.charAt(0)!=="_"?'<button class="linkbtn" type="button" data-fitlink="'+esc(f.id)+'">Copy a link to this outfit</button> <span class="msg" aria-live="polite"></span>':"")+
+    (f.note?'<span class="fr-note">'+esc(f.note)+'</span>':"");
+  $("fr-n").textContent=order.length+(order.length===1?" piece":" pieces");
+  frRail(order);frWear();frDetail();frPinsMake(order);frStrip();
+  $("fr-ht").innerHTML=frHeight().split(" · ").map(esc).join("<br>");$("fr-hchip").textContent=frHeight().split(" · ")[0];
+}
+function frRail(order){
+  $("fr-list").innerHTML=order.map(function(p,i){var it=byId[p.item],k=frKey(p),off=it?pct(it):0;
+    return '<li><button type="button" class="fr-row'+(FR.hide[k]?" is-hid":"")+'" data-frsel="'+esc(k)+'" aria-pressed="'+(k===FR.sel)+'"><span class="fr-pin">'+(i+1)+'</span>'+
+      (it&&photoBox(it,"fr-th",false)||'<span class="ph fr-th">'+(p.shape?'<svg viewBox="0 0 100 100" aria-hidden="true">'+use(p.shape,p.col,8,8,84)+'</svg>':"")+'</span>')+
+      '<span class="fr-rt"><span class="label">'+esc(frSlot(p))+'</span><b>'+esc(p.what)+'</b><span class="fr-rp">'+(it?'<b'+(off>0?' class="is-cut"':"")+'>'+money(cost(it))+'</b><span>'+esc(it.shop)+'</span>':'<span>'+(p.own?"Already his":"No longer listed")+'</span>')+'</span></span></button></li>';}).join("");
+}
+function frWear(){
+  var rows=frWearRows(frPieces()),box=$("fr-wear");
+  box.innerHTML='<span class="label">How it\'s worn</span>'+(rows.length?rows.map(function(r){return '<div class="fr-wr"><span>'+esc(r.l)+'</span>'+frSeg('data-frwear="'+r.k+'" data-v',r.o,r.cur,r.l)+'</div>';}).join(""):'<p class="msg">Nothing here opens, tucks or turns up.</p>')+
+    '<button class="linkbtn fr-ed" type="button" data-chared data-chared-fit="'+esc(FR.id)+'">Edit Dave (fitting room)</button>';
+  FR.rows=rows;
+}
+function frDetail(){
+  var f=fitById[FR.id],ps=effPieces(f),order=frOrder(ps),n=0,p=order.filter(function(q,i){if(frKey(q)===FR.sel){n=i+1;return true;}return false;})[0],box=$("fr-detail");
+  if(!p){box.innerHTML="";return;}
+  var it=byId[p.item],k=frKey(p),off=it?pct(it):0,hid=!!FR.hide[k];
+  var h='<div class="fr-dh"><span class="label">Piece '+n+' · '+esc(frSlot(p))+'</span><span class="fr-sz">'+(it?(it.insize===true?"In his size":(it.insize===false?"His size sold out":"")):"")+'</span></div>'+
+    '<div class="fr-dg">'+(it&&photoBox(it,"zbig",true)||'<span class="ph zbig"></span>')+'<div class="fr-di"><b class="fr-dn">'+esc(it?it.name:p.what)+'</b>'+
+    (it?'<span class="msg">'+esc(it.shop)+(it.kind==="preowned"?" · pre-owned, typical price":"")+'</span><span class="fr-dp"><b'+(off>0?' class="is-cut"':"")+'>'+money(cost(it))+'</b>'+(off>0?'<s>'+money(it.was)+'</s>':"")+'</span>'+(it.fabric?'<span class="msg">'+esc(it.fabric)+'</span>':""):'<span class="msg">'+(p.own?"Already his, nothing to buy.":"No longer listed. Choose a replacement in the builder.")+'</span>')+'</div></div>'+
+    '<div class="fr-da">'+(it?'<a class="btn" href="'+esc(it.url)+'" target="_blank" rel="noopener">Buy at '+esc(it.shop)+' ↗</a>'+saveBtn("i_"+it.id,""):"")+
+      '<button class="act" type="button" data-frhide="'+esc(k)+'" aria-pressed="'+hid+'">'+(hid?"Show on him":"Hide on him")+'</button></div>';
+  var orig=f.pieces.filter(function(q){return q.item===(p.orig||p.item);})[0],opts=it&&orig?swapOpts(f,orig).slice(0,4):[];
+  h+='<div class="fr-try"><div class="fr-rh"><span class="label">Try instead</span><span class="msg fr-hov">Hover to see it on him</span></div>'+
+    (opts.length?opts.map(function(x){var d=cost(x)-(it?cost(it):0);return '<button type="button" class="fr-sw" data-frswap="'+esc(k+"|"+x.id)+'">'+(photoBox(x,"fr-th",false)||'<span class="ph fr-th"></span>')+'<span class="fr-swt"><b>'+esc(x.name)+'</b><span class="msg">'+esc(x.shop)+(x.insize===true?" · in his size":"")+'</span></span><span class="fr-swp"><b>'+money(cost(x))+'</b><span class="'+(d<0?"is-less":"")+'">'+(Math.abs(d)<0.5?"same":(d<0?"−":"+")+money(Math.abs(d)))+'</span></span></button>';}).join(""):'<p class="msg">Nothing else of this kind to try.</p>')+
+    (p.orig?'<button class="linkbtn" type="button" data-frswap="'+esc(k+"|"+p.orig)+'">Put the original back</button>':"")+
+    '<button class="linkbtn" type="button" data-edit-fit="'+esc(f.id)+'">Change pieces in the builder</button></div>';
+  box.innerHTML=h;
+}
+/* the numbered pins on him; their places are worked out on the model and follow him as he turns */
+function frPinsMake(order){
+  $("fr-pins").innerHTML=order.map(function(p,i){if(!p.item)return "";return '<button type="button" class="fr-mpin" data-frsel="'+esc(frKey(p))+'" data-item="'+esc(p.item)+'" aria-label="'+esc((i+1)+": "+p.what)+'" hidden><span class="fr-pin">'+(i+1)+'</span><span class="fr-pl"></span></button>';}).join("");
+  frPinSel();
+}
+function frPinSel(){var order=frOrder(effPieces(fitById[FR.id]||{pieces:[]}));
+  Array.prototype.forEach.call(document.querySelectorAll("#fr [data-frsel]"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-frsel")===FR.sel));});
+  Array.prototype.forEach.call(document.querySelectorAll("#fr-pins .fr-mpin"),function(b){var on=b.getAttribute("data-frsel")===FR.sel,pl=b.querySelector(".fr-pl"),p=order.filter(function(q){return frKey(q)===FR.sel;})[0];
+    b.classList.toggle("on",on);pl.textContent=on&&p?p.what+" · "+frNote(p,FR.rows||[]):"";});
+  if(z3&&z3.on){var sp=FR.sel.charAt(0)==="_"?null:FR.sel;z3.select(sp);}
+}
+function frSelect(k){FR.sel=k;frPinSel();frDetail();}
+/* every frame: the pins, the height ruler, the turn bar and which camera buttons are lit */
+function frFrame(h){
+  var o=h.o,pins=(o&&o.pins)||{},sz=h.size();
+  Array.prototype.forEach.call(document.querySelectorAll("#fr-pins .fr-mpin"),function(b){var a=pins[b.getAttribute("data-item")];
+    if(!a||FR.hide[b.getAttribute("data-frsel")]){b.hidden=true;return;}var q=h.project(a.p,a.n);b.hidden=false;
+    b.style.transform="translate("+q.x.toFixed(1)+"px,"+q.y.toFixed(1)+"px)";b.classList.toggle("back",!q.front);});
+  var ru=$("fr-ruler");if(ru&&o){var T=window.THREE,tp=h.project(new T.Vector3(0,o.top||1.83,0)),bt=h.project(new T.Vector3(0,0,0));
+    ru.hidden=!(tp.y>4&&bt.y<sz.h-4)||sz.w<360;ru.style.top=tp.y+"px";ru.style.height=Math.max(0,bt.y-tp.y)+"px";}
+  var r=((h.rot()%(Math.PI*2))+Math.PI*2)%(Math.PI*2),tr=$("fr-turn");if(tr&&!FR.drag&&document.activeElement!==tr)tr.value=String(Math.round(r*180/Math.PI));
+  if(!FR.fm||Date.now()-FR.fm>150){FR.fm=Date.now();var fr=h.framing(),sp=h.spinning();
+    Array.prototype.forEach.call(document.querySelectorAll("#fr [data-frang]"),function(b){var a=Number(b.getAttribute("data-frang")),d=Math.abs(((r-a+Math.PI*3)%(Math.PI*2))-Math.PI);b.setAttribute("aria-pressed",String(!sp&&d<0.2));});
+    Array.prototype.forEach.call(document.querySelectorAll("#fr [data-frcam]"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-frcam")===fr));});
+    var sb=document.querySelector("#fr [data-frspin]");if(sb)sb.setAttribute("aria-pressed",String(sp));}
+}
+function frPick(item){if(!item)return;var f=fitById[FR.id];if(!f)return;var p=frOrder(effPieces(f)).filter(function(q){return q.item===item;})[0];if(p){frSelect(frKey(p));if(FR.tab==="dave")frTab("pieces");}}
+/* the strip of outfits: the ones in view on the Outfits page, round this one */
+function frStrip(){
+  var L=FR.list,i=L.indexOf(FR.id),a=Math.max(0,i-8),b=Math.min(L.length,a+17);a=Math.max(0,b-17);
+  var ids=i<0?[FR.id]:L.slice(a,b);
+  $("fr-film").innerHTML=ids.map(function(id){var f=fitById[id];if(!f)return "";var on=id===FR.id;
+    return '<button type="button" role="listitem" class="fr-fo" data-zoom="'+esc(id)+'"'+(on?' aria-current="true"':"")+'><svg viewBox="0 0 240 490" aria-hidden="true">'+figOut(effPieces(f))+'</svg><span><b>'+esc(f.name)+'</b><span>'+money(fitSum(effPieces(f)).tot)+'</span></span></button>';}).join("");
+  var cur=document.querySelector('#fr-film [aria-current="true"]'),fm=$("fr-film");if(cur&&fm)fm.scrollLeft=Math.max(0,cur.offsetLeft-(fm.clientWidth-cur.offsetWidth)/2);
+  hydrate3D();
+  Array.prototype.forEach.call(document.querySelectorAll("#fr [data-frstep]"),function(bt){var d=Number(bt.getAttribute("data-frstep"));bt.disabled=i<0||!L[i+d];});
+}
+function frStep(d){var i=FR.list.indexOf(FR.id),n=FR.list[i+d];if(i>=0&&n)openZoom(n);}
+function frTab(t){FR.tab=t;var fr=$("fr");if(fr)fr.setAttribute("data-tab",t);Array.prototype.forEach.call(document.querySelectorAll("#fr [data-frtab]"),function(b){b.setAttribute("aria-selected",String(b.getAttribute("data-frtab")===t));});}
+/* 3D model, photos to scale, both side by side, or the drawing */
+function frModeSet(m){
+  if(m==="0"&&!FIG.allow2d)m="3";var fr=$("fr");if(!fr)return;fr.setAttribute("data-mode",m);
+  Array.prototype.forEach.call(document.querySelectorAll("#fr [data-zlay]"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-zlay")===m));b.hidden=b.getAttribute("data-zlay")==="0"&&!FIG.allow2d;});
+  var f=fitById[FR.id];if(!f)return;var ps=frPieces();
+  if(m==="1"||m==="s")$("fr-lay").innerHTML=flatLay(frOrder(effPieces(f)));
+  if(m==="0"){ZIPM=FR.wear.zip;TUCKM=FR.wear.tuck;TURNM=FR.wear.turn;var sv;try{sv=figure(ps);}finally{ZIPM="";TUCKM="";TURNM="";}
+    $("fr-fig").innerHTML='<svg viewBox="0 0 268 486" role="img" aria-label="'+esc("Drawing of the outfit: "+ps.map(function(p){return p.what;}).join(", "))+'"><g transform="translate(14,4)">'+sv+'</g></svg>';}
+  if(m==="3"||m==="s")frStart3D();else{if(z3&&z3.on)FR.view=z3.view();stop3D();}
+}
+function frStart3D(){
+  var box=$("fr-3d");if(!box)return;var msg=box.querySelector(".zf-3dmsg");
+  loadThree().then(function(){
+    if(!$("fr-3d")||!$("zoom").open)return;var ps=frPieces();
+    if(z3&&z3.box===box&&z3.on){z3.wear(FR.wear);z3.update(ps);frPinSel();return;}
+    stop3D();
+    try{z3=Live3D(box,ps,{bar:false,spin:false,onPick:frPick,onFrame:frFrame,wear:FR.wear});z3.box=box;if(FR.view)z3.setView(FR.view);if(msg)msg.hidden=true;frPinSel();
+      z3.onLost=function(){stop3D();live3DFail(box,msg,frStart3D);};}
+    catch(e){z3=null;live3DFail(box,msg,frStart3D);}
+  },function(){if(msg)msg.textContent="The 3D model could not load. Check the connection and try again.";});
+}
+/* after a change to what he wears: the model, the rows, the pins and the drawing */
+function frRefresh(keepSel){var f=fitById[FR.id];if(!f)return;if(!keepSel)FR.sel="";frFill();var m=$("fr").getAttribute("data-mode");
+  if((m==="3"||m==="s")&&z3&&z3.on){z3.wear(FR.wear);z3.update(frPieces());frPinSel();}else frModeSet(m);}
+/* hovering a piece to try puts it on him for a moment */
+function frPreview(sw){clearTimeout(FR.pt);var key=sw?sw.k+"|"+sw.id:"";if(key===FR.prev)return;
+  FR.pt=setTimeout(function(){FR.prev=key;if(z3&&z3.on)z3.update(frPieces(sw||null));},sw?160:240);}
+function stop3D(){if(z3){if(z3.on&&z3.box&&z3.box.id==="fr-3d")FR.view=z3.view();z3.stop();z3=null;}}
+/* The large view of one outfit: the fitting room. */
 function openZoom(id){
   var f=fitById[id],dlg=$("zoom");if(!f||!dlg)return;var was=dlg.open;zoomId=id;if(!was)zoomFrom=document.activeElement;
   try{if(id.charAt(0)!=="_"&&location.hash!==fitHash(id))history[was&&history.state&&history.state.fit?"replaceState":"pushState"]({fit:id},"",fitHash(id));}catch(e){}
-  var ps=effPieces(f),seen={},order=ps.filter(function(p){if(seen[p.item])return false;seen[p.item]=1;return true;}),t=fitSum(ps);
-  var mode=order.some(function(p){return hasPh(byId[p.item]);})?"1":(figMode()==="3d"?"3":"0");try{var lv=localStorage.getItem("dw-zlay");if(lv==="0"||lv==="3")mode=figMode()==="3d"?"3":"0";}catch(e){}
-  if(!FIG.allow2d&&mode==="0")mode="3";
-  $("zoom-body").innerHTML='<div class="zoom-head"><span class="label">'+esc(f.styles.map(function(s){return label(STYLE,s);}).join(" · "))+'</span><h2 id="zoom-h">'+esc(f.name)+'</h2>'+(f.note?'<p>'+esc(f.note)+'</p>':"")+'<p class="zoom-tot"><b>'+money(t.tot)+'</b> for the whole outfit</p>'+(shareable()&&id.charAt(0)!=="_"?'<p class="zoom-link"><button class="linkbtn" type="button" data-fitlink="'+esc(f.id)+'">Copy a link to this outfit</button> <span class="msg" aria-live="polite"></span></p>':"")+'</div>'+
-    '<div class="zoom-grid"><div class="zoom-fig" data-mode="'+mode+'"><div class="zoom-tabs" role="group" aria-label="How to show the outfit"><button type="button" class="act" data-zlay="1" aria-pressed="'+(mode==="1")+'">Real photos, to scale</button>'+(FIG.allow2d?'<button type="button" class="act" data-zlay="0" aria-pressed="'+(mode==="0")+'">Drawing (2D)</button>':"")+'<button type="button" class="act" data-zlay="3" aria-pressed="'+(mode==="3")+'">3D model</button></div><div class="zf-lay">'+flatLay(order)+'</div><div class="zf-3d"><p class="msg zf-3dmsg">Loading the 3D model…</p></div><button class="linkbtn zf-3dedit" type="button" data-chared data-chared-fit="'+esc(f.id)+'">Edit Dave (fitting room)</button><div class="zf-fig"><svg viewBox="0 0 268 486" role="img" aria-label="'+esc("Drawing of the outfit: "+order.map(function(p){return p.what;}).join(", "))+'"><g transform="translate(14,4)">'+figure(ps)+'</g></svg></div></div>'+
-    '<ol class="zoom-ph">'+order.map(function(p,i){var it=byId[p.item];if(!it)return '<li><span class="zn">'+(i+1)+'</span><span class="zi"><b>'+esc(p.what)+'</b><small>'+(p.own?"Already his, nothing to buy":"No longer listed")+'</small></span></li>';
-      return '<li data-zitem="'+esc(p.item)+'"><span class="zn">'+(i+1)+'</span>'+(photoBox(it,"zbig",true)||'<span class="ph zbig"></span>')+'<span class="zi"><b>'+esc(p.what)+'</b><a href="'+esc(it.url)+'" target="_blank" rel="noopener">'+esc(it.name)+' ↗</a><small>'+esc(it.shop)+(it.insize===true?" · in his size":"")+(pct(it)>0?" · "+pct(it)+"% off":"")+'</small><b class="zp">'+money(cost(it))+'</b></span></li>';}).join("")+'</ol></div>';
+  if(!was||!$("fr")){frShell();FR.view=null;}
+  if(!was||FR.list.indexOf(id)<0){var L=state.view==="fits"?fitList().map(function(x){return x.id;}):[];FR.list=L.indexOf(id)>=0?L:fits.map(function(x){return x.id;});}
+  if(FR.id!==id){FR.hide={};FR.wear.zip="";FR.wear.tuck="";FR.wear.turn="";FR.sel="";FR.prev="";}
+  FR.id=id;frFill();frTab(FR.tab||"pieces");
   if(typeof dlg.showModal==="function"){if(!dlg.open)dlg.showModal();}else{dlg.setAttribute("open","");}
-  if(mode==="3")show3D(ps);
-  trueFor(order,function(){if(dlg.open&&zoomId===id){var fg=document.querySelector("#zoom-body .zf-fig g");if(fg)fg.innerHTML=figure(effPieces(f));if(z3&&z3.on)show3D(effPieces(f));}});
+  var m="3";try{var lv=localStorage.getItem("dw-zlay");if(lv==="1"||lv==="s"||lv==="0")m=lv;}catch(e){}
+  frModeSet(m);
+  var order=frOrder(effPieces(f));
+  trueFor(order,function(){if(dlg.open&&zoomId===id){var md=$("fr")&&$("fr").getAttribute("data-mode");if(md==="0"||md==="1"||md==="s")frModeSet(md);else if(z3&&z3.on){z3.update(frPieces());}}});
 }
 var zoomId="";
+/* ---- Compare: up to four outfits side by side, turning together ----
+   Each column is a still render from the angle chosen (cached, made one at a time by the still renderer); tapping a
+   column makes it the one live 3D view, which turns with the others. */
+var CMP={ids:[],ang:0,spin:false,live:"",tm:0};
+var CMPA=[0,0.785,1.571,2.356,3.1416,3.927,4.712,5.498];
+function cmpShortlist(){var ks={};Object.keys(saved||{}).concat(Object.keys(local.saved||{})).forEach(function(k){if(k.indexOf("o_")===0&&savedOf(k))ks[k.slice(2)]=1;});return Object.keys(ks).filter(function(id){return fitById[id];});}
+function cmpAdd(id){if(!fitById[id])return;if(CMP.ids.indexOf(id)<0){if(CMP.ids.length>=4)CMP.ids.shift();CMP.ids.push(id);}cmpOpen();}
+function cmpOpen(){var d=$("cmp");if(!d)return;var z=$("zoom");if(z&&z.open)closeZoom();if(typeof d.showModal==="function"){if(!d.open)d.showModal();}else d.setAttribute("open","");cmpRender();}
+function cmpClose(){cmpLive("");clearInterval(CMP.tm);CMP.tm=0;CMP.spin=false;var d=$("cmp");if(d&&d.open){if(d.close)d.close();else d.removeAttribute("open");}}
+function cmpWx(){var fs=CMP.ids.map(function(id){return fitById[id];}).filter(Boolean);if(fs.length<2)return "";
+  var common=WX.slice(1).map(function(w){return w[0];}).filter(function(w){return fs.every(function(f){return f.wx.indexOf(w)>=0;});});
+  return common.length?"Same weather: "+common.map(function(w){return label(WX,w).toLowerCase();}).join(", "):"Made for different weather";}
+function cmpRender(){
+  var cols=CMP.ids.map(function(id){var f=fitById[id];if(!f)return "";var ps=effPieces(f),t=fitSum(ps),its=ps.filter(function(p){return byId[p.item];}),ins=its.filter(function(p){return byId[p.item].insize===true;}).length;
+    return '<section class="cmp-col" aria-label="'+esc(f.name)+'"><div class="cmp-stage"><button type="button" class="cmp-pic" data-cmplive="'+esc(id)+'" aria-label="'+esc("Turn "+f.name+" in 3D")+'"><img alt="" data-cmpimg="'+esc(id)+'"><span class="msg">Loading…</span></button><div class="cmp-3d" data-cmp3d="'+esc(id)+'"></div>'+
+      '<button type="button" class="cmp-x" data-cmprm="'+esc(id)+'" aria-label="'+esc("Take "+f.name+" out")+'">✕</button></div>'+
+      '<div class="cmp-info"><button type="button" class="linkbtn cmp-name" data-zoom="'+esc(id)+'">'+esc(f.name)+'</button><div class="cmp-row"><b>'+money(t.tot)+'</b><span>'+ins+' of '+its.length+' in his size</span></div><span class="msg">'+esc(f.styles.map(function(s){return label(STYLE,s);}).join(", ")+(f.wx.length?" · "+f.wx.map(function(w){return label(WX,w).toLowerCase();}).join(", "):""))+'</span></div></section>';}).join("");
+  var opts=cmpShortlist().concat((state.view==="fits"?fitList():fits).slice(0,120).map(function(f){return f.id;})).filter(function(id,i,a){return a.indexOf(id)===i&&CMP.ids.indexOf(id)<0;});
+  var add=CMP.ids.length<4?'<section class="cmp-add"><span class="cmp-plus" aria-hidden="true">+</span><label for="cmp-pick">Add an outfit</label><select id="cmp-pick"><option value="">Choose…</option>'+
+    opts.map(function(id){return '<option value="'+esc(id)+'">'+esc(fitById[id].name)+(cmpShortlist().indexOf(id)>=0?" (shortlist)":"")+'</option>';}).join("")+'</select></section>':"";
+  $("cmp-cols").innerHTML=cols+add;$("cmp-cols").style.setProperty("--n",String(Math.max(1,CMP.ids.length+(add?1:0))));
+  $("cmp-wx").textContent=cmpWx();$("cmp-wx").hidden=!cmpWx();
+  $("cmp-empty").hidden=CMP.ids.length>0;
+  cmpSync();cmpStills();
+  if(CMP.live&&CMP.ids.indexOf(CMP.live)>=0){var l=CMP.live;CMP.live="";cmpLive(l);}else CMP.live="";
+}
+function cmpSync(){var a=CMPA.indexOf(CMP.ang);
+  Array.prototype.forEach.call(document.querySelectorAll("#cmp [data-cmpang]"),function(b){b.setAttribute("aria-pressed",String(!CMP.spin&&Number(b.getAttribute("data-cmpang"))===CMP.ang));});
+  var sb=document.querySelector("#cmp [data-cmpspin]");if(sb)sb.setAttribute("aria-pressed",String(CMP.spin));return a;}
+/* the stills at the current angle (the live column turns itself) */
+function cmpStills(){
+  if(!CMP.ids.length)return;loadThree().then(function(){CMP.ids.forEach(function(id){var f=fitById[id];if(!f)return;var ps=effPieces(f),ang=CMP.ang;
+    function one(){snap3D(ps,snapKey(ps),ang,true).then(function(url){if(ang!==CMP.ang)return;var im=document.querySelector('#cmp [data-cmpimg="'+id+'"]');if(im&&url){im.src=url;var m=im.nextElementSibling;if(m)m.hidden=true;}});}
+    one();trueFor(ps,one);});},function(){});}
+/* one column live at a time */
+function cmpLive(id){
+  if(z3&&z3.cmp){z3.stop();z3=null;}Array.prototype.forEach.call(document.querySelectorAll("#cmp .cmp-col"),function(c){c.classList.remove("live");});
+  CMP.live=id||"";if(!id)return;var box=document.querySelector('#cmp [data-cmp3d="'+id+'"]'),f=fitById[id];if(!box||!f)return;
+  loadThree().then(function(){if(CMP.live!==id||!$("cmp").open)return;stop3D();try{z3=Live3D(box,effPieces(f),{bar:false,spin:CMP.spin});z3.cmp=true;z3.setRot(CMP.ang);if(CMP.spin)z3.spinning(true);box.closest(".cmp-col").classList.add("live");}catch(e){z3=null;}},function(){});}
+function cmpAngle(a){CMP.ang=a;CMP.spin=false;clearInterval(CMP.tm);CMP.tm=0;cmpSync();cmpStills();if(z3&&z3.cmp)z3.turnTo(a);}
+/* Turn: the stills step round together (each angle is rendered once, then cached), the live one spins */
+function cmpSpin(){CMP.spin=!CMP.spin;clearInterval(CMP.tm);CMP.tm=0;cmpSync();if(z3&&z3.cmp)z3.spinning(CMP.spin);
+  if(CMP.spin)CMP.tm=setInterval(function(){var i=CMPA.indexOf(CMP.ang);CMP.ang=CMPA[(i+1)%CMPA.length];cmpStills();},900);}
+document.addEventListener("click",function(e){var b,t=e.target;
+  if((b=t.closest("[data-cmpadd]"))&&b.getAttribute("data-cmpadd")){cmpAdd(b.getAttribute("data-cmpadd"));return;}
+  if(!t.closest||!t.closest("#cmp"))return;
+  if(t.id==="cmp"||t.closest("[data-cmpclose]")){cmpClose();return;}
+  if((b=t.closest("[data-cmprm]"))){var id=b.getAttribute("data-cmprm");CMP.ids=CMP.ids.filter(function(x){return x!==id;});if(CMP.live===id)cmpLive("");cmpRender();return;}
+  if((b=t.closest("[data-cmplive]"))){cmpLive(b.getAttribute("data-cmplive"));return;}
+  if((b=t.closest("[data-cmpang]"))){cmpAngle(Number(b.getAttribute("data-cmpang")));return;}
+  if((b=t.closest("[data-cmpspin]"))){cmpSpin();return;}
+  if((b=t.closest("#cmp [data-zoom]"))){e.stopPropagation();cmpClose();openZoom(b.getAttribute("data-zoom"));return;}
+},true);
+document.addEventListener("change",function(e){if(e.target&&e.target.id==="cmp-pick"&&e.target.value){var v=e.target.value;CMP.ids.push(v);cmpRender();}});
+(function(){var d=$("cmp");if(!d)return;d.addEventListener("close",function(){cmpLive("");clearInterval(CMP.tm);CMP.tm=0;CMP.spin=false;});})();
+/* the fitting room's own buttons */
+document.addEventListener("click",function(e){var b,t=e.target;if(!t.closest||!t.closest("#fr"))return;
+  if((b=t.closest("[data-frsel]"))){frSelect(b.getAttribute("data-frsel"));if(b.classList.contains("fr-mpin")&&FR.tab==="dave")frTab("pieces");return;}
+  if((b=t.closest("[data-frwear]"))){var k=b.getAttribute("data-frwear"),v=b.getAttribute("data-v");FR.wear[k]=v;frWear();frPinSel();var md=$("fr").getAttribute("data-mode");if(z3&&z3.on)z3.wear(FR.wear);else if(md==="0")frModeSet("0");return;}
+  if((b=t.closest("[data-frlight]"))){FR.wear.light=b.getAttribute("data-frlight");try{localStorage.setItem("dw-light",FR.wear.light);}catch(x){}$("fr").setAttribute("data-light",FR.wear.light);
+    Array.prototype.forEach.call(document.querySelectorAll("#fr [data-frlight]"),function(x){x.setAttribute("aria-pressed",String(x===b));});if(z3&&z3.on)z3.wear(FR.wear);return;}
+  if((b=t.closest("[data-frang]"))){if(z3&&z3.on)z3.turnTo(Number(b.getAttribute("data-frang")));return;}
+  if((b=t.closest("[data-frcam]"))){if(z3&&z3.on)z3.frameTo(b.getAttribute("data-frcam"));return;}
+  if((b=t.closest("[data-frspin]"))){if(z3&&z3.on)z3.spinning(!z3.spinning());return;}
+  if((b=t.closest("[data-frstep]"))){frStep(Number(b.getAttribute("data-frstep")));return;}
+  if((b=t.closest("[data-frtab]"))){frTab(b.getAttribute("data-frtab"));return;}
+  if((b=t.closest("[data-frhide]"))){var hk=b.getAttribute("data-frhide");if(FR.hide[hk])delete FR.hide[hk];else FR.hide[hk]=1;frRefresh(true);return;}
+  if((b=t.closest("[data-frswap]"))){var sw=b.getAttribute("data-frswap").split("|"),f=fitById[FR.id];if(!f)return;var cur=frOrder(effPieces(f)).filter(function(q){return frKey(q)===sw[0];})[0];if(!cur)return;
+    var orig=cur.orig||cur.item;swaps[f.id]=swaps[f.id]||{};if(sw[1]===orig)delete swaps[f.id][orig];else swaps[f.id][orig]=sw[1];FR.prev="";clearTimeout(FR.pt);
+    FR.sel=sw[1];frRefresh(true);var fe=$("fit-"+f.id);if(fe)fe.outerHTML=fitCard(f);syncMarks();return;}
+});
+document.addEventListener("mouseover",function(e){var b=e.target.closest&&e.target.closest("#fr [data-frswap]");if(!b)return;var sw=b.getAttribute("data-frswap").split("|");frPreview({k:sw[0],id:sw[1]});});
+document.addEventListener("mouseout",function(e){var b=e.target.closest&&e.target.closest("#fr [data-frswap]");if(!b||(e.relatedTarget&&b.contains(e.relatedTarget)))return;frPreview(null);});
+document.addEventListener("focusin",function(e){var b=e.target.closest&&e.target.closest("#fr [data-frswap]");if(b){var sw=b.getAttribute("data-frswap").split("|");frPreview({k:sw[0],id:sw[1]});}});
+document.addEventListener("focusout",function(e){var b=e.target.closest&&e.target.closest("#fr [data-frswap]");if(b)frPreview(null);});
+/* ← and → flip outfits (unless the model or the turn bar has the keys), and a swipe across the title on a phone */
+document.addEventListener("keydown",function(e){var d=$("zoom");if(!d||!d.open||!$("fr")||(e.key!=="ArrowLeft"&&e.key!=="ArrowRight"))return;var t=e.target;
+  if(t.closest&&(t.closest(".zf-3d")||t.closest("input,select,textarea,[role=tab],.fr-seg,.fr-dock")))return;frStep(e.key==="ArrowLeft"?-1:1);e.preventDefault();});
+(function(){var sx=null,sy=0;document.addEventListener("touchstart",function(e){var h=e.target.closest&&e.target.closest("#fr .fr-head,#fr .fr-tabs");if(!h||e.touches.length!==1){sx=null;return;}sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+  document.addEventListener("touchend",function(e){if(sx==null)return;var c=e.changedTouches[0],dx=c.clientX-sx,dy=c.clientY-sy;sx=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)frStep(dx<0?1:-1);},{passive:true});})();
 function fitCard(f){
   var nums={},order=[],ps=effPieces(f),sw=!!swaps[f.id]&&Object.keys(swaps[f.id]).length>0;
   ps.forEach(function(p){if(!(p.item in nums)){order.push(p);nums[p.item]=order.length;}});
@@ -5456,7 +6067,7 @@ function fitCard(f){
     '<div class="fit-total"><span>'+(t.complete?"Whole outfit":"Pieces still listed")+'</span><span><b>'+money(t.tot)+'</b>'+(save>=1?' <span class="cut">'+money(save)+' below full price</span>':"")+'</span></div>'+
     (t.bought?'<p class="left">'+t.bought+' of '+t.n+' bought. '+(t.left>0?money(t.left)+' to finish the outfit.':'Nothing left to buy.')+'</p>':"")+
     (sw?'<p class="swapped">Changed on this page. <button class="linkbtn" type="button" data-save-swap="'+esc(f.id)+'">Save as his own outfit</button> · <button class="linkbtn" type="button" data-unswap="'+esc(f.id)+'">Undo the swaps</button></p>':"")+
-    '<div class="fit-acts">'+saveBtn("o_"+f.id,"outfit")+'<button class="act" type="button" data-edit-fit="'+esc(f.id)+'">Change pieces</button><button class="act" type="button" data-zoom="'+esc(f.id)+'">View large</button></div>'+
+    '<div class="fit-acts">'+saveBtn("o_"+f.id,"outfit")+'<button class="act" type="button" data-edit-fit="'+esc(f.id)+'">Change pieces</button><button class="act" type="button" data-zoom="'+esc(f.id)+'">View large</button><button class="act" type="button" data-cmpadd="'+esc(f.id)+'">Compare</button></div>'+
     (f.look?'<p class="fit-photos">Real photos of this kind of outfit: <a href="https://www.google.com/search?udm=2&amp;q='+q+'" target="_blank" rel="noopener">Google Images</a> · <a href="https://www.pinterest.co.uk/search/pins/?q='+q+'" target="_blank" rel="noopener">Pinterest</a></p>':"")+
   '</div></article>';
 }
@@ -6381,9 +6992,7 @@ document.addEventListener("click",function(e){
   if((b=t.closest("[data-fitlink]"))){var lu=location.href.split("#")[0]+fitHash(b.getAttribute("data-fitlink")),lm=b.parentNode.querySelector(".msg");
     var said=function(ok){if(lm)lm.textContent=ok?"Copied.":lu;};try{navigator.clipboard.writeText(lu).then(function(){said(true);},function(){said(false);});}catch(e){said(false);}return;}
   if((b=t.closest("[data-zoom]"))){openZoom(b.getAttribute("data-zoom"));return;}
-  if((b=t.closest("[data-zlay]"))){var md=b.getAttribute("data-zlay"),zf=b.closest(".zoom-fig");if(zf){zf.setAttribute("data-mode",md);zf.querySelectorAll("[data-zlay]").forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});}
-    if(md==="3"&&fitById[zoomId]){show3D(effPieces(fitById[zoomId]));}else{stop3D();}
-    try{localStorage.setItem("dw-zlay",md);}catch(e){}return;}
+  if((b=t.closest("[data-zlay]"))){var md=b.getAttribute("data-zlay");frModeSet(md);try{localStorage.setItem("dw-zlay",md);}catch(e){}return;}
   if((b=t.closest("[data-goto-fit]"))){gotoFit(b.getAttribute("data-goto-fit"));return;}
   if((b=t.closest("[data-edit-fit]"))){var f=fitById[b.getAttribute("data-edit-fit")];if(f){loadIntoBuilder(f.pieces,f.name);}return;}
   if((b=t.closest("[data-edit-mine]"))){var m=mineAll().filter(function(x){return x.id===b.getAttribute("data-edit-mine");})[0];if(m){loadIntoBuilder(m.pieces,"");$("b-name").value=m.name;}return;}
@@ -6438,7 +7047,7 @@ syncFig();
 /* ---- Edit Dave: the character editor ---- */
 /* slider rows: -1 to 1, described in words either side of average */
 function slF(lo,hi){return function(v){v=Number(v)||0;return Math.abs(v)<0.04?"Average":(v<0?lo:hi)+" "+Math.round(Math.abs(v)*100)+"%";};}
-function SL(g,k,l,lo,hi){return {g:g,k:k,l:l,t:"sl",min:-1,max:1,step:0.05,f:slF(lo,hi)};}
+function SL(g,k,l,lo,hi){return {g:g,k:k,l:l,t:"sl",min:-1,max:1,step:0.05,f:slF(lo,hi),a:lo,b:hi};}
 /* Every slider has his saved base (CHAR_DEF) in the middle. Its ends still reach the full range either way (wider
    where his base sits near one end), and the stored value is the real one, so saves stay as they were. */
 function ceRng(c){var lo=c.t==="sl"?-1:c.min,hi=c.t==="sl"?1:c.max,b=Number(CHAR_DEF[c.k]);if(isNaN(b))b=(lo+hi)/2;
@@ -6547,45 +7156,121 @@ function ceMeas(){if(!BODY)return "";var b=bodySecs(),t=b.torso,kH=(Number(CHAR.
   function fmt(m){return Math.round(m*100/2.54)+"in";}
   var PW=propWarp(BODY.lm.chin),kF=(Number(CHAR.height)||183)/183*(PW?1.79/PW.W(1.79):1),leg=(PW?PW.W(BODY.lm.crotch):BODY.lm.crotch)*kF-0.03;
   return "Chest about "+fmt(circ(1.3))+" · waist about "+fmt(wst())+" · hips about "+fmt(circ(0.9))+" · inside leg about "+fmt(leg)+". Rough figures from the model, a guide only.";}
-var ceSaved=null,cePrev=null,ceT=0,cePieces=null,ceTab="body",ceHist=[],ceLastPush=0,ceFit=-1,ceWear="under",ceOut=[];
+var ceSaved=null,cePrev=null,ceT=0,cePieces=null,ceTab="size",ceHist=[],ceLastPush=0,ceFit=-1,ceWear="under",ceOut=[];
 /* the fitting room: Dave in plain grey boxer briefs, nothing else, so his build is easy to judge */
 var UNDERWEAR=[{item:"",shape:"shorts",col:"grey",what:"Plain boxer briefs",fixed:true,under:true}];
 function ceWearSet(w,msg){ceWear=w==="outfit"?"outfit":"under";cePieces=ceWear==="under"?UNDERWEAR:ceOut;
   Array.prototype.forEach.call(document.querySelectorAll("#chared [data-cewear]"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-cewear")===ceWear));});
   if(cePrev&&cePrev.on)cePrev.update(cePieces);
   if(msg)$("ce-msg").textContent=ceWear==="under"?"Fitting room: Dave in plain underwear.":"Showing him in “"+((fits[ceFit]||{}).name||"an outfit")+"”.";}
-var CE_ZOOM={body:0,face:1,hair:0.82};
-function ceForm(){
-  Array.prototype.forEach.call(document.querySelectorAll("#chared [data-cet]"),function(b){b.setAttribute("aria-selected",String(b.getAttribute("data-cet")===ceTab));});
-  $("ce-form").innerHTML=CE.filter(function(c){return c.g===ceTab&&(!c.when||c.when());}).map(function(c){
-    if(c.h)return '<h3 class="ce-sub">'+esc(c.h)+'</h3>';
-    if(c.t==="meas")return '<p class="msg ce-meas" id="ce-meas">'+esc(ceMeas())+'</p>';
-    if(c.t==="prop")return '<p class="msg ce-meas" id="ce-prop">'+esc(ceProp())+'</p><div class="ce-row"><span class="label"></span><div class="ce-opts"><button type="button" class="chip" data-ceprop="his">His proportions</button><button type="button" class="chip" data-ceprop="avg">Average man</button></div></div>';
-    if(c.t==="preset")return '<div class="ce-row"><span class="label" id="ce-l-pre">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-pre">'+c.o.map(function(o){return '<button type="button" class="chip" data-ceset="'+o[0]+'">'+esc(o[1])+'</button>';}).join("")+'</div></div>';
-    if(c.t==="sl"||c.t==="range"){var sv=CHAR[c.k],dv=CHAR_DEF[c.k];return '<div class="ce-row"><label class="label" for="ce-r-'+c.k+'">'+esc(c.l)+'</label><div class="ce-opts"><input type="range" id="ce-r-'+c.k+'" data-cer="'+c.k+'" min="-1" max="1" step="0.01" value="'+cePos(c,sv)+'"><span class="ce-val" id="ce-v-'+c.k+'">'+esc(ceLabel(c,sv))+'</span><button type="button" class="linkbtn ce-rs" data-cers="'+c.k+'"'+(Math.abs((Number(sv)||0)-(Number(dv)||0))<0.001?' hidden':'')+'>Reset</button></div></div>';}
-    var v=CHAR[c.k],h='<div class="ce-row"><span class="label" id="ce-l-'+c.k+'">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-'+c.k+'">';
-    if(c.t==="seg"){h+=c.o.map(function(o){return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="'+o[0]+'" aria-pressed="'+(v===o[0])+'">'+esc(o[1])+'</button>';}).join("");}
-    else if(c.t==="sw"){h+=c.o.map(function(o){if(o==="")return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="" aria-pressed="'+(!v)+'">Match hair</button>';return '<button type="button" class="ce-sw" style="background:'+o+'" data-ce="'+c.k+'" data-cv="'+o+'" aria-pressed="'+(String(v).toLowerCase()===o)+'" aria-label="'+esc(c.l+" "+o)+'"></button>';}).join("")+'<input type="color" id="ce-c-'+c.k+'" data-cec="'+c.k+'" value="'+esc(v||browColor())+'" aria-label="'+esc(c.l+", any colour")+'">';}
-    return h+'</div></div>';}).join("");
-  $("ce-undo").disabled=!ceHist.length;
-}
-function ceApply(){clearTimeout(ceT);ceT=setTimeout(function(){if(cePrev&&cePrev.on&&cePieces)cePrev.update(cePieces);var me=$("ce-meas");if(me)me.textContent=ceMeas();var pr=$("ce-prop");if(pr)pr.textContent=ceProp();},120);}
+function ceApply(){ceDirty();clearTimeout(ceT);ceT=setTimeout(function(){if(cePrev&&cePrev.on&&cePieces)cePrev.update(cePieces);ceLinesMake();var me=$("ce-meas");if(me)me.outerHTML=ceMeasCard();var pr=$("ce-prop");if(pr)pr.textContent=ceProp();},120);}
 function cePush(force){var now=Date.now();if(force||now-ceLastPush>700){ceHist.push(Object.assign({},CHAR));if(ceHist.length>40)ceHist.shift();}ceLastPush=now;$("ce-undo").disabled=false;}
 function ceSet(k,v,drag){if(CHAR[k]===v)return;cePush(!drag);CHAR[k]=v;if(k==="hairShade")CHAR.hair=brownAt(v);var c=CE.filter(function(x){return x.k===k;})[0];
   if(c&&c.t!=="range"&&c.t!=="sl"){if(k==="glasses"||k==="tache"||k==="hairStyle"){ceForm();}else{Array.prototype.forEach.call(document.querySelectorAll('[data-ce="'+k+'"]'),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-cv")===String(v).toLowerCase()));});var ci=$("ce-c-"+k);if(ci&&/^#/.test(v))ci.value=v;}}
-  else if(c){$("ce-v-"+k).textContent=ceLabel(c,v);var rs=document.querySelector('[data-cers="'+k+'"]');if(rs)rs.hidden=Math.abs((Number(v)||0)-(Number(CHAR_DEF[k])||0))<0.001;}
+  else if(c){var vl=$("ce-v-"+k);if(vl)vl.textContent=ceLabel(c,v);ceSlSync(k);}
   $("ce-msg").textContent="";ceApply();}
+/* Edit Dave's sections: the essentials first (body type, then six sliders, the rest under Fine-tune), then the parts of
+   him that are changed less often. Each lists CE keys ("h:" is a sub-heading). */
+var CES=[
+  {k:"type",l:"Body type",items:["_preset","_meas"]},
+  {k:"size",l:"Size and shape",main:["height","weight","muscle","shoulderW","waistW","legLen"],fine:["chest","belly","hips","arms","legs","neckW","shoulderSlope","torsoDepth"]},
+  {k:"prop",l:"Proportions",items:["legLen","torsoLen","armLen","neckLen","headSize","_prop"]},
+  {k:"fit",l:"Clothes fit",items:["clothFit","h:How clothes fit is a guide to the cut: closer or looser than the listing's own fit."]},
+  {k:"face",l:"Face",items:["faceW","jaw","chin","noseSize","lips","ears","eyeSize","smile","h:Brows","browCol","browThick","browY","browArch","browTilt","browLen","h:Glasses","glasses","glassCol"]},
+  {k:"tache",l:"Moustache and beard",items:["tache","tacheCol","tacheY","tacheZ","tacheW","tacheLen","tacheDen","tacheDroop","h:Beard","beard"]},
+  {k:"hair",l:"Hair",items:CE.filter(function(c){return c.g==="hair";}).map(function(c){return c.h?"h:"+c.h:c.k;})},
+  {k:"skin",l:"Skin and colouring",items:["skin","eyes","freckles"]}];
+var CE_ZOOM={face:1,tache:1,hair:0.82,skin:0.55};
+function ceDef(k){return CE.filter(function(c){return c.k===k;})[0];}
+function ceKeys(sec){return (sec.items||[]).concat(sec.main||[],sec.fine||[]).filter(function(k){return k&&k.charAt(0)!=="_"&&k.indexOf("h:")!==0;});}
+function ceDiff(k){var a=CHAR[k],b=ceSaved?ceSaved[k]:CHAR_DEF[k];return typeof a==="number"||typeof b==="number"?Math.abs((Number(a)||0)-(Number(b)||0))>0.0005:String(a||"")!==String(b||"");}
+function ceDirty(){var n=Object.keys(CHAR_DEF).filter(ceDiff).length,el=$("ce-n");if(el)el.textContent=n?n+(n===1?" unsaved change":" unsaved changes"):"";
+  CES.forEach(function(s){var b=document.querySelector('#chared [data-cet="'+s.k+'"] .ce-bdg');if(b){var m=ceKeys(s).filter(ceDiff).length;b.textContent=m||"";b.hidden=!m;}});
+  var pk=cePreset();Array.prototype.forEach.call(document.querySelectorAll("#chared [data-ceset]"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-ceset")===pk));});
+  return n;}
+/* which body type he matches now, if any */
+function cePreset(){var hit="";Object.keys(PRESETS).forEach(function(pk){var pr=PRESETS[pk];if(BODY_KEYS.every(function(k){var v=pr[k]!=null?pr[k]:(pk==="dave"?CHAR_DEF[k]:0);return Math.abs((Number(CHAR[k])||0)-v)<0.002;}))hit=hit||pk;});return hit;}
+/* a little figure for each body type, broader where the type is */
+function ceSil(pk){var pr=PRESETS[pk]||{},g=function(k){return pr[k]!=null?pr[k]:(pk==="dave"?CHAR_DEF[k]:0);},sh=13+3*g("shoulderW")+2*g("muscle")+1.5*g("weight"),wa=10+3*g("waistW")+2.5*g("belly")+2*g("weight"),hp=11+2*g("hips")+1.5*g("weight"),lg=4.2+1.2*g("legs")+0.8*g("weight");
+  return '<svg viewBox="0 0 40 74" aria-hidden="true"><circle cx="20" cy="8" r="5.5"/><path d="M'+(20-sh)+' 18 Q20 14 '+(20+sh)+' 18 L'+(20+wa)+' 38 L'+(20+hp)+' 44 L'+(20+lg+1)+' 72 L21 72 L20 50 L19 72 L'+(19-lg-1)+' 72 L'+(20-hp)+' 44 L'+(20-wa)+' 38 Z"/></svg>';}
+/* the average man on a slider: 0 on the shape sliders, 175 cm for height */
+function ceAvg(c){return c.k==="height"?175:(c.t==="sl"?0:null);}
+function ceSlider(c){var sv=CHAR[c.k],p=cePos(c,sv),P=(p+1)*50,av=ceAvg(c),A=av==null?null:(cePos(c,av)+1)*50,S=(cePos(c,ceSaved?ceSaved[c.k]:CHAR_DEF[c.k])+1)*50,ch=ceDiff(c.k),F=A==null?0:A;
+  var ends=c.k==="height"?["160 cm","200 cm"]:[c.a||"",c.b||""];
+  return '<div class="ce-sl" data-cesl="'+c.k+'"><div class="ce-slh"><label for="ce-r-'+c.k+'">'+esc(c.l)+'<i class="ce-dot"'+(ch?"":" hidden")+'></i></label><span><span class="ce-val" id="ce-v-'+c.k+'">'+esc(ceLabel(c,sv))+'</span><button type="button" class="linkbtn ce-rs" data-cers="'+c.k+'"'+(ch?"":" hidden")+'>Reset</button></span></div>'+
+    '<div class="ce-trk">'+(A!=null?'<span class="ce-avg" style="left:'+A.toFixed(1)+'%" title="Average"></span>':"")+'<span class="ce-fill" style="left:'+Math.min(F,P).toFixed(1)+'%;width:'+Math.abs(P-F).toFixed(1)+'%"></span><span class="ce-sv" style="left:'+S.toFixed(1)+'%" title="His saved setting">◆</span>'+
+    '<input type="range" id="ce-r-'+c.k+'" data-cer="'+c.k+'" min="-1" max="1" step="0.01" value="'+p+'"></div><div class="ce-ends"><span>'+esc(ends[0])+'</span><span>'+esc(ends[1])+'</span></div></div>';}
+/* after a slider moves: its value, fill, dot and reset, and the counts */
+function ceSlSync(k){var c=ceDef(k),el=document.querySelector('#chared [data-cesl="'+k+'"]');if(!c||!el)return;var p=cePos(c,CHAR[k]),P=(p+1)*50,av=ceAvg(c),F=av==null?0:(cePos(c,av)+1)*50,ch=ceDiff(k);
+  var fl=el.querySelector(".ce-fill");fl.style.left=Math.min(F,P).toFixed(1)+"%";fl.style.width=Math.abs(P-F).toFixed(1)+"%";el.querySelector(".ce-dot").hidden=!ch;el.querySelector(".ce-rs").hidden=!ch;
+  var sv=el.querySelector(".ce-sv");if(sv)sv.style.left=((cePos(c,ceSaved?ceSaved[k]:CHAR_DEF[k])+1)*50).toFixed(1)+"%";}
+/* his chest, waist, hips and inside leg from the model (in metres), with the height of each on the model for its line */
+function ceMeasure(){if(!BODY)return null;var b=bodySecs(),t=b.torso,kH=(Number(CHAR.height)||183)/183,PW=propWarp(BODY.lm.chin),W=PW?PW.W:function(y){return y;};
+  function circ(y){var q=secAt(t,y),a=q[1]*kH,c=q[2]*kH;return Math.PI*(3*(a+c)-Math.sqrt((3*a+c)*(a+3*c)))*1.04;}
+  var wm=9,wy=1.05;for(var y=0.97;y<=1.2;y+=0.01){var v=circ(y);if(v<wm){wm=v;wy=y;}}
+  var kF=kH*(PW?1.79/PW.W(1.79):1),leg=W(BODY.lm.crotch)*kF-0.03;
+  return [{k:"chest",l:"Chest",y:W(1.3),m:circ(1.3)},{k:"waist",l:"Waist",y:W(wy),m:wm},{k:"hips",l:"Hips",y:W(0.9),m:circ(0.9)},{k:"leg",l:"Inside leg",y:W(BODY.lm.crotch),m:leg}];}
+function ceIn(m){return Math.round(m*100/2.54);}
+/* his measurements against the sizes he buys (L tops, 34W 32L): what the model's figures would buy */
+function ceSizes(M){if(!M)return null;var ch=ceIn(M[0].m),wa=ceIn(M[1].m),lg=ceIn(M[3].m),top=ch<38?"S":(ch<40?"M":(ch<43?"L":(ch<46?"XL":"XXL")));
+  var r=[{l:"Tops "+top,ok:top==="L"},{l:"Jackets "+(2*Math.round(ch/2))+"R",ok:Math.abs(ch-41)<=2},{l:(2*Math.round(wa/2))+"W "+lg+"L",ok:Math.abs(wa-34)<=1.5&&Math.abs(lg-32)<=1.5}];
+  return {all:r.every(function(x){return x.ok;}),r:r};}
+function ceMeasCard(){var M=ceMeasure();if(!M)return '<div class="ce-mc" id="ce-meas"><p class="msg">His measurements appear once the model has loaded.</p></div>';var S=ceSizes(M);
+  return '<div class="ce-mc" id="ce-meas"><div class="fr-rh"><span class="label">His measurements, from the model</span><span>a guide</span></div><div class="ce-mg">'+
+    M.map(function(m){return '<div><b>'+ceIn(m.m)+'in</b><span>'+esc(m.l)+' · '+Math.round(m.m*100)+' cm</span></div>';}).join("")+'</div>'+
+    '<div class="ce-szs"><b class="'+(S.all?"ok":"no")+'">'+(S.all?"✓ Matches his sizes:":"Not his usual sizes:")+'</b>'+S.r.map(function(x){return '<span class="'+(x.ok?"":"no")+'">'+esc(x.l)+'</span>';}).join("")+(S.all?"":'<span class="ce-note">He buys L tops and 34W 32L.</span>')+'</div></div>';}
+function ceRow(c){
+  if(c.t==="meas")return ceMeasCard();
+  if(c.t==="prop")return '<p class="msg ce-meas" id="ce-prop">'+esc(ceProp())+'</p><div class="ce-opts"><button type="button" class="chip" data-ceprop="his">His proportions</button><button type="button" class="chip" data-ceprop="avg">Average man</button></div>';
+  if(c.t==="preset")return '<div class="ce-pre" role="group" aria-label="Start from a body type">'+c.o.map(function(o){return '<button type="button" class="ce-card" data-ceset="'+o[0]+'" aria-pressed="false">'+ceSil(o[0])+'<span>'+esc(o[1])+'</span></button>';}).join("")+'</div>';
+  if(c.t==="sl"||c.t==="range")return ceSlider(c);
+  var v=CHAR[c.k],h='<div class="ce-row"><span class="label" id="ce-l-'+c.k+'">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-'+c.k+'">';
+  if(c.t==="seg"){h+=c.o.map(function(o){return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="'+o[0]+'" aria-pressed="'+(v===o[0])+'">'+esc(o[1])+'</button>';}).join("");}
+  else if(c.t==="sw"){h+=c.o.map(function(o){if(o==="")return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="" aria-pressed="'+(!v)+'">Match hair</button>';return '<button type="button" class="ce-sw" style="background:'+o+'" data-ce="'+c.k+'" data-cv="'+o+'" aria-pressed="'+(String(v).toLowerCase()===o)+'" aria-label="'+esc(c.l+" "+o)+'"></button>';}).join("")+'<input type="color" id="ce-c-'+c.k+'" data-cec="'+c.k+'" value="'+esc(v||browColor())+'" aria-label="'+esc(c.l+", any colour")+'">';}
+  return h+'</div></div>';}
+function ceList(keys){return keys.map(function(k){if(k.indexOf("h:")===0)return '<h3 class="ce-sub">'+esc(k.slice(2))+'</h3>';var c=ceDef(k);if(!c||(c.when&&!c.when()))return "";return ceRow(c);}).join("");}
+function ceForm(){
+  var sec=CES.filter(function(s){return s.k===ceTab;})[0]||CES[1];
+  Array.prototype.forEach.call(document.querySelectorAll("#chared [data-cet]"),function(b){b.setAttribute("aria-selected",String(b.getAttribute("data-cet")===sec.k));});
+  var h='';
+  if(sec.k==="size"){h='<div class="ce-blk"><span class="label">Start from a body type</span>'+ceRow(ceDef("_preset"))+'</div>'+
+      '<div class="ce-blk"><div class="fr-rh"><span class="label">Size and shape</span><span>◆ his saved setting · | average</span></div>'+ceList(sec.main)+
+      '<details class="ce-fine"'+(sec.fine.some(ceDiff)||CEV.fine?" open":"")+'><summary>Fine-tune <span class="msg">Body depth, hips, arms, legs, neck, shoulder slope</span></summary>'+ceList(sec.fine)+'</details></div>'+ceMeasCard();}
+  else if(sec.k==="type"){h='<div class="ce-blk"><span class="label">Start from a body type</span>'+ceRow(ceDef("_preset"))+'<p class="msg">A body type sets his build (weight, muscle, chest, waist, belly, hips, arms, legs and neck); his height, proportions and face stay as they are. Fine-tune it under Size and shape.</p></div>'+ceMeasCard();}
+  else h='<div class="ce-blk"><span class="label">'+esc(sec.l)+'</span>'+ceList(sec.items)+'</div>';
+  $("ce-form").innerHTML=h;
+  $("ce-undo").disabled=!ceHist.length;ceDirty();
+}
+/* Edit Dave's stage: the measuring lines on him, and the saved Dave wiped against the one being changed */
+var CEV={lines:true,cmp:true,wipe:50,key:"",at:0,snapped:"",M:null};
+function ceFrame(h){
+  var sz=h.size(),k=h.k(),box=$("ce-lines");
+  if(box){if(!CEV.lines||!CEV.M||ceWear!=="under"){box.hidden=true;}else{box.hidden=false;var T=window.THREE;
+    var last=-99;Array.prototype.forEach.call(box.children,function(el,i){var m=CEV.M[i];if(!m)return;var q=h.project(new T.Vector3(0,m.y,0.2));el.style.top=q.y.toFixed(1)+"px";el.hidden=q.y<30||q.y>sz.h-50;
+      /* (labels that would overlap are moved apart; the lines stay at their true heights) */
+      var ly=el.hidden?q.y:Math.max(q.y,last+26);if(!el.hidden)last=ly;var sp=el.querySelector("span");if(sp)sp.style.transform="translateY("+(ly-q.y).toFixed(1)+"px)";});}}
+  /* the saved figure: once the view has stopped moving, a still of him as saved, from the same camera */
+  var wp=$("ce-wipe"),dv=$("ce-div");if(!wp)return;var on=CEV.cmp&&ceDirty0();wp.hidden=!on;dv.hidden=!on;$("ce-nowl").hidden=!on;$("ce-savl").hidden=!on;
+  if(!on)return;var v=h.view(),key=[v.rot.toFixed(3),v.z.toFixed(3),v.pan.toFixed(3),sz.w,sz.h,ceWear,charKeyOf(ceSaved),ceFit,h.k().toFixed(4)].join("/");
+  if(key!==CEV.key){CEV.key=key;CEV.at=Date.now();wp.classList.add("stale");return;}
+  if(CEV.snapped!==key&&Date.now()-CEV.at>300){CEV.snapped=key;var saved=ceSaved,url=h.still(function(){var now=Object.assign({},CHAR);Object.assign(CHAR,saved);try{return make3D(cePieces);}finally{Object.assign(CHAR,now);}});
+    if(url){$("ce-wimg").src=url;wp.classList.remove("stale");}}
+}
+function charKeyOf(o){return o?Object.keys(CHAR_DEF).map(function(k){return o[k];}).join(","):"";}
+function ceDirty0(){return !!ceSaved&&Object.keys(CHAR_DEF).some(ceDiff);}
+function ceWipeAt(x){CEV.wipe=Math.max(4,Math.min(96,x));var w=$("ce-wipe"),d=$("ce-div");if(w)w.style.clipPath="inset(0 "+(100-CEV.wipe).toFixed(1)+"% 0 0)";if(d)d.style.left=CEV.wipe.toFixed(1)+"%";}
+function ceLinesMake(){CEV.M=ceMeasure();var box=$("ce-lines");if(!box)return;box.innerHTML=(CEV.M||[]).map(function(m){return '<div class="ce-ln"><i></i><span>'+esc(m.l)+' <b>'+ceIn(m.m)+'in</b></span></div>';}).join("");}
 function ceStart(){
   var box=$("ce-3d"),ld=box.querySelector(".ce-load");
   loadThree().then(function(){if(!$("chared").open)return;if(cePrev){cePrev.stop();cePrev=null;}
-    try{cePrev=Live3D(box,cePieces,{zoom:CE_ZOOM[ceTab]||0});if(ld)ld.hidden=true;cePrev.onLost=function(){if(cePrev){cePrev.stop();cePrev=null;}live3DFail(box,ld,ceStart);};}
+    try{cePrev=Live3D(box,cePieces,{zoom:CE_ZOOM[ceTab]||0,bar:false,spin:false,onFrame:ceFrame});if(ld)ld.hidden=true;CEV.key="";CEV.snapped="";ceLinesMake();ceForm();cePrev.onLost=function(){if(cePrev){cePrev.stop();cePrev=null;}live3DFail(box,ld,ceStart);};}
     catch(e){cePrev=null;live3DFail(box,ld,ceStart);}
   },function(){if(ld){ld.hidden=false;ld.textContent="The 3D model could not load. Check the connection and try again.";}});
 }
 function openCE(fitId,wear){
   var dlg=$("chared");if(!dlg)return;ceSaved=Object.assign({},CHAR);ceHist=[];ceLastPush=0;
   var f=fitId&&fitById[fitId];ceOut=f?effPieces(f):(fits[0]?effPieces(fits[0]):[]);ceFit=f?fits.indexOf(f):0;
-  ceWearSet(wear||"under");ceTab="body";
+  ceWearSet(wear||"under");ceTab="size";CEV.key="";CEV.snapped="";ceWipeAt(CEV.wipe);
   ceForm();$("ce-msg").textContent="";
   if(typeof dlg.showModal==="function"){if(!dlg.open)dlg.showModal();}else{dlg.setAttribute("open","");}
   ceStart();
@@ -6600,8 +7285,8 @@ function saveChar(){
   snapCache={};
   if(db&&!staticMode){db.doc("meta/character").set(Object.assign({},CHAR)).then(function(){$("ce-msg").textContent="Saved for everyone who uses this page.";},function(){$("ce-msg").textContent="Saved on this device only: only the page owner can change Dave for everyone.";});}
   else{$("ce-msg").textContent="Saved on this device.";}
-  ceSaved=Object.assign({},CHAR);
-  applyChar2D();renderAll();if(z3&&z3.on&&fitById[zoomId])z3.update(effPieces(fitById[zoomId]));if(zb&&zb.on)drawBuild();   /* (the 2D drawings follow Edit Dave too) */
+  ceSaved=Object.assign({},CHAR);if($("chared").open){ceForm();CEV.snapped="";}
+  applyChar2D();renderAll();if(z3&&z3.on&&fitById[zoomId])z3.update(frPieces());if($("fr")&&$("zoom").open)frFill();if(zb&&zb.on)drawBuild();   /* (the 2D drawings follow Edit Dave too) */
 }
 document.addEventListener("click",function(e){var b;
   if((b=e.target.closest("[data-chared]"))){e.preventDefault();openCE(b.getAttribute("data-chared-fit")||(zoomId&&$("zoom").open?zoomId:""),b.getAttribute("data-chared-wear")||"");return;}
@@ -6609,15 +7294,25 @@ document.addEventListener("click",function(e){var b;
   if((b=e.target.closest("[data-cclose]"))){closeCE(false);return;}
   if((b=e.target.closest("[data-cet]"))){ceTab=b.getAttribute("data-cet");ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);return;}
   if((b=e.target.closest("[data-ce]"))){ceSet(b.getAttribute("data-ce"),b.getAttribute("data-cv"));return;}
-  if((b=e.target.closest("[data-cers]"))){var rk=b.getAttribute("data-cers");ceSet(rk,Number(CHAR_DEF[rk])||0);var ri=$("ce-r-"+rk);if(ri)ri.value=0;return;}
+  if((b=e.target.closest("[data-cers]"))){var rk=b.getAttribute("data-cers"),rv=ceSaved&&ceSaved[rk]!=null?ceSaved[rk]:CHAR_DEF[rk];ceSet(rk,rv);var ri=$("ce-r-"+rk),rc=ceDef(rk);if(ri&&rc)ri.value=cePos(rc,rv);return;}
+  if((b=e.target.closest("[data-ceang]"))){if(cePrev&&cePrev.on)cePrev.turnTo(Number(b.getAttribute("data-ceang")));return;}
+  if((b=e.target.closest("[data-celines]"))){CEV.lines=!CEV.lines;b.setAttribute("aria-pressed",String(CEV.lines));return;}
+  if((b=e.target.closest("[data-cecmp]"))){CEV.cmp=!CEV.cmp;b.setAttribute("aria-pressed",String(CEV.cmp));CEV.snapped="";return;}
   if((b=e.target.closest("[data-ceprop]"))){var avg=b.getAttribute("data-ceprop")==="avg";cePush(true);ceLastPush=0;PROP_KEYS.forEach(function(k2){CHAR[k2]=avg?0:CHAR_DEF[k2];});ceForm();ceApply();$("ce-msg").textContent=avg?"Proportions of an average man.":"His own proportions.";return;}
   if((b=e.target.closest("[data-ceset]"))){var pr=PRESETS[b.getAttribute("data-ceset")]||{};cePush(true);ceLastPush=0;BODY_KEYS.forEach(function(k2){CHAR[k2]=pr[k2]!=null?pr[k2]:(b.getAttribute("data-ceset")==="dave"?CHAR_DEF[k2]:0);});ceForm();ceApply();$("ce-msg").textContent="Body type: "+b.textContent+". Fine-tune it with the sliders.";return;}
 });
-$("chared").addEventListener("keydown",function(e){var t=e.target;if(!t.hasAttribute||!t.hasAttribute("data-cet")||(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"))return;
-  var tabs=["body","face","hair"],i=(tabs.indexOf(ceTab)+(e.key==="ArrowRight"?1:2))%3;ceTab=tabs[i];ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);var nb=document.querySelector('#chared [data-cet="'+ceTab+'"]');if(nb)nb.focus();e.preventDefault();});
+$("chared").addEventListener("keydown",function(e){var t=e.target;
+  if(t.id==="ce-hand"&&(e.key==="ArrowLeft"||e.key==="ArrowRight")){ceWipeAt(CEV.wipe+(e.key==="ArrowLeft"?-5:5));e.preventDefault();return;}
+  if(!t.hasAttribute||!t.hasAttribute("data-cet")||!/^Arrow(Right|Left|Up|Down)$/.test(e.key))return;
+  var tabs=CES.map(function(x){return x.k;}),i=(tabs.indexOf(ceTab)+(/Right|Down/.test(e.key)?1:tabs.length-1))%tabs.length;ceTab=tabs[i];ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);var nb=document.querySelector('#chared [data-cet="'+ceTab+'"]');if(nb)nb.focus();e.preventDefault();});
 $("chared").addEventListener("input",function(e){var t=e.target;
   if(t.hasAttribute("data-cer")){var ck=t.getAttribute("data-cer"),cc=CE.filter(function(x){return x.k===ck;})[0];ceSet(ck,cc?ceVal(cc,t.value):Number(t.value),true);}
   else if(t.hasAttribute("data-cec")){ceSet(t.getAttribute("data-cec"),t.value.toLowerCase(),true);}});
+$("chared").addEventListener("toggle",function(e){if(e.target.classList&&e.target.classList.contains("ce-fine"))CEV.fine=e.target.open;},true);
+(function(){var drag=false;function at(e){var st=document.querySelector("#chared .ce-stage").getBoundingClientRect();ceWipeAt((e.clientX-st.left)/st.width*100);}
+  $("ce-hand").addEventListener("pointerdown",function(e){drag=true;try{e.target.setPointerCapture(e.pointerId);}catch(x){}e.preventDefault();});
+  $("ce-hand").addEventListener("pointermove",function(e){if(drag)at(e);});
+  $("ce-hand").addEventListener("pointerup",function(){drag=false;});$("ce-hand").addEventListener("pointercancel",function(){drag=false;});})();
 $("chared").addEventListener("cancel",function(e){e.preventDefault();closeCE(false);});
 $("ce-save").addEventListener("click",saveChar);
 $("ce-undo").addEventListener("click",function(){var last=ceHist.pop();if(!last)return;Object.keys(CHAR_DEF).forEach(function(k){CHAR[k]=last[k];});ceLastPush=0;ceForm();ceApply();$("ce-msg").textContent="Undone.";});
