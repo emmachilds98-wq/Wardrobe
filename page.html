@@ -514,6 +514,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 @media (max-width:480px){.v3-bar{gap:3px;left:2px;right:2px}.v3-bar button{font-size:.7rem;padding:5px 7px}.v3-sep{flex-basis:2px}}
 /* the fitting room (the large view of an outfit) */
 dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;overflow:hidden}
+#zoom-body{height:100%}
 .fr{height:100%;display:grid;grid-template-rows:6px auto minmax(0,1fr) 116px;background:var(--surface)}
 .fr-stripe{height:6px}
 .fr-head{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:20px;padding:12px 24px;border-bottom:1px solid var(--line);min-height:76px}
@@ -625,6 +626,7 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
 .fr-swp{display:flex;flex-direction:column;align-items:flex-end;font-size:.82rem}.fr-swp b{font-variant-numeric:tabular-nums}
 .fr-swp span{font-size:.7rem;font-weight:600;color:var(--muted)}.fr-swp .is-less{color:var(--green)}
 .fr-tabs{display:none}
+.fr-msave{display:none}
 .fr-strip{border-top:1px solid var(--line);display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:0 16px;background:var(--ground);min-width:0}
 .fr-arr{font:inherit;font-size:1.25rem;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
 .fr-arr[disabled]{opacity:.4;cursor:default}
@@ -642,7 +644,7 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
 /* on a phone: the model on top and a sheet below with the pieces, swaps and how he wears them */
 @media (max-width:720px){
   dialog.fr-dlg{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0;border-radius:0}
-  .fr{grid-template-rows:0 auto minmax(0,1fr)}
+  .fr{grid-template-rows:auto minmax(0,1fr)}
   .fr-stripe{display:none}
   .fr-head{grid-template-columns:44px minmax(0,1fr) auto;gap:6px;padding:6px 12px 8px;padding-top:max(6px,env(safe-area-inset-top));min-height:0;border-bottom:0}
   .fr-back{display:grid;place-items:center;width:44px;height:44px;font:inherit;font-size:1.5rem;border:0;background:none;color:var(--ink);cursor:pointer}
@@ -651,7 +653,10 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
   .fr-of{display:block;font-size:.7rem;color:var(--muted)}
   .fr-modes{grid-column:1/-1;grid-row:2;justify-self:center}.fr-modes button{font-size:.75rem;padding:6px 10px}.fr-modes [data-zlay="s"]{display:none}
   .fr-acts{gap:0}.fr-acts>:not(.fr-tot){display:none}.fr-tot span{display:none}.fr-tot b{font-size:.95rem}
-  .fr-main{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto minmax(0,42dvh);grid-template-areas:"stage" "tabs" "rail"}
+  .fr-main{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto minmax(0,38dvh) auto;grid-template-areas:"stage" "tabs" "rail" "save"}
+  .fr-msave{grid-area:save;display:block;padding:8px 16px calc(12px + env(safe-area-inset-bottom));background:var(--surface)}
+  .fr-msave .act{width:100%;justify-content:center;font-size:.95rem;padding:13px;border-radius:6px;background:var(--green);color:var(--on-green);border-color:var(--green)}
+  .fr-pl{display:none}
   .fr-stage{min-height:260px}
   .fr-rail,.fr-detail{grid-area:rail;border:0;padding:8px 16px calc(16px + env(safe-area-inset-bottom));background:var(--surface)}
   .fr-detail{grid-area:rail}
@@ -681,12 +686,12 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
   .fr-hchip{display:block;position:absolute;left:12px;top:12px;font-size:.7rem;font-weight:700;background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line);border-radius:999px;padding:4px 9px}
   .fr-scrub{bottom:22px;width:min(260px,64%)}
   .fr .zf-3d .v3-tip{right:64px;left:12px;top:auto;bottom:90px}
-  .fr-pl{font-size:.75rem;padding:4px 7px}
 }
 /* Edit Dave: section list, the model with a saved/now wipe and measuring lines, and the controls */
 .ce{height:100%;display:grid;grid-template-rows:6px auto minmax(0,1fr);background:var(--surface)}
 .ce-head{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:20px;padding:12px 24px;border-bottom:1px solid var(--line);min-height:76px}
 .ce-cancel{display:none}
+.ce-short{display:none}
 .ce-wear button{font-size:.88rem;padding:9px 16px}
 .ce-acts{display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap}
 .ce-acts .btn[disabled]{opacity:.45;cursor:default}
@@ -773,13 +778,14 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
 @media (max-width:900px) and (min-width:721px){.ce-head{grid-template-columns:minmax(0,1fr) auto}.ce-wear{grid-column:1/-1;grid-row:2;justify-self:start}.ce-main{grid-template-columns:minmax(0,1fr) 320px}.ce-nav{grid-column:1/-1;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px}.ce-own{display:none}.ce-tab{flex:none}}
 /* on a phone: Cancel, Edit Dave, Save; the model on top, sections as chips, then the sliders */
 @media (max-width:720px){
-  .ce{grid-template-rows:0 auto minmax(0,1fr)}
+  .ce{grid-template-rows:auto minmax(0,1fr)}
   .ce-head{grid-template-columns:auto minmax(0,1fr) auto;gap:6px;padding:6px 16px 10px;padding-top:max(6px,env(safe-area-inset-top));min-height:0;border-bottom:0}
   .ce-cancel{display:block;font:inherit;font-size:.88rem;font-weight:600;color:var(--green);background:none;border:0;padding:8px 0;cursor:pointer}
   .ce-head .fr-title{align-items:center}.ce-head .fr-title .label{display:none}.ce-head h2{font-size:1.25rem}
   .ce-wear{grid-column:1/-1;grid-row:2;justify-self:center}.ce-wear button{font-size:.75rem;padding:6px 10px}
   .ce-acts{gap:0}.ce-acts>:not(#ce-save){display:none}
   #ce-save{background:none;border:0;color:var(--green);font-weight:700;padding:8px 0}
+  .ce-long{display:none}.ce-short{display:inline}
   .ce-main{grid-template-columns:minmax(0,1fr);grid-template-rows:330px auto minmax(0,1fr);overflow:auto}
   .ce-stage{grid-row:1}
   .ce-nav{grid-row:2;flex-direction:row;overflow-x:auto;border:0;padding:12px 16px 4px;gap:6px;scrollbar-width:none}
@@ -1453,7 +1459,7 @@ main:focus{outline:none}
   <header class="ce-head"><button class="ce-cancel" type="button" data-cclose>Cancel</button>
     <div class="fr-title"><span class="label">Fitting room</span><h2 id="chared-h">Edit Dave</h2></div>
     <span class="fr-seg ce-wear" role="group" aria-label="What Dave wears in the preview"><button type="button" data-cewear="under" aria-pressed="true">In underwear</button><button type="button" data-cewear="outfit" aria-pressed="false">In this outfit</button><button type="button" id="ce-next">Another outfit</button></span>
-    <div class="ce-acts"><span class="ce-n" id="ce-n" aria-live="polite"></span><button class="btn ghost" type="button" id="ce-undo" disabled>Undo</button><button class="btn" type="button" id="ce-save">Save for every outfit</button><button class="act fr-x" type="button" data-cclose>Close</button></div></header>
+    <div class="ce-acts"><span class="ce-n" id="ce-n" aria-live="polite"></span><button class="btn ghost" type="button" id="ce-undo" disabled>Undo</button><button class="btn" type="button" id="ce-save"><span class="ce-long">Save for every outfit</span><span class="ce-short">Save</span></button><button class="act fr-x" type="button" data-cclose>Close</button></div></header>
   <div class="ce-main">
     <nav class="ce-nav" role="tablist" aria-label="Parts of Dave to change" aria-orientation="vertical"><button type="button" role="tab" class="ce-tab" data-cet="type" aria-selected="false"><span>Body type</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="size" aria-selected="false"><span>Size and shape</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="prop" aria-selected="false"><span>Proportions</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="fit" aria-selected="false"><span>Clothes fit</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="face" aria-selected="false"><span>Face</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="tache" aria-selected="false"><span>Moustache and beard</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="hair" aria-selected="false"><span>Hair</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="skin" aria-selected="false"><span>Skin and colouring</span><span class="ce-bdg" hidden></span></button><div class="ce-own msg">Saved by the page owner, so everyone sees the same Dave. Anyone else's changes stay on their own device.<button class="linkbtn" type="button" id="ce-reset">Back to his defaults</button></div></nav>
     <div class="ce-stage"><div class="ce-3d" id="ce-3d" aria-label="3D preview of Dave. Drag to turn him round, scroll or pinch to zoom."><p class="msg ce-load">Loading the 3D model…</p></div>
@@ -5738,7 +5744,7 @@ function frShell(){
             '<span class="fr-hchip" id="fr-hchip"></span></div></div>'+
         '<div class="fr-lay" id="fr-lay"></div><div class="fr-fig" id="fr-fig"></div></div>'+
       '<div class="fr-tabs" role="tablist" aria-label="Fitting room"><button type="button" role="tab" data-frtab="pieces">Pieces</button><button type="button" role="tab" data-frtab="swap">Swap</button><button type="button" role="tab" data-frtab="dave">Dave</button></div>'+
-      '<aside class="fr-detail" id="fr-detail" aria-label="The chosen piece"></aside>'+
+      '<aside class="fr-detail" id="fr-detail" aria-label="The chosen piece"></aside><div class="fr-msave" id="fr-msave"></div>'+
     '</div>'+
     '<footer class="fr-strip"><button class="fr-arr" type="button" data-frstep="-1" aria-label="Previous outfit">‹</button><div class="fr-film" id="fr-film" role="list"></div>'+
       '<div class="fr-sh"><span>← → flips outfits<br>camera angle stays put</span><button class="fr-arr" type="button" data-frstep="1" aria-label="Next outfit">›</button></div></footer>'+
@@ -5754,7 +5760,7 @@ function frFill(){
   $("zoom-h").textContent=f.name;$("zoom-h").title=f.note||"";
   $("fr-of").textContent=li>=0?(li+1)+" of "+FR.list.length+" · swipe for the next":"";
   $("fr-tot").innerHTML='<b>'+money(t.tot)+'</b>'+(save>=1?'<span>'+money(save)+' off full price</span>':'<span>'+(t.complete?"the whole outfit":"pieces still listed")+'</span>');
-  $("fr-save").innerHTML=f.id.charAt(0)!=="_"?saveBtn("o_"+f.id,"outfit"):"";
+  $("fr-save").innerHTML=$("fr-msave").innerHTML=f.id.charAt(0)!=="_"?saveBtn("o_"+f.id,"outfit"):"";
   var cb=document.querySelector("#fr .fr-cmp");if(cb){cb.setAttribute("data-cmpadd",f.id);cb.hidden=f.id.charAt(0)==="_";}
   $("fr-link").innerHTML=(shareable()&&f.id.charAt(0)!=="_"?'<button class="linkbtn" type="button" data-fitlink="'+esc(f.id)+'">Copy a link to this outfit</button> <span class="msg" aria-live="polite"></span>':"")+
     (f.note?'<span class="fr-note">'+esc(f.note)+'</span>':"");
