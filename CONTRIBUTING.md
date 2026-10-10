@@ -252,6 +252,7 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    | `decal` | `false` drops the chest graphic cut from the photo (when it picked up something that is not a print). |
    | `shapes` | For a set sold as one listing and worn as two pieces (a tee and shorts, one photo): corrections for one garment shape only, as `{"shorts": {"col": "#5f5f62"}}`, laid over the item's own. |
    | `swatch` | A small square of the cloth itself, as a `data:image/jpeg;base64,...` (under 16,000 characters), repeated as the garment's cloth at `per` of its length: for a woven pattern the listing photo cannot show (a lifestyle shot of a jacquard). Cut it from the shop's own close-up product image, flat and evenly lit, and make it repeat without a seam. |
+   | `place` | The front panel of a top whose design sits in one place (a yoke, a Fair Isle band across the chest and sleeves, a hem band), as a `data:image/jpeg;base64,...` (under 24,000 characters): cut from the listing photo from just beside the centre front (leave out a zip or placket) to the side seam, and from the base of the collar to the bottom of the hem, then flipped so the centre is on the left. Fill any background with the cloth's colour. It is laid on by height, the hem at the bottom and the base of the collar at the top, mirrored round the body and run round each arm. |
 | `why` | Required: what the shop photo shows, in a sentence. |
    | `checked` | Required: the date you checked it against the shop's page. |
 
@@ -438,6 +439,14 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
 3. Re-check every outfit using that shape; run the full check if it touches all tops or all trousers.
 
 ## Lessons learned (do not repeat these)
+
+- **Adjusted normals must survive the warp.** `warpMan` reshapes every mesh to his proportions after `make3D`; it
+  keeps each mesh's own normals and turns them with the surface. Recomputing them there lost every adjustment (the
+  hip cloth turned to meet the legs, tube seams) and drew lines where pieces meet.
+- **Comments are made on the outfit cards**, a small 3D render with soft shadows: check a fix with
+  `tools/qa/card.js`, not only with close-ups, and check whether the artifact was republished since the last fix.
+- **A pattern that sits in one place (a yoke, a chest band, a hem band) is not a repeat.** Use `place` (the front
+  panel laid on by height), not `swatch` (a square of cloth repeated) or `front` (a flat patch on the chest).
 
 - **Classes in the ID pass must be worked out once**, before any materials are swapped; reading them after a swap put
   the floor in the body's class.
