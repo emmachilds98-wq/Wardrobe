@@ -483,15 +483,6 @@ dialog.zoom{width:min(1180px,96vw);max-height:94vh;padding:0;border:1px solid va
 dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 .zoom-in{position:relative;padding:20px clamp(14px,3vw,28px) 26px}
 .zx{position:sticky;top:0;float:right;z-index:2}
-.chared{width:min(1000px,96vw)}
-.ce-h{font-family:var(--f-display);font-weight:400;font-size:clamp(1.4rem,3vw,2rem);margin:4px 0 4px}
-.ce-lede{max-width:60ch;margin-bottom:12px}
-.ce-grid{display:grid;grid-template-columns:minmax(220px,36%) minmax(0,1fr);gap:22px;align-items:start}
-.ce-view{position:sticky;top:44px;display:flex;flex-direction:column;gap:6px}
-.ce-3d{position:relative;aspect-ratio:3/5;max-height:72vh;background:var(--board);border-radius:4px;touch-action:none;cursor:grab;overflow:hidden}
-.ce-3d canvas{display:block;width:100%!important;height:100%!important}
-.ce-load{position:absolute;inset:auto 0 10px 0;text-align:center}
-.ce-row{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:6px 12px;align-items:center;padding-block:9px;border-bottom:1px solid var(--line)}
 .ce-row .label{letter-spacing:.06em}
 .ce-opts{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
 .ce-opts .chip{padding:6px 11px;font-size:.86rem}
@@ -499,11 +490,7 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 .ce-sw[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px var(--surface) inset}
 .ce-opts input[type=color]{width:34px;height:30px;border:1px solid var(--line);border-radius:4px;background:var(--surface);padding:2px}
 .ce-opts input[type=range]{width:min(100%,260px);accent-color:var(--green)}
-.ce-val{font-variant-numeric:tabular-nums;font-weight:600;min-width:4.5rem}
-.ce-acts{margin-top:14px}
-.ce-wear{display:flex;gap:6px;flex-wrap:wrap}
 .b3d-edit{align-self:center}
-@media (max-width:720px){.ce-grid{grid-template-columns:1fr}.ce-view{position:static}.ce-3d{max-height:46vh;aspect-ratio:auto;height:46vh}.ce-row{grid-template-columns:minmax(0,1fr)}}
 .figmode{display:flex;align-items:center;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;flex:none}
 .figmode .label{padding:0 8px 0 12px}
 .figmode button{font:inherit;font-size:.82rem;font-weight:600;padding:7px 12px;border:0;border-left:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
@@ -522,14 +509,8 @@ dialog.zoom::backdrop{background:rgba(10,16,13,.62)}
 .v3-bar button:focus-visible{outline:2px solid var(--green);outline-offset:1px}
 .v3-sep{flex-basis:6px}
 .v3-tip{position:absolute;left:8px;right:8px;top:8px;margin:0;padding:7px 10px;border-radius:4px;background:color-mix(in srgb,var(--surface) 94%,transparent);border:1px solid var(--line);font-size:.82rem;line-height:1.35;color:var(--ink);pointer-events:none}
-.ce-tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:4px}
-.ce-tab{font:inherit;font-weight:600;padding:8px 14px;border:0;border-bottom:3px solid transparent;background:none;color:var(--muted);cursor:pointer}
-.ce-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--green)}
-.ce-tab:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
-.ce-acts .btn[disabled]{opacity:.45;cursor:default}
 .ce-sub{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:14px 0 2px;font-weight:600}
 .ce-meas{margin-top:10px;padding:9px 11px;border:1px dashed var(--line);border-radius:4px}
-.ce-rs{font-size:.8rem}
 @media (max-width:480px){.v3-bar{gap:3px;left:2px;right:2px}.v3-bar button{font-size:.7rem;padding:5px 7px}.v3-sep{flex-basis:2px}}
 /* the fitting room (the large view of an outfit) */
 dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;overflow:hidden}
@@ -701,6 +682,119 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
   .fr-scrub{bottom:22px;width:min(260px,64%)}
   .fr .zf-3d .v3-tip{right:64px;left:12px;top:auto;bottom:90px}
   .fr-pl{font-size:.75rem;padding:4px 7px}
+}
+/* Edit Dave: section list, the model with a saved/now wipe and measuring lines, and the controls */
+.ce{height:100%;display:grid;grid-template-rows:6px auto minmax(0,1fr);background:var(--surface)}
+.ce-head{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:20px;padding:12px 24px;border-bottom:1px solid var(--line);min-height:76px}
+.ce-cancel{display:none}
+.ce-wear button{font-size:.88rem;padding:9px 16px}
+.ce-acts{display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap}
+.ce-acts .btn[disabled]{opacity:.45;cursor:default}
+.ce-n{font-size:.82rem;font-weight:600;color:var(--tan);margin-right:6px}
+.ce-main{display:grid;grid-template-columns:208px minmax(0,1fr) 440px;min-height:0}
+.ce-nav{border-right:1px solid var(--line);padding:16px 10px;display:flex;flex-direction:column;gap:2px;min-height:0;overflow:auto}
+.ce-tab{font:inherit;font-size:.88rem;font-weight:500;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:6px;padding:10px 12px;border:0;border-radius:5px;background:transparent;color:var(--ink);cursor:pointer}
+.ce-tab:hover{background:var(--ground)}
+.ce-tab[aria-selected="true"]{background:var(--chip);font-weight:700}
+.ce-tab:focus-visible{outline:2px solid var(--green);outline-offset:-2px}
+.ce-bdg{font-size:.7rem;font-weight:700;background:var(--tan);color:#fff;border-radius:999px;padding:1px 7px}
+.ce-own{margin-top:auto;padding:12px;font-size:.75rem;line-height:1.45;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.ce-own .linkbtn{font-size:.82rem;align-self:flex-start}
+.ce-stage{position:relative;overflow:hidden;background-color:var(--board);min-height:0}
+.ce-3d{position:absolute;inset:0;touch-action:none;cursor:grab}
+.ce-3d canvas{display:block;width:100%!important;height:100%!important}
+.ce-load{position:absolute;inset:auto 0 50% 0;text-align:center}
+.ce-wipe{position:absolute;inset:0;background:color-mix(in srgb,var(--board) 62%,#fafbf8);pointer-events:none;clip-path:inset(0 50% 0 0);transition:opacity .15s}
+.ce-wipe.stale{opacity:0}
+.ce-wipe img{display:block;width:100%;height:100%;object-fit:fill}
+.ce-div{position:absolute;top:0;bottom:0;left:50%;border-left:2px solid var(--badge);pointer-events:none}
+.ce-hand{position:absolute;top:84%;left:-19px;width:36px;height:36px;border-radius:50%;border:0;background:var(--badge);color:var(--on-badge);font:inherit;font-size:.82rem;font-weight:700;cursor:ew-resize;pointer-events:auto;touch-action:none}
+.ce-hand:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.ce-tagS,.ce-tagN{position:absolute;top:16px;font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-radius:999px;padding:5px 10px;pointer-events:none}
+.ce-tagS{left:20px;background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line);color:var(--muted)}
+.ce-tagN{right:20px;background:var(--badge);color:var(--on-badge)}
+.ce-lines{position:absolute;inset:0;pointer-events:none}
+.ce-ln{position:absolute;left:calc(50% - 130px);right:28px;display:flex;align-items:center;gap:8px;transform:translateY(-50%)}
+.ce-ln i{flex:1;border-top:1.5px dashed rgba(139,27,43,.6)}
+.ce-ln span{font-size:.75rem;font-weight:700;background:#fafbf8;color:#14201b;border:1px solid #cbd3cc;border-radius:3px;padding:3px 7px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ce-ln b{color:#8b1b2b}
+.ce-bot{position:absolute;left:24px;right:24px;bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;pointer-events:none}
+.ce-bot>*{pointer-events:auto}
+.ce-bot .fr-seg{background:color-mix(in srgb,var(--surface) 95%,transparent)}
+.ce-bot .fr-seg button{font-size:.75rem;padding:6px 11px}
+.ce-tg{display:flex;gap:6px}
+.ce-tg .act{background:color-mix(in srgb,var(--surface) 95%,transparent)}
+.ce-tg .act[aria-pressed="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.ce-side{border-left:1px solid var(--line);padding:16px 22px;display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto}
+#ce-form{display:flex;flex-direction:column;gap:14px}
+.ce-blk{display:flex;flex-direction:column;gap:8px}
+.ce-blk .fr-rh>span:last-child{font-size:.75rem;color:var(--muted)}
+.ce-pre{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.ce-card{font:inherit;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 4px 7px;border-radius:5px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
+.ce-card svg{width:30px;height:56px;fill:color-mix(in srgb,var(--board-ink) 55%,var(--board))}
+.ce-card span{font-size:.75rem;font-weight:600}
+.ce-card[aria-pressed="true"]{border-color:var(--green);background:var(--chip)}
+.ce-card[aria-pressed="true"] svg{fill:var(--green)}
+.ce-sl{display:flex;flex-direction:column;gap:3px;padding:5px 0;border-bottom:1px solid var(--line)}
+.ce-slh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ce-slh label{font-size:.88rem;font-weight:600;display:flex;gap:6px;align-items:center}
+.ce-slh>span{display:flex;gap:10px;align-items:baseline}
+.ce-dot{width:7px;height:7px;border-radius:50%;background:var(--tan)}
+.ce-val{font-size:.82rem;font-weight:600;font-variant-numeric:tabular-nums;min-width:0}
+.ce-rs{font-size:.75rem}
+.ce-trk{position:relative;height:20px}
+.ce-trk::before{content:"";position:absolute;left:0;right:0;top:8px;height:3px;border-radius:2px;background:var(--chip)}
+.ce-avg{position:absolute;top:4px;height:11px;border-left:1.5px solid #9aa79f}
+.ce-fill{position:absolute;top:8px;height:3px;background:var(--green);border-radius:2px}
+.ce-sv{position:absolute;top:-3px;margin-left:-4px;font-size:9px;line-height:1;color:var(--tan)}
+.ce-trk input{position:absolute;inset:0;width:100%;height:20px;margin:0;-webkit-appearance:none;appearance:none;background:transparent;cursor:pointer}
+.ce-trk input::-webkit-slider-runnable-track{height:20px;background:transparent}
+.ce-trk input::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;margin-top:2px;border-radius:50%;background:var(--surface);border:2px solid var(--green);box-shadow:0 1px 3px rgba(20,32,27,.25)}
+.ce-trk input::-moz-range-track{background:transparent}
+.ce-trk input::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--green)}
+.ce-trk input:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.ce-ends{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);line-height:1.2}
+.ce-fine{padding:4px 0}
+.ce-fine summary{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;font-size:.88rem;font-weight:600;cursor:pointer;list-style:none}
+.ce-fine summary::-webkit-details-marker{display:none}
+.ce-fine summary::after{content:"▾";color:var(--muted)}.ce-fine[open] summary::after{content:"▴"}
+.ce-fine summary .msg{font-weight:400;font-size:.75rem;flex:1;text-align:right}
+.ce-mc{background:var(--chip);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.ce-mc .fr-rh>span:last-child{font-size:.75rem;color:var(--muted)}
+.ce-mg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ce-mg div{display:flex;flex-direction:column}.ce-mg b{font-size:1.35rem;line-height:1.1;font-variant-numeric:tabular-nums}.ce-mg span{font-size:.7rem;color:var(--muted)}
+.ce-szs{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.75rem;border-top:1px solid var(--line);padding-top:10px}
+.ce-szs b.ok{color:var(--green)}.ce-szs b.no{color:var(--tan)}
+.ce-szs span{padding:3px 8px;border-radius:999px;background:var(--surface)}
+.ce-szs span.no{background:var(--claret-wash);color:var(--claret)}
+.ce-szs .ce-note{background:none;color:var(--muted);padding:0}
+.ce-row{display:grid;grid-template-columns:9rem minmax(0,1fr);gap:6px 12px;align-items:center;padding-block:9px;border-bottom:1px solid var(--line)}
+@media (max-width:1100px){.ce-main{grid-template-columns:180px minmax(0,1fr) 360px}.ce-pre{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:900px) and (min-width:721px){.ce-head{grid-template-columns:minmax(0,1fr) auto}.ce-wear{grid-column:1/-1;grid-row:2;justify-self:start}.ce-main{grid-template-columns:minmax(0,1fr) 320px}.ce-nav{grid-column:1/-1;flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px}.ce-own{display:none}.ce-tab{flex:none}}
+/* on a phone: Cancel, Edit Dave, Save; the model on top, sections as chips, then the sliders */
+@media (max-width:720px){
+  .ce{grid-template-rows:0 auto minmax(0,1fr)}
+  .ce-head{grid-template-columns:auto minmax(0,1fr) auto;gap:6px;padding:6px 16px 10px;padding-top:max(6px,env(safe-area-inset-top));min-height:0;border-bottom:0}
+  .ce-cancel{display:block;font:inherit;font-size:.88rem;font-weight:600;color:var(--green);background:none;border:0;padding:8px 0;cursor:pointer}
+  .ce-head .fr-title{align-items:center}.ce-head .fr-title .label{display:none}.ce-head h2{font-size:1.25rem}
+  .ce-wear{grid-column:1/-1;grid-row:2;justify-self:center}.ce-wear button{font-size:.75rem;padding:6px 10px}
+  .ce-acts{gap:0}.ce-acts>:not(#ce-save){display:none}
+  #ce-save{background:none;border:0;color:var(--green);font-weight:700;padding:8px 0}
+  .ce-main{grid-template-columns:minmax(0,1fr);grid-template-rows:330px auto minmax(0,1fr);overflow:auto}
+  .ce-stage{grid-row:1}
+  .ce-nav{grid-row:2;flex-direction:row;overflow-x:auto;border:0;padding:12px 16px 4px;gap:6px;scrollbar-width:none}
+  .ce-tab{flex:none;padding:8px 13px;border-radius:999px;border:1px solid var(--line);font-size:.88rem}
+  .ce-tab[aria-selected="true"]{background:var(--green);color:var(--on-green);border-color:var(--green);font-weight:500}
+  .ce-own{display:none}
+  .ce-side{grid-row:3;border:0;padding:4px 16px calc(24px + env(safe-area-inset-bottom));overflow:visible}
+  .ce-tagS,.ce-tagN{top:auto;bottom:12px;font-size:.7rem;padding:4px 9px}.ce-tagS{left:12px}.ce-tagN{right:12px}
+  .ce-bot{left:12px;right:12px;top:12px;bottom:auto}.ce-tg{display:none}
+  .ce-ln{left:calc(50% - 80px);right:12px}.ce-ln span{font-size:.7rem}
+  .ce-trk{height:28px}.ce-trk::before{top:12px;height:4px}.ce-fill{top:12px;height:4px}.ce-avg{top:8px;height:12px}.ce-sv{top:0}
+  .ce-trk input{height:28px}.ce-trk input::-webkit-slider-runnable-track{height:28px}.ce-trk input::-webkit-slider-thumb{width:24px;height:24px;margin-top:2px}
+  .ce-pre{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .ce-mg b{font-size:1.1rem}
+  .ce-row{grid-template-columns:minmax(0,1fr)}
 }
 .ph.zbig{display:block;width:100%;aspect-ratio:4/5;border-radius:3px;overflow:hidden;background:#fff}
 .ph.zbig img{width:100%;height:100%;object-fit:contain;background:#fff}
@@ -1317,14 +1411,22 @@ main:focus{outline:none}
   </footer>
 </div>
 
-<dialog class="zoom chared" id="chared" aria-labelledby="chared-h"><div class="zoom-in"><button class="act zx" type="button" data-cclose>Close</button>
-  <h2 id="chared-h" class="ce-h">Edit Dave</h2>
-  <p class="msg ce-lede">How Dave looks in the 3D model. The fitting room shows him in plain underwear, so his build and proportions are easy to judge; switch to an outfit to see clothes on him. Changes show straight away; Save puts them on every 3D figure on the page.</p>
-  <div class="ce-grid"><div class="ce-view"><div class="ce-wear" role="group" aria-label="What Dave wears in the preview"><button type="button" class="chip" data-cewear="under" aria-pressed="true">Fitting room</button><button type="button" class="chip" data-cewear="outfit" aria-pressed="false">In an outfit</button></div><div class="ce-3d" id="ce-3d" aria-label="3D preview of Dave. Drag to turn him round."><p class="msg ce-load">Loading the 3D model…</p></div><p class="msg">Drag across to turn him, scroll or pinch to zoom, then drag up or down to move along him (face to feet). Tap a piece to see what it is.</p></div>
-  <div class="ce-side"><div class="ce-tabs" role="tablist" aria-label="Parts of Dave to change"><button type="button" role="tab" class="ce-tab" data-cet="body" aria-selected="true">Body</button><button type="button" role="tab" class="ce-tab" data-cet="face" aria-selected="false">Face</button><button type="button" role="tab" class="ce-tab" data-cet="hair" aria-selected="false">Hair</button></div>
-  <div id="ce-form" role="tabpanel"></div>
-  <div class="b-row ce-acts"><button class="btn" type="button" id="ce-save">Save</button><button class="btn ghost" type="button" id="ce-undo" disabled>Undo</button><button class="btn ghost" type="button" id="ce-reset">Back to his defaults</button><button class="btn ghost" type="button" id="ce-next">Try another outfit</button><span class="msg" id="ce-msg" role="status"></span></div></div></div>
-</div></dialog>
+<dialog class="zoom chared fr-dlg" id="chared" aria-labelledby="chared-h"><div class="ce">
+  <div class="stripe fr-stripe"></div>
+  <header class="ce-head"><button class="ce-cancel" type="button" data-cclose>Cancel</button>
+    <div class="fr-title"><span class="label">Fitting room</span><h2 id="chared-h">Edit Dave</h2></div>
+    <span class="fr-seg ce-wear" role="group" aria-label="What Dave wears in the preview"><button type="button" data-cewear="under" aria-pressed="true">In underwear</button><button type="button" data-cewear="outfit" aria-pressed="false">In this outfit</button><button type="button" id="ce-next">Another outfit</button></span>
+    <div class="ce-acts"><span class="ce-n" id="ce-n" aria-live="polite"></span><button class="btn ghost" type="button" id="ce-undo" disabled>Undo</button><button class="btn" type="button" id="ce-save">Save for every outfit</button><button class="act fr-x" type="button" data-cclose>Close</button></div></header>
+  <div class="ce-main">
+    <nav class="ce-nav" role="tablist" aria-label="Parts of Dave to change" aria-orientation="vertical"><button type="button" role="tab" class="ce-tab" data-cet="type" aria-selected="false"><span>Body type</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="size" aria-selected="false"><span>Size and shape</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="prop" aria-selected="false"><span>Proportions</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="fit" aria-selected="false"><span>Clothes fit</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="face" aria-selected="false"><span>Face</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="tache" aria-selected="false"><span>Moustache and beard</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="hair" aria-selected="false"><span>Hair</span><span class="ce-bdg" hidden></span></button><button type="button" role="tab" class="ce-tab" data-cet="skin" aria-selected="false"><span>Skin and colouring</span><span class="ce-bdg" hidden></span></button><div class="ce-own msg">Saved by the page owner, so everyone sees the same Dave. Anyone else's changes stay on their own device.<button class="linkbtn" type="button" id="ce-reset">Back to his defaults</button></div></nav>
+    <div class="ce-stage"><div class="ce-3d" id="ce-3d" aria-label="3D preview of Dave. Drag to turn him round, scroll or pinch to zoom."><p class="msg ce-load">Loading the 3D model…</p></div>
+      <div class="ce-wipe" id="ce-wipe" hidden><img id="ce-wimg" alt="Dave as saved"></div><span class="ce-tagS" id="ce-savl">Saved</span><span class="ce-tagN" id="ce-nowl" hidden>Now</span>
+      <div class="ce-div" id="ce-div" hidden><button type="button" class="ce-hand" id="ce-hand" aria-label="Move the line between Dave as saved and now (arrow keys)">⇆</button></div>
+      <div class="ce-lines" id="ce-lines" aria-hidden="true"></div>
+      <div class="ce-bot"><span class="fr-seg" role="group" aria-label="Turn him"><button type="button" data-ceang="0">Front</button><button type="button" data-ceang="1.571">Side</button><button type="button" data-ceang="3.1416">Back</button></span>
+        <span class="ce-tg"><button type="button" class="act" data-celines aria-pressed="true">Measuring lines</button><button type="button" class="act" data-cecmp aria-pressed="true">Compare with saved</button></span></div></div>
+    <div class="ce-side"><div id="ce-form" role="tabpanel" aria-labelledby="chared-h"></div><p class="msg" id="ce-msg" role="status"></p></div>
+  </div></div></dialog>
 <dialog class="zoom fr-dlg" id="zoom" aria-labelledby="zoom-h"><div id="zoom-body"></div></dialog>
 <script>
 (function(){
@@ -5462,6 +5564,10 @@ function Live3D(box,pieces,opt){
     if(n){nv2.copy(n).transformDirection(o.man.matrixWorld);front=nv2.dot(cam.position.clone().sub(pv).normalize())>-0.05;}
     pv.project(cam);return {x:(pv.x+1)/2*W,y:(1-pv.y)/2*H,front:front};};
   h.size=function(){return {w:W,h:H};};
+  /* a still of another figure (build() makes it) seen from this camera, as an image: Edit Dave's saved Dave beside now */
+  h.still=function(build){var ob=null,url="";try{ob=build();if(!ob)return "";fit();ob.man.rotation.y=rot;place();r.render(ob.scene,cam);url=r.domElement.toDataURL("image/png");}
+    catch(e){url="";}finally{if(ob)dispose3D(ob);try{r.render(o.scene,cam);}catch(e){}}return url;};
+  h.k=function(){return o.k;};
   h.lostCtx=function(){h.active=false;cancelAnimationFrame(h.raf);clearTimeout(h.tm);if(h.onLost)h.onLost();};
   h.stop=function(){if(!h.on)return;h.on=false;h.active=false;cancelAnimationFrame(h.raf);clearTimeout(h.tm);dispose3D(o);
     box.removeEventListener("keydown",onKey);if(bar&&bar.parentNode)bar.parentNode.removeChild(bar);if(tip.parentNode)tip.parentNode.removeChild(tip);
@@ -6750,7 +6856,7 @@ syncFig();
 /* ---- Edit Dave: the character editor ---- */
 /* slider rows: -1 to 1, described in words either side of average */
 function slF(lo,hi){return function(v){v=Number(v)||0;return Math.abs(v)<0.04?"Average":(v<0?lo:hi)+" "+Math.round(Math.abs(v)*100)+"%";};}
-function SL(g,k,l,lo,hi){return {g:g,k:k,l:l,t:"sl",min:-1,max:1,step:0.05,f:slF(lo,hi)};}
+function SL(g,k,l,lo,hi){return {g:g,k:k,l:l,t:"sl",min:-1,max:1,step:0.05,f:slF(lo,hi),a:lo,b:hi};}
 /* Every slider has his saved base (CHAR_DEF) in the middle. Its ends still reach the full range either way (wider
    where his base sits near one end), and the stored value is the real one, so saves stay as they were. */
 function ceRng(c){var lo=c.t==="sl"?-1:c.min,hi=c.t==="sl"?1:c.max,b=Number(CHAR_DEF[c.k]);if(isNaN(b))b=(lo+hi)/2;
@@ -6859,45 +6965,121 @@ function ceMeas(){if(!BODY)return "";var b=bodySecs(),t=b.torso,kH=(Number(CHAR.
   function fmt(m){return Math.round(m*100/2.54)+"in";}
   var PW=propWarp(BODY.lm.chin),kF=(Number(CHAR.height)||183)/183*(PW?1.79/PW.W(1.79):1),leg=(PW?PW.W(BODY.lm.crotch):BODY.lm.crotch)*kF-0.03;
   return "Chest about "+fmt(circ(1.3))+" · waist about "+fmt(wst())+" · hips about "+fmt(circ(0.9))+" · inside leg about "+fmt(leg)+". Rough figures from the model, a guide only.";}
-var ceSaved=null,cePrev=null,ceT=0,cePieces=null,ceTab="body",ceHist=[],ceLastPush=0,ceFit=-1,ceWear="under",ceOut=[];
+var ceSaved=null,cePrev=null,ceT=0,cePieces=null,ceTab="size",ceHist=[],ceLastPush=0,ceFit=-1,ceWear="under",ceOut=[];
 /* the fitting room: Dave in plain grey boxer briefs, nothing else, so his build is easy to judge */
 var UNDERWEAR=[{item:"",shape:"shorts",col:"grey",what:"Plain boxer briefs",fixed:true,under:true}];
 function ceWearSet(w,msg){ceWear=w==="outfit"?"outfit":"under";cePieces=ceWear==="under"?UNDERWEAR:ceOut;
   Array.prototype.forEach.call(document.querySelectorAll("#chared [data-cewear]"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-cewear")===ceWear));});
   if(cePrev&&cePrev.on)cePrev.update(cePieces);
   if(msg)$("ce-msg").textContent=ceWear==="under"?"Fitting room: Dave in plain underwear.":"Showing him in “"+((fits[ceFit]||{}).name||"an outfit")+"”.";}
-var CE_ZOOM={body:0,face:1,hair:0.82};
-function ceForm(){
-  Array.prototype.forEach.call(document.querySelectorAll("#chared [data-cet]"),function(b){b.setAttribute("aria-selected",String(b.getAttribute("data-cet")===ceTab));});
-  $("ce-form").innerHTML=CE.filter(function(c){return c.g===ceTab&&(!c.when||c.when());}).map(function(c){
-    if(c.h)return '<h3 class="ce-sub">'+esc(c.h)+'</h3>';
-    if(c.t==="meas")return '<p class="msg ce-meas" id="ce-meas">'+esc(ceMeas())+'</p>';
-    if(c.t==="prop")return '<p class="msg ce-meas" id="ce-prop">'+esc(ceProp())+'</p><div class="ce-row"><span class="label"></span><div class="ce-opts"><button type="button" class="chip" data-ceprop="his">His proportions</button><button type="button" class="chip" data-ceprop="avg">Average man</button></div></div>';
-    if(c.t==="preset")return '<div class="ce-row"><span class="label" id="ce-l-pre">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-pre">'+c.o.map(function(o){return '<button type="button" class="chip" data-ceset="'+o[0]+'">'+esc(o[1])+'</button>';}).join("")+'</div></div>';
-    if(c.t==="sl"||c.t==="range"){var sv=CHAR[c.k],dv=CHAR_DEF[c.k];return '<div class="ce-row"><label class="label" for="ce-r-'+c.k+'">'+esc(c.l)+'</label><div class="ce-opts"><input type="range" id="ce-r-'+c.k+'" data-cer="'+c.k+'" min="-1" max="1" step="0.01" value="'+cePos(c,sv)+'"><span class="ce-val" id="ce-v-'+c.k+'">'+esc(ceLabel(c,sv))+'</span><button type="button" class="linkbtn ce-rs" data-cers="'+c.k+'"'+(Math.abs((Number(sv)||0)-(Number(dv)||0))<0.001?' hidden':'')+'>Reset</button></div></div>';}
-    var v=CHAR[c.k],h='<div class="ce-row"><span class="label" id="ce-l-'+c.k+'">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-'+c.k+'">';
-    if(c.t==="seg"){h+=c.o.map(function(o){return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="'+o[0]+'" aria-pressed="'+(v===o[0])+'">'+esc(o[1])+'</button>';}).join("");}
-    else if(c.t==="sw"){h+=c.o.map(function(o){if(o==="")return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="" aria-pressed="'+(!v)+'">Match hair</button>';return '<button type="button" class="ce-sw" style="background:'+o+'" data-ce="'+c.k+'" data-cv="'+o+'" aria-pressed="'+(String(v).toLowerCase()===o)+'" aria-label="'+esc(c.l+" "+o)+'"></button>';}).join("")+'<input type="color" id="ce-c-'+c.k+'" data-cec="'+c.k+'" value="'+esc(v||browColor())+'" aria-label="'+esc(c.l+", any colour")+'">';}
-    return h+'</div></div>';}).join("");
-  $("ce-undo").disabled=!ceHist.length;
-}
-function ceApply(){clearTimeout(ceT);ceT=setTimeout(function(){if(cePrev&&cePrev.on&&cePieces)cePrev.update(cePieces);var me=$("ce-meas");if(me)me.textContent=ceMeas();var pr=$("ce-prop");if(pr)pr.textContent=ceProp();},120);}
+function ceApply(){ceDirty();clearTimeout(ceT);ceT=setTimeout(function(){if(cePrev&&cePrev.on&&cePieces)cePrev.update(cePieces);ceLinesMake();var me=$("ce-meas");if(me)me.outerHTML=ceMeasCard();var pr=$("ce-prop");if(pr)pr.textContent=ceProp();},120);}
 function cePush(force){var now=Date.now();if(force||now-ceLastPush>700){ceHist.push(Object.assign({},CHAR));if(ceHist.length>40)ceHist.shift();}ceLastPush=now;$("ce-undo").disabled=false;}
 function ceSet(k,v,drag){if(CHAR[k]===v)return;cePush(!drag);CHAR[k]=v;if(k==="hairShade")CHAR.hair=brownAt(v);var c=CE.filter(function(x){return x.k===k;})[0];
   if(c&&c.t!=="range"&&c.t!=="sl"){if(k==="glasses"||k==="tache"||k==="hairStyle"){ceForm();}else{Array.prototype.forEach.call(document.querySelectorAll('[data-ce="'+k+'"]'),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-cv")===String(v).toLowerCase()));});var ci=$("ce-c-"+k);if(ci&&/^#/.test(v))ci.value=v;}}
-  else if(c){$("ce-v-"+k).textContent=ceLabel(c,v);var rs=document.querySelector('[data-cers="'+k+'"]');if(rs)rs.hidden=Math.abs((Number(v)||0)-(Number(CHAR_DEF[k])||0))<0.001;}
+  else if(c){var vl=$("ce-v-"+k);if(vl)vl.textContent=ceLabel(c,v);ceSlSync(k);}
   $("ce-msg").textContent="";ceApply();}
+/* Edit Dave's sections: the essentials first (body type, then six sliders, the rest under Fine-tune), then the parts of
+   him that are changed less often. Each lists CE keys ("h:" is a sub-heading). */
+var CES=[
+  {k:"type",l:"Body type",items:["_preset","_meas"]},
+  {k:"size",l:"Size and shape",main:["height","weight","muscle","shoulderW","waistW","legLen"],fine:["chest","belly","hips","arms","legs","neckW","shoulderSlope","torsoDepth"]},
+  {k:"prop",l:"Proportions",items:["legLen","torsoLen","armLen","neckLen","headSize","_prop"]},
+  {k:"fit",l:"Clothes fit",items:["clothFit","h:How clothes fit is a guide to the cut: closer or looser than the listing's own fit."]},
+  {k:"face",l:"Face",items:["faceW","jaw","chin","noseSize","lips","ears","eyeSize","smile","h:Brows","browCol","browThick","browY","browArch","browTilt","browLen","h:Glasses","glasses","glassCol"]},
+  {k:"tache",l:"Moustache and beard",items:["tache","tacheCol","tacheY","tacheZ","tacheW","tacheLen","tacheDen","tacheDroop","h:Beard","beard"]},
+  {k:"hair",l:"Hair",items:CE.filter(function(c){return c.g==="hair";}).map(function(c){return c.h?"h:"+c.h:c.k;})},
+  {k:"skin",l:"Skin and colouring",items:["skin","eyes","freckles"]}];
+var CE_ZOOM={face:1,tache:1,hair:0.82,skin:0.55};
+function ceDef(k){return CE.filter(function(c){return c.k===k;})[0];}
+function ceKeys(sec){return (sec.items||[]).concat(sec.main||[],sec.fine||[]).filter(function(k){return k&&k.charAt(0)!=="_"&&k.indexOf("h:")!==0;});}
+function ceDiff(k){var a=CHAR[k],b=ceSaved?ceSaved[k]:CHAR_DEF[k];return typeof a==="number"||typeof b==="number"?Math.abs((Number(a)||0)-(Number(b)||0))>0.0005:String(a||"")!==String(b||"");}
+function ceDirty(){var n=Object.keys(CHAR_DEF).filter(ceDiff).length,el=$("ce-n");if(el)el.textContent=n?n+(n===1?" unsaved change":" unsaved changes"):"";
+  CES.forEach(function(s){var b=document.querySelector('#chared [data-cet="'+s.k+'"] .ce-bdg');if(b){var m=ceKeys(s).filter(ceDiff).length;b.textContent=m||"";b.hidden=!m;}});
+  var pk=cePreset();Array.prototype.forEach.call(document.querySelectorAll("#chared [data-ceset]"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-ceset")===pk));});
+  return n;}
+/* which body type he matches now, if any */
+function cePreset(){var hit="";Object.keys(PRESETS).forEach(function(pk){var pr=PRESETS[pk];if(BODY_KEYS.every(function(k){var v=pr[k]!=null?pr[k]:(pk==="dave"?CHAR_DEF[k]:0);return Math.abs((Number(CHAR[k])||0)-v)<0.002;}))hit=hit||pk;});return hit;}
+/* a little figure for each body type, broader where the type is */
+function ceSil(pk){var pr=PRESETS[pk]||{},g=function(k){return pr[k]!=null?pr[k]:(pk==="dave"?CHAR_DEF[k]:0);},sh=13+3*g("shoulderW")+2*g("muscle")+1.5*g("weight"),wa=10+3*g("waistW")+2.5*g("belly")+2*g("weight"),hp=11+2*g("hips")+1.5*g("weight"),lg=4.2+1.2*g("legs")+0.8*g("weight");
+  return '<svg viewBox="0 0 40 74" aria-hidden="true"><circle cx="20" cy="8" r="5.5"/><path d="M'+(20-sh)+' 18 Q20 14 '+(20+sh)+' 18 L'+(20+wa)+' 38 L'+(20+hp)+' 44 L'+(20+lg+1)+' 72 L21 72 L20 50 L19 72 L'+(19-lg-1)+' 72 L'+(20-hp)+' 44 L'+(20-wa)+' 38 Z"/></svg>';}
+/* the average man on a slider: 0 on the shape sliders, 175 cm for height */
+function ceAvg(c){return c.k==="height"?175:(c.t==="sl"?0:null);}
+function ceSlider(c){var sv=CHAR[c.k],p=cePos(c,sv),P=(p+1)*50,av=ceAvg(c),A=av==null?null:(cePos(c,av)+1)*50,S=(cePos(c,ceSaved?ceSaved[c.k]:CHAR_DEF[c.k])+1)*50,ch=ceDiff(c.k),F=A==null?0:A;
+  var ends=c.k==="height"?["160 cm","200 cm"]:[c.a||"",c.b||""];
+  return '<div class="ce-sl" data-cesl="'+c.k+'"><div class="ce-slh"><label for="ce-r-'+c.k+'">'+esc(c.l)+'<i class="ce-dot"'+(ch?"":" hidden")+'></i></label><span><span class="ce-val" id="ce-v-'+c.k+'">'+esc(ceLabel(c,sv))+'</span><button type="button" class="linkbtn ce-rs" data-cers="'+c.k+'"'+(ch?"":" hidden")+'>Reset</button></span></div>'+
+    '<div class="ce-trk">'+(A!=null?'<span class="ce-avg" style="left:'+A.toFixed(1)+'%" title="Average"></span>':"")+'<span class="ce-fill" style="left:'+Math.min(F,P).toFixed(1)+'%;width:'+Math.abs(P-F).toFixed(1)+'%"></span><span class="ce-sv" style="left:'+S.toFixed(1)+'%" title="His saved setting">◆</span>'+
+    '<input type="range" id="ce-r-'+c.k+'" data-cer="'+c.k+'" min="-1" max="1" step="0.01" value="'+p+'"></div><div class="ce-ends"><span>'+esc(ends[0])+'</span><span>'+esc(ends[1])+'</span></div></div>';}
+/* after a slider moves: its value, fill, dot and reset, and the counts */
+function ceSlSync(k){var c=ceDef(k),el=document.querySelector('#chared [data-cesl="'+k+'"]');if(!c||!el)return;var p=cePos(c,CHAR[k]),P=(p+1)*50,av=ceAvg(c),F=av==null?0:(cePos(c,av)+1)*50,ch=ceDiff(k);
+  var fl=el.querySelector(".ce-fill");fl.style.left=Math.min(F,P).toFixed(1)+"%";fl.style.width=Math.abs(P-F).toFixed(1)+"%";el.querySelector(".ce-dot").hidden=!ch;el.querySelector(".ce-rs").hidden=!ch;
+  var sv=el.querySelector(".ce-sv");if(sv)sv.style.left=((cePos(c,ceSaved?ceSaved[k]:CHAR_DEF[k])+1)*50).toFixed(1)+"%";}
+/* his chest, waist, hips and inside leg from the model (in metres), with the height of each on the model for its line */
+function ceMeasure(){if(!BODY)return null;var b=bodySecs(),t=b.torso,kH=(Number(CHAR.height)||183)/183,PW=propWarp(BODY.lm.chin),W=PW?PW.W:function(y){return y;};
+  function circ(y){var q=secAt(t,y),a=q[1]*kH,c=q[2]*kH;return Math.PI*(3*(a+c)-Math.sqrt((3*a+c)*(a+3*c)))*1.04;}
+  var wm=9,wy=1.05;for(var y=0.97;y<=1.2;y+=0.01){var v=circ(y);if(v<wm){wm=v;wy=y;}}
+  var kF=kH*(PW?1.79/PW.W(1.79):1),leg=W(BODY.lm.crotch)*kF-0.03;
+  return [{k:"chest",l:"Chest",y:W(1.3),m:circ(1.3)},{k:"waist",l:"Waist",y:W(wy),m:wm},{k:"hips",l:"Hips",y:W(0.9),m:circ(0.9)},{k:"leg",l:"Inside leg",y:W(BODY.lm.crotch),m:leg}];}
+function ceIn(m){return Math.round(m*100/2.54);}
+/* his measurements against the sizes he buys (L tops, 34W 32L): what the model's figures would buy */
+function ceSizes(M){if(!M)return null;var ch=ceIn(M[0].m),wa=ceIn(M[1].m),lg=ceIn(M[3].m),top=ch<38?"S":(ch<40?"M":(ch<43?"L":(ch<46?"XL":"XXL")));
+  var r=[{l:"Tops "+top,ok:top==="L"},{l:"Jackets "+(2*Math.round(ch/2))+"R",ok:Math.abs(ch-41)<=2},{l:(2*Math.round(wa/2))+"W "+lg+"L",ok:Math.abs(wa-34)<=1.5&&Math.abs(lg-32)<=1.5}];
+  return {all:r.every(function(x){return x.ok;}),r:r};}
+function ceMeasCard(){var M=ceMeasure();if(!M)return '<div class="ce-mc" id="ce-meas"><p class="msg">His measurements appear once the model has loaded.</p></div>';var S=ceSizes(M);
+  return '<div class="ce-mc" id="ce-meas"><div class="fr-rh"><span class="label">His measurements, from the model</span><span>a guide</span></div><div class="ce-mg">'+
+    M.map(function(m){return '<div><b>'+ceIn(m.m)+'in</b><span>'+esc(m.l)+' · '+Math.round(m.m*100)+' cm</span></div>';}).join("")+'</div>'+
+    '<div class="ce-szs"><b class="'+(S.all?"ok":"no")+'">'+(S.all?"✓ Matches his sizes:":"Not his usual sizes:")+'</b>'+S.r.map(function(x){return '<span class="'+(x.ok?"":"no")+'">'+esc(x.l)+'</span>';}).join("")+(S.all?"":'<span class="ce-note">He buys L tops and 34W 32L.</span>')+'</div></div>';}
+function ceRow(c){
+  if(c.t==="meas")return ceMeasCard();
+  if(c.t==="prop")return '<p class="msg ce-meas" id="ce-prop">'+esc(ceProp())+'</p><div class="ce-opts"><button type="button" class="chip" data-ceprop="his">His proportions</button><button type="button" class="chip" data-ceprop="avg">Average man</button></div>';
+  if(c.t==="preset")return '<div class="ce-pre" role="group" aria-label="Start from a body type">'+c.o.map(function(o){return '<button type="button" class="ce-card" data-ceset="'+o[0]+'" aria-pressed="false">'+ceSil(o[0])+'<span>'+esc(o[1])+'</span></button>';}).join("")+'</div>';
+  if(c.t==="sl"||c.t==="range")return ceSlider(c);
+  var v=CHAR[c.k],h='<div class="ce-row"><span class="label" id="ce-l-'+c.k+'">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-'+c.k+'">';
+  if(c.t==="seg"){h+=c.o.map(function(o){return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="'+o[0]+'" aria-pressed="'+(v===o[0])+'">'+esc(o[1])+'</button>';}).join("");}
+  else if(c.t==="sw"){h+=c.o.map(function(o){if(o==="")return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="" aria-pressed="'+(!v)+'">Match hair</button>';return '<button type="button" class="ce-sw" style="background:'+o+'" data-ce="'+c.k+'" data-cv="'+o+'" aria-pressed="'+(String(v).toLowerCase()===o)+'" aria-label="'+esc(c.l+" "+o)+'"></button>';}).join("")+'<input type="color" id="ce-c-'+c.k+'" data-cec="'+c.k+'" value="'+esc(v||browColor())+'" aria-label="'+esc(c.l+", any colour")+'">';}
+  return h+'</div></div>';}
+function ceList(keys){return keys.map(function(k){if(k.indexOf("h:")===0)return '<h3 class="ce-sub">'+esc(k.slice(2))+'</h3>';var c=ceDef(k);if(!c||(c.when&&!c.when()))return "";return ceRow(c);}).join("");}
+function ceForm(){
+  var sec=CES.filter(function(s){return s.k===ceTab;})[0]||CES[1];
+  Array.prototype.forEach.call(document.querySelectorAll("#chared [data-cet]"),function(b){b.setAttribute("aria-selected",String(b.getAttribute("data-cet")===sec.k));});
+  var h='';
+  if(sec.k==="size"){h='<div class="ce-blk"><span class="label">Start from a body type</span>'+ceRow(ceDef("_preset"))+'</div>'+
+      '<div class="ce-blk"><div class="fr-rh"><span class="label">Size and shape</span><span>◆ his saved setting · | average</span></div>'+ceList(sec.main)+
+      '<details class="ce-fine"'+(sec.fine.some(ceDiff)||CEV.fine?" open":"")+'><summary>Fine-tune <span class="msg">Body depth, hips, arms, legs, neck, shoulder slope</span></summary>'+ceList(sec.fine)+'</details></div>'+ceMeasCard();}
+  else if(sec.k==="type"){h='<div class="ce-blk"><span class="label">Start from a body type</span>'+ceRow(ceDef("_preset"))+'<p class="msg">A body type sets his build (weight, muscle, chest, waist, belly, hips, arms, legs and neck); his height, proportions and face stay as they are. Fine-tune it under Size and shape.</p></div>'+ceMeasCard();}
+  else h='<div class="ce-blk"><span class="label">'+esc(sec.l)+'</span>'+ceList(sec.items)+'</div>';
+  $("ce-form").innerHTML=h;
+  $("ce-undo").disabled=!ceHist.length;ceDirty();
+}
+/* Edit Dave's stage: the measuring lines on him, and the saved Dave wiped against the one being changed */
+var CEV={lines:true,cmp:true,wipe:50,key:"",at:0,snapped:"",M:null};
+function ceFrame(h){
+  var sz=h.size(),k=h.k(),box=$("ce-lines");
+  if(box){if(!CEV.lines||!CEV.M||ceWear!=="under"){box.hidden=true;}else{box.hidden=false;var T=window.THREE;
+    var last=-99;Array.prototype.forEach.call(box.children,function(el,i){var m=CEV.M[i];if(!m)return;var q=h.project(new T.Vector3(0,m.y,0.2));el.style.top=q.y.toFixed(1)+"px";el.hidden=q.y<30||q.y>sz.h-50;
+      /* (labels that would overlap are moved apart; the lines stay at their true heights) */
+      var ly=el.hidden?q.y:Math.max(q.y,last+26);if(!el.hidden)last=ly;var sp=el.querySelector("span");if(sp)sp.style.transform="translateY("+(ly-q.y).toFixed(1)+"px)";});}}
+  /* the saved figure: once the view has stopped moving, a still of him as saved, from the same camera */
+  var wp=$("ce-wipe"),dv=$("ce-div");if(!wp)return;var on=CEV.cmp&&ceDirty0();wp.hidden=!on;dv.hidden=!on;$("ce-nowl").hidden=!on;$("ce-savl").hidden=!on;
+  if(!on)return;var v=h.view(),key=[v.rot.toFixed(3),v.z.toFixed(3),v.pan.toFixed(3),sz.w,sz.h,ceWear,charKeyOf(ceSaved),ceFit,h.k().toFixed(4)].join("/");
+  if(key!==CEV.key){CEV.key=key;CEV.at=Date.now();wp.classList.add("stale");return;}
+  if(CEV.snapped!==key&&Date.now()-CEV.at>300){CEV.snapped=key;var saved=ceSaved,url=h.still(function(){var now=Object.assign({},CHAR);Object.assign(CHAR,saved);try{return make3D(cePieces);}finally{Object.assign(CHAR,now);}});
+    if(url){$("ce-wimg").src=url;wp.classList.remove("stale");}}
+}
+function charKeyOf(o){return o?Object.keys(CHAR_DEF).map(function(k){return o[k];}).join(","):"";}
+function ceDirty0(){return !!ceSaved&&Object.keys(CHAR_DEF).some(ceDiff);}
+function ceWipeAt(x){CEV.wipe=Math.max(4,Math.min(96,x));var w=$("ce-wipe"),d=$("ce-div");if(w)w.style.clipPath="inset(0 "+(100-CEV.wipe).toFixed(1)+"% 0 0)";if(d)d.style.left=CEV.wipe.toFixed(1)+"%";}
+function ceLinesMake(){CEV.M=ceMeasure();var box=$("ce-lines");if(!box)return;box.innerHTML=(CEV.M||[]).map(function(m){return '<div class="ce-ln"><i></i><span>'+esc(m.l)+' <b>'+ceIn(m.m)+'in</b></span></div>';}).join("");}
 function ceStart(){
   var box=$("ce-3d"),ld=box.querySelector(".ce-load");
   loadThree().then(function(){if(!$("chared").open)return;if(cePrev){cePrev.stop();cePrev=null;}
-    try{cePrev=Live3D(box,cePieces,{zoom:CE_ZOOM[ceTab]||0});if(ld)ld.hidden=true;cePrev.onLost=function(){if(cePrev){cePrev.stop();cePrev=null;}live3DFail(box,ld,ceStart);};}
+    try{cePrev=Live3D(box,cePieces,{zoom:CE_ZOOM[ceTab]||0,bar:false,spin:false,onFrame:ceFrame});if(ld)ld.hidden=true;CEV.key="";CEV.snapped="";ceLinesMake();ceForm();cePrev.onLost=function(){if(cePrev){cePrev.stop();cePrev=null;}live3DFail(box,ld,ceStart);};}
     catch(e){cePrev=null;live3DFail(box,ld,ceStart);}
   },function(){if(ld){ld.hidden=false;ld.textContent="The 3D model could not load. Check the connection and try again.";}});
 }
 function openCE(fitId,wear){
   var dlg=$("chared");if(!dlg)return;ceSaved=Object.assign({},CHAR);ceHist=[];ceLastPush=0;
   var f=fitId&&fitById[fitId];ceOut=f?effPieces(f):(fits[0]?effPieces(fits[0]):[]);ceFit=f?fits.indexOf(f):0;
-  ceWearSet(wear||"under");ceTab="body";
+  ceWearSet(wear||"under");ceTab="size";CEV.key="";CEV.snapped="";ceWipeAt(CEV.wipe);
   ceForm();$("ce-msg").textContent="";
   if(typeof dlg.showModal==="function"){if(!dlg.open)dlg.showModal();}else{dlg.setAttribute("open","");}
   ceStart();
@@ -6912,7 +7094,7 @@ function saveChar(){
   snapCache={};
   if(db&&!staticMode){db.doc("meta/character").set(Object.assign({},CHAR)).then(function(){$("ce-msg").textContent="Saved for everyone who uses this page.";},function(){$("ce-msg").textContent="Saved on this device only: only the page owner can change Dave for everyone.";});}
   else{$("ce-msg").textContent="Saved on this device.";}
-  ceSaved=Object.assign({},CHAR);
+  ceSaved=Object.assign({},CHAR);if($("chared").open){ceForm();CEV.snapped="";}
   applyChar2D();renderAll();if(z3&&z3.on&&fitById[zoomId])z3.update(frPieces());if($("fr")&&$("zoom").open)frFill();if(zb&&zb.on)drawBuild();   /* (the 2D drawings follow Edit Dave too) */
 }
 document.addEventListener("click",function(e){var b;
@@ -6921,15 +7103,25 @@ document.addEventListener("click",function(e){var b;
   if((b=e.target.closest("[data-cclose]"))){closeCE(false);return;}
   if((b=e.target.closest("[data-cet]"))){ceTab=b.getAttribute("data-cet");ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);return;}
   if((b=e.target.closest("[data-ce]"))){ceSet(b.getAttribute("data-ce"),b.getAttribute("data-cv"));return;}
-  if((b=e.target.closest("[data-cers]"))){var rk=b.getAttribute("data-cers");ceSet(rk,Number(CHAR_DEF[rk])||0);var ri=$("ce-r-"+rk);if(ri)ri.value=0;return;}
+  if((b=e.target.closest("[data-cers]"))){var rk=b.getAttribute("data-cers"),rv=ceSaved&&ceSaved[rk]!=null?ceSaved[rk]:CHAR_DEF[rk];ceSet(rk,rv);var ri=$("ce-r-"+rk),rc=ceDef(rk);if(ri&&rc)ri.value=cePos(rc,rv);return;}
+  if((b=e.target.closest("[data-ceang]"))){if(cePrev&&cePrev.on)cePrev.turnTo(Number(b.getAttribute("data-ceang")));return;}
+  if((b=e.target.closest("[data-celines]"))){CEV.lines=!CEV.lines;b.setAttribute("aria-pressed",String(CEV.lines));return;}
+  if((b=e.target.closest("[data-cecmp]"))){CEV.cmp=!CEV.cmp;b.setAttribute("aria-pressed",String(CEV.cmp));CEV.snapped="";return;}
   if((b=e.target.closest("[data-ceprop]"))){var avg=b.getAttribute("data-ceprop")==="avg";cePush(true);ceLastPush=0;PROP_KEYS.forEach(function(k2){CHAR[k2]=avg?0:CHAR_DEF[k2];});ceForm();ceApply();$("ce-msg").textContent=avg?"Proportions of an average man.":"His own proportions.";return;}
   if((b=e.target.closest("[data-ceset]"))){var pr=PRESETS[b.getAttribute("data-ceset")]||{};cePush(true);ceLastPush=0;BODY_KEYS.forEach(function(k2){CHAR[k2]=pr[k2]!=null?pr[k2]:(b.getAttribute("data-ceset")==="dave"?CHAR_DEF[k2]:0);});ceForm();ceApply();$("ce-msg").textContent="Body type: "+b.textContent+". Fine-tune it with the sliders.";return;}
 });
-$("chared").addEventListener("keydown",function(e){var t=e.target;if(!t.hasAttribute||!t.hasAttribute("data-cet")||(e.key!=="ArrowRight"&&e.key!=="ArrowLeft"))return;
-  var tabs=["body","face","hair"],i=(tabs.indexOf(ceTab)+(e.key==="ArrowRight"?1:2))%3;ceTab=tabs[i];ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);var nb=document.querySelector('#chared [data-cet="'+ceTab+'"]');if(nb)nb.focus();e.preventDefault();});
+$("chared").addEventListener("keydown",function(e){var t=e.target;
+  if(t.id==="ce-hand"&&(e.key==="ArrowLeft"||e.key==="ArrowRight")){ceWipeAt(CEV.wipe+(e.key==="ArrowLeft"?-5:5));e.preventDefault();return;}
+  if(!t.hasAttribute||!t.hasAttribute("data-cet")||!/^Arrow(Right|Left|Up|Down)$/.test(e.key))return;
+  var tabs=CES.map(function(x){return x.k;}),i=(tabs.indexOf(ceTab)+(/Right|Down/.test(e.key)?1:tabs.length-1))%tabs.length;ceTab=tabs[i];ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);var nb=document.querySelector('#chared [data-cet="'+ceTab+'"]');if(nb)nb.focus();e.preventDefault();});
 $("chared").addEventListener("input",function(e){var t=e.target;
   if(t.hasAttribute("data-cer")){var ck=t.getAttribute("data-cer"),cc=CE.filter(function(x){return x.k===ck;})[0];ceSet(ck,cc?ceVal(cc,t.value):Number(t.value),true);}
   else if(t.hasAttribute("data-cec")){ceSet(t.getAttribute("data-cec"),t.value.toLowerCase(),true);}});
+$("chared").addEventListener("toggle",function(e){if(e.target.classList&&e.target.classList.contains("ce-fine"))CEV.fine=e.target.open;},true);
+(function(){var drag=false;function at(e){var st=document.querySelector("#chared .ce-stage").getBoundingClientRect();ceWipeAt((e.clientX-st.left)/st.width*100);}
+  $("ce-hand").addEventListener("pointerdown",function(e){drag=true;try{e.target.setPointerCapture(e.pointerId);}catch(x){}e.preventDefault();});
+  $("ce-hand").addEventListener("pointermove",function(e){if(drag)at(e);});
+  $("ce-hand").addEventListener("pointerup",function(){drag=false;});$("ce-hand").addEventListener("pointercancel",function(){drag=false;});})();
 $("chared").addEventListener("cancel",function(e){e.preventDefault();closeCE(false);});
 $("ce-save").addEventListener("click",saveChar);
 $("ce-undo").addEventListener("click",function(){var last=ceHist.pop();if(!last)return;Object.keys(CHAR_DEF).forEach(function(k){CHAR[k]=last[k];});ceLastPush=0;ceForm();ceApply();$("ce-msg").textContent="Undone.";});
