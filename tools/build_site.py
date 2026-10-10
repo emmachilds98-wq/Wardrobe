@@ -73,7 +73,7 @@ def load_groups(items):
     return groups
 
 
-FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch", "named", "slv")
+FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch", "named", "slv", "place")
 
 
 def check_fix_fields(k, fx, bad):
@@ -94,6 +94,9 @@ def check_fix_fields(k, fx, bad):
     if "swatch" in fx and not (isinstance(fx["swatch"], str) and re.match(r"data:image/(jpeg|png);base64,", fx["swatch"])
                                and len(fx["swatch"]) <= 16000):
         bad.append(f"{k}: swatch must be a small data:image/jpeg or png (a square of the cloth, under 16,000 characters)")
+    if "place" in fx and not (isinstance(fx["place"], str) and re.match(r"data:image/(jpeg|png);base64,", fx["place"])
+                              and len(fx["place"]) <= 24000):
+        bad.append(f"{k}: place must be a small data:image/jpeg or png (the front panel, under 24,000 characters)")
 
 
 def check_fixes(fixes, items):

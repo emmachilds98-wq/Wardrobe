@@ -1755,6 +1755,39 @@ build before the fix, where it must flag the fault, and after, where it must pas
 - *Sunglasses*: all seven pairs drawn in their named frame; one with no shape word (A.Kjaerbede Noah) is now described
   as slim rectangular silver with pale blue lenses, as its photo shows.
 
+## 2zzzzzzzz. Emma's three comments of 10 October, and faults found on the way (10 Oct 2026)
+
+The artifact had not been republished since 7 October, so the fixes in pull requests 18 and 19 were not live when
+Emma commented; version 38 published them first. The three comments still showed on that build:
+
+| Comment | Cause | Fix |
+| --- | --- | --- |
+| Fair Isle half-zip: "still no design like the listed half zip" | the photo's front was laid on as a flat patch on the chest, so the camel yoke, the band across the sleeves and the hem showed nowhere else | a new correction field, `place`: the jumper's front panel cut from the listing photo (centre to side seam, collar to hem), laid on every part of the piece by height, mirrored round the body and run round each arm, in 3D and in the 2D drawing |
+| "Thighs still sticking together" | the legs only parted 14 cm below the crotch and by 2 cm, and each leg followed his knee and calf, so they read as one block | each leg hangs in straight lines from the thigh over the calf to the hem; the gap opens as a V straight from the crotch |
+| Summer weekend: "shape doesn't match" | deck shoes were drawn as dress shoes, the Wellington frames as squares, and polo and shirt collars stood up like a band | deck shoes get a flat rubber sole in the photo's colour, a moccasin apron with pale stitching and a rawhide lace round the collar tied at the front; Wellington frames are a soft trapezoid; collars are low at the front and high at the back, and their fold spreads out over his shoulders and chest |
+
+Found while fixing these, and fixed for every outfit:
+- **Normals thrown away after building.** The figure is warped to his proportions after it is built, and that step
+  recomputed every surface's normals, losing every adjustment made to them (the cloth over the hips turned to meet the
+  legs, tube seams, the body's welded seams). They are now kept and turned with the warp.
+- **A ring round both thighs** where the cloth over the hips met the legs: the leg tops tucked in under it, leaving a
+  lip that showed the inside of the cloth; the cord's wales also stepped sideways there. The leg tops now run on under
+  it at almost the same size, and the texture is mapped by the same angle on both.
+- **Corduroy drew as 2.5 cm awning stripes.** Wales are now about 3 mm apart, with a lit crest.
+- **A dark block on the inner thigh** with a hard edge at 0.6 m (the contact shading doubled there); it now eases in.
+- **Saw-tooth skin at every shoe's opening**: his foot was taken away whole, though it reaches above the opening at the
+  ankle bones; now only the part wholly inside the shoe goes.
+- **Flat-faced toes** on every shoe: the toe is rounded off.
+- **QA:** `tools/qa/card.js` draws the outfit cards exactly as the page does (the light build, soft shadows, turned
+  0.32), beside a 3x crop, since the comments are made on the cards.
+- **Checks:** the gate outfits and the three commented ones on dave, heavier and loose; CI runs the same on the pull
+  request.
+
+Still open (for the review and plan Emma asked for next): the polo's belt hides under its hem with shorts and its
+keeper shows through (tops are tucked for a belt only with trousers, in 2D and 3D alike); grey shards where a folded
+collar's ends meet the shoulders; small specks on the Harrington; the 2D drawing reads the Brakeburn cords' wales as
+brown stripes rather than rust cord.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
