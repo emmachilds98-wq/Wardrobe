@@ -108,6 +108,12 @@ jobs:
           cat tools/qa/gate.txt >> "$RUNNER_TEMP/ids.txt"
       - name: Render and check
         run: node tools/check_3d.js --site "$RUNNER_TEMP/site" --ids "@$RUNNER_TEMP/ids.txt" --body ${{ matrix.body }} --shard ${{ matrix.shard }}/3 --out qa --debug --fail
+      # the fitting room's "How it's worn" toggles: tucked in with turn-ups, and done up and untucked (on his saved shape)
+      - name: Render and check, worn other ways
+        if: matrix.body == 'dave'
+        run: |
+          node tools/check_3d.js --site "$RUNNER_TEMP/site" --ids "@$RUNNER_TEMP/ids.txt" --wear tuck=in,turn=up --shard ${{ matrix.shard }}/3 --out qa/wear-tuck --debug --fail
+          node tools/check_3d.js --site "$RUNNER_TEMP/site" --ids "@$RUNNER_TEMP/ids.txt" --wear zip=up,tuck=out --shard ${{ matrix.shard }}/3 --out qa/wear-zip --debug --fail
       - name: Keep the pictures
         if: always()
         uses: actions/upload-artifact@v4

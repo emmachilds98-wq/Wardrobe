@@ -90,7 +90,9 @@ should match. Emma asked for the upgrade to continue until that is done.
 | Cloth textures | `lookTex` (3D), `lookFill` (2D) |
 | Accessories, shoes, boots, ties, bags | The long `else if(p.shape===...)` chain near the end of `make3Dcore` |
 | 2D drawing | `figure()`, `face2D`, `applyChar2D` |
-| Edit Dave and fitting room | `CHAR`, `openCE`, `UNDERWEAR` |
+| Edit Dave and fitting room | `CHAR`, `openCE`, `UNDERWEAR`; Edit Dave's sections `CES`, `ceForm`, `ceSlider`, `ceFrame` (measuring lines, saved/now wipe) |
+| The fitting room (large view of an outfit) | `openZoom`, `FR`, `frShell`, `frFill`, `frFrame` (pins, ruler), `frWearRows`; how it is worn: `ZIPM`, `TUCKM`, `TURNM`, `LIGHTM`, `tuckOn`, `turnOn`; `Live3D` (`wear`, `turnTo`, `frameTo`, `project`, `still`) |
+| Compare outfits | `CMP`, `cmpAdd`, `cmpRender`, `cmpLive`; stills by angle in `snap3D(ps,k,rot,first)` |
 | Views, Back button and links | `setView` (history steps), `route` (reads `#shop`, `#fits`…, `#fit/<id>`), `openZoom` / `closeZoom` / `zoomGone` |
 | Builder | `suggest` (budget, kept pieces, formality via `FORMAL` / `formalRange`), `budgetSet` (the £60/£100/£150 sets), `teeFor` |
 | His wardrobe | `ownPieces`, `ownFits`, `renderMine`; the wear log is `wearOwn` / `wearLine` (`wears` and `log` on each owned piece) |
@@ -144,6 +146,13 @@ table: UPGRADE_PLAN 2zzzzzzz; lessons: CONTRIBUTING.md.
 
 Also 8 Oct: 37 women's picks removed (30 Jack Wolfskin "W" lines, "Women" in Sergio Tacchini and Fila titles, River
 Island cinch-back pieces, an adidas "Japan W"); `build_site.py` now stops on a women's listing.
+
+## Fitting room upgrade (10 Oct 2026)
+
+The Claude Design proposal "3D Fitting Room Upgrade" is built: the outfit view with pins, wear toggles, light,
+camera dock and outfit strip; the new Edit Dave; Compare; and the phone layouts. See `UPGRADE_PLAN.md` 2zzzzzzzzz for
+what each part does and what is left. Any fitting change must now also pass the gate set with
+`--wear tuck=in,turn=up` and `--wear zip=up,tuck=out` (CONTRIBUTING.md, "Checking your change").
 
 ## What to do next, in order
 
