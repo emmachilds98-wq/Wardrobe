@@ -31,7 +31,10 @@
    --out      where the report and the pictures of flagged outfits go (default qa/)
    --report   also write the summary into data/refresh-report.json ("checks_3d")
    --body     check on another of Edit Dave's body types (slim, average, athletic, heavier) or cloth fits (close, loose)
-   Needs Playwright and Chromium (CHROME_PATH to use a particular Chromium). */
+   --wear     check as the fitting room's "How it's worn" toggles set it: tuck=in|out, turn=up|down, zip=up|open
+              (comma separated, e.g. --wear tuck=in,turn=up)
+   Needs Playwright and Chromium (CHROME_PATH to use a particular Chromium; THREE_JS to load Three.js r128 from a local
+   file when the CDN cannot be reached). */
 const fs = require("fs"), path = require("path"), http = require("http");
 let chromium;
 try { ({ chromium } = require("playwright")); } catch (e) {
@@ -57,6 +60,7 @@ function serve(dir) {
 async function checkOutfit(arg) {
   const id = arg.id, dbg = arg.dbg, LIMITS = arg.lim;
   const X = window.__qa(), T = window.THREE, f = X.fitById[id];
+  X.wear(arg.wear);
   if (!f) return { id, error: "no such outfit" };
   const ps = X.effPieces(f);
   for (const p of ps) {   // the shop photo reading, as the page does when the card is shown
@@ -67,7 +71,7 @@ async function checkOutfit(arg) {
   const W = 300, H = 440;
   if (!window.__qaR) { window.__qaR = new T.WebGLRenderer({ antialias: false, preserveDrawingBuffer: true }); window.__qaR.setSize(W, H); }
   const r = window.__qaR, gl = r.getContext();
-  const o = X.make3D(ps);
+  let o; try { o = X.make3D(ps); } finally { X.wear(null); }
   const cam = new T.PerspectiveCamera(13, W / H, 0.1, 50); cam.position.set(0, 0.95, 8.7); cam.lookAt(0, 0.93, 0);
   /* classes in the ID pass: 0 background, 20 body, 40 legwear, 50 shoes, 60.. tops (inner to outer), 140 the rest;
      a piece's parts laid deliberately over the piece worn over it (a hood on a jacket's back) count as that outer piece */
@@ -299,9 +303,12 @@ function colourOff(c) {
   const b = await chromium.launch({ executablePath: process.env.CHROME_PATH || (fs.existsSync("/opt/pw-browsers/chromium-1194/chrome-linux/chrome") ? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" : undefined),
     args: ["--use-gl=swiftshader", "--enable-unsafe-swiftshader"] });
   const p = await b.newPage(), errs = []; p.on("pageerror", e => errs.push(e.message));
+  // THREE_JS=<path to three.min.js r128>: serve Three.js from a local copy (for machines that cannot reach the CDN)
+  if (process.env.THREE_JS) await p.route("**/three.js/r128/three.min.js", r => r.fulfill({ path: process.env.THREE_JS, contentType: "text/javascript" }));
   // --body: check on another of Edit Dave's body types (or cloth fit) instead of his saved one, set as the page would
   // set it; the types are read from the page itself, so they never fall out of step with it
   const BODY = arg("body");
+  const WEAR = {}; String(arg("wear", "") || "").split(",").filter(Boolean).forEach(kv => { const [k, v] = kv.split("="); if (/^(tuck|turn|zip)$/.test(k)) WEAR[k] = v; });
   if (BODY && BODY !== "dave") {
     let ch; try { ch = require("./qa/body").charFor(fs.readFileSync(path.join(SITE, "index.html"), "utf8"), BODY); } catch (e) { console.error("--body: " + e.message); process.exit(1); }
     await p.addInitScript(c => { try { localStorage.setItem("dw-char", JSON.stringify(c)); } catch (e) {} }, ch);
@@ -322,7 +329,7 @@ function colourOff(c) {
   const out = [], t0 = Date.now();
   for (let i = 0; i < ids.length; i++) {
     let r;
-    try { r = await p.evaluate(checkOutfit, { id: ids[i], dbg: !!arg("debug"), lim: LIMITS }); } catch (e) { r = { id: ids[i], error: String(e.message || e).slice(0, 200) }; }
+    try { r = await p.evaluate(checkOutfit, { id: ids[i], dbg: !!arg("debug"), lim: LIMITS, wear: WEAR }); } catch (e) { r = { id: ids[i], error: String(e.message || e).slice(0, 200) }; }
     if (r.views) {
       r.flags = [];
       for (const v in r.views) { const m = r.views[v];
