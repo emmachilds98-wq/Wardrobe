@@ -12,7 +12,13 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
-Nothing in progress. `main`, the Pages site and the artifact all match (see the last Log line).
+**Shirt collar and tie** (queue item 3), branch `shirt-collar-tie`. Done so far, in `page.html`:
+- The tie lies on the shirt itself (rays at the shirt's own meshes, so it goes under a blazer done up), with a
+  four-in-hand knot at his throat in the collar's notch (`yKn` 1.513 on the real body; it was 1.448, on his chest).
+- Collar points: the leaf comes further down at the front (`front` 0.05, spread 0.032) and its front edges angle
+  apart to the points (`fold.spread`, `anF` in `fitCollar`).
+Left: the 3D check on the gate set and every tie outfit (as worn and with `--wear zip=up,tuck=out`), then the PR.
+`main`, Pages and the artifact (v41) match up to PR #24.
 
 If you stop part-way through something, write here: the branch, what is done, what is left, and anything you found
 out that the next person needs. Push the branch, even unfinished, so the work is not lost when a session ends.
