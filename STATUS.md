@@ -12,7 +12,8 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
-Nothing in progress. `main`, the Pages site and the artifact all match (see the last Log line).
+**Shoe lasts** (queue item 7) on branch `shoe-lasts`: a last per kind of shoe, soles by kind, loafer details, flat-based
+uppers. Pushed as work in progress; next is the 3D check on a spread of shoe outfits, then its PR.
 
 If you stop part-way through something, write here: the branch, what is done, what is left, and anything you found
 out that the next person needs. Push the branch, even unfinished, so the work is not lost when a session ends.
@@ -27,9 +28,10 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
 2. [x] **A done-up blazer.** Done 11 Oct: buttoned at his waist, the shirt and tie in a V to the collar, lapels down
    to the button, fronts curving apart below it, his left front over his right; in 3D (`vDone`, `fitTop`'s
    `gapAt`) and 2D (`upperArt`). All 14 blazer outfits pass the 3D check done up and as worn.
-3. [ ] **Shirt collar and tie knot under a blazer.** With a tie, only the shirt's collar band shows above the blazer
-   (no collar points), the blazer's collar is ragged at the sides of his neck, and the knot is a round ball. Same as
-   worn and done up (`wedding-guest`, close-up at the neck: `zoom.js … "0,1.45,0.7,1.45"`).
+3. [x] **Shirt collar and tie.** Done 11 Oct: the tie lies on the shirt itself (under a blazer done up too), its
+   four-in-hand knot at his throat in the collar's notch (it hung 6 cm low, on his chest); the collar's points come
+   down at the front and angle apart (`fold.spread`). Left: the blazer's own collar is still ragged at the sides of
+   his neck.
 4. [ ] **One set of model controls.** The Fitting room fold under Style guide and the builder's small model still
    have their own buttons; give them the fitting room's camera dock and wear options.
 5. [ ] **Untucked with a tie.** A shirt with a tie always stays tucked (`tuckOn`), so Untucked is hidden then.
@@ -71,6 +73,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 11 Oct 2026 | #25 | Tie on the shirt with its knot at his throat; shirt collar points that come down and angle apart | v42 |
 | 11 Oct 2026 | #24 | A blazer can be done up in the fitting room: buttoned at the waist, the shirt and tie in the V (3D and 2D) | v41 |
 | 11 Oct 2026 | #23 | Swaps: hats, caps, socks and gloves read by their name, four hats refiled as accessories, build check made an error | v40 |
 | 11 Oct 2026 | #22 | STATUS.md added (this file) | v39 (no page change) |
