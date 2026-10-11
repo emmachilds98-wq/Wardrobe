@@ -1644,8 +1644,8 @@ function closedTop(H,long){
     ?"M98 90 Q120 104 142 90 L160 96 Q171 100 174 114 Q182 152 183 198 Q186 226 186 256 L169 260 L165 204 L159 134 L160 "+H+" Q120 "+(H+6)+" 80 "+H+" L81 134 L75 204 L71 260 L54 256 Q54 226 57 198 Q58 152 66 114 Q69 100 80 96 Z"
     :"M98 90 Q120 104 142 90 L160 96 Q171 100 174 114 L180 152 L162 157 L159 134 L160 "+H+" Q120 "+(H+6)+" 80 "+H+" L81 134 L78 157 L60 152 L66 114 Q69 100 80 96 Z";
 }
-function panelL(H,sleeves,v){
-  var edge=v?"L117 "+H+" L117 166 L108 92":"L103 "+H+" L105 150 L112 92";
+function panelL(H,sleeves,v,ed){
+  var edge=ed||(v?"L117 "+H+" L117 166 L108 92":"L103 "+H+" L105 150 L112 92");
   /* (short sleeves, as closedTop draws them, for a short-sleeved shirt or polo worn open) */
   if(sleeves==="short")return "M98 90 L80 96 Q69 100 66 114 L60 152 L78 157 L81 134 L80 "+H+" "+edge+" Z";
   return sleeves?"M98 90 L80 96 Q69 100 66 114 Q58 152 57 198 Q54 226 54 256 L71 260 L75 204 L81 134 L80 "+H+" "+edge+" Z":"M98 90 L83 95 Q89 118 82 140 L80 "+H+" "+edge+" Z";
@@ -1678,9 +1678,12 @@ function upperArt(p,dim){
     return '<g '+tone(p.col,dim)+'>'+body(vd,p,dim)+P("d","M81 "+(H-5)+" Q120 "+(H+1)+" 159 "+(H-5))+'</g>';
   }
   var cuffs=long?"M54 247 L71 251 M186 247 L169 251 M59 196 Q66 192 76 197 M181 196 Q174 192 164 197 M58 206 Q64 204 70 207 M182 206 Q176 204 170 207":"M61 146 L78 151 M179 146 L162 151 M70 132 Q74 136 80 135 M170 132 Q166 136 160 135";
-  if(isOpen(p)){
-    var v=s==="cardigan",sl=s==="gilet"?false:(long?true:"short");l=panelL(H,sl,v);r=mir(l);
-    h='<path d="'+(v?"M117 "+H+" L117 166 L108 92 L113 92 L123 166 L123 "+H:"M103 "+H+" L105 150 L112 92 L118 92 L112 150 L110 "+H)+' Z" fill="rgba(0,0,0,'+(dim?".04":".16")+')"/>';
+  /* a blazer done up: the fronts meet at the button at his waist, open above in a V to the collar and curving apart
+     a little below it, as the 3D model draws it */
+  var vb2=s==="blazer"&&!isOpen(p);
+  if(isOpen(p)||vb2){
+    var v=s==="cardigan",sl=s==="gilet"?false:(long?true:"short");l=panelL(H,sl,v,vb2?"L116 "+H+" Q121 204 121 178 L109 118 L112 92":null);r=mir(l);
+    h='<path d="'+(vb2?"M112 92 L109 118 L120 176 L131 118 L128 92":v?"M117 "+H+" L117 166 L108 92 L113 92 L123 166 L123 "+H:"M103 "+H+" L105 150 L112 92 L118 92 L112 150 L110 "+H)+' Z" fill="rgba(0,0,0,'+(dim?".04":".16")+')"/>';
     h+=body(l,p,dim)+body(r,p,dim);
     var nmU=(((byId[p.item]||{}).name||"")+" "+p.what).toLowerCase();
     if((s==="coat"||s==="jacket")&&/parka|anorak|cagoule|waterproof|rain|puffer|puffa|padded|down jacket|hood|shell|ski/.test(nmU)&&!/blazer|overcoat|trench/.test(nmU)){
@@ -1693,7 +1696,7 @@ function upperArt(p,dim){
         C(103,H-100,1.4)+C(137,H-100,1.4);
     }else if(s==="blazer"||s==="coat"){
       var lap="M112 92 L99 90 L94 119 L104 166 Z";
-      h+=P("g",lap)+P("g",mir(lap))+P("d","M94 119 L102 113 M146 119 L138 113 M84 "+(H-52)+" H100 M140 "+(H-52)+" H156 M139 140 H154 "+cuffs)+C(131,176,1.7)+C(132,196,1.7);
+      h+=P("g",lap)+P("g",mir(lap))+P("d","M94 119 L102 113 M146 119 L138 113 M84 "+(H-52)+" H100 M140 "+(H-52)+" H156 M139 140 H154 "+cuffs)+(vb2?C(120,178,1.7)+C(127,200,1.7):C(131,176,1.7)+C(132,196,1.7));
       if(s==="coat"){h+=P("d","M84 "+(H-150)+" H100 M140 "+(H-150)+" H156")+C(133,222,1.7);}
     }else if(s==="gown"){
       h+=P("d","M99 91 Q95 150 104 196 M141 91 Q145 150 136 196 "+cuffs)+P("g","M80 198 H104 V209 H80 Z")+P("g","M136 198 H160 V209 H136 Z")+P("g","M104 200 L99 240 L107 242 L110 204 Z");
@@ -3742,9 +3745,9 @@ function overshirt(p){return p.shape==="shirt"&&/overshirt|over-shirt|chore|shac
 function kvest(p){return p.shape==="jumper"&&/knitted vest|knit vest|sweater vest|slipover|tank ?top|sleeveless (jumper|knit|sweater)/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
 function slvless(p){return /^(vest|waistcoat|gilet)$/.test(p.shape)||kvest(p);}
 function zipable(p){return /^(jacket|blazer|coat|gilet|cardigan)$/.test(p.shape)||overshirt(p);}
-/* what the Zip up / Unzip button and the fitting room's Open / Done up toggle change: not a blazer, whose done-up front
-   (buttoned at the waist, the shirt and tie showing in the V) is not drawn yet, so it stays as worn */
-function zipBy(p){return zipable(p)&&p.shape!=="blazer";}
+/* what the Zip up / Unzip button and the fitting room's Open / Done up toggle change (a blazer done up is buttoned at
+   the waist, the shirt and tie showing in the V: vDone in make3Dcore) */
+function zipBy(p){return zipable(p);}
 function openWorn(p,ups){if(ZIPM&&zipBy(p))return ZIPM==="open";
   if(/worn open/i.test(p.what||""))return true;
   /* (an overshirt is worn open over a tee or polo; a jacket-weight one is worn open over anything, as a jacket is) */
@@ -4104,6 +4107,9 @@ function make3Dcore(pieces){
     eY=Math.min(eT,0.006+0.3*eT+(F.puff||0));   /* (on the shoulders the cloth rests on what is under it: its thickness, not its looseness) */
     var PF=window.__prof,tA=performance.now();var DT=fmDilate(FM.T,eT),DTU=fmDilate(FM.TU,eY),DY=fmDilate(FM.Y,eY);if(PF)PF.dil=(PF.dil||0)+performance.now()-tA;tA=performance.now();
     var al=1.13,be=2.0,yA=1.3,yS=1.435,nS=12,nZ=9,nY=9,dT=TW/112,gap=F.gap||0,a0=gap>0?gap/2:Math.PI,span=gap>0?TW-gap:TW,aq=FQ2;
+    /* (an opening that changes with height, F.gapAt(y): a done-up blazer's V. Each row's columns are spread over the
+       cloth that row has; below 0 the fronts cross, and his left front, the first columns, lies over the right) */
+    var GA=gap>0&&F.gapAt?F.gapAt:null;function TA(y,j){if(!GA)return cols[j];var g=GA(y);return g/2+(cols[j]-a0)*(TW-g)/span;}
     /* (what is under a row of cloth reaches as far as its furthest point over the row's own height: so the edge of a
        ribbed hem or a waistband under it cannot come through between two rows) */
     function occT(y,t){var a=0;for(var dy=-0.012;dy<=0.0121;dy+=0.008){var v=fmGet(OM.T,y+dy,t);if(v>a)a=v;if(!F.tucked){v=fmGet(OM.L,y+dy,t);if(v>a)a=v;}}return a;}
@@ -4121,7 +4127,7 @@ function make3Dcore(pieces){
     function panel(j){return pnl[j]===1;}
     /* below the chest the cloth hangs straight down from its widest part (taken in at the waist as Edit Dave's fit says) */
     var tw=Math.max(0,0.08-0.085*CF),L0=Math.floor((hem-0.04)*100)/100,NL=Math.round((1.4-L0)/0.01)+1,HM=new Float32Array(NC*NL);
-    for(j=0;j<NC;j++){var mx=0;for(var l=NL-1;l>=0;l--){var yy=L0+l*0.01,v=fmGet(DT,yy,cols[j]);if(yy>1.215&&v>mx)mx=v;HM[j*NL+l]=mx;}}
+    for(j=0;j<NC;j++){var mx=0;for(var l=NL-1;l>=0;l--){var yy=L0+l*0.01,v=fmGet(DT,yy,TA(yy,j));if(yy>1.215&&v>mx)mx=v;HM[j*NL+l]=mx;}}
     function rCyl(y,t,j,pn,o){var r=fmGet(DT,y,t);
       if(y>1.36&&(pn||y>=yS-1e-6)){var u=fmGet(DTU,y,t);if(u>r)r=r+(u-r)*sstep(1.36,1.43,y);}   /* (by the top of the armhole his shoulder's own roundness) */
       if(y<1.4){var l=Math.max(0,Math.min(NL-1,Math.round((y-L0)/0.01))),h=HM[j*NL+l]*(1-tw*sstep(1.3,1.04,y));
@@ -4138,7 +4144,7 @@ function make3Dcore(pieces){
       if(o>0&&o+gp>r)r=o+gp;return r;}
     function yRow(i,t){var y=rows[i];if(F.hemC)y+=F.hemC*Math.pow(Math.sin(t),2)*Math.max(0,1-(rows[i]-hem)/0.06);return Math.min(y,F.ytop(t));}
     /* the body's radius, smoothed as cloth would lie, but never inside him or the layer under it */
-    var RR=[],RM=[];for(i=0;i<=iS;i++){var rr=new Float32Array(NC),rm=new Float32Array(NC);for(j=0;j<NC;j++){var t=cols[j],y2=yRow(i,t),o2=occT(y2,t);rr[j]=rCyl(y2,t,j,panel(j),o2);
+    var RR=[],RM=[];for(i=0;i<=iS;i++){var rr=new Float32Array(NC),rm=new Float32Array(NC);for(j=0;j<NC;j++){var t=TA(rows[i],j),y2=yRow(i,t),o2=occT(y2,t);rr[j]=rCyl(y2,t,j,panel(j),o2);
         var b0=fmGet(DT,y2,t)-eT*0.2;rm[j]=Math.max(b0,o2>0?o2+gp:0);}RR.push(rr);RM.push(rm);}
     for(var it=0;it<3;it++){var R2=RR.map(function(r){return r.slice();});
       for(i=1;i<iS;i++)for(j=0;j<NC;j++){if(hole(i,j))continue;var up=hole(i+1,j)?R2[i][j]:R2[i+1][j],dn=hole(i-1,j)?R2[i][j]:R2[i-1][j];RR[i][j]=0.25*dn+0.5*R2[i][j]+0.25*up;}
@@ -4147,7 +4153,8 @@ function make3Dcore(pieces){
       for(i=0;i<=iS;i++)for(j=0;j<NC;j++)if(RR[i][j]<RM[i][j])RR[i][j]=RM[i][j];}
     if(PF){PF.rr=(PF.rr||0)+performance.now()-tA;}tA=performance.now();var pos=[],uv=[],am=[],V=[],part=[];
     function addV(x,y,z,u,w,a,pt){pos.push(x,y,z);uv.push(u,w);am.push(a);part.push(pt);return pos.length/3-1;}
-    for(i=0;i<=iS;i++){var vr=[];for(j=0;j<NC;j++){if(hole(i,j)){vr.push(-1);continue;}var t3=cols[j],y3=yRow(i,t3),r3=RR[i][j];
+    for(i=0;i<=iS;i++){var vr=[];for(j=0;j<NC;j++){if(hole(i,j)){vr.push(-1);continue;}var t3=TA(rows[i],j),y3=yRow(i,t3),r3=RR[i][j];
+        if(GA){var gg=GA(rows[i]);if(gg<0)r3+=0.0045*sstep(-gg/2+0.08,-gg/2,t3);}
         vr.push(addV(Math.sin(t3)*r3,y3,FX.zc+Math.cos(t3)*r3,(t3-a0)/span*(F.uvU||1),(y3-hem)/0.3,0,0));}V.push(vr);}
     /* the yoke: from the top of the armholes over his shoulders to the neckline, laid out by the angle up from a point
        inside his chest (so the tops of the shoulders, which are nearly flat, come out even) */
@@ -4947,6 +4954,10 @@ function make3Dcore(pieces){
   }
   var lastE=0,PUFFRE=/puffer|padded|quilted|parka|(^|[^-\w])down\b(?![- ]?collar)/;   /* (filled and padded pieces; a button-down shirt is not one) */
   function isOpen3(q){return openWorn(q,up);}
+  /* a blazer done up: buttoned at the waist, open above in a V up to the collar (the lapels lying along it), the fronts
+     curving apart a little below the button, his left front over his right where they cross */
+  var VBTN=bodyOn&&BL?BL.crotch+0.22:1.05;   /* (the fastened button at his natural waist) */
+  function vDone(q){return q.shape==="blazer"&&!openWorn(q,up);}
   function underLong0(k){return up.slice(k+1).some(function(q){return !slvless(q)&&!(/^(tee|polo|sshirt)$/.test(q.shape)&&!/long/.test(nm(q)));});}
   /* a placed design (fixes.json "place": the listing's front panel, from the centre of the front out to the side seam
      and from the base of the collar down to the hem): laid on by height, so a yoke, a Fair Isle band across the chest
@@ -4978,10 +4989,11 @@ function make3Dcore(pieces){
     if(bodyOn){e=Math.max(e,lastE+0.007);lastE=e;}   /* (each layer always a little further out than the one under it) */
     if(PUFFRE.test(n0))e+=0.014;
     outer=Math.max(outer,e);
-    var open=openWorn(p,up);curOpen=open;
-    var hid=up.slice(k+1).some(function(q){return !openWorn(q,up)&&!slvless(q);});
+    var open=openWorn(p,up);curOpen=open||vDone(p);   /* (for the checks: a front that shows what is under it, a done-up blazer's V too) */
+    /* (a blazer done up still shows what is under it in its V: the shirt's collar, placket and tie) */
+    var hid=up.slice(k+1).some(function(q){return !openWorn(q,up)&&!vDone(q)&&!slvless(q);});
     /* (a closed gilet or waistcoat hides the front too: pockets, plackets and cords under it are not made) */
-    var hidF=hid||up.slice(k+1).some(function(q){return !openWorn(q,up)&&/^(gilet|waistcoat)$/.test(q.shape);});
+    var hidF=hid||up.slice(k+1).some(function(q){return !openWorn(q,up)&&!vDone(q)&&/^(gilet|waistcoat)$/.test(q.shape);});
     var zipT=/zip|parka|puffer|padded|harrington|bomber|waterproof|shell|track|softshell|fleece|bodywarmer|anorak|windbreaker|sherpa|active jacket|down\b/.test(n0)||(p.shape==="gilet"&&!/tailor|suit|waistcoat/.test(n0));
     var zipped=open&&zipT,zipM=/harrington|denim|leather|suede|duck|canvas|detroit|carhartt|bomber|work/.test(n0)?metal:mat(shade(cc(p.col)[0],0.72),0.55);
     var hem={coat:0.52,gown:0.46,blazer:0.74,jacket:0.8,shirt:0.8,sshirt:0.82,polo:0.84,tee:0.84,vest:0.85,gilet:0.82,waistcoat:0.88,cardigan:0.82,hoodie:0.83,halfzip:0.83,jumper:0.83,rollneck:0.83}[p.shape]||0.84;
@@ -5006,7 +5018,9 @@ function make3Dcore(pieces){
     if(!bodyOn)secs=secs.map(function(q){return q[0]<1.0?[q[0],Math.max(q[1],0.171),Math.max(q[2],0.111),q[3],Math.min(q[4],-0.008)]:q;});
     secs=secs.map(function(q){var top=q[0]>1.48,w=tucked?(q[0]<1.04?-0.004:(q[0]<1.1?0.004:0)):waistE&&q[0]<1.08?(q[0]<1.0?0.022:0.022*(1.08-q[0])/0.08):0;var et=bodyOn?(q[0]>1.44?e+0.009:e)*(1+0.55*(Number(CHAR.clothFit)||0)):(top?e*0.6:e);return [q[0],q[1]+et+w,q[2]+et+w,q[3],q[4]];});
     if(!open&&hem<0.97){waistHid=true;covHem=Math.min(covHem,hem);}
-    var gap=open?(p.shape==="cardigan"?0.5:(p.shape==="blazer"||p.shape==="coat"?0.75:0.62)):0;
+    var vb=bodyOn&&vDone(p);
+    var gap=open||vb?(p.shape==="cardigan"?0.5:(p.shape==="blazer"||p.shape==="coat"?0.75:0.62)):0;
+    var gapAt=vb?function(y){var g0=-0.06;return y>=VBTN?g0+(gap-g0)*Math.pow(Math.min(1,(y-VBTN)/(1.29-VBTN)),1.1):g0+0.36*sstep(VBTN,hem,y);}:null;
     var NDIP=bodyOn&&p.shape!=="rollneck"&&!/^(shirt|sshirt|polo|blazer|coat|jacket)$/.test(p.shape)?0.024:(bodyOn&&/^(shirt|sshirt|polo)$/.test(p.shape)?0.012:0);
     /* on the real body the chest, shoulders and yoke follow his own shape (wrap); the sliced shape below hangs from it,
        finishing just inside the wrap so there is no ledge where they meet */
@@ -5022,7 +5036,7 @@ function make3Dcore(pieces){
     var fitOn=FIT3D&&!vst&&!gil&&p.shape!=="waistcoat";
     if(fitOn){var vD=DS.neck==="v"&&/^(tee|jumper|cardigan|polo)$/.test(p.shape)?0.1:0;
       var tnt=null;if(ms!==m){var cB=new T.Color(gC(p.look&&p.look.c1?p.look.c1:cc(p.col)[0])).convertSRGBToLinear(),cS=new T.Color(gC(p.look.slv)).convertSRGBToLinear();tnt=[cS.r/Math.max(0.02,cB.r),cS.g/Math.max(0.02,cB.g),cS.b/Math.max(0.02,cB.b)];}
-      var tq0=performance.now();FT=fitTop({e:e,hem:hem,hemC:hemC0,gap:gap,tucked:tucked,rib:!open&&/^(jumper|rollneck|halfzip|hoodie)$/.test(p.shape)&&!/oversized|boxy|cropped|crop\b/.test(n0),tint:tnt,puff:PUFFRE.test(n0)?0.014:0,sleeve:underLong0(k)?null:(short0?"short":"long"),se:(e*0.55+0.004)*(1+0.55*(Number(CHAR.clothFit)||0))+(short0?0.007:0),folds:short0?null:sleeveFolds(L===2?0.7:1),
+      var tq0=performance.now();FT=fitTop({e:e,hem:hem,hemC:hemC0,gap:gap,gapAt:gapAt,tucked:tucked,rib:!open&&/^(jumper|rollneck|halfzip|hoodie)$/.test(p.shape)&&!/oversized|boxy|cropped|crop\b/.test(n0),tint:tnt,puff:PUFFRE.test(n0)?0.014:0,sleeve:underLong0(k)?null:(short0?"short":"long"),se:(e*0.55+0.004)*(1+0.55*(Number(CHAR.clothFit)||0))+(short0?0.007:0),folds:short0?null:sleeveFolds(L===2?0.7:1),
         ytop:function(t){var c=Math.cos(t),f=c>0?c*c:0,tf=Math.abs(Math.atan2(Math.sin(t),c));return 1.522-NDIP*f-(vD?vD*Math.max(0,1-tf/0.62):0);}});
       if(window.__prof)window.__prof.fit=(window.__prof.fit||0)+performance.now()-tq0;
       var fA=m.clone();fA.vertexColors=true;fA.shadowSide=T.BackSide;
@@ -5040,7 +5054,7 @@ function make3Dcore(pieces){
     if(bodyOn&&gil&&zipT){var gc=m.clone();gc.side=T.DoubleSide;sec([1.497,1.525,1.552].map(function(y,i){var nk=NK(y);return [y,nk[1]+e*0.6+0.008+i*0.004,nk[2]+e*0.6+0.008+i*0.004,0,nk[4]];}),gc,{seg:44,gap:open?1.1:0,sq:2});}
     /* what the shop photo and listing show on the front */
     if(bodyOn&&!hidF)frontDetails(p,e,hem,open,DS,m,k,secsAll);
-    if(bodyOn&&open&&gap>0&&!hid){if(FT)fitEdge(FT,m);else openEdge(p,e,hem,gap,secsAll,m);}
+    if(bodyOn&&(open||vb)&&gap>0&&!hid){if(FT)fitEdge(FT,m);else openEdge(p,e,hem,gap,secsAll,m);}
     /* sleeves */
     var outSleeve=!up.slice(k+1).some(function(q){return !slvless(q);});
     var sleeveless=slvless(p),short=/^(tee|polo|sshirt)$/.test(p.shape)&&!/long/.test(n0);
@@ -5155,10 +5169,10 @@ function make3Dcore(pieces){
     /* a blazer's or coat's collar stands round the back of his neck, over the shirt collar, open at the front (done up,
        it comes further round, so the collar under it stays covered at the sides of his neck) */
     if(bodyOn&&!hid&&(p.shape==="blazer"||(p.shape==="coat"&&!/parka|puffer|padded|waterproof/.test(n0)))){var k0=NK(1.505),k1=NK(1.532),k2=NK(1.55);
-      var cm2=m.clone();cm2.side=T.DoubleSide;if(FT)fitCollar(FT,{h:0.046,lean:0.35,flare:0.01,gap:open?1.7:1.0,mat:m,rows:4});else sec([[1.5,k0[1]+eTop*0.6+0.016,k0[2]+eTop*0.6+0.016,0,k0[4]],[1.532,k1[1]+0.024+e*0.4,k1[2]+0.024+e*0.4,0,k1[4]],[1.552,k2[1]+0.028+e*0.35,k2[2]+0.028+e*0.35,0,k2[4]]],cm2,{seg:44,gap:1.7,k:1,sq:2});}
+      var cm2=m.clone();cm2.side=T.DoubleSide;if(FT)fitCollar(FT,{h:0.046,lean:0.35,flare:0.01,gap:open||vb?1.7:1.0,mat:m,rows:4});else sec([[1.5,k0[1]+eTop*0.6+0.016,k0[2]+eTop*0.6+0.016,0,k0[4]],[1.532,k1[1]+0.024+e*0.4,k1[2]+0.024+e*0.4,0,k1[4]],[1.552,k2[1]+0.028+e*0.35,k2[2]+0.028+e*0.35,0,k2[4]]],cm2,{seg:44,gap:1.7,k:1,sq:2});}
     if(p.shape==="blazer"||(p.shape==="coat"&&!/parka|puffer|padded|waterproof/.test(n0))){
       [-1,1].forEach(function(s){
-        if(bodyOn){var lm2=m.clone(),lv=[],li2=[];lm2.side=T.DoubleSide;if(lm2.color)lm2.color.multiplyScalar(0.8);var NR=8,yb=1.3,yt=1.5,pwq=function(v){return (v<0?-1:1)*Math.pow(Math.abs(v),2/2.3);};
+        if(bodyOn){var lm2=m.clone(),lv=[],li2=[];lm2.side=T.DoubleSide;if(lm2.color)lm2.color.multiplyScalar(0.8);var NR=vb?14:8,yb=vb?VBTN+0.015:1.3,yt=1.5,pwq=function(v){return (v<0?-1:1)*Math.pow(Math.abs(v),2/2.3);};
           /* a lapel: from the top button it widens up the chest to the notch under the collar, lying on the jacket */
           for(var r=0;r<=NR;r++){var y=yb+(yt-yb)*r/NR,q=secAt(secsAll,Math.min(y,secsAll[secsAll.length-1][0])),xin=EX?EX(y,s):s*q[1]*pwq(Math.sin(gap/2)),w=0.064*Math.min(1,r/NR*1.25)*(r===NR?0.6:1);
             [0,0.5,1].forEach(function(f){var xx=xin+s*w*f;lv.push(xx,y-(f*0.012*(r/NR)),Math.max(surfZ(y,xx,e),q[4]+0.02)+0.0035+(f===1?0.005:(f?0.004:0))*Math.min(1,r/3));});}   /* (rolled: the outer edge stands proud) */
@@ -5177,6 +5191,8 @@ function make3Dcore(pieces){
        one or two at the waist) */
     if(!open&&zipable(p)&&p.shape!=="shirt"){var gcz=bodyOn&&p.shape==="gilet",cz=function(y){if(gcz&&y>1.497){var nk=NK(y);return nk[4]+nk[2]+e*0.6+0.011+(y-1.497)*0.15;}return (bodyOn?surfZ(y,0,0):frontZ(y,e))+0.003;};
       if(zipT){var zp=[];for(var zy2=gcz?1.548:1.47;zy2>=hem+0.01;zy2-=0.03){zp.push([0,zy2,cz(zy2)]);}tube(zp,0.0035,zipM,24);if(zipM!==metal)add(new T.BoxGeometry(0.008,0.022,0.004),metal,0,1.455,cz(1.455)+0.002);}
+      else if(vb){add(new T.CylinderGeometry(0.0075,0.0075,0.004,14),mat(shade(cc(p.col)[0],cc(p.col)[1]?0.6:1.5),0.5),0,VBTN,cz(VBTN)+0.001,1,1,1,Math.PI/2,0,0);
+        if(EX){var bx2=EX(VBTN-0.08,-1)-0.016;add(new T.CylinderGeometry(0.0075,0.0075,0.004,14),mat(shade(cc(p.col)[0],cc(p.col)[1]?0.6:1.5),0.5),bx2,VBTN-0.08,surfZ(VBTN-0.08,bx2,0)+0.004,1,1,1,Math.PI/2,0,0);}}
       else{var bt=p.shape==="blazer"?[1.05,0.97]:p.shape==="coat"?[1.3,1.16,1.02,0.88]:p.shape==="cardigan"?[1.4,1.3,1.2,1.1,1.0,0.9]:[1.43,1.33,1.23,1.13,1.03,0.93],bm=mat(shade(cc(p.col)[0],cc(p.col)[1]?0.6:1.5),0.5);
         bt.forEach(function(by){if(by>hem+0.02)add(new T.CylinderGeometry(0.0075,0.0075,0.004,14),bm,0,by,cz(by)+0.001,1,1,1,Math.PI/2,0,0);});}}
     if(p.shape==="halfzip"){tube([[0,1.485,frontZ(1.47,e)+0.004],[0,1.42,frontZ(1.42,e)+0.004],[0,1.34,frontZ(1.34,e)+0.004]],0.0035,metal,8);if(FT)fitCollar(FT,{h:0.048,lean:0.62,gap:0.3,mat:rib(p),rows:5});else if(bodyOn){var hzc=rib(p).clone();hzc.side=T.DoubleSide;sec([1.497,1.522,1.548].map(function(y,i){var nk=NK(y);return [y,nk[1]+e*0.45+0.009+i*0.003,nk[2]+e*0.45+0.009+i*0.003,0,nk[4]];}),hzc,{seg:44,gap:0.32,k:1,sq:2});}   /* (its funnel collar round his neck, parted at the zip) */
