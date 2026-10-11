@@ -1832,6 +1832,22 @@ Known and left for later:
 - `swapOpts` offers some odd swaps (a denim hat for jeans): `derive` reads "Denim … Hat" as trousers.
 - The Fitting room fold under Style guide and the builder's small model still have their own controls.
 
+## 2zzzzzzzzzz. Swaps by name, a blazer done up (11 Oct 2026)
+
+`STATUS.md` is new: the working file with what is in progress, the queue and a log of what shipped. Keep it current.
+
+- **Swaps (PR #23):** the fitting room offered a denim hat as a swap for jeans. `guessShape` went by the shop's
+  category first; it now reads hats, caps, socks and gloves by their name. The build already warned about a hat filed
+  under another category, but `is_hat` gave up on any name with an accessory noun, so it never fired; fixed, and it is
+  now an error. Four hats were refiled. `sweep_filter.category` knows a plain hat and files socks as basics.
+- **A blazer done up (PR #24):** buttoned at his natural waist (`BL.crotch + 0.22`), the shirt and tie in a V up to
+  the collar, the lapels running down to the button, the fronts curving apart below it and his left front lying over
+  his right. In 3D the fitted body takes an opening that changes with height (`gapAt`, each row's columns spread over
+  the cloth that row has); in 2D the panels meet at the button. The Open / Done up toggle now works on blazers
+  (`zipBy`). All 14 blazer outfits pass the 3D check done up and as worn.
+- Found on the way, left for later (STATUS.md queue): with a tie, the shirt's collar shows only as a band above the
+  blazer, the blazer collar is ragged at the sides of his neck, and the knot is a ball. It is the same as worn.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

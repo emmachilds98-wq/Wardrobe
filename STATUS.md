@@ -24,18 +24,21 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
 1. [x] **Odd swaps in the fitting room.** Done 11 Oct: `guessShape` reads hats, caps, socks and gloves by their name
    before the shop's category; the build now stops on a hat filed under another category (`is_hat`), and
    `sweep_filter.category` knows a plain "hat" and files socks as basics.
-2. [ ] **A done-up blazer.** Buttoned at the waist, the shirt and tie showing in the V, lapels lying on the chest.
-   Until then blazers stay as worn under Open / Done up (`zipBy`). The CI wear check (`--wear zip=up,tuck=out`) must
-   still pass on the gate set.
-3. [ ] **One set of model controls.** The Fitting room fold under Style guide and the builder's small model still
+2. [x] **A done-up blazer.** Done 11 Oct: buttoned at his waist, the shirt and tie in a V to the collar, lapels down
+   to the button, fronts curving apart below it, his left front over his right; in 3D (`vDone`, `fitTop`'s
+   `gapAt`) and 2D (`upperArt`). All 14 blazer outfits pass the 3D check done up and as worn.
+3. [ ] **Shirt collar and tie knot under a blazer.** With a tie, only the shirt's collar band shows above the blazer
+   (no collar points), the blazer's collar is ragged at the sides of his neck, and the knot is a round ball. Same as
+   worn and done up (`wedding-guest`, close-up at the neck: `zoom.js … "0,1.45,0.7,1.45"`).
+4. [ ] **One set of model controls.** The Fitting room fold under Style guide and the builder's small model still
    have their own buttons; give them the fitting room's camera dock and wear options.
-4. [ ] **Untucked with a tie.** A shirt with a tie always stays tucked (`tuckOn`), so Untucked is hidden then.
+5. [ ] **Untucked with a tie.** A shirt with a tie always stays tucked (`tuckOn`), so Untucked is hidden then.
    Decide with Emma whether that is right (it is how a tie is worn) and say so on the button.
-5. [ ] **Newer Three.js** (r128 now). Plan doc "Engine and body", still to do. Check every QA script and the 3D check
+6. [ ] **Newer Three.js** (r128 now). Plan doc "Engine and body", still to do. Check every QA script and the 3D check
    still run, and that card stills look the same.
-6. [ ] **Shoe lasts.** Every shoe is one generic shape: trainers, Derbies, loafers, Chelsea boots and work boots
+7. [ ] **Shoe lasts.** Every shoe is one generic shape: trainers, Derbies, loafers, Chelsea boots and work boots
    need their own. Plan doc "Footwear and accessories".
-7. [ ] **Fabric library.** Plan doc "Fabrics and photos": cord, waffle, fleece, quilting and denim as materials,
+8. [ ] **Fabric library.** Plan doc "Fabrics and photos": cord, waffle, fleece, quilting and denim as materials,
    not only colours.
 
 Needs Emma (do not guess):
@@ -68,6 +71,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 11 Oct 2026 | #24 | A blazer can be done up in the fitting room: buttoned at the waist, the shirt and tie in the V (3D and 2D) | v41 |
 | 11 Oct 2026 | #23 | Swaps: hats, caps, socks and gloves read by their name, four hats refiled as accessories, build check made an error | v40 |
 | 11 Oct 2026 | #22 | STATUS.md added (this file) | v39 (no page change) |
 | 10 Oct 2026 | #21 | Fitting room upgrade: outfit view with pins, wear options and light, new Edit Dave, Compare, phone layouts | v39 |

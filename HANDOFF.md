@@ -155,6 +155,11 @@ camera dock and outfit strip; the new Edit Dave; Compare; and the phone layouts.
 what each part does and what is left. Any fitting change must now also pass the gate set with
 `--wear tuck=in,turn=up` and `--wear zip=up,tuck=out` (CONTRIBUTING.md, "Checking your change").
 
+A blazer can now be done up too (11 Oct, `vDone` in `make3Dcore`): `fitTop` takes `gapAt(y)`, an opening that changes
+with height, so the front is closed at the button at his waist, a V above it and curving apart below; the 2D drawing
+does the same in `upperArt`. A done-up blazer still counts as showing what is under it (the shirt's collar, placket
+and tie are made, and the 3D check treats its front as open).
+
 ## What to do next, in order
 
 1. **Close the small known faults.** Check each with `zoom.js` and `check_3d.js`.
