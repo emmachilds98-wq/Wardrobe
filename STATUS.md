@@ -45,8 +45,14 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
 8. [ ] **Fabric library.** Plan doc "Fabrics and photos": cord, waffle, fleece, quilting and denim as materials,
    not only colours.
 
-9. [ ] **`od-event`: a jumper's collar over the scarf** at the back of his neck (check_3d "under 6"). On main before
-   PR #25 too; the gate set does not include it, so CI never saw it. Look at `outR` in the scarf code.
+9. [ ] **`od-event`: the scarf under a down jacket's shoulders** (check_3d "under 6"; on main before PR #25 too, and
+   not in the gate set, so CI never saw it). Found 11 Oct: the rays hit the jacket's padded shoulders 16 to 20 cm out
+   from his neck, 2 to 3 cm below the scarf's top; the scarf's lower edge is lifted onto the tops by at most 85% of its
+   height (the `lifted` pass in the scarf code), so over a puffer it stays tucked under the padding. A scarf should
+   drape over the shoulders there: let its lower edge flare out over them instead. (Measuring the outermost cloth over
+   each ring's band of height, and widening the side allowance, did not fix it; reverted.)
+10. [ ] **Polo collars.** The leaf lies flat on his shoulders with ragged edges and the stand is low; in the photos a
+   polo collar is a distinct ribbed band round the neck, folded over. (Its tipping now lies on the leaf's edge: PR #27.)
 
 Needs Emma (do not guess):
 - The model's chest measures about 34in on his saved shape, which says S/M tops, while he buys L. Is his saved shape
@@ -78,6 +84,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 11 Oct 2026 | #27 | Contrast tipping on polos, tees and jumpers lies along the collar or neckband (it floated above the collar) | v44 |
 | 11 Oct 2026 | #26 | Shoe lasts by kind: dress, loafer, Chelsea, safety, desert and more, each with its own sole | v43 |
 | 11 Oct 2026 | #25 | Tie on the shirt with its knot at his throat; shirt collar points that come down and angle apart | v42 |
 | 11 Oct 2026 | #24 | A blazer can be done up in the fitting room: buttoned at the waist, the shirt and tie in the V (3D and 2D) | v41 |
