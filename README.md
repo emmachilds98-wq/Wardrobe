@@ -33,6 +33,7 @@ that refresh them every week (see `REFRESH.md`).
 | `docs/` | The built site (page plus data and photo files), served by GitHub Pages and published to the artifact. |
 | `tools/qa/` | QA scripts for a served test copy of the site (`serve.sh`): close-up renders, items beside their shop photos, layer probes, a 2D/3D smoke test, a dump of every photo reading for before/after comparison, and the outfits a change touches (`changed_outfits.py`). |
 | `CONTRIBUTING.md` | How to add picks and outfits that look like the shop's clothes and fit Dave, how fitting works, and the checks every change must pass. Read it before changing anything. |
+| `STATUS.md` | The working file: what is in progress now, the queue of upgrades, how to ship, and a log of what shipped. Start here. |
 | `HANDOFF.md` | Where the upgrade stands and how the next agent should carry on. |
 | `REFRESH.md` | The weekly refresh, step by step. |
 | `UPGRADE_PLAN.md` | The review, what has been done, and what is next. |
