@@ -6208,6 +6208,11 @@ var COLW=[["stone wash","indigo"],["stonewash","indigo"],["stone-wash","indigo"]
 function guessShape(it){
   var n=it.name.toLowerCase(),c=it.cat;
   function t(r){return r.test(n);}
+  /* what the name says it is comes before the shop's category: a "Denim Embroidered Hat" filed under trousers, a bobble
+     hat under knits, gloves under knits and socks under accessories (a toe or wing cap is part of a shoe) */
+  if(t(/\bsocks?\b/))return "";
+  if(c!=="shoe"&&!t(/\b(toe|wing|steel|composite) ?caps?\b/)&&t(/\b(hats?|caps?|beanies?)\b/))c="acc";
+  else if(t(/\bgloves?\b|\bmitt(en)?s?\b/))return "";
   if(c==="knit")return t(/hood/)?"hoodie":t(/knitted polo|polo shirt|\bpolo\b(?! neck)/)?"polo":t(/roll|turtle|funnel|mock|polo neck/)?"rollneck":t(/cardigan/)?"cardigan":t(/zip|snap|button neck/)?"halfzip":"jumper";
   if(c==="shirt")return t(/short[- ]sleeve|s\/s|resort|cuban|bowling|camp collar|hawaiian/)?"sshirt":"shirt";
   if(c==="polo")return t(/vest|tank/)?"vest":t(/polo|rugby/)?"polo":"tee";
@@ -6218,7 +6223,7 @@ function guessShape(it){
   if(c==="swim")return "shorts";
   if(c==="sport")return t(/trainer/)?"trainers":t(/short/)?"shorts":t(/jogger|pant/)?"trousers":t(/tank|vest/)?"vest":t(/sweatshirt/)?"jumper":"tee";
   if(c==="lounge")return t(/sock/)?"":t(/gown/)?"gown":t(/slipper|moccasin|mule/)?"slippers":t(/short/)?"shorts":t(/bottom|jogger|trouser|pant/)?"trousers":t(/hood/)?"hoodie":t(/set|pyjama|t-shirt|tee|henley/)?"tee":"jumper";
-  if(c==="acc")return t(/knee ?pad/)?"kneepads":t(/snood|neck warmer|neck gaiter|neckwarmer/)?"snood":t(/scarf/)?"scarf":t(/flat cap/)?"cap":t(/beanie/)?"beanie":t(/bucket/)?"bucket":t(/\bcap\b/)?"bcap":t(/belt/)?"belt":t(/watch|casio|timex|sekonda/)?"watch":t(/bow tie/)?"":t(/\btie\b/)?"tie":t(/pocket square/)?"square":t(/backpack/)?"backpack":t(/bag\b/)?"bag":t(/sunglass/)?"sunglasses":t(/chain|necklace/)?"chain":"";
+  if(c==="acc")return t(/knee ?pad/)?"kneepads":t(/snood|neck warmer|neck gaiter|neckwarmer/)?"snood":t(/scarf/)?"scarf":t(/flat cap/)?"cap":t(/beanie|bobble/)?"beanie":t(/bucket|\bhats?\b(?!-)/)?"bucket":t(/\bcap\b/)?"bcap":t(/belt/)?"belt":t(/watch|casio|timex|sekonda/)?"watch":t(/bow tie/)?"":t(/\btie\b/)?"tie":t(/pocket square/)?"square":t(/backpack/)?"backpack":t(/bag\b/)?"bag":t(/sunglass/)?"sunglasses":t(/chain|necklace/)?"chain":"";
   return "";
 }
 function guessCol(it,shape){
