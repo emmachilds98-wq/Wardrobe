@@ -1,6 +1,7 @@
 # Handover: finishing the wardrobe upgrade
 
-For the next agent picking up Dave's wardrobe planner. Read this first, then `CONTRIBUTING.md` (how
+For the next agent picking up Dave's wardrobe planner. Start with `STATUS.md`: what is in progress now, the queue
+and the log of what shipped. Then read this, then `CONTRIBUTING.md` (how
 outfits are made, matched to their shop photos and fitted, and the checks every change must pass), then
 `UPGRADE_PLAN.md` section 4 (the review and order of work) and its latest entries, then `REFRESH.md`.
 
