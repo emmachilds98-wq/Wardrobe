@@ -12,8 +12,7 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
-**Shoe lasts** (queue item 7) on branch `shoe-lasts`: a last per kind of shoe, soles by kind, loafer details, flat-based
-uppers. Pushed as work in progress; next is the 3D check on a spread of shoe outfits, then its PR.
+Nothing in progress. `main`, the Pages site and the artifact all match (see the last Log line).
 
 If you stop part-way through something, write here: the branch, what is done, what is left, and anything you found
 out that the next person needs. Push the branch, even unfinished, so the work is not lost when a session ends.
@@ -38,10 +37,16 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
    Decide with Emma whether that is right (it is how a tie is worn) and say so on the button.
 6. [ ] **Newer Three.js** (r128 now). Plan doc "Engine and body", still to do. Check every QA script and the 3D check
    still run, and that card stills look the same.
-7. [ ] **Shoe lasts.** Every shoe is one generic shape: trainers, Derbies, loafers, Chelsea boots and work boots
-   need their own. Plan doc "Footwear and accessories".
+7. [x] **Shoe lasts.** Done 11 Oct: a last per kind of shoe from its name (`lastK`, `LASTS`: dress, Chelsea,
+   loafer, work and safety, hiking, boot, desert and chukka, skate) scaling the profile slice by slice; soles by kind
+   (thin with a stacked heel, lugged, pale crepe); boot shafts by kind; a loafer's apron seam and penny strap or
+   tassels; the upper on its own flat-based geometry with a rounded toe (`upperGeo`). Still to do: a real toe box and
+   vamp (the upper is one smooth dome), a collar opening at the ankle, trainers' own panels.
 8. [ ] **Fabric library.** Plan doc "Fabrics and photos": cord, waffle, fleece, quilting and denim as materials,
    not only colours.
+
+9. [ ] **`od-event`: a jumper's collar over the scarf** at the back of his neck (check_3d "under 6"). On main before
+   PR #25 too; the gate set does not include it, so CI never saw it. Look at `outR` in the scarf code.
 
 Needs Emma (do not guess):
 - The model's chest measures about 34in on his saved shape, which says S/M tops, while he buys L. Is his saved shape
@@ -73,6 +78,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 11 Oct 2026 | #26 | Shoe lasts by kind: dress, loafer, Chelsea, safety, desert and more, each with its own sole | v43 |
 | 11 Oct 2026 | #25 | Tie on the shirt with its knot at his throat; shirt collar points that come down and angle apart | v42 |
 | 11 Oct 2026 | #24 | A blazer can be done up in the fitting room: buttoned at the waist, the shirt and tie in the V (3D and 2D) | v41 |
 | 11 Oct 2026 | #23 | Swaps: hats, caps, socks and gloves read by their name, four hats refiled as accessories, build check made an error | v40 |
