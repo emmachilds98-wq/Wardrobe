@@ -1845,8 +1845,19 @@ Known and left for later:
   his right. In 3D the fitted body takes an opening that changes with height (`gapAt`, each row's columns spread over
   the cloth that row has); in 2D the panels meet at the button. The Open / Done up toggle now works on blazers
   (`zipBy`). All 14 blazer outfits pass the 3D check done up and as worn.
-- Found on the way, left for later (STATUS.md queue): with a tie, the shirt's collar shows only as a band above the
-  blazer, the blazer collar is ragged at the sides of his neck, and the knot is a ball. It is the same as worn.
+- **Shirt collar and tie (PR #25):** the tie's heights were the drawn figure's, so on the real body its knot hung 6 cm
+  under the collar, on his chest; and it was laid on the outermost layer, so it came out over a blazer done up. It now
+  lies on the shirt itself (rays at the shirt's own meshes and placket), with a four-in-hand knot at his throat filling
+  the collar's notch. The collar's leaf comes further down at the front and its two front edges angle apart to the
+  points (`fold.spread`), where they used to drop straight from the stand's notch. The gate set and all nine tie
+  outfits pass the 3D check as worn and done up. Left: the blazer collar is ragged at the sides of his neck.
+- **Shoe lasts (PR #26):** every shoe was the same long, even pod on a grey slab. A last is now chosen from the name
+  (dress, Chelsea, loafer, work and safety, hiking, boot, desert and chukka, skate, trainer) and scales the profile
+  slice by slice: slim almond toes, a low loafer vamp, a bulbous safety toe cap, a round desert toe. Soles by kind: a thin
+  dark sole with a stacked heel, a thick lugged sole, a pale crepe sole. Boot shafts by kind (a Chelsea to just over the
+  ankle, a desert boot to the ankle). Loafers get their apron seam and a penny strap or tassels. The upper has its own
+  geometry, flat on the sole with a rounded toe. A spread of 55 outfits covering every kind passes the 3D check
+  (one flag, `od-event`, is on main too and has nothing to do with shoes; queued in STATUS.md).
 
 ## 3. Next steps
 
