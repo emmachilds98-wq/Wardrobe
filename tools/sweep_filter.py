@@ -349,7 +349,10 @@ def category(title, ptype, tags):
     t = re.sub(r"\bpolo shirt\b", " polo ", t, flags=re.I)
     t = re.sub(r"\b(t-?shirt|tshirt|sweatshirt|overshirt|rugby shirt|football shirt|shirt jacket|shirt-jacket)\b",
                lambda m: {"overshirt": "overshirt", "shirt jacket": "overshirt", "shirt-jacket": "overshirt"}.get(m.group(1).lower(), m.group(1)), t, flags=re.I)
-    if re.search(r"\b(beanie|bobble hat|bucket hat|baseball cap|cap|scarf|gloves?|snood)\b", t, re.I) and not re.search(r"\b(jumper|cardigan|jacket|hoodie|toe cap)\b", t, re.I):
+    # Socks are basics even with "cap" in the name ("Club Cap Football Socks"); a toe or wing cap is part of a shoe.
+    if re.search(r"\bsocks?\b", t, re.I):
+        return "basics"
+    if re.search(r"\b(beanie|hats?|caps?|scarf|gloves?|mitt(en)?s?|snood)\b", t, re.I) and not re.search(r"\b(jumper|cardigan|jacket|hoodie|(toe|wing|steel|composite) ?caps?)\b", t, re.I):
         return "acc"
     # Shorts (also "jersey short", "cargo short") are trousers, whatever else the title says.
     if re.search(r"\bshorts?\b", t, re.I) and not re.search(r"\b(swim|board|trunks?|pyjama|lounge|sleep)\b", t, re.I):

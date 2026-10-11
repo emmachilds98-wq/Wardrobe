@@ -21,8 +21,9 @@ out that the next person needs. Push the branch, even unfinished, so the work is
 
 In order. Each item is small enough for one pull request. Tick it and add a Log line when it merges.
 
-1. [ ] **Odd swaps in the fitting room.** `swapOpts` offers a denim hat for jeans: `guessShape` reads "Denim … Hat"
-   as trousers (category before the word "hat"). Fix the reading by the item's name, not this case.
+1. [x] **Odd swaps in the fitting room.** Done 11 Oct: `guessShape` reads hats, caps, socks and gloves by their name
+   before the shop's category; the build now stops on a hat filed under another category (`is_hat`), and
+   `sweep_filter.category` knows a plain "hat" and files socks as basics.
 2. [ ] **A done-up blazer.** Buttoned at the waist, the shirt and tie showing in the V, lapels lying on the chest.
    Until then blazers stay as worn under Open / Done up (`zipBy`). The CI wear check (`--wear zip=up,tuck=out`) must
    still pass on the gate set.
@@ -67,4 +68,6 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 11 Oct 2026 | #23 | Swaps: hats, caps, socks and gloves read by their name, four hats refiled as accessories, build check made an error | v40 |
+| 11 Oct 2026 | #22 | STATUS.md added (this file) | v39 (no page change) |
 | 10 Oct 2026 | #21 | Fitting room upgrade: outfit view with pins, wear options and light, new Edit Dave, Compare, phone layouts | v39 |
