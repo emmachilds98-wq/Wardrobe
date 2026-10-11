@@ -12,7 +12,12 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
-Nothing in progress. `main`, the Pages site and the artifact all match (see the last Log line).
+**Shoe lasts** (branch `shoe-lasts`, worktree beside the main checkout). Done so far in `page.html`: a last per kind
+of shoe from its name (`lastK`, `LASTS`: dress, Chelsea, loafer, work/safety, hiking, boot, desert, skate) scaling the
+profile slice by slice; soles per kind (thin with a stacked heel, lugged, pale crepe); boot shafts by kind; a loafer's
+apron seam and penny strap or tassels; the upper on its own geometry (`upperGeo`: flat-based, rounded toe). Left: the
+3D check on a spread of shoe outfits (`/tmp` list of 55), docs, PR.
+Also in progress on branch `shirt-collar-tie`: the tie on the shirt with its knot at his throat, collar points.
 
 If you stop part-way through something, write here: the branch, what is done, what is left, and anything you found
 out that the next person needs. Push the branch, even unfinished, so the work is not lost when a session ends.
