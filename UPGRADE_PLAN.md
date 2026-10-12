@@ -1966,6 +1966,37 @@ the 3D check see the same cloth as before.
 - **Check:** the gate set (`tools/qa/gate.txt`) on his saved shape: nothing flagged, as before; the stored specs read
   the same.
 
+## 2zzzzzzzzzzzzzz. Edit Dave: sliders centred on the last save; biceps, forearms, thighs and calves (12 Oct 2026)
+
+Emma asked for the sliders to go back to the middle when she saves, so there is room to adjust either way later, on
+every slider; and for thigh, calf, forearm and biceps sliders in the body section.
+
+- **Centred on the last save** (`ceRng`, `ceBase`): every slider's middle is his look as saved (`ceSaved`, or `CHAR` when
+  nothing has been saved this visit), not the fixed `CHAR_DEF`. After Save the form is redrawn, so every slider sits in
+  the middle again; the stored values are the real ones, so nothing saved before changes. The middle reads "As saved".
+  - The ends reach at least the usual range (-1 to 1 on the shape sliders, a slider's own min and max on the others)
+    and at least a step past the middle (0.6 on shape sliders, 1 on hair, a proportion slider's own `span`).
+  - **Hard limits** (`CE_LIM`): 1.8 either way on shape sliders, 2.6 on hair, 2 on proportions. Saving at one end again
+    and again moves the middle out until it meets the limit, then stops. The body morphs are pushed past 1 there (at most
+    1.8 times the target); at 1.8 on all four new sliders the gate set still fits (see Check).
+  - Other range sliders (height, colours, amounts) keep their own min and max; the saved value is the middle, and each
+    half of the slider covers the distance to its own end.
+- **Biceps, forearms, thighs and calves** (`bicep`, `forearm`, `thigh`, `calf` in `CHAR_DEF`, `BODY_KEYS` and the `CE` list),
+  from MakeHuman's CC0 arm and leg targets in `tools/build_body.py` (`armslegs/l- and r-upperarm-muscle`, `lowerarm-muscle`,
+  `lowerarm-fat`; the thigh and calf targets were already in the build). At full slider:
+  - thighs about 11 % bigger or smaller round; calves +17 % / -18 %; biceps +15 % / -12 %; forearms +25 % / -21 %.
+  - The weights in `SLIDERS` were set by eye: the forearm targets at full strength looked overdone, the biceps too faint.
+  - Clothes follow on their own: the new morphs go through the same sections (`secd`) and fit maps as the other body
+    sliders, so sleeves and trouser legs widen or narrow with him.
+- **The form:** "Size and shape" now has "Fine-tune the body" (chest, belly, hips, neck, shoulder slope, body depth) and
+  "Arms and legs" (arms overall, biceps, forearms, legs overall, thighs, calves) as two folds, each remembered open or
+  shut. The athletic body type now has bigger biceps, forearms and calves, and the heavier type bigger thighs and forearms.
+- **To add another body slider:** add its targets and its `SLIDERS` row in `tools/build_body.py` and rebuild
+  `data/body.json` with `--mh <MakeHuman checkout>` (targets from `raw.githubusercontent.com`); add the key to `CHAR_DEF`
+  (0), `BODY_KEYS` and `CE`, and to a list in `CES`. `bodyW()` picks it up from `BODY.sliders`.
+- **Check:** the gate set on his saved shape, on the athletic and heavier types, and on a test copy with all four new
+  sliders at +1.8 and at -1.8: nothing flagged. The stored specs read the same (1381 pieces).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

@@ -3299,8 +3299,8 @@ try{FIG.mode=localStorage.getItem("dw-fig")==="3d"?"3d":"2d";FIG.allow2d=localSt
 function figMode(){return FIG.allow2d?FIG.mode:"3d";}
 /* Dave's look for the 3D model, set in "Edit Dave". The page owner's choice is shared through the database
    (meta/character); anyone else's stays on their device. The defaults are the look the owner saved as his current
-   base (his saved dimensions, 7 Oct 2026): no beard, a moustache. Every Edit Dave slider has this base in the middle. */
-var CHAR_DEF={height:183,skin:"#e2b08f",hair:"#38261b",hairVol:0.6,tache:"pencil",tacheCol:"#7a4a2c",beard:"none",eyes:"#5d86b5",brows:"thin",glasses:"none",glassCol:"#2b2622",weight:-0.649,muscle:-0.25,shoulderW:-0.15,chest:-0.428,waistW:-0.1,belly:0.25,hips:-0.167,arms:-0.3,legs:0.675,neckW:-0.15,faceW:0,jaw:0,chin:0,noseSize:0,lips:0,ears:0,eyeSize:0,smile:0.3,
+   base (his saved dimensions, 7 Oct 2026): no beard, a moustache. Edit Dave's sliders have his last saved look in the middle (ceRng). */
+var CHAR_DEF={height:183,skin:"#e2b08f",hair:"#38261b",hairVol:0.6,tache:"pencil",tacheCol:"#7a4a2c",beard:"none",eyes:"#5d86b5",brows:"thin",glasses:"none",glassCol:"#2b2622",weight:-0.649,muscle:-0.25,shoulderW:-0.15,chest:-0.428,waistW:-0.1,belly:0.25,hips:-0.167,arms:-0.3,legs:0.675,neckW:-0.15,bicep:0,forearm:0,thigh:0,calf:0,faceW:0,jaw:0,chin:0,noseSize:0,lips:0,ears:0,eyeSize:0,smile:0.3,
   tacheY:0,tacheZ:0,tacheV:2,propV:3,tacheW:1,tacheLen:0,tacheDen:1,tacheDroop:0.45,browCol:"",browThick:-0.4,browY:-0.25,browArch:-0.1,browTilt:-0.25,browLen:-0.05,
   hairStyle:"short",hairShade:0.26,hairLight:0.4,curlK:1.6,hairLenK:1.438,fringe:1,freckles:0.3,legLen:-0.9,torsoLen:0.38,armLen:0,neckLen:-0.63,headSize:0.225,
   hairTop:-1.012,hairSides:-0.183,hairBack:0.64,hairFinish:"natural",curlSize:1.084,frizz:-1,hairDir:-0.63,fringeLen:-0.37,torsoDepth:-0.138,shoulderSlope:0.951,clothFit:0};
@@ -7325,14 +7325,22 @@ $("set-2d").addEventListener("change",function(e){
 });
 syncFig();
 /* ---- Edit Dave: the character editor ---- */
-/* slider rows: -1 to 1, described in words either side of average */
-function slF(lo,hi){return function(v){v=Number(v)||0;return Math.abs(v)<0.04?"Average":(v<0?lo:hi)+" "+Math.round(Math.abs(v)*100)+"%";};}
+/* slider rows: -1 to 1, described in words either side of the middle, which is his last saved setting (ceRng) */
+function slF(lo,hi){return function(v){v=Number(v)||0;return Math.abs(v)<0.04?"As saved":(v<0?lo:hi)+" "+Math.round(Math.abs(v)*100)+"%";};}
 function SL(g,k,l,lo,hi){return {g:g,k:k,l:l,t:"sl",min:-1,max:1,step:0.05,f:slF(lo,hi),a:lo,b:hi};}
-/* Every slider has his saved base (CHAR_DEF) in the middle. Its ends still reach the full range either way (wider
-   where his base sits near one end), and the stored value is the real one, so saves stay as they were. */
-function ceRng(c){var lo=c.t==="sl"?-1:c.min,hi=c.t==="sl"?1:c.max,b=Number(CHAR_DEF[c.k]);if(isNaN(b))b=(lo+hi)/2;
-  /* (proportion sliders keep a set span either side of him, so they adjust him without throwing him out of proportion) */
-  if(c.t==="sl"&&c.span){lo=b-c.span;hi=b+c.span;}else if(c.t==="sl"){var sp=c.g==="hair"?1:0.6;lo=Math.min(lo,b-sp);hi=Math.max(hi,b+sp);}   /* hair sliders keep a full step either side */else{if(c.lo!=null)lo=Math.min(lo,c.lo);if(c.hi!=null)hi=Math.max(hi,c.hi);}
+/* Every slider has his last saved setting in the middle: as he was when Edit Dave opened, and again after each Save, so
+   once a change is saved every slider is back in the middle with room to go either way. The ends reach at least the
+   usual range (-1 to 1 on the shape sliders, the slider's own on the others) and at least a step past the middle,
+   within hard limits (CE_LIM: how far a shape can be pushed before the body model distorts), so saving at one end
+   again and again cannot run away. The value stored is the real one, so saves stay as they were. */
+var CE_LIM={sl:1.8,hair:2.6,span:2};
+function ceBase(c){var b=Number((ceSaved||CHAR)[c.k]);return isNaN(b)?Number(CHAR_DEF[c.k]):b;}
+function ceRng(c){var lo,hi,b=ceBase(c);
+  if(c.t==="sl"){var L=c.span?CE_LIM.span:(c.g==="hair"?CE_LIM.hair:CE_LIM.sl),sp=c.span||(c.g==="hair"?1:0.6);if(isNaN(b))b=0;b=Math.max(-L,Math.min(L,b));
+    /* (proportion sliders keep a set span either side of him, so they adjust him without throwing him out of proportion;
+       hair sliders a full step either side) */
+    lo=Math.max(-L,c.span?b-sp:Math.min(-1,b-sp));hi=Math.min(L,c.span?b+sp:Math.max(1,b+sp));}
+  else{lo=c.lo!=null?Math.min(c.min,c.lo):c.min;hi=c.hi!=null?Math.max(c.max,c.hi):c.max;if(isNaN(b))b=(lo+hi)/2;b=Math.max(lo,Math.min(hi,b));}
   return [lo,b,hi];}
 function cePos(c,v){var r=ceRng(c);v=Number(v);if(isNaN(v))v=r[1];var p=v<r[1]?(r[1]-r[0]>1e-6?(v-r[1])/(r[1]-r[0]):0):(r[2]-r[1]>1e-6?(v-r[1])/(r[2]-r[1]):0);return Math.max(-1,Math.min(1,Math.round(p*100)/100));}
 function ceVal(c,p){var r=ceRng(c);p=Number(p)||0;var v=p<0?r[1]+p*(r[1]-r[0]):r[1]+p*(r[2]-r[1]);return c.step>=1?Math.round(v):Math.round(v*1000)/1000;}
@@ -7352,8 +7360,12 @@ var CE=[
   SL("body","waistW","Waist","Narrower","Wider"),
   SL("body","belly","Belly","Flatter","Rounder"),
   SL("body","hips","Hips","Narrower","Wider"),
-  SL("body","arms","Arms","Thinner","Thicker"),
-  SL("body","legs","Legs","Thinner","Thicker"),
+  SL("body","arms","Arms, overall","Thinner","Thicker"),
+  SL("body","bicep","Biceps","Slimmer","Bigger"),
+  SL("body","forearm","Forearms","Slimmer","Bigger"),
+  SL("body","legs","Legs, overall","Thinner","Thicker"),
+  SL("body","thigh","Thighs","Slimmer","Bigger"),
+  SL("body","calf","Calves","Slimmer","Bigger"),
   SL("body","neckW","Neck","Thinner","Thicker"),
   {g:"body",h:"Proportions (his height stays the same)"},
   Object.assign(SL("body","legLen","Leg length","Shorter, longer body","Longer, shorter body"),{span:0.45}),
@@ -7419,10 +7431,10 @@ var CE=[
   {g:"hair",k:"hairShade",l:"Brown",t:"range",min:0,max:1,step:0.02,f:function(v){v=Number(v);return v<0.2?"Very dark brown":(v<0.4?"Dark brown":(v<0.6?"Mid brown":(v<0.8?"Light brown":"Very light brown")));}},
   {g:"hair",k:"hairLight",l:"Sun-lightened ends",t:"range",min:0,max:1,step:0.05,f:function(v){return v<0.05?"None":Math.round(v*100)+"%";}}
 ];
-var BODY_KEYS=["weight","muscle","shoulderW","chest","waistW","belly","hips","arms","legs","neckW"];
+var BODY_KEYS=["weight","muscle","shoulderW","chest","waistW","belly","hips","arms","legs","neckW","bicep","forearm","thigh","calf"];
 var PRESETS={dave:{},slim:{weight:-0.6,muscle:-0.15,chest:-0.2,belly:-0.4,arms:-0.3,legs:-0.25},average:{weight:0.1,belly:0},
-  athletic:{weight:-0.1,muscle:0.65,shoulderW:0.4,chest:0.35,waistW:-0.15,belly:-0.45,arms:0.35,legs:0.25,neckW:0.3},
-  heavier:{weight:0.6,belly:0.55,waistW:0.45,chest:0.2,hips:0.25,arms:0.25,legs:0.2,neckW:0.3}};
+  athletic:{weight:-0.1,muscle:0.65,shoulderW:0.4,chest:0.35,waistW:-0.15,belly:-0.45,arms:0.35,legs:0.25,neckW:0.3,bicep:0.4,forearm:0.3,calf:0.25},
+  heavier:{weight:0.6,belly:0.55,waistW:0.45,chest:0.2,hips:0.25,arms:0.25,legs:0.2,neckW:0.3,thigh:0.3,forearm:0.2}};
 /* how his lengths compare with most men, so the sliders can be set by eye or by numbers */
 var PROP_KEYS=["legLen","torsoLen","armLen","neckLen","headSize"];
 function ceProp(){if(!BODY)return "";var L=BODY.lm,PW=propWarp(L.chin),W=PW?PW.W:function(y){return y;},H=W(1.79),leg=W(L.crotch)/H,head=(H-W(L.chin))/H;
@@ -7453,7 +7465,7 @@ function ceSet(k,v,drag){if(CHAR[k]===v)return;cePush(!drag);CHAR[k]=v;if(k==="h
    him that are changed less often. Each lists CE keys ("h:" is a sub-heading). */
 var CES=[
   {k:"type",l:"Body type",items:["_preset","_meas"]},
-  {k:"size",l:"Size and shape",main:["height","weight","muscle","shoulderW","waistW","legLen"],fine:["chest","belly","hips","arms","legs","neckW","shoulderSlope","torsoDepth"]},
+  {k:"size",l:"Size and shape",main:["height","weight","muscle","shoulderW","waistW","legLen"],fine:["chest","belly","hips","neckW","shoulderSlope","torsoDepth"],limbs:["arms","bicep","forearm","legs","thigh","calf"]},
   {k:"prop",l:"Proportions",items:["legLen","torsoLen","armLen","neckLen","headSize","_prop"]},
   {k:"fit",l:"Clothes fit",items:["clothFit","h:How clothes fit is a guide to the cut: closer or looser than the listing's own fit."]},
   {k:"face",l:"Face",items:["faceW","jaw","chin","noseSize","lips","ears","eyeSize","smile","h:Brows","browCol","browThick","browY","browArch","browTilt","browLen","h:Glasses","glasses","glassCol"]},
@@ -7462,7 +7474,7 @@ var CES=[
   {k:"skin",l:"Skin and colouring",items:["skin","eyes","freckles"]}];
 var CE_ZOOM={face:1,tache:1,hair:0.82,skin:0.55};
 function ceDef(k){return CE.filter(function(c){return c.k===k;})[0];}
-function ceKeys(sec){return (sec.items||[]).concat(sec.main||[],sec.fine||[]).filter(function(k){return k&&k.charAt(0)!=="_"&&k.indexOf("h:")!==0;});}
+function ceKeys(sec){return (sec.items||[]).concat(sec.main||[],sec.fine||[],sec.limbs||[]).filter(function(k){return k&&k.charAt(0)!=="_"&&k.indexOf("h:")!==0;});}
 function ceDiff(k){var a=CHAR[k],b=ceSaved?ceSaved[k]:CHAR_DEF[k];return typeof a==="number"||typeof b==="number"?Math.abs((Number(a)||0)-(Number(b)||0))>0.0005:String(a||"")!==String(b||"");}
 function ceDirty(){var n=Object.keys(CHAR_DEF).filter(ceDiff).length,el=$("ce-n");if(el)el.textContent=n?n+(n===1?" unsaved change":" unsaved changes"):"";
   CES.forEach(function(s){var b=document.querySelector('#chared [data-cet="'+s.k+'"] .ce-bdg');if(b){var m=ceKeys(s).filter(ceDiff).length;b.textContent=m||"";b.hidden=!m;}});
@@ -7515,8 +7527,9 @@ function ceForm(){
   var h='';
   if(sec.k==="size"){h='<div class="ce-blk"><span class="label">Start from a body type</span>'+ceRow(ceDef("_preset"))+'</div>'+
       '<div class="ce-blk"><div class="fr-rh"><span class="label">Size and shape</span><span>◆ his saved setting · | average</span></div>'+ceList(sec.main)+
-      '<details class="ce-fine"'+(sec.fine.some(ceDiff)||CEV.fine?" open":"")+'><summary>Fine-tune <span class="msg">Body depth, hips, arms, legs, neck, shoulder slope</span></summary>'+ceList(sec.fine)+'</details></div>'+ceMeasCard();}
-  else if(sec.k==="type"){h='<div class="ce-blk"><span class="label">Start from a body type</span>'+ceRow(ceDef("_preset"))+'<p class="msg">A body type sets his build (weight, muscle, chest, waist, belly, hips, arms, legs and neck); his height, proportions and face stay as they are. Fine-tune it under Size and shape.</p></div>'+ceMeasCard();}
+      '<details class="ce-fine" data-cefold="fine"'+(sec.fine.some(ceDiff)||CEV.fine?" open":"")+'><summary>Fine-tune the body <span class="msg">Chest, belly, hips, neck, shoulder slope, body depth</span></summary>'+ceList(sec.fine)+'</details>'+
+      '<details class="ce-fine" data-cefold="limbs"'+(sec.limbs.some(ceDiff)||CEV.limbs?" open":"")+'><summary>Arms and legs <span class="msg">Overall, then biceps, forearms, thighs and calves</span></summary>'+ceList(sec.limbs)+'</details></div>'+ceMeasCard();}
+  else if(sec.k==="type"){h='<div class="ce-blk"><span class="label">Start from a body type</span>'+ceRow(ceDef("_preset"))+'<p class="msg">A body type sets his build (weight, muscle, chest, waist, belly, hips, neck, and his arms and legs part by part); his height, proportions and face stay as they are. Fine-tune it under Size and shape.</p></div>'+ceMeasCard();}
   else h='<div class="ce-blk"><span class="label">'+esc(sec.l)+'</span>'+ceList(sec.items)+'</div>';
   $("ce-form").innerHTML=h;
   $("ce-undo").disabled=!ceHist.length;ceDirty();
@@ -7563,8 +7576,10 @@ function closeCE(save){
 function saveChar(){
   try{localStorage.setItem("dw-char",JSON.stringify(CHAR));}catch(x){}
   snapCache={};
-  if(db&&!staticMode){db.doc("meta/character").set(Object.assign({},CHAR)).then(function(){$("ce-msg").textContent="Saved for everyone who uses this page.";},function(){$("ce-msg").textContent="Saved on this device only: only the page owner can change Dave for everyone.";});}
-  else{$("ce-msg").textContent="Saved on this device.";}
+  /* (and every slider is centred on what was saved, ceRng, so there is room to adjust either way next time) */
+  var mid=" Every slider is back in the middle, with room to go either way.";
+  if(db&&!staticMode){db.doc("meta/character").set(Object.assign({},CHAR)).then(function(){$("ce-msg").textContent="Saved for everyone who uses this page."+mid;},function(){$("ce-msg").textContent="Saved on this device only: only the page owner can change Dave for everyone."+mid;});}
+  else{$("ce-msg").textContent="Saved on this device."+mid;}
   ceSaved=Object.assign({},CHAR);if($("chared").open){ceForm();CEV.snapped="";}
   applyChar2D();renderAll();if(z3&&z3.on&&fitById[zoomId])z3.update(frPieces());if($("fr")&&$("zoom").open)frFill();if(zb&&zb.on)drawBuild();   /* (the 2D drawings follow Edit Dave too) */
 }
@@ -7588,7 +7603,7 @@ $("chared").addEventListener("keydown",function(e){var t=e.target;
 $("chared").addEventListener("input",function(e){var t=e.target;
   if(t.hasAttribute("data-cer")){var ck=t.getAttribute("data-cer"),cc=CE.filter(function(x){return x.k===ck;})[0];ceSet(ck,cc?ceVal(cc,t.value):Number(t.value),true);}
   else if(t.hasAttribute("data-cec")){ceSet(t.getAttribute("data-cec"),t.value.toLowerCase(),true);}});
-$("chared").addEventListener("toggle",function(e){if(e.target.classList&&e.target.classList.contains("ce-fine"))CEV.fine=e.target.open;},true);
+$("chared").addEventListener("toggle",function(e){if(e.target.classList&&e.target.classList.contains("ce-fine"))CEV[e.target.getAttribute("data-cefold")||"fine"]=e.target.open;},true);
 (function(){var drag=false;function at(e){var st=document.querySelector("#chared .ce-stage").getBoundingClientRect();ceWipeAt((e.clientX-st.left)/st.width*100);}
   $("ce-hand").addEventListener("pointerdown",function(e){drag=true;try{e.target.setPointerCapture(e.pointerId);}catch(x){}e.preventDefault();});
   $("ce-hand").addEventListener("pointermove",function(e){if(drag)at(e);});

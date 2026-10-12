@@ -52,6 +52,13 @@ TARGETS = {
     "thigh_incr": "measure/measure-thigh-circ-incr.target", "thigh_decr": "measure/measure-thigh-circ-decr.target",
     "calf_incr": "measure/measure-calf-circ-incr.target", "calf_decr": "measure/measure-calf-circ-decr.target",
     "neck_incr": "measure/measure-neck-circ-incr.target", "neck_decr": "measure/measure-neck-circ-decr.target",
+    # the arms and legs part by part (Edit Dave's thigh, calf, biceps and forearm): muscle and fat on each side
+    "bic_l_incr": "armslegs/l-upperarm-muscle-incr.target", "bic_l_decr": "armslegs/l-upperarm-muscle-decr.target",
+    "bic_r_incr": "armslegs/r-upperarm-muscle-incr.target", "bic_r_decr": "armslegs/r-upperarm-muscle-decr.target",
+    "fa_l_mus_incr": "armslegs/l-lowerarm-muscle-incr.target", "fa_l_mus_decr": "armslegs/l-lowerarm-muscle-decr.target",
+    "fa_r_mus_incr": "armslegs/r-lowerarm-muscle-incr.target", "fa_r_mus_decr": "armslegs/r-lowerarm-muscle-decr.target",
+    "fa_l_fat_incr": "armslegs/l-lowerarm-fat-incr.target", "fa_l_fat_decr": "armslegs/l-lowerarm-fat-decr.target",
+    "fa_r_fat_incr": "armslegs/r-lowerarm-fat-incr.target", "fa_r_fat_decr": "armslegs/r-lowerarm-fat-decr.target",
     "chinw_incr": "chin/chin-width-incr.target", "chinw_decr": "chin/chin-width-decr.target",
     "chinb_incr": "chin/chin-bones-incr.target", "chinb_decr": "chin/chin-bones-decr.target",
     "chinp_incr": "chin/chin-prominent-incr.target", "chinp_decr": "chin/chin-prominent-decr.target",
@@ -373,6 +380,13 @@ SLIDERS = {
     "ears": ({"earl_decr": 0.6, "earr_decr": 0.6}, {"earl_incr": 0.6, "earr_incr": 0.6}),
     "eyeSize": ({"eyel_decr": 0.5, "eyer_decr": 0.5}, {"eyel_incr": 0.5, "eyer_incr": 0.5}),
     "smile": ({"smile_down": 0.5}, {"smile": 0.45}),
+    # (added 12 Oct 2026, after the others so their data is unchanged: "arms" and "legs" still thicken the whole limb)
+    "thigh": ({"thigh_decr": 0.8}, {"thigh_incr": 0.8}),
+    "calf": ({"calf_decr": 0.8}, {"calf_incr": 0.8}),
+    # (weighted so each end is a similar change, 10 to 25 % across the part at its fullest)
+    "bicep": ({"bic_l_decr": 1.5, "bic_r_decr": 1.5}, {"bic_l_incr": 1.2, "bic_r_incr": 1.2}),
+    "forearm": ({"fa_l_mus_decr": 0.75, "fa_r_mus_decr": 0.75, "fa_l_fat_decr": 0.75, "fa_r_fat_decr": 0.75},
+                {"fa_l_mus_incr": 0.42, "fa_r_mus_incr": 0.42, "fa_l_fat_incr": 0.25, "fa_r_fat_incr": 0.25}),
 }
 MORPHS = {}
 for _k, (_n, _p) in SLIDERS.items():

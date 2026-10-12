@@ -15,7 +15,8 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 ## Now
 
 Folds and light shipped (PR for queue items 11 to 13, 12 Oct), then the folds still missing and contact shade at cuffs,
-collars and hems (12 Oct, UPGRADE_PLAN 2zzzzzzzzzzzzz). Next agent, start here:
+collars and hems (12 Oct, UPGRADE_PLAN 2zzzzzzzzzzzzz), then Edit Dave's sliders centred on the last save, with
+biceps, forearms, thighs and calves sliders (12 Oct, UPGRADE_PLAN 2zzzzzzzzzzzzzz). Next agent, start here:
 
 1. **Look at the folds in the fitting room on a phone and a laptop** (Emma's verdict decides the strength). The
    strengths are the `fAmp` and `fWid` values in `FU` (trousers, at the call to `trouserGeo`) and `UT` (tops, just
@@ -116,6 +117,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 12 Oct 2026 | direct to `main` | Edit Dave: every slider back in the middle after Save (centred on his last saved look, within hard limits); biceps, forearms, thighs and calves sliders under "Arms and legs" | FtdHKg v34 |
 | 12 Oct 2026 | direct to `main` | Folds on the back of a tucked shirt, a jacket's lower back, scarves and shoes' heel counters; contact shade at cuffs, above collars and on shoes under trouser hems | FtdHKg v33 |
 | 12 Oct 2026 | #29 | Folds and creases shaded into every garment (trousers, shorts, tops, sleeves, shoes), soft studio light from a room of softboxes, shade under hems and inside open fronts; `legs` check heights follow Edit Dave's proportions | v46 |
 | 12 Oct 2026 | #28 | Trousers cut as a pair: the legs part from a crotch seam instead of sticking together, no bulge at the front or cleft at the seat; the `legs` check looks from 7 cm below the crotch | v45 |
