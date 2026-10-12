@@ -26,7 +26,9 @@ that: Edit Dave's sliders centred on the last save, and biceps, forearms, thighs
    there (CONTRIBUTING, "The cut of trousers and shorts"). The numbers are in `BOTCUT`.
 2. **Edit Dave's extremes:** the short sleeves are done 12 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzz: `ARMSUM`). Still open:
    w20261006-casual-04 on a heavy, muscular build (weight 0.6, muscle 0.6, arms and legs 1), the hood's rim through
-   the padded jacket's collar at the back of his neck (back poke 33; there before today too). To test a body the page
+   the padded jacket's collar at the back of his neck (back poke 33; there before today too). The same on his own
+   shape in jb-wet-day (a hoodie's hood lying out over a waterproof jacket, the jacket's collar showing as a line across
+   the top of the hood: back poke 73, on `main` too; not in the pull-request check's outfits). To test a body the page
    has no button for, copy `docs/` and add an entry to `PRESETS` in the copy's `index.html`, e.g. `xbase:{weight:0.6,
    muscle:0.6,arms:1,legs:1}`, then `node tools/check_3d.js --site <copy> --ids w20261006-casual-04 --body xbase`.
 3. **One set of model controls** (queue item 4). Found 12 Oct: the builder's small model uses `Live3D`'s own bar

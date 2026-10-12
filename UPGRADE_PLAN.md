@@ -2163,6 +2163,9 @@ was read from the shop's fit label and the name; many names say nothing ("Trouse
   pull-request check on all bodies. Stored specs unchanged (they do not hold the cut).
 - **New picks** are read from their name until someone adds them to `data/cuts.json` (CONTRIBUTING, "The cut of
   trousers and shorts").
+- **A polo under a closed layer** keeps the low stand it had before (the new folded rib collar is for a polo on top):
+  the pull-request check found the band's taller sides showing between a hoodie and its hood (g-job-06 on the loose
+  fit, front poke 32; a trouser cut change brought it into the check).
 
 ## 3. Next steps
 

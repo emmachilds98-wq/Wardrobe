@@ -5387,8 +5387,9 @@ function make3Dcore(pieces){
            read as a mandarin collar even when folded) */
         var cH=CT==="band"?0.022:(opn?0.026:0.034);
         /* (a polo's collar is a ribbed band folded over once, with short points: given the shirt collar's long leaves, it
-           read as a shirt collar laid on a polo, standing off it with ragged corners over the shoulders) */
-        if(p.shape==="polo"&&CT!=="band")fitCollar(FT,{h:0.022,hBack:0.03,lean:0.78,gap:opn?0:0.42,mat:rib(p),rows:4,fold:lf0&&!hid?{dropH:0.003,front:opn?0.016:0.02,out:0.002,outF:opn?0.008:0.003,spread:opn?0:0.1}:null,tip:tipM});
+           read as a shirt collar laid on a polo, standing off it with ragged corners over the shoulders; under a closed
+           layer only its stand shows, kept low, as the band's taller sides came through between a hoodie and its hood) */
+        if(p.shape==="polo"&&CT!=="band"&&!hid)fitCollar(FT,{h:0.022,hBack:0.03,lean:0.78,gap:opn?0:0.42,mat:rib(p),rows:4,fold:lf0&&!hid?{dropH:0.003,front:opn?0.016:0.02,out:0.002,outF:opn?0.008:0.003,spread:opn?0:0.1}:null,tip:tipM});
         else fitCollar(FT,{h:CT==="band"?cH:cH*0.5,hBack:CT==="band"?null:cH,lean:0.7,gap:opn?0:(CT==="band"?0.25:(p.shape==="polo"?0.5:0.4)),mat:m,rows:4,fold:lf0&&!hid?{dropH:0.006,front:opn?0.03:(CT==="spread"?0.032:0.05),out:0.003,outF:opn?0.012:0.005,spread:opn?0:(CT==="spread"?0.32:0.22)}:null,lean:p.shape==="jacket"?0.35:0.7,tip:tipM});}
       else if(bodyOn){var c0=NK(1.512),c1=NK(1.53),c2=NK(1.552),cT=CT==="band"?1.542:(opn?1.545:1.553);   /* the collar stands round his neck, its foot flared over the shirt's neckline (a band collar lower; worn open, it stops at the opening and sits lower) */
         sec([[1.51,c0[1]+e+0.007,c0[2]+e+0.007,0,c0[4]],[1.53,c1[1]+0.012+e*0.4,c1[2]+0.012+e*0.4,0,c1[4]],[cT,c2[1]+0.008+e*0.4,c2[2]+0.008+e*0.4,0,c2[4]]],m,{seg:44,gap:opn?Math.max(1.6,gap+0.9):(CT==="band"?0.25:0.7),k:1,sq:2,dipAll:0.012});}
