@@ -2024,8 +2024,9 @@ every slider; and for thigh, calf, forearm and biceps sliders in the body sectio
   - After: a tee 6 mm off his chest over the pec, 24 mm off his back and 40 mm at the small of it; a jumper 8 mm and
     42 mm. Each layer is still kept outside the one under it (`occT`, `gp`).
   - Only base and mid layers (`F.snug`: shirts, tees, polos, jumpers; not hoodies, whose hood lies over the layer above)
-    get the half, and only round the torso from the armpits down (`DTF`, the whole room, fades back in from 1.24 to
-    1.34 m, where the cloth meets the yoke and collar). The span down the back and the 10 % waist taper are for snug
+    get the half, and only round the torso from the armpits down; under a jacket or coat (`F.under`) the whole room fades
+    back in from 1.24 to 1.34 m (`DTF`), where the cloth meets the jacket's yoke and collar (under a knitted vest it stays
+    in, or the tee came through the vest's armholes on the loose fit: g-lounge-04, front poke 66). The span down the back and the 10 % waist taper are for snug
     layers only; jackets and coats hang as before (a padded jacket pulled in over a hoodie showed the shirt collar
     through it beside his neck: w20261006-casual-04, back poke 34 on the heavier and athletic bodies). Halving the yoke and neckline too let a shirt collar show through a padded jacket at the
     shoulders on the athletic body (pull-request check, w20261006-casual-04 back poke 34); halving jackets let an open
