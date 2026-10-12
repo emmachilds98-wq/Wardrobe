@@ -2327,6 +2327,16 @@ local Three.js). The page: build `docs/`, serve a copy (`tools/qa/serve.sh`), an
   The preview build shows a Draped clothes switch (`build_site.py --drape`: `window.__drapeUI`), in a corner of the
   page and in the fitting room's top bar, draped to start; `docs/` has none.
 
+**Last, 12 Oct, before merging (same PR):** four more kinds draped (`jacket_up`, `jumper`, `rollneck`, `tee`; the builder
+takes garments without a hem band or cuffs), drawn only for their own cut (`drapeArch`: no knitted vests, V necks or
+cardigans as jumpers, no long-sleeved tees, nothing worn open but the jacket; a track jacket worn closed uses
+`jacket_up` with its zip). A ringer tee's neckband and sleeve ends take its second colour. Clothes worn over a draped top
+hold in only their like (body in body, sleeves in sleeves: a down gilet's armholes drew a hoodie's sleeves to his
+elbows). **Switch-on 3D check, gate set on his shape: 19 of 30 clean**; all eleven flags are small back pokes (34 to
+155 px) of a draped tee or knit under a shirt, overshirt, jacket or coat `make3Dcore` still builds. A 4 cm hold-in
+made them worse (reverted). The way on is draping those outer layers (STATUS.md, item 0). Merged with the switch off for
+everyone; the drape preview artifact has the switch.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
