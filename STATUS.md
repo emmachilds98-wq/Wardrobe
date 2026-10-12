@@ -11,6 +11,10 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 - Emma's own copy of the artifact (republished from `docs/` the same way, its own database):
   <https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn>. A session signed in to her account can only publish to this one.
 - Review and plan doc (Claude Doc): <https://claude.ai/code/artifact/a11be046-83a3-47dc-855c-67657c180e7e>
+- Drape preview (PR #36's build with the drape switch on, its own artifact, no shared database):
+  <https://claude.ai/artifact/5A3t39MwR6C9T5rHNED2iT>. Rebuild with `python3 tools/build_site.py --out <dir> --drape`
+  (never into `docs/`) and publish the same way as `docs/` (page `index.html`, every file under `data/` in `files`,
+  root `<dir>`, no `capabilities`).
 
 ## Now
 
