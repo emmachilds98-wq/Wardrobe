@@ -20,6 +20,28 @@ that: Edit Dave's sliders centred on the last save, and biceps, forearms, thighs
 
 **Next agent, start here (in this order):**
 
+**How to carry on (12 Oct, PR #34, branch `claude/brave-maxwell-mscmo8`).** The owner wants every garment to sit on
+him as it does in real life, at every angle and in every combination, matching the product photo. Fix each problem
+at the rule that makes it (so every outfit using that rule changes), never per outfit, and never by raising a check
+limit. The passing 3D checks did not catch any of the collar problems below: look close up.
+1. Watch PR #34's CI (all five bodies, both "How it's worn" passes). If od-event or g-outdoor-05 flag "under", the
+   check's rays pass over the back of the scarf loop and count hits on the far side, at his front, where the scarf is
+   correctly outside the jacket collar. Make `tools/check_3d.js` count only near-side hits (top hit before the neck's
+   axis) and say so in the PR. Anything else red is real: root-cause it.
+2. Smooth the scarf loop's top edge (ragged at the front in places) and check all 8 scarf outfits (q7-fairisle,
+   pub-lunch, q9-matagalpa, q8-morden, od-event, g-outdoor-05, jb11-winter, g-quiet-30).
+3. Sweep every kind of top and collar, alone and layered, close up from the front, ¾, side and back, against its
+   shop photo: tee, oversized tee, crew jumper, roll neck, half-zip, hoodie, cardigan, shirt done up and open, polo,
+   short-sleeve shirt, overshirt, zip jacket, Harrington, denim/trucker, bomber, puffer, coat, blazer, gilet. Then the
+   common layers: shirt under jumper, polo under half-zip, tee under open shirt or jacket, hoodie under jacket (hood
+   laid out over its back), scarf over coat. Fix what does not look like real clothes.
+4. Contrast collars (the Harrington's brown cord collar) are not read from the photo yet.
+How to look: `sh tools/qa/serve.sh <dir> <port>` serves a test copy; `node tools/qa/zoom.js out.png <outfit id or
+pieces JSON> "rotY,camY,camZ,lookY;..."` renders close-ups (for the neck: "0,1.56,0.9,1.47;0.8,1.56,0.9,1.47;
+1.57,1.56,0.9,1.47;3.14,1.6,0.9,1.47"); `tools/qa/card.js` renders the outfit-card stills. To test a rule, copy the
+built site, patch its `index.html` with a small script, serve it on its own port, and compare against main. Run
+`node tools/check_3d.js --site docs --ids <ids> --body dave` before pushing.
+
 0. **PR #33's failures fixed (12 Oct, branch `claude/brave-maxwell-mscmo8`, carrying #33's commits):**
    - g-quiet-13 (polo under a half-zip under a gilet): the half-zip's collar stood off his neck at the sides in wings,
      the polo showing inside (front poke 31 to 42). Necklines are now placed from a neck-only map and never sit lower
