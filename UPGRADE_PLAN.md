@@ -2167,6 +2167,35 @@ was read from the shop's fit label and the name; many names say nothing ("Trouse
   the pull-request check found the band's taller sides showing between a hoodie and its hood (g-job-06 on the loose
   fit, front poke 32; a trouser cut change brought it into the check).
 
+## 2zzzzzzzzzzzzzzzzzzzz. Collars attached to their tops; necklines over necklines (12 Oct 2026)
+
+Emma (n4-under-60 ringer, and on PR #33's renders): "collars still appear a bit overlapped and detached", then "it
+still looks layered and like there's overlap that looks like misrendering at the collar".
+
+- **Collars grown from the top's own neckline** (05efecd): the neckline used to sit at one height all round, below the
+  tops of his shoulders beside his neck, so every collar grew out of a trough behind the cloth's crest. It now rises
+  there to the base of his neck (`yokeCol`, `YT` in `fitTop`); `fitCollar` grows the band at right angles to the
+  neckline and evens out only how far it is pushed; a ringer's colour is the tee's own neckband (`ringM`).
+- **That broke layered necklines.** The pull-request check flagged g-quiet-13 (a polo under a half-zip under a gilet)
+  on three bodies: the half-zip's collar stood 3 to 5 cm off his neck at the sides in wings, with a ledge where it
+  met the front, and the polo showed inside it. Switching each layering rule off in turn found the cause: the
+  half-zip's neckline was placed outside the furthest cloth under it at its height (`OCC.N`), and with the necklines
+  raised that is the top of the polo's shoulder, not its neckline. Fixed at the rule:
+  - necklines are placed from a neck-only map, `OCC.NC` (cloth within 10.5 cm of the neck's axis, as `ownNeck`
+    already did for a top's own collar). Collars still clear `OCC.N`: read from the neck-only map, the hood's rim of
+    w20261006-casual-04 came through the padded jacket's collar (back poke 72 to 115);
+  - a neckline is never lower than the raised neckline of the top under it (`NUP`): a half-zip over a polo stayed
+    up to 2.5 cm lower behind his shoulders;
+  - a shirt or polo under a closed half-zip, roll neck or hoodie keeps a low band for its collar (`cov`): none of it
+    shows, and its taller stand pushed the outer collar off his neck.
+  Tried and dropped: measuring the neckline's rise on his body alone (the yoke then climbed over the polo again),
+  hugging the hidden stand closer (no change), and limiting the sample below the neckline (halved the wings only).
+- **The waistband** (g-lounge-06 tucked in, front poke 37): when the trousers' room went by the cut (2zzzzzzzzzzzzzzzzzz)
+  the waistband stayed at the loosest cut's, 5 mm proud of a tapered pair, and came through the jumper over it. It
+  now lies on the trousers at their own room (`eW`).
+- **Check:** the gate set and every outfit the change touches, on all five bodies and both "How it's worn" passes (the
+  pull-request check), and the stored specs (1381 pieces, none read differently).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

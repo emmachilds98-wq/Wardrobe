@@ -20,14 +20,15 @@ that: Edit Dave's sliders centred on the last save, and biceps, forearms, thighs
 
 **Next agent, start here (in this order):**
 
-0. **Open on PR #33 (12 Oct, unmerged; CI red on one check):** g-lounge-06 with "How it's worn" tuck=in flags front poke
-   ~37-55: the trousers' waistband edge shows through the jumper about 2 cm above its ribbed hem. Not on `main`; not the
-   new tapered cut (same with the pair read as regular), so it is this PR's seat change in `trouserGeo` (o.seat / the
-   room by cut). Also in progress: collars attached at the source (thread d9dab1ae, n4-under-60 ringer): the neckline now
-   sits at the base of his neck (`yokeCol`, `YT` in fitTop), a ringer's colour is on the tee's own neckband (`ringM`),
-   `fitCollar` grows the band at right angles to the neckline and evens out only the push, `collarSnap` only acts below
-   the neckline (`ownTop`). Before/after renders looked better on every collar; run the full gate (tools/qa/gate.txt) on
-   all bodies before merging.
+0. **PR #33's failures fixed (12 Oct, branch `claude/brave-maxwell-mscmo8`, carrying #33's commits):**
+   - g-quiet-13 (polo under a half-zip under a gilet): the half-zip's collar stood off his neck at the sides in wings,
+     the polo showing inside (front poke 31 to 42). Necklines are now placed from a neck-only map and never sit lower
+     than the raised neckline under them; a collar under a closed half-zip, roll neck or hoodie is a low band
+     (CONTRIBUTING, "Necklines over necklines"; UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzz).
+   - w20261006-casual-04 on the loose fit (back poke 31): passes again.
+   - g-lounge-06 tucked in (front poke 37): the waistband was still placed at the loosest cut's room after the room
+     went by the cut, so it stood 5 mm proud of a tapered pair and came through the jumper. It now lies on the trousers
+     at their own room (`eW`).
 
 1. **Slim and baggy bottoms:** done 12 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzz to 2zzzzzzzzzzzzzzzzzzz): `bottomCut`
    reads every pair's cut for the model, the drawing and the fitting room's words, shorts' length from their inseam;

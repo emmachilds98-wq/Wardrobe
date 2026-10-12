@@ -290,6 +290,14 @@ All fitting happens in `make3Dcore` in `page.html`, on the real body in `data/bo
   pushed outside them (`occPushPt`), so nothing underneath can come through. A garment's body that lies on his arm's
   part of the body mesh (the front of a gilet's shoulder) clears the shoulders of what is under it as well as his arm. Collars (`fitCollar`) are built round the
   neck base and stand on what is under them. Sleeves under a long-sleeved outer layer are not built.
+- **Necklines over necklines.** A top's neckline rises at the sides of his neck to the base of it (where his shoulders
+  rise into it), and never sits lower than the raised neckline of the top under it (`NUP` in `fitTop`). Where it goes
+  round what is under it is read from the neck-only map (`OCC.NC`: cloth within 10.5 cm of the neck's axis), not the
+  full neck map (`OCC.N`, which reaches 13 cm). A map holds the furthest cloth at each height, and with the neckline
+  raised the furthest cloth at that height is the top of his shoulder: read from `OCC.N`, a half-zip's neckline went
+  3 to 5 cm out round a polo's and its collar stood off his neck in wings. A collar's own clearance (`fitCollar`)
+  still reads `OCC.N`, since a hood's rim sits further out than that. A shirt or polo under a closed half-zip, roll
+  neck or hoodie keeps only a low band (1 cm) for a collar, since none of it shows.
 - **Trousers and shorts.** Cut as a pair is (`trouserGeo`): each half is one piece of cloth from the waistband to the
   hem. Over the hips and seat it lies on the hull of his body (hollows bridged) plus the ease, and below the widest
   point it falls in a line. The halves meet down the middle, front and back, and along the crotch seam, 2 to 4 cm
