@@ -472,7 +472,7 @@ class Garment:
         bands = [k for k in P if k.endswith("_band")]
         # seams: [(piece, edge), ...] on one side against the other, sampled alike, and whether the two sides run the
         # same way along the seam (each piece's outline runs counter-clockwise seen from outside, so two pieces sewn
-        # edge to edge run opposite ways; a collar's neckline runs with the garment's). bias: how much of the closing
+        # edge to edge run opposite ways). bias: how much of the closing
         # move the first side takes (1: it moves onto the second).
         S = [([(fp, "sh_p")], [("back", "sh_n")], 0.5, False), ([(fn, "sh_n")], [("back", "sh_p")], 0.5, False),
              ([(fp, "side_p")], [("back", "side_n")], 0.5, False), ([(fn, "side_n")], [("back", "side_p")], 0.5, False),
@@ -485,8 +485,9 @@ class Garment:
         for b in bands:
             S.append(([(b, "top")], [(b[:-5], "hem")], 1.0, False))
         S += [([(fp + "_band", "side_p")], [("back_band", "side_n")], 0.5, False), ([(fn + "_band", "side_n")], [("back_band", "side_p")], 0.5, False)]
-        # the neckline round from the middle of the front, by his right, the back and his left
-        ring = [(fn, "neck_n"), ("back", "neck_p"), ("back", "neck_n"), (fp, "neck_p")]
+        # the neckline round from the middle of the front, by his left, the back and his right, against the way the
+        # front and back run (so a collar along it faces outward)
+        ring = [(fp, "neck_p"), ("back", "neck_n"), ("back", "neck_p"), (fn, "neck_n")]
         self.ring = ring
         rl = [plen(P[a].edge(b)) for a, b in ring]
         if "collar" in M:
@@ -497,12 +498,12 @@ class Garment:
             c.edges = [("n%d" % i, parts[i]) for i in range(4)] + [e for e in c.edges if e[0] != "neck"]
             c.order = [e[0] for e in c.edges]
             P["collar"] = c
-            S.append(([("collar", "n%d" % i) for i in range(4)], ring, 1.0, True))
+            S.append(([("collar", "n%d" % i) for i in range(4)], ring, 1.0, False))
             if not op: S.append(([("collar", "cf_p")], [("collar", "cf_n")], 0.5, False))
         self.P, self.S = P, S
         self.hood = None
         if "hood_h" in M:
-            hl = hood_half(M, s, rl[3], rl[2], "L")
+            hl = hood_half(M, s, rl[0], rl[1], "L")
             self.hood = {"hood_L": hl, "hood_R": mirror(hl, "hood_R")}
             self.hood_S = [([("hood_L", "back")], [("hood_R", "back")], 0.5, False)]
             # (each half's neckline on the garment's: his left from the front by the shoulder to the back, and his right)
