@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#f6f5f2;color:#1d1c1a;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#8a3b1e}a:hover{color:#1d1c1a}
+</style>
+</helmet>
+<main style="max-width:780px;margin:0 auto;padding:64px 28px 96px;display:flex;flex-direction:column;gap:56px">
+
+<header style="display:flex;flex-direction:column;gap:14px">
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#5d5a54">Dave's Wardrobe · 3D fitting review · 12 Oct 2026</div>
+<h1 style="margin:0;font-size:40px;line-height:1.1;font-weight:600;letter-spacing:-0.02em;text-wrap:balance">Stop patching the clothes. Rebuild how they get their shape.</h1>
+<p style="margin:0;font-size:18px;line-height:1.55;color:#3d3b37;text-wrap:pretty">I read the repo (main) and the previous engineer's notes on PR #34. The body is sound and the colour and pattern reading is good. The faults come from how garments are shaped and layered, and each fix to that code has moved a fault rather than removed it. I recommend replacing the garment builder with draped templates and keeping everything else.</p>
+</header>
+
+<section style="background:#ebe8e1;border-radius:6px;padding:28px 30px;display:flex;flex-direction:column;gap:16px">
+<div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:#8a3b1e">Decision</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px">
+<div style="display:flex;flex-direction:column;gap:6px"><div style="font-weight:600;font-size:16px">Keep</div><div style="font-size:15px;line-height:1.5;color:#3d3b37">The MakeHuman body and Edit Dave morphs, the listing and photo reader, fixes.json, specs.json, the 3D check and QA scripts.</div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><div style="font-weight:600;font-size:16px">Replace</div><div style="font-size:15px;line-height:1.5;color:#3d3b37">fitTop, fitCollar, the occupancy pushes and the post-fit warp for clothes, with draped garment templates and a short layer settle.</div></div>
+<div style="display:flex;flex-direction:column;gap:6px"><div style="font-weight:600;font-size:16px">Freeze</div><div style="font-size:15px;line-height:1.5;color:#3d3b37">The geometry queue (scarf edge, polo collars, hood under collar, contrast collars). That code is what gets replaced.</div></div>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:28px">
+<h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-0.01em">Why the current route keeps breaking</h2>
+
+<div style="display:grid;grid-template-columns:36px minmax(0,1fr);gap:4px 16px;padding-top:20px;border-top:1px solid #d8d4cb">
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#8a3b1e;padding-top:3px">01</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="margin:0;font-size:18px;font-weight:600">Clothes are offsets from the body, not cut cloth</h3>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#3d3b37;text-wrap:pretty">Every top is built outward from radial maps of his body plus a fixed ease per layer (about 0.8 cm next to skin, 1.7 cm for knits, 3 cm for jackets). There is no pattern and no drape, so each collar, hood, scarf and hem needs its own hand-written rule for how it sits. That is why shapes look "quite misshaped": a hoodie and a Harrington differ only by ease and a few detail rules.</p>
+<sc-if value="{{ showEvidence }}" hint-placeholder-val="{{ true }}"><div style="font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;color:#5d5a54">CONTRIBUTING.md "How clothes are fitted"; 17 fix rounds logged 6–12 Oct in UPGRADE_PLAN.md; trousers rebuilt "as a pair" after weeks of faults moving around.</div></sc-if>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:36px minmax(0,1fr);gap:4px 16px;padding-top:20px;border-top:1px solid #d8d4cb">
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#8a3b1e;padding-top:3px">02</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="margin:0;font-size:18px;font-weight:600">Layers are pushed apart, not collided</h3>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#3d3b37;text-wrap:pretty">Each new layer is moved outside a map of what is under it. When two rules disagree about what is on top, nothing resolves them. PR #34's failures are exactly this: the collar rule ("stands on what's under it") against the hood rule ("lies over the jacket's back"). The suggested fix, lowering the jacket's collar under a hood, is a third rule for the same conflict.</p>
+<sc-if value="{{ showEvidence }}" hint-placeholder-val="{{ true }}"><div style="font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;color:#5d5a54">occPushPt / occAddMesh; g-mod-27 (all bodies), w20261006-casual-04 (slim, heavier, athletic), hoodie-coat (heavier).</div></sc-if>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:36px minmax(0,1fr);gap:4px 16px;padding-top:20px;border-top:1px solid #d8d4cb">
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#8a3b1e;padding-top:3px">03</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="margin:0;font-size:18px;font-weight:600">The shape changes after the clothes are fitted</h3>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#3d3b37;text-wrap:pretty">Clothes are built on a base frame and then everything is warped to his proportions. Anything placed against another layer drifts in that warp, and every Edit Dave slider adds more drift. This is why outfits pass on Dave and fail on the slim, heavier and athletic builds.</p>
+<sc-if value="{{ showEvidence }}" hint-placeholder-val="{{ true }}"><div style="font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;color:#5d5a54">warpMan; CONTRIBUTING.md lesson on the neck warmer carried inside a jacket collar; STATUS.md "Edit Dave's extremes".</div></sc-if>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:36px minmax(0,1fr);gap:4px 16px;padding-top:20px;border-top:1px solid #d8d4cb">
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#8a3b1e;padding-top:3px">04</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="margin:0;font-size:18px;font-weight:600">Fit doesn't come from the clothes' sizes</h3>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#3d3b37;text-wrap:pretty">Size charts are stored for 81 shops but only feed a line of text on the card. The model never uses a garment's chest, length or sleeve, so an L from one shop fits him the same as an L from another. "Ease-driven fit from measurements" is still on the to-do list, and the model's 34 in chest against his size L is still an open question.</p>
+<sc-if value="{{ showEvidence }}" hint-placeholder-val="{{ true }}"><div style="font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;color:#5d5a54">data/sizecharts.json; HANDOFF.md phase 5 "Not yet"; STATUS.md "Needs Emma".</div></sc-if>
+</div>
+</div>
+
+<div style="display:grid;grid-template-columns:36px minmax(0,1fr);gap:4px 16px;padding-top:20px;border-top:1px solid #d8d4cb">
+<div style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#8a3b1e;padding-top:3px">05</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<h3 style="margin:0;font-size:18px;font-weight:600">The checks catch glitches, not wrong shapes</h3>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#3d3b37;text-wrap:pretty">The 3D check counts pokes, holes and skin pixels. A collar or hem in the wrong shape passes. The previous engineer says so directly: the passing checks missed every collar problem found by eye. Scoring the render against the shop photo was planned but not built.</p>
+<sc-if value="{{ showEvidence }}" hint-placeholder-val="{{ true }}"><div style="font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;color:#5d5a54">tools/check_3d.js; HANDOFF.md phase 7 "Scoring against photos, approve page".</div></sc-if>
+</div>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:24px">
+<h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-0.01em">The upgrade</h2>
+<p style="margin:0;font-size:16px;line-height:1.6;color:#3d3b37;text-wrap:pretty">This is phases 2 and 3 of the existing plan, which have waited on Emma's yes since 7 Oct, with sizing and a photo-based check added.</p>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ steps }}" as="s" hint-placeholder-count="6">
+<div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding:16px 0;border-top:1px solid #d8d4cb">
+<div style="font-weight:600;font-size:15px">{{ s.k }}</div>
+<div style="font-size:15px;line-height:1.6;color:#3d3b37;text-wrap:pretty">{{ s.v }}</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:16px">
+<h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-0.01em">What to do with PR #34 now</h2>
+<ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:16px;line-height:1.6;color:#3d3b37">
+<li>Don't merge it red, and don't raise a limit. Ship the collar-under-hood rule only if it is one contained change; otherwise park the branch.</li>
+<li>Stop new garment-geometry work. Data, photo reading and shop refresh carry on as normal.</li>
+<li>Prove the new approach on the case that fails today: hoodie under an open jacket, on all five bodies, compared front, ¾, side and back. If it doesn't clearly beat today's render, stop there.</li>
+</ul>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:16px">
+<h2 style="margin:0;font-size:24px;font-weight:600;letter-spacing:-0.01em">Needed before starting</h2>
+<ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;font-size:16px;line-height:1.6;color:#3d3b37">
+<li>Emma's yes to the newer Three.js and Blender-made templates (both listed as her decisions).</li>
+<li>Dave's measurements: chest, waist, hips, inside leg, shoulder, sleeve. Fit can't be shown correct without them.</li>
+<li>A coding session with write access to the repo for the Blender, CI and PR work. In this project I can build the proof of concept on his real body file and write the build plan.</li>
+</ul>
+</section>
+
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showEvidence&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      showEvidence: this.props.showEvidence ?? true,
+      steps: [
+        { k: "Engine", v: "Move Three.js r128 to the current release. Colour space and light levels change; every QA script and the 3D check are re-run to confirm cards look the same." },
+        { k: "Garment templates", v: "About 45 garment types made from flat pattern pieces, sewn and draped in headless Blender on Dave's base body in his pose, then baked. Hoods, collars, cuffs and pockets are their own pieces. UVs come from the pattern, so stripes and checks follow the cloth." },
+        { k: "Moves with Dave", v: "Each template takes skin weights and Edit Dave morphs from the body, so the clothes change with him instead of being warped afterwards." },
+        { k: "Sized from charts", v: "Each template gets shape keys for chest, length, sleeve, inseam and leg opening, set from the item's size-chart numbers. The listing's cut words (relaxed, wide, cropped) choose among them." },
+        { k: "Layer settle", v: "On load, a short cloth solve in the browser, inner layer to outer, each colliding with the body and the layers under it. This replaces the occupancy pushes, so a hood over a collar is decided by wearing order, not a rule." },
+        { k: "Design and checks", v: "The current photo readings and fixes.json become materials on the templates; the fabric library fits here. Keep the 3D check, and add a score of the render's outline and colour against the shop photo so wrong shapes fail." }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

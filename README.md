@@ -26,6 +26,9 @@ that refresh them every week (see `REFRESH.md`).
 | `tools/browser_fetch.js` | The headless-browser fallback used by `--browser`. |
 | `tools/weekly_refresh.py` | The weekly refresh: downloads catalogues, re-checks every pick (price, his size, still sold), applies the Workwear rules and mends outfits. |
 | `tools/browser_check.js` | Headless-Chromium fallback for product pages that refuse a plain request. |
+| `tools/build_garments.py` | Garment templates for the drape upgrade (in progress): pattern pieces sewn on Dave's body and draped in headless Blender 4.5 LTS, which it downloads on first use. Writes nothing to `data/` yet. |
+| `tools/garment_view.js` | Renders the builder's `--debug` files (his body and a garment) from any angle, without the page. |
+| `design/garment-drape/` | Emma's design handoff for the garment drape upgrade: the plan (`README.md`), the review, and a working drape proof of concept in the browser. |
 | `tools/check_3d.js` | Automatic 3D checks: renders outfits from five views and flags skin where clothes should be, see-through cloth, inner layers poking through, holes, floating parts and colours that drift from the listing (`node tools/check_3d.js --site docs --ids a,b --out qa --debug`). |
 | `.github/workflows/check-3d.yml` | Runs on every pull request: the build's data checks, docs/ up to date, and the 3D check on the outfits the change touches plus a fixed set covering every garment shape (`tools/qa/gate.txt`). |
 | `data/items-YYYY-MM-DD*.json`, `data/outfits-YYYY-MM-DD.json` | Each week's new picks and outfits. |
