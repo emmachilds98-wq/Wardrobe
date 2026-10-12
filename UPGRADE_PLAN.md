@@ -2023,6 +2023,20 @@ every slider; and for thigh, calf, forearm and biceps sliders in the body sectio
     profile, `HS`), 85 % of the way on the back, and is taken in 10 % at the waist (was 8 %).
   - After: a tee 6 mm off his chest over the pec, 24 mm off his back and 40 mm at the small of it; a jumper 8 mm and
     42 mm. Each layer is still kept outside the one under it (`occT`, `gp`).
+  - Only base and mid layers (`F.snug`: shirts, tees, polos, jumpers, hoodies) get the half, and only round the torso
+    below the shoulders. Halving the yoke and neckline too let a shirt collar show through a padded jacket at the
+    shoulders on the athletic body (pull-request check, w20261006-casual-04 back poke 34); halving jackets let an open
+    jacket's fronts fall behind the shirt or roll neck under them, a sliver of background between them from the side
+    (mn-smart side holes 53, wedding-guest 27). Jackets still come in at the back, following the shirt under them.
+- **The striped polo by the pool and its cap** (Emma, on the artifact: "no lines on the arm of this shirt as you see in
+  the ad, put hat design on the cap too"):
+  - the Lambretta polo is white with one navy, red and navy band across the chest; its name ("stripe polo") made it
+    striped all over, sleeves and back included. A correction (`pat` plain, `front` true) keeps the photo's band and
+    logo on a plain polo, and a correction saying plain now outranks a pattern the listing's name gives (`pm`);
+  - a cap's design: a new correction field, `crown`, the crown seen from the front cut from the shop photo, laid over the
+    front of the 3D cap (by where each point is seen from the front, fading into the cap's colour round the sides). The
+    Lambretta cap now shows its red racing stripe and lettering. Not yet: the stripe over the top to the back.
+
 - **Check:** the gate set on his saved shape, the four body types, and test copies with the new limb sliders at +1.8
   and -1.8, weight at +1.8, arms and legs at +1.8 and muscle at +1.8. Still flagged: a test body with everything pushed
   together (weight 0.6, muscle 0.6, arms and legs 1, the four new sliders 1.8): short sleeves poke at the back of the
