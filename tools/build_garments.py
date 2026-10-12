@@ -7,8 +7,8 @@ What it does:
      with the same vertices, from the MakeHuman rig tools/build_body.py uses.
   2. Cuts each archetype's pattern pieces flat (front, back, sleeves, rib bands, hood halves, collar), in metres, from
      its measurements for size L (MEAS), and meshes them (constrained Delaunay, about 1.4 cm apart).
-  3. Places the pieces round the A-posed body, sews them with Blender's sewing springs and drapes them under gravity,
-     then lowers the arms to his relaxed pose while the cloth follows. A hood is draped on its own after the garment,
+  3. Places the pieces round the A-posed body, welds the seams, eases the cloth to the pattern's lengths and drapes it
+     under gravity, then lowers the arms to his relaxed pose while the cloth follows. A hood is draped on its own after the garment,
      its neckline held on the garment's, falling back from his head onto his shoulders.
   4. Bakes for the page: every point's position on him, its place on the flat pattern (the page's cloth keeps these
      lengths, so a size or a body can change and the cloth still has its cut, and stripes and checks run with the
@@ -21,11 +21,14 @@ It runs itself inside Blender 4.5 LTS: BLENDER=<path to blender>, else ~/.cache/
 downloaded from download.blender.org (and checked against its published sha256) on first use. The MakeHuman assets
 come as in tools/build_body.py (--mh). --frames scales the simulation's length (0.3 for a quick look). --debug writes
 each stage (placed, relaxed, mid-drape, draped) as JSON for tools/garment_view.js. GB_SELF=0 turns Blender's
-self-collision off; GB_SNAPS=2,4,8 writes those frames too (with --debug); GB_DBG=1 prints the pieces behind the worst corner in the corner check.
+self-collision off; GB_SNAPS=2,4,8 writes those frames too (with --debug); GB_DBG=1 prints the pieces behind the
+worst corner in the corner check.
 
-STATUS (12 Oct 2026, PR #35, stopped part-way; see STATUS.md and UPGRADE_PLAN.md 2zzzzzzzzzzzzzzzzz): steps 1 to 3 run for
-the hoodie (body only), the quarter-zip and the jacket; the hoodie is checked by eye and the other two only run. Not
-written yet: the hood's own drape, step 4 (nothing is written to data/garments yet) and anything in the page.
+STATUS (12 Oct 2026, PR #36; see STATUS.md and UPGRADE_PLAN.md 2zzzzzzzzzzzzzzzzzz): the hoodie (with its hood), the
+quarter-zip and the jacket drape cleanly and are written to data/garments; the page draws them with window.__drape set.
+Options for trying drapes: --start (the A-pose placed in), --hold (frames settled at each pose), --bending, --mass,
+--tension, --friction, --hood-bending, --apose-only (a quick look), --reuse (with --debug: the last draped garment, to
+try the hood alone). It also runs as a plain script under Python with the bpy module (pip install bpy).
 """
 import argparse, base64, hashlib, json, math, os, re, subprocess, sys, tarfile, urllib.request
 

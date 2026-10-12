@@ -2192,6 +2192,89 @@ Separately, as a small data pull request (not garment geometry): g-mod-27's piec
 "quarter-zip" before "zip hood". Both change renders and stored specs, so run `node tools/specs.js`, `specs_diff.py`
 and the 3D check on every outfit using a quarter-zip "hoodie".
 
+## 2zzzzzzzzzzzzzzzzzz. Garment drape proof: the hoodie fixed, the hood, three templates, and the page behind a switch (12 Oct 2026)
+
+Continues 2zzzzzzzzzzzzzzzzz (PR #36). Everything in the page is behind `window.__drape`. Without it, the page is as on
+`main`: the switch only adds the templates to `docs/data/garments/` and a few lines that do nothing while it is off.
+
+**The hoodie's fold and pinch: four causes, none of them the arms coming down.** Rendering the drape frame by frame
+(`GB_SNAPS`) showed the fold already there in the A-pose, as a tuck across the chest between the armholes:
+- **His body tears at the front of each armpit.** `propWarp` moves arm vertices (`bodyArmMask`) and the chest beside
+  them by different amounts. His saved shoulder slope drops the arm's skin by up to 1.7 cm more than the chest next to
+  it, a ridge you can see on his bare chest. In the A-pose it lies across his chest, the cloth caught on it, and the
+  tuck hung between the two ridges. The builder now blends the two warps over a few centimetres of skin (`Body.armW`).
+  **The page draws the same tear** (it is under clothes, and shows on a bare chest or a vest): `warpMan` could blend
+  the same way, but that moves every render and needs the full check. Not changed.
+- **The relax shrank the cloth onto him.** Laplacian smoothing pulled the cloth in, and the 29 cm of ease round his
+  chest gathered into fins along the side seams (folded 75 degrees, against 8 as placed). Blender kept them as resting
+  creases. It is now Taubin smoothing (each step followed by a slightly larger one the other way), which does not
+  shrink: side seams 9 degrees.
+- **His left sleeve faced inward.** Both sleeves were cut alike and wrapped round the arms in mirror image, so the left
+  one was inside out. Blender's bending measures angles by the way triangles face, so it fought a half turn all round
+  that armhole: the pinch. The left sleeve is now cut mirrored, like a piece cut from folded cloth. Seams are paired
+  by the pattern's own directions (pieces sewn edge to edge run opposite ways), and the build stops if any sewn edge
+  joins pieces facing opposite ways. The same check then caught the collar, which was wrapped by his right first;
+  it now runs by his left, and the quarter-zip collar's +368 degree corner is gone.
+- **The rib hem and cuffs were steps in the side and underarm seams**, cones at each hip and wrist (the "+99 / -79
+  degree" corners). They are now pieces of their own, narrower, with the body gathered into them.
+
+Tried, and not the cause: settling between poses (`--hold`), lower bending, lower mass, lower friction, draping
+straight in a lower A-pose (`--start 3`), no self-collision. The flags stay for trying drapes. Each sleeve cap now
+starts as a smooth surface from the sleeve's ring up to its armhole.
+
+**The hood** (`drape_hood`): its two halves sewn up the back and placed up round his head (an ellipsoid round his
+head's skin), the neckline pinned on the draped hoodie's, then let fall with gravity tilted backward for 40 frames
+and settled for 50, against his body and the draped hoodie. It ends down behind his neck, bunched as a real hood
+lies, 0.0 mm off the neckline. A softer hood (`--hood-bending 0.1`) looks the same: the shape is the cut's.
+
+**Templates** (`data/garments/<kind>.json`, 463, 417 and 441 KB): the welded points in his warped frame; the pattern
+points (each with its welded point, its piece and its place on the flat pattern in metres) and the triangles over them;
+each welded point's binding (its nearest body triangle among its regions, barycentric weights of its foot on that
+triangle's plane, and its height along the unit normal), which rebuilds the drape to 0.001 mm; the measurements, the
+cloth scale (0.965) and his shape; the hood in its own block, with the pins tying its neckline to the garment's.
+At this size 45 kinds would be about 20 MB, over the plan's 8: store float16 or quantised positions before scaling up.
+
+**The page, behind the switch** (`drapeTops`, next to `warpMan`; `QA_INIT='window.__drape=1'` for the QA scripts):
+- `loadBody` also loads the templates when the switch is on. A hoodie, quarter-zip or jacket is then left out of
+  `make3Dcore`'s tops (so none of its fitTop, collar, hood, bands or front details are built), and added after
+  `warpMan`: each point placed on his warped body by its binding, then settled inner to outer against his body (torso
+  and arms apart), the clothes under it (those `make3Dcore` built, normals turned away from his body) and the draped
+  layers already settled. A hoodie's hood goes last, its neckline pinned on the hoodie's, out over anything worn over it.
+- **The solver** is `drape.js`'s (position-based, distance constraints along every edge and softer ones across every
+  pair of triangles), at the lengths as draped on his saved shape. **At full gravity it let the cloth slide off his
+  shoulders:** at 8 iterations a step it is far softer than Blender's, and the garments ended up in a heap at his feet.
+  The template is already hanging at rest on him, so each point is drawn back a little (8% a step) toward where its
+  binding puts it, under a fifth of gravity. Draped layers are kept 1 cm apart: at 6 mm, the layer under showed
+  through at the back of the jacket's armholes on the larger bodies. 60 steps; `__drapeSteps` and `__drapeTh` try others.
+- The cloth is `pm(p)` on both sides, UVs from the pattern (1.2 per metre round, 3.33 down: untested on stripes and
+  checks), normals smoothed across seams. No painted folds, no layer or contact shade, no front details.
+
+**The proof** (`tools/qa/zoom.js` with the plan's five views, all five bodies, beside `main`):
+- **g-mod-27 as its data says (hoodie under the open Ellesse jacket):** clearly better than `main` from every angle on
+  every body. `main` draws the hood as a flat shield on the jacket's back and the jacket nearly closed over a strip of
+  hoodie. Draped, the hood lies bunched over the jacket's collar as a real hood does, and the jacket hangs open over
+  the hoodie.
+- **g-mod-27 as the quarter-zip it is:** the shape is better (the funnel neck stands up inside the jacket's stand
+  collar, the jacket hangs open), but the zip is missing (front details are not on draped pieces), and on the
+  athletic, heavier and loose bodies a few flecks of the quarter-zip show at the back of the jacket's armholes.
+- **Not yet:** Edit Dave's Cloth fit slider ("close", "loose") does nothing to draped pieces; the size cannot be
+  changed (Emma's decision: adjustable sizing; the template has the measurements, the page has no control yet); the
+  3D check has not been run with the switch on (its counts read `userData.kind`, and draped meshes are "drape0",
+  "drape1", "drapeHood"); the binding differs from the page's body by up to 3.7 cm at the armpits, where the builder
+  blends the warps and the page tears.
+
+**Next, in order:** (1) report the proof to Emma (this section and PR #36's renders); (2) if she goes on: front details
+on the draped pieces (the zip, drawstrings, pocket), laid on the cloth by pattern position rather than by `surfZ`;
+(3) the Cloth fit slider and the size as rest-length scales per piece; (4) the 3D check with the switch on, and the
+`under` rays generalised as the plan's step 6 says; (5) the page's armpit tear (blend `warpMan`'s arm and torso as the
+builder does), with the full check; (6) more kinds (tee, jumper, shirt, coat), and float16 storage.
+
+**Running it:** `python3 tools/build_garments.py --only hoodie --debug <dir>` (Blender 4.5 LTS is downloaded on first use;
+download.blender.org refuses Python's default user agent, so the builder sends its own; or `pip install bpy` and run
+the script with that Python), about 3 minutes a kind. `--reuse` takes the draped garment from the last `--debug` run to
+try the hood alone. `node tools/garment_view.js <dir>/hoodie-draped.json out.png` looks at any stage (`THREE_JS=` for a
+local Three.js). The page: build `docs/`, serve a copy (`tools/qa/serve.sh`), and pass `QA_INIT='window.__drape=1'`.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

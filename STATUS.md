@@ -18,14 +18,16 @@ Shipped 12 Oct (PR #31, artifact FtdHKg v35): trousers meet where his thighs do,
 and jumpers rest on his chest, the Lambretta polo and cap as in their photos (UPGRADE_PLAN 2zzzzzzzzzzzzzzz). Before
 that: Edit Dave's sliders centred on the last save, and biceps, forearms, thighs and calves sliders (2zzzzzzzzzzzzzz).
 
-**12 Oct, evening: the garment drape upgrade has begun, and was stopped part-way at Emma's request** (UPGRADE_PLAN
-2zzzzzzzzzzzzzzzzz). Emma brought a design handoff (now `design/garment-drape/`; read its `README.md`, the plan): replace
-how garments get their shape (`fitTop`, `fitCollar`, the occupancy pushes, `warpMan` for clothes) with patterns draped
-in Blender and settled in the page in wearing order. **Her decisions:** yes to the newer Three.js and to Blender-made
-templates; proof first, behind a switch, then report back; a few seconds of settle on first opening is fine; assume
-the model's current shape is right but make the sizing adjustable. **Done:** `tools/build_garments.py` (headless
-Blender 4.5 LTS) makes his body in an A-pose, cuts and meshes the patterns, sews and drapes them; the hoodie's body
-drapes cleanly. **Nothing in the page has changed**, and nothing is in `data/garments/` yet.
+**12 Oct, late: the garment drape proof is built, behind a switch, and waits on Emma** (PR #36, UPGRADE_PLAN
+2zzzzzzzzzzzzzzzzzz; the start in 2zzzzzzzzzzzzzzzzz). Emma's design handoff (`design/garment-drape/`, its `README.md`
+is the plan) replaces how garments get their shape with patterns draped in Blender and settled in the page in wearing
+order. **Her decisions:** yes to the newer Three.js and to Blender-made templates; proof first, behind a switch, then
+report back; a few seconds of settle on first opening is fine; assume the model's current shape is right but make the
+sizing adjustable. **Done:** `tools/build_garments.py` drapes the hoodie (with its hood), the quarter-zip and the
+jacket cleanly on him and writes `data/garments/`; with `window.__drape` set the page draws those three kinds from the
+templates (`drapeTops`). **Proof:** g-mod-27 with its hood over the open jacket is clearly better than `main` from every
+angle on all five bodies; as a quarter-zip the shape is better but its zip is missing and a few flecks show at the back
+of the jacket's armholes on the bigger bodies. **Without the switch the page is unchanged.**
 
 **Open pull requests, as left:** PR #34 (collars and the hood case; draft, red on the hood "back poke", see its comment)
 and PR #33 (bottoms' cuts from their photos, arm joint limit, the seat, polo collars; draft). **Emma's artifact (FtdHKg)
@@ -34,17 +36,18 @@ would roll that back, so this session did not republish it.
 
 **Next agent, start here (in this order):**
 
-0. **The garment drape proof** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzz has the detail, the lessons and the commands):
-   1. Finish the hoodie in `tools/build_garments.py`: after his arms come down, one diagonal fold runs from his right
-      shoulder across his chest with a pinch at the front of his left armhole. Look with
-      `python3 tools/build_garments.py --only hoodie --debug /tmp/g` and `node tools/garment_view.js /tmp/g/hoodie-draped.json out.png`.
-   2. The hood's own drape (neckline held on the garment's, gravity tilted backward so it falls off his head onto his
-      shoulders); look at the quarter-zip and jacket drapes; the quarter-zip collar's centre-front corner.
-   3. Write `data/garments/<archetype>.json` (positions, triangles, pattern UVs, pieces, body binding, hood pins).
-   4. The page behind a switch: bind to his body after `propWarp`, settle inner to outer with `drape.js`'s solver,
-      draped meshes skipped by `warpMan`; the fitting room shows and lets Emma change the sizes.
-   5. Render g-mod-27 (as its data says, and as a quarter-zip) and the hood over the track jacket on all five bodies
-      beside `main`; if it does not clearly beat `main` from every angle, stop and report to Emma.
+0. **The garment drape proof** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzz has what was found, the proof and the commands):
+   1. Show Emma the proof (PR #36's renders, or render it again: `QA_INIT='window.__drape=1' node tools/qa/zoom.js`
+      on a served build) and ask whether to go on. Done before it: the hoodie's fold and pinch (four causes: his
+      body's armpit tear under `propWarp`, the relax shrinking the cloth, his left sleeve and the collar facing
+      inward, the rib hem and cuffs cut as steps), the hood's own drape, the quarter-zip and jacket, the templates,
+      the page behind the switch.
+   2. If she goes on: front details on draped pieces (zip, drawstrings, pocket) by their place on the pattern; the
+      Cloth fit slider and the size (her decision: adjustable) as rest-length scales per piece, shown in the fitting
+      room; the 3D check with the switch on; then more kinds and float16 storage.
+   3. The page's own armpit tear: `warpMan` moves arm and chest skin apart by up to 1.7 cm at the front of each armpit
+      on his saved shape (a ridge on his bare chest). Blend the two as the builder does (`Body.armW`), with the full
+      3D check: it moves every render.
    - Also, a small data pull request: g-mod-27's Duck and Cover top is a quarter-zip with no hood (the shop's feed
      says so), so its piece should be `halfzip`, and `descOf` reads "quarter-zip hoodie" as a full zip ("zip hood").
    - Frozen while this goes on (the drape replaces that code): queue items 9 and 10, scarf edges, contrast collars.
@@ -161,6 +164,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 12 Oct 2026 | #36 | Garment drape proof: the hoodie (with its hood), quarter-zip and jacket drape cleanly in `tools/build_garments.py`, templates in `data/garments/`, the page draws them with `window.__drape` set (`drapeTops`); unchanged without it | not republished (FtdHKg shows PR #33's build) |
 | 12 Oct 2026 | #35 | Garment drape upgrade begun: Emma's design handoff in `design/garment-drape/`, her decisions, `tools/build_garments.py` (Blender templates, in progress) and `tools/garment_view.js`; no page change | not republished (FtdHKg shows PR #33's build) |
 | 12 Oct 2026 | PR | Bottoms: slim, regular, straight, relaxed, wide and baggy clearly different in 3D and the drawing, shorts at their own length (from the inseam), the cut in words in the fitting room | FtdHKg v37 |
 | 12 Oct 2026 | #31 | Trouser legs meet where his thighs do (no V showing his thighs on bigger legs); Clear view in the fitting room (H); shirts and jumpers rest on his chest and span his back instead of standing off it; the Lambretta polo plain with its chest band, its cap with its racing stripe (`crown` correction) | FtdHKg v35 |

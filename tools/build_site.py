@@ -483,6 +483,12 @@ def main():
     body = os.path.join(ROOT, "data", "body.json")
     if os.path.exists(body):
         shutil.copyfile(body, os.path.join(out, "data", "body.json"))
+    # the draped garment templates (tools/build_garments.py), read only with the page's drape switch on (window.__drape)
+    gdir = os.path.join(ROOT, "data", "garments")
+    if os.path.isdir(gdir):
+        os.makedirs(os.path.join(out, "data", "garments"), exist_ok=True)
+        for g in sorted(os.listdir(gdir)):
+            if g.endswith(".json"): shutil.copyfile(os.path.join(gdir, g), os.path.join(out, "data", "garments", g))
     print(f"{len(items)} picks in {len(groups)} load groups (largest {max(len(v) for v in groups.values())}), "
           f"{len(outfits)} outfits, {meta['photos']['count']} photos -> {out}")
 

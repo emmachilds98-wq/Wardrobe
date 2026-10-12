@@ -3397,7 +3397,7 @@ function loadBody(){
     var B={n:d.n,pos:dec(d.pos,Float32Array),idx:dec(d.idx,Uint16Array),treg:dec(d.treg,Uint8Array),ao:d.ao?dec(d.ao,Uint8Array):null,regions:d.regions,sec:d.sec,secd:d.secd,lm:d.lm,lmd:d.lmd||{},sliders:d.sliders||[],morphs:{},cache:{}};
     Object.keys(d.morphs).forEach(function(k){B.morphs[k]={i:dec(d.morphs[k].i,Uint16Array),d:dec(d.morphs[k].d,Int16Array)};});
     var f=d.face;B.face={x0:f.x0,y0:f.y0,st:f.st,nx:f.nx,ny:f.ny,z:dec(f.z,Int16Array)};
-    BODY=B;return B;}).catch(function(){BODY=null;return null;});}
+    BODY=B;return loadGarments().then(function(){return B;});}).catch(function(){BODY=null;return null;});}
   return bodyP;
 }
 function loadThree(){
@@ -3791,6 +3791,104 @@ function turnOn(lo){if(!lo||lo.shape!=="trousers"||lo.under)return false;var n=(
 function jacketShirt(p){return overshirt(p)&&/shacket|shirt jacket|chore|insulated|padded|quilted|borg|sherpa|fleece[- ]lined|nylon|canvas|\bduck\b|waxed|jacket/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
 /* the order tops go on, inner first, one rule for the 3D model and the 2D drawing: next to him, an overshirt over
    that, knits, a jacket-weight overshirt or anything else "worn open" over those, then outer layers in wearing order */
+/* ---- Draped garments: a proof behind a switch (window.__drape), the live page unchanged without it ----
+   Garments cut from flat patterns, sewn and draped as cloth on him in Blender (tools/build_garments.py, written to
+   data/garments/<kind>.json): the hoodie (with its hood), the quarter-zip and the jacket. With the switch on, a top of
+   those kinds is left out of the builder (make3Dcore) and added after warpMan has shaped him: each point placed on his
+   warped body where it was draped (its body triangle, and its height off it), then settled as cloth, inner layers
+   first, against his body, the clothes under it and the layers already settled; a hoodie's hood last, out over
+   anything worn over the hoodie. Lengths are the draped garment's on his saved shape, so on him it keeps its drape;
+   on another body it moves with him and settles. See UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzz. */
+var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket"};
+function drapeArch(p){return window.__drape&&GTPL[DRAPEK[p.shape]]?DRAPEK[p.shape]:null;}
+function gtplDec(b64,A){var s=atob(b64),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return new A(u.buffer);}
+function gtplPart(d){var o={n:d.n,m:d.m,pieces:d.pieces,pos:gtplDec(d.pos,Float32Array),vmap:gtplDec(d.vmap,Uint16Array),piece:gtplDec(d.piece,Uint8Array),
+    pat:gtplDec(d.pat,Float32Array),idx:gtplDec(d.idx,Uint16Array),tri:gtplDec(d.bind.tri,Uint16Array),w:gtplDec(d.bind.w,Float32Array)};
+  if(d.pins)o.pins=gtplDec(d.pins,Uint16Array);
+  /* each welded point's piece group (0 the body of the garment, 1 and 2 his left and right sleeve, 3 the hood) */
+  o.grp=new Uint8Array(o.n);for(var j=o.m-1;j>=0;j--)o.grp[o.vmap[j]]=o.pieces[o.piece[j]].grp;
+  return o;}
+function loadGarments(){if(!window.__drape)return Promise.resolve();
+  return Promise.all(Object.keys(DRAPEK).map(function(k){var a=DRAPEK[k];return fetch("data/garments/"+a+".json").then(function(r){return r.ok?r.json():null;}).then(function(d){
+    if(!d)return;var t=gtplPart(d);t.arch=a;t.scale=d.scale;if(d.hood)t.hood=gtplPart(d.hood);GTPL[a]=t;}).catch(function(){});}));}
+/* the cloth's own constraints: every edge (stretch), and across every pair of triangles sharing an edge (bending, softer),
+   at their lengths as draped on his saved shape */
+function drapeCloth(t,X){var n=t.n,I=t.idx,vm=t.vmap,E={},A=[],B=[],K=[],opp={};
+  function key(a,b){return a<b?a*65536+b:b*65536+a;}
+  for(var f=0;f<I.length;f+=3){var q=[vm[I[f]],vm[I[f+1]],vm[I[f+2]]];
+    for(var k=0;k<3;k++){var a=q[k],b=q[(k+1)%3],c=q[(k+2)%3],h=key(a,b);if(a===b)continue;if(!E[h]){E[h]=1;A.push(a);B.push(b);K.push(1);}
+      if(opp[h]!==undefined&&opp[h]!==c){var h2=key(c,opp[h]);if(!E[h2]){E[h2]=1;A.push(c);B.push(opp[h]);K.push(0.2);}}else opp[h]=c;}}
+  var R=new Float32Array(A.length);for(var e=0;e<A.length;e++){var i=A[e]*3,j=B[e]*3;R[e]=Math.hypot(X[i]-X[j],X[i+1]-X[j+1],X[i+2]-X[j+2]);}
+  /* (welded triangles, for normals and for the next layer's collider) */
+  var W=new Uint32Array(I.length);for(f=0;f<I.length;f++)W[f]=vm[I[f]];
+  return {n:n,A:new Int32Array(A),B:new Int32Array(B),K:new Float32Array(K),R:R,W:W};}
+/* a collider: for each 1 cm cell near a surface, its nearest point (within reach); a cloth point closer to it than th
+   along its normal (or inside) is pushed out along that normal */
+function drapeCol(P,N,th,reach){var h=0.01,n=P.length/3,x0=1e9,y0=1e9,z0=1e9,x1=-1e9,y1=-1e9,z1=-1e9,i;reach=reach||0.04;
+  for(i=0;i<n;i++){x0=Math.min(x0,P[i*3]);x1=Math.max(x1,P[i*3]);y0=Math.min(y0,P[i*3+1]);y1=Math.max(y1,P[i*3+1]);z0=Math.min(z0,P[i*3+2]);z1=Math.max(z1,P[i*3+2]);}
+  if(!n)return null;x0-=reach;y0-=reach;z0-=reach;var nx=Math.ceil((x1+reach-x0)/h)+1,ny=Math.ceil((y1+reach-y0)/h)+1,nz=Math.ceil((z1+reach-z0)/h)+1;
+  var Ix=new Int32Array(nx*ny*nz).fill(-1),D=new Float32Array(nx*ny*nz).fill(1e9),r=Math.ceil(reach/h),R2=reach*reach;
+  for(var v=0;v<n;v++){var px=P[v*3],py=P[v*3+1],pz=P[v*3+2],cx=Math.round((px-x0)/h),cy=Math.round((py-y0)/h),cz=Math.round((pz-z0)/h);
+    for(var a=Math.max(0,cx-r);a<=Math.min(nx-1,cx+r);a++)for(var b=Math.max(0,cy-r);b<=Math.min(ny-1,cy+r);b++)for(var c=Math.max(0,cz-r);c<=Math.min(nz-1,cz+r);c++){
+      var dx=x0+a*h-px,dy=y0+b*h-py,dz=z0+c*h-pz,d2=dx*dx+dy*dy+dz*dz,k=(a*ny+b)*nz+c;if(d2<R2&&d2<D[k]){D[k]=d2;Ix[k]=v;}}}
+  return {x0:x0,y0:y0,z0:z0,h:h,nx:nx,ny:ny,nz:nz,I:Ix,P:P,N:N,th:th};}
+function drapePush(c,P,o){if(!c)return;var ix=Math.round((P[o]-c.x0)/c.h),iy=Math.round((P[o+1]-c.y0)/c.h),iz=Math.round((P[o+2]-c.z0)/c.h);
+  if(ix<0||iy<0||iz<0||ix>=c.nx||iy>=c.ny||iz>=c.nz)return;var v=c.I[(ix*c.ny+iy)*c.nz+iz];if(v<0)return;var q=v*3,N=c.N,Q=c.P;
+  var d=(P[o]-Q[q])*N[q]+(P[o+1]-Q[q+1])*N[q+1]+(P[o+2]-Q[q+2])*N[q+2];if(d<c.th){var m=c.th-d;P[o]+=N[q]*m;P[o+1]+=N[q+1]*m;P[o+2]+=N[q+2]*m;}}
+function drapeNear(c,x,y,z){if(!c)return -1;var ix=Math.round((x-c.x0)/c.h),iy=Math.round((y-c.y0)/c.h),iz=Math.round((z-c.z0)/c.h);
+  if(ix<0||iy<0||iz<0||ix>=c.nx||iy>=c.ny||iz>=c.nz)return -1;return c.I[(ix*c.ny+iy)*c.nz+iz];}
+/* position-based cloth: the constraints, and the colliders of each point's group (cols[grp]: a list). The garment
+   comes already hanging at rest on him, so each point is drawn back a little toward where its binding puts it (home)
+   under a fifth of gravity: a solver this light, at full gravity, let the cloth slide off his shoulders */
+function drapeSettle(P,cl,cols,grp,pin,steps,home){var Q=P.slice(),n=cl.n,G=-9.8/3600*0.2,A=cl.A,B=cl.B,K=cl.K,R=cl.R,ne=A.length,i,o,s,it,e;
+  for(s=0;s<steps;s++){
+    for(i=0;i<n;i++){if(pin&&pin[i])continue;o=i*3;for(var a=0;a<3;a++){var v=(P[o+a]-Q[o+a])*0.8;Q[o+a]=P[o+a];P[o+a]+=v+(home[o+a]-P[o+a])*0.08;}P[o+1]+=G;}
+    for(it=0;it<8;it++){for(e=0;e<ne;e++){var x=A[e],y=B[e],wi=pin&&pin[x]?0:1,wj=pin&&pin[y]?0:1;if(!(wi+wj))continue;var p=x*3,q=y*3,
+        dx=P[q]-P[p],dy=P[q+1]-P[p+1],dz=P[q+2]-P[p+2],d=Math.sqrt(dx*dx+dy*dy+dz*dz)||1e-9,f=(d-R[e])/d*K[e]/(wi+wj);
+        P[p]+=dx*f*wi;P[p+1]+=dy*f*wi;P[p+2]+=dz*f*wi;P[q]-=dx*f*wj;P[q+1]-=dy*f*wj;P[q+2]-=dz*f*wj;}
+      if(it===3||it===7)for(i=0;i<n;i++){if(pin&&pin[i])continue;var L=cols[grp[i]];for(var c=0;c<L.length;c++)drapePush(L[c],P,i*3);}}}
+  return P;}
+function drapeNormals(P,W,n){var N=new Float32Array(n*3);for(var f=0;f<W.length;f+=3){var a=W[f]*3,b=W[f+1]*3,c=W[f+2]*3,ux=P[b]-P[a],uy=P[b+1]-P[a+1],uz=P[b+2]-P[a+2],vx=P[c]-P[a],vy=P[c+1]-P[a+1],vz=P[c+2]-P[a+2],
+    x=uy*vz-uz*vy,y=uz*vx-ux*vz,z=ux*vy-uy*vx;[a,b,c].forEach(function(o){N[o]+=x;N[o+1]+=y;N[o+2]+=z;});}
+  for(var o=0;o<N.length;o+=3){var l=Math.hypot(N[o],N[o+1],N[o+2])||1;N[o]/=l;N[o+1]/=l;N[o+2]/=l;}return N;}
+/* each point on his warped body: X = (1-b-c) A + b B + c C + h n (its body triangle, as the builder bound it) */
+function drapeBind(t,BP){var X=new Float32Array(t.n*3),I=BODY.idx;
+  for(var i=0;i<t.n;i++){var f=t.tri[i]*3,a=I[f]*3,b=I[f+1]*3,c=I[f+2]*3,wb=t.w[i*3],wc=t.w[i*3+1],h=t.w[i*3+2],wa=1-wb-wc;
+    var ux=BP[b]-BP[a],uy=BP[b+1]-BP[a+1],uz=BP[b+2]-BP[a+2],vx=BP[c]-BP[a],vy=BP[c+1]-BP[a+1],vz=BP[c+2]-BP[a+2],nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx,l=Math.hypot(nx,ny,nz)||1;
+    for(var k=0;k<3;k++)X[i*3+k]=wa*BP[a+k]+wb*BP[b+k]+wc*BP[c+k]+h*[nx,ny,nz][k]/l;}
+  return X;}
+/* the draped tops, added to his figure after warpMan. list: the tops in wearing order; pm: their cloth (make3Dcore's) */
+function drapeTops(man,list,pm,inner){var T=window.THREE,inv=new T.Matrix4(),v=new T.Vector3(),body=null;man.updateMatrixWorld(true);inv.copy(man.matrixWorld).invert();
+  man.traverse(function(o){if(o.isMesh&&o.userData.isBody)body=o;});if(!body)return;
+  var BP=body.geometry.attributes.position.array,BN=body.geometry.attributes.normal.array,AM=body.userData.armMask,core=[],coreN=[],arm=[],armN=[],i;
+  for(i=0;i<BODY.n;i++){var tg=AM&&AM[i]?arm:core,tn=AM&&AM[i]?armN:coreN;tg.push(BP[i*3],BP[i*3+1],BP[i*3+2]);tn.push(BN[i*3],BN[i*3+1],BN[i*3+2]);}
+  var cB=drapeCol(new Float32Array(core),new Float32Array(coreN),0.004),cA=drapeCol(new Float32Array(arm),new Float32Array(armN),0.004);
+  /* the clothes under them, built by make3Dcore: their points and normals turned away from his body */
+  var ins={};inner.forEach(function(p){ins[p.item]=1;});var uP=[[],[]],uN=[[],[]];
+  man.traverse(function(o){if(!o.isMesh||o.isInstancedMesh||!o.userData.item||!ins[o.userData.item]||!o.geometry.attributes.position)return;var g=o.geometry,pa=g.attributes.position,na=g.attributes.normal;
+    var isArm=false,a=o;while(a&&a!==man){if(a.userData.arm)isArm=true;a=a.parent;}var M=new T.Matrix4().multiplyMatrices(inv,o.matrixWorld),Nm=new T.Matrix3().getNormalMatrix(M),nv=new T.Vector3();
+    for(var j=0;j<pa.count;j++){v.fromBufferAttribute(pa,j).applyMatrix4(M);if(na)nv.fromBufferAttribute(na,j).applyMatrix3(Nm).normalize();else nv.set(0,0,1);
+      var sd=isArm?1:0,c=sd?cA:cB,q=drapeNear(c,v.x,v.y,v.z);   /* (turned away from the nearest point of his body) */
+      if(q>=0&&nv.x*(v.x-c.P[q*3])+nv.y*(v.y-c.P[q*3+1])+nv.z*(v.z-c.P[q*3+2])<0)nv.negate();
+      uP[sd].push(v.x,v.y,v.z);uN[sd].push(nv.x,nv.y,nv.z);}});
+  var cU=drapeCol(new Float32Array(uP[0]),new Float32Array(uN[0]),0.004),cUA=drapeCol(new Float32Array(uP[1]),new Float32Array(uN[1]),0.004);
+  var done=[],hoodies=[];
+  /* (his body split, torso and arms, so a sleeve is not pushed off his side nor his side off his arm; the clothes under
+     it whole: a tee's sleeve under a jacket's armhole, which is part of the jacket's body) */
+  function layerCols(){var c0=[cB,cU,cUA],c1=[cA,cU,cUA];done.forEach(function(d){c0.push(d.col);c1.push(d.col);});return [c0,c1,c1,c0,c0];}   /* (by piece group: the garment's body, his left and right sleeves, a hood, a collar) */
+  function mesh(t,X,p,kind){var g=new T.BufferGeometry(),pos=new Float32Array(t.m*3),nr=new Float32Array(t.m*3),uv=new Float32Array(t.m*2),cl=t.cl,N=drapeNormals(X,cl.W,t.n);
+    for(var j=0;j<t.m;j++){var w=t.vmap[j];for(var k=0;k<3;k++){pos[j*3+k]=X[w*3+k];nr[j*3+k]=N[w*3+k];}uv[j*2]=t.pat[j*2]*1.2;uv[j*2+1]=t.pat[j*2+1]*3.33;}
+    g.setAttribute("position",new T.BufferAttribute(pos,3));g.setAttribute("normal",new T.BufferAttribute(nr,3));g.setAttribute("uv",new T.BufferAttribute(uv,2));g.setIndex(new T.BufferAttribute(new Uint32Array(t.idx),1));
+    var m=pm(p).clone();m.side=T.DoubleSide;var me=new T.Mesh(g,m);me.castShadow=me.receiveShadow=true;me.userData={item:p.item,what:p.what,kind:kind,draped:true,open:/jacket/.test(t.arch)};man.add(me);return {N:N};}
+  /* (60 steps; layers kept 1 cm apart, as at 6 mm the layer under it showed through at the back of the armholes on the
+     larger bodies; window.__drapeSteps and __drapeTh try others) */
+  list.forEach(function(p,k){var t=GTPL[drapeArch(p)];if(!t)return;t.cl=t.cl||drapeCloth(t,t.pos);var X=drapeBind(t,BP);
+    drapeSettle(X,t.cl,layerCols(),t.grp,null,window.__drapeSteps||60,X.slice());var r=mesh(t,X,p,"drape"+k);
+    done.push({col:drapeCol(X,r.N,window.__drapeTh||0.01),X:X});if(t.hood&&p.shape==="hoodie")hoodies.push({p:p,t:t,X:X});});
+  /* a hoodie's hood, last: its neckline on the hoodie's, the rest out over whatever is worn over the hoodie */
+  hoodies.forEach(function(H){var h=H.t.hood;h.cl=h.cl||drapeCloth(h,h.pos);var X=drapeBind(h,BP),pin=new Uint8Array(h.n),P2=h.pins;
+    for(var j=0;j<P2.length;j+=2){var a=P2[j]*3,b=P2[j+1]*3;pin[P2[j]]=1;X[a]=H.X[b];X[a+1]=H.X[b+1];X[a+2]=H.X[b+2];}
+    drapeSettle(X,h.cl,layerCols(),h.grp,pin,window.__drapeSteps||60,X.slice());mesh(h,X,H.p,"drapeHood");});}
 function layRank(p){var L0=LAYER[p.shape]||0;if(overshirt(p))L0=Math.max(L0,jacketShirt(p)?1.4:0.6);return L0+(OUTERK[p.shape]||0)+(/worn open/i.test(p.what||"")&&!LAYER[p.shape]&&L0<1?0.5:0);}
 function overshirt(p){return p.shape==="shirt"&&/overshirt|over-shirt|chore|shacket|shirt jacket|worker|flannel|\bcpo\b|utility shirt|work shirt/.test(((((byId[p.item]||{}).name)||"")+" "+(p.what||"")).toLowerCase());}
 /* no sleeves: vests, waistcoats, gilets, and knitted vests (sweater vests, slipovers) */
@@ -4922,9 +5020,9 @@ function make3Dcore(pieces){
   ims.forEach(function(row){row.forEach(function(m){if(m.count){m.castShadow=true;headG.add(m);}});});
   tgt=man;
   /* ---- the outfit, sorted by layer ---- */
-  var up=[],lo=null,ft=null,acc=[],CSH=[],HEMS=null;   /* (CSH: the meshes the layers over them shade, layerShade) */
+  var up=[],lo=null,ft=null,acc=[],CSH=[],HEMS=null,drp=[];   /* (CSH: the meshes the layers over them shade, layerShade; drp: the draped tops, drapeTops) */
   pieces.forEach(function(p0){var p=pieceLook(p0);p.desc=descOf(byId[p0.item],p0);if(!p.col2&&p.desc.col2w)p.col2=p.desc.col2w;
-    if(UPPER[p.shape])up.push(p);else if(LOWER[p.shape])lo=lo||p;else if(FEET[p.shape])ft=ft||p;else acc.push(p);});
+    if(UPPER[p.shape]&&bodyOn&&drapeArch(p))drp.push(p);else if(UPPER[p.shape])up.push(p);else if(LOWER[p.shape])lo=lo||p;else if(FEET[p.shape])ft=ft||p;else acc.push(p);});
   /* overshirts, chore jackets, shackets and flannels go over a tee or polo, under knits and hoodies */
   /* (outer layers in the order they go on: a blazer, a gilet over it, a jacket, and a coat or gown over everything) */
   function lay(p){return layRank(p);}
@@ -5920,6 +6018,7 @@ function make3Dcore(pieces){
   var kH=(Number(CHAR.height)||183)/183,bw=1+0.08*(Number(CHAR.weight)||0)+0.06*(Number(CHAR.muscle)||0);
   var PW=propWarp(bodyOn?BL.chin:1.567);
   if(PW){warpMan(man,PW,bodyOn?BL.skull[1]:0.0);kH*=1.79/PW.W(1.79);}
+  if(drp.length){drp.sort(function(a,b){return layRank(a)-layRank(b);});drapeTops(man,drp,pm,up);}
   if(bodyOn)man.scale.set(kH,kH,kH);else man.scale.set(kH*bw,kH,kH*(0.5+0.5*bw));
   /* (loHem: the height on his body of a pair of shorts' hem, for the 3D check's idea of what they cover) */
   return {scene:scene,man:man,k:kH,loHem:lo&&lo.shape==="shorts"&&LS0?LS0["1"][0][0]:null};
