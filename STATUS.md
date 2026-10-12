@@ -20,20 +20,9 @@ that: Edit Dave's sliders centred on the last save, and biceps, forearms, thighs
 
 **Next agent, start here (in this order):**
 
-1. **Slim and baggy trousers must look clearly different** (Emma, artifact thread 8a881d1b, still open: "make
-   differences between baggier and slim trousers clearer. i should be able to tell how it will fit accurately").
-   Where: `make3Dcore`, the lines after `var und=!!lo.under` (`wide`, `cutL`) and `legSecs` (`ea`, `fall`). Today the
-   room at the thigh runs only from 16 mm (no fit given) to 35 mm (wide leg), and the share of the thigh's width kept
-   to the hem from 0.68 to 0.92, so regular, straight, relaxed and wide look alike. His picks have no slim or skinny
-   trousers; the fits are the shop's `fit` (Relaxed 237, Regular 89, Wide leg 77, Straight 60, none 329) and words in
-   the name (baggy, parachute, barrel, cargo, jogger). Proposed: room at the thigh (`wide`) regular 0.006, straight
-   0.008 with `fall` 0.8, relaxed 0.02, wide leg 0.035 with `fall` 1.0, baggy or parachute 0.045 with `fall` 1.0;
-   keep the crotch drop (`BL.crotch-0.022-0.6*wide`) on the old scale (`Math.min(wide,0.022)`). Compare with the
-   renders script in the session notes: one pair of each (sw-chino-stone regular, js-levis-501 straight,
-   wk-blaklader-1400 relaxed, wk-cernucci-cargo-charcoal wide, js-levis-578 baggy) front and side, on a plain tee and
-   white trainers (`node tools/qa/zoom.js out.png '[{"item":"","shape":"tee","col":"white","what":""},{"item":"<id>",
-   "shape":"trousers","col":"stone","what":"Trousers"}]' "0,0.62,3.6,0.55;1.57,0.62,3.6,0.55"`). Then the gate on all
-   bodies (the `legs` check watches the legs part), reply on thread 8a881d1b and resolve it.
+1. **Slim and baggy bottoms:** done 12 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzz): `bottomCut` reads every pair's cut for the
+   model, the drawing and the fitting room's words, shorts' length from their inseam. Look at them with Emma; the
+   numbers are in `BOTCUT`.
 2. **Edit Dave's extremes** (UPGRADE_PLAN 2zzzzzzzzzzzzzzz, Check): with weight 0.6, muscle 0.6, arms and legs 1 and
    the four new sliders at 1.8 all at once, short sleeves poke at the back of the armpit (ca-beer-garden,
    h10-resort, back poke about 100), w20261006-casual-04 back poke 34, joggers sunk at the shin (g-lounge-04). Each
@@ -139,6 +128,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 12 Oct 2026 | PR | Bottoms: slim, regular, straight, relaxed, wide and baggy clearly different in 3D and the drawing, shorts at their own length (from the inseam), the cut in words in the fitting room | FtdHKg v37 |
 | 12 Oct 2026 | #31 | Trouser legs meet where his thighs do (no V showing his thighs on bigger legs); Clear view in the fitting room (H); shirts and jumpers rest on his chest and span his back instead of standing off it; the Lambretta polo plain with its chest band, its cap with its racing stripe (`crown` correction) | FtdHKg v35 |
 | 12 Oct 2026 | direct to `main` | Edit Dave: every slider back in the middle after Save (centred on his last saved look, within hard limits); biceps, forearms, thighs and calves sliders under "Arms and legs" | FtdHKg v34 |
 | 12 Oct 2026 | direct to `main` | Folds on the back of a tucked shirt, a jacket's lower back, scarves and shoes' heel counters; contact shade at cuffs, above collars and on shoes under trouser hems | FtdHKg v33 |

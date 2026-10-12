@@ -100,7 +100,7 @@ async function checkOutfit(arg) {
     return restM; };
   /* what the outfit covers (for the skin count): a top always covers his torso below the collarbones (he is never
      shirtless); long sleeves cover his arms down to the wrist, short sleeves the top of his arm; trousers cover his legs
-     down to the ankle, shorts to just above the knee */
+     down to the ankle, shorts to 3 cm above their hem */
   const B = X.body(), RG = B.regions, footR = RG.indexOf("foot"), crotch = B.lm.crotch, wrist = B.lm.wrist[1];
   const dp = X.dressed(ps), nmOf = q => (((X.byId[q.item] || {}).name || "") + " " + (q.what || "")).toLowerCase();
   const tops = dp.filter(q => /^(coat|jacket|blazer|gilet|gown|waistcoat|cardigan|hoodie|jumper|rollneck|halfzip|shirt|sshirt|polo|tee|vest)$/.test(q.shape));
@@ -114,7 +114,8 @@ async function checkOutfit(arg) {
     if (r === "chest" || r === "belly" || r === "hips") return tops.length > 0 && y < torsoTop;
     if (r === "uarm") return longSl || (shortOnly && y > 1.3);
     if (r === "farm") return longSl && y > wrist + 0.04;
-    if (r === "thigh") return !!lo && (lo.shape === "trousers" || y > crotch - 0.25);
+    /* (shorts cover his thighs down to their own hem, which the page reports: o.loHem; 25 cm under the crotch before) */
+    if (r === "thigh") return !!lo && (lo.shape === "trousers" || y > (o.loHem != null ? o.loHem + 0.03 : crotch - 0.25));
     if (r === "shin") return !!lo && lo.shape === "trousers" && y > 0.17;
     return false; };
   /* layering and shape, measured on the model itself with rays rather than on the pictures */

@@ -2046,6 +2046,49 @@ every slider; and for thigh, calf, forearm and biceps sliders in the body sectio
   together (weight 0.6, muscle 0.6, arms and legs 1, the four new sliders 1.8): short sleeves poke at the back of the
   armpit on two outfits, a jacket on one, joggers at the shin on one. Next.
 
+## 2zzzzzzzzzzzzzzzz. Slim, regular, relaxed, wide and baggy bottoms you can tell apart, shorts included (12 Oct 2026)
+
+Emma, on the artifact: "make differences between baggier and slim trousers clearer. i should be able to tell how it
+will fit accurately", then "include shorts and all types of bottoms".
+
+- **One reading of the cut** (`bottomCut(p)`, `BOTCUT`), used by the 3D model, the drawing and the fitting room's words:
+  the shop's `fit` (Relaxed, Regular, Wide leg, Straight) and the name give k: skinny, slim, tapered, regular, straight,
+  relaxed, wide, baggy (baggy, parachute, oversized, skate, basketball) or barrel; `cuff` for a jogger gathered at the
+  ankle; `flare` for bootcut and flares; `bot` for cropped. Before, the 3D model and the drawing each read the cut
+  their own way, and the 3D room at the thigh only ran from 16 to 35 mm and the share of the thigh's width kept to the
+  hem (`fall`) from 0.68 to 0.92, so regular, straight, relaxed and wide looked alike.
+- **The spread** (`e0` room all the way down, `wide` more of it toward the knee, `fall`):
+
+  | k | e0 | wide | fall | shorts: len below crotch, sfall |
+  | --- | --- | --- | --- | --- |
+  | skinny | 6 mm | 0 | 0.40 | 20 cm, 0.80 |
+  | slim | 8 mm | 2 mm | 0.50 | 22 cm, 0.84 |
+  | tapered | 10 mm | 6 mm | 0.46 | 25 cm, 0.88 |
+  | regular | 12 mm | 4 mm | 0.64 | 27 cm, 0.92 |
+  | straight | 13 mm | 10 mm | 0.90 | 28 cm, 0.97 |
+  | relaxed | 15 mm | 24 mm | 0.95 | 30 cm, 1.02 |
+  | wide | 16 mm | 34 mm | 1.02 | 32 cm, 1.04 |
+  | baggy | 17 mm | 46 mm | 1.06 | 36 cm, 1.08 |
+  | barrel | 13 mm | 22 mm | 0.60 (+18 mm at the knee) | 30 cm, 1.00 |
+
+  A cuffed jogger tapers to 0.48 unless it says relaxed or loose. The crotch sits a little lower on looser pairs
+  (`0.6*wide`), as a dropped crotch does.
+- **Shorts** were all one length (29 cm below the crotch) and width. Their hem now comes from the inseam when the name
+  gives one (5", 7 inch: inseam plus 1 cm), else by kind (running and split shorts 16 cm, swim 20 cm, board, basketball,
+  jorts, long and knee shorts at least 36 cm) and by the fit's `len`; their width at the hem from `sfall`. The skin
+  hidden under them now stops at their own hem (it stopped at the old length, so shorter shorts showed a gap above the
+  knee), and a cargo pocket sits just above the hem.
+- **The drawing** reads the same cut: ten leg widths at the hem (`HX`), and shorts drawn at their length and width.
+- **The fitting room** says how a pair fits, by the piece's price: "Relaxed: roomy through the thigh, straight to the
+  hem", "Tapered: room at the thigh, narrowing to the ankle, gathered at the ankle", shorts with their hem "about 7 in
+  below the crotch" (`cutWords`).
+- **The 3D check** reads where a pair of shorts ends (`loHem`, returned by `make3Dcore`) for what they cover, instead of
+  assuming 25 cm below the crotch.
+- **Check:** one pair of each fit rendered front and side on a plain tee (sw-chino-stone regular, js-levis-501 straight,
+  wk-blaklader-1400 relaxed, wk-cernucci-cargo-charcoal wide, js-levis-578 baggy) and five shorts (hs-bb-coast-swim,
+  sp-4505-7in, r11-matalan-shorts, sp-4505-cargo, wk-stanray-short-black); the stored specs read the same; the
+  pull-request 3D check on all bodies.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
