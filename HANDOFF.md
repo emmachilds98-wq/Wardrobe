@@ -87,13 +87,13 @@ should match. Emma asked for the upgrade to continue until that is done.
 | --- | --- |
 | Listing words | `descOf` (fit, collar, fabric…), `texOf` (cloth pattern from the name) |
 | Photo reader | `sampleLook`, with `swatch()` inside it, run through `trueFor`. Colours, stripes, checks, prints, photo fronts, the named-colour check, the denim rule |
-| 3D scene | `make3D` / `make3Dcore`. Tops: `fitTop`, `wrapGeo` / `wrap`. Trousers: `trouserGeo` (cut as a pair, one piece per half), `legSecs` (each leg's hanging shape), `thighGap`. Collars: `fitCollar`. Layers: occupancy maps `occPushPt` / `occAddMesh` |
+| 3D scene | `make3D` / `make3Dcore`. Tops: `fitTop`, `wrapGeo` / `wrap`. Trousers: `trouserGeo` (cut as a pair, one piece per half), `legSecs` (each leg's hanging shape), `thighGap` and `thighIn` (how near the middle his thighs come). Collars: `fitCollar`. Layers: occupancy maps `occPushPt` / `occAddMesh` |
 | Cloth textures | `lookTex` (3D), `lookFill` (2D) |
 | Folds, light and contact shade | `FOLD_GLSL` (`lo` trousers, `up` tops and sleeves, `ft` shoes, `sc` scarves) through `foldMat`, settings in `FU`, `UT` and at each call; `studioEnv` (the room's light); `layerShade`, `hemShade` and the skin shade after the neck skin is restored. `window.__nofold`, `__noenv`, `__nocs` turn each off |
 | Accessories, shoes, boots, ties, bags | The long `else if(p.shape===...)` chain near the end of `make3Dcore` |
 | 2D drawing | `figure()`, `face2D`, `applyChar2D` |
 | Edit Dave and fitting room | `CHAR`, `openCE`, `UNDERWEAR`; Edit Dave's sections `CES`, `ceForm`, `ceSlider`, `ceFrame` (measuring lines, saved/now wipe) |
-| The fitting room (large view of an outfit) | `openZoom`, `FR`, `frShell`, `frFill`, `frFrame` (pins, ruler), `frWearRows`; how it is worn: `ZIPM`, `TUCKM`, `TURNM`, `LIGHTM`, `tuckOn`, `turnOn`; `Live3D` (`wear`, `turnTo`, `frameTo`, `project`, `still`) |
+| The fitting room (large view of an outfit) | `openZoom`, `FR`, `frShell`, `frFill`, `frFrame` (pins, ruler), `frClear` (clear view: the model alone), `frWearRows`; how it is worn: `ZIPM`, `TUCKM`, `TURNM`, `LIGHTM`, `tuckOn`, `turnOn`; `Live3D` (`wear`, `turnTo`, `frameTo`, `project`, `still`) |
 | Compare outfits | `CMP`, `cmpAdd`, `cmpRender`, `cmpLive`; stills by angle in `snap3D(ps,k,rot,first)` |
 | Views, Back button and links | `setView` (history steps), `route` (reads `#shop`, `#fits`…, `#fit/<id>`), `openZoom` / `closeZoom` / `zoomGone` |
 | Builder | `suggest` (budget, kept pieces, formality via `FORMAL` / `formalRange`), `budgetSet` (the £60/£100/£150 sets), `teeFor` |

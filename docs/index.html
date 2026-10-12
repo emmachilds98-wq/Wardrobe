@@ -605,6 +605,13 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
 .fr[data-mode="s"] .fr-hint,.fr[data-mode="s"] .fr-pl{display:none}
 .fr[data-mode="s"] .fr-top{left:12px;right:auto;top:auto;bottom:58px}
 .fr[data-mode="s"] .fr-dock{right:10px}
+.fr-clr{position:absolute;right:14px;bottom:14px;z-index:3;font:inherit;font-size:.75rem;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 92%,transparent);color:var(--ink);cursor:pointer}
+.fr-clr:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.fr-clr[aria-pressed="true"]{background:var(--badge);color:var(--on-badge);border-color:transparent}
+/* clear view: only the model (with the header, to close it) */
+.fr[data-clear="1"]{grid-template-rows:6px auto minmax(0,1fr)}
+.fr[data-clear="1"] .fr-strip,.fr[data-clear="1"] .fr-rail,.fr[data-clear="1"] .fr-detail,.fr[data-clear="1"] .fr-tabs,.fr[data-clear="1"] .fr-msave,.fr[data-clear="1"] .fr-over{display:none!important}
+.fr[data-clear="1"] .fr-main{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);grid-template-areas:"stage"}
 .fr-detail{grid-area:detail;border-left:1px solid var(--line);padding:16px 20px;display:flex;flex-direction:column;gap:14px;min-height:0;overflow:auto}
 .fr-dh{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .fr-sz{font-size:.75rem;font-weight:600;color:var(--green)}
@@ -685,6 +692,9 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
   .fr-ruler{display:none}
   .fr-hchip{display:block;position:absolute;left:12px;top:12px;font-size:.7rem;font-weight:700;background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line);border-radius:999px;padding:4px 9px}
   .fr-scrub{bottom:22px;width:min(260px,64%)}
+  .fr-clr{bottom:56px;right:12px;font-size:.7rem;padding:5px 10px}
+  .fr[data-clear="1"]{grid-template-rows:auto minmax(0,1fr)}
+  .fr[data-clear="1"] .fr-clr{bottom:14px}
   .fr .zf-3d .v3-tip{right:64px;left:12px;top:auto;bottom:90px}
 }
 /* Edit Dave: section list, the model with a saved/now wipe and measuring lines, and the controls */
@@ -4260,7 +4270,10 @@ function make3Dcore(pieces){
      outside the clothes already on him (OCC). */
   var OCC=bodyOn?fmBlank():null,FQ2=[0,0,0,0,0];
   function fitTop(F){
-    var FM=fitMaps(),OM=OCC,TW=2*Math.PI,CF=Number(CHAR.clothFit)||0,eT=F.e*(1+0.55*CF),eY=eT*0.95+0.001,gp=0.0035,eN=Math.min(eT,0.009);
+    /* (round his torso only half the layer's room: a top rests on his chest and shoulder blades, its looseness showing in
+       how it hangs below them, not as a gap all round; given all of it, shirts and jumpers stood 1.3 cm off his chest and
+       5 cm off the small of his back, and stood out. Padded pieces keep it all, their bulk being the padding) */
+    var FM=fitMaps(),OM=OCC,TW=2*Math.PI,CF=Number(CHAR.clothFit)||0,eT=F.e*(1+0.55*CF)*(F.puff?1:0.5),eY=eT*0.95+0.001,gp=0.0035,eN=Math.min(eT,0.009);
     /* his body a cloth's thickness out, rounded over the edges (as the cloth itself lies) */
     eY=Math.min(eT,0.006+0.3*eT+(F.puff||0));   /* (on the shoulders the cloth rests on what is under it: its thickness, not its looseness) */
     var PF=window.__prof,tA=performance.now();var DT=fmDilate(FM.T,eT),DTU=fmDilate(FM.TU,eY),DY=fmDilate(FM.Y,eY);if(PF)PF.dil=(PF.dil||0)+performance.now()-tA;tA=performance.now();
@@ -4284,11 +4297,20 @@ function make3Dcore(pieces){
     function hole(i,j){return i>iA&&i<iS&&inSc[j]===1;}
     function panel(j){return pnl[j]===1;}
     /* below the chest the cloth hangs straight down from its widest part (taken in at the waist as Edit Dave's fit says) */
-    var tw=Math.max(0,0.08-0.085*CF),L0=Math.floor((hem-0.04)*100)/100,NL=Math.round((1.4-L0)/0.01)+1,HM=new Float32Array(NC*NL);
+    var tw=Math.max(0,0.1-0.085*CF),L0=Math.floor((hem-0.04)*100)/100,NL=Math.round((1.4-L0)/0.01)+1,HM=new Float32Array(NC*NL);
     for(j=0;j<NC;j++){var mx=0;for(var l=NL-1;l>=0;l--){var yy=L0+l*0.01,v=fmGet(DT,yy,TA(yy,j));if(yy>1.215&&v>mx)mx=v;HM[j*NL+l]=mx;}}
+    /* (and the line the cloth would take spanning from one support to the next down him, the upper hull of his profile:
+       down his back it rests on his shoulder blades and on his seat and spans the hollow between) */
+    var HS=new Float32Array(NC*NL),hp=[];for(j=0;j<NC;j++){hp.length=0;for(var l2=0;l2<NL;l2++){var y5=L0+l2*0.01,v5=fmGet(DT,y5,TA(y5,j));
+        while(hp.length>1){var a5=hp[hp.length-2],b5=hp[hp.length-1];if((b5[0]-a5[0])*(v5-a5[1])-(b5[1]-a5[1])*(l2-a5[0])>=0)hp.pop();else break;}hp.push([l2,v5]);}
+      for(var h5=0;h5<hp.length-1;h5++){var p5=hp[h5],q5=hp[h5+1];for(var l3=p5[0];l3<=q5[0];l3++)HS[j*NL+l3]=p5[1]+(q5[1]-p5[1])*(l3-p5[0])/Math.max(1,q5[0]-p5[0]);}
+      if(hp.length===1)HS[j*NL+hp[0][0]]=hp[0][1];}
     function rCyl(y,t,j,pn,o){var r=fmGet(DT,y,t);
       if(y>1.36&&(pn||y>=yS-1e-6)){var u=fmGet(DTU,y,t);if(u>r)r=r+(u-r)*sstep(1.36,1.43,y);}   /* (by the top of the armhole his shoulder's own roundness) */
       if(y<1.4){var l=Math.max(0,Math.min(NL-1,Math.round((y-L0)/0.01))),h=HM[j*NL+l]*(1-tw*sstep(1.3,1.04,y));
+        /* (down his back it spans from his shoulder blades to his seat, rather than hanging straight down from the blades
+           and standing off the small of his back) */
+        if(h>r){var bk=Math.max(0,-Math.cos(t));if(bk>0)h+=(Math.min(h,HS[j*NL+l])-h)*0.85*bk;}
         /* (a tucked shirt is gathered into the waistband: from a hand above it down it comes in to lie on him, however
            loose the fit, so it stays inside the trousers all round, the hollow of his back included) */
         if(F.tucked)h=r+(h-r)*sstep(1.045,1.14,y);
@@ -6041,7 +6063,12 @@ function hydrate3D(){
    The live model in the middle, his pieces down the left (outermost first, numbered as the pins on him), the chosen
    piece on the right with pieces to try instead, and a strip of outfits along the bottom that flips between them
    keeping the camera where it is. It is the same dialog on a phone: the model on top and a sheet below. */
-var FR={id:"",sel:"",hide:{},wear:{zip:"",tuck:"",turn:"",light:""},view:null,prev:"",pt:0,tab:"pieces",list:[]};
+var FR={id:"",sel:"",hide:{},wear:{zip:"",tuck:"",turn:"",light:""},view:null,prev:"",pt:0,tab:"pieces",list:[],clear:false};
+/* clear view: the model alone, the pins, the buttons over him, the side panels and the outfit strip put away (kept on this device) */
+try{FR.clear=localStorage.getItem("dw-frclear")==="1";}catch(x){}
+function frClear(v){FR.clear=!!v;try{localStorage.setItem("dw-frclear",FR.clear?"1":"0");}catch(x){}var fr=$("fr");if(!fr)return;fr.setAttribute("data-clear",FR.clear?"1":"0");
+  var b=fr.querySelector("[data-frclear]");if(b){b.setAttribute("aria-pressed",String(FR.clear));b.textContent=FR.clear?"Show controls":"Clear view";
+    b.setAttribute("aria-label",FR.clear?"Show the pins, buttons and side panels again":"Hide the pins, buttons and side panels for a clear view of the model");}}
 try{var lt0=localStorage.getItem("dw-light");if(lt0==="day"||lt0==="eve")FR.wear.light=lt0;}catch(e){}
 function frKey(p){return p.item||("_"+p.what);}
 /* where a piece is worn, for its label: outer layers, a mid layer (knits), the top next to him, legs, feet and extras */
@@ -6103,7 +6130,8 @@ function frShell(){
               '<button type="button" data-frcam="full" class="fr-dk">Full</button><button type="button" data-frcam="top" class="fr-dk">Top</button><button type="button" data-frcam="feet" class="fr-dk">Feet</button><button type="button" data-frcam="face">Face</button><i class="fr-dk"></i><button type="button" data-frspin class="fr-dk" aria-pressed="false">Turn</button></div>'+
             '<div class="fr-scrub"><label class="vh" for="fr-turn">Turn him round</label><input type="range" id="fr-turn" min="0" max="360" step="1" value="0"><span class="fr-scl" aria-hidden="true"><span>Front</span><span>Side</span><span>Back</span><span>Side</span><span>Front</span></span></div>'+
             '<span class="fr-hchip" id="fr-hchip"></span></div></div>'+
-        '<div class="fr-lay" id="fr-lay"></div><div class="fr-fig" id="fr-fig"></div></div>'+
+        '<div class="fr-lay" id="fr-lay"></div><div class="fr-fig" id="fr-fig"></div>'+
+        '<button type="button" class="fr-clr" data-frclear aria-pressed="false" title="Clear view (H)">Clear view</button></div>'+
       '<div class="fr-tabs" role="tablist" aria-label="Fitting room"><button type="button" role="tab" data-frtab="pieces">Pieces</button><button type="button" role="tab" data-frtab="swap">Swap</button><button type="button" role="tab" data-frtab="dave">Dave</button></div>'+
       '<aside class="fr-detail" id="fr-detail" aria-label="The chosen piece"></aside><div class="fr-msave" id="fr-msave"></div>'+
     '</div>'+
@@ -6111,6 +6139,7 @@ function frShell(){
       '<div class="fr-sh"><span>← → flips outfits<br>camera angle stays put</span><button class="fr-arr" type="button" data-frstep="1" aria-label="Next outfit">›</button></div></footer>'+
   '</div>';
   var tr=$("fr-turn");tr.addEventListener("input",function(){if(z3&&z3.on)z3.setRot(Number(tr.value)*Math.PI/180);FR.drag=true;});tr.addEventListener("change",function(){FR.drag=false;});
+  frClear(FR.clear);
 }
 /* fill the dialog for the outfit FR.id */
 function frFill(){
@@ -6296,6 +6325,7 @@ document.addEventListener("change",function(e){if(e.target&&e.target.id==="cmp-p
 (function(){var d=$("cmp");if(!d)return;d.addEventListener("close",function(){cmpLive("");clearInterval(CMP.tm);CMP.tm=0;CMP.spin=false;});})();
 /* the fitting room's own buttons */
 document.addEventListener("click",function(e){var b,t=e.target;if(!t.closest||!t.closest("#fr"))return;
+  if((b=t.closest("[data-frclear]"))){frClear(!FR.clear);return;}
   if((b=t.closest("[data-frsel]"))){frSelect(b.getAttribute("data-frsel"));if(b.classList.contains("fr-mpin")&&FR.tab==="dave")frTab("pieces");return;}
   if((b=t.closest("[data-frwear]"))){var k=b.getAttribute("data-frwear"),v=b.getAttribute("data-v");FR.wear[k]=v;frWear();frPinSel();var md=$("fr").getAttribute("data-mode");if(z3&&z3.on)z3.wear(FR.wear);else if(md==="0")frModeSet("0");return;}
   if((b=t.closest("[data-frlight]"))){FR.wear.light=b.getAttribute("data-frlight");try{localStorage.setItem("dw-light",FR.wear.light);}catch(x){}$("fr").setAttribute("data-light",FR.wear.light);
@@ -6314,8 +6344,11 @@ document.addEventListener("mouseover",function(e){var b=e.target.closest&&e.targ
 document.addEventListener("mouseout",function(e){var b=e.target.closest&&e.target.closest("#fr [data-frswap]");if(!b||(e.relatedTarget&&b.contains(e.relatedTarget)))return;frPreview(null);});
 document.addEventListener("focusin",function(e){var b=e.target.closest&&e.target.closest("#fr [data-frswap]");if(b){var sw=b.getAttribute("data-frswap").split("|");frPreview({k:sw[0],id:sw[1]});}});
 document.addEventListener("focusout",function(e){var b=e.target.closest&&e.target.closest("#fr [data-frswap]");if(b)frPreview(null);});
-/* ← and → flip outfits (unless the model or the turn bar has the keys), and a swipe across the title on a phone */
-document.addEventListener("keydown",function(e){var d=$("zoom");if(!d||!d.open||!$("fr")||(e.key!=="ArrowLeft"&&e.key!=="ArrowRight"))return;var t=e.target;
+/* ← and → flip outfits (unless the model or the turn bar has the keys), and a swipe across the title on a phone; H for a
+   clear view */
+document.addEventListener("keydown",function(e){var d=$("zoom");if(!d||!d.open||!$("fr"))return;var t=e.target;
+  if((e.key==="h"||e.key==="H")&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!(t.closest&&t.closest("input,select,textarea"))){frClear(!FR.clear);e.preventDefault();return;}
+  if(e.key!=="ArrowLeft"&&e.key!=="ArrowRight")return;
   if(t.closest&&(t.closest(".zf-3d")||t.closest("input,select,textarea,[role=tab],.fr-seg,.fr-dock")))return;frStep(e.key==="ArrowLeft"?-1:1);e.preventDefault();});
 (function(){var sx=null,sy=0;document.addEventListener("touchstart",function(e){var h=e.target.closest&&e.target.closest("#fr .fr-head,#fr .fr-tabs");if(!h||e.touches.length!==1){sx=null;return;}sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
   document.addEventListener("touchend",function(e){if(sx==null)return;var c=e.changedTouches[0],dx=c.clientX-sx,dy=c.clientY-sy;sx=null;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)frStep(dx<0?1:-1);},{passive:true});})();
