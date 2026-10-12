@@ -248,11 +248,12 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    | `pat` | `plain`, `hstripe` (across), `vstripe` (down), `check` or `print`. `plain` also drops a read swatch or front. |
    | `per` | Stripe or check spacing as a share of the garment's length, between 0 and 1 (a Breton is about 0.04). |
    | `duty` | How much of each stripe repeat is the second colour, between 0 and 1. |
-   | `front` | `false` drops the photo front (when a model photo was taken for a flat-lay). |
+   | `front` | `false` drops the photo front (when a model photo was taken for a flat-lay); `true` always lays it on (a front the reader refuses, as a Fair Isle yoke; with `pat` `plain`, a plain piece with one band or logo across the chest, the rest plain even when the listing's name says "stripe"). |
    | `decal` | `false` drops the chest graphic cut from the photo (when it picked up something that is not a print). |
    | `shapes` | For a set sold as one listing and worn as two pieces (a tee and shorts, one photo): corrections for one garment shape only, as `{"shorts": {"col": "#5f5f62"}}`, laid over the item's own. |
    | `swatch` | A small square of the cloth itself, as a `data:image/jpeg;base64,...` (under 16,000 characters), repeated as the garment's cloth at `per` of its length: for a woven pattern the listing photo cannot show (a lifestyle shot of a jacquard). Cut it from the shop's own close-up product image, flat and evenly lit, and make it repeat without a seam. |
    | `place` | The front panel of a top whose design sits in one place (a yoke, a Fair Isle band across the chest and sleeves, a hem band), as a `data:image/jpeg;base64,...` (under 24,000 characters): cut from the listing photo from just beside the centre front (leave out a zip or placket) to the side seam, and from the base of the collar to the bottom of the hem, then flipped so the centre is on the left. Fill any background with the cloth's colour. It is laid on by height, the hem at the bottom and the base of the collar at the top, mirrored round the body and run round each arm. |
+   | `crown` | A cap's crown seen from the front (its stripes, lettering or logo), cut from the shop photo as a `data:image/jpeg;base64,...` (under 24,000 characters), with any background at its top corners filled in the cap's colour: laid over the front of the 3D cap's crown, fading into the cap's own colour round the sides. |
 | `why` | Required: what the shop photo shows, in a sentence. |
    | `checked` | Required: the date you checked it against the shop's page. |
 

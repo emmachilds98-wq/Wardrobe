@@ -2872,7 +2872,7 @@ function trueFor(pieces,cb){
   var jobs=[],seen={};
   (pieces||[]).forEach(function(p){
     var it=byId[p.item],F0=it&&it.fix;
-    if(F0)[F0.swatch,F0.place].concat(F0.shapes?Object.keys(F0.shapes).map(function(k){return F0.shapes[k].swatch;}):[]).forEach(function(u){if(!u||seen["sw:"+u])return;var im=swImg(u);if(im.complete&&im.naturalWidth)return;seen["sw:"+u]=1;
+    if(F0)[F0.swatch,F0.place,F0.crown].concat(F0.shapes?Object.keys(F0.shapes).map(function(k){return F0.shapes[k].swatch;}):[]).forEach(function(u){if(!u||seen["sw:"+u])return;var im=swImg(u);if(im.complete&&im.naturalWidth)return;seen["sw:"+u]=1;
       jobs.push(new Promise(function(done){im.addEventListener("load",function(){done(1);});im.addEventListener("error",function(){done(0);});}));});if(!it||p.fixed||seen[p.item]||has(TRUE,p.item)||TRUEQ[p.item]||!hasPh(it))return;
     seen[p.item]=1;TRUEQ[p.item]=1;
     jobs.push(new Promise(function(done){getPh(p.item,function(src){if(!src){TRUE[p.item]="";done(0);return;}sampleLook(src,p.shape,descOf(it,p)).then(function(L){LOOK[p.item]=L||null;TRUE[p.item]=L?L.str:"";done(L?1:0);});});}));
@@ -2906,6 +2906,7 @@ function normFix(f){if(!f||typeof f!=="object")return null;var o={},hx=/^#[0-9a-
   ["front","decal","named"].forEach(function(k){if(f[k]===false){o[k]=false;n++;}});if(f.front===true){o.front=true;n++;}
   if(typeof f.swatch==="string"&&/^data:image\/(jpeg|png);base64,/.test(f.swatch)&&f.swatch.length<=16000){o.swatch=f.swatch;n++;}
   if(typeof f.place==="string"&&/^data:image\/(jpeg|png);base64,/.test(f.place)&&f.place.length<=24000){o.place=f.place;n++;}
+  if(typeof f.crown==="string"&&/^data:image\/(jpeg|png);base64,/.test(f.crown)&&f.crown.length<=24000){o.crown=f.crown;n++;}   /* (a cap's crown from the front: its design) */
   /* (a set sold as one listing and worn as two pieces: corrections for one garment shape only) */
   if(f.shapes&&typeof f.shapes==="object"){var sh={},m=0;Object.keys(f.shapes).forEach(function(k){var sub=normFix(f.shapes[k]);if(sub&&/^[a-z]+$/.test(k)){delete sub.shapes;sh[k]=sub;m++;}});if(m){o.shapes=sh;n++;}}
   return n?o:null;}
@@ -4270,12 +4271,14 @@ function make3Dcore(pieces){
      outside the clothes already on him (OCC). */
   var OCC=bodyOn?fmBlank():null,FQ2=[0,0,0,0,0];
   function fitTop(F){
-    /* (round his torso only half the layer's room: a top rests on his chest and shoulder blades, its looseness showing in
-       how it hangs below them, not as a gap all round; given all of it, shirts and jumpers stood 1.3 cm off his chest and
-       5 cm off the small of his back, and stood out. Padded pieces keep it all, their bulk being the padding) */
-    var FM=fitMaps(),OM=OCC,TW=2*Math.PI,CF=Number(CHAR.clothFit)||0,eT=F.e*(1+0.55*CF)*(F.puff?1:0.5),eY=eT*0.95+0.001,gp=0.0035,eN=Math.min(eT,0.009);
+    /* (a shirt, tee or jumper (F.snug: base and mid layers) gets only half its layer's room round his torso: it rests on
+       his chest and shoulder blades, its looseness showing in how it hangs below them, not as a gap all round; given all
+       of it, shirts and jumpers stood 1.3 cm off his chest and 5 cm off the small of his back, and stood out. Padded
+       pieces keep it all, their bulk being the padding, and so do jackets and coats: worn open, their fronts then stand
+       clear of what is under them, as before) */
+    var FM=fitMaps(),OM=OCC,TW=2*Math.PI,CF=Number(CHAR.clothFit)||0,eF=F.e*(1+0.55*CF),eT=eF*(F.snug&&!F.puff?0.5:1),eY=eF*0.95+0.001,gp=0.0035,eN=Math.min(eF,0.009);
     /* his body a cloth's thickness out, rounded over the edges (as the cloth itself lies) */
-    eY=Math.min(eT,0.006+0.3*eT+(F.puff||0));   /* (on the shoulders the cloth rests on what is under it: its thickness, not its looseness) */
+    eY=Math.min(eF,0.006+0.3*eF+(F.puff||0));   /* (on the shoulders the cloth rests on what is under it: its thickness, not its looseness; the yoke and neckline keep the layer's whole room, so collars and the layers over them stay as they were) */
     var PF=window.__prof,tA=performance.now();var DT=fmDilate(FM.T,eT),DTU=fmDilate(FM.TU,eY),DY=fmDilate(FM.Y,eY);if(PF)PF.dil=(PF.dil||0)+performance.now()-tA;tA=performance.now();
     var al=1.13,be=2.0,yA=1.3,yS=1.435,nS=12,nZ=9,nY=9,dT=TW/112,gap=F.gap||0,a0=gap>0?gap/2:Math.PI,span=gap>0?TW-gap:TW,aq=FQ2;
     /* (an opening that changes with height, F.gapAt(y): a done-up blazer's V. Each row's columns are spread over the
@@ -4892,6 +4895,7 @@ function make3Dcore(pieces){
      leather) */
   var MATR={nylon:0.78,leather:0.5,satin:0.42,suede:0.98,fleece:1,linen:0.95,wool:0.95,denim:0.88,cord:0.95,waffle:0.95};
   function pm(p){var t=texOf(p),D=p.desc||{},L=p.look,rough=MATR[D.mat]||(t==="quilt"?0.6:0.9);
+    if(L&&L.fix&&L.pat==="plain"&&/^(stripe|check|herringbone|cable)$/.test(t))t="plain";   /* (a correction saying plain outranks a pattern named in the listing: a "stripe polo" with one band across the chest) */
     var tx=L?lookTex(p,L):null;if(!tx&&D.rugby&&!L)tx=lookTex(p,{pat:"hstripe",per:0.12,duty:0.45,c1:cc(p.col)[0],c2:p.col2||(cc(p.col)[1]?"#f2efe8":"#1f2a44")});
     if(tx)return new T.MeshStandardMaterial({map:tx,color:0xffffff,roughness:rough,metalness:0,bumpMap:clothBump(),bumpScale:D.mat==="leather"?0.0004:(D.mat==="nylon"?0.0009:0.0012),side:T.DoubleSide});
     return cloth(cc(p.col)[0],t||"plain",p.col2||"",rough);}
@@ -5236,7 +5240,7 @@ function make3Dcore(pieces){
       fBack:tucked?0:({jacket:1,coat:0.9,gown:0.8,gilet:0.6,blazer:0.5}[shF]||(jacketShirt(p)?0.6:0))};   /* (an outer layer's folds across the small of his back) */
     if(fitOn){var vD=DS.neck==="v"&&/^(tee|jumper|cardigan|polo)$/.test(p.shape)?0.1:0;
       var tnt=null;if(ms!==m){var cB=new T.Color(gC(p.look&&p.look.c1?p.look.c1:cc(p.col)[0])).convertSRGBToLinear(),cS=new T.Color(gC(p.look.slv)).convertSRGBToLinear();tnt=[cS.r/Math.max(0.02,cB.r),cS.g/Math.max(0.02,cB.g),cS.b/Math.max(0.02,cB.b)];}
-      var tq0=performance.now();FT=fitTop({e:e,hem:hem,hemC:hemC0,gap:gap,gapAt:gapAt,tucked:tucked,rib:!open&&/^(jumper|rollneck|halfzip|hoodie)$/.test(p.shape)&&!/oversized|boxy|cropped|crop\b/.test(n0),tint:tnt,puff:PUFFRE.test(n0)?0.014:0,sleeve:underLong0(k)?null:(short0?"short":"long"),se:(e*0.55+0.004)*(1+0.55*(Number(CHAR.clothFit)||0))+(short0?0.007:0),folds:null,
+      var tq0=performance.now();FT=fitTop({e:e,snug:L<2,hem:hem,hemC:hemC0,gap:gap,gapAt:gapAt,tucked:tucked,rib:!open&&/^(jumper|rollneck|halfzip|hoodie)$/.test(p.shape)&&!/oversized|boxy|cropped|crop\b/.test(n0),tint:tnt,puff:PUFFRE.test(n0)?0.014:0,sleeve:underLong0(k)?null:(short0?"short":"long"),se:(e*0.55+0.004)*(1+0.55*(Number(CHAR.clothFit)||0))+(short0?0.007:0),folds:null,
         ytop:function(t){var c=Math.cos(t),f=c>0?c*c:0,tf=Math.abs(Math.atan2(Math.sin(t),c));return 1.522-NDIP*f-(vD?vD*Math.max(0,1-tf/0.62):0);}});
       if(window.__prof)window.__prof.fit=(window.__prof.fit||0)+performance.now()-tq0;
       var fA=m.clone();fA.vertexColors=true;fA.shadowSide=T.BackSide;UT.fYA=FT.yA;foldMat(fA,"up",UT);
@@ -5656,6 +5660,20 @@ function make3Dcore(pieces){
       var seamM=mat(shade(cc(p.col)[0],0.7),0.9);
       if(!flatC){[0,1,2,3,4,5].forEach(function(k6){var an6=-Math.PI+Math.PI/6+k6*Math.PI/3,pts6=[];for(var f6=0;f6<=1.0001;f6+=0.125){var Q=crownP(an6,f6);pts6.push([Q[0]*1.004,Q[1]+0.0004,Q[2]*1.004]);}tube(pts6,0.0008,seamM,4);});
         var Qt=crownP(0,1);add(new T.SphereGeometry(0.0065,12,8,0,Math.PI*2,0,Math.PI/2),cm3,Qt[0],Qt[1]-0.001,Qt[2],1,0.55,1);}   /* (the button on top) */
+      /* a cap's design (fixes.json "crown": its crown seen from the front, cut from the shop photo): laid over the front
+         of the crown as the photo shows it, by where each point is seen from the front (across the band's width, and up
+         from the band at the front to the top), fading out round the sides into the cap's own colour */
+      var CRF=(byId[p.item]||{}).fix,CRI=CRF&&CRF.crown?swImg(CRF.crown):null;
+      if(CRI&&CRI.complete&&CRI.naturalWidth){var cvC=document.createElement("canvas"),wC=cvC.width=CRI.naturalWidth,hC=cvC.height=CRI.naturalHeight,cxC=cvC.getContext("2d");
+        cxC.drawImage(CRI,0,0);cxC.globalCompositeOperation="destination-in";var gC=cxC.createLinearGradient(0,0,wC,0);
+        gC.addColorStop(0,"rgba(0,0,0,0)");gC.addColorStop(0.1,"rgba(0,0,0,1)");gC.addColorStop(0.9,"rgba(0,0,0,1)");gC.addColorStop(1,"rgba(0,0,0,0)");cxC.fillStyle=gC;cxC.fillRect(0,0,wC,hC);
+        var txC=new T.CanvasTexture(cvC);txC.encoding=T.sRGBEncoding;txC.anisotropy=4;
+        var A0=1.45,NUd=28,NVd=12,dv=[],du=[],di=[],Pb=crownP(0,0),Pt=crownP(0,1),xw=Math.abs(crownP(Math.PI/2,0)[0])||0.09;
+        for(var jv=0;jv<=NVd;jv++)for(var ju=0;ju<=NUd;ju++){var Pd=crownP(-A0+2*A0*ju/NUd,jv/NVd);dv.push(Pd[0]*1.004,Pd[1]+0.0005,Pd[2]*1.004);
+          du.push(Math.max(0,Math.min(1,0.5+Pd[0]/(2*xw))),Math.max(0,Math.min(1,(Pd[1]-Pb[1])/(Pt[1]-Pb[1]))));}
+        for(jv=0;jv<NVd;jv++)for(ju=0;ju<NUd;ju++){var d0=jv*(NUd+1)+ju;di.push(d0,d0+1,d0+NUd+1,d0+1,d0+NUd+2,d0+NUd+1);}
+        var dg=new T.BufferGeometry();dg.setAttribute("position",new T.Float32BufferAttribute(dv,3));dg.setAttribute("uv",new T.Float32BufferAttribute(du,2));dg.setIndex(di);dg.computeVertexNormals();
+        add(dg,new T.MeshStandardMaterial({map:txC,roughness:0.88,metalness:0,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-2}));}
       /* the peak: from the band across the front, curving down at its sides (a baseball cap's long, pre-curved peak; a
          flat cap's short one, tipped down) */
       var NSp=16,NTp=6,pv=[],pix=[],pL=flatC?0.044:0.075,pW=flatC?0.92:1.12,tilt=flatC?0.01:0.02,curve=flatC?0.003:0.022;
