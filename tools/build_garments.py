@@ -23,7 +23,7 @@ come as in tools/build_body.py (--mh). --frames scales the simulation's length (
 each stage (placed, relaxed, mid-drape, draped) as JSON for tools/garment_view.js. GB_SELF=0 turns Blender's
 self-collision off; GB_DBG=1 prints the pieces behind the worst corner in the corner check.
 
-STATUS (12 Oct 2026, stopped part-way; see STATUS.md and UPGRADE_PLAN.md 2zzzzzzzzzzzzzzzzz): steps 1 to 3 run for
+STATUS (12 Oct 2026, PR #35, stopped part-way; see STATUS.md and UPGRADE_PLAN.md 2zzzzzzzzzzzzzzzzz): steps 1 to 3 run for
 the hoodie (body only), the quarter-zip and the jacket; the hoodie is checked by eye and the other two only run. Not
 written yet: the hood's own drape, step 4 (nothing is written to data/garments yet) and anything in the page.
 """
