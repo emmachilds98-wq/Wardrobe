@@ -1594,6 +1594,45 @@ function tone(col,dim){
   if(dim){return 'style="color:'+fade(c[0])+';--d:rgba(20,32,27,.16);--o:rgba(20,32,27,.26)"';}
   return 'style="color:'+c[0]+';--d:'+(c[1]?"rgba(255,255,255,.42)":"rgba(20,32,27,.46)")+';--o:'+(c[1]?"rgba(255,255,255,.34)":"rgba(20,32,27,.6)")+'"';
 }
+/* A pair of trousers' or shorts' cut, from the shop's fit label and the name, for the 3D model, the drawing and the
+   fitting room's words alike. k is how loose: skinny, slim, tapered, regular, straight, relaxed, wide, baggy or barrel.
+   e0 is the room round the thigh all the way down, wide more of it toward the knee; fall how much of the thigh's width
+   reaches the hem (1 and over: as wide at the hem as at the thigh, or wider). Shorts: len, how far below the crotch the
+   hem is (from the inseam when the name gives one, as 7"), and sfall. cuff: a jogger gathered at the ankle. Before
+   12 Oct the room at the thigh only ran from 16 to 35 mm and fall from 0.68 to 0.92, so the fits looked alike. */
+var BOTCUT={skinny:{e0:0.006,wide:0,fall:0.4,len:0.2,sfall:0.8},slim:{e0:0.008,wide:0.002,fall:0.5,len:0.22,sfall:0.84},
+  tapered:{e0:0.01,wide:0.006,fall:0.46,len:0.25,sfall:0.88},regular:{e0:0.012,wide:0.004,fall:0.64,len:0.27,sfall:0.92},
+  straight:{e0:0.013,wide:0.01,fall:0.9,len:0.28,sfall:0.97},relaxed:{e0:0.015,wide:0.024,fall:0.95,len:0.3,sfall:1.02},
+  wide:{e0:0.016,wide:0.034,fall:1.02,len:0.32,sfall:1.04},baggy:{e0:0.017,wide:0.046,fall:1.06,len:0.36,sfall:1.08},
+  barrel:{e0:0.013,wide:0.022,fall:0.6,len:0.3,sfall:1,barrel:0.018}};
+function bottomCut(p){var it=byId[p.item]||{},n=((it.name||"")+" "+(p.what||"")).toLowerCase(),f=it.fit||"",sh=p.shape==="shorts",k;
+  if(/barrel|balloon/.test(n))k="barrel";
+  else if(/baggy|parachute|oversized|skate|super ?wide|extra ?wide|basketball/.test(n))k="baggy";
+  else if(f==="Wide leg"||/wide|palazzo/.test(n))k="wide";
+  else if(/skinny|super slim/.test(n))k="skinny";
+  else if(/\bslim\b/.test(n))k="slim";
+  else if(/taper/.test(n))k="tapered";
+  else if(f==="Relaxed"||/relaxed|loose|carpenter|cargo|combat|painter|\bwork|utility|board ?short/.test(n))k="relaxed";
+  else if(f==="Straight"||/straight|\b501\b/.test(n))k="straight";
+  else k="regular";
+  var c=Object.assign({k:k},BOTCUT[k]);
+  /* (a jogger is gathered at the ankle unless it says it is open or wide; it tapers to the cuff unless it says loose) */
+  c.cuff=!sh&&/jogger|track ?(pant|bottom)|sweatpant|lounge|pyjama/.test(n)&&!/wide|straight|open hem|baggy|parachute/.test(n);
+  if(c.cuff&&!/relaxed|loose/.test(n))c.fall=Math.min(c.fall,0.48);
+  if(/flare/.test(n)&&!sh){c.flare=0.03;c.fall=Math.max(c.fall,0.7);}else if(/bootcut|boot cut/.test(n)&&!sh){c.flare=0.016;c.fall=Math.max(c.fall,0.7);}
+  if(/cropped|crop\b|ankle[- ]length|ankle grazer|7\/8/.test(n))c.bot=0.095;
+  if(sh){var m=/(\d{1,2}(?:\.\d)?)\s*(?:"|”|''|-?inch|in\b)/.exec(n),ins=m?Number(m[1]):0;
+    if(ins>=3&&ins<=13)c.len=ins*0.0254+0.01;   /* (the inseam: crotch to hem) */
+    else if(/short shorts|running|runner|split/.test(n))c.len=0.16;
+    else if(/swim/.test(n)&&!/board|long/.test(n))c.len=Math.min(c.len,0.2);
+    else if(/board|basketball|jort|long(line)? shorts?|knee/.test(n))c.len=Math.max(c.len,0.36);}
+  return c;}
+/* the cut in words, for the fitting room */
+function cutWords(c,sh){var w={skinny:"Skinny: close all the way down",slim:"Slim: close through the thigh, narrowing to the hem",tapered:"Tapered: room at the thigh, narrowing to the ankle",
+    regular:"Regular: a little room, slightly narrower at the hem",straight:"Straight: the same width from the knee to the hem",relaxed:"Relaxed: roomy through the thigh, straight to the hem",
+    wide:"Wide leg: loose all the way down, as wide at the hem as at the thigh",baggy:"Baggy: very loose, a lower crotch, wider at the hem",barrel:"Barrel: curving out at the knee and in at the hem"}[c.k]||"";
+  if(sh){w=w.replace(/ankle|hem$/,"hem");w+="; the hem about "+Math.round(c.len*100/2.54)+" in below the crotch";}else if(c.cuff)w+=", gathered at the ankle";
+  return w+".";}
 function texOf(p){
   var it=byId[p.item],s=(p.what+" "+(it?it.name:"")).toLowerCase().replace(/sleeve[- ]stripe[sd]?|striped sleeves?|arm stripes?|taped sleeves?|sleeve tape/g,"sleeve-band").replace(/button[- ]?down|drawcord|cordura|records?\b|recordings?/g," ").replace(/self[- ]?stripe|tonal stripe|textured stripe/g,"selfweave"),sh=p.shape;   /* (a button-down collar is not down-filled; Cordura, drawcords and records are not corduroy) */   /* (stripes on the sleeves only do not stripe the body) */
   if(/mesh/.test(s))return "mesh";
@@ -1887,16 +1926,17 @@ function figure(pieces,hi){
   if(lo){
     /* the leg's cut, as the 3D model has it: wide, relaxed, regular, barrel, or a cuffed jogger, from the pick's fit
        label and its name (a hem outer and inner x for his left leg; the right is its mirror) */
-    var tr=lo.shape==="trousers",lnm0=(((byId[lo.item]||{}).name||"")+" "+lo.what).toLowerCase(),lfit=(byId[lo.item]||{}).fit||"",
-      jog0=/jogger|track ?(pant|bottom)|sweatpant/.test(lnm0)&&!/wide|straight|open hem|relaxed|loose/.test(lnm0),
-      cut0=jog0?"jog":(/barrel|balloon/.test(lnm0)?"barrel":(lfit==="Wide leg"||/wide|baggy|parachute|flare|skate/.test(lnm0)?"wide":(lfit==="Relaxed"||/relaxed|loose|carpenter|cargo|painter|work/.test(lnm0)?"relaxed":"regular"))),
-      HX={regular:[74,113],relaxed:[71.5,114.5],wide:[63,117],barrel:[77,112.5],jog:[80,111.5]}[cut0],xo=HX[0],xi=HX[1],M=function(x){return (240-x).toFixed(1);},
+    var tr=lo.shape==="trousers",lnm0=(((byId[lo.item]||{}).name||"")+" "+lo.what).toLowerCase(),BC0=bottomCut(lo),
+      cut0=BC0.cuff&&BC0.fall<0.5?"jog":(/flare|bootcut|boot cut/.test(lnm0)&&BC0.k!=="baggy"?"wide":BC0.k),
+      HX={skinny:[80.5,111],slim:[78.5,112],tapered:[79,112],regular:[74,113],straight:[72.5,114],relaxed:[70.5,114.5],wide:[63,117],baggy:[58,118],barrel:[77,112.5],jog:[80,111.5]}[cut0]||[74,113],xo=HX[0],xi=HX[1],M=function(x){return (240-x).toFixed(1);},
+      /* (shorts: the hem's height from their length below the crotch, its width from how loose they are) */
+      sY=Math.round(300+49*Math.max(0.55,Math.min(1.4,BC0.len/0.29))),sO=Math.round((76-(BC0.sfall-0.92)*40)*10)/10,
       knee=cut0==="barrel"?" L"+M(68.5)+" 372":"",kneeL=cut0==="barrel"?" L68.5 372":"",
-      ld=tr?"M82 222 H158 L163 300"+knee+" L"+M(xo)+" 449 L"+M(xi)+" 449 L120 304 L"+xi+" 449 L"+xo+" 449"+kneeL+" L77 300 Z":"M82 222 H158 L163 300 L164 349 L125 349 L120 302 L115 349 L76 349 L77 300 Z",
+      ld=tr?"M82 222 H158 L163 300"+knee+" L"+M(xo)+" 449 L"+M(xi)+" 449 L120 304 L"+xi+" 449 L"+xo+" 449"+kneeL+" L77 300 Z":"M82 222 H158 L163 300 L"+M(sO)+" "+sY+" L125 "+sY+" L120 302 L115 "+sY+" L"+sO+" "+sY+" L77 300 Z",
       hemL=function(y,dy){return " M"+(xo+1)+" "+y+" Q"+((xo+xi)/2).toFixed(1)+" "+(y+dy)+" "+(xi-1)+" "+y+" M"+M(xi-1)+" "+y+" Q"+M((xo+xi)/2)+" "+(y+dy)+" "+M(xo+1)+" "+y;},
       crease=/jean|denim|jogger|track|sweat|cargo|parachute/.test(lnm0)?"":" M"+((xo+xi)/2+2).toFixed(1)+" 250 L"+((xo+xi)/2).toFixed(1)+" 444 M"+M((xo+xi)/2+2)+" 250 L"+M((xo+xi)/2)+" 444";
     h+=grp(lo,body(ld,lo,dim(lo))+P("d","M82 230 H158 M120 230 V296 M113 232 Q116 262 120 272 M88 232 Q92 248 84 256 M152 232 Q148 248 156 256"+
-      (tr?crease+hemL(441,5)+" M92 360 Q97 366 104 365 M148 360 Q143 366 136 365"+(cut0==="jog"?" M"+(xo+0.5)+" 434 H"+(xi-0.5)+" M"+M(xi-0.5)+" 434 H"+M(xo+0.5):hemL(432,-6)):" M77 343 H115 M125 343 H163 M84 330 Q94 334 106 329 M134 329 Q146 334 156 330")+
+      (tr?crease+hemL(441,5)+" M92 360 Q97 366 104 365 M148 360 Q143 366 136 365"+(cut0==="jog"?" M"+(xo+0.5)+" 434 H"+(xi-0.5)+" M"+M(xi-0.5)+" 434 H"+M(xo+0.5):hemL(432,-6)):" M"+(sO+1)+" "+(sY-6)+" H115 M125 "+(sY-6)+" H"+M(sO+1)+" M84 330 Q94 334 106 329 M134 329 Q146 334 156 330")+
       (/cargo|parachute|utility|combat/i.test(lo.what+" "+((byId[lo.item]||{}).name||""))?(tr?" M77 322 H96 V352 H77 Z M77 329 H96 M144 322 H163 V352 H144 Z M144 329 H163":" M77 296 H95 V322 H77 Z M77 302 H95 M145 296 H163 V322 H145 Z M145 302 H163"):"")));
   }
   /* what the photos show on trousers: jeans' gold topstitching, scooped pockets and rivets; chinos' slanted pockets;
@@ -4033,14 +4073,14 @@ function make3Dcore(pieces){
   /* cut (from the listing): fall, how much of the thigh's width reaches the ankle (slim and tapered less, straight and
      wide more); flare, extra width at the hem (bootcut, flare); barrel, extra round the knee; bot, the hem's height
      (cropped and ankle-length end higher) */
-  function legSecs(s,sh,wide,cut){cut=cut||{};var lg=sideX(B3.leg,s),yTop=Math.min(0.95,BL.crotch+0.06),yBot=cut.brief?BL.crotch-0.13:(sh?Math.max(0.5,BL.crotch-0.29):(cut.bot||0.035)),out=[],mx=0,mz=0;
+  function legSecs(s,sh,wide,cut){cut=cut||{};var lg=sideX(B3.leg,s),yTop=Math.min(0.95,BL.crotch+0.06),yBot=cut.brief?BL.crotch-0.13:(sh?Math.max(0.42,BL.crotch-(cut.len||0.29)):(cut.bot||0.035)),out=[],mx=0,mz=0;
     var ys=[];for(var y=yTop;y>yBot-1e-6;y-=0.04)ys.push(y);if(ys[ys.length-1]>yBot+0.005)ys.push(yBot);
     /* (a wide leg's extra room comes in gradually down the thigh, so the cloth falls from the hip in one line rather
        than flaring out just under the seat and leaving a ridge where the legs meet the top) */
     /* (below his ankle bone the cloth falls straight on from the ankle: the foot is the shoe's business, so the hem
        is not stretched along it) */
-    ys.forEach(function(y){var q=secAt(lg,Math.max(lg[0][0],y,sh?0:0.13)),ea=cut.brief?0.004:0.013+wide*(0.25+0.75*sstep(BL.crotch-0.03,BL.crotch-0.2,y));mx=Math.max(mx,q[1]);mz=Math.max(mz,q[2]);   /* (boxer briefs sit close on the thigh) */
-      var hang=cut.brief?0:sstep(BL.crotch-0.06,BL.crotch-0.2,y),fall=sh?0.9:(cut.fall!=null?cut.fall:(0.62+0.3*Math.min(1,wide/0.02)));   /* how much of the thigh's size it keeps going down */
+    ys.forEach(function(y){var q=secAt(lg,Math.max(lg[0][0],y,sh?0:0.13)),ea=cut.brief?0.004:(cut.e0!=null?cut.e0:0.013)+wide*(0.25+0.75*sstep(BL.crotch-0.03,BL.crotch-0.2,y));mx=Math.max(mx,q[1]);mz=Math.max(mz,q[2]);   /* (boxer briefs sit close on the thigh) */
+      var hang=cut.brief?0:sstep(BL.crotch-0.06,BL.crotch-0.2,y),fall=sh?(cut.sfall||0.9):(cut.fall!=null?cut.fall:(0.62+0.3*Math.min(1,wide/0.02)));   /* how much of the thigh's size it keeps going down */
       var rx=Math.max(q[1]+ea,(mx+ea)*(1-hang*(1-fall))),rz=Math.max(q[2]+ea,(mz+ea)*(1-hang*(1-fall)));
       if(!sh&&cut.flare){var fl=cut.flare*sstep(0.48,0.06,y);rx+=fl;rz+=fl*0.8;}
       if(!sh&&cut.boot&&y<0.26){var bk=sstep(0.26,0.2,y);rx=Math.max(rx,q[1]+0.026*bk+0.013*(1-bk));rz=Math.max(rz,q[2]+0.026*bk+0.013*(1-bk));}   /* (round a boot's shaft the leg stands clear of it) */
@@ -4613,7 +4653,7 @@ function make3Dcore(pieces){
     if(ups0.some(function(p){return !noSleeve(p)&&!shortS(p);})){rules.push(["uarm"],["farm",SLV+0.012]);}
     else if(ups0.some(shortS)){rules.push(["uarm",1.27]);}
     if(lo0){if(lo0.under)rules.push(["hips",null,1.02],["belly",null,1.02],["chest",null,1.02],["thigh",BL.crotch-0.126,1.02]);   /* (underwear: only the skin under the briefs goes) */
-      else if(lo0.shape==="shorts")rules.push(["hips"],["thigh",Math.max(0.5,BL.crotch-0.29)+0.012]);else rules.push(["hips"],["thigh"],["shin",0.075]);}
+      else if(lo0.shape==="shorts")rules.push(["hips"],["thigh",Math.max(0.42,BL.crotch-(bottomCut(lo0).len||0.29))+0.012]);   /* (down to the shorts' own hem, as legSecs puts it) */else rules.push(["hips"],["thigh"],["shin",0.075]);}
     /* (in open footwear his own foot shows; in shoes only the part wholly inside the shoe goes: the foot reaches up round
        his ankle bones above the shoe's opening, and taken away whole it left a saw-tooth edge of skin there) */
     if(ft0){if(ft0.shape==="boots")rules.push(["foot"]);else if(!OPENFT.test((((byId[ft0.item]||{}).name||"")+" "+ft0.what).toLowerCase()))rules.push(["foot",null,0.1]);if(ft0.shape==="boots")rules.push(["shin",null,0.2]);else if(lo0&&lo0.shape==="shorts"&&ft0.shape!=="slippers"&&!/loafer|slider|slide|sandal|mule|deck|boat|espadrille|flip/.test((((byId[ft0.item]||{}).name||"")+" "+ft0.what).toLowerCase()))rules.push(["shin",null,0.235]);}   /* (socks with shorts) */
@@ -4911,17 +4951,16 @@ function make3Dcore(pieces){
   var waistE=0;
   if(lo){
     curIt=lo.item;curWhat=lo.what;curKind="lo";PIECE=bodyOn?[]:null;
-    var und=!!lo.under,lm=pm(lo),sh=lo.shape==="shorts",n0=nm(lo),fitL=((byId[lo.item]||{}).fit||""),wide=fitL==="Wide leg"||/wide|baggy|barrel|parachute/.test(n0)?0.022:(fitL==="Relaxed"||/loose|relaxed|carpenter|cargo|combat/.test(n0)?0.013:(fitL?0.006:0.004));
+    var und=!!lo.under,lm=pm(lo),sh=lo.shape==="shorts",n0=nm(lo),BC=bottomCut(lo),wide=und?0.004:BC.wide;
     waistE=0.012;
     /* on the real body the trousers are cut as a pair is, each half one piece from the waistband to the hem
        (trouserGeo). The drawn-only body keeps its simple rise and leg tubes. */
     /* the leg's cut, from the listing's fit and name */
-    var cutL={};if(/skinny|super slim/.test(n0))cutL={fall:0.44};else if(/slim|tapered|taper|cuffed/.test(n0)||(/jogger|track ?(pant|bottom)|sweatpant/.test(n0)&&!/straight|wide|relaxed|open hem|loose|baggy/.test(n0)))cutL={fall:/slim/.test(n0)&&!/taper/.test(n0)?0.55:0.48};
-    if(/barrel|balloon/.test(n0))cutL={fall:0.6,barrel:0.018};if(/bootcut|boot cut|flare|kick flare/.test(n0))cutL={fall:0.7,flare:/flare/.test(n0)?0.03:0.016};
-    if(/cropped|crop\b|ankle[- ]length|ankle grazer|7\/8/.test(n0))cutL.bot=0.095;
+    /* (bottomCut: one reading of the cut for the model, the drawing and the fitting room's words) */
+    var cutL={e0:BC.e0,fall:BC.fall,len:BC.len,sfall:BC.sfall};if(BC.barrel)cutL.barrel=BC.barrel;if(BC.flare)cutL.flare=BC.flare;if(BC.bot)cutL.bot=BC.bot;
     if(und)cutL={brief:true};   /* (the fitting room's plain boxer briefs) */
     else if(!sh&&ft&&ft.shape==="boots"){cutL.boot=true;if(!cutL.bot)cutL.bot=/chelsea|dealer|chukka|desert/.test(nm(ft))?0.09:0.122;}   /* (over boots the hem rests on the boot's front, so its toe, laces and the start of its shaft show) */
-    var cuffd=/jogger|track|sweatpant|lounge|pyjama/.test(n0)&&!/wide|straight|open hem/.test(n0);if(cuffd&&!sh)cutL.bot=Math.max(cutL.bot||0,0.088);   /* (a cuffed jogger gathers at his ankle, above the shoe) */
+    var cuffd=BC.cuff;if(cuffd&&!sh&&!und)cutL.bot=Math.max(cutL.bot||0,0.088);   /* (a cuffed jogger gathers at his ankle, above the shoe) */
     var LYB=BL?BL.crotch-0.075:0,LS0=bodyOn?{"-1":legSecs(-1,sh,wide,cutL),"1":legSecs(1,sh,wide,cutL)}:null,LSs=bodyOn?{"-1":smoothSecs(LS0["-1"],sh?6:16),"1":smoothSecs(LS0["1"],sh?6:16)}:null;
     var LWme=null;
     /* underwear (the fitting room): boxer briefs are his own skin from the waist to the top of the thighs, lifted by the
@@ -4997,7 +5036,7 @@ function make3Dcore(pieces){
       if(!bodyOn)sec(L,lm,{seg:30,u:0.4,k:sh?6:16,wr:sh?null:legFolds(jog?0.6:(wide?1.2:1)),ao:{kind:"limb",s:s,leg:true}});
       if(jog&&!sh&&!/wide|straight|open hem/.test(n0)){var cb=L[0];band(cb[0],0.045,cb[1]-0.008,cb[2]-0.008,rib(lo),{x:cb[3],z:cb[4]});}
       if(sh){var hb=L[0];band(hb[0],0.025,hb[1]+0.001,hb[2]+0.001,lm,{x:hb[3],z:hb[4]});}
-      if(/cargo|utility|combat|work/.test(n0)){var py2=sh?0.68:0.62,pq=bodyOn?secAt(L,py2):null;
+      if(/cargo|utility|combat|work/.test(n0)){var py2=sh?(bodyOn?Math.max(L[0][0]+0.095,Math.min(0.68,BL.crotch-0.1)):0.68):0.62,pq=bodyOn?secAt(L,py2):null;   /* (on shorts, its foot just above the hem, however long they are) */
         /* a cargo pocket: a patch round the outside of his thigh, filled out a little in the middle and flush at its
            edges (it used to be a thin slab standing out sideways like a fin), with its flap across the top */
         if(bodyOn){var cpv=[],cpu=[],cpi=[],NA=10,NY=6,A0=0.62,yb=py2-0.08,yt=py2+0.07,cpRow=function(y){return secAt(L,y);};
@@ -5882,7 +5921,8 @@ function make3Dcore(pieces){
   var PW=propWarp(bodyOn?BL.chin:1.567);
   if(PW){warpMan(man,PW,bodyOn?BL.skull[1]:0.0);kH*=1.79/PW.W(1.79);}
   if(bodyOn)man.scale.set(kH,kH,kH);else man.scale.set(kH*bw,kH,kH*(0.5+0.5*bw));
-  return {scene:scene,man:man,k:kH};
+  /* (loHem: the height on his body of a pair of shorts' hem, for the 3D check's idea of what they cover) */
+  return {scene:scene,man:man,k:kH,loHem:lo&&lo.shape==="shorts"&&LS0?LS0["1"][0][0]:null};
 }
 function dispose3D(o){if(!o)return;o.scene.traverse(function(n){if(n.geometry)n.geometry.dispose();if(n.material){[].concat(n.material).forEach(function(m){if(m.map&&m.map!==bumpTex&&!m.map.keep)m.map.dispose();m.dispose();});}});}
 /* A live view you can turn: used by the large outfit view, the builder and Edit Dave.
@@ -6195,7 +6235,7 @@ function frDetail(){
   var it=byId[p.item],k=frKey(p),off=it?pct(it):0,hid=!!FR.hide[k];
   var h='<div class="fr-dh"><span class="label">Piece '+n+' · '+esc(frSlot(p))+'</span><span class="fr-sz">'+(it?(it.insize===true?"In his size":(it.insize===false?"His size sold out":"")):"")+'</span></div>'+
     '<div class="fr-dg">'+(it&&photoBox(it,"zbig",true)||'<span class="ph zbig"></span>')+'<div class="fr-di"><b class="fr-dn">'+esc(it?it.name:p.what)+'</b>'+
-    (it?'<span class="msg">'+esc(it.shop)+(it.kind==="preowned"?" · pre-owned, typical price":"")+'</span><span class="fr-dp"><b'+(off>0?' class="is-cut"':"")+'>'+money(cost(it))+'</b>'+(off>0?'<s>'+money(it.was)+'</s>':"")+'</span>'+(it.fabric?'<span class="msg">'+esc(it.fabric)+'</span>':""):'<span class="msg">'+(p.own?"Already his, nothing to buy.":"No longer listed. Choose a replacement in the builder.")+'</span>')+'</div></div>'+
+    (it?'<span class="msg">'+esc(it.shop)+(it.kind==="preowned"?" · pre-owned, typical price":"")+'</span><span class="fr-dp"><b'+(off>0?' class="is-cut"':"")+'>'+money(cost(it))+'</b>'+(off>0?'<s>'+money(it.was)+'</s>':"")+'</span>'+(it.fabric?'<span class="msg">'+esc(it.fabric)+'</span>':"")+(LOWER[p.shape]&&!p.under?'<span class="msg fr-cut">'+esc(cutWords(bottomCut(p),p.shape==="shorts"))+'</span>':""):'<span class="msg">'+(p.own?"Already his, nothing to buy.":"No longer listed. Choose a replacement in the builder.")+'</span>')+'</div></div>'+
     '<div class="fr-da">'+(it?'<a class="btn" href="'+esc(it.url)+'" target="_blank" rel="noopener">Buy at '+esc(it.shop)+' ↗</a>'+saveBtn("i_"+it.id,""):"")+
       '<button class="act" type="button" data-frhide="'+esc(k)+'" aria-pressed="'+hid+'">'+(hid?"Show on him":"Hide on him")+'</button></div>';
   var orig=f.pieces.filter(function(q){return q.item===(p.orig||p.item);})[0],opts=it&&orig?swapOpts(f,orig).slice(0,4):[];
