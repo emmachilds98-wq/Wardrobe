@@ -2313,6 +2313,20 @@ local Three.js). The page: build `docs/`, serve a copy (`tools/qa/serve.sh`), an
   until those are laid on draped cloth: that comes first); compact storage (uint16 positions would take the three
   templates from 1.3 to about 0.8 MB, needed only with many more kinds).
 
+**Continued, 12 Oct, late night (same PR):**
+- **The photo reading's looks on draped cloth** (`drapeLooks`): the shop photo's own front, projected from the front
+  onto the draped front piece's own triangles from the band to the neckline (the drawn pocket, cords and logo stand
+  down, as `main` does); a print where the photo has it, front and back, laid through the piece's centre line (pattern
+  height against height on him); a pattern laid by height by `make3Dcore`'s own `placeMap`. Seen on jb10-snikki (a
+  photo front with its chest logo), fala-town (a print) and q7-fairisle (the Fair Isle yoke and hem band).
+- **More layers round a draped top:** the trousers or shorts are among the clothes under it (they showed through
+  q7-fairisle's hem at the back), a tool belt (`KITRE`) among those over it (jb10-snikki's pouches came through the
+  longer draped hoodie; now the hoodie gathers inside the belt at his waist).
+- **Artifacts:** this account cannot reach Emma's artifacts (FtdHKg is not found, 8uqcG opens read-only as another
+  organisation's), so the GitHub build and the drape preview are published as their own (STATUS.md has the links).
+  The preview build shows a Draped clothes switch (`build_site.py --drape`: `window.__drapeUI`), in a corner of the
+  page and in the fitting room's top bar, draped to start; `docs/` has none.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
