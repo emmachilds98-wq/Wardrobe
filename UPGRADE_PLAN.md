@@ -2089,6 +2089,24 @@ will fit accurately", then "include shorts and all types of bottoms".
   sp-4505-7in, r11-matalan-shorts, sp-4505-cargo, wk-stanray-short-black); the stored specs read the same; the
   pull-request 3D check on all bodies.
 
+## 2zzzzzzzzzzzzzzzzz. Biceps and forearms build on the arms, within a joint limit (12 Oct 2026)
+
+Edit Dave's extremes (STATUS "Now" 2): with weight 0.6, muscle 0.6, arms and legs 1 and the four new sliders at 1.8
+all at once, short sleeves showed his arm at the back of the armpit (ca-beer-garden, h10-resort: back poke 99 to 100,
+45 to 46 after the snug tops of #31). Each slider alone at its limit passed; the arm sliders added up.
+
+- `bodyW` caps the biceps and forearm morphs so that arms plus either grows no more than `ARMSUM` (2.4): with the arms
+  at 1 the biceps reach 1.4; with the arms at 1.8, 0.6; with the arms at 0 or below, their own limit (1.8). The sliders
+  keep their values; the body uses the capped ones, and the clothes follow it.
+- Checked: ca-beer-garden and h10-resort on that body (nothing flagged), and on arms, biceps and forearms all at 1.8
+  (with n4-summer-warehouse, the muscle vest): nothing flagged. The joggers at the shin (g-lounge-04) pass since #32's
+  cuts.
+- **Still open:** w20261006-casual-04 on a heavy, muscular build (weight 0.6, muscle 0.6, arms and legs 1; none of the
+  new sliders): the rim of the hoodie's hood, worn down, shows through the padded jacket's collar band at the back of
+  his neck (back poke 33). It is there on the build before #31 too. The hood is laid over the jacket's back on purpose;
+  round his neck its rim and the jacket's collar meet. Next: keep the hood's rim inside the jacket's collar (the
+  neck occupancy, `OCC.N`, when the hood is placed), or the collar outside the hood.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

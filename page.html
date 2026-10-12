@@ -3605,7 +3605,11 @@ var frontZ0=frontZ,surfZ0=surfZ;   /* make3Dcore wraps these to sit things on th
 /* ---- the realistic body (data/body.json) ---- */
 var bodyOn=false;
 /* the Edit Dave sliders (-1 to 1) as morph weights: below zero the "_n" shape, above it the "_p" shape */
-function bodyW(){var w={};(BODY&&BODY.sliders||[]).forEach(function(k){var v=Number(CHAR[k])||0;if(v<0)w[k+"_n"]=-v;else if(v>0)w[k+"_p"]=v;});return w;}
+/* (the biceps and forearms build on the arms: together they grow no more than ARMSUM, so a big arm and big biceps
+   saved at the ends of their sliders cannot outgrow a short sleeve; either alone still reaches its own limit) */
+var ARMSUM=2.4;
+function bodyW(){var w={},a=Math.max(0,Number(CHAR.arms)||0);(BODY&&BODY.sliders||[]).forEach(function(k){var v=Number(CHAR[k])||0;
+  if((k==="bicep"||k==="forearm")&&v>0)v=Math.min(v,Math.max(0,ARMSUM-a));if(v<0)w[k+"_n"]=-v;else if(v>0)w[k+"_p"]=v;});return w;}
 function bodyKey(){var w=bodyW();return Object.keys(w).sort().map(function(k){return k+w[k].toFixed(3);}).join("+")||"base";}
 /* the face landmarks moved by the sliders */
 function bodyLM(){var c=BODY.cache,k=bodyKey();if(c.lm&&c.lmK===k)return c.lm;var L=JSON.parse(JSON.stringify(BODY.lm)),w=bodyW();
