@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Drape test: hoodie under an open jacket</title>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.184.0/build/three.module.js",
+    "three/addons/controls/OrbitControls.js": "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js",
+    "three/addons/exporters/OBJExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js",
+    "three/addons/exporters/GLTFExporter.js": "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js"
+  },
+  "integrity": {
+    "https://unpkg.com/three@0.184.0/build/three.module.js": "sha384-8FCZ1eVO6it4+pbec2aDtnTrwjWXZLJRC+MAGCIPDgsYnUrl/E0A2YlF8ioMKI/J",
+    "https://unpkg.com/three@0.184.0/build/three.core.js": "sha384-dw2ooPewaEIrAgl6oFDBmmBWCE9oW9LxRGcfwZ0hLvEprzo202wXl7vCYHRlSnOT",
+    "https://unpkg.com/three@0.184.0/examples/jsm/controls/OrbitControls.js": "sha384-4rziNxOBZKQ69i+w+f89KJ55TCYquwchVbByQwmaOeIOXdOU2PLDn3kOfXHwIJC9",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/OBJExporter.js": "sha384-nbwtoZENJD3Vq+ACK0CuGQdPMuDWHkamC2KJD70EV5nfg6jQjfppKOea07YJN+N3",
+    "https://unpkg.com/three@0.184.0/examples/jsm/exporters/GLTFExporter.js": "sha384-VofkvpG6HERhFCYbsUOHeNXBCqID2nfqkQqnVzE1jc/oPcz+qJ13ADdXH08hE+cQ"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#ece9e2;color:#1d1c1a;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#8a3b1e}a:hover{color:#1d1c1a}
+three-d-stage{display:block;width:100vw;height:100vh}
+three-d-stage:not(:defined){visibility:hidden}
+#ui{position:fixed;top:16px;left:16px;width:300px;max-height:calc(100vh - 32px);overflow:auto;box-sizing:border-box;background:#f6f5f2;border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:16px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+#ui h1{margin:0;font-size:19px;line-height:1.25;font-weight:600;letter-spacing:-0.01em}
+#ui p{margin:0;font-size:13px;line-height:1.5;color:#3d3b37;text-wrap:pretty}
+.lab{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#5d5a54}
+.grp{display:flex;flex-direction:column;gap:6px}
+.row{display:flex;flex-wrap:wrap;gap:4px}
+.row button{font:inherit;font-size:13px;padding:6px 10px;border-radius:4px;border:1px solid #d8d4cb;background:#fff;color:#1d1c1a;cursor:pointer}
+.row button:hover{border-color:#8a3b1e}
+.row button[aria-pressed="true"]{background:#1d1c1a;border-color:#1d1c1a;color:#f6f5f2}
+#status{font-family:'JetBrains Mono',monospace;font-size:12px;color:#8a3b1e}
+#result{display:flex;flex-direction:column;gap:8px;font-size:13px;line-height:1.5;color:#3d3b37}
+#result b{color:#1d1c1a;font-weight:600}
+.note{font-size:12px!important;color:#5d5a54!important;border-top:1px solid #d8d4cb;padding-top:12px}
+</style>
+</head>
+<body>
+<three-d-stage name="drape-test-g-mod-27" background="#ece9e2"></three-d-stage>
+<aside id="ui">
+  <div class="lab">Proof of concept · g-mod-27</div>
+  <h1>Hoodie under an open jacket, settled as cloth</h1>
+  <p>Dave's body from the repo's <code>data/body.json</code>. Each layer is draped in wearing order and collides with the body and the layers under it. Nothing is reshaped afterwards.</p>
+  <div id="status">Loading…</div>
+  <div id="result"></div>
+  <div class="grp"><div class="lab">Body</div><div class="row">
+    <button data-k="body" data-v="dave" aria-pressed="true">Dave</button><button data-k="body" data-v="slim">Slim</button><button data-k="body" data-v="athletic">Athletic</button><button data-k="body" data-v="heavier">Heavier</button>
+  </div></div>
+  <div class="grp"><div class="lab">Size (both pieces)</div><div class="row">
+    <button data-k="size" data-v="M">M</button><button data-k="size" data-v="L" aria-pressed="true">L</button><button data-k="size" data-v="XL">XL</button>
+  </div></div>
+  <div class="grp"><div class="lab">Hood</div><div class="row">
+    <button data-k="hood" data-v="out" aria-pressed="true">Out over jacket</button><button data-k="hood" data-v="under">Tucked under</button>
+  </div></div>
+  <div class="grp"><div class="lab">View</div><div class="row">
+    <button data-view="front">Front</button><button data-view="q" aria-pressed="true">¾</button><button data-view="side">Side</button><button data-view="back">Back</button><button data-view="neck">Neck close-up</button>
+  </div></div>
+  <p class="note">The hood's position comes only from the order the layers go on. There is no rule for hoods or collars. The garments are simple grids sized from illustrative chart numbers; the real build drapes sewn patterns in Blender. Dave's length sliders (legs, torso) are not applied here. <a href="3D Fit Review.dc.html">Back to the review</a></p>
+</aside>
+<script src="three-d-stage.js"></script>
+<script type="module" src="drape.js"></script>
+</body>
+</html>

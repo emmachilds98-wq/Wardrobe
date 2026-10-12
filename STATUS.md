@@ -18,7 +18,37 @@ Shipped 12 Oct (PR #31, artifact FtdHKg v35): trousers meet where his thighs do,
 and jumpers rest on his chest, the Lambretta polo and cap as in their photos (UPGRADE_PLAN 2zzzzzzzzzzzzzzz). Before
 that: Edit Dave's sliders centred on the last save, and biceps, forearms, thighs and calves sliders (2zzzzzzzzzzzzzz).
 
+**12 Oct, evening: the garment drape upgrade has begun, and was stopped part-way at Emma's request** (UPGRADE_PLAN
+2zzzzzzzzzzzzzzzzz). Emma brought a design handoff (now `design/garment-drape/`; read its `README.md`, the plan): replace
+how garments get their shape (`fitTop`, `fitCollar`, the occupancy pushes, `warpMan` for clothes) with patterns draped
+in Blender and settled in the page in wearing order. **Her decisions:** yes to the newer Three.js and to Blender-made
+templates; proof first, behind a switch, then report back; a few seconds of settle on first opening is fine; assume
+the model's current shape is right but make the sizing adjustable. **Done:** `tools/build_garments.py` (headless
+Blender 4.5 LTS) makes his body in an A-pose, cuts and meshes the patterns, sews and drapes them; the hoodie's body
+drapes cleanly. **Nothing in the page has changed**, and nothing is in `data/garments/` yet.
+
+**Open pull requests, as left:** PR #34 (collars and the hood case; draft, red on the hood "back poke", see its comment)
+and PR #33 (bottoms' cuts from their photos, arm joint limit, the seat, polo collars; draft). **Emma's artifact (FtdHKg)
+currently shows PR #33's build** (`claude/exciting-albattani-megf52`, 05efecd), not `main`: republishing from `main`
+would roll that back, so this session did not republish it.
+
 **Next agent, start here (in this order):**
+
+0. **The garment drape proof** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzz has the detail, the lessons and the commands):
+   1. Finish the hoodie in `tools/build_garments.py`: after his arms come down, one diagonal fold runs from his right
+      shoulder across his chest with a pinch at the front of his left armhole. Look with
+      `python3 tools/build_garments.py --only hoodie --debug /tmp/g` and `node tools/garment_view.js /tmp/g/hoodie-draped.json out.png`.
+   2. The hood's own drape (neckline held on the garment's, gravity tilted backward so it falls off his head onto his
+      shoulders); look at the quarter-zip and jacket drapes; the quarter-zip collar's centre-front corner.
+   3. Write `data/garments/<archetype>.json` (positions, triangles, pattern UVs, pieces, body binding, hood pins).
+   4. The page behind a switch: bind to his body after `propWarp`, settle inner to outer with `drape.js`'s solver,
+      draped meshes skipped by `warpMan`; the fitting room shows and lets Emma change the sizes.
+   5. Render g-mod-27 (as its data says, and as a quarter-zip) and the hood over the track jacket on all five bodies
+      beside `main`; if it does not clearly beat `main` from every angle, stop and report to Emma.
+   - Also, a small data pull request: g-mod-27's Duck and Cover top is a quarter-zip with no hood (the shop's feed
+     says so), so its piece should be `halfzip`, and `descOf` reads "quarter-zip hoodie" as a full zip ("zip hood").
+   - Frozen while this goes on (the drape replaces that code): queue items 9 and 10, scarf edges, contrast collars.
+     Data, photo reading and the weekly refresh carry on.
 
 1. **Slim and baggy bottoms:** done 12 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzz): `bottomCut` reads every pair's cut for the
    model, the drawing and the fitting room's words, shorts' length from their inseam. Look at them with Emma; the
@@ -65,8 +95,9 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
    have their own buttons; give them the fitting room's camera dock and wear options.
 5. [ ] **Untucked with a tie.** A shirt with a tie always stays tucked (`tuckOn`), so Untucked is hidden then.
    Decide with Emma whether that is right (it is how a tie is worn) and say so on the button.
-6. [ ] **Newer Three.js** (r128 now). Plan doc "Engine and body", still to do. Check every QA script and the 3D check
-   still run, and that card stills look the same.
+6. [ ] **Newer Three.js** (r128 now). Emma said yes on 12 Oct (the drape plan's step 1, `design/garment-drape/README.md`).
+   Plan doc "Engine and body", still to do. Check every QA script and the 3D check still run, and that card stills
+   look the same.
 7. [x] **Shoe lasts.** Done 11 Oct: a last per kind of shoe from its name (`lastK`, `LASTS`: dress, Chelsea,
    loafer, work and safety, hiking, boot, desert and chukka, skate) scaling the profile slice by slice; soles by kind
    (thin with a stacked heel, lugged, pale crepe); boot shafts by kind; a loafer's apron seam and penny strap or
@@ -75,13 +106,13 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
 8. [ ] **Fabric library.** Plan doc "Fabrics and photos": cord, waffle, fleece, quilting and denim as materials,
    not only colours.
 
-9. [ ] **`od-event`: the scarf under a down jacket's shoulders** (check_3d "under 6"; on main before PR #25 too, and
+9. [ ] (Frozen 12 Oct: the garment drape replaces this code.) **`od-event`: the scarf under a down jacket's shoulders** (check_3d "under 6"; on main before PR #25 too, and
    not in the gate set, so CI never saw it). Found 11 Oct: the rays hit the jacket's padded shoulders 16 to 20 cm out
    from his neck, 2 to 3 cm below the scarf's top; the scarf's lower edge is lifted onto the tops by at most 85% of its
    height (the `lifted` pass in the scarf code), so over a puffer it stays tucked under the padding. A scarf should
    drape over the shoulders there: let its lower edge flare out over them instead. (Measuring the outermost cloth over
    each ring's band of height, and widening the side allowance, did not fix it; reverted.)
-10. [ ] **Polo collars.** The leaf lies flat on his shoulders with ragged edges and the stand is low; in the photos a
+10. [ ] (Frozen 12 Oct: the garment drape replaces this code.) **Polo collars.** The leaf lies flat on his shoulders with ragged edges and the stand is low; in the photos a
    polo collar is a distinct ribbed band round the neck, folded over. (Its tipping now lies on the leaf's edge: PR #27.)
 
 11. [x] **Folds and creases in trousers** Done 12 Oct, for every garment (see UPGRADE_PLAN 2zzzzzzzzzzzz). (Emma, 12 Oct: "folds and creases as it sits on a body ... like the
@@ -100,7 +131,9 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
 
 Needs Emma (do not guess):
 - The model's chest measures about 34in on his saved shape, which says S/M tops, while he buys L. Is his saved shape
-  or the measurement off?
+  or the measurement off? (12 Oct: she said to take the model's shape as right and make the sizing adjustable. Note
+  that `ceMeasure` may read 2 to 3% low: it scales by his height only, not by the 1.036 the page scales him by after
+  his proportions; UPGRADE_PLAN 2zzzzzzzzzzzzzzzzz.)
 
 ## How to ship (every change)
 
@@ -128,6 +161,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 12 Oct 2026 | #35 | Garment drape upgrade begun: Emma's design handoff in `design/garment-drape/`, her decisions, `tools/build_garments.py` (Blender templates, in progress) and `tools/garment_view.js`; no page change | not republished (FtdHKg shows PR #33's build) |
 | 12 Oct 2026 | PR | Bottoms: slim, regular, straight, relaxed, wide and baggy clearly different in 3D and the drawing, shorts at their own length (from the inseam), the cut in words in the fitting room | FtdHKg v37 |
 | 12 Oct 2026 | #31 | Trouser legs meet where his thighs do (no V showing his thighs on bigger legs); Clear view in the fitting room (H); shirts and jumpers rest on his chest and span his back instead of standing off it; the Lambretta polo plain with its chest band, its cap with its racing stripe (`crown` correction) | FtdHKg v35 |
 | 12 Oct 2026 | direct to `main` | Edit Dave: every slider back in the middle after Save (centred on his last saved look, within hard limits); biceps, forearms, thighs and calves sliders under "Arms and legs" | FtdHKg v34 |

@@ -243,10 +243,18 @@ and tie are made, and the 3D check treats its front as open).
 - A change that makes some items worse is reverted, even if it fixes others. Two such attempts
   are recorded in 2zx: a wider skin rule, and dropping cloth squares when the colour disagrees.
 
+## The garment drape upgrade (12 Oct 2026, begun)
+
+Emma's design handoff, `design/garment-drape/README.md`, is now the plan for how garments get their shape: patterns
+draped in Blender (`tools/build_garments.py`, in progress) and settled in the page in wearing order, replacing
+`fitTop`, `fitCollar`, `occPushPt` / `occAddMesh` and `warpMan` for clothes. She said yes to it, proof first behind a
+switch. Where it stands and what comes next: STATUS.md "Now" and UPGRADE_PLAN.md 2zzzzzzzzzzzzzzzzz. Until the proof is
+judged, leave garment-geometry rules alone (STATUS.md queue items 9 and 10, scarf edges, contrast collars).
+
 ## Needed from Emma
 
 - Dave's measurements: chest, waist, hips, inside leg, shoulder and sleeve. Also confirm 1.83 m
-  and the 15.5–16 in neck.
+  and the 15.5–16 in neck. (12 Oct 2026: take the model's current shape as right, and make the sizing adjustable.)
 - **Reference photos:** what to do with them. Either she adds a permission rule so they can go
   in the repo, or they stay private.
-- **Phases 2 and 3:** a yes to the newer Three.js and to Blender-made templates.
+- Done 12 Oct 2026: **phases 2 and 3**, a yes to the newer Three.js and to Blender-made templates.

@@ -2089,6 +2089,109 @@ will fit accurately", then "include shorts and all types of bottoms".
   sp-4505-7in, r11-matalan-shorts, sp-4505-cargo, wk-stanray-short-black); the stored specs read the same; the
   pull-request 3D check on all bodies.
 
+## 2zzzzzzzzzzzzzzzzz. Garment drape upgrade: Emma's decisions, what was found, and the template builder begun (12 Oct 2026)
+
+Emma brought a design handoff, "Dave's 3D clothing fit review" (now in `design/garment-drape/`: `README.md` is the plan,
+`3D Fit Review.dc.html` the review, `Drape Test.html` with `drape.js` a working proof of concept on `data/body.json`).
+It recommends replacing how garments get their shape (`fitTop`, `fitCollar`, `occPushPt` / `occAddMesh` and `warpMan`
+for clothes) with patterns draped as cloth in Blender and settled in the page in wearing order, keeping the body,
+Edit Dave, the photo reader, `fixes.json`, `specs.json` and the checks. This session stopped part-way, at Emma's
+request, during the proof's first step. **Nothing in the page has changed.**
+
+**Emma's decisions (asked in the session):**
+- Yes to the newer Three.js (the plan's step 1) and to Blender-made garment templates (step 2). Both were listed as her
+  decisions in HANDOFF.md.
+- Proof first, behind a switch so the live page is unchanged, then report back before going further (the plan's
+  "Proof first").
+- A few seconds of cloth settle the first time an outfit is opened is fine; cards reuse the cached result.
+- Dave's measurements: assume what the model has now is right, but make the sizing adjustable so she can change it.
+
+**Found on the way:**
+- **g-mod-27's "hoodie" has no hood.** `r9-dc-slell-wine` is Duck and Cover's "Slellmoore 1/4 Zip Hoodie Wine"; the
+  shop's own product feed (`/products/slellmoore-1-4-zip-hoodie-wine.json`) says "quarter zip ls top, high neck
+  collar, metal effect coil chain quarter zip, self fabric double fold hem & cuff band", and its photo shows a funnel
+  neck. On `main` the model draws a hood, drawstrings and a full-length zip. Two faults: the outfit's piece is
+  `"shape": "hoodie"` (`data/outfits-new.json`), where it should be `halfzip`; and `descOf` reads its zip as full,
+  because "quarter-zip hoodie" contains "zip hood", and `D.zip` tests for a full zip before a half one. So PR #34's
+  g-mod-27 failures are about a hood the garment does not have. The real hood-under-an-open-outer-layer cases are
+  `w20261006-casual-04` (SikSilk full-zip hoodie under a Dickies Scobey puffer) and `hoodie-coat` (ASOS boxy hoodie
+  under a long coat). Not fixed here: it is a data and listing-reader change, with its own specs and 3D check run.
+- **On `main` the 3D check passes all three outfits on all five bodies** (`--body dave|slim|athletic|heavier|loose`:
+  0 flags), while the renders show the hood as a flat shield on the jacket's back and a flap standing off his neck,
+  and a ragged jacket collar. That is the review's point 05: the counts catch glitches, not wrong shapes.
+- **His saved shape uses the proportion sliders** (legLen −0.9, torsoLen 0.38, neckLen −0.63, headSize 0.225,
+  torsoDepth −0.138, shoulderSlope 0.951), so `warpMan` runs on every body, not only on Edit Dave's extremes. Under it,
+  the arm and the torso move differently by up to 2.7 cm at the armpit (the shoulder slope drops the arms, not the
+  torso beside them), so a template has to be bound to his body after `propWarp`, as the plan's step 4 says. Afterwards
+  the page scales the whole figure by 1.79 / W(1.79) = 1.036 (times `height`/183), so a metre in the warped frame is
+  0.965 of a real one; the builder sizes the cloth by that.
+- **The measuring card's figures may read low.** `ceMeasure` scales the chest, waist and hips by `height`/183 only,
+  not by the 1.036 the page scales him by after his proportions (nor the torso depth), so "His measurements, from the
+  model" may be 2 to 3% under what is drawn. Worth checking before settling the open question of his 34 in chest
+  against L tops. Not changed.
+
+**Started: `tools/build_garments.py`** (headless Blender 4.5.14 LTS, downloaded and checked against its sha256 on first
+use; run as `python3 tools/build_garments.py --only hoodie --debug <dir>`, about 2 minutes a garment):
+- **His body:** `data/body.json` with his saved morphs and `propWarp` ported, reproduced from the same MakeHuman rig as
+  `tools/build_body.py` (to 0.08 mm), plus A-poses at 40, 30, 20 and 12 degrees with the same vertices.
+- **Patterns, size L,** in `MEAS` (cm): a front and back (the front cut in two for an open jacket), set-in sleeves whose
+  cap is solved to be 3% longer than the armhole, a two-piece hood, a stand collar; rib bands drafted narrower than the
+  body (`band_k`). Trued as a pattern maker would: the armhole meets the shoulder at a right angle, the neckline leaves
+  it at one, and the sleeve cap leaves the underarm level, so where pieces meet their corners add up to a full turn.
+  A check prints the worst corners after welding.
+- **Meshing:** constrained Delaunay, 1.4 cm, seams sampled alike on both sides.
+- **Placing:** the body pieces wrapped on an ellipse round his torso and bent over his shoulders, the sleeves rolled
+  round each arm, each seam closed by moving both sides toward each other (nearby cloth carried along), then pushed
+  clear of his skin.
+- **Drape:** the seams welded into one mesh, eased to the pattern's lengths with a quick solve against his body
+  (numpy), then Blender cloth with gravity, his body as a collider whose shape keys bring his arms down from the A-pose
+  to his relaxed pose while the cloth follows.
+- **Where it stands:** the hoodie's body drapes cleanly in the A-pose and reads as a crew-neck sweatshirt (edges within
+  9% of the pattern's lengths). Once the arms are down, one diagonal fold runs from his right shoulder across his
+  chest, with a pinch near the front of his left armhole. The quarter-zip (`halfzip`) and the jacket run end to end
+  but have not been looked at; the quarter-zip's collar shows a +368 degree corner at the centre front. The hood's own
+  drape is not written. Nothing is written to `data/garments/` yet.
+- **Lessons, each of which cost a run:** Blender's gravity points down its z axis unless `scene.gravity` is set (the
+  page's frame has y up), so the first drapes were pulled toward his back. Blender's `delaunay_2d_cdt` fills an
+  outline's hollows (the neckline, the sleeve cap's) even with output type 1, and lays slivers of no area along
+  straight edges; both stood the neckline up as a funnel. Corners that do not add up to a full turn where pieces are
+  sewn stand up as funnels and "ears". Blender's sewing springs did not hold the seams closed (1.9 cm apart on average
+  after the drape, 20 cm at worst), so the seams are welded instead. Blender keeps the cloth's starting creases as its
+  resting bends, so the starting shape is smoothed hard first.
+- `tools/garment_view.js` renders the `--debug` files (his body, the garment, sewing lines) from any angle without
+  the page.
+
+**Next, in order** (STATUS.md "Next agent, start here" has the same list):
+1. Finish the hoodie: remove the fold left after the arms come down. Try more, smaller pose steps (`--frames 2`), a
+   lower `bending`, or 6 to 10 frames of settle between poses.
+2. The hood: its own cloth, its neckline held on the garment's (`Garment.hood_ring` pairs each half's edges with the
+   garment's), placed up round his head, with gravity tilted backward for about 40 frames (for example
+   `scene.gravity = (0, -6, -8)`, then `(0, -9.81, 0)`) so it falls back onto his shoulders, and the draped hoodie as a
+   static collider (`static_collider`).
+3. Look at the quarter-zip's and the jacket's drapes; fix the collar's centre-front corner, and stiffen the collar
+   (the `stiff` vertex group, `bending_stiffness_max`).
+4. Write `data/garments/<archetype>.json`: each point's position (his warped frame), the triangles, each corner's
+   place on the pattern (as UVs at the page's 1.2 per metre round and 3.33 per metre down, `lookTex`), the piece of
+   each point, its binding (the nearest body triangle among the allowed regions, sleeves to `uarm`/`farm`/`hand` and
+   the rest to the torso, neck and head, with barycentric weights and the offset in that triangle's frame), the hood's
+   pins on the neckline, the scale 0.965 and the measurements used. Keep it under about 8 MB in all (section 4).
+5. The page, behind a switch (for example `window.__drape`, set from a QA script with `QA_INIT`): load the templates,
+   bind them to his final body (`bodyPos()` warped as `warpMan` warps the body, with `bodyArmMask`), and settle them
+   inner to outer (`layRank`) with `drape.js`'s solver against the body, the layers already settled and copies of
+   the other inner pieces warped the same way. Mark the draped meshes so `warpMan` skips them. Rest lengths come
+   from the pattern, graded by the size; materials from `pm(p)` with the pattern's UVs; painted folds off on draped
+   pieces at first; the skin hidden from their own hems and cuffs.
+6. Sizing she can adjust (her decision): the fitting room shows the garment's numbers and his model's, and lets her
+   pick another size or change the numbers for a piece.
+7. The proof: g-mod-27 as its data says (PR #34's case), g-mod-27 as a quarter-zip, and the hood laid over the track
+   jacket, on all five bodies, `tools/qa/zoom.js` with `"0,1.22,2.9,1.18;0.785,1.22,2.9,1.18;1.5708,1.22,2.9,1.18;
+   3.14159,1.22,2.9,1.18;2.36,1.62,1.2,1.5"`, beside `main`. If it does not clearly beat `main` from every angle,
+   stop and report to Emma. Then the plan's steps 1 to 6 (`design/garment-drape/README.md`).
+
+Separately, as a small data pull request (not garment geometry): g-mod-27's piece as `halfzip`, and `descOf` reading
+"quarter-zip" before "zip hood". Both change renders and stored specs, so run `node tools/specs.js`, `specs_diff.py`
+and the 3D check on every outfit using a quarter-zip "hoodie".
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -2269,8 +2372,10 @@ for commit 9e3f504, before that update.
 
 ### Needed from Emma
 - Dave's measurements: chest, waist, hips, inside leg, shoulder width and sleeve length. Also
-  confirm 1.83 m and the 15.5–16 in neck.
+  confirm 1.83 m and the 15.5–16 in neck. (12 Oct 2026: she said to assume the model's current
+  shape is right and to make the sizing adjustable, 2zzzzzzzzzzzzzzzzz.)
 - A decision on the cropped reference photos. Either a permission rule lets them into the repo,
   or they stay private elsewhere.
-- A yes to the newer Three.js and the Blender templates.
+- Done 12 Oct 2026: a yes to the newer Three.js and the Blender templates, and proof first behind
+  a switch (2zzzzzzzzzzzzzzzzz).
 - Which step to start with (recommended: 1 to 3).
