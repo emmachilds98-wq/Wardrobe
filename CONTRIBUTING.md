@@ -281,8 +281,12 @@ All fitting happens in `make3Dcore` in `page.html`, on the real body in `data/bo
   pushed outside them (`occPushPt`), so nothing underneath can come through. A garment's body that lies on his arm's
   part of the body mesh (the front of a gilet's shoulder) clears the shoulders of what is under it as well as his arm. Collars (`fitCollar`) are built round the
   neck base and stand on what is under them. Sleeves under a long-sleeved outer layer are not built.
-- **Trousers and shorts.** The seat, hips and tops of the thighs are one draped piece (`lowerWrap`); each leg carries
-  on below it (`legSecs`), with the crotch sealed where the legs meet. The leg's cut comes from `fit` and the name:
+- **Trousers and shorts.** Cut as a pair is (`trouserGeo`): each half is one piece of cloth from the waistband to the
+  hem. Over the hips and seat it lies on the hull of his body (hollows bridged) plus the ease, and below the widest
+  point it falls in a line. The halves meet down the middle, front and back, and along the crotch seam, 2 to 4 cm
+  below his crotch; below it each half closes round its own leg (`legSecs` gives each leg's hanging shape), so the
+  legs part in an arch. A leg's inside that would run past the middle is eased back to a narrow gap, never onto his
+  thigh (`thighGap`). Never build trousers from his skin pushed outward: see *Lessons learned*. The leg's cut comes from `fit` and the name:
   wide/baggy/barrel/parachute, relaxed/loose/carpenter/cargo, slim/tapered/cuffed/jogger, bootcut/flare, cropped/ankle.
   Over boots the hem rests on the boot. Cuffed joggers gather above the shoe.
 - **His skin under the clothes.** The body's triangles that clothes cover are left out, so skin can never poke
@@ -377,7 +381,7 @@ shows it and in flat ID colours (one per piece, the body by region). It counts, 
 | `sunk` | The same at the outline of the figure (cloth sunk inside him at an edge, or a sleeve too short). His feet are left out: a shoe is a shell over the foot. | 60 |
 | `colour` | A plain piece whose rendered colour is far from its target (another hue, much too light or dark, or lost its colour). The target is the photo reading or the `data/fixes.json` colour. | — |
 | `under` | A scarf or snood with a top's collar over it: rays round the back and sides of his neck, over the scarf's top 9 cm, that meet a top and then the scarf just behind it. | 2 rays |
-| `legs` | Trousers whose legs are joined down the thighs: rays between his legs, front and back, from 15 to 30 cm below the crotch (higher up a heavier build's thighs meet), that meet the trousers instead of passing between them. | 2 |
+| `legs` | Trousers whose legs are joined down the thighs: rays between his legs, front and back, from 7 to 30 cm below the crotch, wherever his own thighs (as built, Edit Dave's shape included) are 1.5 cm or more apart, that meet the trousers instead of passing between them. It looked only from 15 cm down until 12 Oct, so legs joined over the tops of his thighs passed. | 2 |
 | `form` | A flat cap drawn as a baseball cap: its peak reaching more than 2 cm past the front of its crown (a flat cap's crown is carried forward over its peak; 0.7 cm now, 4.6 cm for the old dome). | 0 |
 | `offset` | An inner layer drawn over the piece worn over it because of a depth offset (a photo front or print laid on the cloth): the view is drawn with and without the offsets and compared. | 8 |
 
@@ -409,7 +413,8 @@ Common causes:
 - see-through on the torso: a gap between the yoke and the body of a top, or the front opening of a top with nothing
   under it;
 - poke: an inner collar, placket or hem not pushed outside the outer layer (look at the occupancy maps);
-- holes at the crotch or between the legs: the trouser seal;
+- holes at the crotch or between the legs: the two halves of `trouserGeo` no longer meeting along the crotch seam, or
+  a leg's inside crossing the middle (`inX`);
 - colour: a wrong photo reading (correct it in `data/fixes.json`) or a wrong palette `col`.
 
 ### The full check
@@ -444,6 +449,13 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
 3. Re-check every outfit using that shape; run the full check if it touches all tops or all trousers.
 
 ## Lessons learned (do not repeat these)
+
+- **Never make a garment from his skin pushed outward where two parts of him nearly touch.** The trousers' top was his
+  hips and inner thighs pushed out by the ease: the cloth traced the bulge at the front and the cleft of his seat, and
+  the two inner thighs, each pushed toward the other, met in the middle. Each fix (legs pressed together, a gusset, a
+  fly panel, a levelling pass) moved the fault rather than removing it, and the `legs` check looked only from 15 cm
+  down, so legs joined over the tops of the thighs passed for weeks. Trousers are now cut as a pair is
+  (`trouserGeo`); build any garment that spans a gap in him the same way, with its own seams.
 
 - **Adjusted normals must survive the warp.** `warpMan` reshapes every mesh to his proportions after `make3D`; it
   keeps each mesh's own normals and turns them with the surface. Recomputing them there lost every adjustment (the
@@ -539,8 +551,9 @@ Merge the three `report.json` files and fix every flagged outfit before merging.
   - *A jacket and jumper standing out from him.* Knits hung straight from the chest to the hem; a ribbed hem now
     draws in round his hips, and outer layers have less ease. Look at the side view of any change to how tops hang.
   - *Trousers stretched, the crotch sticking out, the legs stuck together down the thighs.* A step pressed the two
-    legs together all the way down to the shin; it now works only just under the crotch, the legs part below it, and
-    the hip cloth's inner thighs follow the legs rather than the body. Guard: `legs`.
+    legs together all the way down to the shin; it was cut back to just under the crotch, which still left them
+    joined over the tops of the thighs. On 12 Oct the trousers were rebuilt as a pair is cut (`trouserGeo`): the legs
+    part from the crotch seam and the pressing step is gone. Guard: `legs`, now from 7 cm below the crotch.
   - *A flat cap that looked like a baseball cap.* Its crown was a tall dome stopping at the band, with the peak
     standing out in front of it; it is now a low top, highest over the back of his head and carried forward to a lip
     over a short peak. Guard: `form`.

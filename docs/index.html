@@ -2226,7 +2226,7 @@ var state={view:"shop",dept:"all",shop:"all",col:"all",tfit:"all",fab:"all",comp
   tocc:"everyday",twx:(function(){var m=new Date().getMonth();return m>=10||m<=1?"cold":(m>=4&&m<=7?"warm":"mild");})(),mocc:"everyday",mwx:"all"};
 var lim={picks:PAGE,fits:FITPAGE};
 /* the automatic 3D checks (tools/check_3d.js) open the page with ?qa=1 and drive it through this */
-if(/[?&]qa=1\b/.test(location.search))window.__qa=function(){return {make3D:make3D,fitById:fitById,effPieces:effPieces,trueFor:trueFor,LOOK:LOOK,TRUE:TRUE,byId:byId,dressed:dressed,loadThree:loadThree,body:function(){return BODY;},cc:cc,descOf:descOf,getPh:getPh,sampleLook:sampleLook,pieceLook:pieceLook,sgKind:sgKind,shopSize:shopSize,guessShape:guessShape,wear:function(w){w=w||{};ZIPM=w.zip||"";TUCKM=w.tuck||"";TURNM=w.turn||"";}};};
+if(/[?&]qa=1\b/.test(location.search))window.__qa=function(){return {make3D:make3D,fitById:fitById,effPieces:effPieces,trueFor:trueFor,LOOK:LOOK,TRUE:TRUE,byId:byId,dressed:dressed,loadThree:loadThree,body:function(){return BODY;},bodyPos:bodyPos,cc:cc,descOf:descOf,getPh:getPh,sampleLook:sampleLook,pieceLook:pieceLook,sgKind:sgKind,shopSize:shopSize,guessShape:guessShape,wear:function(w){w=w||{};ZIPM=w.zip||"";TUCKM=w.tuck||"";TURNM=w.turn||"";}};};
 var items=[],fits=[],byId={},fitById={},meta={},profile={},phase="loading",fitsSeen=false;
 var db=null,canShare=true,saved={},votes={},myfits=[],local={saved:{},votes:{},myfits:{},owned:{}};
 var owned={},shopInfo={},staticMode=false,catFiles=false,swaps={},locked={},colCache={};
@@ -4007,69 +4007,90 @@ function make3Dcore(pieces){
       if(gap>0){if(tt2<0)tt2+=Math.PI*2;uv.push(Math.max(0,Math.min(1,(tt2-a0)/spn))*uu,(pos[vi2*3+1]-y0)/0.3);}else uv.push((0.5-Math.abs(tt2)/(2*Math.PI))*uu,(pos[vi2*3+1]-y0)/0.3);}
     g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));
     g.computeVertexNormals();g.userData.armMask=new Uint8Array(am);var em=0;for(var q7=0;q7<evA.length;q7++)if(!am[q7]&&evA[q7]>em)em=evA[q7];g.userData.evMax=em;return g;}
-  /* The top of trousers or shorts on the real body: one piece of cloth over his hips, seat and the tops of his thighs,
-     pushed out by the ease and smoothed so it bridges the crotch and the hollows (no separate seat or "cup"). Down
-     each thigh it settles onto that leg's hanging shape (Ls), so the leg tube below carries on from it without a seam. */
-  function lowerWrap(e,yBot,yTop,Ls,m){var P=bc.pos,N=bc.nrm,I=BODY.idx,R=BODY.regions,rH=R.indexOf("hips"),rT=R.indexOf("thigh"),rB=R.indexOf("belly"),rCh=R.indexOf("chest"),
-      map=new Int32Array(BODY.n).fill(-1),pos=[],idx=[],cr=BL.crotch,eMap={},WD=bodyWeld(bc),WN=WD.nrm;
-    function cvL(v){return Math.min(yTop-P[v*3+1],P[v*3+1]-yBot);}
-    function legR(x,y,z){var s2=x<0?-1:1,d=secAt(Ls[s2],y),ph=Math.atan2(x-d[3],z-d[4]),sn=Math.sin(ph),cs=Math.cos(ph);return [d,ph,1/Math.sqrt(sn*sn/(d[1]*d[1])+cs*cs/(d[2]*d[2]))];}
-    /* in front of the crotch the cloth lies flat across from one thigh to the other, rather than over his shape */
-    function frontCap(y){var a2=secAt(Ls["1"],Math.min(y,cr+0.01)),lf=a2[4]+a2[2];if(y<=cr+0.01)return lf;var t2=TO(Math.min(1.03,y)),bf=t2[4]+t2[2]+e;return lf+(Math.max(lf,bf)-lf)*sstep(cr+0.01,cr+0.11,y);}
-    function addV(px,py,pz,nx,ny,nz){var x=px+nx*e,y=py+ny*e,z=pz+nz*e;
-      if(Math.abs(x)<0.05&&y<cr+0.05)y-=0.03*sstep(0.06,0.0,Math.abs(x))*sstep(cr+0.06,cr,y);   /* the crotch seam hangs a little below his body */
-      if(Math.abs(x)<0.09&&y>cr-0.05&&y<cr+0.15&&z>0){var zc=frontCap(y)+0.002,wx=sstep(0.09,0.035,Math.abs(x))*sstep(cr+0.15,cr+0.08,y);if(z>zc||y>cr-0.012)z=z+(zc-z)*wx;}   /* (flat across: no bulge, and no hollow either, easing out up to the fly top) */
-      if(y<cr-0.015&&(Math.abs(x)>0.012||y<cr-0.04)){var L=legR(x,y,z),d=L[0],r=Math.hypot(x-d[3],z-d[4]),w=sstep(cr-0.005,yBot+0.03,y),r2=r+(L[2]+0.0009-r)*w;   /* (a hair outside the leg's top, which runs on under it at almost the same size: tucked
-             in further, a lip opened at the join and the inside of the cloth showed as a line round both thighs) */
-        if(r2<r&&w<1)r2=r;x=d[3]+Math.sin(L[1])*r2;z=d[4]+Math.cos(L[1])*r2;}
-      pos.push(x,y,z);return pos.length/3-1;}
-    function vOf(v){v=WD.can[v];if(map[v]<0)map[v]=addV(P[v*3],P[v*3+1],P[v*3+2],WN[v*3],WN[v*3+1],WN[v*3+2]);return map[v];}
-    function cutV(va,vb){va=WD.can[va];vb=WD.can[vb];var k2=va<vb?va+"_"+vb:vb+"_"+va;if(eMap[k2]!=null)return eMap[k2];var fa=cvL(va),fb=cvL(vb),f=fa/(fa-fb),L=function(o){return P[va*3+o]+(P[vb*3+o]-P[va*3+o])*f;},LN=function(o){return WN[va*3+o]+(WN[vb*3+o]-WN[va*3+o])*f;};
-      eMap[k2]=addV(L(0),L(1),L(2),LN(0),LN(1),LN(2));return eMap[k2];}
-    for(var t=0;t<I.length/3;t++){var rg=BODY.treg[t];if(rg!==rH&&rg!==rT&&rg!==rB&&rg!==rCh)continue;   /* (at the back of his waist the body is part of the chest: without it a strip down the spine was left open) */
-      var tv3=[I[t*3],I[t*3+1],I[t*3+2]],inn=tv3.map(function(v){return cvL(v)>=0;}),nIn=inn.filter(Boolean).length;if(!nIn)continue;
-      if(nIn===3){idx.push(vOf(tv3[0]),vOf(tv3[1]),vOf(tv3[2]));continue;}
-      for(var r0=0;r0<3;r0++){if(nIn===1?inn[r0]:!inn[r0])break;}
-      var A=tv3[r0],B=tv3[(r0+1)%3],Cc=tv3[(r0+2)%3];
-      if(nIn===1)idx.push(vOf(A),cutV(A,B),cutV(A,Cc));else{var ab=cutV(A,B),ac=cutV(A,Cc);idx.push(ab,vOf(B),vOf(Cc),ab,vOf(Cc),ac);}}
-    var nv=pos.length/3,g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setIndex(idx);g.computeVertexNormals();
-    /* smooth like cloth: fill the crotch and hollows, ease off the bulges, never closer to the skin than a few mm;
-       edges (waist, leg ends) and the part already settled on the legs stay put */
-    var ek={},edge=new Uint8Array(nv),p0=pos.slice(),nf=g.attributes.normal.array.slice(),nb=new Float32Array(nv*3),cnt=new Uint16Array(nv);
-    for(var q=0;q<idx.length;q+=3)for(var e2=0;e2<3;e2++){var va=idx[q+e2],vb=idx[q+(e2+1)%3],kk=va<vb?va+"_"+vb:vb+"_"+va;ek[kk]=(ek[kk]||0)+1;}
-    Object.keys(ek).forEach(function(kk){if(ek[kk]===1){var ab2=kk.split("_");edge[+ab2[0]]=1;edge[+ab2[1]]=1;}});
-    for(var it=0;it<22;it++){g.computeVertexNormals();var nr=g.attributes.normal.array;nb.fill(0);cnt.fill(0);
-      for(q=0;q<idx.length;q+=3)for(e2=0;e2<3;e2++){var a1=idx[q+e2],b1=idx[q+(e2+1)%3];nb[a1*3]+=pos[b1*3];nb[a1*3+1]+=pos[b1*3+1];nb[a1*3+2]+=pos[b1*3+2];cnt[a1]++;nb[b1*3]+=pos[a1*3];nb[b1*3+1]+=pos[a1*3+1];nb[b1*3+2]+=pos[a1*3+2];cnt[b1]++;}
-      for(var vi=0;vi<nv;vi++){if(edge[vi]||!cnt[vi])continue;var yy=p0[vi*3+1],hold=1-sstep(cr-0.015,cr-0.045,yy)*(Math.abs(p0[vi*3])>0.012?1:0);if(hold<=0)continue;
-        var dx=nb[vi*3]/cnt[vi]-pos[vi*3],dy=nb[vi*3+1]/cnt[vi]-pos[vi*3+1],dz=nb[vi*3+2]/cnt[vi]-pos[vi*3+2],out=dx*nr[vi*3]+dy*nr[vi*3+1]+dz*nr[vi*3+2];
-        var crz=Math.abs(p0[vi*3])<0.09&&yy<cr+0.15&&p0[vi*3+2]>0?1:0,f=(crz?0.8:(out>0?0.75:0.35))*hold;
-        pos[vi*3]+=dx*f;pos[vi*3+1]+=dy*f*0.4;pos[vi*3+2]+=dz*f;
-        var gx=pos[vi*3]-p0[vi*3],gy=pos[vi*3+1]-p0[vi*3+1],gz=pos[vi*3+2]-p0[vi*3+2],dn=gx*nf[vi*3]+gy*nf[vi*3+1]+gz*nf[vi*3+2],lim=-Math.max(0,e-0.004);
-        if(dn<lim){var fx=lim-dn;pos[vi*3]+=nf[vi*3]*fx;pos[vi*3+1]+=nf[vi*3+1]*fx;pos[vi*3+2]+=nf[vi*3+2]*fx;}}
-      g.attributes.position.array.set(pos);g.attributes.position.needsUpdate=true;}
-    /* across the front of the crotch the cloth lies level from one side to the other: the body dips back between his
-       legs there, and the cloth followed it into a valley up the middle of the crotch. At each height the cloth's front
-       just either side is the level the middle is brought up to */
-    (function(){var BY=0.005,y0=cr-0.015,NBy=Math.ceil(0.1/BY)+1,fr=new Float32Array(NBy).fill(-9);
-      for(var v=0;v<nv;v++){var ax=Math.abs(pos[v*3]),y=pos[v*3+1],z=pos[v*3+2];if(ax<0.026||ax>0.044||z<=0||y<y0||y>y0+0.1)continue;var b=Math.round((y-y0)/BY);if(z>fr[b])fr[b]=z;}
-      for(var b2=1;b2<NBy;b2++)if(fr[b2]<-1)fr[b2]=fr[b2-1];for(b2=NBy-2;b2>=0;b2--)if(fr[b2]<-1)fr[b2]=fr[b2+1];if(fr[0]<-1)return;
-      for(v=0;v<nv;v++){var ax2=Math.abs(pos[v*3]),y2=pos[v*3+1],z2=pos[v*3+2];if(ax2>=0.034||z2<=0.02||y2<y0||y2>y0+0.1)continue;var fb=(y2-y0)/BY,b3=Math.min(NBy-2,Math.floor(fb)),tz=fr[b3]+(fr[b3+1]-fr[b3])*(fb-b3)-0.001;
-        if(z2>=tz)continue;var w=sstep(0.034,0.02,ax2)*sstep(y0,y0+0.02,y2)*(1-sstep(y0+0.08,y0+0.1,y2));pos[v*3+2]=z2+(tz-z2)*w;}
-      g.attributes.position.array.set(pos);g.attributes.position.needsUpdate=true;})();
-    /* texture runs round each leg and up from the hem, as on the leg tubes */
-    /* (measured up from the legs' own hems, so stripes and checks run on across the join without a step) */
-    /* (round the leg by the tube's own ellipse angle, not the true angle: the two differ on an oval leg, and the wales
-       of a cord stepped sideways where the cloth over the hips met the leg) */
-    var yH=Ls["1"][0][0],uv=[];for(vi=0;vi<nv;vi++){var x=pos[vi*3],y=pos[vi*3+1],z=pos[vi*3+2],L2=legR(x,Math.max(yBot,Math.min(cr,y)),z),d3=L2[0];uv.push((Math.atan2((x-d3[3])/d3[1],(z-d3[4])/d3[2])/(2*Math.PI)+0.5)*0.4,(y-yH)/0.3);}
-    g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.computeVertexNormals();
-    /* along its lower edge the cloth turns the way the leg below it does, so the light shows no line where they meet */
-    /* (over 8 cm: the cloth over the top of the thigh faces a little upward, and turned in 3.5 cm it caught the light
-       as a pale band with a line under it across both thighs) */
-    var nrA=g.attributes.normal.array;for(vi=0;vi<nv;vi++){var yv=pos[vi*3+1];if(yv>yBot+0.08)continue;var xv=pos[vi*3],zv=pos[vi*3+2],ql=secAt(Ls[xv<0?"-1":"1"],Math.max(Ls["1"][0][0],yv)),
-      lnx=(xv-ql[3])/(ql[1]*ql[1]),lnz=(zv-ql[4])/(ql[2]*ql[2]),ll=Math.hypot(lnx,lnz)||1,wb=sstep(yBot+0.08,yBot,yv);
-      var bx2=nrA[vi*3]*(1-wb)+lnx/ll*wb,by2=nrA[vi*3+1]*(1-wb),bz2=nrA[vi*3+2]*(1-wb)+lnz/ll*wb,bl=Math.hypot(bx2,by2,bz2)||1;nrA[vi*3]=bx2/bl;nrA[vi*3+1]=by2/bl;nrA[vi*3+2]=bz2/bl;}
+  /* Trousers and shorts on the real body, cut as a pair is: each half is one piece of cloth from the waistband to the
+     hem, so the seat, the crotch and both legs are one surface, with no join to seal or fill. (They were his own skin
+     pushed out by the ease over his hips and the tops of his thighs, with a tube for each leg below it. That cloth
+     traced the bulge at the front and the cleft of his seat; the skin of his two inner thighs, each pushed out toward
+     the other, met in the middle; and the joins needed the legs pressed together under the crotch, a gusset and a fly
+     panel to hide them. Each fix showed somewhere else as legs stuck together or a muddle at the crotch.)
+     - Over his hips and seat each row lies on his outline with the hollows bridged (fitMaps' hull) and the ease added,
+       and below the widest point it falls on in a line (at most 3 cm in for every 10 down) rather than following him
+       back in under the seat and round the tops of his thighs.
+     - The two halves meet down the middle at the front and back, and under him along the crotch seam (yc, a little
+       below his crotch): a line from front to back where the two legs' inner sides begin.
+     - Below it each half closes round its own leg: every column of cloth eases from its place on the crotch seam onto
+       the leg's hanging shape (Ls), within 4.5 cm on the inside, so the legs part in a rounded arch, and over 16 cm on
+       the outside, so the cloth falls from the hip.
+     - The legs never run into each other: a leg whose inside would reach past the middle (a loose cut on legs that
+       stand close) has that side eased back to leave a narrow gap, never onto his thigh (thighGap); where his thighs
+       touch, the legs touch along the middle.
+     o: wr, folds by height and angle round the leg (legFolds); hemF, how far the hem rises at the front over the shoe. */
+  function trouserGeo(e,yTop,Ls,yc,m,o){var FM=fitMaps(),DT=fmDilate(FM.T,e),zc=FX.zc,TW=2*Math.PI,N=96,NH=N/2,K=14,K2=K/2,M=K+NH+2,TG=thighGap();
+    /* the hang, in each of N directions round him, on rows from the waistband down to the crotch seam */
+    var nH=Math.max(8,Math.round((yTop-yc)/0.005)+1),dH=(yTop-yc)/(nH-1),HG=new Float32Array(nH*N),i,j,c;
+    for(j=0;j<N;j++){var pv=0;for(i=0;i<nH;i++){var hh=fmGet(DT,yTop-i*dH,j/N*TW);pv=Math.max(hh,pv-0.3*dH);HG[i*N+j]=pv;}}
+    /* how near the middle each leg's inside may come: a gap that opens slowly down from the crotch seam (2.5 mm a side,
+       and 4 mm more for every 10 cm down), as two legs hanging straight leave, never closer than 5 mm to the inside of
+       his thigh, and where his thighs touch or nearly do, the middle itself. (Only a leg's inside that would run past
+       this is moved; the rest hangs as the leg's cut has it, so the legs stay straight columns rather than following
+       the insides of his thighs.) */
+    function inX(sd,y){var fi=(y-TG.y0)/TG.BS,i0=Math.max(0,Math.min(TG.n-1,Math.round(fi))),h=9;for(var d=-2;d<=2;d++){var ii=i0+d;if(ii>=0&&ii<TG.n)h=Math.min(h,TG.H[sd][ii]);}
+      return Math.max(0,Math.min(h-0.005,0.0025+0.04*(yc-y)));}
+    var pos=[],uv=[],idx=[],sideA=[],VID={},PH={},outer={};
+    [1,-1].forEach(function(s){var sd=String(s),L=Ls[sd],lq0=secAt(L,yc),hem=L[0][0],rows=[],r,y;
+      for(i=0;i<nH;i++)rows.push(yTop-i*dH);
+      var nL=Math.max(2,Math.round((yc-hem)/0.005));for(i=1;i<=nL;i++)rows.push(yc-(yc-hem)*i/nL);
+      /* the ring at the crotch seam, column by column: from the middle of the crotch seam forward to the front of the
+         middle, round the outside of his hip to the back of the middle, and along the crotch seam to its middle again
+         (the last column repeats the first, for the cloth's pattern to close round the leg) */
+      var zf=zc+HG[(nH-1)*N],zb=zc-HG[(nH-1)*N+NH],P=[],isOut=[];
+      function hangPt(ri,jo){var jj=s>0?jo:(N-jo)%N,rr=HG[ri*N+jj],th=jj/N*TW;return [Math.sin(th)*rr,zc+Math.cos(th)*rr];}
+      for(c=0;c<M;c++){var c2=c%(M-1),out=c2>=K2&&c2<=K2+NH;isOut.push(out);
+        if(out)P.push(hangPt(nH-1,c2-K2));else{var k=c2<K2?K2+c2:c2-(K2+NH+1);P.push([0,zb+(zf-zb)*(k+1)/(K+1)]);}}
+      /* where each column runs down the leg: its angle round the leg's own hanging shape, as seen from the leg's centre */
+      var ph=P.map(function(p){return Math.atan2((p[0]-lq0[3])/lq0[1],(p[1]-lq0[4])/lq0[2]);});PH[sd]=ph;
+      /* the cloth's pattern runs round the leg at its size by the knee (1.2 units a metre) and up from the hem */
+      var yR=Math.max(hem+0.03,Math.min(yc-0.08,0.5)),qR=secAt(L,yR),U=[0],ar=0;
+      for(c=1;c<M;c++){var a0=ph[c-1],a1=ph[c];ar+=Math.hypot(qR[1]*(Math.sin(a1)-Math.sin(a0)),qR[2]*(Math.cos(a1)-Math.cos(a0)));U.push(1.2*ar);}
+      var vid=[],bo=0,bc0=-1;for(c=0;c<M;c++){if(isOut[c]&&s*Math.sin(ph[c])>bo){bo=s*Math.sin(ph[c]);bc0=c;}}outer[sd]=[];
+      rows.forEach(function(y,ri){var rv=new Int32Array(M).fill(-1),above=ri<nH-1,lq=y<yc?secAt(L,y):lq0,xin=y<yc?inX(sd,y)*sstep(yc,yc-0.03,y):0,bw=0.0001+0.0039*sstep(0.001,0.004,xin);
+        for(c=0;c<M;c++){if(above&&!isOut[c])continue;var x,yy=y,z;
+          if(ri<nH){if(isOut[c]){var hp=hangPt(ri,c%(M-1)-K2);x=hp[0];z=hp[1];}else{x=P[c][0];z=P[c][1];}}
+          else{var sn=Math.sin(ph[c]),cs=Math.cos(ph[c]),wf=o.wr?1+o.wr(y,ph[c]):1,ex=lq[3]+lq[1]*wf*sn,ez=lq[4]+lq[2]*wf*cs,w=sstep(0,1,(yc-y)/(0.045+0.12*Math.max(0,s*sn)));
+            x=P[c][0]+(ex-P[c][0])*w;z=P[c][1]+(ez-P[c][1])*w;
+            /* (the inside eases onto its limit rather than stopping flat against it, so the leg keeps a rounded edge) */
+            var dd=s*x-xin;if(dd<bw)x=s*(xin+bw*Math.exp((dd-bw)/bw));
+            if(o.hemF){var fd=y-hem;if(fd<0.09)yy+=o.hemF*Math.pow(Math.max(0,cs),1.6)*(1-fd/0.09);}}
+          rv[c]=pos.length/3;pos.push(x,yy,z);uv.push(U[c],(y-hem)/0.3);sideA.push(s);if(c===bc0)outer[sd].push([x,yy,z]);}
+        vid.push(rv);});
+      for(r=0;r<vid.length-1;r++)for(c=0;c<M-1;c++){var a=vid[r][c],b=vid[r][c+1],c3=vid[r+1][c],d=vid[r+1][c+1];if(a<0||b<0||c3<0||d<0)continue;
+        if(s>0)idx.push(a,c3,b,b,c3,d);else idx.push(a,b,c3,b,d,c3);}
+      VID[sd]=vid;});
+    var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setIndex(idx);g.computeVertexNormals();
+    /* every face turned outward: tested on the outside of his right thigh */
+    var nr=g.attributes.normal.array,vt=VID["1"][nH+Math.round((VID["1"].length-nH)/3)],ct=0;for(c=0;c<M;c++)if(PH["1"][c]>PH["1"][ct]&&PH["1"][c]<Math.PI/2+0.01)ct=c;
+    var vq=vt[ct],lc=secAt(Ls["1"],pos[vq*3+1]);if((pos[vq*3]-lc[3])*nr[vq*3]+(pos[vq*3+2]-lc[4])*nr[vq*3+2]<0){for(i=0;i<idx.length;i+=3){var t0=idx[i+1];idx[i+1]=idx[i+2];idx[i+2]=t0;}g.setIndex(idx);g.computeVertexNormals();nr=g.attributes.normal.array;}
+    /* one normal where the two halves meet (down the middle, front and back, and along the crotch seam) and where each
+       leg's ring closes, so the light shows no seam there */
+    function weld(a,b){if(a<0||b<0)return;var x=nr[a*3]+nr[b*3],y=nr[a*3+1]+nr[b*3+1],z=nr[a*3+2]+nr[b*3+2],l=Math.hypot(x,y,z)||1;nr[a*3]=nr[b*3]=x/l;nr[a*3+1]=nr[b*3+1]=y/l;nr[a*3+2]=nr[b*3+2]=z/l;}
+    for(i=0;i<nH;i++){weld(VID["1"][i][K2],VID["-1"][i][K2]);weld(VID["1"][i][K2+NH],VID["-1"][i][K2+NH]);}
+    for(c=0;c<M;c++)if(c<K2||c>K2+NH)weld(VID["1"][nH-1][c],VID["-1"][nH-1][c]);
+    ["1","-1"].forEach(function(sd){for(i=nH-1;i<VID[sd].length;i++)weld(VID[sd][i][0],VID[sd][i][M-1]);});
     g.attributes.normal.needsUpdate=true;
-    var m2=m.clone();m2.side=T.DoubleSide;m2.shadowSide=T.BackSide;var me=put(new T.Mesh(g,m2));me.updateMatrixWorld(true);wraps.push(me);return me;}   /* (shadows cast from its far side, so it does not shade itself in speckles) */
+    /* soft contact shade on the insides of the legs, where they face each other, as the leg tubes had it: easing in up
+       the thigh and gone by 9 cm above the knee's top (darker up to the crotch, the inside of the arch read as a dark
+       blot on the cards) */
+    var colA=new Float32Array(pos.length);for(i=0;i<pos.length/3;i++){var y2=pos[i*3+1],inw=Math.max(0,-sideA[i]*nr[i*3]),f=1-0.3*inw*inw*(y2<0.66?0.55+0.45*sstep(0.5,0.66,y2):Math.max(0,1-(y2-0.66)/0.09));colA[i*3]=colA[i*3+1]=colA[i*3+2]=f;}
+    g.setAttribute("color",new T.Float32BufferAttribute(colA,3));g.userData.outer=outer;
+    var m2=aoM(m).clone();m2.side=T.DoubleSide;m2.shadowSide=T.BackSide;var me=put(new T.Mesh(g,m2));me.updateMatrixWorld(true);wraps.push(me);return me;}   /* (shadows cast from its far side, so it does not shade itself in speckles) */
+  /* how close the inside of each of his thighs comes to the middle, by height (each side's least |x| on his hips, thighs
+     and shins, sliced every 5 mm), for the trousers' legs to keep clear of each other */
+  function thighGap(){var c=bodyPos();if(c.tg&&c.tgK===c.posK)return c.tg;var P=c.pos,I=BODY.idx,R=BODY.regions,rg={},y0=0.25,BS=0.005,n=Math.ceil((BL.crotch+0.03-y0)/BS)+1,H={"-1":new Float32Array(n).fill(9),"1":new Float32Array(n).fill(9)};
+    ["thigh","shin","hips"].forEach(function(k){rg[R.indexOf(k)]=1;});
+    for(var t=0;t<I.length/3;t++){if(!rg[BODY.treg[t]])continue;var v=[I[t*3]*3,I[t*3+1]*3,I[t*3+2]*3],lo=Math.min(P[v[0]+1],P[v[1]+1],P[v[2]+1]),hi=Math.max(P[v[0]+1],P[v[1]+1],P[v[2]+1]);
+      for(var i=Math.max(0,Math.ceil((lo-y0)/BS));i<=Math.min(n-1,Math.floor((hi-y0)/BS));i++){var y=y0+i*BS;
+        for(var k=0;k<3;k++){var p=v[k],q=v[(k+1)%3];if((P[p+1]<y)===(P[q+1]<y))continue;var x=P[p]+(P[q]-P[p])*(y-P[p+1])/(P[q+1]-P[p+1]),sd=x<0?"-1":"1";if(Math.abs(x)<H[sd][i])H[sd][i]=Math.abs(x);}}}
+    c.tg={y0:y0,BS:BS,n:n,H:H};c.tgK=c.posK;return c.tg;}
   /* the front of the clothes built so far, found by casting a ray at them, so pockets, plackets, zips, lapels,
      scarves and straps sit on the real surface rather than on a sliced approximation of it */
   var wraps=[],collarMs=[],rc=null,rO=null,rD=null,WRAPE=0;
@@ -4727,8 +4748,8 @@ function make3Dcore(pieces){
     curIt=lo.item;curWhat=lo.what;curKind="lo";PIECE=bodyOn?[]:null;
     var und=!!lo.under,lm=pm(lo),sh=lo.shape==="shorts",n0=nm(lo),fitL=((byId[lo.item]||{}).fit||""),wide=fitL==="Wide leg"||/wide|baggy|barrel|parachute/.test(n0)?0.022:(fitL==="Relaxed"||/loose|relaxed|carpenter|cargo|combat/.test(n0)?0.013:(fitL?0.006:0.004));
     waistE=0.012;
-    /* on the real body the seat, hips and the tops of the thighs are one piece of cloth draped over him (lowerWrap);
-       each leg then carries on below it. The drawn-only body keeps its simple rise. */
+    /* on the real body the trousers are cut as a pair is, each half one piece from the waistband to the hem
+       (trouserGeo). The drawn-only body keeps its simple rise and leg tubes. */
     /* the leg's cut, from the listing's fit and name */
     var cutL={};if(/skinny|super slim/.test(n0))cutL={fall:0.44};else if(/slim|tapered|taper|cuffed/.test(n0)||(/jogger|track ?(pant|bottom)|sweatpant/.test(n0)&&!/straight|wide|relaxed|open hem|loose|baggy/.test(n0)))cutL={fall:/slim/.test(n0)&&!/taper/.test(n0)?0.55:0.48};
     if(/barrel|balloon/.test(n0))cutL={fall:0.6,barrel:0.018};if(/bootcut|boot cut|flare|kick flare/.test(n0))cutL={fall:0.7,flare:/flare/.test(n0)?0.03:0.016};
@@ -4737,7 +4758,7 @@ function make3Dcore(pieces){
     else if(!sh&&ft&&ft.shape==="boots"){cutL.boot=true;if(!cutL.bot)cutL.bot=/chelsea|dealer|chukka|desert/.test(nm(ft))?0.09:0.122;}   /* (over boots the hem rests on the boot's front, so its toe, laces and the start of its shaft show) */
     var cuffd=/jogger|track|sweatpant|lounge|pyjama/.test(n0)&&!/wide|straight|open hem/.test(n0);if(cuffd&&!sh)cutL.bot=Math.max(cutL.bot||0,0.088);   /* (a cuffed jogger gathers at his ankle, above the shoe) */
     var LYB=BL?BL.crotch-0.075:0,LS0=bodyOn?{"-1":legSecs(-1,sh,wide,cutL),"1":legSecs(1,sh,wide,cutL)}:null,LSs=bodyOn?{"-1":smoothSecs(LS0["-1"],sh?6:16),"1":smoothSecs(LS0["1"],sh?6:16)}:null;
-    var LWme=null,LEGme={};if(bodyOn&&!und)LWme=lowerWrap(0.013+tE,LYB,1.03,LSs,lm);
+    var LWme=null;
     /* underwear (the fitting room): boxer briefs are his own skin from the waist to the top of the thighs, lifted by the
        cloth's thickness, so they follow him exactly and have no seams to open; the edges are squared off at the
        waistband and the leg hems */
@@ -4760,6 +4781,9 @@ function make3Dcore(pieces){
       [-1,1].forEach(function(s){var hq=secAt(LS0[String(s)],uLeg+0.004);band(uLeg-0.002,0.022,hq[1]+0.003,hq[2]+0.003,lm,{x:hq[3],z:hq[4],seg:36});});}
     if(!bodyOn)sec(shapeSecs([[0.785,0.156,0.102,0,-0.004],[0.85,0.174,0.114,0,-0.01],[0.92,0.184,0.123,0,-0.012],[0.98,0.18,0.118,0,-0.008],[1.035,0.165,0.111,0,-0.002]]),lm,{seg:44,sq:2.3,bottom:true});   /* the rise covers the seat and crotch */
     var wk1=shapeAt(1.02),jog=/jogger|track|sweatpant|lounge|pyjama/.test(n0),jean=/jean|denim/.test(n0);
+    /* (the crotch seam hangs a little below his crotch, more on a looser cut) */
+    if(bodyOn&&!und)LWme=trouserGeo(0.013+tE,1.03,LSs,BL.crotch-0.022-0.6*wide,lm,{wr:sh?null:legFolds((jog?0.6:(wide?1.2:1))*0.45),
+      hemF:!sh&&!cuffd?(cutL.bot?0.02:(ft&&ft.shape==="boots"?0.045:(ft&&ft.shape==="trainers"?0.068:0.058))):0});
     var tw0=bodyOn?TO(1.02):null,wbx=bodyOn?tw0[1]+0.014+tE*1.3:0.167*wk1.x,wbz=bodyOn?tw0[2]+0.014+tE*1.3:0.113*wk1.z,wbc=bodyOn?tw0[4]:-0.003+wk1.dz;
     if(!(und&&bodyOn))band(1.0,0.04,wbx,wbz,jog?rib(lo):lm,{z:wbc,sq:2.3,seg:44});
     /* belt loops on tailored trousers, chinos and jeans; a drawcord on joggers */
@@ -4785,10 +4809,11 @@ function make3Dcore(pieces){
       /* on the real body each leg follows his own thigh, knee and calf (centre and size), with ease; below the widest
          part of the thigh the cloth hangs nearly straight, so the leg is a soft column rather than a sausage, and
          shorts flare a little to the hem */
-      /* (each leg ends just inside the cloth over his hips, where that cloth has settled onto the leg's own shape) */
+      /* (on the real body the legs are part of the trousers' one piece of cloth (trouserGeo); their sections here place
+         the cargo pockets and the cuffs) */
       var L=bodyOn?LSs[String(s)].filter(function(q){return q[0]<LYB-0.002;}).concat([LYB+0.003,LYB+0.016].map(function(y,i){var q=secAt(LSs[String(s)],y);return [y,q[1],q[2],q[3],q[4]];})):sh?[[0.53,0.08+wide,0.084+wide,s*0.098,0.002],[0.62,0.08+wide,0.084+wide,s*0.096,0.002],[0.74,0.085+wide,0.09+wide,s*0.093,0],[0.86,0.094,0.098,s*0.09,-0.004],[0.94,0.098,0.1,s*0.086,-0.008]]
         :[[0.04,0.06+wide,0.066+wide,s*0.1,0.002],[0.2,0.06+wide,0.066+wide,s*0.099,-0.008],[0.38,0.064+wide,0.074+wide,s*0.098,-0.014],[0.5,0.066+wide,0.076+wide,s*0.096,-0.004],[0.6,0.072+wide,0.079+wide,s*0.095,0],[0.7,0.079+wide*0.6,0.083+wide*0.6,s*0.093,0],[0.82,0.09,0.094,s*0.09,-0.004],[0.94,0.097,0.099,s*0.086,-0.008]];
-      LEGme[s]=sec(L,lm,{seg:30,u:0.4,hemF:bodyOn&&!sh&&!cuffd?(cutL.bot?0.02:(ft&&ft.shape==="boots"?0.045:(ft&&ft.shape==="trainers"?0.068:0.058))):0,k:bodyOn?0:(sh?6:16),wr:sh?null:legFolds((jog?0.6:(wide?1.2:1))*(bodyOn?0.45:1)),ao:{kind:"limb",s:s,leg:true}});
+      if(!bodyOn)sec(L,lm,{seg:30,u:0.4,k:sh?6:16,wr:sh?null:legFolds(jog?0.6:(wide?1.2:1)),ao:{kind:"limb",s:s,leg:true}});
       if(jog&&!sh&&!/wide|straight|open hem/.test(n0)){var cb=L[0];band(cb[0],0.045,cb[1]-0.008,cb[2]-0.008,rib(lo),{x:cb[3],z:cb[4]});}
       if(sh){var hb=L[0];band(hb[0],0.025,hb[1]+0.001,hb[2]+0.001,lm,{x:hb[3],z:hb[4]});}
       if(/cargo|utility|combat|work/.test(n0)){var py2=sh?0.68:0.62,pq=bodyOn?secAt(L,py2):null;
@@ -4805,56 +4830,11 @@ function make3Dcore(pieces){
               seam.push([q9[3]+s*Math.cos(th9)*(q9[1]+0.0032),y9,q9[4]+Math.sin(th9)*(q9[2]+0.0032)]);}tube(seam,0.0011,sw9,16);});}   /* (each edge on its own, so the corners are clean) */
         else add(new T.BoxGeometry(0.012,0.1,0.075),lm,s*(0.165+wide+(sh?0.012:0)),py2,0.004);}
     });
-    /* the legs meet down the inside: where his thighs (with the cloth on them) would touch, each leg's inner side is
-       pressed flat against the other along the middle, so no slit of light shows between them below the crotch, front
-       or back; lower down, where his legs part, they stay apart */
-    if(bodyOn){var cr0=BL.crotch,LM=[LWme,LEGme[-1],LEGme[1]].filter(Boolean),B0=0.3,BS=0.005,NBk=Math.ceil((cr0+0.02-B0)/BS)+1,Z0=-0.16,ZB=0.01,NZ=38,
-        G={"-1":new Float32Array(NBk*NZ).fill(9),"1":new Float32Array(NBk*NZ).fill(9)},bin=function(y,z){return Math.min(NBk-1,Math.max(0,Math.round((y-B0)/BS)))*NZ+Math.min(NZ-1,Math.max(0,Math.round((z-Z0)/ZB)));};
-      /* (how close each side's cloth comes to the middle, measured on the cloth itself at each height and depth: the
-         seam down the front and back of the crotch does not count for the inside of the thighs between them) */
-      LM.forEach(function(me){var pa=me.geometry.attributes.position;for(var i=0;i<pa.count;i++){var y=pa.getY(i),x=pa.getX(i);if(y<B0||y>cr0+0.02||Math.abs(x)>0.08)continue;var b=bin(y,pa.getZ(i)),sd=x<0?"-1":"1";if(Math.abs(x)<G[sd][b])G[sd][b]=Math.abs(x);}});
-      LM.forEach(function(me){var pa=me.geometry.attributes.position,mv=false,nP=pa.count,DP=new Float32Array(nP);
-        for(var i=0;i<nP;i++){var y=pa.getY(i);if(y>cr0+0.015||y<B0)continue;var x=pa.getX(i),ax=Math.abs(x),z=pa.getZ(i),sd=x<0?"-1":"1",od=sd==="1"?"-1":"1",gs=9,go=9;
-          for(var dy=-1;dy<=1;dy++)for(var dz=-1;dz<=1;dz++){var b=bin(y+dy*BS,z+dz*ZB);gs=Math.min(gs,G[sd][b]);go=Math.min(go,G[od][b]);}if(gs>=9||go>=9)continue;
-          var f=sstep(0.05,0.03,gs+go)*(1-sstep(cr0+0.005,cr0+0.015,y))*sstep(cr0-0.09,cr0-0.04,y),w=sstep(gs+0.045,gs+0.004,ax);if(f*w<=0)continue;
-          DP[i]=(gs+0.002)*f*w;mv=true;}   /* (a hair past the middle: the two sides overlap, so no crack of light. Only in
-             the top few centimetres under the crotch: pressed all the way down to the shin, the legs read as stuck
-             together down the thighs, with a gap only at the knee where they happened to be narrower) */
-        /* (how far each point goes in is evened out with its neighbours on the cloth, never less than it needs: measured
-           in steps of height, it jumped from one ring of the leg to the next and left thin creases across the inner
-           thighs where the legs meet) */
-        if(mv&&me.geometry.index){var IX=me.geometry.index.array;for(var it=0;it<3;it++){var SM=new Float32Array(nP),CN=new Uint16Array(nP);
-            for(var t=0;t<IX.length;t+=3)for(var e3=0;e3<3;e3++){var va=IX[t+e3],vb=IX[t+(e3+1)%3];SM[va]+=DP[vb];CN[va]++;SM[vb]+=DP[va];CN[vb]++;}
-            for(i=0;i<nP;i++)if(CN[i]){var av=SM[i]/CN[i];if(av>DP[i])DP[i]=DP[i]*0.4+av*0.6;}}}
-        if(mv){for(i=0;i<nP;i++){if(!DP[i])continue;var x2=pa.getX(i),ax2=Math.abs(x2);pa.setX(i,(x2<0?-1:1)*Math.max(-0.003,ax2-DP[i]));}pa.needsUpdate=true;ZV++;}});}
-    /* the gusset: where the seat and the two legs meet under the crotch they left a small opening, seen straight through
-       from front to back; a soft piece of the same cloth fills it, sized to sit inside the cloth around it */
-    if(bodyOn&&LWme){var gp=LWme.geometry.attributes.position,gzn=9,gzx=-9;
-      for(var gi=0;gi<gp.count;gi++){var gx=gp.getX(gi),gy=gp.getY(gi);if(Math.abs(gx)<0.012&&gy>BL.crotch+0.005&&gy<BL.crotch+0.04){var gz=gp.getZ(gi);gzn=Math.min(gzn,gz);gzx=Math.max(gzx,gz);}}
-      /* (measured at its own height and kept well inside the front and back seams: sized from the cloth higher up, its
-         front stood out ahead of the front seam, a dark teardrop that read as a hole at the crotch; and in a shade of the
-         cloth only a little deeper than it, so where it does show it reads as the crease, not an opening) */
-      /* (its front lies flush with the cloth either side of the gap, and it is the garment's own cloth) */
-      var fz=-9;for(gi=0;gi<gp.count;gi++){var gx2=Math.abs(gp.getX(gi)),gy2=gp.getY(gi);if(gx2>0.012&&gx2<0.035&&gy2>BL.crotch+0.005&&gy2<BL.crotch+0.04)fz=Math.max(fz,gp.getZ(gi));}
-      var gzc=(gzn+gzx)/2,grz=fz>gzc?Math.min((gzx-gzn)/2-0.004,fz-0.02-gzc):(gzx-gzn)/2-0.016,gmt=Array.isArray(LWme.material)?LWme.material[0]:LWme.material;
-      if(gzx-gzn>0.03)add(new T.SphereGeometry(1,20,14),gmt||mat(shade(cc(lo.col)[0],0.78),0.95),0,BL.crotch+0.02,gzc,0.014,0.022,Math.max(0.006,grz));}
-    /* the fly panel: the body dips back between his legs at the front, and the cloth that follows it left a narrow slot
-       up the middle of the crotch, seen as a hole. The cloth is brought level across (in lowerWrap) and a panel of the same
-       cloth lies just behind it to close the slot */
-    if(bodyOn&&LWme){var fpa=LWme.geometry.attributes.position,FY0=BL.crotch-0.012,FY1=BL.crotch+0.075,NYf=12,NXf=8,FXW=0.036,lvl=new Float32Array(NYf+1).fill(-9);
-      for(var fi=0;fi<fpa.count;fi++){var fax=Math.abs(fpa.getX(fi)),fy=fpa.getY(fi),fz2=fpa.getZ(fi);if(fax<0.024||fax>0.044||fz2<=0||fy<FY0-0.01||fy>FY1+0.01)continue;var fb=Math.max(0,Math.min(NYf,Math.round((fy-FY0)/(FY1-FY0)*NYf)));if(fz2>lvl[fb])lvl[fb]=fz2;}
-      for(fi=1;fi<=NYf;fi++)if(lvl[fi]<-1)lvl[fi]=lvl[fi-1];for(fi=NYf-1;fi>=0;fi--)if(lvl[fi]<-1)lvl[fi]=lvl[fi+1];
-      var lvS=lvl.map(function(v,k){var sm=0,c=0;for(var d=-2;d<=2;d++){var kk=k+d;if(kk<0||kk>NYf)continue;sm+=lvl[kk];c++;}return sm/c;});
-      if(lvl[0]>-1){var fv=[],fuv=[],fix=[];for(var fyi=0;fyi<=NYf;fyi++)for(var fxi=0;fxi<=NXf;fxi++){var fxx=-FXW+2*FXW*fxi/NXf,fyy=FY0+(FY1-FY0)*fyi/NYf,ux=Math.abs(fxx)/FXW,uy=Math.abs(2*fyi/NYf-1),pw=Math.max(0,(1-ux*ux*ux)*(1-uy*uy*uy));
-          fv.push(fxx,fyy,lvS[fyi]-0.02+0.014*pw);fuv.push(0.2+fxx*0.7,fyy/0.3);}   /* (a pillow 6 mm behind the cloth in its middle, curving further back at every edge, so it shows only through the slot) */
-        for(fyi=0;fyi<NYf;fyi++)for(fxi=0;fxi<NXf;fxi++){var fa=fyi*(NXf+1)+fxi;fix.push(fa,fa+1,fa+NXf+1,fa+1,fa+NXf+2,fa+NXf+1);}
-        var fgeo=new T.BufferGeometry();fgeo.setAttribute("position",new T.Float32BufferAttribute(fv,3));fgeo.setAttribute("uv",new T.Float32BufferAttribute(fuv,2));fgeo.setIndex(fix);fgeo.computeVertexNormals();
-        var fmt=(Array.isArray(LWme.material)?LWme.material[0]:LWme.material).clone();fmt.side=T.DoubleSide;put(new T.Mesh(fgeo,fmt));}}
     /* what the shop photos show on the front: jeans have gold topstitching down the outside seams, scooped front pockets
        with copper rivets; chinos and tailored trousers have slanted pocket openings */
     if(bodyOn&&!und){var stM=mat(jean?"#c99a45":shade(cc(lo.col)[0],0.6),0.7),rvM=mat("#b87333",0.35,{metalness:0.7});
-      [-1,1].forEach(function(s){var Lq=LS0[String(s)],yTop2=Math.min(LYB+0.01,Lq[Lq.length-1][0]);
-        if(jean){var op=[];for(var y2=yTop2;y2>=Lq[0][0]+0.02;y2-=0.06){var q=secAt(Lq,y2);op.push([q[3]+s*(q[1]+0.0012),y2,q[4]]);}if(op.length>1)tube(op,0.0011,stM,24);}   /* outside seam */
+      [-1,1].forEach(function(s){
+        if(jean&&LWme){var ol=LWme.geometry.userData.outer[String(s)],op=[],ly=9;ol.forEach(function(q){if(q[1]<0.99&&q[1]>ol[ol.length-1][1]+0.02&&ly-q[1]>=0.06){op.push([q[0]+s*0.0012,q[1],q[2]]);ly=q[1];}});if(op.length>1)tube(op,0.0011,stM,24);}   /* outside seam */
         if(jean||/chino|trouser|slack|suit|tailor/.test(n0)||(!jog&&!sh)){var pk=[];
           (jean?[[0.06,0.995],[0.085,0.975],[0.11,0.958],[0.128,0.952]]:[[0.075,0.995],[0.095,0.965],[0.112,0.935],[0.12,0.925]]).forEach(function(q){pk.push([s*q[0],q[1],surfZ(q[1],s*q[0],0)+0.0012]);});
           tube(pk,jean?0.0012:0.0016,jean?stM:mat(shade(cc(lo.col)[0],0.55),0.8),12);

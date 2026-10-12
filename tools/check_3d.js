@@ -11,8 +11,9 @@
      - colour: a plain piece whose rendered colour is far from its shop colour (hue, or much too light or dark);
      - under: a scarf or snood with a top's collar over it at the back or sides of his neck (rays round his neck meet the
        top first and the scarf just behind it);
-     - legs: trousers whose legs are joined down the thighs (a ray between his legs, front or back, from 15 to 30 cm
-       below the crotch meets the trousers instead of passing between them);
+     - legs: trousers whose legs are joined down the thighs (a ray between his legs, front or back, from 7 to 30 cm
+       below the crotch, wherever his own thighs are 1.5 cm or more apart, meets the trousers instead of passing between
+       them);
      - form: a flat cap drawn as a baseball cap: its peak reaching well past the front of its crown, instead of the
        crown being carried forward over the peak.
      - offset: an inner layer drawn over the piece worn over it because of a depth offset (a photo front or print laid
@@ -127,11 +128,23 @@ async function checkOutfit(arg) {
       rc.set(new T.Vector3(dx * 0.6, y, cz + dz * 0.6), new T.Vector3(-dx, 0, -dz)); const h = hits();
       const iT = h.findIndex(x => /^up/.test(hitK(x.object))), iS = h.findIndex(x => x.object.userData.item === p.item);
       if (iT >= 0 && iS > iT && h[iS].distance - h[iT].distance < 0.025) geo.under++; } });
-  /* (trousers: between his legs, front and back, from 15 to 30 cm below the crotch, where the legs always part; higher
-     up, a heavier build's thighs meet, and the trousers with them) */
+  /* (trousers: between his legs, front and back, from 7 to 30 cm below the crotch, wherever the insides of his own
+     thighs are at least 1.5 cm apart: room for the cloth on each and a gap between. It used to look only from 15 cm down,
+     so legs joined over the tops of his thighs passed; where a heavier build's thighs meet, the trousers may too.
+     How far apart his thighs are is measured on his body as built, Edit Dave's shape included, every 5 mm: each
+     side's least |x| on his hips, thighs and shins) */
   const loP = ps.find(q => q.shape === "trousers");
-  if (loP) for (let y = crotch - 0.3; y <= crotch - 0.15; y += 0.01) for (const dz of [1, -1]) {
-    rc.set(new T.Vector3(0, y, dz * 0.8), new T.Vector3(0, 0, -dz)); const h = hits(); if (h.length && hitK(h[0].object) === "lo") geo.legs++; }
+  if (loP) {
+    const BP = X.bodyPos().pos, BI = B.idx, inLeg = new Set(["thigh", "shin", "hips"].map(k => RG.indexOf(k))), gy0 = crotch - 0.32, GS = 0.005, gn = Math.ceil(0.3 / GS) + 1;
+    const GL = new Float32Array(gn).fill(9), GR = new Float32Array(gn).fill(9);
+    for (let t = 0; t < BI.length / 3; t++) { if (!inLeg.has(B.treg[t])) continue; const v = [BI[t * 3] * 3, BI[t * 3 + 1] * 3, BI[t * 3 + 2] * 3];
+      const lo = Math.min(BP[v[0] + 1], BP[v[1] + 1], BP[v[2] + 1]), hi = Math.max(BP[v[0] + 1], BP[v[1] + 1], BP[v[2] + 1]);
+      for (let i = Math.max(0, Math.ceil((lo - gy0) / GS)); i <= Math.min(gn - 1, Math.floor((hi - gy0) / GS)); i++) { const y = gy0 + i * GS;
+        for (let k = 0; k < 3; k++) { const a = v[k], b = v[(k + 1) % 3]; if ((BP[a + 1] < y) === (BP[b + 1] < y)) continue;
+          const x = BP[a] + (BP[b] - BP[a]) * (y - BP[a + 1]) / (BP[b + 1] - BP[a + 1]), G = x < 0 ? GL : GR; if (Math.abs(x) < G[i]) G[i] = Math.abs(x); } } }
+    const apart = y => { const i = Math.round((y - gy0) / GS); return i >= 0 && i < gn ? GL[i] + GR[i] : 0; };
+    for (let y = crotch - 0.3; y <= crotch - 0.07 + 1e-6; y += 0.01) { if (apart(y) < 0.015) continue; for (const dz of [1, -1]) {
+      rc.set(new T.Vector3(0, y, dz * 0.8), new T.Vector3(0, 0, -dz)); const h = hits(); if (h.length && hitK(h[0].object) === "lo") geo.legs++; } } }
   /* (a flat cap's crown is carried forward to a lip over its peak, so from the side the two end together; a baseball
      cap's crown stops at its band, well behind the end of its peak. The crown is the cap's largest mesh, the peak the
      rest: how far the peak reaches past the crown, under 2 cm on a flat cap) */

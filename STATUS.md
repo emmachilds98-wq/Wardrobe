@@ -54,6 +54,20 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
 10. [ ] **Polo collars.** The leaf lies flat on his shoulders with ragged edges and the stand is low; in the photos a
    polo collar is a distinct ribbed band round the neck, folded over. (Its tipping now lies on the leaf's edge: PR #27.)
 
+11. [ ] **Folds and creases in trousers** (Emma, 12 Oct: "folds and creases as it sits on a body ... like the
+   advertisements"). Shade them into the cloth: a height field over the garment's own texture coordinates (round the
+   leg, metres up from the hem) added to the weave's bump in the shader (`onBeforeCompile`, replacing `dHdxy_fwd()` in
+   `normal_fragment_maps`), so the geometry and the 3D check are unchanged. Tried on a scratch copy and it reads well:
+   whiskers fanning from the crotch toward the hips, two or three slanting creases behind the knee, the break stacked
+   over the shoe (off level, not rings), drag lines down the inside of the thigh, a soft smile under the seat, a pressed
+   crease on tailored trousers, long vertical drape on wide legs. Amplitude about 4 mm, fold width 6 mm; seed each
+   item so no two pairs fold alike. Check the `colour` count does not move.
+12. [ ] **Folds in tops.** The same for tops: drag lines from the armpit, bunching inside the elbow and at the cuff,
+   gathers above the waistband of a tucked shirt, and the side drape of a loose tee. The geometric `sleeveFolds` rings
+   read as a spring; replace them.
+13. [ ] **Light that shows folds.** Soft studio light (a room environment through `PMREMGenerator`) and contact shade
+   between layers, so folds read as they do in the shop photos.
+
 Needs Emma (do not guess):
 - The model's chest measures about 34in on his saved shape, which says S/M tops, while he buys L. Is his saved shape
   or the measurement off?
@@ -84,6 +98,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 12 Oct 2026 | #28 | Trousers cut as a pair: the legs part from a crotch seam instead of sticking together, no bulge at the front or cleft at the seat; the `legs` check looks from 7 cm below the crotch | v45 |
 | 11 Oct 2026 | #27 | Contrast tipping on polos, tees and jumpers lies along the collar or neckband (it floated above the collar) | v44 |
 | 11 Oct 2026 | #26 | Shoe lasts by kind: dress, loafer, Chelsea, safety, desert and more, each with its own sole | v43 |
 | 11 Oct 2026 | #25 | Tie on the shirt with its knot at his throat; shirt collar points that come down and angle apart | v42 |
