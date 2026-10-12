@@ -132,9 +132,12 @@ async function checkOutfit(arg) {
      thighs are at least 1.5 cm apart: room for the cloth on each and a gap between. It used to look only from 15 cm down,
      so legs joined over the tops of his thighs passed; where a heavier build's thighs meet, the trousers may too.
      How far apart his thighs are is measured on his body as built, Edit Dave's shape included, every 5 mm: each
-     side's least |x| on his hips, thighs and shins) */
+     side's least |x| on his hips, thighs and shins. Those are heights on the body as built; the figure is then
+     stretched to Edit Dave's proportions (leg length) and scaled to his height, so each is carried through the same
+     warp before a ray is cast: measured at the built heights, a long-bodied Dave's band sat 5 to 7 cm too high) */
   const loP = ps.find(q => q.shape === "trousers");
   if (loP) {
+    const PW = X.propWarp ? X.propWarp(B.lm.chin) : null, kH = o.k || 1, toW = y => (PW ? PW.W(y) : y) * kH;
     const BP = X.bodyPos().pos, BI = B.idx, inLeg = new Set(["thigh", "shin", "hips"].map(k => RG.indexOf(k))), gy0 = crotch - 0.32, GS = 0.005, gn = Math.ceil(0.3 / GS) + 1;
     const GL = new Float32Array(gn).fill(9), GR = new Float32Array(gn).fill(9);
     for (let t = 0; t < BI.length / 3; t++) { if (!inLeg.has(B.treg[t])) continue; const v = [BI[t * 3] * 3, BI[t * 3 + 1] * 3, BI[t * 3 + 2] * 3];
@@ -143,8 +146,8 @@ async function checkOutfit(arg) {
         for (let k = 0; k < 3; k++) { const a = v[k], b = v[(k + 1) % 3]; if ((BP[a + 1] < y) === (BP[b + 1] < y)) continue;
           const x = BP[a] + (BP[b] - BP[a]) * (y - BP[a + 1]) / (BP[b + 1] - BP[a + 1]), G = x < 0 ? GL : GR; if (Math.abs(x) < G[i]) G[i] = Math.abs(x); } } }
     const apart = y => { const i = Math.round((y - gy0) / GS); return i >= 0 && i < gn ? GL[i] + GR[i] : 0; };
-    for (let y = crotch - 0.3; y <= crotch - 0.07 + 1e-6; y += 0.01) { if (apart(y) < 0.015) continue; for (const dz of [1, -1]) {
-      rc.set(new T.Vector3(0, y, dz * 0.8), new T.Vector3(0, 0, -dz)); const h = hits(); if (h.length && hitK(h[0].object) === "lo") geo.legs++; } } }
+    for (let y = crotch - 0.3; y <= crotch - 0.07 + 1e-6; y += 0.01) { if (apart(y) * kH < 0.015) continue; for (const dz of [1, -1]) {
+      rc.set(new T.Vector3(0, toW(y), dz * 0.8), new T.Vector3(0, 0, -dz)); const h = hits(); if (h.length && hitK(h[0].object) === "lo") geo.legs++; } } }
   /* (a flat cap's crown is carried forward to a lip over its peak, so from the side the two end together; a baseball
      cap's crown stops at its band, well behind the end of its peak. The crown is the cap's largest mesh, the peak the
      rest: how far the peak reaches past the crown, under 2 cm on a flat cap) */

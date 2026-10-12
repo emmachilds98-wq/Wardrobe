@@ -1889,6 +1889,47 @@ running into this misshaping on the renders and ensure it stops."
   check's geometry is unchanged) were tried on a scratch copy: whiskers at the crotch, folds behind the knee, the break
   over the shoe. They read well and are queued in STATUS.md, with the same for sleeves and the waist of tucked shirts.
 
+## 2zzzzzzzzzzzz. Folds and creases in every garment, a studio room's light, shade between layers (12 Oct 2026)
+
+Emma: "make how the clothes sit on the 3D model appear more naturally like the picture in the way it has folds and
+creases ... this improvement should be for all clothes and not just trousers."
+
+- **Folds are shaded, not modelled** (`FOLD_GLSL`, `foldMat`). Every garment mesh carries a `fold` attribute: the
+  direction round its own tube as a sine and cosine (a leg, an arm, his body, the shoe; outside positive), the height it
+  was built at (along the shoe for a shoe) and which tube (a leg's or sleeve's side, 0 for the body). A height field over
+  those is added to the normal after the weave's bump (`fPerturb`, after `normal_fragment_maps`), so the geometry, the
+  layering and the 3D check see the same cloth. Each item has its own seed (`foldSeed`).
+  - Trousers and shorts (`lo`): whiskers fanning from the front of the crotch, drag lines down the inner thigh, a smile
+    under the seat, creases behind the knee and slack over its front, the break stacked over the shoe (crescents at
+    their own tilt, never level rings), a cuffed jogger's gathers, a long drape (more on a wide leg), a pressed crease on
+    tailored trousers. Settings by cut and cloth in `FU` at the call to `trouserGeo`.
+  - Tops (`up`, fitted tops and the cut ones: vests, gilets, waistcoats via `foldTorso`): drag lines from under the arm
+    across the chest and back, a tucked shirt bloused over the waistband, a loose top's folds up from the hem at the
+    sides; on sleeves, drag lines from the armpit, bunching in the crook of the elbow, folds stacked above the cuff.
+    Shirts crisp, tees and knits soft and wide, tailoring light, padded jackets none. Settings in `UT`. The sleeves'
+    geometric rings (`sleeveFolds`, which read as a spring) are no longer used on the real body.
+  - Shoes (`ft`): creases across the top behind the ball of the foot.
+  - Trouser legs keep a little shape of their own (`legDrape`: a soft unevenness round the leg and the cloth pushed out
+    over the shoe at the break) in place of the old ring folds (`legFolds`, still used by the drawn-only figure).
+- **Pitfalls found on the way** (each is noted in the code):
+  - Three.js's cube map code (on whenever there is an image light) `#define`s `r0, r1, r4-r6, m0, m1, m4-m6, v0, v1,
+    v4-v6`. The skin shader used `r1` and `r2` as names and stopped compiling; renamed (`sk1`, `sk2`). Never use them.
+  - A fold's slope is taken a hair's breadth along and round the tube and carried to the screen by the attribute's
+    derivatives (`foldDH`); sampled a whole pixel away it sparkled on the small steep triangles at a crotch seam.
+  - The side (±1) is rounded before it seeds the hash: interpolated, -1 came out a hair off and the hash changed pixel by
+    pixel (the left leg's and left sleeve's folds were speckled).
+  - The tilt a fold gives is capped (about 35 degrees) and framed by the unbumped normal (`geometryNormal`).
+- **Light** (`studioEnv`): a room with softboxes (key above to his right, fill, a rim strip behind, a pale floor) made into
+  image light with `PMREMGenerator`, once per renderer and light mode, from `scene.onBeforeRender`, so the live view,
+  the card stills, the 3D check and the QA scripts all get it without any change of their own. The sky light, key and
+  fill lamps are turned down to match (overall brightness within 2 % of before). `window.__noenv` and
+  `window.__nofold` turn either off, for before and after renders from one build.
+- **Contact shade** (`layerShade`): when a top is finished, the layers under it darken just below its hem (30 %, fading
+  over 5.5 cm) and inside its front edges when worn open (22 %, over 3.5 cm), through the vertex shade they carry.
+- **Check:** `legs` now carries its heights through Edit Dave's proportion warp (`__qa.propWarp`): measured at the built
+  heights, a long-bodied Dave's band sat 5 to 7 cm too high. The 3D check on 8 outfits (`c6-denim`, `smart-casual`,
+  `wk-lounge`, `g-lounge-04`, `wedding-guest`, `h10-surf`, `w20261006-casual-04`, `lazy-sunday`): nothing flagged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
