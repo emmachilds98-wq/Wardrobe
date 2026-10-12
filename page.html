@@ -3887,9 +3887,48 @@ function drapeAt(t,X,N,pc,px,py){var pi=-1,I=t.idx,vm=t.vmap,P=t.pat,f,best=null
 function drapeExt(t,pc){var pi=-1,P=t.pat,o={x0:9,x1:-9,y0:9,y1:-9,ym:-9};for(var f=0;f<t.pieces.length;f++)if(t.pieces[f].name===pc)pi=f;
   for(var j=0;j<t.m;j++){if(t.piece[j]!==pi)continue;var x=P[j*2],y=P[j*2+1];o.x0=Math.min(o.x0,x);o.x1=Math.max(o.x1,x);o.y0=Math.min(o.y0,y);o.y1=Math.max(o.y1,y);if(Math.abs(x)<0.004)o.ym=Math.max(o.ym,y);}
   return o;}
+/* the photo reading's looks on a draped top, as make3Dcore lays them on its own shapes (frontPhoto, decalPatch, placeMap):
+   the shop photo's own front and a print projected from the front onto the draped cloth, a print on the back, and a
+   pattern laid by height. Gives whether the photo's front was laid (then the drawn pockets and cords stand down) */
+function drapeLooks(man,p,t,X,N,me,ctx,kind){var T=window.THREE,L=p.look,out=[];if(!L)return false;
+  var pid=function(nm){for(var f=0;f<t.pieces.length;f++)if(t.pieces[f].name===nm)return f;return -1;},fr=pid(t.arch==="jacket"?"front_p":"front"),bk=pid("back");
+  /* (the draped front's hem, its half-width at a height, and its centre line: pattern height against height on him) */
+  var hemG=9,yF=9;for(var j=0;j<t.m;j++){var y=X[t.vmap[j]*3+1];hemG=Math.min(hemG,y);if(t.piece[j]===fr)yF=Math.min(yF,y);}
+  function halfW(pc,y){var w=0;for(var j=0;j<t.m;j++){if(t.piece[j]!==pc)continue;var q=t.vmap[j]*3;if(Math.abs(X[q+1]-y)<0.015)w=Math.max(w,Math.abs(X[q]));}return w;}
+  function centre(pc){var a=[];for(var j=0;j<t.m;j++)if(t.piece[j]===pc&&Math.abs(t.pat[j*2])<0.012)a.push([X[t.vmap[j]*3+1],t.pat[j*2+1]]);a.sort(function(u,v){return u[0]-v[0];});
+    return function(y){if(!a.length)return 0;if(y<=a[0][0])return a[0][1];for(var i=1;i<a.length;i++)if(y<=a[i][0]){var f=(y-a[i-1][0])/(a[i][0]-a[i-1][0]||1);return a[i-1][1]+(a[i][1]-a[i-1][1])*f;}return a[a.length-1][1];};}
+  function mat(tx,photo){return new T.MeshStandardMaterial(photo?{map:tx,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:0,polygonOffsetUnits:-4,roughness:0.9,metalness:0}:
+    {map:tx,transparent:true,alphaTest:0.25,roughness:0.85,metalness:0,polygonOffset:true,polygonOffsetFactor:0,polygonOffsetUnits:-4,depthWrite:false,side:T.DoubleSide});}
+  function decal(D2,pcName,cx,cy,w,h,lift){var pc=pid(pcName);if(pc<0)return;var py=centre(pc),tx=D2.cv?new T.CanvasTexture(D2.cv):new T.TextureLoader().load(D2.url);if(T.sRGBEncoding)tx.encoding=T.sRGBEncoding;
+    var NX=10,NY=10,pos=[],uv=[],ix=[];for(var j=0;j<=NY;j++)for(var i=0;i<=NX;i++){var q=drapeAt(t,X,N,pcName,cx+(i/NX-0.5)*w,py(cy+(0.5-j/NY)*h));if(!q)return;
+      pos.push(q.p[0]+q.n[0]*lift,q.p[1]+q.n[1]*lift,q.p[2]+q.n[2]*lift);uv.push(i/NX,1-j/NY);}
+    for(j=0;j<NY;j++)for(i=0;i<NX;i++){var a=j*(NX+1)+i;ix.push(a,a+NX+1,a+1,a+1,a+NX+1,a+NX+2);}
+    var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setIndex(ix);g.computeVertexNormals();
+    var m2=new T.Mesh(g,mat(tx,false));m2.castShadow=false;out.push(m2);}
+  var s0=p.shape,proj=!!(L.front&&fr>=0&&t.arch!=="jacket");
+  if(proj){   /* the photo's front, from the band (its own hem strip left out) to the neckline, across the cloth as seen from the front */
+    var F=L.front,cv=document.createElement("canvas");cv.width=F.cv.width;cv.height=F.cv.height;cv.getContext("2d").drawImage(F.cv,0,0);gCv(cv);
+    var tx=new T.CanvasTexture(cv);if(T.sRGBEncoding)tx.encoding=T.sRGBEncoding;tx.anisotropy=4;
+    var cropB=pid("front_band")>=0?0.07:0,pt=s0==="hoodie"?[1.66,0.24]:(s0==="rollneck"?[1.565,0.14]:[1.535,0.11]),yP=pt[0]-pt[1]*(pt[0]-hemG),yB=yF+0.006,yT=Math.min(1.47,yP),hw0=halfW(fr,hemG+0.35*(1.4-hemG))*0.985;
+    var pos=new Float32Array(t.m*3),uv=new Float32Array(t.m*2),ok=new Uint8Array(t.m),ix=[];
+    for(j=0;j<t.m;j++){if(t.piece[j]!==fr)continue;var q=t.vmap[j]*3;for(var k=0;k<3;k++)pos[j*3+k]=X[q+k]+N[q+k]*0.0012;var u=0.5+X[q]/(2*hw0),vv=(yP-X[q+1])/(yP-yB);
+      uv[j*2]=u;uv[j*2+1]=cropB+(1-cropB)*(1-vv);ok[j]=N[q+2]>0.05&&u>=0&&u<=1&&X[q+1]>=yB-0.002&&X[q+1]<=yT?1:0;}
+    for(var f=0;f<t.idx.length;f+=3)if(ok[t.idx[f]]&&ok[t.idx[f+1]]&&ok[t.idx[f+2]])ix.push(t.idx[f],t.idx[f+1],t.idx[f+2]);
+    var g=new T.BufferGeometry();g.setAttribute("position",new T.BufferAttribute(pos,3));g.setAttribute("uv",new T.BufferAttribute(uv,2));g.setIndex(ix);g.computeVertexNormals();
+    var pm3=new T.Mesh(g,mat(tx,true));pm3.castShadow=false;out.push(pm3);}
+  /* a print where the photo has it, at its size (when the photo's own front is not laid), and on the back */
+  var top=s0==="hoodie"?1.6:1.5,tw=halfW(fr,1.3),spanW=2*tw/0.56;
+  if(L.decal&&!proj&&t.arch!=="jacket"){var D2=L.decal,w=Math.min(spanW*D2.w,tw*1.7),h=w/Math.max(0.2,D2.ar||1),cx0=(D2.x-0.5)*spanW,cy0=top-D2.y*(top-hemG);
+    cx0=Math.max(-tw+w/2,Math.min(tw-w/2,cx0));cy0=Math.min(1.44-h/2,Math.max(hemG+0.04+h/2,cy0));decal(D2,"front",cx0,cy0,w,h,0.0016);}
+  if(L.decal&&bk>=0){var Db=L.decal,big=Db.w>0.22&&t.arch!=="jacket",wb=big?Math.min(spanW*Db.w,tw*1.7):Math.min(t.arch==="jacket"?0.06:0.05,spanW*Db.w),hb=wb/Math.max(0.2,Db.ar||1);
+    decal(Db,"back",0,big?Math.min(1.42-hb/2,1.3):1.445-hb/2,wb,hb,0.0016);}
+  out.forEach(function(o){o.userData={item:p.item,what:p.what,kind:kind,draped:true};man.add(o);});
+  /* a pattern laid by height (a Fair Isle yoke, a band): make3Dcore's own placeMap, on the draped cloth */
+  if(L.place&&ctx.placeMap)ctx.placeMap([me],L.place,hemG,1.5);
+  return proj;}
 /* the front details of a draped top, laid on its cloth by their place on the pattern (make3Dcore draws them on its own
    shapes: frontDetails, the zips and the hoodie's cords and pocket). ctx: make3Dcore's materials and helpers */
-function drapeDetails(man,p,t,X,N,ctx,kind){var T=window.THREE,DS=p.desc||{},n0=ctx.nm(p),col=cc(p.col)[0],out=[];
+function drapeDetails(man,p,t,X,N,ctx,kind,proj){var T=window.THREE,DS=p.desc||{},n0=ctx.nm(p),col=cc(p.col)[0],out=[];
   function on(pc,x,y,lift){var q=drapeAt(t,X,N,pc,x,y);return q?[q.p[0]+q.n[0]*lift,q.p[1]+q.n[1]*lift,q.p[2]+q.n[2]*lift]:null;}
   function line(pts,r,m,seg){pts=pts.filter(Boolean);if(pts.length<2)return;var c=new T.CatmullRomCurve3(pts.map(function(q){return new T.Vector3(q[0],q[1],q[2]);}));
     var me=new T.Mesh(new T.TubeGeometry(c,seg||Math.max(8,pts.length*2),r,8,false),m);out.push(me);}
@@ -3902,8 +3941,8 @@ function drapeDetails(man,p,t,X,N,ctx,kind){var T=window.THREE,DS=p.desc||{},n0=
     var C=drapeExt(t,"collar"),zp=[];for(var k=0;k<=3;k++)zp.push(on("collar",C.x1-0.002,C.y1*(1-k/3),0.004));
     for(k=1;k<=5;k++)zp.push(on("front",0,F.ym-0.18*k/5,0.004));line(zp,0.0035,ctx.metal,24);
     var tab=on("collar",C.x1-0.002,C.y1-0.008,0.007);if(tab){var tb=new T.Mesh(new T.BoxGeometry(0.008,0.022,0.004),ctx.metal);tb.position.set(tab[0],tab[1],tab[2]);out.push(tb);}
-    if(DS.brand&&!DS.graphic){var lg=on("front",0.075,F.ym-0.16,0.0015);if(lg){var d=new T.Mesh(new T.CylinderGeometry(0.011,0.011,0.002,16),ctx.mat(p.col2||(cc(p.col)[1]?"#efeae0":"#20212a"),0.7));d.position.set(lg[0],lg[1],lg[2]);d.rotation.x=Math.PI/2;out.push(d);}}}
-  if(t.arch==="hoodie"){
+    if(DS.brand&&!DS.graphic&&!proj&&!(p.look&&p.look.decal)){var lg=on("front",0.075,F.ym-0.16,0.0015);if(lg){var d=new T.Mesh(new T.CylinderGeometry(0.011,0.011,0.002,16),ctx.mat(p.col2||(cc(p.col)[1]?"#efeae0":"#20212a"),0.7));d.position.set(lg[0],lg[1],lg[2]);d.rotation.x=Math.PI/2;out.push(d);}}}
+  if(t.arch==="hoodie"&&!proj){
     /* the cords from the neckline, the kangaroo pocket low on the front with its two slanted openings, and a zip down
        the middle where the listing says full zip */
     [-1,1].forEach(function(s){var cp=[];for(var k=0;k<=6;k++)cp.push(on("front",s*(0.026+0.004*k/6),F.ym-0.006-0.26*k/6,0.006));line(cp,0.0028,ctx.white,16);});
@@ -3937,12 +3976,12 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
   var BP=body.geometry.attributes.position.array,BN=body.geometry.attributes.normal.array,AM=body.userData.armMask,core=[],coreN=[],arm=[],armN=[],i;
   for(i=0;i<BODY.n;i++){var tg=AM&&AM[i]?arm:core,tn=AM&&AM[i]?armN:coreN;tg.push(BP[i*3],BP[i*3+1],BP[i*3+2]);tn.push(BN[i*3],BN[i*3+1],BN[i*3+2]);}
   var cB=drapeCol(new Float32Array(core),new Float32Array(coreN),0.004),cA=drapeCol(new Float32Array(arm),new Float32Array(armN),0.004);
-  /* the clothes under each, built by make3Dcore: their points and normals turned away from his body; up is every top in
-     wearing order, the draped ones among them (not built by make3Dcore) */
-  /* (out: the clothes make3Dcore built over it instead, and a scarf, their normals turned in toward him and a short
-     reach, so the draped cloth stays inside a coat cut for a slimmer top or a scarf wound round a lower collar, while
-     beyond the coat's open front and hems it is let be) */
-  function innerCols(k,out){var ins={};(out?inner.slice(k+1).concat(ctx&&ctx.over||[]):inner.slice(0,k)).forEach(function(p){if(!p._drape)ins[p.item]=1;});var uP=[[],[]],uN=[[],[]];
+  /* the clothes under each, built by make3Dcore (the tops under it and the trousers or shorts): their points and normals
+     turned away from his body; up is every top in wearing order, the draped ones among them (not built by make3Dcore) */
+  /* (out: the clothes make3Dcore built over it instead, a scarf and a tool belt, their normals turned in toward him and
+     a short reach, so the draped cloth stays inside a coat cut for a slimmer top, a scarf wound round a lower collar or a
+     tool belt at his waist, while beyond the coat's open front and hems it is let be) */
+  function innerCols(k,out){var ins={};(out?inner.slice(k+1).concat(ctx&&ctx.over||[]):inner.slice(0,k).concat(ctx&&ctx.under||[])).forEach(function(p){if(!p._drape)ins[p.item]=1;});var uP=[[],[]],uN=[[],[]];
     man.traverse(function(o){if(!o.isMesh||o.isInstancedMesh||o.userData.draped||!o.userData.item||!ins[o.userData.item]||!o.geometry.attributes.position)return;var g=o.geometry,pa=g.attributes.position,na=g.attributes.normal;
       var isArm=false,a=o;while(a&&a!==man){if(a.userData.arm)isArm=true;a=a.parent;}var M=new T.Matrix4().multiplyMatrices(inv,o.matrixWorld),Nm=new T.Matrix3().getNormalMatrix(M),nv=new T.Vector3();
       for(var j=0;j<pa.count;j++){v.fromBufferAttribute(pa,j).applyMatrix4(M);if(na)nv.fromBufferAttribute(na,j).applyMatrix3(Nm).normalize();else nv.set(0,0,1);
@@ -3962,13 +4001,13 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
     var knit=ctx&&/^(hoodie|halfzip|jumper|rollneck|cardigan)$/.test(p.shape)&&t.arch&&!t.pins,A=[],B=[],I=t.idx;
     for(var f=0;f<I.length;f+=3){var pc=t.pieces[t.piece[I[f]]];(knit&&(pc.band>0||pc.name==="collar")?B:A).push(I[f],I[f+1],I[f+2]);}
     g.setIndex(new T.BufferAttribute(new Uint32Array(A.concat(B)),1));g.addGroup(0,A.length,0);g.addGroup(A.length,B.length,1);
-    var m=pm(p).clone();m.side=T.DoubleSide;var mr=knit?ctx.rib(p).clone():m;mr.side=T.DoubleSide;var me=new T.Mesh(g,[m,mr]);me.castShadow=me.receiveShadow=true;me.userData={item:p.item,what:p.what,kind:kind,draped:true,open:/jacket/.test(t.arch)};man.add(me);return {N:N};}
+    var m=pm(p).clone();m.side=T.DoubleSide;var mr=knit?ctx.rib(p).clone():m;mr.side=T.DoubleSide;var me=new T.Mesh(g,[m,mr]);me.castShadow=me.receiveShadow=true;me.userData={item:p.item,what:p.what,kind:kind,draped:true,open:/jacket/.test(t.arch)};man.add(me);return {N:N,me:me};}
   /* (60 steps; layers kept 1 cm apart, as at 6 mm the layer under it showed through at the back of the armholes on the
      larger bodies; window.__drapeSteps and __drapeTh try others) */
   var G=drapeSize(),sy=1+(G-1)*0.35;
   list.forEach(function(p){var t=GTPL[drapeArch(p)];if(!t)return;var k=inner.indexOf(p),ic=innerCols(k),oc=innerCols(k,true);cU=ic[0];cUA=ic[1];cO=oc[0];cOA=oc[1];t.cl=t.cl||drapeCloth(t,t.pos);var X=drapeBind(t,BP,G);
     drapeSettle(X,drapeGrade(t.cl,G,sy),layerCols(),t.grp,null,window.__drapeSteps||60,X.slice());var r=mesh(t,X,p,"up"+k);
-    done.push({col:drapeCol(X,r.N,window.__drapeTh||0.01),X:X});if(ctx)drapeDetails(man,p,t,X,r.N,ctx,"up"+k);if(t.hood&&p.shape==="hoodie")hoodies.push({p:p,t:t,X:X,k:k});});
+    done.push({col:drapeCol(X,r.N,window.__drapeTh||0.01),X:X});if(ctx)drapeDetails(man,p,t,X,r.N,ctx,"up"+k,drapeLooks(man,p,t,X,r.N,r.me,ctx,"up"+k));if(t.hood&&p.shape==="hoodie")hoodies.push({p:p,t:t,X:X,k:k});});
   /* a hoodie's hood, last: its neckline on the hoodie's, the rest out over whatever is worn over the hoodie */
   hoodies.forEach(function(H){var h=H.t.hood;h.cl=h.cl||drapeCloth(h,h.pos);var X=drapeBind(h,BP,G),pin=new Uint8Array(h.n),P2=h.pins;
     for(var j=0;j<P2.length;j+=2){var a=P2[j]*3,b=P2[j+1]*3;pin[P2[j]]=1;X[a]=H.X[b];X[a+1]=H.X[b+1];X[a+2]=H.X[b+2];}
@@ -6106,7 +6145,7 @@ function make3Dcore(pieces){
   var kH=(Number(CHAR.height)||183)/183,bw=1+0.08*(Number(CHAR.weight)||0)+0.06*(Number(CHAR.muscle)||0);
   var PW=propWarp(bodyOn?BL.chin:1.567);
   if(PW){warpMan(man,PW,bodyOn?BL.skull[1]:0.0);kH*=1.79/PW.W(1.79);}
-  if(drp.length){drp.sort(function(a,b){return layRank(a)-layRank(b);});drapeTops(man,drp,pm,up,{pm:pm,nm:nm,mat:mat,metal:metal,white:white,rib:rib,over:acc.filter(function(p){return p.shape==="scarf"||p.shape==="snood";})});}
+  if(drp.length){drp.sort(function(a,b){return layRank(a)-layRank(b);});drapeTops(man,drp,pm,up,{pm:pm,nm:nm,mat:mat,metal:metal,white:white,rib:rib,placeMap:placeMap,under:lo?[lo]:[],over:acc.filter(function(p){return p.shape==="scarf"||p.shape==="snood"||(p.shape==="belt"&&KITRE.test(nm(p)));})});}
   if(bodyOn)man.scale.set(kH,kH,kH);else man.scale.set(kH*bw,kH,kH*(0.5+0.5*bw));
   /* (loHem: the height on his body of a pair of shorts' hem, for the 3D check's idea of what they cover) */
   return {scene:scene,man:man,k:kH,loHem:lo&&lo.shape==="shorts"&&LS0?LS0["1"][0][0]:null};
