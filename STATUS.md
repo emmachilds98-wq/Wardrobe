@@ -157,6 +157,11 @@ Needs Emma (do not guess):
    tool first asks you to read the live version in full: it is the previous `docs/index.html` with a one-line
    wrapper, so check that with `diff` against the last merged build, then publish.
 5. Pages deploys `main` by itself; check the "pages build and deployment" run for the merge commit succeeded.
+   **Emma, 12 Oct: whenever a change goes live on GitHub, update the artifact too**, in the same session: the artifact
+   this account can publish to is <https://claude.ai/artifact/B8UXnhceKPAsHpTbyzFzek> (the GitHub build: `docs/`
+   exactly, page `index.html`, every file under `docs/data/` in `files`, root `docs`, no `capabilities`), and the drape
+   preview <https://claude.ai/artifact/5A3t39MwR6C9T5rHNED2iT> (`build_site.py --out <dir> --drape`). A session signed
+   in to Emma's own account republishes FtdHKg as in step 4.
 6. Update this file (Now, Queue, Log), add an entry to `UPGRADE_PLAN.md` for anything substantial, and the Status
    column in the plan doc.
 

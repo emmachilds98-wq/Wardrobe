@@ -259,6 +259,19 @@ MEAS = {
                     band_k=0.86, sleeve=63, bicep=40, wrist=27, cuff=7, cuff_c=20, collar=7),
     "jacket": dict(chest=124, length=68, shoulder=49, armhole=25.5, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=4,
                    band_k=0.93, sleeve=65, bicep=44, wrist=28, cuff=5, cuff_c=24, collar=6.5, open=1),
+    # the same jacket zipped up (its front one piece, the collar closed round his neck)
+    "jacket_up": dict(chest=124, length=68, shoulder=49, armhole=25.5, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=4,
+                      band_k=0.93, sleeve=65, bicep=44, wrist=28, cuff=5, cuff_c=24, collar=6.5),
+    # knits: a crew neck (a rib neckband standing 2.5 cm) and a roll neck (6 cm showing), a little closer than a
+    # sweatshirt. (A roll neck cut to a 15 cm neckline with a 9 cm collar crumpled against his jaw and pulled a fold
+    # down the front.)
+    "jumper": dict(chest=116, length=68, shoulder=47, armhole=23.5, neck_w=17, neck_f=7, neck_b=2, sh_drop=4.5, band=5,
+                   band_k=0.88, sleeve=64, bicep=38, wrist=25, cuff=6, cuff_c=19, collar=2.5),
+    "rollneck": dict(chest=116, length=68, shoulder=47, armhole=23.5, neck_w=17, neck_f=5, neck_b=2, sh_drop=4.5, band=5,
+                     band_k=0.88, sleeve=64, bicep=38, wrist=25, cuff=6, cuff_c=19, collar=6),   # (the roll as it shows, folded)
+    # a tee: short sleeves open at the end (wrist: all round there), a plain hem, a 2 cm neckband
+    "tee": dict(chest=108, length=72, shoulder=46, armhole=22, neck_w=17, neck_f=8, neck_b=2, sh_drop=4.5, band=0, band_k=1,
+                sleeve=21, bicep=38, wrist=36, cuff=0, cuff_c=0, collar=2),
 }
 H = 0.014   # mesh spacing (m)
 
@@ -326,11 +339,14 @@ def bodice(M, kind, s, split=False):
         cf = seg((0, L - nd), (0, hb), 20)
         p = Piece(kind + "_p", 0, [("hem", seg((0, hb), (hw, hb), 10)), ("side_p", side), ("arm_p", arm), ("sh_p", sh), ("neck_p", nk), ("cf_p", cf)])
         n = mirror(p, kind + "_n")
+        if not hb: return [p, n]
         bp = Piece(kind + "_p_band", 0, [("bot", seg((0, 0), (bw, 0), 10)), ("side_p", seg((bw, 0), (bw, hb), 4)), ("top", seg((bw, hb), (0, hb), 10)),
                                           ("cf_p", seg((0, hb), (0, 0), 4))], band=bk)
         return [p, n, bp, mirror(bp, kind + "_n_band")]
-    return [Piece(kind, 0, [("hem", seg((-hw, hb), (hw, hb), 20)), ("side_p", side), ("arm_p", arm), ("sh_p", sh), ("neck_p", nk), ("neck_n", mir(nk)),
-                           ("sh_n", mir(sh)), ("arm_n", mir(arm)), ("side_n", mir(side))]),
+    body = Piece(kind, 0, [("hem", seg((-hw, hb), (hw, hb), 20)), ("side_p", side), ("arm_p", arm), ("sh_p", sh), ("neck_p", nk), ("neck_n", mir(nk)),
+                           ("sh_n", mir(sh)), ("arm_n", mir(arm)), ("side_n", mir(side))])
+    if not hb: return [body]
+    return [body,
             Piece(kind + "_band", 0, [("bot", seg((-bw, 0), (bw, 0), 20)), ("side_p", seg((bw, 0), (bw, hb), 4)), ("top", seg((bw, hb), (-bw, hb), 20)),
                                       ("side_n", seg((-bw, hb), (-bw, 0), 4))], band=bk)]
 
@@ -357,7 +373,7 @@ def sleeve(M, s, arm_len, grp):
     sd = "_L" if grp == 1 else "_R"
     # (the cuff a rib of its own, the sleeve gathered into it, as the hem band is)
     cuff = Piece("cuff" + sd, grp, [("bot", seg((-cc, 0), (cc, 0), 8)), ("under_p", seg((cc, 0), (cc, ch), 4)), ("top", seg((cc, ch), (-cc, ch), 8)),
-                                    ("under_n", seg((-cc, ch), (-cc, 0), 4))], band=cc / wr)
+                                    ("under_n", seg((-cc, ch), (-cc, 0), 4))], band=cc / wr) if ch else None
     return Piece("sleeve" + sd, grp, [("wrist", seg((-wr, ch), (wr, ch), 8)), ("under_p", under), ("cap_p", capp),
                  ("cap_n", mir(capp)), ("under_n", mir(under))]), cuff, yb, cap
 
@@ -471,7 +487,7 @@ class Garment:
         sl, cu, self.yb, self.cap = sleeve(M, s, arm_len, 2)
         sl1, cu1, _, _ = sleeve(M, s, arm_len, 1)
         P["sleeve_L"] = mirror(sl1, "sleeve_L"); P["sleeve_R"] = sl
-        P["cuff_L"] = mirror(cu1, "cuff_L"); P["cuff_R"] = cu
+        if cu: P["cuff_L"] = mirror(cu1, "cuff_L"); P["cuff_R"] = cu
         bands = [k for k in P if k.endswith("_band")]
         # seams: [(piece, edge), ...] on one side against the other, sampled alike, and whether the two sides run the
         # same way along the seam (each piece's outline runs counter-clockwise seen from outside, so two pieces sewn
@@ -481,13 +497,15 @@ class Garment:
              ([(fp, "side_p")], [("back", "side_n")], 0.5, False), ([(fn, "side_n")], [("back", "side_p")], 0.5, False),
              ([("sleeve_L", "cap_p")], [(fp, "arm_p")], 0.85, False), ([("sleeve_L", "cap_n")], [("back", "arm_n")], 0.85, False),
              ([("sleeve_R", "cap_p")], [(fn, "arm_n")], 0.85, False), ([("sleeve_R", "cap_n")], [("back", "arm_p")], 0.85, False),
-             ([("sleeve_L", "under_p")], [("sleeve_L", "under_n")], 0.5, False), ([("sleeve_R", "under_p")], [("sleeve_R", "under_n")], 0.5, False),
-             ([("cuff_L", "top")], [("sleeve_L", "wrist")], 1.0, False), ([("cuff_R", "top")], [("sleeve_R", "wrist")], 1.0, False),
-             ([("cuff_L", "under_p")], [("cuff_L", "under_n")], 0.5, False), ([("cuff_R", "under_p")], [("cuff_R", "under_n")], 0.5, False)]
+             ([("sleeve_L", "under_p")], [("sleeve_L", "under_n")], 0.5, False), ([("sleeve_R", "under_p")], [("sleeve_R", "under_n")], 0.5, False)]
+        if cu:
+            S += [([("cuff_L", "top")], [("sleeve_L", "wrist")], 1.0, False), ([("cuff_R", "top")], [("sleeve_R", "wrist")], 1.0, False),
+                  ([("cuff_L", "under_p")], [("cuff_L", "under_n")], 0.5, False), ([("cuff_R", "under_p")], [("cuff_R", "under_n")], 0.5, False)]
         # the hem bands: each on its body piece's hem, and to each other at the sides (and the open front's not at all)
         for b in bands:
             S.append(([(b, "top")], [(b[:-5], "hem")], 1.0, False))
-        S += [([(fp + "_band", "side_p")], [("back_band", "side_n")], 0.5, False), ([(fn + "_band", "side_n")], [("back_band", "side_p")], 0.5, False)]
+        if bands:
+            S += [([(fp + "_band", "side_p")], [("back_band", "side_n")], 0.5, False), ([(fn + "_band", "side_n")], [("back_band", "side_p")], 0.5, False)]
         # the neckline round from the middle of the front, by his left, the back and his right, against the way the
         # front and back run (so a collar along it faces outward)
         ring = [(fp, "neck_p"), ("back", "neck_n"), ("back", "neck_p"), (fn, "neck_n")]
@@ -1036,7 +1054,7 @@ def main():
     top = body.PW(np.array([[0, 1.79, 0.0]]), np.array([False]), body.hz)[0][1] if body.PW else 1.79
     scale = 1 / ((body.char.get("height", 183) / 183) * 1.79 / top)
     print("body ready: %d vertices, cloth scale %.4f" % (body.n, scale), flush=True)
-    archs = [x for x in (a.only.split(",") if a.only else ["hoodie", "halfzip", "jacket"]) if x]
+    archs = [x for x in (a.only.split(",") if a.only else list(MEAS)) if x]
     for arch in archs:
         G = Garment(arch, scale)
         cnt = seam_counts(G.S + (hood_seams(G) if G.hood else []), {**G.P, **(G.hood or {})})
