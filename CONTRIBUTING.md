@@ -298,6 +298,21 @@ All fitting happens in `make3Dcore` in `page.html`, on the real body in `data/bo
   3 to 5 cm out round a polo's and its collar stood off his neck in wings. A collar's own clearance (`fitCollar`)
   still reads `OCC.N`, since a hood's rim sits further out than that. A shirt or polo under a closed half-zip, roll
   neck or hoodie keeps only a low band (1 cm) for a collar, since none of it shows.
+- **Where a neckline sits.** Beside his neck the slope of his shoulders rises past the neck's oval (`B3.neck`), so a
+  neckline put on the oval lies inside him there. In `yokeCol` it lies on his body where that is wider than the oval
+  (`fitMaps().N`, up to 2.5 cm out), as a crew neck lies on the slope of the shoulder. What rise is still needed is then
+  spread round his neck as a real neckline curves (each rise carried 90 degrees either way on a soft falloff, then
+  averaged over 35 degrees): raised only where the cloth crested, it climbed 3.5 cm in a few degrees beside his neck,
+  the back stayed down between two horns and every crew neckband showed gaps at the back corners. Check a neckline
+  change on a tee, a crew jumper and an oversized tee from the back and both sides, close up, not only from the front.
+- **Collars that fold.** A polo's collar is a low stand and a leaf that falls past the neckline to points spread over
+  the placket; worn open, a shirt's or jacket's leaf falls further with its points spread back beside the opening.
+  With the fitted top the leaf makes the points: the separate collar points are drawn only on the 2D-built figure
+  (laid on the cloth under an open jacket, they came through it as a dark flap). A cardigan named as an overshirt
+  (or shacket, shirt jacket, collar) gets a shirt's collar.
+- **Scarves.** The loop round his neck is measured only against cloth within 3.5 cm of the neck, or a collar; the top
+  of his shoulders is left to the ray down that lifts the loop's lower edge onto them (measured against them, the
+  loop lay over his shoulders as a flat cape).
 - **Trousers and shorts.** Cut as a pair is (`trouserGeo`): each half is one piece of cloth from the waistband to the
   hem. Over the hips and seat it lies on the hull of his body (hollows bridged) plus the ease, and below the widest
   point it falls in a line. The halves meet down the middle, front and back, and along the crotch seam, 2 to 4 cm

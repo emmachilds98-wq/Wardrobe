@@ -2195,6 +2195,20 @@ still looks layered and like there's overlap that looks like misrendering at the
   now lies on the trousers at their own room (`eW`).
 - **Check:** the gate set and every outfit the change touches, on all five bodies and both "How it's worn" passes (the
   pull-request check), and the stored specs (1381 pieces, none read differently).
+- **From the artifact's comments, the same day:** the rendered checks passed, but close up the collars were wrong.
+  - Every crew neckband (tee, jumper, oversized tee) rose up the sides of his neck in horns, with gaps at the back
+    corners: the neckline was raised 3.5 cm over a few degrees where the cloth crested beside his neck. The crest came
+    from the neckline being put on the neck's oval, which beside his neck lies inside the slope of his shoulders. The
+    neckline now lies on his body where that is wider (up to 2.5 cm out), and the rise left is spread round his neck.
+    Tried and dropped: capping the rise at 6 or 10 mm (gaps stayed at the back corners), spreading it over 70 or 90
+    degrees without the averaging (a V at the back between two horns).
+  - Polo collars stood as a ribbed band with box corners: a lower stand and a longer leaf with spread points now.
+  - Open jackets (the Harrington, the wool-look jacket): the collar points meant for the 2D figure were laid on the
+    cloth under the jacket and came through on one side as a dark flap below the collar. Drawn only without the fitted
+    top now; the fitted collar's leaf falls further and spreads to points beside the opening instead.
+  - The knit zip overshirt (filed as a cardigan) had no collar; a cardigan named as an overshirt gets a shirt's.
+  - A scarf's loop was measured against the top of his shoulders and lay over them as a flat cape; it is measured
+    against the cloth round his neck now, a little fuller.
 
 ## 3. Next steps
 

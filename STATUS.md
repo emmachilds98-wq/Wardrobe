@@ -26,6 +26,17 @@ that: Edit Dave's sliders centred on the last save, and biceps, forearms, thighs
      than the raised neckline under them; a collar under a closed half-zip, roll neck or hoodie is a low band
      (CONTRIBUTING, "Necklines over necklines"; UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzz).
    - w20261006-casual-04 on the loose fit (back poke 31): passes again.
+   - From the artifact's comments: every crew neckband had risen up the sides of his neck in horns with gaps at the
+     back corners (#33's neckline raise); necklines now lie on the slope of his shoulders and the rise is spread round
+     his neck as a neckline curves (CONTRIBUTING, "Where a neckline sits"). A polo's collar folds over to spread points;
+     an open jacket's or shirt's collar falls to points beside the opening; the dark flap under open jackets' collars
+     (collar points drawn under the jacket) is gone; the knit zip overshirt has its collar; a scarf wraps his neck
+     instead of lying over his shoulders as a cape (CONTRIBUTING, "Collars that fold", "Scarves").
+   - Scarves: the loop now rests on his shoulders and wraps the collar (a half-zip's collar folds lower under it).
+   - Still to do: the scarf loop's top edge is ragged in places at the front; od-event and g-outdoor-05 may flag
+     "under" (rays over the back of the lifted loop meet the jacket collar and scarf on the far side, at his front,
+     where the scarf is correctly outside: the check should count near-side hits only); the Harrington's brown cord
+     collar is not read from its photo (the collar is in the body's colour).
    - g-lounge-06 tucked in (front poke 37): the waistband was still placed at the loosest cut's room after the room
      went by the cut, so it stood 5 mm proud of a tapered pair and came through the jumper. It now lies on the trousers
      at their own room (`eW`).
