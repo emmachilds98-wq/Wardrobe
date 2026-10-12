@@ -4271,7 +4271,7 @@ function make3Dcore(pieces){
      outside the clothes already on him (OCC). */
   var OCC=bodyOn?fmBlank():null,FQ2=[0,0,0,0,0];
   function fitTop(F){
-    /* (a shirt, tee or jumper (F.snug: base and mid layers) gets only half its layer's room round his torso: it rests on
+    /* (a shirt, tee or jumper (F.snug: base and mid layers but hoodies, whose hood worn down lies over the layer above) gets only half its layer's room round his torso: it rests on
        his chest and shoulder blades, its looseness showing in how it hangs below them, not as a gap all round; given all
        of it, shirts and jumpers stood 1.3 cm off his chest and 5 cm off the small of his back, and stood out. Padded
        pieces keep it all, their bulk being the padding, and so do jackets and coats: worn open, their fronts then stand
@@ -4279,7 +4279,7 @@ function make3Dcore(pieces){
     var FM=fitMaps(),OM=OCC,TW=2*Math.PI,CF=Number(CHAR.clothFit)||0,eF=F.e*(1+0.55*CF),eT=eF*(F.snug&&!F.puff?0.5:1),eY=eF*0.95+0.001,gp=0.0035,eN=Math.min(eF,0.009);
     /* his body a cloth's thickness out, rounded over the edges (as the cloth itself lies) */
     eY=Math.min(eF,0.006+0.3*eF+(F.puff||0));   /* (on the shoulders the cloth rests on what is under it: its thickness, not its looseness; the yoke and neckline keep the layer's whole room, so collars and the layers over them stay as they were) */
-    var PF=window.__prof,tA=performance.now();var DT=fmDilate(FM.T,eT),DTU=fmDilate(FM.TU,eY),DY=fmDilate(FM.Y,eY);if(PF)PF.dil=(PF.dil||0)+performance.now()-tA;tA=performance.now();
+    var PF=window.__prof,tA=performance.now();var DT=fmDilate(FM.T,eT),DTF=eT<eF?fmDilate(FM.T,eF):DT,DTU=fmDilate(FM.TU,eY),DY=fmDilate(FM.Y,eY);if(PF)PF.dil=(PF.dil||0)+performance.now()-tA;tA=performance.now();
     var al=1.13,be=2.0,yA=1.3,yS=1.435,nS=12,nZ=9,nY=9,dT=TW/112,gap=F.gap||0,a0=gap>0?gap/2:Math.PI,span=gap>0?TW-gap:TW,aq=FQ2;
     /* (an opening that changes with height, F.gapAt(y): a done-up blazer's V. Each row's columns are spread over the
        cloth that row has; below 0 the fronts cross, and his left front, the first columns, lies over the right) */
@@ -4300,7 +4300,7 @@ function make3Dcore(pieces){
     function hole(i,j){return i>iA&&i<iS&&inSc[j]===1;}
     function panel(j){return pnl[j]===1;}
     /* below the chest the cloth hangs straight down from its widest part (taken in at the waist as Edit Dave's fit says) */
-    var tw=Math.max(0,0.1-0.085*CF),L0=Math.floor((hem-0.04)*100)/100,NL=Math.round((1.4-L0)/0.01)+1,HM=new Float32Array(NC*NL);
+    var tw=Math.max(0,(F.snug?0.1:0.08)-0.085*CF),L0=Math.floor((hem-0.04)*100)/100,NL=Math.round((1.4-L0)/0.01)+1,HM=new Float32Array(NC*NL);
     for(j=0;j<NC;j++){var mx=0;for(var l=NL-1;l>=0;l--){var yy=L0+l*0.01,v=fmGet(DT,yy,TA(yy,j));if(yy>1.215&&v>mx)mx=v;HM[j*NL+l]=mx;}}
     /* (and the line the cloth would take spanning from one support to the next down him, the upper hull of his profile:
        down his back it rests on his shoulder blades and on his seat and spans the hollow between) */
@@ -4308,12 +4308,13 @@ function make3Dcore(pieces){
         while(hp.length>1){var a5=hp[hp.length-2],b5=hp[hp.length-1];if((b5[0]-a5[0])*(v5-a5[1])-(b5[1]-a5[1])*(l2-a5[0])>=0)hp.pop();else break;}hp.push([l2,v5]);}
       for(var h5=0;h5<hp.length-1;h5++){var p5=hp[h5],q5=hp[h5+1];for(var l3=p5[0];l3<=q5[0];l3++)HS[j*NL+l3]=p5[1]+(q5[1]-p5[1])*(l3-p5[0])/Math.max(1,q5[0]-p5[0]);}
       if(hp.length===1)HS[j*NL+hp[0][0]]=hp[0][1];}
-    function rCyl(y,t,j,pn,o){var r=fmGet(DT,y,t);
+    function rCyl(y,t,j,pn,o){var r=fmGet(DT,y,t);if(DTF!==DT&&y>1.24)r+=(fmGet(DTF,y,t)-r)*sstep(1.24,1.34,y);   /* (a snug layer comes back to its whole room up by the armpits, where it meets the yoke and collar) */
       if(y>1.36&&(pn||y>=yS-1e-6)){var u=fmGet(DTU,y,t);if(u>r)r=r+(u-r)*sstep(1.36,1.43,y);}   /* (by the top of the armhole his shoulder's own roundness) */
       if(y<1.4){var l=Math.max(0,Math.min(NL-1,Math.round((y-L0)/0.01))),h=HM[j*NL+l]*(1-tw*sstep(1.3,1.04,y));
-        /* (down his back it spans from his shoulder blades to his seat, rather than hanging straight down from the blades
-           and standing off the small of his back) */
-        if(h>r){var bk=Math.max(0,-Math.cos(t));if(bk>0)h+=(Math.min(h,HS[j*NL+l])-h)*0.85*bk;}
+        /* (a shirt or jumper down his back spans from his shoulder blades to his seat, rather than hanging straight down
+           from the blades and standing off the small of his back; jackets and coats hang as they did, over what is under
+           them, a hood worn down included) */
+        if(h>r&&F.snug){var bk=Math.max(0,-Math.cos(t));if(bk>0)h+=(Math.min(h,HS[j*NL+l])-h)*0.85*bk;}
         /* (a tucked shirt is gathered into the waistband: from a hand above it down it comes in to lie on him, however
            loose the fit, so it stays inside the trousers all round, the hollow of his back included) */
         if(F.tucked)h=r+(h-r)*sstep(1.045,1.14,y);
@@ -5240,7 +5241,7 @@ function make3Dcore(pieces){
       fBack:tucked?0:({jacket:1,coat:0.9,gown:0.8,gilet:0.6,blazer:0.5}[shF]||(jacketShirt(p)?0.6:0))};   /* (an outer layer's folds across the small of his back) */
     if(fitOn){var vD=DS.neck==="v"&&/^(tee|jumper|cardigan|polo)$/.test(p.shape)?0.1:0;
       var tnt=null;if(ms!==m){var cB=new T.Color(gC(p.look&&p.look.c1?p.look.c1:cc(p.col)[0])).convertSRGBToLinear(),cS=new T.Color(gC(p.look.slv)).convertSRGBToLinear();tnt=[cS.r/Math.max(0.02,cB.r),cS.g/Math.max(0.02,cB.g),cS.b/Math.max(0.02,cB.b)];}
-      var tq0=performance.now();FT=fitTop({e:e,snug:L<2,hem:hem,hemC:hemC0,gap:gap,gapAt:gapAt,tucked:tucked,rib:!open&&/^(jumper|rollneck|halfzip|hoodie)$/.test(p.shape)&&!/oversized|boxy|cropped|crop\b/.test(n0),tint:tnt,puff:PUFFRE.test(n0)?0.014:0,sleeve:underLong0(k)?null:(short0?"short":"long"),se:(e*0.55+0.004)*(1+0.55*(Number(CHAR.clothFit)||0))+(short0?0.007:0),folds:null,
+      var tq0=performance.now();FT=fitTop({e:e,snug:L<2&&p.shape!=="hoodie",hem:hem,hemC:hemC0,gap:gap,gapAt:gapAt,tucked:tucked,rib:!open&&/^(jumper|rollneck|halfzip|hoodie)$/.test(p.shape)&&!/oversized|boxy|cropped|crop\b/.test(n0),tint:tnt,puff:PUFFRE.test(n0)?0.014:0,sleeve:underLong0(k)?null:(short0?"short":"long"),se:(e*0.55+0.004)*(1+0.55*(Number(CHAR.clothFit)||0))+(short0?0.007:0),folds:null,
         ytop:function(t){var c=Math.cos(t),f=c>0?c*c:0,tf=Math.abs(Math.atan2(Math.sin(t),c));return 1.522-NDIP*f-(vD?vD*Math.max(0,1-tf/0.62):0);}});
       if(window.__prof)window.__prof.fit=(window.__prof.fit||0)+performance.now()-tq0;
       var fA=m.clone();fA.vertexColors=true;fA.shadowSide=T.BackSide;UT.fYA=FT.yA;foldMat(fA,"up",UT);

@@ -2023,8 +2023,11 @@ every slider; and for thigh, calf, forearm and biceps sliders in the body sectio
     profile, `HS`), 85 % of the way on the back, and is taken in 10 % at the waist (was 8 %).
   - After: a tee 6 mm off his chest over the pec, 24 mm off his back and 40 mm at the small of it; a jumper 8 mm and
     42 mm. Each layer is still kept outside the one under it (`occT`, `gp`).
-  - Only base and mid layers (`F.snug`: shirts, tees, polos, jumpers, hoodies) get the half, and only round the torso
-    below the shoulders. Halving the yoke and neckline too let a shirt collar show through a padded jacket at the
+  - Only base and mid layers (`F.snug`: shirts, tees, polos, jumpers; not hoodies, whose hood lies over the layer above)
+    get the half, and only round the torso from the armpits down (`DTF`, the whole room, fades back in from 1.24 to
+    1.34 m, where the cloth meets the yoke and collar). The span down the back and the 10 % waist taper are for snug
+    layers only; jackets and coats hang as before (a padded jacket pulled in over a hoodie showed the shirt collar
+    through it beside his neck: w20261006-casual-04, back poke 34 on the heavier and athletic bodies). Halving the yoke and neckline too let a shirt collar show through a padded jacket at the
     shoulders on the athletic body (pull-request check, w20261006-casual-04 back poke 34); halving jackets let an open
     jacket's fronts fall behind the shirt or roll neck under them, a sliver of background between them from the side
     (mn-smart side holes 53, wedding-guest 27). Jackets still come in at the back, following the shirt under them.
