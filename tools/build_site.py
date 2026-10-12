@@ -73,7 +73,7 @@ def load_groups(items):
     return groups
 
 
-FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch", "named", "slv", "place")
+FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch", "named", "slv", "place", "crown")
 
 
 def check_fix_fields(k, fx, bad):
@@ -97,6 +97,9 @@ def check_fix_fields(k, fx, bad):
     if "place" in fx and not (isinstance(fx["place"], str) and re.match(r"data:image/(jpeg|png);base64,", fx["place"])
                               and len(fx["place"]) <= 24000):
         bad.append(f"{k}: place must be a small data:image/jpeg or png (the front panel, under 24,000 characters)")
+    if "crown" in fx and not (isinstance(fx["crown"], str) and re.match(r"data:image/(jpeg|png);base64,", fx["crown"])
+                              and len(fx["crown"]) <= 24000):
+        bad.append(f"{k}: crown must be a small data:image/jpeg or png (a cap's crown seen from the front, under 24,000 characters)")
 
 
 def check_fixes(fixes, items):

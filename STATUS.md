@@ -14,24 +14,46 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
-Folds and light shipped (PR for queue items 11 to 13, 12 Oct), then the folds still missing and contact shade at cuffs,
-collars and hems (12 Oct, UPGRADE_PLAN 2zzzzzzzzzzzzz), then Edit Dave's sliders centred on the last save, with
-biceps, forearms, thighs and calves sliders (12 Oct, UPGRADE_PLAN 2zzzzzzzzzzzzzz). Next agent, start here:
+Shipped 12 Oct (PR #31, artifact FtdHKg v35): trousers meet where his thighs do, Clear view in the fitting room, shirts
+and jumpers rest on his chest, the Lambretta polo and cap as in their photos (UPGRADE_PLAN 2zzzzzzzzzzzzzzz). Before
+that: Edit Dave's sliders centred on the last save, and biceps, forearms, thighs and calves sliders (2zzzzzzzzzzzzzz).
 
-1. **Look at the folds in the fitting room on a phone and a laptop** (Emma's verdict decides the strength). The
-   strengths are the `fAmp` and `fWid` values in `FU` (trousers, at the call to `trouserGeo`) and `UT` (tops, just
-   after `var fitOn`); each pattern's own weights are the uniforms after them. Before/after renders from one build:
-   set `window.__nofold=1`, `window.__noenv=1` or `window.__nocs=1` (contact shade) with
-   `QA_INIT='window.__nofold=1' node tools/qa/zoom.js ...`.
-2. **Folds:** done 12 Oct for the back of a tucked shirt, a jacket's or coat's lower back, scarves and the shoe's heel
-   counter. Still none on hats, on a scarf's hanging ends (flat boxes, which also show their joins) or on the drawn-only
-   figure (no body data).
-3. **Light:** the room (`studioEnv`) is a first version; compare a fitting-room still with a shop photo of the same
-   piece and tune the softbox brightness, and the day and evening rooms, by eye. Watch the `colour` check.
-4. **Contact shade** covers hems and open fronts, and since 12 Oct his hands below long sleeves, his arms below short
-   ones, his neck above a collar or neckband, and the shoe or boot under a trouser hem (`hemShade`). Not yet: the shirt
-   collar on the neck of a jumper or coat worn over it, a scarf on what is under it.
-5. Then the rest of the queue (4, 5, 6, 8, 9, 10).
+**Next agent, start here (in this order):**
+
+1. **Slim and baggy trousers must look clearly different** (Emma, artifact thread 8a881d1b, still open: "make
+   differences between baggier and slim trousers clearer. i should be able to tell how it will fit accurately").
+   Where: `make3Dcore`, the lines after `var und=!!lo.under` (`wide`, `cutL`) and `legSecs` (`ea`, `fall`). Today the
+   room at the thigh runs only from 16 mm (no fit given) to 35 mm (wide leg), and the share of the thigh's width kept
+   to the hem from 0.68 to 0.92, so regular, straight, relaxed and wide look alike. His picks have no slim or skinny
+   trousers; the fits are the shop's `fit` (Relaxed 237, Regular 89, Wide leg 77, Straight 60, none 329) and words in
+   the name (baggy, parachute, barrel, cargo, jogger). Proposed: room at the thigh (`wide`) regular 0.006, straight
+   0.008 with `fall` 0.8, relaxed 0.02, wide leg 0.035 with `fall` 1.0, baggy or parachute 0.045 with `fall` 1.0;
+   keep the crotch drop (`BL.crotch-0.022-0.6*wide`) on the old scale (`Math.min(wide,0.022)`). Compare with the
+   renders script in the session notes: one pair of each (sw-chino-stone regular, js-levis-501 straight,
+   wk-blaklader-1400 relaxed, wk-cernucci-cargo-charcoal wide, js-levis-578 baggy) front and side, on a plain tee and
+   white trainers (`node tools/qa/zoom.js out.png '[{"item":"","shape":"tee","col":"white","what":""},{"item":"<id>",
+   "shape":"trousers","col":"stone","what":"Trousers"}]' "0,0.62,3.6,0.55;1.57,0.62,3.6,0.55"`). Then the gate on all
+   bodies (the `legs` check watches the legs part), reply on thread 8a881d1b and resolve it.
+2. **Edit Dave's extremes** (UPGRADE_PLAN 2zzzzzzzzzzzzzzz, Check): with weight 0.6, muscle 0.6, arms and legs 1 and
+   the four new sliders at 1.8 all at once, short sleeves poke at the back of the armpit (ca-beer-garden,
+   h10-resort, back poke about 100), w20261006-casual-04 back poke 34, joggers sunk at the shin (g-lounge-04). Each
+   slider alone at its limit passes. Fix the sleeves' room for big arms (the sleeve sections and `se`), or lower
+   `CE_LIM` for the arm sliders. To test a body the page has no button for, copy `docs/` and add an entry to `PRESETS`
+   in the copy's `index.html`, e.g. `xbig:{weight:0.6,muscle:0.6,arms:1,legs:1,bicep:1.8,forearm:1.8,thigh:1.8,
+   calf:1.8}`, then `node tools/check_3d.js --site <copy> --ids @tools/qa/gate.txt --body xbig`.
+3. **One set of model controls** (queue item 4). Found 12 Oct: the builder's small model uses `Live3D`'s own bar
+   (`opt.bar`, `.v3-bar`, `data-v3`: Front, Side, Back, Turn, Full, Top, Face, Zip up), Edit Dave has its own Front,
+   Side, Back (`.ce-bot`, `data-ceang`), the fitting room the dock (`.fr-dock`, `data-frang`, `data-frcam`,
+   `data-frspin`, lit in `frFrame`) and "How it's worn" (`frWearRows`, `frWear`). Plan: one function making the dock's
+   markup, used by all three, each wired to its own `Live3D` (`turnTo`, `frameTo`, `spinning`, `framing`); the wear
+   rows from `frWearRows` generalised to any wear object (`h.wear`). The page-wide click handler for `data-frang` only
+   acts inside `#fr`, so a dock elsewhere needs its own handler.
+4. The rest of the queue (5, 6, 8, 9, 10), and from earlier: folds on hats and a scarf's hanging ends; the light
+   (`studioEnv`) tuned against shop photos; contact shade of a shirt collar on a jumper's neck and of a scarf; the
+   Lambretta cap's stripe over the top to the back (the `crown` correction covers the front only).
+
+Emma looks at the work in her copy of the artifact (FtdHKg) and leaves comments there; a session reads them with the
+artifact comments tool (threads "sent to Claude"), acts, replies in the thread and resolves it.
 
 If you stop part-way through something, write here: the branch, what is done, what is left, and anything you found
 out that the next person needs. Push the branch, even unfinished, so the work is not lost when a session ends.
@@ -117,6 +139,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 12 Oct 2026 | #31 | Trouser legs meet where his thighs do (no V showing his thighs on bigger legs); Clear view in the fitting room (H); shirts and jumpers rest on his chest and span his back instead of standing off it; the Lambretta polo plain with its chest band, its cap with its racing stripe (`crown` correction) | FtdHKg v35 |
 | 12 Oct 2026 | direct to `main` | Edit Dave: every slider back in the middle after Save (centred on his last saved look, within hard limits); biceps, forearms, thighs and calves sliders under "Arms and legs" | FtdHKg v34 |
 | 12 Oct 2026 | direct to `main` | Folds on the back of a tucked shirt, a jacket's lower back, scarves and shoes' heel counters; contact shade at cuffs, above collars and on shoes under trouser hems | FtdHKg v33 |
 | 12 Oct 2026 | #29 | Folds and creases shaded into every garment (trousers, shorts, tops, sleeves, shoes), soft studio light from a room of softboxes, shade under hems and inside open fronts; `legs` check heights follow Edit Dave's proportions | v46 |

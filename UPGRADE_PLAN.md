@@ -1994,8 +1994,57 @@ every slider; and for thigh, calf, forearm and biceps sliders in the body sectio
 - **To add another body slider:** add its targets and its `SLIDERS` row in `tools/build_body.py` and rebuild
   `data/body.json` with `--mh <MakeHuman checkout>` (targets from `raw.githubusercontent.com`); add the key to `CHAR_DEF`
   (0), `BODY_KEYS` and `CE`, and to a list in `CES`. `bodyW()` picks it up from `BODY.sliders`.
-- **Check:** the gate set on his saved shape, on the athletic and heavier types, and on a test copy with all four new
-  sliders at +1.8 and at -1.8: nothing flagged. The stored specs read the same (1381 pieces).
+- **Check:** the gate set on his saved shape and on the athletic and heavier types: nothing flagged. On a test copy with
+  the four new sliders at +1 (and +1.8), every outfit with trousers was flagged "sunk" on the thighs: see the next entry.
+  The stored specs read the same (1381 pieces).
+
+## 2zzzzzzzzzzzzzzz. Trousers meet where his thighs do; a clear view in the fitting room; tops no longer stand off his chest (12 Oct 2026)
+
+- **Trouser legs and bigger thighs** (`legSecs`, `thighIn`): below the crotch each leg kept its inside 6 to 18 mm clear
+  of the middle whatever his shape, so the legs parted in a V. With bigger thighs (Thighs or Legs toward the top of
+  their range; the old Legs slider at +1 did it too) his thighs touch there, and his hidden thighs filled the V: the 3D
+  check flagged every outfit with trousers "sunk" on the thighs. The parting now never opens wider than his own thighs
+  (less 5 mm), as the inside limit in `trouserGeo` already did (`inX`, which now uses the same `thighIn`). His saved
+  shape looks the same.
+- **Clear view** (Emma, on the artifact: "make these buttons and the side menu able to close so i can get a better view
+  of the model"): a "Clear view" button at the bottom right of the fitting room's stage (and the H key) puts away the
+  pins, the buttons over the model, the side panels and the outfit strip, leaving the header (to close it) and the model,
+  which grows to fill the space; "Show controls" brings them back. `FR.clear`, `frClear`, `data-clear` on `#fr`; kept on
+  this device (`dw-frclear`).
+- **Tops stood off his chest** (Emma: "the shirts and jumpers just stick out"). Measured against his bare body, mid-front
+  and mid-back (`standoff.js` in the session scratchpad; rays at 1.32, 1.22 and 1.08 m): a tee stood 13 mm off his chest
+  over the pec and 24 mm at the breastbone, 31 mm off his back and 49 mm off the small of his back; a jumper 16 mm and
+  52 mm. Two causes in `fitTop`:
+  - the whole of a layer's room (`e`: 8 mm base, 17 mm mid, 25 mm outer) was added all round his torso, at the chest
+    and shoulder blades too, where a top rests on him. Round the torso it now gets half (padded pieces all of it, their
+    bulk being the padding); its looseness still shows in how it hangs below the chest;
+  - below the chest the cloth hung straight down from the widest point above, so down his back it stood off the small
+    of his back by the depth of the hollow. It now spans from his shoulder blades to his seat (the upper hull of his
+    profile, `HS`), 85 % of the way on the back, and is taken in 10 % at the waist (was 8 %).
+  - After: a tee 6 mm off his chest over the pec, 24 mm off his back and 40 mm at the small of it; a jumper 8 mm and
+    42 mm. Each layer is still kept outside the one under it (`occT`, `gp`).
+  - Only base and mid layers (`F.snug`: shirts, tees, polos, jumpers; not hoodies, whose hood lies over the layer above)
+    get the half, and only round the torso from the armpits down; under a jacket or coat (`F.under`) the whole room fades
+    back in from 1.24 to 1.34 m (`DTF`), where the cloth meets the jacket's yoke and collar (under a knitted vest it stays
+    in, or the tee came through the vest's armholes on the loose fit: g-lounge-04, front poke 66). The span down the back and the 10 % waist taper are for snug
+    layers only; jackets and coats hang as before (a padded jacket pulled in over a hoodie showed the shirt collar
+    through it beside his neck: w20261006-casual-04, back poke 34 on the heavier and athletic bodies). Halving the yoke and neckline too let a shirt collar show through a padded jacket at the
+    shoulders on the athletic body (pull-request check, w20261006-casual-04 back poke 34); halving jackets let an open
+    jacket's fronts fall behind the shirt or roll neck under them, a sliver of background between them from the side
+    (mn-smart side holes 53, wedding-guest 27). Jackets still come in at the back, following the shirt under them.
+- **The striped polo by the pool and its cap** (Emma, on the artifact: "no lines on the arm of this shirt as you see in
+  the ad, put hat design on the cap too"):
+  - the Lambretta polo is white with one navy, red and navy band across the chest; its name ("stripe polo") made it
+    striped all over, sleeves and back included. A correction (`pat` plain, `front` true) keeps the photo's band and
+    logo on a plain polo, and a correction saying plain now outranks a pattern the listing's name gives (`pm`);
+  - a cap's design: a new correction field, `crown`, the crown seen from the front cut from the shop photo, laid over the
+    front of the 3D cap (by where each point is seen from the front, fading into the cap's colour round the sides). The
+    Lambretta cap now shows its red racing stripe and lettering. Not yet: the stripe over the top to the back.
+
+- **Check:** the gate set on his saved shape, the four body types, and test copies with the new limb sliders at +1.8
+  and -1.8, weight at +1.8, arms and legs at +1.8 and muscle at +1.8. Still flagged: a test body with everything pushed
+  together (weight 0.6, muscle 0.6, arms and legs 1, the four new sliders 1.8): short sleeves poke at the back of the
+  armpit on two outfits, a jacket on one, joggers at the shin on one. Next.
 
 ## 3. Next steps
 
