@@ -36,18 +36,17 @@ would roll that back, so this session did not republish it.
 
 **Next agent, start here (in this order):**
 
-0. **The garment drape proof** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzz has what was found, the proof and the commands):
-   1. Show Emma the proof (PR #36's renders, or render it again: `QA_INIT='window.__drape=1' node tools/qa/zoom.js`
-      on a served build) and ask whether to go on. Done before it: the hoodie's fold and pinch (four causes: his
-      body's armpit tear under `propWarp`, the relax shrinking the cloth, his left sleeve and the collar facing
-      inward, the rib hem and cuffs cut as steps), the hood's own drape, the quarter-zip and jacket, the templates,
-      the page behind the switch.
-   2. If she goes on: front details on draped pieces (zip, drawstrings, pocket) by their place on the pattern; the
-      Cloth fit slider and the size (her decision: adjustable) as rest-length scales per piece, shown in the fitting
-      room; the 3D check with the switch on; then more kinds and float16 storage.
-   3. The page's own armpit tear: `warpMan` moves arm and chest skin apart by up to 1.7 cm at the front of each armpit
-      on his saved shape (a ridge on his bare chest). Blend the two as the builder does (`Body.armW`), with the full
-      3D check: it moves every render.
+0. **The garment drape proof** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzz has what was found, the proof, the checks and the
+   commands). Built, behind `window.__drape`: the hoodie (with its hood), quarter-zip and track-type jacket draped in
+   Blender and drawn from templates, their front details on the cloth, rib bands, a Size row in the fitting room (and
+   Edit Dave's Cloth fit), and the 3D check run with the switch on (gate set 28 of 30 clean on his shape).
+   1. Show Emma the proof (PR #36) and ask whether to go on.
+   2. If she goes on, in order: shop-photo fronts, decals and `place` maps on draped cloth; then more kinds, the
+      layers worn over these first (coats, other jackets, scarves: every remaining switch-on flag is one of those
+      built by `make3Dcore` over a draped top), then tees, jumpers and roll necks; a size per piece; compact storage.
+   3. Separately, its own pull request: the page's armpit tear. `warpMan` moves arm and chest skin apart by up to 1.7 cm
+      at the front of each armpit on his saved shape (a ridge on his bare chest). Blend the two as the builder does
+      (`Body.armW`), clothes by the nearest skin's blend, with the full 3D check: it moves every render.
    - Also, a small data pull request: g-mod-27's Duck and Cover top is a quarter-zip with no hood (the shop's feed
      says so), so its piece should be `halfzip`, and `descOf` reads "quarter-zip hoodie" as a full zip ("zip hood").
    - Frozen while this goes on (the drape replaces that code): queue items 9 and 10, scarf edges, contrast collars.
@@ -164,6 +163,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 12 Oct 2026 | #36 | Drape proof, continued: front details on draped cloth, rib bands, a Size row in the fitting room and Cloth fit, only track-type jackets worn open draped, draped tops kept in `up` and named as `main`'s layers, `check_3d.js` takes `QA_INIT`; unchanged without the switch | not republished |
 | 12 Oct 2026 | #36 | Garment drape proof: the hoodie (with its hood), quarter-zip and jacket drape cleanly in `tools/build_garments.py`, templates in `data/garments/`, the page draws them with `window.__drape` set (`drapeTops`); unchanged without it | not republished (FtdHKg shows PR #33's build) |
 | 12 Oct 2026 | #35 | Garment drape upgrade begun: Emma's design handoff in `design/garment-drape/`, her decisions, `tools/build_garments.py` (Blender templates, in progress) and `tools/garment_view.js`; no page change | not republished (FtdHKg shows PR #33's build) |
 | 12 Oct 2026 | PR | Bottoms: slim, regular, straight, relaxed, wide and baggy clearly different in 3D and the drawing, shorts at their own length (from the inseam), the cut in words in the fitting room | FtdHKg v37 |

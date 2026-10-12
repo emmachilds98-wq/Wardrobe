@@ -2275,6 +2275,44 @@ the script with that Python), about 3 minutes a kind. `--reuse` takes the draped
 try the hood alone. `node tools/garment_view.js <dir>/hoodie-draped.json out.png` looks at any stage (`THREE_JS=` for a
 local Three.js). The page: build `docs/`, serve a copy (`tools/qa/serve.sh`), and pass `QA_INIT='window.__drape=1'`.
 
+**Continued, 12 Oct, night (same PR):**
+- **Front details on draped pieces** (`drapeDetails`), laid on the cloth by their place on the flat pattern
+  (`drapeAt`: a pattern point's triangle, its place on the draped cloth and the normal), so they follow it on any body:
+  a quarter-zip's zip down its collar's front edges and 18 cm of the front, its pull, a brand's chest logo; a
+  hoodie's cords, kangaroo pocket (a patch of the cloth itself, raised 3 mm) with its slanted openings, and a zip where
+  the listing says full zip (as `main` draws it, g-mod-27's "zip hood" reading included); an open zip jacket's teeth
+  along each front edge (`make3Dcore`'s `zipT` and `zipM` words). A knit's hem band, cuffs and quarter-zip collar
+  use the page's rib (`rib(p)`), as `main` draws them. Not yet: shop-photo fronts (`frontPhoto`), decals, `place` maps
+  (yokes and bands by height) and stripes by height on draped pieces (stripes and checks by `lookTex` do run on the
+  pattern's UVs, at `main`'s scale).
+- **Size** (Emma's decision, adjustable): the fitting room's "How it's worn" has a Size row (S to XXL, as cut L) for
+  the draped tops, with each one's chest and length at that size against his chest (the measuring card's figure).
+  The cloth is graded round him by the chest's ratio (8 cm a size, as the charts run) and down him a third as much
+  (`drapeGrade`, per edge by its run on the pattern), and stands off him by as much more (`drapeBind`). Edit Dave's
+  Cloth fit grades it 4% either way. The size is worn state like the zip (`SIZEM`, `Live3D`'s `wear.size`); QA
+  scripts take `window.__drapeSize`. One size for all the draped tops of an outfit; per piece is a next step.
+- **Which tops are draped:** hoodies, quarter-zips, and jackets that are the template's cut (track tops, windbreakers,
+  softshells, funnel-neck and zip-through jackets: not padded, denim, hooded, waxed, workwear, fleece or borg) and
+  worn open (`openWorn`: the template cannot be done up; "Done up" in the fitting room draws `main`'s jacket). Across
+  the outfits that is 64 hoodies, 49 quarter-zips and 24 jackets.
+- **They stay in `make3Dcore`'s `up`** (marked `_drape`, not built there), so the pieces under and over them know they
+  are there: a tee's sleeves under a draped hoodie's are not built, a coat over it is cut for a layer under it. Their
+  meshes carry `up<k>` (the hood `up<k>o` when worn under something) as `main`'s do, so the 3D check classes them.
+  Clothes `make3Dcore` builds over a draped top, and a scarf, hold it inside them (their surfaces as colliders turned in
+  toward him, 2 cm reach).
+- **The 3D check with the switch on** (`QA_INIT='window.__drape=1'`, now also taken by `check_3d.js`): the gate set on
+  his own shape 28 of 30 clean. Flagged: **od-hike** (back poke 228: a hiking shell built by `make3Dcore` over a draped
+  quarter-zip) and **q7-fairisle** (back poke 945 and `under`: the scarf, wound for `main`'s lower collar, over the
+  draped quarter-zip's 7 cm funnel). On slim, athletic, heavier and loose, of the hood and layering cases:
+  w20261006-casual-04 clean on all; g-mod-27 front poke 46 to 81 (the hoodie's neckline by the hood's root at the open
+  jacket's collar); hoodie-coat back poke 64 to 201 (`main`'s long coat over the draped hoodie); od-hike 76 to 143;
+  q7-fairisle 235 to 1113. All of them are a piece `make3Dcore` builds over a draped one: the fix is draping those too
+  (coats, other jackets, scarves), not more rules. Without the switch the check is unchanged.
+- **Not done, on purpose:** the page's armpit tear (it moves every render with the switch off: its own pull request,
+  with the full check); more kinds (a tee, jumper or roll neck would lose its photo front, decals and `place` maps
+  until those are laid on draped cloth: that comes first); compact storage (uint16 positions would take the three
+  templates from 1.3 to about 0.8 MB, needed only with many more kinds).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
