@@ -1600,11 +1600,11 @@ function tone(col,dim){
    reaches the hem (1 and over: as wide at the hem as at the thigh, or wider). Shorts: len, how far below the crotch the
    hem is (from the inseam when the name gives one, as 7"), and sfall. cuff: a jogger gathered at the ankle. Before
    12 Oct the room at the thigh only ran from 16 to 35 mm and fall from 0.68 to 0.92, so the fits looked alike. */
-var BOTCUT={skinny:{e0:0.006,wide:0,fall:0.4,len:0.2,sfall:0.8},slim:{e0:0.008,wide:0.002,fall:0.5,len:0.22,sfall:0.84},
-  tapered:{e0:0.01,wide:0.006,fall:0.46,len:0.25,sfall:0.88},regular:{e0:0.012,wide:0.004,fall:0.64,len:0.27,sfall:0.92},
-  straight:{e0:0.013,wide:0.01,fall:0.9,len:0.28,sfall:0.97},relaxed:{e0:0.015,wide:0.024,fall:0.95,len:0.3,sfall:1.02},
-  wide:{e0:0.016,wide:0.034,fall:1.02,len:0.32,sfall:1.04},baggy:{e0:0.017,wide:0.046,fall:1.06,len:0.36,sfall:1.08},
-  barrel:{e0:0.013,wide:0.022,fall:0.6,len:0.3,sfall:1,barrel:0.018}};
+var BOTCUT={skinny:{e0:0.006,wide:0,fall:0.4,len:0.2,sfall:0.82},slim:{e0:0.008,wide:0.002,fall:0.5,len:0.22,sfall:0.86},
+  tapered:{e0:0.009,wide:0.006,fall:0.46,len:0.25,sfall:0.88},regular:{e0:0.01,wide:0.004,fall:0.64,len:0.27,sfall:0.91},
+  straight:{e0:0.011,wide:0.01,fall:0.9,len:0.28,sfall:0.94},relaxed:{e0:0.015,wide:0.024,fall:0.95,len:0.3,sfall:0.96},
+  wide:{e0:0.015,wide:0.028,fall:1,len:0.32,sfall:0.99},baggy:{e0:0.016,wide:0.036,fall:1,len:0.36,sfall:1.0},
+  barrel:{e0:0.013,wide:0.022,fall:0.6,len:0.3,sfall:0.96,barrel:0.018}};
 function bottomCut(p){var it=byId[p.item]||{},n=((it.name||"")+" "+(p.what||"")).toLowerCase(),f=it.fit||"",sh=p.shape==="shorts",k;
   if(/barrel|balloon/.test(n))k="barrel";
   else if(/baggy|parachute|oversized|skate|super ?wide|extra ?wide|basketball/.test(n))k="baggy";
@@ -4083,18 +4083,18 @@ function make3Dcore(pieces){
        than flaring out just under the seat and leaving a ridge where the legs meet the top) */
     /* (below his ankle bone the cloth falls straight on from the ankle: the foot is the shoe's business, so the hem
        is not stretched along it) */
-    ys.forEach(function(y){var q=secAt(lg,Math.max(lg[0][0],y,sh?0:0.13)),ea=cut.brief?0.004:(cut.e0!=null?cut.e0:0.013)+wide*(0.25+0.75*sstep(BL.crotch-0.03,BL.crotch-0.2,y));mx=Math.max(mx,q[1]);mz=Math.max(mz,q[2]);   /* (boxer briefs sit close on the thigh) */
+    ys.forEach(function(y){var q=secAt(lg,Math.max(lg[0][0],y,sh?0:0.13)),ea=cut.brief?0.004:(cut.e0!=null?cut.e0:0.013)+wide*(0.25+0.75*sstep(BL.crotch-0.03,BL.crotch-0.2,y));mx=Math.max(mx,q[1]);if(y<BL.crotch-(sh?0.13:0.07))mz=Math.max(mz,q[2]);   /* (a leg takes its depth from his thigh, not his seat above it: a fitted pair comes in under the seat, and a loose one hangs as a straight tube rather than swelling behind his calves as deep as his seat) */   /* (boxer briefs sit close on the thigh) */
       var hang=cut.brief?0:sstep(BL.crotch-0.06,BL.crotch-0.2,y),fall=sh?(cut.sfall||0.9):(cut.fall!=null?cut.fall:(0.62+0.3*Math.min(1,wide/0.02)));   /* how much of the thigh's size it keeps going down */
       var rx=Math.max(q[1]+ea,(mx+ea)*(1-hang*(1-fall))),rz=Math.max(q[2]+ea,(mz+ea)*(1-hang*(1-fall)));
       if(!sh&&cut.flare){var fl=cut.flare*sstep(0.48,0.06,y);rx+=fl;rz+=fl*0.8;}
       if(!sh&&cut.boot&&y<0.26){var bk=sstep(0.26,0.2,y);rx=Math.max(rx,q[1]+0.026*bk+0.013*(1-bk));rz=Math.max(rz,q[2]+0.026*bk+0.013*(1-bk));}   /* (round a boot's shaft the leg stands clear of it) */
       if(!sh&&cut.barrel){var br=cut.barrel*Math.max(0,1-Math.abs(y-0.5)/0.22);rx+=br;rz+=br;}
-      if(sh&&!cut.brief)rx+=0.006*sstep(BL.crotch-0.12,yBot,y),rz+=0.006*sstep(BL.crotch-0.12,yBot,y);
+      if(sh&&!cut.brief)rx+=0.003*sstep(BL.crotch-0.12,yBot,y),rz+=0.003*sstep(BL.crotch-0.12,yBot,y);   /* (a little fuller at the hem; shorts hang about as wide as the thigh, and wider read as flared) */
       var lb=sh?0:sstep(0.2,0.05,y);   /* (at the hem a little fuller and set back, so the heel of the shoe stays inside) */
       out.push([y,rx+0.004*lb,rz+0.012*lb,q[3],q[4]-0.01*lb]);});
     /* (cloth spans from one support to the next: from the thigh it falls in a straight line over the calf to the hem,
        rather than going in at the knee and out again round the calf, which drew a wobbling leg) */
-    if(!cut.brief&&out.length>2)[1,2].forEach(function(k){var H=[];out.forEach(function(q,i){while(H.length>1){var a=out[H[H.length-2]],b=out[H[H.length-1]];
+    if(!cut.brief&&out.length>2)[1,2].forEach(function(k){var H=[];out.forEach(function(q,i){if(k===2&&(cut.seat>=1||sh)&&q[0]>BL.crotch-0.09)return;while(H.length>1){var a=out[H[H.length-2]],b=out[H[H.length-1]];
         if((b[0]-a[0])*(q[k]-a[k])-(b[k]-a[k])*(q[0]-a[0])<=0)H.pop();else break;}H.push(i);});   /* (the upper hull of the widths, top to bottom) */
       for(var h=0;h<H.length-1;h++){var a=out[H[h]],b=out[H[h+1]];for(var i=H[h]+1;i<H[h+1];i++){var f=(out[i][0]-a[0])/(b[0]-a[0]);out[i][k]=Math.max(out[i][k],a[k]+(b[k]-a[k])*f);}}});
     out.reverse();
@@ -4219,7 +4219,9 @@ function make3Dcore(pieces){
   function trouserGeo(e,yTop,Ls,yc,m,o){var FM=fitMaps(),DT=fmDilate(FM.T,e),zc=FX.zc,TW=2*Math.PI,N=96,NH=N/2,K=14,K2=K/2,M=K+NH+2;
     /* the hang, in each of N directions round him, on rows from the waistband down to the crotch seam */
     var nH=Math.max(8,Math.round((yTop-yc)/0.005)+1),dH=(yTop-yc)/(nH-1),HG=new Float32Array(nH*N),i,j,c;
-    for(j=0;j<N;j++){var pv=0;for(i=0;i<nH;i++){var hh=fmGet(DT,yTop-i*dH,j/N*TW);pv=Math.max(hh,pv-0.3*dH);HG[i*N+j]=pv;}}
+    /* (at the back a fitted pair follows his seat round under it (o.seat, by the cut): hanging straight down from the
+       seat's fullest point, jeans read as flat behind; a baggy pair still hangs) */
+    for(j=0;j<N;j++){var pv=0,slp=0.3+(o.seat||0)*Math.max(0,-Math.cos(j/N*TW));for(i=0;i<nH;i++){var hh=fmGet(DT,yTop-i*dH,j/N*TW);pv=Math.max(hh,pv-slp*dH);HG[i*N+j]=pv;}}
     /* how near the middle each leg's inside may come: a gap that opens slowly down from the crotch seam (2.5 mm a side,
        and 4 mm more for every 10 cm down), as two legs hanging straight leave, never closer than 5 mm to the inside of
        his thigh, and where his thighs touch or nearly do, the middle itself. (Only a leg's inside that would run past
@@ -4961,7 +4963,7 @@ function make3Dcore(pieces){
        (trouserGeo). The drawn-only body keeps its simple rise and leg tubes. */
     /* the leg's cut, from the listing's fit and name */
     /* (bottomCut: one reading of the cut for the model, the drawing and the fitting room's words) */
-    var cutL={e0:BC.e0,fall:BC.fall,len:BC.len,sfall:BC.sfall};if(BC.barrel)cutL.barrel=BC.barrel;if(BC.flare)cutL.flare=BC.flare;if(BC.bot)cutL.bot=BC.bot;
+    var SEATF={skinny:1.6,slim:1.4,tapered:1.2,regular:1.1,straight:1,relaxed:0.6,wide:0.35,baggy:0,barrel:0.6}[BC.k]||0,cutL={e0:BC.e0,fall:BC.fall,len:BC.len,sfall:BC.sfall,seat:SEATF};if(BC.barrel)cutL.barrel=BC.barrel;if(BC.flare)cutL.flare=BC.flare;if(BC.bot)cutL.bot=BC.bot;
     if(und)cutL={brief:true};   /* (the fitting room's plain boxer briefs) */
     else if(!sh&&ft&&ft.shape==="boots"){cutL.boot=true;if(!cutL.bot)cutL.bot=/chelsea|dealer|chukka|desert/.test(nm(ft))?0.09:0.122;}   /* (over boots the hem rests on the boot's front, so its toe, laces and the start of its shaft show) */
     var cuffd=BC.cuff;if(cuffd&&!sh&&!und)cutL.bot=Math.max(cutL.bot||0,0.088);   /* (a cuffed jogger gathers at his ankle, above the shoe) */
@@ -4996,7 +4998,7 @@ function make3Dcore(pieces){
       brk=sh||cuffd?0:(cutL.bot?0.2:(ft&&ft.shape==="boots"?0.7:(ft&&ft.shape==="trainers"?0.9:1)));
       FU={fAmp:sh?0.0065:(jean?0.009:(jog?0.0072:(tail?0.0055:0.008))),fSeed:foldSeed(lo.item+"|"+lo.what),fWid:jog?1.7:(jean?1.2:1.35),fHem:hmF,fCr:ycF,fKnee:knF,fR0:rAt(hmF+0.02),fRk:rAt(knF),fRc:rAt(ycF-0.04),
         fWhisk:jean?1:(tail?0.45:(jog?0.6:0.8)),fInner:wide?0.45:0.65,fSeat:0.6,fKneeK:sh?0:(jean?1.2:1)*(wide?0.6:1),fBreak:brk*1.3,fGather:cuffd&&!sh?0.9:0,fDrape:sh?0.3:(wide?2.5:(jog?1.4:1)),fCrease:tail&&!sh?0.85:0};}
-    if(bodyOn&&!und)LWme=trouserGeo(0.013+tE,1.03,LSs,BL.crotch-0.022-0.6*wide,lm,{wr:sh?null:legDrape(FU.fSeed,LSs["1"][0][0],brk),fold:FU,
+    if(bodyOn&&!und)LWme=trouserGeo({skinny:0.006,slim:0.007,tapered:0.008,regular:0.009,straight:0.01,relaxed:0.012,wide:0.013,baggy:0.015,barrel:0.012}[BC.k]+tE,1.03,LSs,BL.crotch-0.022-0.6*wide,lm,{seat:SEATF,wr:sh?null:legDrape(FU.fSeed,LSs["1"][0][0],brk),fold:FU,
       hemF:!sh&&!cuffd?(cutL.bot?0.02:(ft&&ft.shape==="boots"?0.045:(ft&&ft.shape==="trainers"?0.068:0.058))):0});
     if(LWme)CSH.push(LWme);
     /* the hem as it falls round each leg (by direction round the leg, its lowest point and how far out it is there), for
@@ -5379,7 +5381,10 @@ function make3Dcore(pieces){
         /* (a collar stands highest at the back and low at the front where its points begin: as tall all round, it
            read as a mandarin collar even when folded) */
         var cH=CT==="band"?0.022:(opn?0.026:0.034);
-        fitCollar(FT,{h:CT==="band"?cH:cH*0.5,hBack:CT==="band"?null:cH,lean:0.7,gap:opn?0:(CT==="band"?0.25:(p.shape==="polo"?0.5:0.4)),mat:m,rows:4,fold:lf0&&!hid?{dropH:0.006,front:opn?0.03:(CT==="spread"?0.032:0.05),out:0.008,outF:opn?0.02:0.012,spread:opn?0:(CT==="spread"?0.32:0.22)}:null,lean:p.shape==="jacket"?0.35:0.7,tip:tipM});}
+        /* (a polo's collar is a ribbed band folded over once, with short points: given the shirt collar's long leaves, it
+           read as a shirt collar laid on a polo, standing off it with ragged corners over the shoulders) */
+        if(p.shape==="polo"&&CT!=="band")fitCollar(FT,{h:0.022,hBack:0.03,lean:0.78,gap:opn?0:0.42,mat:rib(p),rows:4,fold:lf0&&!hid?{dropH:0.003,front:opn?0.016:0.02,out:0.002,outF:opn?0.008:0.003,spread:opn?0:0.1}:null,tip:tipM});
+        else fitCollar(FT,{h:CT==="band"?cH:cH*0.5,hBack:CT==="band"?null:cH,lean:0.7,gap:opn?0:(CT==="band"?0.25:(p.shape==="polo"?0.5:0.4)),mat:m,rows:4,fold:lf0&&!hid?{dropH:0.006,front:opn?0.03:(CT==="spread"?0.032:0.05),out:0.003,outF:opn?0.012:0.005,spread:opn?0:(CT==="spread"?0.32:0.22)}:null,lean:p.shape==="jacket"?0.35:0.7,tip:tipM});}
       else if(bodyOn){var c0=NK(1.512),c1=NK(1.53),c2=NK(1.552),cT=CT==="band"?1.542:(opn?1.545:1.553);   /* the collar stands round his neck, its foot flared over the shirt's neckline (a band collar lower; worn open, it stops at the opening and sits lower) */
         sec([[1.51,c0[1]+e+0.007,c0[2]+e+0.007,0,c0[4]],[1.53,c1[1]+0.012+e*0.4,c1[2]+0.012+e*0.4,0,c1[4]],[cT,c2[1]+0.008+e*0.4,c2[2]+0.008+e*0.4,0,c2[4]]],m,{seg:44,gap:opn?Math.max(1.6,gap+0.9):(CT==="band"?0.25:0.7),k:1,sq:2,dipAll:0.012});}
       else band(1.478,0.03,0.076+e*0.4,0.072+e*0.4,m,{gap:0.7,z:-0.012,taper:0.009});

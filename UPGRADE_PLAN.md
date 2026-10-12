@@ -2107,6 +2107,39 @@ all at once, short sleeves showed his arm at the back of the armpit (ca-beer-gar
   round his neck its rim and the jacket's collar meet. Next: keep the hood's rim inside the jacket's collar (the
   neck occupancy, `OCC.N`, when the hood is placed), or the collar outside the hood.
 
+## 2zzzzzzzzzzzzzzzzzz. Bottoms as the photos show them; the seat; a polo's own collar (12 Oct 2026)
+
+Emma, on the artifact, after #32: "this looks hugely baggy and wrong" (a mix card), "shorts are shown more flared than
+they should be, ensure we dont inaccurately represent clothes on the 3d model", "make straight, skinny, flared, baggy
+bottoms clear based on the advertisement", "bum in clothes appears to be rather flat compared to the unclothed version",
+and on the polo in m5-under-60: "collars still appear a bit overlapped and dettached from shirts".
+
+- **Baggy and wide legs swelled into a bell from the side.** Each leg kept the depth of the deepest section above it,
+  his seat, all the way down, and #32's wide and baggy room and `fall` over 1 added to it. A leg now takes its depth
+  from his thigh (`legSecs`: `mz` from 7 cm below the crotch, 13 cm on shorts); wide and baggy have less room (wide
+  `wide` 0.028, baggy 0.036) and no flare at the hem (`fall` 1). Compared with the shop photos of asos-weekday-baggy,
+  uq-barrel, mt-jeans-vintage, folkclothi-barrel-leg-trouser-ecru-twill and js-levis-578: wide straight tubes, the
+  barrels curving at the knee.
+- **Shorts flared:** `sfall` is now 0.82 to 1.0 (wide and baggy shorts as wide at the hem as at the thigh, no wider), the
+  hem's own flare halved (3 mm), and their depth from the thigh, not the seat.
+- **The seat:** measured over one buttock, his bare seat stands 41 mm behind the back of his thigh; in straight jeans
+  it stood 30 mm, the cloth 12 mm off the seat and 24 mm off the thigh. The cloth from the waistband to the crotch could
+  only come in 0.3 m per metre going down (`trouserGeo`'s hang), so it fell straight from the seat's fullest point; on
+  the back of a fitted pair it now comes in as fast as the cut allows (`o.seat`: skinny 1.6 to straight 1, relaxed
+  0.6, wide 0.35, baggy 0, added to 0.3), the room round the seat goes by the cut (6 mm skinny to 15 mm baggy, was 13
+  mm for all), a fitted leg's depth is not carried down from the seat (the upper hull of the leg's depth leaves out
+  the rows within 9 cm of the crotch), and regular and straight have a little less room at the thigh. Jeans now: 10 mm
+  off the seat, 20 mm off the back of the thigh.
+- **A polo's collar** was a shirt's collar laid on a polo: long leaves standing 8 to 20 mm off the stand, ragged where
+  they met over his shoulders, detached from the polo at the back and sides. A polo now has its own: a ribbed band
+  (`rib(p)`) 22 mm high at the front, 30 mm at the back, folded over once, lying on the polo (`out` 2 mm) with short
+  points (`front` 20 mm, `spread` 0.1), its tipping on the edge. A shirt's leaf also lies closer (`out` 3 mm, was 8).
+- **Check:** m5-under-60, h7-beach-50, hoodie-coat, barrel-navy, x11-matalan-casual and h7-lambretta-pool on his
+  shape: nothing flagged; the pull-request check on all bodies.
+- **Still to do (photos):** reading a pair's cut from its shop photo itself (the width of the leg at the hem against the
+  thigh, on a flat-lay) rather than from its name and fit label; most photos are on a model, so this needs the
+  photo reader's leg outline first.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
