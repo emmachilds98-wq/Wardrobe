@@ -1859,6 +1859,36 @@ Known and left for later:
   geometry, flat on the sole with a rounded toe. A spread of 55 outfits covering every kind passes the 3D check
   (one flag, `od-event`, is on main too and has nothing to do with shoes; queued in STATUS.md).
 
+## 2zzzzzzzzzzz. Trousers cut as a pair: why the legs kept sticking together (12 Oct 2026)
+
+Emma: "the legs are still getting stuck together and the crotch is still a bit of a mess ... work out why we keep
+running into this misshaping on the renders and ensure it stops."
+
+- **Measured on main:** rays across between his legs found the two trouser legs overlapping each other (by 5 mm, and up
+  to 7 cm at the front of the crotch) from 6 to 18 cm below his crotch, while his own thighs are 19 to 31 mm apart
+  there. They only parted 18 cm down.
+- **Why it kept coming back:**
+  - The trousers' top (`lowerWrap`) was his own skin over the hips and the tops of the thighs, pushed outward by the
+    ease. Where two parts of him nearly touch, that fails: the inner thighs, each pushed toward the other, met and
+    crossed in the middle, and the cloth traced the bulge at the front and the cleft of the seat.
+  - The legs were separate tubes that had to lean in and fill out at their tops to meet that piece, which pulled them
+    together just where they should part.
+  - The openings left at the joins were covered one by one: a step that pressed the legs past the middle so no slit of
+    light showed, a gusset, a fly panel and a levelling pass. Each fix moved the fault rather than removing it.
+  - The `legs` check looked only from 15 cm below the crotch, so legs joined over the tops of the thighs passed.
+- **Now (`trouserGeo`):** the trousers are cut as a pair is. Each half is one piece of cloth from the waistband to the
+  hem. Over the hips and seat it lies on the hull of his body (hollows bridged) plus the ease, and below the widest point
+  it falls in a line. The halves meet down the middle, front and back, and along a crotch seam 2 to 4 cm below his
+  crotch. Below it each half closes round its own leg (`legSecs`), so the legs part in an arch. A leg's inside that
+  would run past the middle is eased back to a narrow gap (2.5 mm a side, plus 4 mm for every 10 cm down), never onto
+  his thigh (`thighGap`). The pressed seam, the gusset and the fly panel are gone.
+- **Guard:** `legs` now looks from 7 to 30 cm below the crotch, wherever his own thighs (as built, Edit Dave's shape
+  included) are 1.5 cm or more apart. Main fails it (`c6-denim`: 14 rays meet the trousers); this change passes.
+- **Still to do (from the review of folds and fit, same day):** the cloth is still smooth, with no folds or creases
+  where it bends or gathers. Shaded fold lines (a height field added to the weave's bump in the shader, so the 3D
+  check's geometry is unchanged) were tried on a scratch copy: whiskers at the crotch, folds behind the knee, the break
+  over the shoe. They read well and are queued in STATUS.md, with the same for sleeves and the waist of tucked shirts.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
