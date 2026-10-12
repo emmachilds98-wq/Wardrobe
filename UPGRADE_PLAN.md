@@ -2192,6 +2192,151 @@ Separately, as a small data pull request (not garment geometry): g-mod-27's piec
 "quarter-zip" before "zip hood". Both change renders and stored specs, so run `node tools/specs.js`, `specs_diff.py`
 and the 3D check on every outfit using a quarter-zip "hoodie".
 
+## 2zzzzzzzzzzzzzzzzzz. Garment drape proof: the hoodie fixed, the hood, three templates, and the page behind a switch (12 Oct 2026)
+
+Continues 2zzzzzzzzzzzzzzzzz (PR #36). Everything in the page is behind `window.__drape`. Without it, the page is as on
+`main`: the switch only adds the templates to `docs/data/garments/` and a few lines that do nothing while it is off.
+
+**The hoodie's fold and pinch: four causes, none of them the arms coming down.** Rendering the drape frame by frame
+(`GB_SNAPS`) showed the fold already there in the A-pose, as a tuck across the chest between the armholes:
+- **His body tears at the front of each armpit.** `propWarp` moves arm vertices (`bodyArmMask`) and the chest beside
+  them by different amounts. His saved shoulder slope drops the arm's skin by up to 1.7 cm more than the chest next to
+  it, a ridge you can see on his bare chest. In the A-pose it lies across his chest, the cloth caught on it, and the
+  tuck hung between the two ridges. The builder now blends the two warps over a few centimetres of skin (`Body.armW`).
+  **The page draws the same tear** (it is under clothes, and shows on a bare chest or a vest): `warpMan` could blend
+  the same way, but that moves every render and needs the full check. Not changed.
+- **The relax shrank the cloth onto him.** Laplacian smoothing pulled the cloth in, and the 29 cm of ease round his
+  chest gathered into fins along the side seams (folded 75 degrees, against 8 as placed). Blender kept them as resting
+  creases. It is now Taubin smoothing (each step followed by a slightly larger one the other way), which does not
+  shrink: side seams 9 degrees.
+- **His left sleeve faced inward.** Both sleeves were cut alike and wrapped round the arms in mirror image, so the left
+  one was inside out. Blender's bending measures angles by the way triangles face, so it fought a half turn all round
+  that armhole: the pinch. The left sleeve is now cut mirrored, like a piece cut from folded cloth. Seams are paired
+  by the pattern's own directions (pieces sewn edge to edge run opposite ways), and the build stops if any sewn edge
+  joins pieces facing opposite ways. The same check then caught the collar, which was wrapped by his right first;
+  it now runs by his left, and the quarter-zip collar's +368 degree corner is gone.
+- **The rib hem and cuffs were steps in the side and underarm seams**, cones at each hip and wrist (the "+99 / -79
+  degree" corners). They are now pieces of their own, narrower, with the body gathered into them.
+
+Tried, and not the cause: settling between poses (`--hold`), lower bending, lower mass, lower friction, draping
+straight in a lower A-pose (`--start 3`), no self-collision. The flags stay for trying drapes. Each sleeve cap now
+starts as a smooth surface from the sleeve's ring up to its armhole.
+
+**The hood** (`drape_hood`): its two halves sewn up the back and placed up round his head (an ellipsoid round his
+head's skin), the neckline pinned on the draped hoodie's, then let fall with gravity tilted backward for 40 frames
+and settled for 50, against his body and the draped hoodie. It ends down behind his neck, bunched as a real hood
+lies, 0.0 mm off the neckline. A softer hood (`--hood-bending 0.1`) looks the same: the shape is the cut's.
+
+**Templates** (`data/garments/<kind>.json`, 463, 417 and 441 KB): the welded points in his warped frame; the pattern
+points (each with its welded point, its piece and its place on the flat pattern in metres) and the triangles over them;
+each welded point's binding (its nearest body triangle among its regions, barycentric weights of its foot on that
+triangle's plane, and its height along the unit normal), which rebuilds the drape to 0.001 mm; the measurements, the
+cloth scale (0.965) and his shape; the hood in its own block, with the pins tying its neckline to the garment's.
+At this size 45 kinds would be about 20 MB, over the plan's 8: store float16 or quantised positions before scaling up.
+
+**The page, behind the switch** (`drapeTops`, next to `warpMan`; `QA_INIT='window.__drape=1'` for the QA scripts):
+- `loadBody` also loads the templates when the switch is on. A hoodie, quarter-zip or jacket is then left out of
+  `make3Dcore`'s tops (so none of its fitTop, collar, hood, bands or front details are built), and added after
+  `warpMan`: each point placed on his warped body by its binding, then settled inner to outer against his body (torso
+  and arms apart), the clothes under it (those `make3Dcore` built, normals turned away from his body) and the draped
+  layers already settled. A hoodie's hood goes last, its neckline pinned on the hoodie's, out over anything worn over it.
+- **The solver** is `drape.js`'s (position-based, distance constraints along every edge and softer ones across every
+  pair of triangles), at the lengths as draped on his saved shape. **At full gravity it let the cloth slide off his
+  shoulders:** at 8 iterations a step it is far softer than Blender's, and the garments ended up in a heap at his feet.
+  The template is already hanging at rest on him, so each point is drawn back a little (8% a step) toward where its
+  binding puts it, under a fifth of gravity. Draped layers are kept 1 cm apart: at 6 mm, the layer under showed
+  through at the back of the jacket's armholes on the larger bodies. 60 steps; `__drapeSteps` and `__drapeTh` try others.
+- The cloth is `pm(p)` on both sides, UVs from the pattern (1.2 per metre round, 3.33 down: untested on stripes and
+  checks), normals smoothed across seams. No painted folds, no layer or contact shade, no front details.
+
+**The proof** (`tools/qa/zoom.js` with the plan's five views, all five bodies, beside `main`):
+- **g-mod-27 as its data says (hoodie under the open Ellesse jacket):** clearly better than `main` from every angle on
+  every body. `main` draws the hood as a flat shield on the jacket's back and the jacket nearly closed over a strip of
+  hoodie. Draped, the hood lies bunched over the jacket's collar as a real hood does, and the jacket hangs open over
+  the hoodie.
+- **g-mod-27 as the quarter-zip it is:** the shape is better (the funnel neck stands up inside the jacket's stand
+  collar, the jacket hangs open), but the zip is missing (front details are not on draped pieces), and on the
+  athletic, heavier and loose bodies a few flecks of the quarter-zip show at the back of the jacket's armholes.
+- **Not yet:** Edit Dave's Cloth fit slider ("close", "loose") does nothing to draped pieces; the size cannot be
+  changed (Emma's decision: adjustable sizing; the template has the measurements, the page has no control yet); the
+  3D check has not been run with the switch on (its counts read `userData.kind`, and draped meshes are "drape0",
+  "drape1", "drapeHood"); the binding differs from the page's body by up to 3.7 cm at the armpits, where the builder
+  blends the warps and the page tears.
+
+**Next, in order:** (1) report the proof to Emma (this section and PR #36's renders); (2) if she goes on: front details
+on the draped pieces (the zip, drawstrings, pocket), laid on the cloth by pattern position rather than by `surfZ`;
+(3) the Cloth fit slider and the size as rest-length scales per piece; (4) the 3D check with the switch on, and the
+`under` rays generalised as the plan's step 6 says; (5) the page's armpit tear (blend `warpMan`'s arm and torso as the
+builder does), with the full check; (6) more kinds (tee, jumper, shirt, coat), and float16 storage.
+
+**Running it:** `python3 tools/build_garments.py --only hoodie --debug <dir>` (Blender 4.5 LTS is downloaded on first use;
+download.blender.org refuses Python's default user agent, so the builder sends its own; or `pip install bpy` and run
+the script with that Python), about 3 minutes a kind. `--reuse` takes the draped garment from the last `--debug` run to
+try the hood alone. `node tools/garment_view.js <dir>/hoodie-draped.json out.png` looks at any stage (`THREE_JS=` for a
+local Three.js). The page: build `docs/`, serve a copy (`tools/qa/serve.sh`), and pass `QA_INIT='window.__drape=1'`.
+
+**Continued, 12 Oct, night (same PR):**
+- **Front details on draped pieces** (`drapeDetails`), laid on the cloth by their place on the flat pattern
+  (`drapeAt`: a pattern point's triangle, its place on the draped cloth and the normal), so they follow it on any body:
+  a quarter-zip's zip down its collar's front edges and 18 cm of the front, its pull, a brand's chest logo; a
+  hoodie's cords, kangaroo pocket (a patch of the cloth itself, raised 3 mm) with its slanted openings, and a zip where
+  the listing says full zip (as `main` draws it, g-mod-27's "zip hood" reading included); an open zip jacket's teeth
+  along each front edge (`make3Dcore`'s `zipT` and `zipM` words). A knit's hem band, cuffs and quarter-zip collar
+  use the page's rib (`rib(p)`), as `main` draws them. Not yet: shop-photo fronts (`frontPhoto`), decals, `place` maps
+  (yokes and bands by height) and stripes by height on draped pieces (stripes and checks by `lookTex` do run on the
+  pattern's UVs, at `main`'s scale).
+- **Size** (Emma's decision, adjustable): the fitting room's "How it's worn" has a Size row (S to XXL, as cut L) for
+  the draped tops, with each one's chest and length at that size against his chest (the measuring card's figure).
+  The cloth is graded round him by the chest's ratio (8 cm a size, as the charts run) and down him a third as much
+  (`drapeGrade`, per edge by its run on the pattern), and stands off him by as much more (`drapeBind`). Edit Dave's
+  Cloth fit grades it 4% either way. The size is worn state like the zip (`SIZEM`, `Live3D`'s `wear.size`); QA
+  scripts take `window.__drapeSize`. One size for all the draped tops of an outfit; per piece is a next step.
+- **Which tops are draped:** hoodies, quarter-zips, and jackets that are the template's cut (track tops, windbreakers,
+  softshells, funnel-neck and zip-through jackets: not padded, denim, hooded, waxed, workwear, fleece or borg) and
+  worn open (`openWorn`: the template cannot be done up; "Done up" in the fitting room draws `main`'s jacket). Across
+  the outfits that is 64 hoodies, 49 quarter-zips and 24 jackets.
+- **They stay in `make3Dcore`'s `up`** (marked `_drape`, not built there), so the pieces under and over them know they
+  are there: a tee's sleeves under a draped hoodie's are not built, a coat over it is cut for a layer under it. Their
+  meshes carry `up<k>` (the hood `up<k>o` when worn under something) as `main`'s do, so the 3D check classes them.
+  Clothes `make3Dcore` builds over a draped top, and a scarf, hold it inside them (their surfaces as colliders turned in
+  toward him, 2 cm reach).
+- **The 3D check with the switch on** (`QA_INIT='window.__drape=1'`, now also taken by `check_3d.js`): the gate set on
+  his own shape 28 of 30 clean. Flagged: **od-hike** (back poke 228: a hiking shell built by `make3Dcore` over a draped
+  quarter-zip) and **q7-fairisle** (back poke 945 and `under`: the scarf, wound for `main`'s lower collar, over the
+  draped quarter-zip's 7 cm funnel). On slim, athletic, heavier and loose, of the hood and layering cases:
+  w20261006-casual-04 clean on all; g-mod-27 front poke 46 to 81 (the hoodie's neckline by the hood's root at the open
+  jacket's collar); hoodie-coat back poke 64 to 201 (`main`'s long coat over the draped hoodie); od-hike 76 to 143;
+  q7-fairisle 235 to 1113. All of them are a piece `make3Dcore` builds over a draped one: the fix is draping those too
+  (coats, other jackets, scarves), not more rules. Without the switch the check is unchanged.
+- **Not done, on purpose:** the page's armpit tear (it moves every render with the switch off: its own pull request,
+  with the full check); more kinds (a tee, jumper or roll neck would lose its photo front, decals and `place` maps
+  until those are laid on draped cloth: that comes first); compact storage (uint16 positions would take the three
+  templates from 1.3 to about 0.8 MB, needed only with many more kinds).
+
+**Continued, 12 Oct, late night (same PR):**
+- **The photo reading's looks on draped cloth** (`drapeLooks`): the shop photo's own front, projected from the front
+  onto the draped front piece's own triangles from the band to the neckline (the drawn pocket, cords and logo stand
+  down, as `main` does); a print where the photo has it, front and back, laid through the piece's centre line (pattern
+  height against height on him); a pattern laid by height by `make3Dcore`'s own `placeMap`. Seen on jb10-snikki (a
+  photo front with its chest logo), fala-town (a print) and q7-fairisle (the Fair Isle yoke and hem band).
+- **More layers round a draped top:** the trousers or shorts are among the clothes under it (they showed through
+  q7-fairisle's hem at the back), a tool belt (`KITRE`) among those over it (jb10-snikki's pouches came through the
+  longer draped hoodie; now the hoodie gathers inside the belt at his waist).
+- **Artifacts:** this account cannot reach Emma's artifacts (FtdHKg is not found, 8uqcG opens read-only as another
+  organisation's), so the GitHub build and the drape preview are published as their own (STATUS.md has the links).
+  The preview build shows a Draped clothes switch (`build_site.py --drape`: `window.__drapeUI`), in a corner of the
+  page and in the fitting room's top bar, draped to start; `docs/` has none.
+
+**Last, 12 Oct, before merging (same PR):** four more kinds draped (`jacket_up`, `jumper`, `rollneck`, `tee`; the builder
+takes garments without a hem band or cuffs), drawn only for their own cut (`drapeArch`: no knitted vests, V necks or
+cardigans as jumpers, no long-sleeved tees, nothing worn open but the jacket; a track jacket worn closed uses
+`jacket_up` with its zip). A ringer tee's neckband and sleeve ends take its second colour. Clothes worn over a draped top
+hold in only their like (body in body, sleeves in sleeves: a down gilet's armholes drew a hoodie's sleeves to his
+elbows). **Switch-on 3D check, gate set on his shape: 19 of 30 clean**; all eleven flags are small back pokes (34 to
+155 px) of a draped tee or knit under a shirt, overshirt, jacket or coat `make3Dcore` still builds. A 4 cm hold-in
+made them worse (reverted). The way on is draping those outer layers (STATUS.md, item 0). Merged with the switch off for
+everyone; the drape preview artifact has the switch.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

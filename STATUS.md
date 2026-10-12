@@ -11,6 +11,12 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 - Emma's own copy of the artifact (republished from `docs/` the same way, its own database):
   <https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn>. A session signed in to her account can only publish to this one.
 - Review and plan doc (Claude Doc): <https://claude.ai/code/artifact/a11be046-83a3-47dc-855c-67657c180e7e>
+- From the drape session (this account's own artifacts, no shared database: shortlist and Edit Dave save on the device):
+  the GitHub build as it stands (`docs/` at PR #36's latest commit, nothing changed):
+  <https://claude.ai/artifact/B8UXnhceKPAsHpTbyzFzek>; and the drape preview, the same build with a Draped clothes switch
+  (`python3 tools/build_site.py --out <dir> --drape`, never into `docs/`): <https://claude.ai/artifact/5A3t39MwR6C9T5rHNED2iT>.
+  Both published as `docs/` is: page `index.html`, every file under `data/` in `files`, root the build folder, no
+  `capabilities`.
 
 ## Now
 
@@ -18,14 +24,16 @@ Shipped 12 Oct (PR #31, artifact FtdHKg v35): trousers meet where his thighs do,
 and jumpers rest on his chest, the Lambretta polo and cap as in their photos (UPGRADE_PLAN 2zzzzzzzzzzzzzzz). Before
 that: Edit Dave's sliders centred on the last save, and biceps, forearms, thighs and calves sliders (2zzzzzzzzzzzzzz).
 
-**12 Oct, evening: the garment drape upgrade has begun, and was stopped part-way at Emma's request** (UPGRADE_PLAN
-2zzzzzzzzzzzzzzzzz). Emma brought a design handoff (now `design/garment-drape/`; read its `README.md`, the plan): replace
-how garments get their shape (`fitTop`, `fitCollar`, the occupancy pushes, `warpMan` for clothes) with patterns draped
-in Blender and settled in the page in wearing order. **Her decisions:** yes to the newer Three.js and to Blender-made
-templates; proof first, behind a switch, then report back; a few seconds of settle on first opening is fine; assume
-the model's current shape is right but make the sizing adjustable. **Done:** `tools/build_garments.py` (headless
-Blender 4.5 LTS) makes his body in an A-pose, cuts and meshes the patterns, sews and drapes them; the hoodie's body
-drapes cleanly. **Nothing in the page has changed**, and nothing is in `data/garments/` yet.
+**12 Oct, late: the garment drape proof is built, behind a switch, and waits on Emma** (PR #36, UPGRADE_PLAN
+2zzzzzzzzzzzzzzzzzz; the start in 2zzzzzzzzzzzzzzzzz). Emma's design handoff (`design/garment-drape/`, its `README.md`
+is the plan) replaces how garments get their shape with patterns draped in Blender and settled in the page in wearing
+order. **Her decisions:** yes to the newer Three.js and to Blender-made templates; proof first, behind a switch, then
+report back; a few seconds of settle on first opening is fine; assume the model's current shape is right but make the
+sizing adjustable. **Done:** `tools/build_garments.py` drapes the hoodie (with its hood), the quarter-zip and the
+jacket cleanly on him and writes `data/garments/`; with `window.__drape` set the page draws those three kinds from the
+templates (`drapeTops`). **Proof:** g-mod-27 with its hood over the open jacket is clearly better than `main` from every
+angle on all five bodies; as a quarter-zip the shape is better but its zip is missing and a few flecks show at the back
+of the jacket's armholes on the bigger bodies. **Without the switch the page is unchanged.**
 
 **Open pull requests, as left:** PR #34 (collars and the hood case; draft, red on the hood "back poke", see its comment)
 and PR #33 (bottoms' cuts from their photos, arm joint limit, the seat, polo collars; draft). **Emma's artifact (FtdHKg)
@@ -34,17 +42,32 @@ would roll that back, so this session did not republish it.
 
 **Next agent, start here (in this order):**
 
-0. **The garment drape proof** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzz has the detail, the lessons and the commands):
-   1. Finish the hoodie in `tools/build_garments.py`: after his arms come down, one diagonal fold runs from his right
-      shoulder across his chest with a pinch at the front of his left armhole. Look with
-      `python3 tools/build_garments.py --only hoodie --debug /tmp/g` and `node tools/garment_view.js /tmp/g/hoodie-draped.json out.png`.
-   2. The hood's own drape (neckline held on the garment's, gravity tilted backward so it falls off his head onto his
-      shoulders); look at the quarter-zip and jacket drapes; the quarter-zip collar's centre-front corner.
-   3. Write `data/garments/<archetype>.json` (positions, triangles, pattern UVs, pieces, body binding, hood pins).
-   4. The page behind a switch: bind to his body after `propWarp`, settle inner to outer with `drape.js`'s solver,
-      draped meshes skipped by `warpMan`; the fitting room shows and lets Emma change the sizes.
-   5. Render g-mod-27 (as its data says, and as a quarter-zip) and the hood over the track jacket on all five bodies
-      beside `main`; if it does not clearly beat `main` from every angle, stop and report to Emma.
+0. **The garment drape upgrade** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzz has everything: what was found, the checks, the
+   commands). Merged to `main` 12 Oct (PR #36), all of it behind the drape switch: **the live page is unchanged**;
+   the drape preview artifact shows it with a Draped clothes switch. Seven templates in `data/garments/` (hoodie with
+   its hood, quarter-zip, track jacket open and zipped up, jumper, roll neck, tee) built by `tools/build_garments.py`
+   (headless Blender); drawn in the page by `drapeTops` (bound to his warped body, settled inner to outer), with front
+   details, photo fronts, prints and `place` maps on the cloth, a Size row in the fitting room and Cloth fit.
+   **Where the switch-on 3D check stands** (`QA_INIT='window.__drape=1' node tools/check_3d.js ...`, gate set on his
+   shape): 19 of 30 clean. Every flag is a small back poke (34 to 155 px) where a top `make3Dcore` still builds (a
+   shirt, overshirt, jacket or coat) is worn over a draped tee or knit: it was cut for `main`'s closer inner layer.
+   Widening the hold-in from 2 to 4 cm made it worse (tried, reverted).
+   **Next, in order:**
+   1. Drape the outer layers too, so nothing `make3Dcore` builds sits over draped cloth: an overshirt and shirt (collar,
+      placket, cuffs; open and done up), a coat (long, lapels), other jackets (Harrington, denim, padded: quilting as a
+      material), a gilet. Each: `MEAS` and pattern pieces in `build_garments.py`, a run with `--debug`, a look with
+      `garment_view.js`, then `DRAPEK`/`DRAPEF` and `drapeArch`'s cut test in `page.html`. Until then, an option is to
+      drape a tee or knit only when nothing `make3Dcore` builds is worn over it.
+   2. Then turn the switch on for everyone (after the full 3D check with it on, all five bodies, and Emma's look).
+   3. Compact storage before many more kinds (uint16 positions: about 0.6 of the size), and load only the kinds an
+      outfit uses.
+   4. A size per piece in the fitting room (now one size for all draped tops).
+   5. Separately, its own pull request: the page's armpit tear (`warpMan` moves arm and chest skin apart by up to
+      1.7 cm; blend them as the builder's `Body.armW` does, clothes by the nearest skin's blend; full 3D check).
+   - Building: `python3 tools/build_garments.py --only <kind> --debug <dir>` (Blender 4.5 LTS downloads itself; or
+     `pip install bpy` and run the script with that Python), about 3 minutes a kind; `--reuse` re-drapes a hood alone.
+     Rules learnt: every sewn piece faces outward (the build stops otherwise: mirror the piece), rib bands and cuffs are
+     pieces of their own, the relax smooths without shrinking, the body is blended at the armpits.
    - Also, a small data pull request: g-mod-27's Duck and Cover top is a quarter-zip with no hood (the shop's feed
      says so), so its piece should be `halfzip`, and `descOf` reads "quarter-zip hoodie" as a full zip ("zip hood").
    - Frozen while this goes on (the drape replaces that code): queue items 9 and 10, scarf edges, contrast collars.
@@ -149,6 +172,11 @@ Needs Emma (do not guess):
    tool first asks you to read the live version in full: it is the previous `docs/index.html` with a one-line
    wrapper, so check that with `diff` against the last merged build, then publish.
 5. Pages deploys `main` by itself; check the "pages build and deployment" run for the merge commit succeeded.
+   **Emma, 12 Oct: whenever a change goes live on GitHub, update the artifact too**, in the same session: the artifact
+   this account can publish to is <https://claude.ai/artifact/B8UXnhceKPAsHpTbyzFzek> (the GitHub build: `docs/`
+   exactly, page `index.html`, every file under `docs/data/` in `files`, root `docs`, no `capabilities`), and the drape
+   preview <https://claude.ai/artifact/5A3t39MwR6C9T5rHNED2iT> (`build_site.py --out <dir> --drape`). A session signed
+   in to Emma's own account republishes FtdHKg as in step 4.
 6. Update this file (Now, Queue, Log), add an entry to `UPGRADE_PLAN.md` for anything substantial, and the Status
    column in the plan doc.
 
@@ -161,6 +189,9 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 12 Oct 2026 | #36 (merged) | Garment drape upgrade merged behind its switch: seven draped kinds (hoodie and hood, quarter-zip, track jacket open and zipped, jumper, roll neck, tee), photo looks and details on the cloth, Size row, layering; live page unchanged; drape preview artifact with a Draped clothes switch | B8UXnh v4 (GitHub build), 5A3t39 v4 (drape preview) |
+| 12 Oct 2026 | #36 | Drape proof, continued: front details on draped cloth, rib bands, a Size row in the fitting room and Cloth fit, only track-type jackets worn open draped, draped tops kept in `up` and named as `main`'s layers, `check_3d.js` takes `QA_INIT`; unchanged without the switch | not republished |
+| 12 Oct 2026 | #36 | Garment drape proof: the hoodie (with its hood), quarter-zip and jacket drape cleanly in `tools/build_garments.py`, templates in `data/garments/`, the page draws them with `window.__drape` set (`drapeTops`); unchanged without it | not republished (FtdHKg shows PR #33's build) |
 | 12 Oct 2026 | #35 | Garment drape upgrade begun: Emma's design handoff in `design/garment-drape/`, her decisions, `tools/build_garments.py` (Blender templates, in progress) and `tools/garment_view.js`; no page change | not republished (FtdHKg shows PR #33's build) |
 | 12 Oct 2026 | PR | Bottoms: slim, regular, straight, relaxed, wide and baggy clearly different in 3D and the drawing, shorts at their own length (from the inseam), the cut in words in the fitting room | FtdHKg v37 |
 | 12 Oct 2026 | #31 | Trouser legs meet where his thighs do (no V showing his thighs on bigger legs); Clear view in the fitting room (H); shirts and jumpers rest on his chest and span his back instead of standing off it; the Lambretta polo plain with its chest band, its cap with its racing stripe (`crown` correction) | FtdHKg v35 |

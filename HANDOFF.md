@@ -243,13 +243,24 @@ and tie are made, and the 3D check treats its front as open).
 - A change that makes some items worse is reverted, even if it fixes others. Two such attempts
   are recorded in 2zx: a wider skin rule, and dropping cloth squares when the colour disagrees.
 
-## The garment drape upgrade (12 Oct 2026, begun)
+## The garment drape upgrade (12 Oct 2026, proof built)
 
 Emma's design handoff, `design/garment-drape/README.md`, is now the plan for how garments get their shape: patterns
-draped in Blender (`tools/build_garments.py`, in progress) and settled in the page in wearing order, replacing
-`fitTop`, `fitCollar`, `occPushPt` / `occAddMesh` and `warpMan` for clothes. She said yes to it, proof first behind a
-switch. Where it stands and what comes next: STATUS.md "Now" and UPGRADE_PLAN.md 2zzzzzzzzzzzzzzzzz. Until the proof is
-judged, leave garment-geometry rules alone (STATUS.md queue items 9 and 10, scarf edges, contrast collars).
+draped in Blender and settled in the page in wearing order, replacing `fitTop`, `fitCollar`, `occPushPt` /
+`occAddMesh` and `warpMan` for clothes. She said yes to it, proof first behind a switch. The proof:
+- `tools/build_garments.py` cuts each kind's pattern for size L, sews it on his body (his saved shape, `propWarp`
+  included) in an A-pose, drapes it in headless Blender 4.5 LTS while his arms come down, drapes a hood on its own,
+  and writes `data/garments/<kind>.json` (hoodie with its hood, quarter-zip, jacket): the draped points, the pattern
+  points with their place on the flat pattern, and each point's binding to his body.
+- `tools/garment_view.js` renders the builder's `--debug` files without the page.
+- In the page, `window.__drape` (QA scripts: `QA_INIT='window.__drape=1'`) loads the templates with the body and draws
+  those three kinds from them (`drapeTops`, after `warpMan`): bound to his warped body, settled inner to outer against
+  his body and the clothes under them, a hoodie's hood last. Without the switch nothing changes.
+Merged to `main` on 12 Oct (PR #36) with the switch off for everyone. Seven kinds are draped (hoodie with hood,
+quarter-zip, track jacket open and zipped, jumper, roll neck, tee). A preview build (`build_site.py --drape`) shows a
+Draped clothes switch. Where it stands and what comes next: STATUS.md item 0 and UPGRADE_PLAN.md 2zzzzzzzzzzzzzzzzzz.
+Leave the old garment-geometry rules alone while the drape replaces them (STATUS.md queue items 9 and 10, scarf edges,
+contrast collars).
 
 ## Needed from Emma
 
