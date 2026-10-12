@@ -20,6 +20,15 @@ that: Edit Dave's sliders centred on the last save, and biceps, forearms, thighs
 
 **Next agent, start here (in this order):**
 
+0. **Open on PR #33 (12 Oct, unmerged; CI red on one check):** g-lounge-06 with "How it's worn" tuck=in flags front poke
+   ~37-55: the trousers' waistband edge shows through the jumper about 2 cm above its ribbed hem. Not on `main`; not the
+   new tapered cut (same with the pair read as regular), so it is this PR's seat change in `trouserGeo` (o.seat / the
+   room by cut). Also in progress: collars attached at the source (thread d9dab1ae, n4-under-60 ringer): the neckline now
+   sits at the base of his neck (`yokeCol`, `YT` in fitTop), a ringer's colour is on the tee's own neckband (`ringM`),
+   `fitCollar` grows the band at right angles to the neckline and evens out only the push, `collarSnap` only acts below
+   the neckline (`ownTop`). Before/after renders looked better on every collar; run the full gate (tools/qa/gate.txt) on
+   all bodies before merging.
+
 1. **Slim and baggy bottoms:** done 12 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzz to 2zzzzzzzzzzzzzzzzzzz): `bottomCut`
    reads every pair's cut for the model, the drawing and the fitting room's words, shorts' length from their inseam;
    every bottom in an outfit was checked against its shop photo and 166 set in `data/cuts.json`. New picks: add them
