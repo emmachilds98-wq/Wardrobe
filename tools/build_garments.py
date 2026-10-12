@@ -945,6 +945,70 @@ def drape_hood(G, body, can, off, Xs, Tw, a, F):
     return Xd, Th, canh, offh, pin, pg
 
 
+ARM_REG, TORSO_REG = ("uarm", "farm", "hand"), ("chest", "belly", "hips", "neck", "head")
+
+
+def bind(X, regs, body, P):
+    """Each point's place on his body P: the nearest triangle among those of its regions (regs[i]: a tuple of region
+    names), as barycentric weights of the point's foot on that triangle's plane (b, c; a = 1 - b - c) and its height
+    h along the triangle's unit normal (cross(b - a, c - a), his triangles' own order): X = a A + b B + c C + h n."""
+    tri = np.zeros(len(X), np.int64); W = np.zeros((len(X), 3))
+    for rs in set(regs):
+        sel = np.array([r == rs for r in regs]); cand = body.region_tris(rs)
+        A, B, C = P[body.idx[cand, 0]], P[body.idx[cand, 1]], P[body.idx[cand, 2]]
+        kd = mathutils.kdtree.KDTree(len(cand))
+        for k, c in enumerate((A + B + C) / 3): kd.insert(c, k)
+        kd.balance()
+        for i in np.where(sel)[0]:
+            best, bd = None, 1e9
+            for _, k, _ in kd.find_n(X[i], 16):
+                q = mathutils.geometry.closest_point_on_tri(mathutils.Vector(X[i]), *(mathutils.Vector(v) for v in (A[k], B[k], C[k])))
+                d = (q - mathutils.Vector(X[i])).length
+                if d < bd: best, bd = k, d
+            a, b, c = A[best], B[best], C[best]; n = np.cross(b - a, c - a); n /= np.linalg.norm(n)
+            e1, e2, r = b - a, c - a, X[i] - a; h = float(np.dot(r, n)); r = r - h * n
+            M = np.array([[e1 @ e1, e1 @ e2], [e1 @ e2, e2 @ e2]]); w = np.linalg.solve(M, [r @ e1, r @ e2])
+            tri[i] = cand[best]; W[i] = (w[0], w[1], h)
+    return tri, W
+
+
+def template(pieces, can, Xs, T, body, regs_of):
+    """one mesh for the page: its welded points (positions and binding), and its pattern points (each with its
+    welded point, its piece and its place on the flat pattern) with the triangles over them"""
+    names = list(pieces); pid = np.concatenate([np.full(len(pieces[k].V), i) for i, k in enumerate(names)])
+    first = np.full(len(Xs), -1)
+    for o in range(len(can) - 1, -1, -1): first[can[o]] = o
+    regs = [regs_of(pieces[names[pid[o]]]) for o in first]
+    tri, W = bind(Xs, regs, body, body.rel)
+    h = np.abs(W[:, 2])
+    print("  bound to his body: height off it median %.1f mm, 95%% %.1f, max %.1f" % tuple(1000 * np.percentile(h, [50, 95, 100])), flush=True)
+    return {"pieces": [{"name": k, "grp": pieces[k].grp, "band": round(pieces[k].band, 4), "stiff": pieces[k].stiff} for k in names],
+            "n": len(Xs), "pos": b64(Xs.astype(np.float32)), "m": len(can), "vmap": b64(can.astype(np.uint16)),
+            "piece": b64(pid.astype(np.uint8)), "pat": b64(np.vstack([pieces[k].V for k in names]).astype(np.float32)),
+            "idx": b64(np.asarray(T, np.uint16)), "bind": {"tri": b64(tri.astype(np.uint16)), "w": b64(W.astype(np.float32))}}
+
+
+def write_template(path, G, body, can, Xs, T, hood=None):
+    regs_of = lambda pc: ARM_REG if pc.grp in (1, 2) else TORSO_REG
+    out = {"v": 1, "arch": G.arch, "size": "L", "meas_cm": G.M, "scale": round(G.s, 5),
+           "char": {k: v for k, v in body.char.items()},
+           "about": "Made by tools/build_garments.py: sewn from flat pattern pieces and draped on Dave (CHAR_DEF, after "
+                    "propWarp) in headless Blender. pos: welded points (float32 x, y, z, his warped frame; the page scales "
+                    "the figure by 1/scale afterwards). Pattern points: vmap (their welded point), piece, pat (their place "
+                    "on the flat pattern in metres: x round, y up from the hem), idx (triangles over them, uint16). bind: "
+                    "each welded point's body triangle (data/body.json idx) and b, c, h: X = (1-b-c) A + b B + c C + h n, "
+                    "n the unit normal cross(B-A, C-A). hood.pins: hood point, garment point it is sewn to."}
+    out.update(template(G.P, can, Xs, T, body, regs_of))
+    if hood is not None:
+        Xd, Th, canh, offh, pin, pg = hood
+        Th_un = np.vstack([G.hood[k].T + offh[k] for k in G.hood])
+        out["hood"] = template(G.hood, canh, Xd, Th_un, body, lambda pc: TORSO_REG)
+        out["hood"]["pins"] = b64(np.stack([pin, pg], 1).astype(np.uint16))
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    json.dump(out, open(path, "w"), separators=(",", ":"))
+    print("  wrote %s (%.0f KB)" % (os.path.relpath(path, ROOT), os.path.getsize(path) / 1024), flush=True)
+
+
 def main():
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:]
     ap = argparse.ArgumentParser()
@@ -1037,7 +1101,8 @@ def main():
         cache = os.path.join(a.debug, arch + "-draped.npy") if a.debug else ""
         if a.reuse and os.path.exists(cache):
             Xs = np.load(cache); print("  draped garment from", cache, flush=True)
-            if G.hood: drape_hood(G, body, can, off, Xs, Tw, a, F)
+            hood = drape_hood(G, body, can, off, Xs, Tw, a, F) if G.hood else None
+            write_template(os.path.join(a.out, arch + ".json"), G, body, can, Xs, T, hood)
             continue
         clear_scene()
         bo = body_obj(body, poses, pf, hold, a.friction)
@@ -1053,6 +1118,8 @@ def main():
         if a.debug:
             debug_json(os.path.join(a.debug, arch + "-draped.json"), body, poses[-1], [(arch, Xs, Tw, "#7a2a30")])
             if not a.apose_only: np.save(cache, Xs)
-        if G.hood and not a.apose_only: drape_hood(G, body, can, off, Xs, Tw, a, F)
+        if a.apose_only: continue
+        hood = drape_hood(G, body, can, off, Xs, Tw, a, F) if G.hood else None
+        write_template(os.path.join(a.out, arch + ".json"), G, body, can, Xs, T, hood)
 
 main()
