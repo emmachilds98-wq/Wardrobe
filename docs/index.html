@@ -1615,17 +1615,22 @@ function bottomCut(p){var it=byId[p.item]||{},n=((it.name||"")+" "+(p.what||""))
   else if(f==="Relaxed"||/relaxed|loose|carpenter|cargo|combat|painter|\bwork|utility|board ?short/.test(n))k="relaxed";
   else if(f==="Straight"||/straight|\b501\b/.test(n))k="straight";
   else k="regular";
-  var c=Object.assign({k:k},BOTCUT[k]);
+  /* (the cut as the shop photo shows it, from data/cuts.json, over the reading of the name) */
+  var rd=(it.cut||"").split(" "),fl=" "+rd.slice(1).join(" ")+" ";if(BOTCUT[rd[0]])k=rd[0];
+  var c=Object.assign({k:k},BOTCUT[k]);c.photo=!!BOTCUT[rd[0]];
   /* (a jogger is gathered at the ankle unless it says it is open or wide; it tapers to the cuff unless it says loose) */
   c.cuff=!sh&&/jogger|track ?(pant|bottom)|sweatpant|lounge|pyjama/.test(n)&&!/wide|straight|open hem|baggy|parachute/.test(n);
-  if(c.cuff&&!/relaxed|loose/.test(n))c.fall=Math.min(c.fall,0.48);
-  if(/flare/.test(n)&&!sh){c.flare=0.03;c.fall=Math.max(c.fall,0.7);}else if(/bootcut|boot cut/.test(n)&&!sh){c.flare=0.016;c.fall=Math.max(c.fall,0.7);}
+  if(c.photo)c.cuff=!sh&&(/ cuff /.test(fl)||c.cuff&&!/ open /.test(fl)&&/^(skinny|slim|tapered|regular|relaxed)$/.test(k));
+  if(c.cuff&&!/relaxed|loose/.test(n)&&!/^(relaxed|wide|baggy)$/.test(k))c.fall=Math.min(c.fall,0.48);
+  if(/ flare /.test(fl)||!c.photo&&/flare/.test(n)){if(!sh){c.flare=0.03;c.fall=Math.max(c.fall,0.7);}}
+  else if((/ bootcut /.test(fl)||!c.photo&&/bootcut|boot cut/.test(n))&&!sh){c.flare=0.016;c.fall=Math.max(c.fall,0.7);}
   if(/cropped|crop\b|ankle[- ]length|ankle grazer|7\/8/.test(n))c.bot=0.095;
   if(sh){var m=/(\d{1,2}(?:\.\d)?)\s*(?:"|”|''|-?inch|in\b)/.exec(n),ins=m?Number(m[1]):0;
     if(ins>=3&&ins<=13)c.len=ins*0.0254+0.01;   /* (the inseam: crotch to hem) */
     else if(/short shorts|running|runner|split/.test(n))c.len=0.16;
     else if(/swim/.test(n)&&!/board|long/.test(n))c.len=Math.min(c.len,0.2);
-    else if(/board|basketball|jort|long(line)? shorts?|knee/.test(n))c.len=Math.max(c.len,0.36);}
+    else if(/board|basketball|jort|long(line)? shorts?|knee/.test(n))c.len=Math.max(c.len,0.36);
+    if(/ long /.test(fl))c.len=Math.max(c.len,0.36);}
   return c;}
 /* the cut in words, for the fitting room */
 function cutWords(c,sh){var w={skinny:"Skinny: close all the way down",slim:"Slim: close through the thigh, narrowing to the hem",tapered:"Tapered: room at the thigh, narrowing to the ankle",
@@ -2960,7 +2965,7 @@ function norm(id,d){
     offer:String(d.offer||""),note:String(d.note||""),url:url,checked:String(d.checked||""),added:String(d.added||""),rank:Number(d.rank)||9999,
     insize:d.insize===true?true:(d.insize===false?false:null),sizes:String(d.sizes||""),gift:d.gift===true,
     sets:Array.isArray(d.sets)?d.sets.filter(function(s){return typeof s==="string";}):[],img:okImg(d.img),
-    pg:typeof d.pg==="string"?d.pg:"",sizeNote:String(d.sizeNote||"").slice(0,140),fit:String(d.fit||"").slice(0,20),fabric:String(d.fabric||"").slice(0,60),ph:d.ph===true||d.ph===1,
+    pg:typeof d.pg==="string"?d.pg:"",sizeNote:String(d.sizeNote||"").slice(0,140),fit:String(d.fit||"").slice(0,20),cut:/^[a-z ]{3,40}$/.test(d.cut||"")?d.cut:"",fabric:String(d.fabric||"").slice(0,60),ph:d.ph===true||d.ph===1,
     hist:Array.isArray(d.hist)?d.hist.filter(function(x){return Array.isArray(x)&&typeof x[0]==="string"&&Number(x[1])>0;}).map(function(x){return [x[0],Number(x[1])];}).slice(-6):[],fix:normFix(d.fix)};
   if(!it.name||!url)return null;
   if(it.kind==="preowned"?!(it.lo>0):!(it.price>0))return null;

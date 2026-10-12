@@ -2140,6 +2140,30 @@ and on the polo in m5-under-60: "collars still appear a bit overlapped and detta
   thigh, on a flat-lay) rather than from its name and fit label; most photos are on a model, so this needs the
   photo reader's leg outline first.
 
+## 2zzzzzzzzzzzzzzzzzzz. Every pair's cut read from its shop photo (12 Oct 2026)
+
+Emma, on x11-matalan-casual: "make straight, skinny, flared, baggy bottoms clear based on the advertisement". The cut
+was read from the shop's fit label and the name; many names say nothing ("Trousers", "Chinos", "Jeans") or mislead
+(cargo and work words read as relaxed, "baggy" on what is a wide straight leg).
+
+- **Measuring the leg from the photo did not work.** A prototype outlined the leg in each photo and compared the hem's
+  width with the thigh's; most photos are on a model (crossed legs, a step, cropped at the knee, busy backdrops), so
+  half the readings were wrong. Dropped.
+- **Read by eye instead.** Every bottom worn in an outfit (318: 240 trousers and joggers, 78 shorts) was laid out on
+  contact sheets of its shop photo with the page's reading, and checked. 166 read differently and are in
+  `data/cuts.json` (`"<item>": "<cut> [flags]"`): 38 straight (jeans, cords and chinos read as regular, workwear read
+  as relaxed), 30 slim (tailored and smart chinos), 23 wide (painter and skate pants read as relaxed, "baggy" names that
+  are wide straight legs), 22 tapered (cuffed joggers and military chinos read as relaxed), 19 relaxed, 8 baggy, 8
+  regular; flags `cuff` (gathered at the ankle), `open` (an open hem on a jogger), `long` (shorts to the knee or
+  below, 4 pairs). Shorts: 11 read slimmer or wider than their names.
+- **Wiring:** `tools/build_site.py` checks each entry (a known item, a known cut, known flags) and puts it on the item
+  as `cut`; `bottomCut` uses it over the name: the cut, then the flags (a photo-read jogger keeps its cuff unless it
+  is straight, wide or baggy or says `open`). The 3D model, the 2D drawing and the fitting room's words all follow.
+- **Check:** every outfit with a changed pair (321) on his shape and the heavier body: nothing flagged; the
+  pull-request check on all bodies. Stored specs unchanged (they do not hold the cut).
+- **New picks** are read from their name until someone adds them to `data/cuts.json` (CONTRIBUTING, "The cut of
+  trousers and shorts").
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

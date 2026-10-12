@@ -20,9 +20,10 @@ that: Edit Dave's sliders centred on the last save, and biceps, forearms, thighs
 
 **Next agent, start here (in this order):**
 
-1. **Slim and baggy bottoms:** done 12 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzz): `bottomCut` reads every pair's cut for the
-   model, the drawing and the fitting room's words, shorts' length from their inseam. Look at them with Emma; the
-   numbers are in `BOTCUT`.
+1. **Slim and baggy bottoms:** done 12 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzz to 2zzzzzzzzzzzzzzzzzzz): `bottomCut`
+   reads every pair's cut for the model, the drawing and the fitting room's words, shorts' length from their inseam;
+   every bottom in an outfit was checked against its shop photo and 166 set in `data/cuts.json`. New picks: add them
+   there (CONTRIBUTING, "The cut of trousers and shorts"). The numbers are in `BOTCUT`.
 2. **Edit Dave's extremes:** the short sleeves are done 12 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzz: `ARMSUM`). Still open:
    w20261006-casual-04 on a heavy, muscular build (weight 0.6, muscle 0.6, arms and legs 1), the hood's rim through
    the padded jacket's collar at the back of his neck (back poke 33; there before today too). To test a body the page
@@ -126,6 +127,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 12 Oct 2026 | PR | Every bottom's cut checked against its shop photo: 166 pairs set in `data/cuts.json` (straight, slim, wide, tapered, cuffed or open, long shorts) | FtdHKg v40 |
 | 12 Oct 2026 | PR | Loose legs as straight tubes (no bell from the side), shorts no longer flared, the seat shaped in fitted trousers, a polo's own folded rib collar | FtdHKg v39 |
 | 12 Oct 2026 | PR | Biceps and forearms build on the arms within a joint limit (`ARMSUM`), so short sleeves hold on the biggest arms | FtdHKg v38 |
 | 12 Oct 2026 | #32 | Bottoms: slim, regular, straight, relaxed, wide and baggy clearly different in 3D and the drawing, shorts at their own length (from the inseam), the cut in words in the fitting room | FtdHKg v37 |

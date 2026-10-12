@@ -30,6 +30,7 @@ fit as the shop's photo, layered as it would really be worn, with no skin or hol
 | `data/items.json`, `data/items-*.json` | Every pick. The build merges them; the first file to define an id wins. |
 | `data/outfits.json`, `data/outfits-*.json` | Every outfit. Merged the same way. |
 | `data/fixes.json` | Corrections for items whose shop photo the page reads wrongly. |
+| `data/cuts.json` | How a pair of trousers or shorts is cut (skinny to baggy, cuffed, long), read from its shop photo, where its name reads it wrongly. |
 | `data/sizecharts.json` | What M, L and XL mean at each shop (the chest in inches, from the shop's own size guide, body or garment), with its source page. Made by `python3 tools/size_charts.py`; the cards show it as the size check. |
 | `data/specs.json` | The stored specs: how every piece worn in an outfit is read (colours, pattern, cut, cloth, details), with where each reading came from and how far to trust it. Made by `node tools/specs.js`; never edit it by hand. |
 | `photos/*-NN.json` | Listing photos (small WebP data URLs, keyed by item id), made by `tools/fetch_photos.py`. |
@@ -254,7 +255,7 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    | `swatch` | A small square of the cloth itself, as a `data:image/jpeg;base64,...` (under 16,000 characters), repeated as the garment's cloth at `per` of its length: for a woven pattern the listing photo cannot show (a lifestyle shot of a jacquard). Cut it from the shop's own close-up product image, flat and evenly lit, and make it repeat without a seam. |
    | `place` | The front panel of a top whose design sits in one place (a yoke, a Fair Isle band across the chest and sleeves, a hem band), as a `data:image/jpeg;base64,...` (under 24,000 characters): cut from the listing photo from just beside the centre front (leave out a zip or placket) to the side seam, and from the base of the collar to the bottom of the hem, then flipped so the centre is on the left. Fill any background with the cloth's colour. It is laid on by height, the hem at the bottom and the base of the collar at the top, mirrored round the body and run round each arm. |
    | `crown` | A cap's crown seen from the front (its stripes, lettering or logo), cut from the shop photo as a `data:image/jpeg;base64,...` (under 24,000 characters), with any background at its top corners filled in the cap's colour: laid over the front of the 3D cap's crown, fading into the cap's own colour round the sides. |
-| `why` | Required: what the shop photo shows, in a sentence. |
+   | `why` | Required: what the shop photo shows, in a sentence. |
    | `checked` | Required: the date you checked it against the shop's page. |
 
    The build checks every entry (a known item, `#rrggbb` colours, a known pattern, shares between 0 and 1, `why` and
@@ -262,6 +263,13 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
 5. **If a whole kind of photo is read wrongly**, change the reader in `page.html`, but only with `dump.js` run before
    and after on every outfit, and the differences looked at one by one. A change that makes any item worse is
    reverted, even if it fixes others.
+6. **The cut of trousers and shorts** (skinny, slim, tapered, regular, straight, relaxed, wide, baggy or barrel) is read
+   from the shop's fit label and the name (`bottomCut`). Where the shop photo shows otherwise, set it in
+   `data/cuts.json`: the cut, then any flags: `cuff` (gathered at the ankle), `open` (an open hem on a jogger), `flare`
+   or `bootcut`, `long` (shorts to the knee or below), e.g. `"r10-ue-rapid": "tapered cuff"`. Judge it from the
+   photo: the hem's width against the thigh's, and whether the leg narrows from the knee. The build stops on an unknown
+   item, cut or flag. Every bottom in an outfit was read this way on 12 Oct 2026; a new pick is read from its name
+   until it is added.
 
 ## How clothes are fitted to Dave
 
