@@ -729,8 +729,10 @@ def cloth_edges(Tw, T, Vpat):
     return E, R
 
 
-def relax(X, E, R, P, N, iters=500, smooth=(0.25, 0.03)):
-    """the cloth eased to its pattern's lengths (no gravity), kept outside his body: a Jacobi position solve"""
+def relax(X, E, R, P, N, iters=500, smooth=(0.25, 0.03), fixed=None):
+    """the cloth eased to its pattern's lengths (no gravity), kept outside his body: a Jacobi position solve. fixed:
+    points held where they are (a hood's neckline, on the garment's)"""
+    X0 = X.copy()
     kd = mathutils.kdtree.KDTree(len(P))
     for i, p in enumerate(P): kd.insert(p, i)
     kd.balance()
@@ -747,6 +749,7 @@ def relax(X, E, R, P, N, iters=500, smooth=(0.25, 0.03)):
         for k in (sm, -1.04 * sm):
             S = np.zeros_like(X); np.add.at(S, E[:, 0], X[E[:, 1]]); np.add.at(S, E[:, 1], X[E[:, 0]])
             X += k * (S / nb[:, None] - X)
+        if fixed is not None: X[fixed] = X0[fixed]
         if it % 8 == 0 or it == iters - 1:
             for i in range(len(X)):
                 _, j, _ = kd.find(X[i]); dd = float(np.dot(X[i] - P[j], N[j]))
@@ -838,13 +841,14 @@ def positions(obs):
 
 
 def run(frames, obs, label, snap=None, gravity=(0.0, -9.81, 0.0)):
-    """steps the simulation; snap(frame, positions) is called at each frame in snap.at. (The page's frame has y up;
-    Blender's gravity points down its z unless told otherwise.)"""
+    """steps the simulation; snap(frame, positions) is called at each frame in snap.at. gravity: a vector, or a function
+    of the frame giving one. (The page's frame has y up; Blender's gravity points down its z unless told otherwise.)"""
     sc = bpy.context.scene; sc.frame_start = 1; sc.frame_end = frames
-    sc.gravity = gravity; sc.use_gravity = True
+    sc.use_gravity = True
     import time
     t0 = time.time()
     for f in range(1, frames + 1):
+        sc.gravity = gravity(f) if callable(gravity) else gravity
         sc.frame_set(f)
         if snap and f in snap.at: snap(f, positions(obs))
         if f % 20 == 0 or f == frames: print("  %s frame %d/%d, %.0f s" % (label, f, frames, time.time() - t0), flush=True)
@@ -870,6 +874,76 @@ def debug_json(path, body, P, meshes, lines=()):
         out["meshes"].append({"name": nm, "pos": b64(X.astype(np.float32)), "idx": b64(np.asarray(T, np.uint32)), "col": col})
     json.dump(out, open(path, "w"))
 
+def head_shape(P, body):
+    """his head as an ellipsoid: centre and half-widths (x, y, z) from its skin in pose P"""
+    reg = np.array([body.regions[r] for r in body.vreg]); H = P[reg == "head"]
+    lo, hi = H.min(0), H.max(0)
+    return (lo + hi) / 2, (hi - lo) / 2
+
+
+def hood_seams(G):
+    """the hood's seams for sampling: its back seam, and each half's neckline on the garment's (opposite ways)"""
+    return G.hood_S + [([(h, e)], [g], 1.0, False) for h, lst in G.hood_ring.items() for e, g in lst]
+
+
+def drape_hood(G, body, can, off, Xs, Tw, a, F):
+    """The hood, draped after the garment: its two halves sewn up the back and placed up round his head, the neckline
+    held on the draped garment's, then let fall back off his head onto his shoulders (gravity tilted backward at
+    first), against his body and the draped garment. Gives the hood's welded points, triangles, its pattern and the
+    garment points its neckline is sewn to."""
+    HP = G.hood
+    P = body.rel; N = vnormals(P, body.idx)
+    hc, hr = head_shape(P, body); hr = hr + np.array([0.03, 0.02, 0.03])
+    # each half's neckline: the garment's points it is sewn to (the garment's edge runs the other way)
+    tgt = {}
+    for h, lst in G.hood_ring.items():
+        ids, gids = [], []
+        for e, (gp, ge) in lst:
+            ia = HP[h].B[e]; ib = G.P[gp].B[ge][::-1]
+            ids += list(ia); gids += [can[off[gp] + i] for i in ib]
+        tgt[h] = (np.array(ids), np.array(gids))
+    X = {}
+    for h, pc in HP.items():
+        sg = 1 if h.endswith("L") else -1
+        V = pc.V; ax = np.abs(V[:, 0]); Hh = V[:, 1].max(); ids, gids = tgt[h]
+        U = ax[ids].max()
+        o = np.argsort(ax[ids]); nx = ax[ids][o]; nt = Xs[gids][o]
+        Nk = lambda x: np.array([np.interp(x, nx, nt[:, k]) for k in range(3)])
+        ph0, th0, v1 = 0.6, -0.35, 0.3
+        Q = np.zeros((len(V), 3))
+        for i, (x, y) in enumerate(V):
+            u = min(1.0, abs(x) / U); ph = ph0 + (np.pi - ph0) * u; v = y / Hh
+            S = lambda th: hc + hr * np.array([sg * math.cos(th) * math.sin(ph), math.sin(th), math.cos(th) * math.cos(ph)])
+            Q[i] = Nk(abs(x)) * (1 - v / v1) + S(th0) * (v / v1) if v < v1 else S(th0 + (np.pi / 2 - 0.12 - th0) * (v - v1) / (1 - v1))
+        Q[ids] = Xs[gids]
+        X[h] = Q
+    pairs, offh = close_seams(HP, X, G.hood_S)
+    allX = np.vstack([X[k] for k in HP]); T = np.vstack([HP[k].T + offh[k] for k in HP])
+    canh, nh = weld(len(allX), pairs)
+    Xh = np.zeros((nh, 3)); np.add.at(Xh, canh, allX); Xh /= np.bincount(canh, minlength=nh)[:, None]
+    Th = canh[T]; Vpat = np.vstack([HP[k].V for k in HP])
+    pin = np.concatenate([canh[offh[h] + tgt[h][0]] for h in HP]); pg = np.concatenate([tgt[h][1] for h in HP])
+    Xh[pin] = Xs[pg]
+    E, R = cloth_edges(Th, T, Vpat)
+    print("  hood: %d points; eased to the pattern: edge/pattern 5%% %.3f, median %.3f, 95%% %.3f" % ((nh,) + tuple(relax(Xh, E, R, P, N, fixed=pin))), flush=True)
+    if a.debug: debug_json(os.path.join(a.debug, G.arch + "-hood-placed.json"), body, P, [(G.arch, Xs, Tw, "#7a2a30"), ("hood", Xh, Th, "#a0414a")])
+    clear_scene()
+    static_collider("dave", P, body.idx, th=0.003)
+    static_collider("garment", Xs, Tw, th=0.003)
+    fall, settle = F(40), F(50)
+    co = cloth_obj("hood", Xh, Th, None, [], pins=pin, frames=fall + settle, bending=a.hood_bending, mass=a.mass, tension=a.tension)
+    co.modifiers["cloth"].settings.pin_stiffness = 50.0
+    grav = lambda f: (0.0, -6.0, -8.0) if f <= fall else (0.0, -9.81, 0.0)
+
+    def snap(f, Xf):
+        if a.debug: debug_json(os.path.join(a.debug, "%s-hood-f%03d.json" % (G.arch, f)), body, P, [(G.arch, Xs, Tw, "#7a2a30"), ("hood", Xf[0], Th, "#a0414a")])
+    snap.at = {F(10), fall} | {int(f) for f in os.environ.get("GB_SNAPS", "").split(",") if f}
+    Xd, = run(fall + settle, [co], "hood", snap, gravity=grav)
+    if a.debug: debug_json(os.path.join(a.debug, G.arch + "-hood-draped.json"), body, P, [(G.arch, Xs, Tw, "#7a2a30"), ("hood", Xd, Th, "#a0414a")])
+    st = np.linalg.norm(Xd[E[:, 0]] - Xd[E[:, 1]], axis=1) / R
+    print("  hood draped: edge/pattern 5%% %.3f, median %.3f, 95%% %.3f; neckline off the garment's by %.1f mm at most" % (tuple(np.percentile(st, [5, 50, 95])) + (1000 * np.linalg.norm(Xd[pin] - Xs[pg], axis=1).max(),)), flush=True)
+    return Xd, Th, canh, offh, pin, pg
+
 
 def main():
     argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:]
@@ -883,6 +957,8 @@ def main():
     ap.add_argument("--bending", type=float, default=0.5)
     ap.add_argument("--start", type=int, default=0, help="the A-pose the cloth is placed and first draped in (0: 40 degrees, 1: 30, 2: 20, 3: 12)")
     ap.add_argument("--apose-only", action="store_true", help="drape in the A-pose only (a quick look)")
+    ap.add_argument("--reuse", action="store_true", help="with --debug: take the draped garment from the last run (to try the hood)")
+    ap.add_argument("--hood-bending", type=float, default=0.5)
     ap.add_argument("--mass", type=float, default=0.3, help="kg per point")
     ap.add_argument("--tension", type=float, default=15.0)
     ap.add_argument("--friction", type=float, default=8.0, help="the cloth's friction on his body")
@@ -896,8 +972,8 @@ def main():
     archs = [x for x in (a.only.split(",") if a.only else ["hoodie", "halfzip", "jacket"]) if x]
     for arch in archs:
         G = Garment(arch, scale)
-        cnt = seam_counts(G.S, G.P)
-        for pc in G.P.values(): mesh_piece(pc, cnt)
+        cnt = seam_counts(G.S + (hood_seams(G) if G.hood else []), {**G.P, **(G.hood or {})})
+        for pc in list(G.P.values()) + list((G.hood or {}).values()): mesh_piece(pc, cnt)
         print(arch, {k: len(v.V) for k, v in G.P.items()}, flush=True)
         X = place(G, G.P, body, a.start)
         pairs, off = close_seams(G.P, X, G.S)
@@ -958,6 +1034,11 @@ def main():
         poses = body.apose[a.start:a.start + 1] if a.apose_only else body.apose[a.start:] + [body.rel]
         pf = [F(24) + i * (step + hold) for i in range(len(poses))]
         frames = pf[-1] + F(30)
+        cache = os.path.join(a.debug, arch + "-draped.npy") if a.debug else ""
+        if a.reuse and os.path.exists(cache):
+            Xs = np.load(cache); print("  draped garment from", cache, flush=True)
+            if G.hood: drape_hood(G, body, can, off, Xs, Tw, a, F)
+            continue
         clear_scene()
         bo = body_obj(body, poses, pf, hold, a.friction)
         stw = np.zeros(nw); np.maximum.at(stw, can, np.concatenate([np.full(len(G.P[k].V), G.P[k].stiff) for k in G.P]))
@@ -971,5 +1052,7 @@ def main():
         print("  draped: edge/pattern 5%% %.3f, median %.3f, 95%% %.3f" % tuple(np.percentile(st, [5, 50, 95])), flush=True)
         if a.debug:
             debug_json(os.path.join(a.debug, arch + "-draped.json"), body, poses[-1], [(arch, Xs, Tw, "#7a2a30")])
+            if not a.apose_only: np.save(cache, Xs)
+        if G.hood and not a.apose_only: drape_hood(G, body, can, off, Xs, Tw, a, F)
 
 main()
