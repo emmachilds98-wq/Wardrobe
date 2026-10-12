@@ -1930,6 +1930,42 @@ creases ... this improvement should be for all clothes and not just trousers."
   heights, a long-bodied Dave's band sat 5 to 7 cm too high. The 3D check on 8 outfits (`c6-denim`, `smart-casual`,
   `wk-lounge`, `g-lounge-04`, `wedding-guest`, `h10-surf`, `w20261006-casual-04`, `lazy-sunday`): nothing flagged.
 
+## 2zzzzzzzzzzzzz. The folds still missing, and contact shade at cuffs, collars and hems (12 Oct 2026)
+
+The follow-up to 2zzzzzzzzzzzz, from STATUS.md "Now" items 2 and 4. Shading only: no geometry moves, so the layers and
+the 3D check see the same cloth as before.
+
+- **The back of a tucked shirt** (`FOLD_GLSL.up`, under `fTuck`): a soft roll across the small of his back where the
+  waistband holds the shirt down, a fainter one above it, and two short folds rising from it toward the shoulder blades.
+  It was smooth from behind, the blousing only at the front.
+- **A jacket's or coat's lower back** (`fBack` in `UT`: jackets 1, coats 0.9, dressing gowns 0.8, gilets 0.6, blazers 0.5,
+  jacket-weight overshirts 0.6; none when tucked or padded): soft folds across the small of the back, each at its own
+  slant and length, and below the seat of a long coat, long folds down to the hem.
+  - **Pitfall:** anything that crosses his spine must be the same either side of it. The body's folds take a seed per
+    side (`sd`), and `sin(1.7*A)` is not the same at A = pi and -pi; both left a seam down the middle of his back. Use
+    whole turns of A (`sin(2.0*A)`), no side seed, and `sin(A)` as the coordinate across the back (smooth through it).
+- **Scarves** (`FOLD_GLSL.sc`): the loop gets a fold attribute of its own (direction round his neck, height): folds
+  running slantwise round it as wound cloth twists (7 round a scarf, 5 steeper ones round a neck warmer), and across the
+  front the edge of the outer turn where it lies over the inner one (not on a neck warmer). The hash runs on
+  `mod(k, fN)` so the folds meet up behind his neck.
+- **The heel counter** (`FOLD_GLSL.ft`, `fHeel`, `fCtr`): the stiffened piece round the back of the heel, its stitched
+  edge running from high at the back down and forward to the sole, on every shoe and boot but slippers (trainers most).
+  All of the very back of the heel counts as counter: the cap closing the heel has no direction round the shoe at its
+  middle, and an edge drawn across it showed as a V. (A soft V at the bottom of the heel seen from behind is in the
+  last's own shape, from the cap's normals, and was there before: `upperGeo`.)
+- **Contact shade** (with `layerShade`, which already shaded below hems and inside open fronts):
+  - on his hands just below long sleeves (26 %, over 4 cm), and on his arms below short ones (20 %, over 4 cm);
+  - on his neck just above whatever stands round it (30 %, over 4 cm), from the top of the cloth in each direction in
+    the map of what he wears round his neck (`OCC.N`), so it follows a collar, a crew neck or a V. The skin's vertex
+    shade is now a copy per outfit (`bodyCols` keeps one per shape);
+  - on the shoe or boot under a trouser hem (`hemShade`): darker just below the hem and a few centimetres out past it,
+    from the hem's outline round each leg (`HEMS`). Materials shared with pieces that have no vertex shade are copied
+    first (a material told to use vertex colours on a mesh without them draws it black).
+- **Before and after from one build:** `window.__nocs` turns all contact shade off, as `__nofold` and `__noenv` do;
+  `QA_INIT='window.__nofold=1'` on `zoom.js` sets any of them.
+- **Check:** the gate set (`tools/qa/gate.txt`) on his saved shape: nothing flagged, as before; the stored specs read
+  the same.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

@@ -8,23 +8,28 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 - Live page (GitHub Pages, served from `main`): <https://emmachilds98-wq.github.io/Wardrobe/>
 - claude.ai artifact (holds the shared database): <https://claude.ai/artifact/8uqcGr2eNmzbQv8UVBshY2>
+- Emma's own copy of the artifact (republished from `docs/` the same way, its own database):
+  <https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn>. A session signed in to her account can only publish to this one.
 - Review and plan doc (Claude Doc): <https://claude.ai/code/artifact/a11be046-83a3-47dc-855c-67657c180e7e>
 
 ## Now
 
-Folds and light shipped (PR for queue items 11 to 13, 12 Oct). Next agent, start here:
+Folds and light shipped (PR for queue items 11 to 13, 12 Oct), then the folds still missing and contact shade at cuffs,
+collars and hems (12 Oct, UPGRADE_PLAN 2zzzzzzzzzzzzz). Next agent, start here:
 
 1. **Look at the folds in the fitting room on a phone and a laptop** (Emma's verdict decides the strength). The
    strengths are the `fAmp` and `fWid` values in `FU` (trousers, at the call to `trouserGeo`) and `UT` (tops, just
    after `var fitOn`); each pattern's own weights are the uniforms after them. Before/after renders from one build:
-   set `window.__nofold=1` and `window.__noenv=1` in a QA page (tools/qa/zoom.js with an init script).
-2. **Folds still to add:** the back of a tucked shirt (a horizontal fold above the waistband at the back), a jacket's
-   lower back when he stands (soft horizontal drape), scarves (folds along the loop), hats (none yet), the shoe's
-   heel counter. The drawn-only figure (no body data) has none.
+   set `window.__nofold=1`, `window.__noenv=1` or `window.__nocs=1` (contact shade) with
+   `QA_INIT='window.__nofold=1' node tools/qa/zoom.js ...`.
+2. **Folds:** done 12 Oct for the back of a tucked shirt, a jacket's or coat's lower back, scarves and the shoe's heel
+   counter. Still none on hats, on a scarf's hanging ends (flat boxes, which also show their joins) or on the drawn-only
+   figure (no body data).
 3. **Light:** the room (`studioEnv`) is a first version; compare a fitting-room still with a shop photo of the same
    piece and tune the softbox brightness, and the day and evening rooms, by eye. Watch the `colour` check.
-4. **Contact shade** covers hems and open fronts. Not yet: under collars on the neck, at cuffs on the wrist, where
-   trousers meet shoes.
+4. **Contact shade** covers hems and open fronts, and since 12 Oct his hands below long sleeves, his arms below short
+   ones, his neck above a collar or neckband, and the shoe or boot under a trouser hem (`hemShade`). Not yet: the shirt
+   collar on the neck of a jumper or coat worn over it, a scarf on what is under it.
 5. Then the rest of the queue (4, 5, 6, 8, 9, 10).
 
 If you stop part-way through something, write here: the branch, what is done, what is left, and anything you found
@@ -111,6 +116,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 12 Oct 2026 | direct to `main` | Folds on the back of a tucked shirt, a jacket's lower back, scarves and shoes' heel counters; contact shade at cuffs, above collars and on shoes under trouser hems | FtdHKg v33 |
 | 12 Oct 2026 | #29 | Folds and creases shaded into every garment (trousers, shorts, tops, sleeves, shoes), soft studio light from a room of softboxes, shade under hems and inside open fronts; `legs` check heights follow Edit Dave's proportions | v46 |
 | 12 Oct 2026 | #28 | Trousers cut as a pair: the legs part from a crotch seam instead of sticking together, no bulge at the front or cleft at the seat; the `legs` check looks from 7 cm below the crotch | v45 |
 | 11 Oct 2026 | #27 | Contrast tipping on polos, tees and jumpers lies along the collar or neckband (it floated above the collar) | v44 |

@@ -89,6 +89,7 @@ should match. Emma asked for the upgrade to continue until that is done.
 | Photo reader | `sampleLook`, with `swatch()` inside it, run through `trueFor`. Colours, stripes, checks, prints, photo fronts, the named-colour check, the denim rule |
 | 3D scene | `make3D` / `make3Dcore`. Tops: `fitTop`, `wrapGeo` / `wrap`. Trousers: `trouserGeo` (cut as a pair, one piece per half), `legSecs` (each leg's hanging shape), `thighGap`. Collars: `fitCollar`. Layers: occupancy maps `occPushPt` / `occAddMesh` |
 | Cloth textures | `lookTex` (3D), `lookFill` (2D) |
+| Folds, light and contact shade | `FOLD_GLSL` (`lo` trousers, `up` tops and sleeves, `ft` shoes, `sc` scarves) through `foldMat`, settings in `FU`, `UT` and at each call; `studioEnv` (the room's light); `layerShade`, `hemShade` and the skin shade after the neck skin is restored. `window.__nofold`, `__noenv`, `__nocs` turn each off |
 | Accessories, shoes, boots, ties, bags | The long `else if(p.shape===...)` chain near the end of `make3Dcore` |
 | 2D drawing | `figure()`, `face2D`, `applyChar2D` |
 | Edit Dave and fitting room | `CHAR`, `openCE`, `UNDERWEAR`; Edit Dave's sections `CES`, `ceForm`, `ceSlider`, `ceFrame` (measuring lines, saved/now wipe) |
