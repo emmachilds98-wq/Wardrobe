@@ -12,9 +12,7 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
-Branch `ccr-1527c651-q5dl8o`: trousers cut as a pair (`trouserGeo`), so the legs part from the crotch seam instead of
-sticking together, and the `legs` check looks from 7 cm below the crotch. See `UPGRADE_PLAN.md` 2zzzzzzzzzzz. Waiting
-on CI, then merge and republish the artifact.
+Nothing in progress. `main`, the Pages site and the artifact all match (see the last Log line).
 
 If you stop part-way through something, write here: the branch, what is done, what is left, and anything you found
 out that the next person needs. Push the branch, even unfinished, so the work is not lost when a session ends.
@@ -100,6 +98,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 12 Oct 2026 | #28 | Trousers cut as a pair: the legs part from a crotch seam instead of sticking together, no bulge at the front or cleft at the seat; the `legs` check looks from 7 cm below the crotch | v45 |
 | 11 Oct 2026 | #27 | Contrast tipping on polos, tees and jumpers lies along the collar or neckband (it floated above the collar) | v44 |
 | 11 Oct 2026 | #26 | Shoe lasts by kind: dress, loafer, Chelsea, safety, desert and more, each with its own sole | v43 |
 | 11 Oct 2026 | #25 | Tie on the shirt with its knot at his throat; shirt collar points that come down and angle apart | v42 |
