@@ -33,8 +33,8 @@ limit. The passing 3D checks did not catch any of the collar problems below: loo
    collar stands above the hood's fixed top (`yT` 1.535/1.545) at the back of his neck, so the hood reads as tucked
    under it. Raising `yT` by 4 cm when `out>0` brought it to 48 (2.5 cm: no change). The fix to try is the real-life
    one: when a hood lies out over a jacket, lower that jacket's collar at the back under the hood (its `fitCollar`
-   `hBack`, or skip the collar where the hood covers it), or put the hood's top at the jacket collar's top. Check
-   w20261006-casual-04 with it (the same case, passing now).
+   `hBack`, or skip the collar where the hood covers it), or put the hood's top at the jacket collar's top. The same case
+   flags w20261006-casual-04 on the athletic body (back poke 56; it passes on dave): check both on all five bodies.
 2. Smooth the scarf loop's top edge (ragged at the front in places) and check all 8 scarf outfits (q7-fairisle,
    pub-lunch, q9-matagalpa, q8-morden, od-event, g-outdoor-05, jb11-winter, g-quiet-30).
 3. Sweep every kind of top and collar, alone and layered, close up from the front, ¾, side and back, against its
