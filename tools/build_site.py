@@ -391,8 +391,8 @@ def check_outfits(outfits, items):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(ROOT, "site"))
-    ap.add_argument("--drape", action="store_true", help="a preview build with the garment drape switch on (window.__drape) "
-                    "and a note saying so; never for docs/")
+    ap.add_argument("--drape", action="store_true", help="a preview build showing the page's Draped clothes switch "
+                    "(window.__drapeUI; draped to start); never for docs/")
     a = ap.parse_args()
     out = a.out
     os.makedirs(os.path.join(out, "data", "photos"), exist_ok=True)
@@ -482,16 +482,10 @@ def main():
             json.dump(obj, f, separators=(",", ":"), ensure_ascii=False)
     shutil.copyfile(os.path.join(ROOT, "page.html"), os.path.join(out, "index.html"))
     if a.drape:
-        # the drape preview: its own name, the switch on before the page's script, and a note in the corner
+        # the drape preview: its own name, and the page's drape switch shown (on to start: drapeSwitch in page.html)
         if os.path.abspath(out) == os.path.join(ROOT, "docs"): raise SystemExit("--drape is for a preview build, never docs/")
         ix = os.path.join(out, "index.html"); h = open(ix, encoding="utf-8").read()
-        note = ('<title>Wardrobe Drape Preview</title>\n<script>window.__drape=1;</script>\n'
-                '<style>.drape-note{position:fixed;left:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:60;'
-                'max-width:min(22rem,calc(100vw - 24px));padding:8px 12px;border:1px solid var(--line);border-radius:6px;'
-                'background:var(--surface);color:var(--ink);font:500 12px/1.45 var(--f-text);box-shadow:0 2px 10px rgb(0 0 0/.12)}'
-                '.drape-note b{font-weight:700}</style>\n'
-                '<div class="drape-note" role="note"><b>Drape preview.</b> Hoodies, quarter-zips and open track jackets are '
-                'cut from patterns and draped as cloth. Pick their size in the fitting room, under How it\'s worn.</div>')
+        note = '<title>Wardrobe Drape Preview</title>\n<script>window.__drapeUI=1;</script>'
         if h.count("<title>The Wardrobe</title>") != 1: raise SystemExit("--drape: page.html's title has changed")
         open(ix, "w", encoding="utf-8").write(h.replace("<title>The Wardrobe</title>", note))
     # Dave's 3D body (tools/build_body.py); without it the page falls back to the hand-built body
