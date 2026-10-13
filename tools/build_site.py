@@ -73,7 +73,7 @@ def load_groups(items):
     return groups
 
 
-FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch", "named", "slv", "place", "crown")
+FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch", "named", "slv", "place", "crown", "strip")
 
 
 def check_fix_fields(k, fx, bad):
@@ -100,6 +100,9 @@ def check_fix_fields(k, fx, bad):
     if "crown" in fx and not (isinstance(fx["crown"], str) and re.match(r"data:image/(jpeg|png);base64,", fx["crown"])
                               and len(fx["crown"]) <= 24000):
         bad.append(f"{k}: crown must be a small data:image/jpeg or png (a cap's crown seen from the front, under 24,000 characters)")
+    if "strip" in fx and not (isinstance(fx["strip"], str) and re.match(r"data:image/(jpeg|png);base64,", fx["strip"])
+                              and len(fx["strip"]) <= 24000):
+        bad.append(f"{k}: strip must be a small data:image/jpeg or png (a scarf's end, straightened, under 24,000 characters)")
 
 
 CUT_KINDS = ("skinny", "slim", "tapered", "regular", "straight", "relaxed", "wide", "baggy", "barrel")

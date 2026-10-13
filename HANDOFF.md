@@ -273,3 +273,7 @@ contrast collars).
 - **Reference photos:** what to do with them. Either she adds a permission rule so they can go
   in the repo, or they stay private.
 - Done 12 Oct 2026: **phases 2 and 3**, a yes to the newer Three.js and to Blender-made templates.
+- Asked 13 Oct 2026 (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz): **how Dave wears a scarf** (once round with both ends
+  hanging in front, as drawn now; folded in half with the ends through the loop; or draped without a wrap), so the
+  drape's scarf template is cut for it; and **outfit ids for any chest that still looks pushed out** that is not under a
+  jacket, coat or blazer (a comment on the artifact is enough).

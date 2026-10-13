@@ -2553,6 +2553,101 @@ outfits, none worn open). Next by that count: padded and puffer jackets (21) and
   borg-lined overshirt built by `make3Dcore` comes through the gilet's back: back poke 619), g-job-13 (back poke 40)
   and g-quiet-29 (back holes 29). The pull-request check, with the switch off, is unchanged.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzz. Jackets and coats rest on his chest; scarves that hang like scarves; what other fitting tools do (13 Oct 2026)
+
+Emma, 13 Oct: "the issues with scarves", and "still the odd 3D model that shows the chest with a protruding chest with
+the clothes on despite the model being the correct size". Both are fixed for the live page (with the drape switch off;
+with it on they look as right, see the end). The way each was found, so the next one can be found the same way:
+
+**The protruding chest: outer layers stood 2.5 to 3 cm off what was under them over his chest.**
+- *Measured, not eyeballed.* A scratch probe built every one of the 582 outfits and cast rays from the front over his
+  chest, comparing the outermost top with his bare body (`make3D([])`). Tees, polos and jumpers sat 1.0 to 1.4 cm off
+  his skin at the chest (median, by outer piece); **jackets (148 outfits) 3.9 cm, coats 4.3, blazers 3.3, dressing
+  gowns 3.9, padded gilets 4.6**, up to 5.8 cm. A brown wool-look jacket over a jumper (q8-wool-jacket, the outfit
+  Emma's comment of 12 Oct was on) stood 2.6 to 2.8 cm outside the jumper all down his front, and from the side and
+  three-quarters its front swelled out in front of his armpits like a pigeon chest. With the painted folds and contact
+  shade off (`__nofold`, `__nocs`) it looked the same, so it was the shape, not the shading; the jacket over the tee
+  alone did it too, so it was the jacket's own shell.
+- *Why.* `fitTop` gives each layer a room `e` round his torso (8 mm base layers, 17 mm mid, 25 mm outer, plus 4 mm per
+  layer under it) measured from **his body**, not from what is under it. PR #31 (2zzzzzzzzzzzzzzz) halved it for shirts,
+  tees and jumpers ("the shirts and jumpers just stick out"), but left jackets and coats with all of it: halving them
+  all round let an open jacket's fronts fall behind the shirt and roll neck under them (mn-smart, wedding-guest, side
+  holes 53 and 27).
+- *The rule now* (`fitTop`, `F.rest`, set for outer layers): an outer layer that is not padded gets half its room over
+  the front of his chest and belly (full at the front, fading out between 35 and 70 degrees round toward his sides, and
+  above 1.40 m toward the shoulders), so it rests on what is under it as a real jacket does, and keeps all of it at his
+  sides, back and shoulders, where its looseness shows. Padded pieces keep all of it (their bulk is the padding). It
+  still stays outside every layer under it (`occT`). A jacket over a jumper now sits 1.8 to 2.2 cm off his skin at the
+  chest (about 1 cm over the jumper), from 3.3 to 3.8.
+- *And the edge rule that the first try lacked:* an open front that rests on his chest still reaches as far forward
+  as what shows between its edges (the furthest forward point of the layers under it across the opening, plus 8 mm,
+  lifted at the edge and easing back over 23 degrees), so from the side nothing under it stands proud of its edge.
+  Without it, wedding-guest's tie showed past the blazer's edge from the side, as in PR #31's try.
+- *Checked:* every outfit with a jacket, coat, blazer or gown (176), on his shape, against `main`: the same 3 flagged on
+  both with the same counts (jb9-wet-dealer, jb-wet-day and jb8-wet-day, back poke 85: the hood over a waterproof jacket,
+  STATUS "Still open" item 1), 173 clean, nothing new. The pull-request check (gate set and changed outfits, five bodies,
+  both "How it's worn" runs) is green.
+  Close-ups of q8-wool-jacket, festival (a long coat), g-outdoor-16, mn-smart and wedding-guest from the front, three
+  quarters and side: flatter fronts, no dome in front of the armpits, nothing showing past an open edge.
+
+**Scarves: two planks and a ruff.** Every one of the 8 scarf outfits drew the scarf's ends as boxes stacked from his
+neck to the middle of his chest: two flat, hard-edged planks, half as long as a scarf's ends hang, overlapping in the
+middle, splitting into steps from the side, with six sticks for a fringe. The shop photos (`tools/qa/multi.js`) show
+long soft ends to the waist, worn once round, fringed, and two of them patterned.
+- *The ends now* (`make3Dcore`, the scarf): each a band of cloth 11 cm wide with a 6 mm thickness (face, back, sides
+  and lower edge), from under the loop to 44 cm (the longer, his right) and 36 cm (the shorter, laid over it) below it,
+  gathered to 72% of its width where it leaves the loop. It lies on what he wears, read from the clothes' front depth map
+  (`rayZ`) and by a ray at what is laid on the cloth (zips and their pulls, buttons, pockets, collar points; a half-zip's
+  pull came through the scarf), is stiff across (bridges a gap or a jacket's edge, its sides falling back at most 8 mm
+  with the curve of his chest) and hangs: going down it never comes back in toward him, so below his chest it falls
+  straight, as cloth does. Each column starts just inside the loop's lower edge above it (`footAt`), and where the loop
+  lies over the clothes the end is tucked behind the loop's front, so it comes out from under the loop (an end laid on a
+  half-zip's collar stood out in front of the loop; one cut square from the middle showed its top under the loop beside
+  it). A fringe of 16 or 17 loose strands per end, 5 to 6.4 cm, hanging straight down (crossed quads, so they show from the
+  side too).
+- *The loop:* its top edge rolls over toward his neck (a 5 mm half round), so it reads as a fold of knitted cloth rather
+  than a cut sheet; its lift onto the clothes under it takes the middle of each column and its four neighbours first,
+  so a lone column lifted onto a jacket's collar between columns that fell through its open front no longer stands up as
+  a tooth; over the front of his throat its lower edge is averaged over about 55 degrees, so the ends hang from one smooth line.
+- *Designs:* a new correction field, `strip` (fixes.json, checked by `build_site.py`, read by `normFix`, loaded by
+  `trueFor`): one end of the scarf cut from the shop's flat-lay photo, turned upright and cropped from just above the
+  fringe, laid along each end (the shorter shows its lower part). Pretty Green Rainsford (gold stripe, "PRETTY GREEN",
+  the logo above the fringe) and Urban Excess No Problemo (its lettering over the glitch knit) now wear their designs;
+  both were plain. CONTRIBUTING.md's table has the field.
+- *Checked:* the 8 scarf outfits close up at the neck (front, three quarters, side, back) and full length, and the
+  3D check of all 8 on the five bodies against `main`: clean on every body (`main` flagged g-quiet-30, side holes 26
+  and 30 on the slim and loose bodies). A neck warmer (snood) is unchanged: it has no ends.
+- *Not done:* the loop's top still flares over a high jacket collar at the sides (pub-lunch), as it must stay outside
+  the collar (`under`); the loop stays in the scarf's main colour (a `strip` scarf's stripe is not carried round it);
+  the WoolOvers scarf has only a lifestyle photo.
+
+**With the drape switch on** (`QA_INIT='window.__drape=1'`): q8-wool-jacket's jacket rests over the draped jumper with
+nothing coming through, and q7-fairisle's new ends lie over the draped half-zip. The drape's own check was not re-run.
+
+**What other fitting tools do, and what it means here** (research for Emma's question, 13 Oct):
+- *Clothing CAD (CLO 3D, Marvelous Designer)*: garments are sewn pattern pieces simulated on an avatar, each fabric with
+  a collision thickness (CLO's default: 1.5 mm each side of the cloth) and the avatar with a skin offset (3 mm); layers
+  are ordered by a layer number and settled in order. So a real tool keeps cloth a few millimetres from what is under
+  it, never centimetres: the drape plan is the same idea, and the `rest` rule above is the closest the old builder can
+  come to it. Virtual try-on shops model a scarf once in CLO on the avatar, skin it to the body and ship the mesh
+  (WANNA's scarf pipeline), rather than building it from rules.
+- *Daz Studio*: clothes follow body morphs by projection and are pushed off the body (or off a lower layer, the
+  "collision item") by a smoothing modifier with collision iterations: a per-layer collider, as `drapeTops` does.
+- *Game engines (Unreal, Unity)*: a scarf's hanging ends are cloth simulated against capsules on the neck and torso,
+  attached at the loop; cloth only collides with what it is told about.
+- *The in-page solver*: position-based dynamics softens as the iteration count drops, which is why `drapeTops` needs
+  its pull back to the binding. XPBD with small substeps (Macklin and others, "Small Steps in Physics Simulation", 2019:
+  many substeps of one iteration each) gives stiffness that does not depend on the iteration count; GarmentCode's
+  simulator (NVIDIA Warp) uses it. Worth trying before more kinds are draped.
+- *Pattern drafting*: GarmentCode / PyGarment (ETH Zurich; GarmentCodeData, ECCV 2024) is an open-source library of
+  parametric sewing patterns (shirts, jackets, trousers and more) made to measure from body measurements; it could
+  supply `build_garments.py`'s patterns instead of drafting each archetype by hand.
+- *Research on layering*: ContourCraft (SIGGRAPH 2024) and ISP (NeurIPS 2023) resolve intersections between garment
+  layers; HOOD (CVPR 2023) loose garments. They are learned and posed; for one pose, settled offline in Blender and
+  lightly in the page, the drape plan is the practical route.
+- *So, in order:* a scarf template in the drape (a long rectangle wrapped once and tacked at the crossing, settled last
+  over every layer), then XPBD substeps in `drapeTops`, then patterns from PyGarment for the remaining ~35 archetypes.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

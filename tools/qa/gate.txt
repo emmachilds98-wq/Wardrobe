@@ -33,3 +33,4 @@ q8-wool-jacket        # an overshirt jacket over a ribbed jumper, wide trousers 
 x11-matalan-winter    # a flat cap (not a baseball cap's dome), straight jeans over Chelsea boots, legs apart
 summer-weekend        # Wellington sunglasses, deck shoes, a polo's folded collar, shorts
 autumn-budget         # dark cords whose legs must part below the crotch (Emma's comments, 10 Oct)
+g-outdoor-05          # a scarf with its design from the shop photo (strip) hanging inside an open jacket, fringed ends
