@@ -2648,6 +2648,56 @@ nothing coming through, and q7-fairisle's new ends lie over the draped half-zip.
 - *So, in order:* a scarf template in the drape (a long rectangle wrapped once and tacked at the crossing, settled last
   over every layer), then XPBD substeps in `drapeTops`, then patterns from PyGarment for the remaining ~35 archetypes.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzz. A draped scarf, behind the drape switch (13 Oct 2026)
+
+The first of the next steps named in 2zzzzzzzzzzzzzzzzzzzzzzzzzz (Emma, 13 Oct: "merge and start"): the scarf as a
+draped garment, settled last over everything he wears. **Behind the drape switch: with it off (the live page) nothing
+changes.** PR #41.
+
+**The template** (`tools/build_garments.py --only scarf`, `data/garments/scarf.json`, 87 KB):
+- A scarf is not sewn: a band 180 x 14 cm (a 28 cm scarf folded along its length, as it is usually worn) is laid once
+  round his neck with both ends down his front, the longer end 10 cm longer (`SCARF`, `scarf_path`), over his body and
+  the draped jumper (a stand-in for what he wears under it), and let fall in Blender for 90 frames (about 30 s).
+- *Four tries, three things learnt* (each from `garment_view.js` renders of the `--debug` stages):
+  - a loop level all round, at the height of the base of his neck, squeezed its front between his chin and chest where
+    both ends leave it, and it heaped up over his chin. It now dips at the front onto the top of his chest (5 cm lower
+    than behind), as a scarf wound once round lies;
+  - a loop 66 cm round slid down onto his shoulders like a cape and the ends piled up on his chest; at about 55 cm it
+    holds;
+  - left free, the back of the loop slid down his neck and, the loop being closed, drew the front up over his chin
+    (frame 10 looked right, frame 30 had the heap). The upper edge of its first turn behind his neck is held where it is
+    laid (a pin group), as a scarf's grip on a collar holds it.
+- Still: the cloth bunches where the two ends cross on his chest (it reads as a loose knot), and the loop stands high
+  behind his neck. A shorter overlap at the front moved the bunching to one side rather than removing it (tried, not
+  kept).
+
+**The page** (with `window.__drape`):
+- `make3Dcore` leaves a scarf (not a neck warmer, which keeps its own) to `drapeTops` (`dScarf`), which draws it last of
+  all: bound to his body, settled against every top under it, draped or not, kept **1 cm** off them (at the 4 mm the
+  draped tops use against `make3Dcore`'s clothes, a jacket's toggles came through its ends; 1 cm is what the draped
+  layers keep off each other), then **pushed out in front of thin details by rays**: down his front from in front, round
+  his neck from outside toward it, five rays about each point (7 mm apart), only where the point is the scarf's own front
+  layer (the page's cloth has no collision with itself, and an end under the other came through it when moved), then a
+  short settle. Toggles, an open front's edge and a stand collar's tip behind his neck are too thin a scatter of points
+  for the settle to hold the cloth out.
+- `drapeScarf`: the band in the scarf's colour, each end in its `strip` design (from the foot up 44 cm, as the live
+  scarf), and a fringe at each foot.
+- *Checked, switch on, the 7 outfits with a draped scarf on the five bodies, against `main` with the switch on:*
+  | body | `main`, switch on | this, switch on |
+  | --- | --- | --- |
+  | his shape | g-outdoor-05 back poke 473 | g-outdoor-05 back poke 425, **under 4** |
+  | slim | g-outdoor-05 back poke 60 | g-outdoor-05 back poke 66 |
+  | athletic | q7-fairisle belly skin; g-outdoor-05 back poke 336 | q7-fairisle belly skin; g-outdoor-05 back poke 281 |
+  | heavier | q7-fairisle and q8-morden belly skin; g-outdoor-05 back poke 34, under 3 | the same skin; g-outdoor-05 back poke 34 |
+  | loose | g-outdoor-05 back poke 598 | g-outdoor-05 back poke 598 |
+
+  The back pokes are a draped hoodie's hood coming through the jacket `make3Dcore` builds over it, and the belly skin
+  is the draped knits being short over a bigger belly (both STATUS item 0, on `main` too). The one new flag:
+  g-outdoor-05 "under 4" on his shape, a single speck of the jacket's stand collar tip at the scarf's top edge behind
+  his neck, where the edge folds in toward his neck (close-up renders: the rest of the back is clean). q7-fairisle's
+  "under" (STATUS item 0) is clean with the switch on, on `main` too since PR #40's live scarf.
+- *The pull-request check (switch off)*: green; the live page is unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

@@ -20,6 +20,40 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**13 Oct, late: a draped scarf, behind the drape switch** (PR #41, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzz). **With
+the switch off the live page is unchanged.** A scarf template (`tools/build_garments.py --only scarf`,
+`data/garments/scarf.json`: 180 x 14 cm, once round his neck, both ends down his front, draped in Blender over his body
+and the draped jumper) drawn by `drapeTops` last of all with the switch on (`dScarf` in `make3Dcore`, `drapeScarf`),
+1 cm off what is under it and pushed in front of thin details by rays; its ends wear the `strip` design, with fringes.
+Switch-on check of the 7 draped-scarf outfits on five bodies: as `main` with the switch on, but g-outdoor-05 "under 4"
+on his shape (one speck of collar). **Next engineer, start here for the scarf:**
+1. The crossing on his chest bunches into a knot: in `scarf_path` try the ends leaving the loop under it (a tuck) rather
+   than over it, or a gentler twist where each end leaves the loop (`join`: more points, the band's width turning over
+   10 cm); look at each try with `node tools/garment_view.js <debug>/scarf-draped.json out.png` before the page.
+2. The loop stands high behind his neck (the pinned edge, `pins` in `drape_scarf`): try pinning lower on the loop, or
+   releasing the pins for the last 20 frames.
+3. g-outdoor-05 "under 4" (switch on, his shape): the jacket collar's tip between the scarf's outer layer and its edge
+   folded in. Either lower `make3Dcore`'s stand collar under a draped scarf (as the half-zip's is lowered under a scarf)
+   or skip the fold-in rows in the push (`drapeTops`, the scarf block).
+4. Then the other outer layers still blocking the drape (item 0.1 below), and XPBD substeps in `drapeSettle`
+   (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz, research).
+**The shared artifact (8uqcGr2) is behind `main`:** it still shows PR #39's build (v51); PRs #40 (live: jackets on his
+chest, the new scarves) and #41 (drape switch only) are on GitHub Pages but not on the artifact. The session that merged
+them could not republish: the Artifact tool asks for the live page to be Read line by line first (8198 lines, about 350k
+tokens), more than was left. To republish: `Artifact read` 8uqcGr2, Read the saved page in full (offset/limit, about 400
+lines a call), confirm `diff <(git show 29fbad8:docs/index.html) <saved page>` differs only in the first line (the
+artifact's wrapper), then publish `docs/index.html` with `files` = only what changed since 29fbad8
+(`git diff --stat 29fbad8 HEAD -- docs`: `data/items/acc-1.json`, `data/items/acc-2.json`, `data/garments/scarf.json`;
+files left out are kept), root `docs`, **no `capabilities`** (that keeps its database and downloads). Then the Log's
+artifact column.
+How to run: `python3 tools/build_garments.py --only scarf --debug <dir>` (Blender 4.5 LTS downloads itself; through this
+environment's proxy the download was cut off twice at about 347 of 378 MB: fetch it with `curl -C -` into
+`~/.cache/wardrobe-blender`, check it with the published sha256, and untar it there), then
+`python3 tools/build_site.py --out <dir>`, serve it (`tools/qa/serve.sh`) and render with
+`QA_INIT='window.__drape=1' node tools/qa/zoom.js ...`; check with
+`QA_INIT='window.__drape=1' node tools/check_3d.js --site <dir> --ids q7-fairisle,pub-lunch,q9-matagalpa,q8-morden,od-event,g-outdoor-05,g-quiet-30 --body <body>`
+on all five bodies against the same on `main`.
+
 **13 Oct, night: jackets and coats rest on his chest; scarves hang like scarves** (PR #40, UPGRADE_PLAN
 2zzzzzzzzzzzzzzzzzzzzzzzzzz). Emma flagged "the odd 3D model that shows the chest with a protruding chest" and the
 scarves. **Live page change** (not behind the drape switch):
@@ -90,9 +124,8 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
    - m5-argyle (a shirt under a crew jumper), front poke 32 to 49 on every body: the shirt's collar lying out over the
      jumper's neckband, which close up looks right; the four-sides rule reads the leaf beside his neck as enclosed by
      the jumper. Look before changing the check.
-   - q7-fairisle, "under" 10 to 15 on every body: the draped half-zip's collar comes over the scarf (PR #34 made the
-     scarf wrap closer). The same without the shirts. The scarf needs to know a draped collar (`collarMs` holds only
-     `make3Dcore`'s).
+   - Done 13 Oct: q7-fairisle's "under" is clean with the switch on (PR #40's live scarf; with PR #41 the scarf is
+     draped too).
    - heavier: belly skin under draped tees and knits (h10-surf, jb11-cheapest, lazy-sunday, q7-fairisle, m5-argyle),
      the same on `main`'s drape: the templates are short over the heavier belly (grade length with the belly, not
      only round him: `drapeGrade`'s `sy`).
@@ -273,7 +306,8 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
-| 13 Oct 2026 | #40 | Jackets, coats, blazers and gowns rest on his chest (`F.rest`, with an open front reaching as far forward as what shows between its edges); scarf ends as long fringed bands hanging from under the loop, the loop's top edge rolled and its front smooth; new correction `strip` (two scarves wear their designs) | not republished yet |
+| 13 Oct 2026 | #41 | A draped scarf behind the drape switch (`scarf` template, `drapeScarf`); live page unchanged | not republished (see below) |
+| 13 Oct 2026 | #40 (merged) | Jackets, coats, blazers and gowns rest on his chest (`F.rest`, with an open front reaching as far forward as what shows between its edges); scarf ends as long fringed bands hanging from under the loop, the loop's top edge rolled and its front smooth; new correction `strip` (two scarves wear their designs) | not republished (see below) |
 | 13 Oct 2026 | #39 | Gilets draped behind the switch (`gilet`: sleeveless, done up, stand collar, hem band; zip and work pockets on the cloth); a shirt's leaf stays inside a stand collar done up over it; belts under draped tops; the fitting room says a shirt with a tie stays tucked; live page otherwise unchanged | 8uqcGr2 v51 |
 | 13 Oct 2026 | none | The shared-database artifact (8uqcGr2) republished from `main` (9c35b06, PR #38's build); five photo packs no longer in `docs/` removed from it | 8uqcGr2 v50 |
 | 13 Oct 2026 | #38 | Shirts draped behind the switch (`shirt` open, `shirt_up` done up: a point collar folded over its stand, cuffs, placket and buttons); a top draped only when all over it is; a shirt's leaf out over a jumper; layers held in under the draped bodies over them; live page unchanged | FtdHKg v44 |
