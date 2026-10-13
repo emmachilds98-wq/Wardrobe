@@ -2614,8 +2614,9 @@ long soft ends to the waist, worn once round, fringed, and two of them patterned
   fringe, laid along each end (the shorter shows its lower part). Pretty Green Rainsford (gold stripe, "PRETTY GREEN",
   the logo above the fringe) and Urban Excess No Problemo (its lettering over the glitch knit) now wear their designs;
   both were plain. CONTRIBUTING.md's table has the field.
-- *Checked:* the 8 scarf outfits close up at the neck (front, three quarters, side, back) and full length, and
-  SCARF_RESULT. A neck warmer (snood) is unchanged: it has no ends.
+- *Checked:* the 8 scarf outfits close up at the neck (front, three quarters, side, back) and full length, and the
+  3D check of all 8 on the five bodies against `main`: clean on every body (`main` flagged g-quiet-30, side holes 26
+  and 30 on the slim and loose bodies). A neck warmer (snood) is unchanged: it has no ends.
 - *Not done:* the loop's top still flares over a high jacket collar at the sides (pub-lunch), as it must stay outside
   the collar (`under`); the loop stays in the scarf's main colour (a `strip` scarf's stripe is not carried round it);
   the WoolOvers scarf has only a lifestyle photo.
