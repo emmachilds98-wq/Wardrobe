@@ -2748,7 +2748,9 @@ Nine comments on her artifact (FtdHKg, v45), each answered in its thread.
   the front only (`decal.only`), as the shop's back photo is plain.
 
 **Checks.** `tools/specs.js`: 14 pieces read differently, all meant (the six corrections, and the eight SikSilk pieces
-no longer satin). 3D check, the changed outfits and the gate set: see the Log line for this PR.
+no longer satin). `dump.js` on every outfit, before and after: only the Holiday shirt's reading moved (its new photo).
+3D check on the 18 changed outfits and the gate set (46 outfits): clean on his saved shape, slim, athletic, heavier and
+loose, and worn tucked in with turn-ups and done up untucked.
 
 ## 3. Next steps
 
