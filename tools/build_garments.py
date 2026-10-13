@@ -272,6 +272,13 @@ MEAS = {
     # a tee: short sleeves open at the end (wrist: all round there), a plain hem, a 2 cm neckband
     "tee": dict(chest=108, length=72, shoulder=46, armhole=22, neck_w=17, neck_f=8, neck_b=2, sh_drop=4.5, band=0, band_k=1,
                 sleeve=21, bicep=38, wrist=36, cuff=0, cuff_c=0, collar=2),
+    # a shirt: a point collar (a 3 cm stand and a 4.5 cm leaf folded down over it, 7 cm to its points), buttoned cuffs
+    # a little narrower than the sleeve, a plain hem; worn open (its front in two, the collar open at the front) or done
+    # up (the front one piece, the page draws its placket and buttons)
+    "shirt": dict(chest=110, length=79, shoulder=47, armhole=24, neck_w=16, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
+                  sleeve=64, bicep=40, wrist=25, cuff=6.5, cuff_c=24, collar=3, leaf=4.5, point=7, open=1),
+    "shirt_up": dict(chest=110, length=79, shoulder=47, armhole=24, neck_w=16, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
+                     sleeve=64, bicep=40, wrist=25, cuff=6.5, cuff_c=24, collar=3, leaf=4.5, point=7),
 }
 H = 0.014   # mesh spacing (m)
 
@@ -403,6 +410,26 @@ def collar(M, s, length, closed):
                                ("top", seg((length / 2 - 0.004 * s, h), (-length / 2 + 0.004 * s, h), 30)), ("end_n", seg((-length / 2 + 0.004 * s, h), (-length / 2, 0), 6))], stiff=1.0)
 
 
+def leaf(M, s, length):
+    """A shirt collar's leaf, sewn along the top of the stand and folded down over it. Cut as a ring's part (the band a
+    cone's surface lies flat as): its outer edge longer than its neck edge in proportion to how far it falls, so folded
+    down it lies on his shoulders rather than standing off them; deeper toward the front, to its points. pc.fold keeps
+    the ring's radius and angle, for placing it folded (close_seams)."""
+    h, hp = M["leaf"] / 100 * s, M["point"] / 100 * s
+    L0 = length
+    # (the outer edge 8% longer, as a shirt collar's is: folded down it then reaches round the base of his neck. At 14%
+    # it rippled along the back)
+    phi = 0.08 * L0 / h; r0 = L0 / phi
+    at = lambda th, d: np.array([(r0 + d) * math.sin(th), (r0 + d) * math.cos(th) - r0])
+    e = phi / 2
+    neck = np.array([at(t, 0) for t in np.linspace(-e, e, 30)])
+    dep = lambda t: h + (hp - h) * sstep(0.45, 1.0, abs(t) / e)
+    out = np.array([at(t, dep(t)) for t in np.linspace(e, -e, 30)])
+    pc = Piece("leaf", 4, [("neck", neck), ("end_p", seg(at(e, 0), out[0], 6)), ("out", out), ("end_n", seg(out[-1], at(-e, 0), 6))], stiff=1.0)
+    pc.fold = {"r0": r0, "phi": phi}
+    return pc
+
+
 # ---- meshing ----
 def inside(poly, pts):
     """even-odd test of each point against a closed polygon"""
@@ -521,6 +548,15 @@ class Garment:
             P["collar"] = c
             S.append(([("collar", "n%d" % i) for i in range(4)], ring, 1.0, False))
             if not op: S.append(([("collar", "cf_p")], [("collar", "cf_n")], 0.5, False))
+            if "leaf" in M:
+                # (the leaf along the stand's top but for 1.5 cm at each front end, where the stand buttons, folded down
+                # over it: placed so in close_seams. Along all of it, the leaf's two ends met in one point at his throat)
+                tp = c.edge("top"); cl = np.r_[0, np.cumsum(np.linalg.norm(np.diff(tp, axis=0), axis=1))]; g = 0.015 * s
+                cut = lambda a0, a1: resample(np.array([[np.interp(t, cl, tp[:, 0]), np.interp(t, cl, tp[:, 1])] for t in np.linspace(a0, a1, 12)]), 12)
+                parts = [("top_p", cut(0, g)), ("top", cut(g, cl[-1] - g)), ("top_n", cut(cl[-1] - g, cl[-1]))]
+                i = [e[0] for e in c.edges].index("top"); c.edges = c.edges[:i] + parts + c.edges[i + 1:]; c.order = [e[0] for e in c.edges]
+                P["leaf"] = leaf(M, s, plen(c.edge("top")))
+                S.append(([("leaf", "neck")], [("collar", "top")], 1.0, False))
         self.P, self.S = P, S
         self.hood = None
         if "hood_h" in M:
@@ -676,6 +712,17 @@ def close_seams(pieces, X, seams, reach=0.10):
         pc = pieces[pa]; tgt = np.array([X[p][i] for p, i in ib]); src = [i for _, i in ia]
         V = pc.V; X[pa] = np.zeros((len(V), 3)); nx = V[src, 0]
         cen = tgt.mean(0)
+        if getattr(pc, "fold", None):
+            # (a leaf: each point by its angle round the ring it is cut as, along the seam, and its distance from the
+            # neck edge down from there, falling outward as a collar's leaf does over the stand)
+            r0, phi = pc.fold["r0"], pc.fold["phi"]
+            th = np.arctan2(V[:, 0], V[:, 1] + r0); dd = np.hypot(V[:, 0], V[:, 1] + r0) - r0
+            ts = th[src]; o = np.argsort(ts); ts, tg = ts[o], tgt[o]
+            for j in range(len(V)):
+                base = np.array([np.interp(th[j], ts, tg[:, k]) for k in range(3)])
+                rad = base - cen; rad[1] = 0; rad /= (np.linalg.norm(rad) + 1e-9)
+                X[pa][j] = base + np.array([0, -dd[j] * 0.8, 0]) + rad * (0.005 + dd[j] * 0.6)
+            continue
         for j in range(len(V)):
             k = int(np.argmin(np.abs(nx - V[j, 0]))); base = tgt[k]
             rad = base - cen; rad[1] = 0; rad /= (np.linalg.norm(rad) + 1e-9)

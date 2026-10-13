@@ -256,8 +256,12 @@ draped in Blender and settled in the page in wearing order, replacing `fitTop`, 
 - In the page, `window.__drape` (QA scripts: `QA_INIT='window.__drape=1'`) loads the templates with the body and draws
   those three kinds from them (`drapeTops`, after `warpMan`): bound to his warped body, settled inner to outer against
   his body and the clothes under them, a hoodie's hood last. Without the switch nothing changes.
-Merged to `main` on 12 Oct (PR #36) with the switch off for everyone. Seven kinds are draped (hoodie with hood,
-quarter-zip, track jacket open and zipped, jumper, roll neck, tee). A preview build (`build_site.py --drape`) shows a
+Merged to `main` on 12 Oct (PR #36) with the switch off for everyone. Nine kinds are draped (hoodie with hood,
+quarter-zip, track jacket open and zipped, jumper, roll neck, tee; and since PR #38 the shirt open and done up, with a
+collar leaf folded over its stand). Rules in the page: a top is draped only when everything worn over it is
+(`make3Dcore`'s tops let draped cloth through), a top tucked in keeps `make3Dcore`'s shape, a shirt's leaf is laid
+out over what is worn over the shirt (`drapeLeaf`), and after all have settled each layer's body is held inside the
+draped bodies over it; front details are laid last. A preview build (`build_site.py --drape`) shows a
 Draped clothes switch. Where it stands and what comes next: STATUS.md item 0 and UPGRADE_PLAN.md 2zzzzzzzzzzzzzzzzzz.
 Leave the old garment-geometry rules alone while the drape replaces them (STATUS.md queue items 9 and 10, scarf edges,
 contrast collars).

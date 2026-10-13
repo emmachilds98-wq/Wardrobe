@@ -2487,6 +2487,40 @@ with the drape. Their eleven commits were merged onto `main` (the drape code and
 - **Check:** the gate set and every outfit the change touches, on all five bodies and both "How it's worn" passes,
   and the stored specs (1381 pieces, none read differently).
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzz. Draped shirts: a point collar folded over its stand, worn open or done up (13 Oct 2026)
+
+The first outer layer draped (STATUS.md item 0.1), behind the drape switch as before: the page is unchanged without it.
+
+- **The builder** (`tools/build_garments.py`): `shirt` (worn open, its front in two) and `shirt_up` (done up), 110 cm
+  round the chest and 79 cm long (a shirt covers a tee's hem), buttoned cuffs a little narrower than the sleeve. The
+  collar is a 3 cm stand on the neckline and a leaf (`leaf`) sewn along its top, folded down over it. The leaf is cut as
+  part of a ring, its outer edge 8% longer than its neck edge, deeper toward its points (4.5 cm at the back, 7 at the
+  points), so folded down it lies round the base of his neck; `close_seams` places it folded, each point by its angle
+  round the ring along the stand's top and down from there. It stops 1.5 cm short of each front end of the stand (the
+  stand's top is cut in three for it): sewn along all of it, the two points met in one point at his throat. At 14% the
+  leaf rippled along the back. About 3 minutes a kind in Blender; the fold holds through the drape and the arms coming
+  down.
+- **The page:** a shirt worn open is drawn from `shirt`, done up from `shirt_up` (`drapeSplit` for the templates cut in
+  two). Not draped: band, grandad, camp or Cuban collars, short sleeves, a jacket-weight overshirt (a chore jacket or
+  shacket), and any top tucked in (the templates hang loose to the hem; `make3Dcore` tucks it). The placket's two
+  lines of stitching and buttons every 9 cm (a shade of the cloth, pearl on white) and one on the stand, drawn on the
+  cloth (`drapeDetails`).
+- **Layers:** a top is now draped only when everything worn over it is draped too: `make3Dcore`'s tops are cut for its
+  own closer inner layers, and over draped cloth they let it through at the back and shoulders (barrel-chore: a draped
+  tee through a chore jacket). A shirt's collar leaf is left out of what the layers over it lie on and is settled
+  again afterwards, out over them, as a shirt collar lies over a crew jumper's neckline (`drapeLeaf`): settled under
+  the jumper, it came through the jumper's shoulders. At 114 cm round the chest the shirt came through a draped jumper
+  (116 cm, the layers kept 1 cm apart) at the belly and back; at 110 it stays inside.
+- **Held in under what is worn over it:** after every draped layer has settled, from the outside in, each one under
+  another has a short settle (20 steps), its body against the bodies over it turned in; then a shirt's leaf is laid
+  out over them. (Held in by the whole of the jumper, the shirt's sleeves were pressed into the crease between the
+  jumper's sleeve and its side and showed there: m5-argyle front poke 54 on his shape, 108 on slim.) A jumper's rib band gathers it in at his hips over a shirt hanging straight, and
+  white flecks of the shirt came through above the band (m5-argyle front poke 34); held in, the shirt is drawn in under
+  the band. The photo's looks and front details are laid after this, on the cloth as it finally lies.
+- **Switch-on 3D check, gate set and five shirt outfits on his shape:** 28 of 30 clean before the leaf change (from 19
+  of 30 on the gate set alone): m5-argyle was the shirt's leaf, and q7-fairisle's "under" (a draped half-zip's collar
+  over PR #34's tighter scarf) is not the shirt's: it flags without the shirt templates too.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
