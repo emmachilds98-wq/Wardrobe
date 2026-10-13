@@ -93,7 +93,7 @@ should match. Emma asked for the upgrade to continue until that is done.
 | Accessories, shoes, boots, ties, bags | The long `else if(p.shape===...)` chain near the end of `make3Dcore` |
 | 2D drawing | `figure()`, `face2D`, `applyChar2D` |
 | Edit Dave and fitting room | `CHAR`, `openCE`, `UNDERWEAR`; Edit Dave's sections `CES`, `ceForm`, `ceSlider`, `ceFrame` (measuring lines, saved/now wipe) |
-| The fitting room (large view of an outfit) | `openZoom`, `FR`, `frShell`, `frFill`, `frFrame` (pins, ruler), `frClear` (clear view: the model alone), `frWearRows`; how it is worn: `ZIPM`, `TUCKM`, `TURNM`, `LIGHTM`, `tuckOn`, `turnOn`; `Live3D` (`wear`, `turnTo`, `frameTo`, `project`, `still`) |
+| The fitting room (large view of an outfit) | `openZoom`, `FR`, `frShell`, `frFill`, `frFrame` (pins, ruler), `frClear` (clear view: the model alone), `frWearRows` (`wearRows` for any wear); the camera dock on every live model: `camDock`, `dockSync`, `dockWear` (Live3D's `opt.dock`); how it is worn: `ZIPM`, `TUCKM`, `TURNM`, `LIGHTM`, `tuckOn`, `turnOn`; `Live3D` (`wear`, `turnTo`, `frameTo`, `project`, `still`) |
 | Compare outfits | `CMP`, `cmpAdd`, `cmpRender`, `cmpLive`; stills by angle in `snap3D(ps,k,rot,first)` |
 | Views, Back button and links | `setView` (history steps), `route` (reads `#shop`, `#fits`…, `#fit/<id>`), `openZoom` / `closeZoom` / `zoomGone` |
 | Builder | `suggest` (budget, kept pieces, formality via `FORMAL` / `formalRange`), `budgetSet` (the £60/£100/£150 sets), `teeFor` |
