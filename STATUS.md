@@ -12,13 +12,20 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
   <https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn>. A session signed in to her account can only publish to this one.
 - Review and plan doc (Claude Doc): <https://claude.ai/code/artifact/a11be046-83a3-47dc-855c-67657c180e7e>
 - From the drape session (this account's own artifacts, no shared database: shortlist and Edit Dave save on the device):
-  the GitHub build as it stands (`docs/` at PR #36's latest commit, nothing changed):
+  the GitHub build as it stands (`docs/` at `main` 51ff9ed, PR #45's merge, nothing changed):
   <https://claude.ai/artifact/B8UXnhceKPAsHpTbyzFzek>; and the drape preview, the same build with a Draped clothes switch
   (`python3 tools/build_site.py --out <dir> --drape`, never into `docs/`): <https://claude.ai/artifact/5A3t39MwR6C9T5rHNED2iT>.
   Both published as `docs/` is: page `index.html`, every file under `data/` in `files`, root the build folder, no
   `capabilities`.
 
 ## Now
+
+**13 Oct: this account's two artifacts are current** (B8UXnh v5, 5A3t39 v4): both republished from `main` at 51ff9ed
+(PRs #37 to #45), with the page and the twelve `data` files that changed since PR #36 (four new garment templates,
+`gilet`, `scarf`, `shirt` and `shirt_up`, seven `data/items` files and `data/photos/shirt-p1.json`); the 2D/3D smoke
+test is clean on both. To republish next time: `Artifact read` each, Read the saved page in full, `diff` it against
+the last build (B8UXnh: `docs/index.html` but its first line; 5A3t39: a `--drape` build of the same commit), then
+publish only the changed files (`git diff --stat 51ff9ed HEAD -- docs`).
 
 **13 Oct, late night: the draped scarf wound a turn and a half; draped tops held off a bigger belly** (PR #45,
 UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzz). **Behind the drape switch: with it off the live page is unchanged.** Emma asked to
@@ -363,6 +370,8 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | none | This account's artifacts republished from `main` (51ff9ed, PRs #37 to #45's build, as on GitHub Pages): B8UXnh the page and twelve `data` files (new garment templates `gilet`, `scarf`, `shirt`, `shirt_up`), 5A3t39 the same as a `--drape` build; 2D/3D smoke test clean on both | B8UXnh v5, 5A3t39 v4 |
+| 13 Oct 2026 | #45 | Behind the drape switch: the draped scarf wound a turn and a half (no knot on his chest, a cowl behind his neck), g-outdoor-05's scarf clear on every body, draped tops held off a bigger belly (the waistband faced the way his body does); live page unchanged | B8UXnh v5, 5A3t39 v4 (row above) |
 | 13 Oct 2026 | none | The shared-database artifact (8uqcGr2) republished from `main` (37fc3c4, PRs #40 to #43's build, as on GitHub Pages): the page, `data/garments/scarf.json` and eight `data/items` and `data/photos` files; 2D/3D smoke test clean | 8uqcGr2 v52 |
 | 13 Oct 2026 | #43 | One set of model controls: the fitting room's camera dock (`camDock`) on Edit Dave and the builder's small model too, with How it's worn as toggles; the builder's old bar gone | FtdHKg v47 |
 | 13 Oct 2026 | #42 | Emma's nine comments: straight and relaxed legs no longer widen below the thigh, cuffed joggers gather into a rib cuff, SikSilk no longer satin; six corrections (Matalan jeans' colour, the Holiday shirt's dark grey photo and check, board shorts' flowers, Admiral sweatshirt's panels, Lambretta polo's checks, Saltrock tee's print); new correction fields `print`/`at`, `back`, `slv` with `place` | FtdHKg v46 |
