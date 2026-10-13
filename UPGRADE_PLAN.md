@@ -2458,6 +2458,35 @@ still looks layered and like there's overlap that looks like misrendering at the
   - A scarf's loop was measured against the top of his shoulders and lay over them as a flat cape; it is measured
     against the cloth round his neck now, a little fuller.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzz. PR #33 and #34 brought back onto main; a hood laid over a jacket (13 Oct 2026)
+
+PR #33 and PR #34 were closed unmerged when the drape proof (PR #36) went in, and Emma's artifact was republished from
+`main`, which rolled their fixes back on it. Emma chose to bring them back first, fix #34's two red checks, then go on
+with the drape. Their eleven commits were merged onto `main` (the drape code and theirs live side by side in
+`page.html`; STATUS and this file kept both sides' notes).
+
+- **The hood over an open jacket** (g-mod-27, back poke 57 to 157 on every body; w20261006-casual-04 on slim,
+  heavier and athletic; hoodie-coat on heavier). Close up, the jacket's neckline stood 5 to 9 cm up his neck at the
+  sides in wings, and its collar crossed the top of the hood. Measured per piece (`YT` against `F.ytop`): every top's
+  neckline rises about 3.7 cm at the sides for his shoulders and half a centimetre more for each layer under it, but a
+  jacket over a hoodie rose 5.5 to 9 cm. Its yoke lay on the hoodie's hood rim, which stands up round his neck, and the
+  neckline climbed after it (#34's raise). Fixed at the rule:
+  - a collar that stands (`fitCollar`'s `stand`, the hoodie's hood rim) is left out of the yoke map (`OCC.Y`, mesh
+    flag `noOccY`), and stays in the neck maps, so what is worn over it still goes round it: the jacket's neckline now
+    rises 4.7 cm, as over any other knit;
+  - a hood laid out over a jacket presses the jacket's collar down at the back and sides, to a fifth of its height,
+    rising to full height at the front (`HOODO`, set once `hoodDown` has run, read by `hAt` in `fitCollar`).
+  Tried first: lowering the collar alone (the poke doubled, as the hood rim then showed between the jacket's wings and
+  the hood), widening where it is lowered (no change: the wings were the neckline, not the collar).
+- **The scarf check** (g-outdoor-05 "under" 3 to 4 on heavier and loose): a ray from behind passed over the back of
+  the scarf, through his neck, and met the front of his neck from inside, where the jacket's collar is inside the scarf
+  as it should be. `tools/check_3d.js` counts only hits before the ray reaches the middle of his neck.
+- **Still open:** jb-wet-day (a hoodie's hood out over the waterproof jacket, back poke 82 to 142, red on `main` too,
+  not among the pull-request check's outfits): the jacket's back shows through the top of the hood, so the hood's
+  estimate of how far out the jacket sits (`eTop`, `hOut`) is short there.
+- **Check:** the gate set and every outfit the change touches, on all five bodies and both "How it's worn" passes,
+  and the stored specs (1381 pieces, none read differently).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

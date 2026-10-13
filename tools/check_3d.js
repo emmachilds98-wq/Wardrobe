@@ -128,7 +128,10 @@ async function checkOutfit(arg) {
     for (let y = bx.max.y - 0.09; y < bx.max.y - 0.004; y += 0.01) for (let a = 0; a < 32; a++) { const t = a / 32 * Math.PI * 2, dx = Math.sin(t), dz = Math.cos(t); if (dz > 0.3) continue;
       rc.set(new T.Vector3(dx * 0.6, y, cz + dz * 0.6), new T.Vector3(-dx, 0, -dz)); const h = hits();
       const iT = h.findIndex(x => /^up/.test(hitK(x.object))), iS = h.findIndex(x => x.object.userData.item === p.item);
-      if (iT >= 0 && iS > iT && h[iS].distance - h[iT].distance < 0.025) geo.under++; } });
+      /* (only on the near side, before the ray reaches the middle of his neck 60 cm in: where the scarf's top at the back
+         is lower than at the front, a ray from behind passed over it, through his neck, and met the front of his neck
+         from inside, where a top's collar inside the scarf is as it should be) */
+      if (iT >= 0 && iS > iT && h[iT].distance < 0.6 && h[iS].distance - h[iT].distance < 0.025) geo.under++; } });
   /* (trousers: between his legs, front and back, from 7 to 30 cm below the crotch, wherever the insides of his own
      thighs are at least 1.5 cm apart: room for the cloth on each and a gap between. It used to look only from 15 cm down,
      so legs joined over the tops of his thighs passed; where a heavier build's thighs meet, the trousers may too.

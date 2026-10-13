@@ -298,6 +298,13 @@ All fitting happens in `make3Dcore` in `page.html`, on the real body in `data/bo
   3 to 5 cm out round a polo's and its collar stood off his neck in wings. A collar's own clearance (`fitCollar`)
   still reads `OCC.N`, since a hood's rim sits further out than that. A shirt or polo under a closed half-zip, roll
   neck or hoodie keeps only a low band (1 cm) for a collar, since none of it shows.
+- **A hood laid over a jacket.** A hoodie's hood rim stands up round his neck inside whatever is worn over the
+  hoodie, so it is left out of the map a top's yoke lies on (`fitCollar`'s `stand`, `noOccY`): a jacket's yoke climbed
+  it and the jacket's neckline rose 2 to 5 cm up his neck after it, in wings beside the hood. It stays in the neck maps,
+  so the jacket's neckline and collar still go round it. The hood itself lies out over the jacket's back (`hoodDown`),
+  and every collar drawn after it (a piece worn over the hoodie) is pressed down under it at the back and sides, to a
+  fifth of its height, rising to full height at the front (`HOODO`): at full height the collar crossed the top of the
+  hood. Check g-mod-27, w20261006-casual-04 and hoodie-coat on all five bodies from behind.
 - **Where a neckline sits.** Beside his neck the slope of his shoulders rises past the neck's oval (`B3.neck`), so a
   neckline put on the oval lies inside him there. In `yokeCol` it lies on his body where that is wider than the oval
   (`fitMaps().N`, up to 2.5 cm out), as a crew neck lies on the slope of the shoulder. What rise is still needed is then

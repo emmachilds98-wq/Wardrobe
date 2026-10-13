@@ -4789,6 +4789,9 @@ function make3Dcore(pieces){
      beneath), and then the piece is added to the maps of what he is wearing. A hood laid out over the coat is left
      out of this (it is meant to lie over what comes after). */
   var PIECE=null,NOOCC=false,GPO=0.003;
+  /* (HOODO: a hoodie's hood has been laid on his back, out over every piece drawn after it, which is worn over the
+     hoodie; their collars are pressed down under it at the back, see fitCollar) */
+  var HOODO=false;
   function occSide(me){var a=me;while(a&&a!==man){if(a.userData.arm){return a===armG[-1]?-1:1;}a=a.parent;}return 0;}
   /* (bodyArm: a point of a garment's body that lies on his arm's part of the mesh, as the front of a gilet's shoulder:
      above his armpit it must clear the shoulders of what is under it as well as his arm) */
@@ -4822,7 +4825,7 @@ function make3Dcore(pieces){
       if(sd2){if(W[i0*3+1]<1.47){if(s||(W[i0*3]<0)===(W[i1*3]<0)&&(W[i0*3]<0)===(W[i2*3]<0))tri(OCC.A[sd2],CA,i0,i1,i2);}continue;}
       var y0=W[i0*3+1],y1=W[i1*3+1],y2=W[i2*3+1],yM=Math.max(y0,y1,y2),yN=Math.min(y0,y1,y2);
       if(yN<1.48)tri(TT,CT,i0,i1,i2);
-      if(!low&&yM>1.34)tri(OCC.Y,CY,i0,i1,i2);
+      if(!low&&yM>1.34&&!me.userData.noOccY)tri(OCC.Y,CY,i0,i1,i2);
       if(!low&&yN>1.42&&NR[i0]<0.13&&NR[i1]<0.13&&NR[i2]<0.13){tri(OCC.N,CN,i0,i1,i2);if(NR[i0]<0.105&&NR[i1]<0.105&&NR[i2]<0.105)tri(OCC.NC,CN,i0,i1,i2);}}}
   /* the fitted piece's own reach round his neck (for laying its collars on it) */
   function ownNeck(FT){if(FT.ownN)return FT.ownN;var own=fmNew("N",1.38,1.66,0.005,96),a=[0,0,0],b=[0,0,0],c=[0,0,0],g=FT.geo,pa=g.attributes.position.array,ix=g.index.array;
@@ -4886,7 +4889,11 @@ function make3Dcore(pieces){
       return D>0?(-B+Math.sqrt(D))/(2*A):nk[1];}
     function at(y,an,r){return [Math.sin(an)*r,y,zc0+Math.cos(an)*r];}
     /* (hBack: a height that rises from h at the front to hBack at the back, as a hood's rim does) */
-    function hAt(c){return o.hBack==null?o.h:o.h+(o.hBack-o.h)*Math.pow((1-Math.cos(c.an))/2,1.3);}
+    function hAt0(c){return o.hBack==null?o.h:o.h+(o.hBack-o.h)*Math.pow((1-Math.cos(c.an))/2,1.3);}
+    /* (a hood pulled out over a jacket lies over the jacket's collar at the back, which is pressed down flat under it:
+       standing at its full height there, the collar crossed the top of the hood as a band, between the hood and its
+       gathered rim) */
+    function hAt(c){var h=hAt0(c);return HOODO?h*(1-0.8*sstep(0.15,0.55,(1-Math.cos(c.an))/2)):h;}
     /* (the band grows at right angles to the neckline, a strip of even width along it (uS round his neck, uY up, a
        little evened out and never tipped more than 60 degrees): grown straight up where the neckline drops steeply
        from beside his neck to the front, each point's strip overlapped the next, and the band showed teeth with slivers
@@ -4929,6 +4936,11 @@ function make3Dcore(pieces){
     if(o.fold){for(j=0;j<NCc-1;j++){var a2=K*NCc+j,b2=a2+1,c2=(K+1)*NCc+j,d2=c2+1;ix.push(a2,b2,c2,b2,d2,c2);}}
     var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setIndex(ix);g.computeVertexNormals();
     var mt=o.mat.clone();mt.side=T.DoubleSide;var cme=put(new T.Mesh(g,mt));cme.updateMatrixWorld(true);collarMs.push(cme);
+    /* (o.stand: it stands up round his neck rather than lying on his shoulders, as a hoodie's hood rim does, and is left
+       out of the map a top worn over it lays its yoke on: there a jacket's yoke climbed it, and the jacket's neckline,
+       which sits at the base of his neck, was raised 2 to 5 cm up his neck after it, beside the hood laid over its back.
+       It stays in the neck maps, so the jacket's neckline and collar still go round it) */
+    if(o.stand)cme.userData.noOccY=true;
     /* o.tip: contrast tipping, two thin stripes along the collar's outer edge (a folded collar's leaf) or the neckband's
        top, lying on it (drawn as rings at set heights, they floated in the air above a polo's collar) */
     if(o.tip){var RA=o.fold?rows[rows.length-1]:rows[K],RB=o.fold?rows[rows.length-2]:rows[K-1];
@@ -5648,7 +5660,7 @@ function make3Dcore(pieces){
       /* a hoodie has no rib neckband: its hood, worn down, is sewn to the neckline and stands round his neck as a soft
          rounded rim, its two edges meeting low at the front and rising behind his neck where the hood gathers, turned
          over at the top; the hood itself lies on his back below it (hoodDown) */
-      if(FT&&p.shape==="hoodie")fitCollar(FT,{h:0.02,hBack:0.05,lean:0.3,flare:0.014,mat:m,rows:5,fold:{drop:0.018,front:0,out:0.007}});
+      if(FT&&p.shape==="hoodie")fitCollar(FT,{h:0.02,hBack:0.05,lean:0.3,flare:0.014,mat:m,rows:5,fold:{drop:0.018,front:0,out:0.007},stand:true});
       else if(FT)fitCollar(FT,{h:0.017,lean:0.55,mat:ringM||(p.shape==="tee"||p.shape==="vest"?m:rib(p)),rows:3,tip:tipM});
       else if(bodyOn&&wrapOn){var b0=NK(1.51),b1=NK(1.532);   /* the neckband lies on the neckline, flaring to meet the body of the top */
         sec([[1.508,b0[1]+e+0.006,b0[2]+e+0.006,0,b0[4]],[1.532,b1[1]+0.014+e*0.5,b1[2]+0.014+e*0.5,0,b1[4]]],p.shape==="tee"||p.shape==="vest"?m:rib(p),{seg:56,k:1,sq:2,dipAll:NDIP});}
@@ -5662,7 +5674,7 @@ function make3Dcore(pieces){
     var eTop=e,eRun=e;up.slice(k+1).forEach(function(q,j){var i=k+1+j,Lq=LAYER[q.shape]||0,eq=[0.008,0.017,0.03][Lq]+0.004*i+(lay(q)%1?0.006:0)+((q.desc||{}).fit==="loose"?0.012:((q.desc||{}).fit==="relaxed"?0.006:0));
       eq=Math.max(eq,eRun+0.007);eRun=eq;if(PUFFRE.test(nm(q)))eq+=0.014;eTop=Math.max(eTop,eq);});var hOut=Math.max(0,eTop+0.004-e);
     var hoodOut=up.slice(k+1).some(function(q){return /^(coat|jacket)$/.test(q.shape)&&HOODRE.test(nm(q));});
-    if(p.shape==="hoodie"&&(!hid||!hoodOut)){if(bodyOn){hoodDown(m,e,hOut,false,p.col,!hid&&!!FT);   /* (on his upper back; under a jacket it lies out over the jacket and its collar) */}else add(new T.SphereGeometry(0.115,26,16,0,Math.PI*2,0,Math.PI*0.55),m,0,1.49,-0.085,1.05,0.62,0.85,-0.35,0,0);}
+    if(p.shape==="hoodie"&&(!hid||!hoodOut)){if(bodyOn){hoodDown(m,e,hOut,false,p.col,!hid&&!!FT);HOODO=true;   /* (on his upper back; under a jacket it lies out over the jacket and its collar) */}else add(new T.SphereGeometry(0.115,26,16,0,Math.PI*2,0,Math.PI*0.55),m,0,1.49,-0.085,1.05,0.62,0.85,-0.35,0,0);}
     if(p.shape==="hoodie"&&!hidF&&!p._proj){
       [-1,1].forEach(function(s){tube([[s*0.03,1.49,frontZ(1.45,e)+0.012],[s*0.034,1.42,frontZ(1.4,e)+0.01],[s*0.036,1.36,frontZ(1.36,e)+0.008]],0.0028,white,8);});
       /* the kangaroo pocket, laid on the cloth (narrower at the top), with its two slanted openings */
