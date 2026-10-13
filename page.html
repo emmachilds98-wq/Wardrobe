@@ -4056,14 +4056,16 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
     var R={p:p,t:t,X:X,k:k,me:r.me,N:r.N,lf:drapeLeaf(t),G:G,sy:sy};R.col=function(){var X=R.X,N=R.N,lf=R.lf;if(!lf)return drapeCol(X,N,window.__drapeTh||0.01);var cX=[],cN=[];
       for(var q=0;q<t.n;q++)if(!lf[q])for(var a=0;a<3;a++){cX.push(X[q*3+a]);cN.push(N[q*3+a]);}return drapeCol(new Float32Array(cX),new Float32Array(cN),window.__drapeTh||0.01);};
     recs.push(R);done.push({col:R.col(),X:X,N:r.N});if(t.hood&&p.shape==="hoodie")hoodies.push({p:p,t:t,X:X,k:k});});
-  /* then, from the outside in, each draped layer under another is held inside the ones over it (its body and sleeves,
-     a short settle against their surfaces turned in), and a shirt's collar leaf is laid out over them (the rest of the
+  /* then, from the outside in, each draped layer under another is held inside the ones over it (its body inside
+     their bodies, a short settle against their surfaces turned in), and a shirt's collar leaf is laid out over them (the rest of the
      shirt held where it is). (A jumper's rib band gathers it in at his hips over a shirt hanging straight, and the shirt
      came through above the band; held in, it is drawn in under the band, as the band presses a shirt in) */
   for(var di=done.length-2;di>=0;di--){var R=recs[di],t=R.t,X=R.X,ic=innerCols(R.k),oc=innerCols(R.k,true),below=done.slice(0,di).map(function(d){return d.col;}),over=done.slice(di+1);
     cU=ic[0];cUA=ic[1];cO=oc[0];cOA=oc[1];var c0=[cB,cU,cUA,cO].concat(below),c1=[cA,cU,cUA,cOA].concat(below),
-      inw=over.map(function(d){var Nn=new Float32Array(d.N.length);for(var q=0;q<Nn.length;q++)Nn[q]=-d.N[q];return drapeCol(d.X,Nn,0.006,0.02);});
-    drapeSettle(X,drapeGrade(t.cl,R.G,R.sy),[c0.concat(inw),c1.concat(inw),c1.concat(inw),c0,c0],t.grp,R.lf,20,X.slice());
+      inw=recs.slice(di+1).map(function(O){var P=[],Nn=[];for(var q=0;q<O.t.n;q++)if(!O.t.grp[q])for(var a=0;a<3;a++){P.push(O.X[q*3+a]);Nn.push(-O.N[q*3+a]);}return drapeCol(new Float32Array(P),new Float32Array(Nn),0.006,0.02);});
+    /* (the body only, inside the bodies over it: held in by the whole of the jumper, a shirt's sleeves were pressed
+       into the crease between the jumper's sleeve and its side, and showed there) */
+    drapeSettle(X,drapeGrade(t.cl,R.G,R.sy),[c0.concat(inw),c1,c1,c0,c0],t.grp,R.lf,20,X.slice());
     if(R.lf){var pin=new Uint8Array(t.n),oo=over.map(function(d){return d.col;});for(var q=0;q<t.n;q++)pin[q]=R.lf[q]?0:1;
       drapeSettle(X,drapeGrade(t.cl,R.G,R.sy),[c0.concat(oo),c1.concat(oo),c1.concat(oo),c0.concat(oo),c0.concat(oo)],t.grp,pin,window.__drapeSteps||60,X.slice());}
     R.N=done[di].N=drapeNormals(X,t.cl.W,t.n);done[di].col=R.col();

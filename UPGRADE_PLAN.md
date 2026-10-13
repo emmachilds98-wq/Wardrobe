@@ -2512,8 +2512,9 @@ The first outer layer draped (STATUS.md item 0.1), behind the drape switch as be
   the jumper, it came through the jumper's shoulders. At 114 cm round the chest the shirt came through a draped jumper
   (116 cm, the layers kept 1 cm apart) at the belly and back; at 110 it stays inside.
 - **Held in under what is worn over it:** after every draped layer has settled, from the outside in, each one under
-  another has a short settle (20 steps) against the surfaces over it turned in, its body and sleeves only; then a
-  shirt's leaf is laid out over them. A jumper's rib band gathers it in at his hips over a shirt hanging straight, and
+  another has a short settle (20 steps), its body against the bodies over it turned in; then a shirt's leaf is laid
+  out over them. (Held in by the whole of the jumper, the shirt's sleeves were pressed into the crease between the
+  jumper's sleeve and its side and showed there: m5-argyle front poke 54 on his shape, 108 on slim.) A jumper's rib band gathers it in at his hips over a shirt hanging straight, and
   white flecks of the shirt came through above the band (m5-argyle front poke 34); held in, the shirt is drawn in under
   the band. The photo's looks and front details are laid after this, on the cloth as it finally lies.
 - **Switch-on 3D check, gate set and five shirt outfits on his shape:** 28 of 30 clean before the leaf change (from 19
