@@ -4053,8 +4053,11 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
     man.traverse(function(o){if(!o.isMesh||o.isInstancedMesh||o.userData.draped||!o.userData.item||!ins[o.userData.item]||!o.geometry.attributes.position)return;var g=o.geometry,pa=g.attributes.position,na=g.attributes.normal;
       var isArm=false,a=o;while(a&&a!==man){if(a.userData.arm)isArm=true;a=a.parent;}var M=new T.Matrix4().multiplyMatrices(inv,o.matrixWorld),Nm=new T.Matrix3().getNormalMatrix(M),nv=new T.Vector3();
       for(var j=0;j<pa.count;j++){v.fromBufferAttribute(pa,j).applyMatrix4(M);if(na)nv.fromBufferAttribute(na,j).applyMatrix3(Nm).normalize();else nv.set(0,0,1);
-        var sd=isArm?1:0,c=sd?cA:cB,q=drapeNear(c,v.x,v.y,v.z);   /* (turned away from the nearest point of his body) */
-        if(q>=0&&nv.x*(v.x-c.P[q*3])+nv.y*(v.y-c.P[q*3+1])+nv.z*(v.z-c.P[q*3+2])<0)nv.negate();if(out)nv.negate();
+        /* (turned the way his body faces at its nearest point. Turned away from that point, as it was, the waistband of
+           his trousers under the overhang of a bigger belly faced in, the belly being above it and further out, and
+           pressed a draped tee or jumper into his belly, his skin showing through it) */
+        var sd=isArm?1:0,c=sd?cA:cB,q=drapeNear(c,v.x,v.y,v.z);
+        if(q>=0&&nv.x*c.N[q*3]+nv.y*c.N[q*3+1]+nv.z*c.N[q*3+2]<0)nv.negate();if(out)nv.negate();
         uP[sd].push(v.x,v.y,v.z);uN[sd].push(nv.x,nv.y,nv.z);}});
     var th=th0||(out?0.006:0.004),rc=out?0.02:0.04;return [drapeCol(new Float32Array(uP[0]),new Float32Array(uN[0]),th,rc),drapeCol(new Float32Array(uP[1]),new Float32Array(uN[1]),th,rc)];}
   var cU=null,cUA=null,cO=null,cOA=null;
@@ -4131,15 +4134,22 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
       /* (down his front the rays come from in front; round his neck, above the ends, from outside toward his neck all
          round, so a jacket's collar tip behind his neck cannot stand over its top edge either) */
       var oD=new T.Vector3(),wD=new T.Vector3();
-      for(var q=0;q<st.n;q++){var qx=XS[q*3],qy=XS[q*3+1],qz=XS[q*3+2],ring=qy>1.42,ux=0,uz=1,df=-9;if(qy<0.8||(!ring&&qz<0.05))continue;
-        if(ring){var rl=Math.hypot(qx,qz)||1;ux=qx/rl;uz=qz/rl;}
+      /* (round his neck is above 1.42 m, and behind and at the sides down to 1.32: the loop's lower edge there lies out
+         over his shoulders, and a jacket's back came up over it) */
+      var push=function(q,ux,uz){var qx=XS[q*3],qy=XS[q*3+1],qz=XS[q*3+2],df=-9;
         var along=function(px,py,pz){return px*ux+pz*uz;};   /* (how far out along the ray's way: z in front, out from his neck round it) */
         wD.set(-ux,0,-uz).transformDirection(man.matrixWorld);
-        oS.set(qx+ux*0.3,qy,qz+uz*0.3).applyMatrix4(man.matrixWorld);rcS.set(oS,wD);var hO=rcS.intersectObject(sme,false);if(hO.length){hp.copy(hO[0].point).applyMatrix4(inv);if(along(hp.x,hp.y,hp.z)>along(qx,qy,qz)+0.004)continue;}
+        oS.set(qx+ux*0.3,qy,qz+uz*0.3).applyMatrix4(man.matrixWorld);rcS.set(oS,wD);var hO=rcS.intersectObject(sme,false);if(hO.length){hp.copy(hO[0].point).applyMatrix4(inv);if(along(hp.x,hp.y,hp.z)>along(qx,qy,qz)+0.004)return;}
         [[0,0],[0.007,0],[-0.007,0],[0,0.007],[0,-0.007]].forEach(function(d){var sx=d[0]*uz,sz=-d[0]*ux;   /* (and 7 mm round it, across the way and up and down: an edge between two of its points) */
           oS.set(qx+sx+ux*0.3,qy+d[1],qz+sz+uz*0.3).applyMatrix4(man.matrixWorld);rcS.set(oS,wD);
           var hS=rcS.intersectObjects(dm,false);if(hS.length){hp.copy(hS[0].point).applyMatrix4(inv);var a2=along(hp.x,hp.y,hp.z);if(a2>df)df=a2;}});
-        var aq=along(qx,qy,qz);if(df>-9&&df+0.009>aq){var mvd=df+0.009-aq;XS[q*3]+=ux*mvd;XS[q*3+2]+=uz*mvd;mv++;}}
+        var aq=along(qx,qy,qz);if(df>-9&&df+0.009>aq){var mvd=df+0.009-aq;XS[q*3]+=ux*mvd;XS[q*3+2]+=uz*mvd;mv++;}};
+      for(var q=0;q<st.n;q++){var qx=XS[q*3],qy=XS[q*3+1],qz=XS[q*3+2],ring=qy>1.42||(qy>1.32&&qz<0.02);if(qy<0.8||(!ring&&qz<0.05))continue;
+        if(!ring){push(q,0,1);continue;}
+        var rl=Math.hypot(qx,qz)||1;push(q,qx/rl,qz/rl);
+        /* (and at the sides of his neck, from the side as well: an open jacket's collar ends there, its tip standing out
+           across the way out from his neck, and from straight out the rays passed beside it) */
+        if(Math.abs(qx)>0.06)push(q,qx>0?1:-1,0);}
       if(mv)drapeSettle(XS,st.cl,layerCols(),st.grp,null,12,XS.slice());}
     drapeScarf(man,ctx.scarf,st,XS);}}
 /* a draped scarf's cloth, its design and its fringes: the band in the scarf's own colour, each end in its design where
