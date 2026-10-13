@@ -4108,11 +4108,18 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
          through the one over it, the page's cloth having no collision with itself) */
       var sg=new T.BufferGeometry(),sI=new Uint32Array(st.idx.length);for(var q0=0;q0<sI.length;q0++)sI[q0]=st.vmap[st.idx[q0]];sg.setAttribute("position",new T.BufferAttribute(XS.slice(),3));sg.setIndex(new T.BufferAttribute(sI,1));
       var sme=new T.Mesh(sg,new T.MeshBasicMaterial({side:T.DoubleSide}));sme.matrixWorld.copy(man.matrixWorld);
-      for(var q=0;q<st.n;q++){var qx=XS[q*3],qy=XS[q*3+1],qz=XS[q*3+2],zf=-9;if(qz<0.05||qy<0.8)continue;
-        oS.set(qx,qy,qz+0.3).applyMatrix4(man.matrixWorld);rcS.set(oS,dS);var hO=rcS.intersectObject(sme,false);if(hO.length){hp.copy(hO[0].point).applyMatrix4(inv);if(hp.z>qz+0.004)continue;}
-        [[0,0],[0.007,0],[-0.007,0],[0,0.007],[0,-0.007]].forEach(function(d){oS.set(qx+d[0],qy+d[1],qz+0.3).applyMatrix4(man.matrixWorld);rcS.set(oS,dS);   /* (and 7 mm round it: an edge between two of its points) */
-          var hS=rcS.intersectObjects(dm,false);if(hS.length){hp.copy(hS[0].point).applyMatrix4(inv);if(hp.z>zf)zf=hp.z;}});
-        if(zf+0.009>qz){XS[q*3+2]=zf+0.009;mv++;}}
+      /* (down his front the rays come from in front; round his neck, above the ends, from outside toward his neck all
+         round, so a jacket's collar tip behind his neck cannot stand over its top edge either) */
+      var oD=new T.Vector3(),wD=new T.Vector3();
+      for(var q=0;q<st.n;q++){var qx=XS[q*3],qy=XS[q*3+1],qz=XS[q*3+2],ring=qy>1.42,ux=0,uz=1,df=-9;if(qy<0.8||(!ring&&qz<0.05))continue;
+        if(ring){var rl=Math.hypot(qx,qz)||1;ux=qx/rl;uz=qz/rl;}
+        var along=function(px,py,pz){return px*ux+pz*uz;};   /* (how far out along the ray's way: z in front, out from his neck round it) */
+        wD.set(-ux,0,-uz).transformDirection(man.matrixWorld);
+        oS.set(qx+ux*0.3,qy,qz+uz*0.3).applyMatrix4(man.matrixWorld);rcS.set(oS,wD);var hO=rcS.intersectObject(sme,false);if(hO.length){hp.copy(hO[0].point).applyMatrix4(inv);if(along(hp.x,hp.y,hp.z)>along(qx,qy,qz)+0.004)continue;}
+        [[0,0],[0.007,0],[-0.007,0],[0,0.007],[0,-0.007]].forEach(function(d){var sx=d[0]*uz,sz=-d[0]*ux;   /* (and 7 mm round it, across the way and up and down: an edge between two of its points) */
+          oS.set(qx+sx+ux*0.3,qy+d[1],qz+sz+uz*0.3).applyMatrix4(man.matrixWorld);rcS.set(oS,wD);
+          var hS=rcS.intersectObjects(dm,false);if(hS.length){hp.copy(hS[0].point).applyMatrix4(inv);var a2=along(hp.x,hp.y,hp.z);if(a2>df)df=a2;}});
+        var aq=along(qx,qy,qz);if(df>-9&&df+0.009>aq){var mvd=df+0.009-aq;XS[q*3]+=ux*mvd;XS[q*3+2]+=uz*mvd;mv++;}}
       if(mv)drapeSettle(XS,st.cl,layerCols(),st.grp,null,12,XS.slice());}
     drapeScarf(man,ctx.scarf,st,XS);}}
 /* a draped scarf's cloth, its design and its fringes: the band in the scarf's own colour, each end in its design where
