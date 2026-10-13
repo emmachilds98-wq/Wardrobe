@@ -20,6 +20,16 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**13 Oct, evening: Emma's nine comments on her artifact** (PR #42, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzz). Live
+page changes, all checked: straight and relaxed legs no longer widen below the thigh (`BOTCUT`, and the hem's own
+fullness no longer spreads up the shin as a cone); cuffed joggers gather into a rib cuff at the ankle; "SikSilk" is no
+longer read as silk (satin); six `data/fixes.json` corrections (the Matalan jeans' colour; the Mountain Warehouse shirt's
+photo, now its dark grey colourway, and its check; the Brakeburn board shorts' flowers; the Admiral sweatshirt's side
+panels; the Lambretta polo's band of checks; the Saltrock tee's print); two `data/cuts.json` lines. New correction
+fields: `print` and `at` (a chest print from a flat photo when the shop's photo is on a model), `back: false` and
+`slv` with `place`. A general denim rule for the jeans was tried and reverted (it moved 6 other pairs further from their
+photos): see the plan entry. Each thread has a reply; FtdHKg is republished from this build once it merges.
+
 **13 Oct, late: a draped scarf, behind the drape switch** (PR #41, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzz). **With
 the switch off the live page is unchanged.** A scarf template (`tools/build_garments.py --only scarf`,
 `data/garments/scarf.json`: 180 x 14 cm, once round his neck, both ends down his front, draped in Blender over his body
@@ -30,6 +40,17 @@ on his shape (one speck of collar). **Next engineer, start here for the scarf:**
 1. The crossing on his chest bunches into a knot: in `scarf_path` try the ends leaving the loop under it (a tuck) rather
    than over it, or a gentler twist where each end leaves the loop (`join`: more points, the band's width turning over
    10 cm); look at each try with `node tools/garment_view.js <debug>/scarf-draped.json out.png` before the page.
+   *Tried 13 Oct, evening (scratch only, nothing committed; each run about 2 minutes once Blender is unpacked):*
+   (a) the band turning gradually from flat on his chest to upright round his neck along a join 16 cm long, the ends
+   hung apart (8 cm left, 6 cm right of the middle) rather than crossing: laid out it looks right, but draped the
+   front of the loop slides down his chest and opens into a shawl, the ends spread to his shoulders: the crossing ends
+   are what hold the loop's front up. (b) The same with the whole first turn's top edge held, not only behind his neck:
+   worse, an end swings round behind his shoulder. (c) "Once around" as it is usually tied (the middle across the
+   front of his neck, the ends crossed behind it and brought forward over his shoulders, a turn and a half): no knot,
+   but a turn and a half of a 14 cm band round his collar uses most of the 180 cm, so the ends reach only his upper
+   chest, and draped the loop spreads over his shoulders. Untried: (c) with a narrower band (a 28 cm scarf folded in
+   three, or 180 x 20 folded once) and a loop held by friction only at the back; or keeping the crossing and hiding it
+   under the loop (the tuck).
 2. The loop stands high behind his neck (the pinned edge, `pins` in `drape_scarf`): try pinning lower on the loop, or
    releasing the pins for the last 20 frames.
 3. g-outdoor-05 "under 4" (switch on, his shape): the jacket collar's tip between the scarf's outer layer and its edge
@@ -37,15 +58,18 @@ on his shape (one speck of collar). **Next engineer, start here for the scarf:**
    or skip the fold-in rows in the push (`drapeTops`, the scarf block).
 4. Then the other outer layers still blocking the drape (item 0.1 below), and XPBD substeps in `drapeSettle`
    (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz, research).
+**Emma's artifact (FtdHKg) is current:** republished 13 Oct from `main` at d4edbf9 (v45: PRs #39, #40 and #41), as
+described below; it had been on PR #38's build (v44).
 **The shared artifact (8uqcGr2) is behind `main`:** it still shows PR #39's build (v51); PRs #40 (live: jackets on his
-chest, the new scarves) and #41 (drape switch only) are on GitHub Pages but not on the artifact. The session that merged
-them could not republish: the Artifact tool asks for the live page to be Read line by line first (8198 lines, about 350k
-tokens), more than was left. To republish: `Artifact read` 8uqcGr2, Read the saved page in full (offset/limit, about 400
+chest, the new scarves) and #41 (drape switch only) are on GitHub Pages but not on the artifact. It belongs to another
+account, and a session signed in to Emma's cannot publish to it: only one signed in to the account that owns it can.
+The Artifact tool asks for the live page to be Read line by line first (about 8,200 lines, about 350k tokens). To
+republish: `Artifact read` 8uqcGr2, Read the saved page in full (offset/limit, about 350 to 450
 lines a call), confirm `diff <(git show 29fbad8:docs/index.html) <saved page>` differs only in the first line (the
 artifact's wrapper), then publish `docs/index.html` with `files` = only what changed since 29fbad8
 (`git diff --stat 29fbad8 HEAD -- docs`: `data/items/acc-1.json`, `data/items/acc-2.json`, `data/garments/scarf.json`;
 files left out are kept), root `docs`, **no `capabilities`** (that keeps its database and downloads). Then the Log's
-artifact column.
+artifact column. FtdHKg was republished the same way from 19190e4 (its build), adding `data/garments/gilet.json` too.
 How to run: `python3 tools/build_garments.py --only scarf --debug <dir>` (Blender 4.5 LTS downloads itself; through this
 environment's proxy the download was cut off twice at about 347 of 378 MB: fetch it with `curl -C -` into
 `~/.cache/wardrobe-blender`, check it with the published sha256, and untar it there), then
@@ -306,6 +330,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | none | Emma's artifact (FtdHKg) republished from `main` (d4edbf9, PRs #39 to #41's build); 8uqcGr2 still on PR #39's | FtdHKg v45 |
 | 13 Oct 2026 | #41 | A draped scarf behind the drape switch (`scarf` template, `drapeScarf`); live page unchanged | not republished (see below) |
 | 13 Oct 2026 | #40 (merged) | Jackets, coats, blazers and gowns rest on his chest (`F.rest`, with an open front reaching as far forward as what shows between its edges); scarf ends as long fringed bands hanging from under the loop, the loop's top edge rolled and its front smooth; new correction `strip` (two scarves wear their designs) | not republished (see below) |
 | 13 Oct 2026 | #39 | Gilets draped behind the switch (`gilet`: sleeveless, done up, stand collar, hem band; zip and work pockets on the cloth); a shirt's leaf stays inside a stand collar done up over it; belts under draped tops; the fitting room says a shirt with a tie stays tucked; live page otherwise unchanged | 8uqcGr2 v51 |
