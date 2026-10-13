@@ -325,7 +325,8 @@ function colourOff(c) {
   const p = await b.newPage(), errs = []; p.on("pageerror", e => errs.push(e.message));
   // THREE_JS=<path to three.min.js r128>: serve Three.js from a local copy (for machines that cannot reach the CDN)
   if (process.env.THREE_JS) await p.route("**/three.js/r128/three.min.js", r => r.fulfill({ path: process.env.THREE_JS, contentType: "text/javascript" }));
-  // QA_INIT='window.__drape=1': a script run before the page (as tools/qa/zoom.js takes it), e.g. the garment drape switch
+  // QA_INIT='window.__drape=0': a script run before the page (as tools/qa/zoom.js takes it), e.g. the page as before the
+  // garment drape (draped is the default in every build since 13 Oct 2026; window.__drape=1 forces it)
   if (process.env.QA_INIT) await p.addInitScript(process.env.QA_INIT);
   // --body: check on another of Edit Dave's body types (or cloth fit) instead of his saved one, set as the page would
   // set it; the types are read from the page itself, so they never fall out of step with it

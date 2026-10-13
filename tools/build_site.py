@@ -424,8 +424,8 @@ def check_outfits(outfits, items):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(ROOT, "site"))
-    ap.add_argument("--drape", action="store_true", help="a preview build showing the page's Draped clothes switch "
-                    "(window.__drapeUI; draped to start); never for docs/")
+    ap.add_argument("--drape", action="store_true", help="a preview build with the Draped clothes switch also in a corner "
+                    "of the page (window.__drapeUI; every build is draped to start); never for docs/")
     a = ap.parse_args()
     out = a.out
     os.makedirs(os.path.join(out, "data", "photos"), exist_ok=True)
@@ -524,7 +524,7 @@ def main():
             json.dump(obj, f, separators=(",", ":"), ensure_ascii=False)
     shutil.copyfile(os.path.join(ROOT, "page.html"), os.path.join(out, "index.html"))
     if a.drape:
-        # the drape preview: its own name, and the page's drape switch shown (on to start: drapeSwitch in page.html)
+        # the drape preview: its own name, and the drape switch also in a corner of the page (drapeSwitch in page.html)
         if os.path.abspath(out) == os.path.join(ROOT, "docs"): raise SystemExit("--drape is for a preview build, never docs/")
         ix = os.path.join(out, "index.html"); h = open(ix, encoding="utf-8").read()
         note = '<title>Wardrobe Drape Preview</title>\n<script>window.__drapeUI=1;</script>'
