@@ -59,9 +59,9 @@ on his shape (one speck of collar). **Next engineer, start here for the scarf:**
    or skip the fold-in rows in the push (`drapeTops`, the scarf block).
 4. Then the other outer layers still blocking the drape (item 0.1 below), and XPBD substeps in `drapeSettle`
    (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz, research).
-**Emma's artifact (FtdHKg) is current:** republished 13 Oct from `main` at 5dd07f9 (v46: PR #42), as described
-below, with only the files that changed since d4edbf9 (`git diff --stat d4edbf9 5dd07f9 -- docs`: five
-`data/items/*.json`, `data/photos/shirt-p1.json` and the page).
+**Emma's artifact (FtdHKg) is current:** republished 13 Oct from `main` at 7eaf1b5 (v47: PR #43, the page only),
+after v46 from 5dd07f9 (PR #42: the page, five `data/items/*.json` and `data/photos/shirt-p1.json`), as described
+below.
 **The shared artifact (8uqcGr2) is behind `main`:** it still shows PR #39's build (v51); PRs #40 (live: jackets on his
 chest, the new scarves) and #41 (drape switch only) are on GitHub Pages but not on the artifact. It belongs to another
 account, and a session signed in to Emma's cannot publish to it: only one signed in to the account that owns it can.
@@ -336,6 +336,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | #43 | One set of model controls: the fitting room's camera dock (`camDock`) on Edit Dave and the builder's small model too, with How it's worn as toggles; the builder's old bar gone | FtdHKg v47 |
 | 13 Oct 2026 | #42 | Emma's nine comments: straight and relaxed legs no longer widen below the thigh, cuffed joggers gather into a rib cuff, SikSilk no longer satin; six corrections (Matalan jeans' colour, the Holiday shirt's dark grey photo and check, board shorts' flowers, Admiral sweatshirt's panels, Lambretta polo's checks, Saltrock tee's print); new correction fields `print`/`at`, `back`, `slv` with `place` | FtdHKg v46 |
 | 13 Oct 2026 | none | Emma's artifact (FtdHKg) republished from `main` (d4edbf9, PRs #39 to #41's build); 8uqcGr2 still on PR #39's | FtdHKg v45 |
 | 13 Oct 2026 | #41 | A draped scarf behind the drape switch (`scarf` template, `drapeScarf`); live page unchanged | not republished (see below) |
