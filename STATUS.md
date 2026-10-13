@@ -20,6 +20,32 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**13 Oct, late night: the draped scarf wound a turn and a half; draped tops held off a bigger belly** (PR #45,
+UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzz). **Behind the drape switch: with it off the live page is unchanged.** Emma asked to
+continue the upgrades in this file's order:
+- *The scarf's knot is gone:* the template (`tools/build_garments.py --only scarf`, `SCARF_WRAP`) is wound a turn and a
+  half, each end turning down over his shoulder (flat on his chest, the band folded on itself into a knot), in a band
+  11 cm wide so the ends stay long (loop 1.08 m, ends 0.66 m between them). The loop is as far out as he and the jumper
+  are all round his neck (rays at its height), higher at the sides, the band's lower half bent out over his shoulders
+  just enough to clear them, and the drape stops at frame 40, where it has settled.
+- *Behind his neck* it now lies round his neck as a cowl rather than standing off it as a flat collar; its top is as
+  high as before (lower cost the ends 14 to 32 cm).
+- *g-outdoor-05's "under 4" is clear on every body:* the scarf's push-out did move it clear of the draped jacket's
+  collar tip, and the settle after it drew it back; the points moved are now held. The push also reaches the loop's
+  lower edge behind and at the sides, and comes from the side at the sides of his neck.
+- *The heavier belly skin is gone* (h10-surf, jb11-cheapest, lazy-sunday, q7-fairisle, m5-argyle, q8-morden): not short
+  templates, as item 0 below read it, but the trousers' waistband facing in under the belly's overhang and pressing the
+  tops into it (`innerCols` turned each layer away from the nearest point of his body; it now faces the way his body
+  does there).
+- Checked, switch on, against `main` switch on: the 7 scarf outfits on five bodies, the belly set on heavier (5 flagged
+  on `main`, 0 now), the gate set and item 0's five more on his shape (31): what is left is g-outdoor-05's back poke
+  (the padded shacket through the draped jacket's back, on `main` too) and m5-argyle's front poke 31 (as `main`).
+  Switch off: the gate set clean, specs unchanged.
+**Next, in order:** the other outer layers still blocking the drape (item 0.1 below: g-outdoor-05's shacket is one),
+then XPBD substeps in `drapeSettle` (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz, research). For the scarf, still open: a
+`strip` design runs 44 cm from each foot, so with the shorter ends it reaches 6 to 16 cm into the loop (round the back
+of his neck on g-quiet-30); real printed scarves do carry it on, so left.
+
 **13 Oct, evening: Emma's nine comments on her artifact** (PR #42, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzz). Live
 page changes, all checked: straight and relaxed legs no longer widen below the thigh (`BOTCUT`, and the hem's own
 fullness no longer spreads up the shin as a cone); cuffed joggers gather into a rib cuff at the ankle; "SikSilk" is no
@@ -37,7 +63,8 @@ the switch off the live page is unchanged.** A scarf template (`tools/build_garm
 and the draped jumper) drawn by `drapeTops` last of all with the switch on (`dScarf` in `make3Dcore`, `drapeScarf`),
 1 cm off what is under it and pushed in front of thin details by rays; its ends wear the `strip` design, with fringes.
 Switch-on check of the 7 draped-scarf outfits on five bodies: as `main` with the switch on, but g-outdoor-05 "under 4"
-on his shape (one speck of collar). **Next engineer, start here for the scarf:**
+on his shape (one speck of collar). *Items 1 to 3 below were done on 13 Oct, late night (PR #45, the entry above): (c)
+with an 11 cm band. Kept for what was tried.* **Next engineer, start here for the scarf:**
 1. The crossing on his chest bunches into a knot: in `scarf_path` try the ends leaving the loop under it (a tuck) rather
    than over it, or a gentler twist where each end leaves the loop (`join`: more points, the band's width turning over
    10 cm); look at each try with `node tools/garment_view.js <debug>/scarf-draped.json out.png` before the page.
@@ -62,16 +89,16 @@ on his shape (one speck of collar). **Next engineer, start here for the scarf:**
 **Emma's artifact (FtdHKg) is current:** republished 13 Oct from `main` at 7eaf1b5 (v47: PR #43, the page only),
 after v46 from 5dd07f9 (PR #42: the page, five `data/items/*.json` and `data/photos/shirt-p1.json`), as described
 below.
-**The shared artifact (8uqcGr2) is behind `main`:** it still shows PR #39's build (v51); PRs #40 (live: jackets on his
-chest, the new scarves) and #41 (drape switch only) are on GitHub Pages but not on the artifact. It belongs to another
-account, and a session signed in to Emma's cannot publish to it: only one signed in to the account that owns it can.
-The Artifact tool asks for the live page to be Read line by line first (about 8,200 lines, about 350k tokens). To
-republish: `Artifact read` 8uqcGr2, Read the saved page in full (offset/limit, about 350 to 450
-lines a call), confirm `diff <(git show 29fbad8:docs/index.html) <saved page>` differs only in the first line (the
-artifact's wrapper), then publish `docs/index.html` with `files` = only what changed since 29fbad8
-(`git diff --stat 29fbad8 HEAD -- docs`: `data/items/acc-1.json`, `data/items/acc-2.json`, `data/garments/scarf.json`;
-files left out are kept), root `docs`, **no `capabilities`** (that keeps its database and downloads). Then the Log's
-artifact column. FtdHKg was republished the same way from 19190e4 (its build), adding `data/garments/gilet.json` too.
+**The shared artifact (8uqcGr2) is current:** republished 13 Oct from `main` at 37fc3c4 (v52: PRs #40 to #43, the
+same build as GitHub Pages and FtdHKg v47), its database and downloads kept. It belongs to another account, and a
+session signed in to Emma's cannot publish to it: only one signed in to the account that owns it can. The Artifact
+tool asks for the live page to be Read line by line first (about 8,200 lines, about 350k tokens), and for every data
+file being replaced to be read first too (`Artifact read` with `paths`). To republish next time: `Artifact read`
+8uqcGr2, Read the saved page in full (offset/limit, about 250 to 450 lines a call), confirm
+`diff <(git show 37fc3c4:docs/index.html) <saved page>` differs only in the first line (the artifact's wrapper), read
+and `cmp` the data files that changed (`git diff --stat 37fc3c4 HEAD -- docs`) against 37fc3c4's, then publish
+`docs/index.html` with `files` = only those (files left out are kept), root `docs`, **no `capabilities`** (that keeps
+its database and downloads). Then the Log's artifact column.
 How to run: `python3 tools/build_garments.py --only scarf --debug <dir>` (Blender 4.5 LTS downloads itself; through this
 environment's proxy the download was cut off twice at about 347 of 378 MB: fetch it with `curl -C -` into
 `~/.cache/wardrobe-blender`, check it with the published sha256, and untar it there), then
@@ -152,9 +179,9 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
      the jumper. Look before changing the check.
    - Done 13 Oct: q7-fairisle's "under" is clean with the switch on (PR #40's live scarf; with PR #41 the scarf is
      draped too).
-   - heavier: belly skin under draped tees and knits (h10-surf, jb11-cheapest, lazy-sunday, q7-fairisle, m5-argyle),
-     the same on `main`'s drape: the templates are short over the heavier belly (grade length with the belly, not
-     only round him: `drapeGrade`'s `sy`).
+   - Done 13 Oct, late night (PR #45): heavier belly skin under draped tees and knits (h10-surf, jb11-cheapest,
+     lazy-sunday, q7-fairisle, m5-argyle). Not short templates: the trousers' waistband, under the overhang of the
+     belly, faced in (`innerCols`) and pressed the tops into it. Clean on heavier.
    - wk-lounge on heavier and loose (back poke 44, holes 29 to 31): its long-sleeved tee is not draped (the tee
      template is short-sleeved) and comes through the draped shirt's back. A long-sleeved tee template fixes it.
    - **Gilets (PR #39), switch on, the 40 gilet outfits on his shape:** **29 of 40 clean** (15 flagged at first; the
@@ -336,6 +363,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | none | The shared-database artifact (8uqcGr2) republished from `main` (37fc3c4, PRs #40 to #43's build, as on GitHub Pages): the page, `data/garments/scarf.json` and eight `data/items` and `data/photos` files; 2D/3D smoke test clean | 8uqcGr2 v52 |
 | 13 Oct 2026 | #43 | One set of model controls: the fitting room's camera dock (`camDock`) on Edit Dave and the builder's small model too, with How it's worn as toggles; the builder's old bar gone | FtdHKg v47 |
 | 13 Oct 2026 | #42 | Emma's nine comments: straight and relaxed legs no longer widen below the thigh, cuffed joggers gather into a rib cuff, SikSilk no longer satin; six corrections (Matalan jeans' colour, the Holiday shirt's dark grey photo and check, board shorts' flowers, Admiral sweatshirt's panels, Lambretta polo's checks, Saltrock tee's print); new correction fields `print`/`at`, `back`, `slv` with `place` | FtdHKg v46 |
 | 13 Oct 2026 | none | Emma's artifact (FtdHKg) republished from `main` (d4edbf9, PRs #39 to #41's build); 8uqcGr2 still on PR #39's | FtdHKg v45 |
