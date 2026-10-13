@@ -2752,6 +2752,78 @@ no longer satin). `dump.js` on every outfit, before and after: only the Holiday 
 3D check on the 18 changed outfits and the gate set (46 outfits): clean on his saved shape, slim, athletic, heavier and
 loose, and worn tucked in with turn-ups and done up untucked.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzz. The draped scarf wound a turn and a half; draped tops held off a bigger belly (13 Oct 2026)
+
+Emma, 13 Oct: "continue upgrades", in STATUS's order: the draped scarf's knot, its loop behind his neck, g-outdoor-05's
+"under", then the draped tops over the heavier belly. All of it **behind the drape switch: with it off (the live page)
+nothing changes.** PR #45.
+
+**The scarf template** (`tools/build_garments.py --only scarf`, `data/garments/scarf.json`, 71 KB):
+- *The knot, found:* the outer end crossed the front of his throat and then turned straight down flat on his chest. A
+  band cannot turn in its own plane without folding on itself, so it bunched where it turned. Wound a turn and a half
+  instead ("once round" as it is usually tied: up his front over his right collarbone, round the back, across his
+  throat, round the back again and down over his left collarbone), each end leaves the loop at the side of his neck
+  and turns down over the curve of his shoulder, which cloth follows without folding. No knot.
+- *A narrower band:* 180 x 11 cm (a 22 cm scarf folded once). At 14 cm the turn and a half took so much of it that the
+  ends reached only his upper chest (tried 13 Oct, (c) in STATUS); at 11 cm the loop is 1.08 m and the ends 0.66 m
+  between them (the longer to the middle of his front).
+- *The loop as far out as he is:* an ellipse round his bare neck, measured a little above its base, sat up to 3.5 cm
+  inside his shoulders and the jumper's collar at the sides of his neck (his shoulders rise into it there). The loop's
+  distance out at each way round his neck is now found by rays from outside at the loop's height, against his body and
+  the jumper (`scarf_path`'s `rad`), and the loop is higher at the sides (`side`, 4 cm) than behind.
+- *The band's cross-section:* round his neck the half above its middle leans out straight, and the half below bends
+  further out as it goes down, by as much as it takes to clear his shoulders and the jumper (found row by row, then
+  smoothed along the band; up to 74 degrees at the sides). Leant out straight, its lower edge ran into the slope of his
+  shoulders, and moving each point out of him on its own stretched the band there to five or six times its length; the
+  cloth takes the shape it is laid in as its own, so it kept those spikes. Laid edge to edge (pattern against draped):
+  5% 0.86, 95% 1.29, worst 2.1 (was 0.84, 1.29 and 5.6 at the knot on `main`).
+- *Stopped at frame 40 of 90:* by about frame 35 each point moves a millimetre or two in five frames; after that the
+  layers' pushing on each other slowly worked the front of the loop up off his throat and crumpled it.
+- `SCARF_WRAP` holds the wrap (fwd 0.35, apart 0.055, room 0.018, step 0.01, y 0.012, side 0.04, lean 0.45);
+  `GB_SCARF_<NAME>=` tries another without editing.
+- *Behind his neck:* the loop's top is where it was (1.547 m; `main` 1.545), but it lies round his neck as a cowl
+  instead of standing off it as a flat collar. Lower costs the ends: 1.2 cm lower made the loop 1.22 m and the ends
+  0.52 m between them, 2.4 cm lower 1.39 m and 0.34 m (his neck widens fast into his shoulders). Left where it is.
+
+**The page** (switch on):
+- *The scarf pushed out over what is under it:* round his neck the rays now also reach behind and at the sides down to
+  1.32 m (the loop's lower edge there lies out over his shoulders, and the jacket's back came up over it), and at the
+  sides of his neck they come from the side as well as from straight out (an open jacket's collar ends there, its tip
+  standing out across the way out from his neck). The points the rays move are then **held** in the short settle after
+  it, and the cloth round them follows. g-outdoor-05's "under" (STATUS's item 3 for the scarf, "under 4" on `main` on
+  his shape) was found with a probe of the push: the rays did move the scarf 9 mm clear of the draped track jacket's
+  collar tip, at the side of his neck where the second end leaves the loop, and the settle then drew those points back
+  up to 2 cm. Lowering `make3Dcore`'s stand collar under a draped scarf (STATUS's first suggestion) was tried and did
+  nothing: that jacket is draped, its collar the template's. (The check gives the hit in world coordinates; his body,
+  and the cloth on it, are in his own, about 2.4% smaller at his height: compare in his.)
+- *Draped tops over a bigger belly:* STATUS item 0 read the belly skin as the templates being short. Measured (a probe
+  of the settled cloth against his body): at binding no point of the tee is inside him; after the settle 12 points are,
+  up to 12 mm deep, all at the height of his trousers' waistband. The layers under a draped top are turned to face away
+  from the nearest point of his body (`innerCols`); under the overhang of a bigger belly that point is the belly above
+  the waistband and further out, so the waistband faced in and pressed the tee into his belly. They are now turned the
+  way his body faces at that point: none inside, on h10-surf and lazy-sunday, and no skin. (Fitting the cloth's length
+  to his belly, as STATUS suggested, was tried: it changed nothing on its own, and with the waistband fixed it was not
+  needed. Not kept.)
+
+**Checked**, switch on, against `main` with the switch on:
+- *The 7 outfits with a draped scarf, on the five bodies:*
+  | body | `main`, switch on | this, switch on |
+  | --- | --- | --- |
+  | his shape | g-outdoor-05 back poke 425, **under 4** | g-outdoor-05 back poke 493 |
+  | slim | g-outdoor-05 back poke 66 | g-outdoor-05 back poke 54 |
+  | athletic | q7-fairisle belly skin (front 26, side 19); g-outdoor-05 back poke 281 | g-outdoor-05 back poke 323 |
+  | heavier | q7-fairisle and q8-morden belly skin (front 186 and 125); g-outdoor-05 back poke 34 | g-outdoor-05 back poke 35 |
+  | loose | g-outdoor-05 back poke 598 | g-outdoor-05 back poke 580 |
+
+  The back pokes are the padded shacket (a jacket-weight overshirt `make3Dcore` builds) coming through the draped
+  jacket's back, on `main` too; on his shape the patch is a little larger (the waistband rule moved it). It goes when
+  jacket-weight overshirts are draped (STATUS item 0.1).
+- *The belly set on the heavier body* (h10-surf, jb11-cheapest, lazy-sunday, q7-fairisle, m5-argyle): `main` 5 flagged
+  (belly skin 24 to 186 on each, and h10-surf front poke 31), this **0**.
+- *The switch-on gate set and STATUS's five more* (31 outfits, his shape): as `main` (m5-argyle front poke 31, the
+  shirt's collar over the jumper's neckband, STATUS item 0), but g-outdoor-05 above.
+- *Switch off*: the gate set (31 outfits) clean; `tools/specs.js` unchanged; the pull-request check green.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
