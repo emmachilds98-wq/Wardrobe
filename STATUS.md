@@ -62,16 +62,16 @@ on his shape (one speck of collar). **Next engineer, start here for the scarf:**
 **Emma's artifact (FtdHKg) is current:** republished 13 Oct from `main` at 7eaf1b5 (v47: PR #43, the page only),
 after v46 from 5dd07f9 (PR #42: the page, five `data/items/*.json` and `data/photos/shirt-p1.json`), as described
 below.
-**The shared artifact (8uqcGr2) is behind `main`:** it still shows PR #39's build (v51); PRs #40 (live: jackets on his
-chest, the new scarves) and #41 (drape switch only) are on GitHub Pages but not on the artifact. It belongs to another
-account, and a session signed in to Emma's cannot publish to it: only one signed in to the account that owns it can.
-The Artifact tool asks for the live page to be Read line by line first (about 8,200 lines, about 350k tokens). To
-republish: `Artifact read` 8uqcGr2, Read the saved page in full (offset/limit, about 350 to 450
-lines a call), confirm `diff <(git show 29fbad8:docs/index.html) <saved page>` differs only in the first line (the
-artifact's wrapper), then publish `docs/index.html` with `files` = only what changed since 29fbad8
-(`git diff --stat 29fbad8 HEAD -- docs`: `data/items/acc-1.json`, `data/items/acc-2.json`, `data/garments/scarf.json`;
-files left out are kept), root `docs`, **no `capabilities`** (that keeps its database and downloads). Then the Log's
-artifact column. FtdHKg was republished the same way from 19190e4 (its build), adding `data/garments/gilet.json` too.
+**The shared artifact (8uqcGr2) is current:** republished 13 Oct from `main` at 37fc3c4 (v52: PRs #40 to #43, the
+same build as GitHub Pages and FtdHKg v47), its database and downloads kept. It belongs to another account, and a
+session signed in to Emma's cannot publish to it: only one signed in to the account that owns it can. The Artifact
+tool asks for the live page to be Read line by line first (about 8,200 lines, about 350k tokens), and for every data
+file being replaced to be read first too (`Artifact read` with `paths`). To republish next time: `Artifact read`
+8uqcGr2, Read the saved page in full (offset/limit, about 250 to 450 lines a call), confirm
+`diff <(git show 37fc3c4:docs/index.html) <saved page>` differs only in the first line (the artifact's wrapper), read
+and `cmp` the data files that changed (`git diff --stat 37fc3c4 HEAD -- docs`) against 37fc3c4's, then publish
+`docs/index.html` with `files` = only those (files left out are kept), root `docs`, **no `capabilities`** (that keeps
+its database and downloads). Then the Log's artifact column.
 How to run: `python3 tools/build_garments.py --only scarf --debug <dir>` (Blender 4.5 LTS downloads itself; through this
 environment's proxy the download was cut off twice at about 347 of 378 MB: fetch it with `curl -C -` into
 `~/.cache/wardrobe-blender`, check it with the published sha256, and untar it there), then
@@ -336,6 +336,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | none | The shared-database artifact (8uqcGr2) republished from `main` (37fc3c4, PRs #40 to #43's build, as on GitHub Pages): the page, `data/garments/scarf.json` and eight `data/items` and `data/photos` files; 2D/3D smoke test clean | 8uqcGr2 v52 |
 | 13 Oct 2026 | #43 | One set of model controls: the fitting room's camera dock (`camDock`) on Edit Dave and the builder's small model too, with How it's worn as toggles; the builder's old bar gone | FtdHKg v47 |
 | 13 Oct 2026 | #42 | Emma's nine comments: straight and relaxed legs no longer widen below the thigh, cuffed joggers gather into a rib cuff, SikSilk no longer satin; six corrections (Matalan jeans' colour, the Holiday shirt's dark grey photo and check, board shorts' flowers, Admiral sweatshirt's panels, Lambretta polo's checks, Saltrock tee's print); new correction fields `print`/`at`, `back`, `slv` with `place` | FtdHKg v46 |
 | 13 Oct 2026 | none | Emma's artifact (FtdHKg) republished from `main` (d4edbf9, PRs #39 to #41's build); 8uqcGr2 still on PR #39's | FtdHKg v45 |
