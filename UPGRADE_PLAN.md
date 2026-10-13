@@ -2683,7 +2683,19 @@ changes.** PR #41.
 - `drapeScarf`: the band in the scarf's colour, each end in its `strip` design (from the foot up 44 cm, as the live
   scarf), and a fringe at each foot.
 - *Checked, switch on, the 7 outfits with a draped scarf on the five bodies, against `main` with the switch on:*
-  SWITCH_ON_RESULT
+  | body | `main`, switch on | this, switch on |
+  | --- | --- | --- |
+  | his shape | g-outdoor-05 back poke 473 | g-outdoor-05 back poke 425, **under 4** |
+  | slim | g-outdoor-05 back poke 60 | g-outdoor-05 back poke 66 |
+  | athletic | q7-fairisle belly skin; g-outdoor-05 back poke 336 | q7-fairisle belly skin; g-outdoor-05 back poke 281 |
+  | heavier | q7-fairisle and q8-morden belly skin; g-outdoor-05 back poke 34, under 3 | the same skin; g-outdoor-05 back poke 34 |
+  | loose | g-outdoor-05 back poke 598 | g-outdoor-05 back poke 598 |
+
+  The back pokes are a draped hoodie's hood coming through the jacket `make3Dcore` builds over it, and the belly skin
+  is the draped knits being short over a bigger belly (both STATUS item 0, on `main` too). The one new flag:
+  g-outdoor-05 "under 4" on his shape, a single speck of the jacket's stand collar tip at the scarf's top edge behind
+  his neck, where the edge folds in toward his neck (close-up renders: the rest of the back is clean). q7-fairisle's
+  "under" (STATUS item 0) is clean with the switch on, on `main` too since PR #40's live scarf.
 - *The pull-request check (switch off)*: green; the live page is unchanged.
 
 ## 3. Next steps
