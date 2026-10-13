@@ -17,6 +17,11 @@ What it does:
 
     python3 tools/build_garments.py [--only hoodie,halfzip,jacket] [--debug <dir>] [--frames 1.0]
 
+The scarf (--only scarf, data/garments/scarf.json) is not sewn: a band 180 x 14 cm (a scarf folded along its length) laid
+once round his neck with both ends down his front (SCARF, scarf_path: the loop dipping at the front onto his chest, the
+upper edge of its first turn held at the back of his neck as its grip on a collar holds it) over his body and the draped
+jumper (data/garments/jumper.json, so build that first), then let fall. About 30 seconds.
+
 It runs itself inside Blender 4.5 LTS: BLENDER=<path to blender>, else ~/.cache/wardrobe-blender, where Blender is
 downloaded from download.blender.org (and checked against its published sha256) on first use. The MakeHuman assets
 come as in tools/build_body.py (--mh). --frames scales the simulation's length (0.3 for a quick look). --debug writes
@@ -1023,6 +1028,146 @@ def drape_hood(G, body, can, off, Xs, Tw, a, F):
 
 ARM_REG, TORSO_REG = ("uarm", "farm", "hand"), ("chest", "belly", "hips", "neck", "head")
 
+# ---------------------------------------------------------------- the scarf
+# A scarf worn once round his neck, both ends hanging down his front, one longer than the other (lengths in cm): a
+# 180 x 28 cm scarf folded in half along its length, as it is usually worn, so a band 14 cm wide. It is not sewn: it is
+# laid on him (draped over his body and, as a stand-in for what he wears under it, the draped jumper) and let fall.
+SCARF = dict(length=180, width=14, longer=10)
+
+
+class Flat:
+    """a piece with no seams, already meshed: its points on the flat pattern (V), triangles (T) and group"""
+
+    def __init__(self, name, V, T, grp=0):
+        self.name, self.V, self.T, self.grp, self.stiff, self.band = name, V, T, grp, 0.0, 0.0
+
+
+def scarf_piece(s, h=0.014):
+    W, L = SCARF["width"] / 100 * s, SCARF["length"] / 100 * s
+    nu, nv = int(round(W / h)) + 1, int(round(L / h)) + 1
+    u, v = np.linspace(0, W, nu), np.linspace(0, L, nv)
+    V = np.array([[x, y] for y in v for x in u])
+    T = []
+    for j in range(nv - 1):
+        for i in range(nu - 1):
+            a = j * nu + i; b = a + 1; c = a + nu; d = c + 1
+            T += [[a, b, d], [a, d, c]]
+    return Flat("scarf", V, np.array(T)), nu, nv
+
+
+def scarf_path(P, body, under, L, longer):
+    """its centre line laid on him before the drape: up his front from the foot of the longer end, once round his neck
+    and on a little past the front (each turn further out and a little higher than the last, so it lies over its start),
+    and down the shorter end. Gives points, the way out from him at each, and the length of each part."""
+    reg = np.array([body.regions[r] for r in body.vreg]); Nk = P[reg == "neck"]
+    y0 = Nk[:, 1].min(); base = Nk[Nk[:, 1] < y0 + 0.025]
+    cz = (base[:, 2].min() + base[:, 2].max()) / 2; ax = np.abs(base[:, 0]).max(); az = (base[:, 2].max() - base[:, 2].min()) / 2
+    U = np.vstack([P, under])
+    def front(x, y):
+        sel = U[(np.abs(U[:, 0] - x) < 0.02) & (np.abs(U[:, 1] - y) < 0.015)]
+        return sel[:, 2].max() if len(sel) else cz + az
+    yN = y0 + 0.0
+    th0, extra = -0.45, 0.55
+    def ring(th):
+        g = (th - th0) / (2 * np.pi)
+        fr = (1 + math.cos(th)) / 2   # (1 at the front of his neck, 0 behind)
+        a, c = ax + 0.03 + 0.02 * g, az + 0.03 + 0.02 * g + 0.035 * fr
+        # (the loop dips at the front, onto the top of his chest, as a scarf wound once round lies: level all round, its
+        # front was squeezed between his chin and chest where both ends leave it, and heaped up over his chin)
+        return np.array([a * math.sin(th), yN + 0.015 - 0.05 * fr + 0.008 * g, cz + c * math.cos(th)])
+    R = [ring(t) for t in np.linspace(th0, th0 + 2 * np.pi + extra, 240)]
+    def hang(x, ytop, off):
+        return [np.array([x, y, front(x, y) + off]) for y in np.arange(ytop, 0.55, -0.01)]
+    # (each end from its foot to where it meets the ring, by way of a short curve)
+    xa, xb = R[0][0], R[-1][0]
+    Ha = hang(xa, yN - 0.11, 0.012); Hb = hang(xb, yN - 0.11, 0.026)
+    def join(p0, p1, d1, k=20):
+        c1 = p0 + np.array([0, 0.03, 0.0]); c2 = p1 - d1 * 0.05
+        return [bezp(p0, c1, c2, p1, t) for t in np.linspace(0, 1, k)[1:-1]]
+    dA = R[1] - R[0]; dA /= np.linalg.norm(dA); dB = R[-1] - R[-2]; dB /= np.linalg.norm(dB)
+    A = Ha[::-1] + join(Ha[0], R[0], dA)
+    B = join(Hb[0], R[-1], -dB)[::-1] + Hb
+    C = np.array(A + R + B)
+    seg = np.r_[0, np.cumsum(np.linalg.norm(np.diff(C, axis=0), axis=1))]
+    la, lr = seg[len(A)], seg[len(A) + len(R) - 1] - seg[len(A)]
+    # (cut to the scarf's length: the longer end hanging longer by `longer`)
+    ha = (L - lr + longer) / 2; hb = L - lr - ha
+    s0 = la - ha; s1 = la + lr + hb
+    out = lambda i: (C[i] - np.array([0, C[i][1], cz])) if i >= len(A) - 2 and i < len(A) + len(R) + 2 else np.array([0, 0, 1.0])
+    return C, seg, s0, s1, out, (cz, yN, la, lr)
+
+
+def bezp(p0, p1, p2, p3, t):
+    return (1 - t) ** 3 * p0 + 3 * (1 - t) ** 2 * t * p1 + 3 * (1 - t) * t * t * p2 + t ** 3 * p3
+
+
+def drape_scarf(body, a, F, scale):
+    """The scarf (SCARF): laid along scarf_path on him, the band's width across it (upright round his neck, leaning out
+    over his shoulders, flat across his front where it hangs), over his body and the draped jumper, then let fall."""
+    P = body.rel; N = vnormals(P, body.idx)
+    jp = os.path.join(a.out, "jumper.json")
+    J = json.load(open(jp)); Xj = unb64(J["pos"], np.float32).reshape(-1, 3).astype(np.float64)
+    Tj = unb64(J["vmap"], np.uint16).astype(np.int64)[unb64(J["idx"], np.uint16).astype(np.int64)].reshape(-1, 3)
+    pc, nu, nv = scarf_piece(scale)
+    L = pc.V[:, 1].max(); W = pc.V[:, 0].max()
+    C, seg, s0, s1, out, (cz, yN, la, lr) = scarf_path(P, body, Xj, L, SCARF["longer"] / 100 * scale)
+    print("scarf: %d points (%d across, %d along); path %.2f m, scarf %.2f m" % (len(pc.V), nu, nv, seg[-1], L), flush=True)
+    # each row of the band at its place along the path: its centre, the way along, out, and across
+    X = np.zeros((len(pc.V), 3)); prev = None; pins = []
+    for j in range(nv):
+        sv = s0 + pc.V[j * nu, 1]
+        i = int(np.clip(np.searchsorted(seg, sv) - 1, 0, len(C) - 2)); f = (sv - seg[i]) / max(1e-9, seg[i + 1] - seg[i])
+        c = C[i] * (1 - f) + C[i + 1] * f; t = C[i + 1] - C[i]; t /= np.linalg.norm(t)
+        n = out(i); n = n - t * np.dot(n, t); n /= np.linalg.norm(n) + 1e-12
+        b = np.cross(t, n); b /= np.linalg.norm(b) + 1e-12
+        if prev is not None and np.dot(b, prev) < 0: b = -b
+        prev = b
+        # (round his neck it leans out over his shoulders, its lower edge further out, as a scarf lies on them)
+        ringw = sstep(yN - 0.09, yN - 0.03, c[1])
+        up = 1.0 if b[1] >= 0 else -1.0
+        b2 = b - 0.45 * ringw * up * n; b2 /= np.linalg.norm(b2)
+        for i2 in range(nu):
+            X[j * nu + i2] = c + (pc.V[j * nu + i2, 0] - W / 2) * b2
+        # (the upper edge of the loop's first turn round the back of his neck is held where it is laid, as the scarf's
+        # grip on his collar holds it: left free, the back of the loop slid down his neck and, the loop being closed,
+        # drew the front up over his chin in a crumpled heap)
+        if la <= sv <= la + 2 * np.pi * 0.11 and (c[2] - cz) < -0.02:
+            pins.append(j * nu + (nu - 1 if b2[1] >= 0 else 0))
+    print("  pushed out of his body", push_out(X, P, N, 0.006), "points", flush=True)
+    Nj = vnormals(Xj, Tj)
+    print("  pushed out of the jumper", push_out(X, Xj, Nj, 0.006), "points", flush=True)
+    T = pc.T
+    if a.debug:
+        os.makedirs(a.debug, exist_ok=True)
+        debug_json(os.path.join(a.debug, "scarf-placed.json"), body, P, [("jumper", Xj, Tj, "#9aa0a6"), ("scarf", X, T, "#26304a")])
+    clear_scene()
+    static_collider("dave", P, body.idx, th=0.003)
+    static_collider("jumper", Xj, Tj, th=0.003)
+    frames = F(90)
+    co = cloth_obj("scarf", X, T, None, [], pins=pins, frames=frames, bending=a.bending, mass=a.mass, tension=a.tension)
+    if pins: co.modifiers["cloth"].settings.pin_stiffness = 20.0
+    print("  held at the back of his neck:", len(pins), "points", flush=True)
+    cc = co.modifiers["cloth"].collision_settings; cc.self_distance_min = 0.004; cc.distance_min = 0.004
+
+    def snap(f, Xf):
+        if a.debug: debug_json(os.path.join(a.debug, "scarf-f%03d.json" % f), body, P, [("jumper", Xj, Tj, "#9aa0a6"), ("scarf", Xf[0], T, "#26304a")])
+    snap.at = {F(10), F(30), F(60)} | {int(f) for f in os.environ.get("GB_SNAPS", "").split(",") if f}
+    Xs, = run(frames, [co], "scarf", snap)
+    if a.debug: debug_json(os.path.join(a.debug, "scarf-draped.json"), body, P, [("jumper", Xj, Tj, "#9aa0a6"), ("scarf", Xs, T, "#26304a")])
+    E = np.array(sorted({tuple(sorted((int(t[k]), int(t[(k + 1) % 3])))) for t in T for k in range(3)}))
+    R = np.linalg.norm(pc.V[E[:, 0]] - pc.V[E[:, 1]], axis=1)
+    st = np.linalg.norm(Xs[E[:, 0]] - Xs[E[:, 1]], axis=1) / R
+    print("  draped: edge/pattern 5%% %.3f, median %.3f, 95%% %.3f" % tuple(np.percentile(st, [5, 50, 95])), flush=True)
+    path = os.path.join(a.out, "scarf.json")
+    out_ = {"v": 1, "arch": "scarf", "size": "one", "meas_cm": dict(SCARF), "scale": round(scale, 5), "char": dict(body.char),
+            "about": "Made by tools/build_garments.py: a scarf folded along its length, laid once round Dave's neck with both "
+                     "ends down his front and draped over his body and the draped jumper in headless Blender. As the other "
+                     "templates: pos, vmap, piece, pat (x across the band, y along it from the longer end's foot), idx, bind."}
+    out_.update(template({"scarf": pc}, np.arange(len(pc.V)), Xs, T, body, lambda q: TORSO_REG))
+    json.dump(out_, open(path, "w"), separators=(",", ":"))
+    print("  wrote %s (%.0f KB)" % (os.path.relpath(path, ROOT), os.path.getsize(path) / 1024), flush=True)
+
+
 
 def bind(X, regs, body, P):
     """Each point's place on his body P: the nearest triangle among those of its regions (regs[i]: a tuple of region
@@ -1109,7 +1254,10 @@ def main():
     top = body.PW(np.array([[0, 1.79, 0.0]]), np.array([False]), body.hz)[0][1] if body.PW else 1.79
     scale = 1 / ((body.char.get("height", 183) / 183) * 1.79 / top)
     print("body ready: %d vertices, cloth scale %.4f" % (body.n, scale), flush=True)
-    archs = [x for x in (a.only.split(",") if a.only else list(MEAS)) if x]
+    archs = [x for x in (a.only.split(",") if a.only else list(MEAS) + ["scarf"]) if x]
+    F0 = lambda f: max(2, int(round(f * a.frames)))
+    if "scarf" in archs:
+        archs.remove("scarf"); drape_scarf(body, a, F0, scale)
     for arch in archs:
         G = Garment(arch, scale)
         cnt = seam_counts(G.S + (hood_seams(G) if G.hood else []), {**G.P, **(G.hood or {})})
