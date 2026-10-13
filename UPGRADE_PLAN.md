@@ -2583,7 +2583,10 @@ with it on they look as right, see the end). The way each was found, so the next
   as what shows between its edges (the furthest forward point of the layers under it across the opening, plus 8 mm,
   lifted at the edge and easing back over 23 degrees), so from the side nothing under it stands proud of its edge.
   Without it, wedding-guest's tie showed past the blazer's edge from the side, as in PR #31's try.
-- *Checked:* every outfit with a jacket, coat, blazer or gown (176), on his shape, against `main`: CHECK_RESULT.
+- *Checked:* every outfit with a jacket, coat, blazer or gown (176), on his shape, against `main`: the same 3 flagged on
+  both with the same counts (jb9-wet-dealer, jb-wet-day and jb8-wet-day, back poke 85: the hood over a waterproof jacket,
+  STATUS "Still open" item 1), 173 clean, nothing new. The pull-request check (gate set and changed outfits, five bodies,
+  both "How it's worn" runs) is green.
   Close-ups of q8-wool-jacket, festival (a long coat), g-outdoor-16, mn-smart and wedding-guest from the front, three
   quarters and side: flatter fronts, no dome in front of the armpits, nothing showing past an open edge.
 

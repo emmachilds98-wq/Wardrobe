@@ -20,7 +20,7 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
-**13 Oct, night: jackets and coats rest on his chest; scarves hang like scarves** (PR NUMBER, UPGRADE_PLAN
+**13 Oct, night: jackets and coats rest on his chest; scarves hang like scarves** (PR #40, UPGRADE_PLAN
 2zzzzzzzzzzzzzzzzzzzzzzzzzz). Emma flagged "the odd 3D model that shows the chest with a protruding chest" and the
 scarves. **Live page change** (not behind the drape switch):
 - *The chest:* measured on all 582 outfits, jackets (148 outfits), coats, blazers and gowns stood 3.3 to 4.3 cm off his
@@ -273,6 +273,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | #40 | Jackets, coats, blazers and gowns rest on his chest (`F.rest`, with an open front reaching as far forward as what shows between its edges); scarf ends as long fringed bands hanging from under the loop, the loop's top edge rolled and its front smooth; new correction `strip` (two scarves wear their designs) | not republished yet |
 | 13 Oct 2026 | #39 | Gilets draped behind the switch (`gilet`: sleeveless, done up, stand collar, hem band; zip and work pockets on the cloth); a shirt's leaf stays inside a stand collar done up over it; belts under draped tops; the fitting room says a shirt with a tie stays tucked; live page otherwise unchanged | 8uqcGr2 v51 |
 | 13 Oct 2026 | none | The shared-database artifact (8uqcGr2) republished from `main` (9c35b06, PR #38's build); five photo packs no longer in `docs/` removed from it | 8uqcGr2 v50 |
 | 13 Oct 2026 | #38 | Shirts draped behind the switch (`shirt` open, `shirt_up` done up: a point collar folded over its stand, cuffs, placket and buttons); a top draped only when all over it is; a shirt's leaf out over a jumper; layers held in under the draped bodies over them; live page unchanged | FtdHKg v44 |
