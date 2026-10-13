@@ -2511,6 +2511,11 @@ The first outer layer draped (STATUS.md item 0.1), behind the drape switch as be
   again afterwards, out over them, as a shirt collar lies over a crew jumper's neckline (`drapeLeaf`): settled under
   the jumper, it came through the jumper's shoulders. At 114 cm round the chest the shirt came through a draped jumper
   (116 cm, the layers kept 1 cm apart) at the belly and back; at 110 it stays inside.
+- **Held in under what is worn over it:** after every draped layer has settled, from the outside in, each one under
+  another has a short settle (20 steps) against the surfaces over it turned in, its body and sleeves only; then a
+  shirt's leaf is laid out over them. A jumper's rib band gathers it in at his hips over a shirt hanging straight, and
+  white flecks of the shirt came through above the band (m5-argyle front poke 34); held in, the shirt is drawn in under
+  the band. The photo's looks and front details are laid after this, on the cloth as it finally lies.
 - **Switch-on 3D check, gate set and five shirt outfits on his shape:** 28 of 30 clean before the leaf change (from 19
   of 30 on the gate set alone): m5-argyle was the shirt's leaf, and q7-fairisle's "under" (a draped half-zip's collar
   over PR #34's tighter scarf) is not the shirt's: it flags without the shirt templates too.

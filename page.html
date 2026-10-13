@@ -4029,7 +4029,7 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
         uP[sd].push(v.x,v.y,v.z);uN[sd].push(nv.x,nv.y,nv.z);}});
     var th=out?0.006:0.004,rc=out?0.02:0.04;return [drapeCol(new Float32Array(uP[0]),new Float32Array(uN[0]),th,rc),drapeCol(new Float32Array(uP[1]),new Float32Array(uN[1]),th,rc)];}
   var cU=null,cUA=null,cO=null,cOA=null;
-  var done=[],hoodies=[],leaves=[];
+  var done=[],hoodies=[],recs=[];
   /* (his body split, torso and arms, so a sleeve is not pushed off his side nor his side off his arm; the clothes under
      it whole: a tee's sleeve under a jacket's armhole, which is part of the jacket's body) */
   /* (what is worn over it holds in only its like: the garment's body inside a gilet's or a coat's body, its sleeves inside
@@ -4053,13 +4053,24 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
     drapeSettle(X,drapeGrade(t.cl,G,sy),layerCols(),t.grp,null,window.__drapeSteps||60,X.slice());var r=mesh(t,X,p,"up"+k);
     /* (a shirt's collar leaf is left out of what the layers over it lie on, and laid out over them afterwards: a crew
        jumper's neckline sits under it, as worn. Settled under the jumper it came through the jumper's shoulders) */
-    var lf=drapeLeaf(t),cX=X,cN=r.N;if(lf){cX=[];cN=[];for(var q=0;q<t.n;q++)if(!lf[q])for(var a=0;a<3;a++){cX.push(X[q*3+a]);cN.push(r.N[q*3+a]);}cX=new Float32Array(cX);cN=new Float32Array(cN);leaves.push({p:p,t:t,X:X,k:k,me:r.me,lf:lf,at:done.length,G:G,sy:sy});}
-    done.push({col:drapeCol(cX,cN,window.__drapeTh||0.01),X:X});if(ctx)drapeDetails(man,p,t,X,r.N,ctx,"up"+k,drapeLooks(man,p,t,X,r.N,r.me,ctx,"up"+k));if(t.hood&&p.shape==="hoodie")hoodies.push({p:p,t:t,X:X,k:k});});
-  /* the leaves, out over the draped layers worn over the shirt (the rest of the shirt held where it settled) */
-  leaves.forEach(function(L){if(L.at===done.length-1)return;var t=L.t,X=L.X,pin=new Uint8Array(t.n),ic=innerCols(L.k),own=done[L.at];for(var q=0;q<t.n;q++)pin[q]=L.lf[q]?0:1;
-    cU=ic[0];cUA=ic[1];cO=cOA=null;done.splice(L.at,1);drapeSettle(X,drapeGrade(t.cl,L.G,L.sy),layerCols(),t.grp,pin,window.__drapeSteps||60,X.slice());done.splice(L.at,0,own);
-    var N=drapeNormals(X,t.cl.W,t.n),g=L.me.geometry,pa=g.attributes.position.array,na=g.attributes.normal.array;
-    for(var j=0;j<t.m;j++){var w=t.vmap[j];for(var a=0;a<3;a++){pa[j*3+a]=X[w*3+a];na[j*3+a]=N[w*3+a];}}g.attributes.position.needsUpdate=g.attributes.normal.needsUpdate=true;g.computeBoundingSphere();});
+    var R={p:p,t:t,X:X,k:k,me:r.me,N:r.N,lf:drapeLeaf(t),G:G,sy:sy};R.col=function(){var X=R.X,N=R.N,lf=R.lf;if(!lf)return drapeCol(X,N,window.__drapeTh||0.01);var cX=[],cN=[];
+      for(var q=0;q<t.n;q++)if(!lf[q])for(var a=0;a<3;a++){cX.push(X[q*3+a]);cN.push(N[q*3+a]);}return drapeCol(new Float32Array(cX),new Float32Array(cN),window.__drapeTh||0.01);};
+    recs.push(R);done.push({col:R.col(),X:X,N:r.N});if(t.hood&&p.shape==="hoodie")hoodies.push({p:p,t:t,X:X,k:k});});
+  /* then, from the outside in, each draped layer under another is held inside the ones over it (its body and sleeves,
+     a short settle against their surfaces turned in), and a shirt's collar leaf is laid out over them (the rest of the
+     shirt held where it is). (A jumper's rib band gathers it in at his hips over a shirt hanging straight, and the shirt
+     came through above the band; held in, it is drawn in under the band, as the band presses a shirt in) */
+  for(var di=done.length-2;di>=0;di--){var R=recs[di],t=R.t,X=R.X,ic=innerCols(R.k),oc=innerCols(R.k,true),below=done.slice(0,di).map(function(d){return d.col;}),over=done.slice(di+1);
+    cU=ic[0];cUA=ic[1];cO=oc[0];cOA=oc[1];var c0=[cB,cU,cUA,cO].concat(below),c1=[cA,cU,cUA,cOA].concat(below),
+      inw=over.map(function(d){var Nn=new Float32Array(d.N.length);for(var q=0;q<Nn.length;q++)Nn[q]=-d.N[q];return drapeCol(d.X,Nn,0.006,0.02);});
+    drapeSettle(X,drapeGrade(t.cl,R.G,R.sy),[c0.concat(inw),c1.concat(inw),c1.concat(inw),c0,c0],t.grp,R.lf,20,X.slice());
+    if(R.lf){var pin=new Uint8Array(t.n),oo=over.map(function(d){return d.col;});for(var q=0;q<t.n;q++)pin[q]=R.lf[q]?0:1;
+      drapeSettle(X,drapeGrade(t.cl,R.G,R.sy),[c0.concat(oo),c1.concat(oo),c1.concat(oo),c0.concat(oo),c0.concat(oo)],t.grp,pin,window.__drapeSteps||60,X.slice());}
+    R.N=done[di].N=drapeNormals(X,t.cl.W,t.n);done[di].col=R.col();
+    var g=R.me.geometry,pa=g.attributes.position.array,na=g.attributes.normal.array;
+    for(var j=0;j<t.m;j++){var w=t.vmap[j];for(var a=0;a<3;a++){pa[j*3+a]=X[w*3+a];na[j*3+a]=R.N[w*3+a];}}g.attributes.position.needsUpdate=g.attributes.normal.needsUpdate=true;g.computeBoundingSphere();}
+  /* the photo's looks and the front details, on each one's cloth as it finally lies */
+  recs.forEach(function(R){if(ctx)drapeDetails(man,R.p,R.t,R.X,R.N,ctx,"up"+R.k,drapeLooks(man,R.p,R.t,R.X,R.N,R.me,ctx,"up"+R.k));});
   /* a hoodie's hood, last: its neckline on the hoodie's, the rest out over whatever is worn over the hoodie */
   hoodies.forEach(function(H){var h=H.t.hood;h.cl=h.cl||drapeCloth(h,h.pos);var X=drapeBind(h,BP,G),pin=new Uint8Array(h.n),P2=h.pins;
     for(var j=0;j<P2.length;j+=2){var a=P2[j]*3,b=P2[j+1]*3;pin[P2[j]]=1;X[a]=H.X[b];X[a+1]=H.X[b+1];X[a+2]=H.X[b+2];}
