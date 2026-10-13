@@ -20,8 +20,34 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
-**13 Oct, late night: the draped scarf wound a turn and a half; draped tops held off a bigger belly** (PR #45,
-UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzz). **Behind the drape switch: with it off the live page is unchanged.** Emma asked to
+**Next engineer, start here** (13 Oct, end of day). Where things stand: `main` is 51ff9ed (PR #45, merged 13 Oct) and
+GitHub Pages serves it; the shared artifact (8uqcGr2) is v53, the same build; Emma's own artifact (FtdHKg) is v47
+(7eaf1b5), which differs from `main` only behind the drape switch, so the page she sees is the same (republishing it
+needs a session signed in to her account). **The live page has no drape yet:** every draped garment is behind the
+drape switch (`window.__drape`), seen only in a drape preview build (`python3 tools/build_site.py --out <dir> --drape`,
+never `docs/`) or with `QA_INIT='window.__drape=1'` in the QA scripts. What to do next, in order:
+1. Drape the outer layers, so nothing `make3Dcore` builds sits over draped cloth: item 0 below, its **Next, in order**
+   step 1 (what "item 0.1" means elsewhere in this file). Padded and puffer jackets first (21 outfits blocked), then the
+   other zip jackets (21), a coat, Harrington and denim jackets, jacket-weight overshirts (the padded shacket that
+   comes through g-outdoor-05's draped jacket is one). Each kind: `MEAS` and pattern pieces in
+   `tools/build_garments.py`, `--only <kind> --debug <dir>`, a look with `node tools/garment_view.js
+   <dir>/<kind>-draped.json out.png "<views>"`, then `DRAPEK`/`DRAPEF` and `drapeArch` in `page.html`.
+2. XPBD substeps in `drapeSettle` (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz, research).
+3. Then the full switch-on check on all five bodies, Emma's look, and only then the switch on for everyone.
+How to check each change (as PR #45 was; UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzz has the numbers to compare against): build
+`python3 tools/build_site.py --out docs`; switch on, against `main` switch on, `QA_INIT='window.__drape=1' node
+tools/check_3d.js --site docs --ids <ids> --body <dave|slim|athletic|heavier|loose>` (and the same with `--site` a build
+of `main`: `git archive <main sha> docs | tar -x -C <dir>`), the gate set with `--ids @tools/qa/gate.txt`; switch off,
+the gate set must stay clean; `node tools/specs.js` must leave `data/specs.json` unchanged. The gate set takes about 30
+minutes a run: run long checks in the background with a long time limit. To find what a flag is, copy the check
+(`tools/check_3d.js`) to a scratch file and log the rays that count; the check gives points in world coordinates,
+the page's cloth is in his body's own, about 2.4% smaller at his height. To try a rule, patch a served copy of
+`docs/index.html` (`tools/qa/serve.sh`) behind a `window.__…` flag and render both ways with `tools/qa/zoom.js`.
+Shipping: a draft PR, CI green, merge, then republish 8uqcGr2 from `main` (the steps under the scarf entry below) and
+add a Log line.
+
+**13 Oct, late night: the draped scarf wound a turn and a half; draped tops held off a bigger belly** (PR #45, merged
+13 Oct as 51ff9ed; 8uqcGr2 v53; UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzz). **Behind the drape switch: with it off the live page is unchanged.** Emma asked to
 continue the upgrades in this file's order:
 - *The scarf's knot is gone:* the template (`tools/build_garments.py --only scarf`, `SCARF_WRAP`) is wound a turn and a
   half, each end turning down over his shoulder (flat on his chest, the band folded on itself into a knot), in a band
@@ -41,8 +67,8 @@ continue the upgrades in this file's order:
   on `main`, 0 now), the gate set and item 0's five more on his shape (31): what is left is g-outdoor-05's back poke
   (the padded shacket through the draped jacket's back, on `main` too) and m5-argyle's front poke 31 (as `main`).
   Switch off: the gate set clean, specs unchanged.
-**Next, in order:** the other outer layers still blocking the drape (item 0.1 below: g-outdoor-05's shacket is one),
-then XPBD substeps in `drapeSettle` (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz, research). For the scarf, still open: a
+**Next, in order:** the other outer layers still blocking the drape (item 0's **Next, in order** step 1: g-outdoor-05's
+shacket is one), then XPBD substeps in `drapeSettle` (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz, research). For the scarf, still open: a
 `strip` design runs 44 cm from each foot, so with the shorter ends it reaches 6 to 16 cm into the loop (round the back
 of his neck on g-quiet-30); real printed scarves do carry it on, so left.
 
@@ -89,14 +115,15 @@ with an 11 cm band. Kept for what was tried.* **Next engineer, start here for th
 **Emma's artifact (FtdHKg) is current:** republished 13 Oct from `main` at 7eaf1b5 (v47: PR #43, the page only),
 after v46 from 5dd07f9 (PR #42: the page, five `data/items/*.json` and `data/photos/shirt-p1.json`), as described
 below.
-**The shared artifact (8uqcGr2) is current:** republished 13 Oct from `main` at 37fc3c4 (v52: PRs #40 to #43, the
-same build as GitHub Pages and FtdHKg v47), its database and downloads kept. It belongs to another account, and a
+**The shared artifact (8uqcGr2) is current:** republished 13 Oct from `main` at 51ff9ed (v53: PR #45, the page and
+`data/garments/scarf.json`; before that v52 from 37fc3c4, PRs #40 to #43), the same build as GitHub Pages, its database
+and downloads kept. It belongs to another account, and a
 session signed in to Emma's cannot publish to it: only one signed in to the account that owns it can. The Artifact
 tool asks for the live page to be Read line by line first (about 8,200 lines, about 350k tokens), and for every data
 file being replaced to be read first too (`Artifact read` with `paths`). To republish next time: `Artifact read`
 8uqcGr2, Read the saved page in full (offset/limit, about 250 to 450 lines a call), confirm
-`diff <(git show 37fc3c4:docs/index.html) <saved page>` differs only in the first line (the artifact's wrapper), read
-and `cmp` the data files that changed (`git diff --stat 37fc3c4 HEAD -- docs`) against 37fc3c4's, then publish
+`diff <(git show 51ff9ed:docs/index.html) <saved page>` differs only in the first line (the artifact's wrapper), read
+and `cmp` the data files that changed (`git diff --stat 51ff9ed HEAD -- docs`) against 51ff9ed's, then publish
 `docs/index.html` with `files` = only those (files left out are kept), root `docs`, **no `capabilities`** (that keeps
 its database and downloads). Then the Log's artifact column.
 How to run: `python3 tools/build_garments.py --only scarf --debug <dir>` (Blender 4.5 LTS downloads itself; through this
@@ -363,6 +390,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | #45 | Behind the drape switch: the draped scarf wound a turn and a half (no knot; the loop as far out as he is, its lower half bent over his shoulders; stopped at frame 40), the scarf's push-out held through its last settle (g-outdoor-05's "under" clear on every body), and the layers under a draped top facing the way his body does (the heavier belly skin gone); live page unchanged. The shared artifact republished from 51ff9ed: the page and `data/garments/scarf.json` | 8uqcGr2 v53 |
 | 13 Oct 2026 | none | The shared-database artifact (8uqcGr2) republished from `main` (37fc3c4, PRs #40 to #43's build, as on GitHub Pages): the page, `data/garments/scarf.json` and eight `data/items` and `data/photos` files; 2D/3D smoke test clean | 8uqcGr2 v52 |
 | 13 Oct 2026 | #43 | One set of model controls: the fitting room's camera dock (`camDock`) on Edit Dave and the builder's small model too, with How it's worn as toggles; the builder's old bar gone | FtdHKg v47 |
 | 13 Oct 2026 | #42 | Emma's nine comments: straight and relaxed legs no longer widen below the thigh, cuffed joggers gather into a rib cuff, SikSilk no longer satin; six corrections (Matalan jeans' colour, the Holiday shirt's dark grey photo and check, board shorts' flowers, Admiral sweatshirt's panels, Lambretta polo's checks, Saltrock tee's print); new correction fields `print`/`at`, `back`, `slv` with `place` | FtdHKg v46 |
