@@ -20,6 +20,18 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**13 Oct, evening: gilets are draped** (PR #39, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzz), behind the drape switch:
+**with the switch off the live page is unchanged** (but for the fitting room's tie note below). Gilets were the outer
+layer that kept most draped tops from being draped (35 outfits). A new template, `gilet`: a bodywarmer done up, no
+sleeves, deep armholes, a 3 cm hem band and a stand collar, its zip and a work bodywarmer's pockets drawn on the cloth;
+hooded, tailored and open gilets keep `make3Dcore`'s shapes. Two rules found on the way: a shirt's collar leaf now
+stays inside a stand collar done up over it (gilet, zipped jacket, half-zip, roll neck), and a plain belt is under
+every draped top (it came through the gilet at his waist). Switch-on 3D check of the 40 gilet outfits on his shape:
+see item 0. **Decisions made 13 Oct (Emma: "make any decisions needed"):** a shirt worn with a tie stays tucked, and
+the fitting room now says so (queue item 5); the drape switch stays off until the outer layers are draped and the
+full switch-on check is clean on all five bodies; sizing stays as Emma set it (model's shape right, sizing adjustable);
+reference photos of Dave stay out of the repo. **Next engineer, start at item 0.1.**
+
 **13 Oct, later: shirts are draped** (PR #38, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzz), behind the drape switch like
 the rest of the drape: **with the switch off the live page is unchanged.** Two new templates, `shirt` (worn open) and
 `shirt_up` (done up), with a point collar folded over its stand, buttoned cuffs, and the placket and buttons drawn on
@@ -70,11 +82,24 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
      only round him: `drapeGrade`'s `sy`).
    - wk-lounge on heavier and loose (back poke 44, holes 29 to 31): its long-sleeved tee is not draped (the tee
      template is short-sleeved) and comes through the draped shirt's back. A long-sleeved tee template fixes it.
+   - **Gilets (PR #39), switch on, the 40 gilet outfits on his shape:** **29 of 40 clean** (15 flagged at first; the
+     collar and belt rules in UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzz cleared four and roughly halved most of the rest;
+     the 25 clean at first are still clean). Still flagged, with the switch on only:
+     - 8 at the base of his neck, front poke 38 to 83 (errands, g-job-11, g-job-15, g-outdoor-01, g-outdoor-03,
+       g-quiet-13, g-quiet-18, g-quiet-26): the top under it seen inside the gilet's stand collar. Close up a roll neck
+       there looks right; a shirt's leaf held inside the collar is crumpled and shows. Look before changing the check:
+       the four-sides rule reads anything inside a stand collar as enclosed by it.
+     - g-outdoor-21, front poke 151 and back 619: a borg-lined overshirt (jacket-weight, built by `make3Dcore`) under
+       the gilet comes through its back; it goes when jacket-weight overshirts are draped.
+     - g-job-13 back poke 40 (small marks near the back hem) and g-quiet-29 back holes 29: not looked at yet.
    **Next, in order:**
    1. Drape the outer layers too, so nothing `make3Dcore` builds sits over draped cloth. **Shirts done 13 Oct** (PR #38,
       UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzz: `shirt` and `shirt_up`, a folded point collar, laid out over a jumper),
-      and a top is draped only when everything over it is. Next: a shirt tucked in (into the waistband), a coat (long,
-      lapels), other jackets (Harrington, denim, padded: quilting as a material), a gilet, an overshirt's patch pockets.
+      and a top is draped only when everything over it is. **Gilets done 13 Oct** (PR #39, UPGRADE_PLAN
+      2zzzzzzzzzzzzzzzzzzzzzzzzz). Next: padded and puffer jackets (21 outfits blocked; the jacket template with more
+      ease, quilting as a material), the other zip jackets (21), a shirt tucked in (into the waistband), a coat (long,
+      lapels), Harrington and denim jackets, an overshirt's patch pockets (a jacket-weight overshirt under a gilet is
+      what is left on g-outdoor-21).
       Also: q7-fairisle's draped half-zip collar comes over PR #34's tighter scarf ("under" 14, switch on only). Each: `MEAS` and pattern pieces in `build_garments.py`, a run with `--debug`, a look with
       `garment_view.js`, then `DRAPEK`/`DRAPEF` and `drapeArch`'s cut test in `page.html`. Until then, an option is to
       drape a tee or knit only when nothing `make3Dcore` builds is worn over it.
@@ -157,8 +182,8 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
    his neck.
 4. [ ] **One set of model controls.** The Fitting room fold under Style guide and the builder's small model still
    have their own buttons; give them the fitting room's camera dock and wear options.
-5. [ ] **Untucked with a tie.** A shirt with a tie always stays tucked (`tuckOn`), so Untucked is hidden then.
-   Decide with Emma whether that is right (it is how a tie is worn) and say so on the button.
+5. [x] **Untucked with a tie.** Decided 13 Oct: a shirt with a tie stays tucked (`tuckOn`, as a tie is worn); the
+   fitting room's tuck row now shows only "Tucked", with the note "Worn with a tie, the shirt stays tucked in." (PR #39).
 6. [ ] **Newer Three.js** (r128 now). Emma said yes on 12 Oct (the drape plan's step 1, `design/garment-drape/README.md`).
    Plan doc "Engine and body", still to do. Check every QA script and the 3D check still run, and that card stills
    look the same.
@@ -230,6 +255,8 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | #39 | Gilets draped behind the switch (`gilet`: sleeveless, done up, stand collar, hem band; zip and work pockets on the cloth); a shirt's leaf stays inside a stand collar done up over it; belts under draped tops; the fitting room says a shirt with a tie stays tucked; live page otherwise unchanged | 8uqcGr2 v51 |
+| 13 Oct 2026 | none | The shared-database artifact (8uqcGr2) republished from `main` (9c35b06, PR #38's build); five photo packs no longer in `docs/` removed from it | 8uqcGr2 v50 |
 | 13 Oct 2026 | #38 | Shirts draped behind the switch (`shirt` open, `shirt_up` done up: a point collar folded over its stand, cuffs, placket and buttons); a top draped only when all over it is; a shirt's leaf out over a jumper; layers held in under the draped bodies over them; live page unchanged | FtdHKg v44 |
 | 13 Oct 2026 | #37 | PR #33's and #34's work back on `main` (bottoms' cuts from their photos, `ARMSUM`, the seat, polo collars, necklines at the base of his neck, collars grown from their tops, scarves that wrap); a hood laid over an open jacket (the jacket's neckline no longer climbs the hood rim, its collar pressed down under the hood); the scarf check counts near-side hits only | FtdHKg v43 |
 | 12 Oct 2026 | none | FtdHKg republished from `main` (e0bcb1d, PR #36's build, as on GitHub Pages), which rolled #33's and #34's fixes back on it until #37 | FtdHKg v42 |

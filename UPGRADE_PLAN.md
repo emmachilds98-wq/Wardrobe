@@ -2521,6 +2521,38 @@ The first outer layer draped (STATUS.md item 0.1), behind the drape switch as be
   of 30 on the gate set alone): m5-argyle was the shirt's leaf, and q7-fairisle's "under" (a draped half-zip's collar
   over PR #34's tighter scarf) is not the shirt's: it flags without the shirt templates too.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzz. Draped gilets, and collars and belts under a draped top (13 Oct 2026)
+
+The next outer layer (STATUS.md item 0.1), behind the drape switch: the page is unchanged without it. Gilets were the
+outer layer that kept most draped tops from being draped: 35 outfits had a draped top under one (40 gilets in the
+outfits, none worn open). Next by that count: padded and puffer jackets (21) and the other zip jackets (21).
+
+- **The builder** (`tools/build_garments.py`): a sleeveless archetype (an entry in `MEAS` with no `sleeve` skips the
+  sleeves, cuffs and their seams; the armholes stay open edges) and `gilet`: a bodywarmer done up, 124 cm round the
+  chest and 69 long (size L), armholes 27 cm deep and cut in to the point of his shoulder (shoulder 43 cm) so the
+  sleeve of the top under it comes through, a 3 cm hem band (gathered to 0.92), the zipped jacket's 6.5 cm stand
+  collar. About a minute in Blender. Corners where pieces meet +33 degrees at most (the zipped jacket's are +37); bound
+  25 mm off his body at the median. `jacket_up`, rebuilt after the change, is byte-identical to the one on `main`.
+- **The page:** `DRAPEK`/`DRAPEF` take `gilet`; `drapeArch` leaves hooded and tailored gilets to `make3Dcore`, and one
+  worn open keeps its shapes as before (only a jacket's and a shirt's templates open). The zip from the collar's top to
+  the hem as on `jacket_up`; a work or utility bodywarmer's patch pockets (`make3Dcore`'s rule); no photo front (as
+  `make3Dcore`); prints as on any top.
+- **A stand collar done up over a shirt** (gilet, zipped jacket, half-zip, roll neck: `STANDC`): the shirt's collar
+  leaf stays inside it, held in by the whole of that layer turned in (`inCol`), as it is worn. Laid out over it (as
+  over a crew jumper's neckband), the gilet's 6.5 cm collar came through the leaf (errands: front poke 142).
+- **A polo's or shirt's collar built by `make3Dcore` under a draped gilet or zipped jacket** is the low band it is
+  under a half-zip or hoodie (`stC` sets `cov`): its leaves lying out came through the gilet's neckline at the front
+  (g-job-13: front poke 107, now 6).
+- **Belts:** a plain belt is under every draped top (`drapeTops`' `under`; tool belts stay over): a draped top is never
+  tucked, so the belt is under it. Left out, the belt came through the gilet at his waist (q13-coastal, front poke 224
+  before the collar rule, 101 after it, clean with it).
+- **Switch-on 3D check of the 40 gilet outfits on his shape** (`QA_INIT='window.__drape=1'`): 15 flagged at first,
+  every one at the neck or waist; after the three rules above, 29 of 40 are clean (the 25 clean at first
+  still are). Left: eight at the base of his neck (front poke 38 to 83: the top under it seen inside the gilet's stand
+  collar; a roll neck there looks right close up, a shirt's leaf held inside it is crumpled), g-outdoor-21 (a
+  borg-lined overshirt built by `make3Dcore` comes through the gilet's back: back poke 619), g-job-13 (back poke 40)
+  and g-quiet-29 (back holes 29). The pull-request check, with the switch off, is unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
