@@ -28,7 +28,8 @@ photo, now its dark grey colourway, and its check; the Brakeburn board shorts' f
 panels; the Lambretta polo's band of checks; the Saltrock tee's print); two `data/cuts.json` lines. New correction
 fields: `print` and `at` (a chest print from a flat photo when the shop's photo is on a model), `back: false` and
 `slv` with `place`. A general denim rule for the jeans was tried and reverted (it moved 6 other pairs further from their
-photos): see the plan entry. Each thread has a reply; FtdHKg is republished from this build once it merges.
+photos): see the plan entry. Merged 13 Oct; FtdHKg republished from it (v46) and all nine threads answered and
+resolved (none left open on the artifact).
 
 **13 Oct, late: a draped scarf, behind the drape switch** (PR #41, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzz). **With
 the switch off the live page is unchanged.** A scarf template (`tools/build_garments.py --only scarf`,
@@ -58,8 +59,9 @@ on his shape (one speck of collar). **Next engineer, start here for the scarf:**
    or skip the fold-in rows in the push (`drapeTops`, the scarf block).
 4. Then the other outer layers still blocking the drape (item 0.1 below), and XPBD substeps in `drapeSettle`
    (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz, research).
-**Emma's artifact (FtdHKg) is current:** republished 13 Oct from `main` at d4edbf9 (v45: PRs #39, #40 and #41), as
-described below; it had been on PR #38's build (v44).
+**Emma's artifact (FtdHKg) is current:** republished 13 Oct from `main` at 5dd07f9 (v46: PR #42), as described
+below, with only the files that changed since d4edbf9 (`git diff --stat d4edbf9 5dd07f9 -- docs`: five
+`data/items/*.json`, `data/photos/shirt-p1.json` and the page).
 **The shared artifact (8uqcGr2) is behind `main`:** it still shows PR #39's build (v51); PRs #40 (live: jackets on his
 chest, the new scarves) and #41 (drape switch only) are on GitHub Pages but not on the artifact. It belongs to another
 account, and a session signed in to Emma's cannot publish to it: only one signed in to the account that owns it can.
@@ -224,7 +226,7 @@ built site, patch its `index.html` with a small script, serve it on its own port
    PR #37's hood fix). jb-wet-day is item 1 above. To test a body the page
    has no button for, copy `docs/` and add an entry to `PRESETS` in the copy's `index.html`, e.g. `xbase:{weight:0.6,
    muscle:0.6,arms:1,legs:1}`, then `node tools/check_3d.js --site <copy> --ids w20261006-casual-04 --body xbase`.
-3. **One set of model controls** (queue item 4). Found 12 Oct: the builder's small model uses `Live3D`'s own bar
+3. **One set of model controls** (queue item 4, done 13 Oct, PR #43). Found 12 Oct: the builder's small model uses `Live3D`'s own bar
    (`opt.bar`, `.v3-bar`, `data-v3`: Front, Side, Back, Turn, Full, Top, Face, Zip up), Edit Dave has its own Front,
    Side, Back (`.ce-bot`, `data-ceang`), the fitting room the dock (`.fr-dock`, `data-frang`, `data-frcam`,
    `data-frspin`, lit in `frFrame`) and "How it's worn" (`frWearRows`, `frWear`). Plan: one function making the dock's
@@ -255,8 +257,12 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
    four-in-hand knot at his throat in the collar's notch (it hung 6 cm low, on his chest); the collar's points come
    down at the front and angle apart (`fold.spread`). Left: the blazer's own collar is still ragged at the sides of
    his neck.
-4. [ ] **One set of model controls.** The Fitting room fold under Style guide and the builder's small model still
-   have their own buttons; give them the fitting room's camera dock and wear options.
+4. [x] **One set of model controls.** Done 13 Oct (PR #43): the fitting room's camera dock (`camDock`) on every live
+   model, the fitting room, Edit Dave (opened from the Fitting room fold) and the builder's small model, one handler
+   for all of them, lit by `dockSync`; Edit Dave and the builder also get How it's worn as toggles in the dock (Done up,
+   Tucked, Turned up: `dockWear`, from `wearRows`, the fitting room's rows for any wear). Compare keeps its own
+   controls, which turn both models at once. The builder's model under 240 px wide (phones) has no dock, as it had
+   no bar.
 5. [x] **Untucked with a tie.** Decided 13 Oct: a shirt with a tie stays tucked (`tuckOn`, as a tie is worn); the
    fitting room's tuck row now shows only "Tucked", with the note "Worn with a tie, the shirt stays tucked in." (PR #39).
 6. [ ] **Newer Three.js** (r128 now). Emma said yes on 12 Oct (the drape plan's step 1, `design/garment-drape/README.md`).
@@ -330,6 +336,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | #42 | Emma's nine comments: straight and relaxed legs no longer widen below the thigh, cuffed joggers gather into a rib cuff, SikSilk no longer satin; six corrections (Matalan jeans' colour, the Holiday shirt's dark grey photo and check, board shorts' flowers, Admiral sweatshirt's panels, Lambretta polo's checks, Saltrock tee's print); new correction fields `print`/`at`, `back`, `slv` with `place` | FtdHKg v46 |
 | 13 Oct 2026 | none | Emma's artifact (FtdHKg) republished from `main` (d4edbf9, PRs #39 to #41's build); 8uqcGr2 still on PR #39's | FtdHKg v45 |
 | 13 Oct 2026 | #41 | A draped scarf behind the drape switch (`scarf` template, `drapeScarf`); live page unchanged | not republished (see below) |
 | 13 Oct 2026 | #40 (merged) | Jackets, coats, blazers and gowns rest on his chest (`F.rest`, with an open front reaching as far forward as what shows between its edges); scarf ends as long fringed bands hanging from under the loop, the loop's top edge rolled and its front smooth; new correction `strip` (two scarves wear their designs) | not republished (see below) |
