@@ -37,15 +37,18 @@ on his shape (one speck of collar). **Next engineer, start here for the scarf:**
    or skip the fold-in rows in the push (`drapeTops`, the scarf block).
 4. Then the other outer layers still blocking the drape (item 0.1 below), and XPBD substeps in `drapeSettle`
    (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz, research).
+**Emma's artifact (FtdHKg) is current:** republished 13 Oct from `main` at d4edbf9 (v45: PRs #39, #40 and #41), as
+described below; it had been on PR #38's build (v44).
 **The shared artifact (8uqcGr2) is behind `main`:** it still shows PR #39's build (v51); PRs #40 (live: jackets on his
-chest, the new scarves) and #41 (drape switch only) are on GitHub Pages but not on the artifact. The session that merged
-them could not republish: the Artifact tool asks for the live page to be Read line by line first (8198 lines, about 350k
-tokens), more than was left. To republish: `Artifact read` 8uqcGr2, Read the saved page in full (offset/limit, about 400
+chest, the new scarves) and #41 (drape switch only) are on GitHub Pages but not on the artifact. It belongs to another
+account, and a session signed in to Emma's cannot publish to it: only one signed in to the account that owns it can.
+The Artifact tool asks for the live page to be Read line by line first (about 8,200 lines, about 350k tokens). To
+republish: `Artifact read` 8uqcGr2, Read the saved page in full (offset/limit, about 350 to 450
 lines a call), confirm `diff <(git show 29fbad8:docs/index.html) <saved page>` differs only in the first line (the
 artifact's wrapper), then publish `docs/index.html` with `files` = only what changed since 29fbad8
 (`git diff --stat 29fbad8 HEAD -- docs`: `data/items/acc-1.json`, `data/items/acc-2.json`, `data/garments/scarf.json`;
 files left out are kept), root `docs`, **no `capabilities`** (that keeps its database and downloads). Then the Log's
-artifact column.
+artifact column. FtdHKg was republished the same way from 19190e4 (its build), adding `data/garments/gilet.json` too.
 How to run: `python3 tools/build_garments.py --only scarf --debug <dir>` (Blender 4.5 LTS downloads itself; through this
 environment's proxy the download was cut off twice at about 347 of 378 MB: fetch it with `curl -C -` into
 `~/.cache/wardrobe-blender`, check it with the published sha256, and untar it there), then
@@ -306,6 +309,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | none | Emma's artifact (FtdHKg) republished from `main` (d4edbf9, PRs #39 to #41's build); 8uqcGr2 still on PR #39's | FtdHKg v45 |
 | 13 Oct 2026 | #41 | A draped scarf behind the drape switch (`scarf` template, `drapeScarf`); live page unchanged | not republished (see below) |
 | 13 Oct 2026 | #40 (merged) | Jackets, coats, blazers and gowns rest on his chest (`F.rest`, with an open front reaching as far forward as what shows between its edges); scarf ends as long fringed bands hanging from under the loop, the loop's top edge rolled and its front smooth; new correction `strip` (two scarves wear their designs) | not republished (see below) |
 | 13 Oct 2026 | #39 | Gilets draped behind the switch (`gilet`: sleeveless, done up, stand collar, hem band; zip and work pockets on the cloth); a shirt's leaf stays inside a stand collar done up over it; belts under draped tops; the fitting room says a shirt with a tie stays tucked; live page otherwise unchanged | 8uqcGr2 v51 |
