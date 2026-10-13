@@ -20,6 +20,22 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**13 Oct, night: jackets and coats rest on his chest; scarves hang like scarves** (PR NUMBER, UPGRADE_PLAN
+2zzzzzzzzzzzzzzzzzzzzzzzzzz). Emma flagged "the odd 3D model that shows the chest with a protruding chest" and the
+scarves. **Live page change** (not behind the drape switch):
+- *The chest:* measured on all 582 outfits, jackets (148 outfits), coats, blazers and gowns stood 3.3 to 4.3 cm off his
+  skin at the chest (median), against 1.0 to 1.4 for tees and jumpers: their room was measured from his body and never
+  halved at the front, so an open jacket stood 2.5 to 3 cm off the jumper under it and domed out in front of his armpits.
+  An outer layer that is not padded now gets half its room over the front of his chest and belly (`fitTop`'s `F.rest`),
+  and an open front still reaches as far forward as what shows between its edges (so a tie or roll neck never stands
+  proud of it from the side, the fault that sank PR #31's try).
+- *Scarves:* the ends are long soft bands with a thickness and a fringe, lying on what he wears and hanging straight
+  below his chest, coming out from under the loop; the loop's top edge rolls over and its front lower edge is smooth.
+  New correction `strip` (a scarf's end cut from its flat-lay photo): the Pretty Green Rainsford and Urban Excess scarves
+  wear their designs.
+- **Research and what Emma could get us:** UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz, last part. Next for the drape: a
+  scarf template (settled last, over every layer), XPBD substeps in `drapeTops`, patterns from PyGarment.
+
 **13 Oct, evening: gilets are draped** (PR #39, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzz), behind the drape switch:
 **with the switch off the live page is unchanged** (but for the fitting room's tie note below). Gilets were the outer
 layer that kept most draped tops from being draped (35 outfits). A new template, `gilet`: a bodywarmer done up, no
@@ -116,15 +132,17 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
      pieces of their own, the relax smooths without shrinking, the body is blended at the armpits.
    - Also, a small data pull request: g-mod-27's Duck and Cover top is a quarter-zip with no hood (the shop's feed
      says so), so its piece should be `halfzip`, and `descOf` reads "quarter-zip hoodie" as a full zip ("zip hood").
-   - Frozen while this goes on (the drape replaces that code): queue items 9 and 10, scarf edges, contrast collars.
+   - Frozen while this goes on (the drape replaces that code): queue items 9 and 10, contrast collars (scarves were
+     reworked on 13 Oct at Emma's request; the drape's own scarf template is still the way on).
      Data, photo reading and the weekly refresh carry on.
 
 **Still open from PR #34's notes** (how to look close up is below):
 1. jb-wet-day (a hoodie's hood out over the waterproof jacket, back poke 82 to 142, red on `main` too, not among the
    pull-request check's outfits): the jacket's back shows through the top of the hood, so the hood's estimate of how
    far out the jacket sits (`eTop`, `hOut` in `make3Dcore`) is short there.
-2. Smooth the scarf loop's top edge (ragged at the front in places) and check all 8 scarf outfits (q7-fairisle,
-   pub-lunch, q9-matagalpa, q8-morden, od-event, g-outdoor-05, jb11-winter, g-quiet-30).
+2. Done 13 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzz; Emma asked, so the scarf freeze was lifted for it): the
+   scarf's ends, the loop's rolled top edge and smooth front, all 8 scarf outfits checked close up. Left: the loop
+   flares over a high jacket collar at the sides (pub-lunch); a `strip` scarf's design is not carried round the loop.
 3. Sweep every kind of top and collar, alone and layered, close up from the front, ¾, side and back, against its
    shop photo: tee, oversized tee, crew jumper, roll neck, half-zip, hoodie, cardigan, shirt done up and open, polo,
    short-sleeve shirt, overshirt, zip jacket, Harrington, denim/trucker, bomber, puffer, coat, blazer, gilet. Then the
