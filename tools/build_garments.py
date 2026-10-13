@@ -279,6 +279,10 @@ MEAS = {
                   sleeve=64, bicep=40, wrist=25, cuff=6.5, cuff_c=24, collar=3, leaf=4.5, point=7, open=1),
     "shirt_up": dict(chest=110, length=79, shoulder=47, armhole=24, neck_w=16, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
                      sleeve=64, bicep=40, wrist=25, cuff=6.5, cuff_c=24, collar=3, leaf=4.5, point=7),
+    # a gilet (a bodywarmer) done up: no sleeves (no sleeve key), its armholes cut deeper and in to the point of his
+    # shoulder so a jumper's or a hoodie's sleeve comes through, a plain hem and the jacket's stand collar, zipped
+    "gilet": dict(chest=124, length=69, shoulder=43, armhole=27, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3, band_k=0.92,
+                  collar=6.5),
 }
 H = 0.014   # mesh spacing (m)
 
@@ -506,25 +510,29 @@ class Garment:
         for pc in bodice(M, "front", s, split=op) + bodice(M, "back", s): P[pc.name] = pc
         fp, fn = ("front_p", "front_n") if op else ("front", "front")
         self.fp, self.fn = fp, fn
-        arm_len = plen(P[fp].edge("arm_p")) + plen(P["back"].edge("arm_n"))
-        # (his left sleeve is the right one turned over, as a pattern piece is cut twice from folded cloth: every piece
-        # then faces outward on him. Wrapped round his left arm unturned it faced inward, and Blender's bending, which
-        # measures the angle between neighbouring triangles by the way they face, fought a half turn all round that
-        # armhole, leaving a rippled ridge along its seam.)
-        sl, cu, self.yb, self.cap = sleeve(M, s, arm_len, 2)
-        sl1, cu1, _, _ = sleeve(M, s, arm_len, 1)
-        P["sleeve_L"] = mirror(sl1, "sleeve_L"); P["sleeve_R"] = sl
-        if cu: P["cuff_L"] = mirror(cu1, "cuff_L"); P["cuff_R"] = cu
+        # (a gilet has none: its armholes are left open)
+        slv, cu, self.yb, self.cap = "sleeve" in M, None, None, None
+        if slv:
+            arm_len = plen(P[fp].edge("arm_p")) + plen(P["back"].edge("arm_n"))
+            # (his left sleeve is the right one turned over, as a pattern piece is cut twice from folded cloth: every piece
+            # then faces outward on him. Wrapped round his left arm unturned it faced inward, and Blender's bending, which
+            # measures the angle between neighbouring triangles by the way they face, fought a half turn all round that
+            # armhole, leaving a rippled ridge along its seam.)
+            sl, cu, self.yb, self.cap = sleeve(M, s, arm_len, 2)
+            sl1, cu1, _, _ = sleeve(M, s, arm_len, 1)
+            P["sleeve_L"] = mirror(sl1, "sleeve_L"); P["sleeve_R"] = sl
+            if cu: P["cuff_L"] = mirror(cu1, "cuff_L"); P["cuff_R"] = cu
         bands = [k for k in P if k.endswith("_band")]
         # seams: [(piece, edge), ...] on one side against the other, sampled alike, and whether the two sides run the
         # same way along the seam (each piece's outline runs counter-clockwise seen from outside, so two pieces sewn
         # edge to edge run opposite ways). bias: how much of the closing
         # move the first side takes (1: it moves onto the second).
         S = [([(fp, "sh_p")], [("back", "sh_n")], 0.5, False), ([(fn, "sh_n")], [("back", "sh_p")], 0.5, False),
-             ([(fp, "side_p")], [("back", "side_n")], 0.5, False), ([(fn, "side_n")], [("back", "side_p")], 0.5, False),
-             ([("sleeve_L", "cap_p")], [(fp, "arm_p")], 0.85, False), ([("sleeve_L", "cap_n")], [("back", "arm_n")], 0.85, False),
-             ([("sleeve_R", "cap_p")], [(fn, "arm_n")], 0.85, False), ([("sleeve_R", "cap_n")], [("back", "arm_p")], 0.85, False),
-             ([("sleeve_L", "under_p")], [("sleeve_L", "under_n")], 0.5, False), ([("sleeve_R", "under_p")], [("sleeve_R", "under_n")], 0.5, False)]
+             ([(fp, "side_p")], [("back", "side_n")], 0.5, False), ([(fn, "side_n")], [("back", "side_p")], 0.5, False)]
+        if slv:
+            S += [([("sleeve_L", "cap_p")], [(fp, "arm_p")], 0.85, False), ([("sleeve_L", "cap_n")], [("back", "arm_n")], 0.85, False),
+                  ([("sleeve_R", "cap_p")], [(fn, "arm_n")], 0.85, False), ([("sleeve_R", "cap_n")], [("back", "arm_p")], 0.85, False),
+                  ([("sleeve_L", "under_p")], [("sleeve_L", "under_n")], 0.5, False), ([("sleeve_R", "under_p")], [("sleeve_R", "under_n")], 0.5, False)]
         if cu:
             S += [([("cuff_L", "top")], [("sleeve_L", "wrist")], 1.0, False), ([("cuff_R", "top")], [("sleeve_R", "wrist")], 1.0, False),
                   ([("cuff_L", "under_p")], [("cuff_L", "under_n")], 0.5, False), ([("cuff_R", "under_p")], [("cuff_R", "under_n")], 0.5, False)]

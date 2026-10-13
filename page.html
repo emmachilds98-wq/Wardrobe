@@ -3810,7 +3810,7 @@ function jacketShirt(p){return overshirt(p)&&/shacket|shirt jacket|chore|insulat
    first, against his body, the clothes under it and the layers already settled; a hoodie's hood last, out over
    anything worn over the hoodie. Lengths are the draped garment's on his saved shape, so on him it keeps its drape;
    on another body it moves with him and settles. See UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzz. */
-var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up"];   /* (jacket_up, shirt_up: the jacket zipped up and the shirt done up, for one worn closed) */
+var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt",gilet:"gilet"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up","gilet"];   /* (jacket_up, shirt_up: the jacket zipped up and the shirt done up, for one worn closed) */
 /* (a template whose front is cut in two, worn open: the jacket and the shirt) */
 function drapeSplit(t){return t.arch==="jacket"||t.arch==="shirt";}
 /* (a shirt's collar leaf: its welded points that are on no other piece, the fold along the stand's top left out) */
@@ -3829,6 +3829,9 @@ function drapeArch(p){var a=DRAPEK[p.shape];if(!window.__drape||!a||!GTPL[a])ret
   /* (the shirt template is a long-sleeved shirt with a point collar on a stand: a band, grandad, camp or Cuban collar,
      and a jacket-weight overshirt (a chore jacket, a shacket), keep make3Dcore's shapes) */
   if(a==="shirt"&&(/^(band|camp)$/.test(D.collar||"")||/grandad|granddad|mandarin|band collar|collarless|camp collar|cuban|revere|short[- ]?sleeve/.test(n)||jacketShirt(p)))return null;
+  /* (the gilet template is a bodywarmer done up, zipped to its stand collar: a hooded one keeps make3Dcore's shapes, and
+     one worn open does (make3Dcore: only a jacket's and a shirt's templates open)) */
+  if(a==="gilet"&&/hood|tailor|suit|waistcoat/.test(n))return null;
   return a;}
 function gtplDec(b64,A){var s=atob(b64),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return new A(u.buffer);}
 function gtplPart(d){var o={n:d.n,m:d.m,pieces:d.pieces,pos:gtplDec(d.pos,Float32Array),vmap:gtplDec(d.vmap,Uint16Array),piece:gtplDec(d.piece,Uint8Array),
@@ -3927,7 +3930,7 @@ function drapeLooks(man,p,t,X,N,me,ctx,kind){var T=window.THREE,L=p.look,out=[];
     for(j=0;j<NY;j++)for(i=0;i<NX;i++){var a=j*(NX+1)+i;ix.push(a,a+NX+1,a+1,a+1,a+NX+1,a+NX+2);}
     var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setIndex(ix);g.computeVertexNormals();
     var m2=new T.Mesh(g,mat(tx,false));m2.castShadow=false;out.push(m2);}
-  var s0=p.shape,proj=!!(L.front&&fr>=0&&!/jacket/.test(t.arch)&&!drapeSplit(t));
+  var s0=p.shape,proj=!!(L.front&&fr>=0&&!/jacket|gilet/.test(t.arch)&&!drapeSplit(t));
   if(proj){   /* the photo's front, from the band (its own hem strip left out) to the neckline, across the cloth as seen from the front */
     var F=L.front,cv=document.createElement("canvas");cv.width=F.cv.width;cv.height=F.cv.height;cv.getContext("2d").drawImage(F.cv,0,0);gCv(cv);
     var tx=new T.CanvasTexture(cv);if(T.sRGBEncoding)tx.encoding=T.sRGBEncoding;tx.anisotropy=4;
@@ -3983,11 +3986,14 @@ function drapeDetails(man,p,t,X,N,ctx,kind,proj){var T=window.THREE,DS=p.desc||{
       (q[1]?[q[1]*0.003,q[1]*0.032]:[-0.017,0.017]).forEach(function(x){var st=[];for(var k=0;k<=16;k++)st.push(on(q[0],x,top-0.004-(top-E.y0-0.004)*k/16,0.0012));line(st,0.0006,seamK,40);});
       if(!tie&&q[1]<=0)for(var by=top-0.025;by>E.y0+0.05;by-=0.09)btn(q[0],q[1]?-0.0175:0,by);});
     if(t.arch==="shirt_up"&&!tie){var C3=drapeExt(t,"collar");btn("collar",C3.x1-0.009,C3.y1*0.5);}}
-  if(t.arch==="jacket_up"){   /* zipped up: the zip from the collar's top down the middle to the hem */
+  if(t.arch==="jacket_up"||t.arch==="gilet"){   /* zipped up: the zip from the collar's top down the middle to the hem */
     var C2=drapeExt(t,"collar"),B2=drapeExt(t,"front_band"),zu=[];for(var k=0;k<=3;k++)zu.push(on("collar",C2.x1-0.002,C2.y1*(1-k/3),0.003));
     for(k=1;k<=14;k++)zu.push(on("front",0,F.ym-(F.ym-F.y0)*k/14,0.003));zu.push(on("front_band",0,B2.y0+0.004,0.003));
     line(zu,0.0035,/harrington|denim|leather|suede|duck|canvas|detroit|carhartt|bomber|work/.test(n0)?ctx.metal:ctx.mat(shade(col,0.72),0.55),40);
     var tb2=on("collar",C2.x1-0.002,C2.y1-0.01,0.007);if(tb2){var tb3=new T.Mesh(new T.BoxGeometry(0.008,0.022,0.004),ctx.metal);tb3.position.set(tb2[0],tb2[1],tb2[2]);out.push(tb3);}}
+  if(t.arch==="gilet"&&/pocket|cargo|chore|field|work|safari|utility/.test(n0)){   /* a work bodywarmer's patch pockets low on the front, either side of the zip (make3Dcore's) */
+    var pm4=ctx.pm(p).clone();pm4.side=T.DoubleSide;[[0.06,0.2],[-0.2,-0.06]].forEach(function(q){var yb=F.y0+0.03,yt=yb+0.16;patch("front",q[0],q[1],q[0],q[1],yb,yt,0.0028,pm4);
+      line([on("front",q[0],yt,0.0034),on("front",q[1],yt,0.0034)],0.0012,seamK,6);});}
   if(t.arch==="jacket"&&/zip|parka|puffer|padded|harrington|bomber|waterproof|shell|track|softshell|fleece|anorak|windbreaker|sherpa|active jacket|down\b/.test(n0)){
     /* an open zip's teeth along each front edge (make3Dcore's zipT and zipM) */
     var zm=/harrington|denim|leather|suede|duck|canvas|detroit|carhartt|bomber|work/.test(n0)?ctx.metal:ctx.mat(shade(col,0.72),0.55);
@@ -6564,7 +6570,10 @@ function frWearRows(ps){var w=FR.wear,rows=[],ups=dressed(ps).filter(function(p)
     var zp=ups.filter(function(p){return zipBy(p)&&!p.fixed;}).sort(function(a,b){return layRank(b)-layRank(a);})[0];
     if(zp)rows.push({k:"zip",p:zp,l:frNoun(zp),o:[["open","Open"],["up","Done up"]],cur:openWorn(zp,ups)?"open":"up"});
     var tk=tuckable(ps);
-    if(tk.length&&!ps.some(function(p){return p.shape==="tie";})){var tp=tk[tk.length-1],nat=wornTuck(ps)&&/^(shirt|sshirt|polo)$/.test(tp.shape);rows.push({k:"tuck",p:tp,l:frNoun(tp),o:[["in","Tucked"],["out","Untucked"]],cur:w.tuck||(nat?"in":"out")});}
+    /* (with a tie the shirt stays tucked in (tuckOn), so the row says so instead of offering Untucked; decided 13 Oct) */
+    if(tk.length){var tp=tk[tk.length-1],nat=wornTuck(ps)&&/^(shirt|sshirt|polo)$/.test(tp.shape);
+      if(ps.some(function(p){return p.shape==="tie";}))rows.push({k:"tuck",p:tp,l:frNoun(tp),o:[["in","Tucked"]],cur:"in",note:"Worn with a tie, the shirt stays tucked in."});
+      else rows.push({k:"tuck",p:tp,l:frNoun(tp),o:[["in","Tucked"],["out","Untucked"]],cur:w.tuck||(nat?"in":"out")});}
   }finally{ZIPM="";}
   /* (with the drape switch on: one size for the draped tops, each one's chest and length at it against his chest) */
   var dps=ups.filter(function(p){return drapeArch(p);}).sort(function(a,b){return layRank(b)-layRank(a);});
