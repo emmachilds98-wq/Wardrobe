@@ -83,6 +83,69 @@ would roll that back, so this session did not republish it.
    `CE_LIM` for the arm sliders. To test a body the page has no button for, copy `docs/` and add an entry to `PRESETS`
    in the copy's `index.html`, e.g. `xbig:{weight:0.6,muscle:0.6,arms:1,legs:1,bicep:1.8,forearm:1.8,thigh:1.8,
    calf:1.8}`, then `node tools/check_3d.js --site <copy> --ids @tools/qa/gate.txt --body xbig`.
+
+**PR #34's own notes (12 Oct, PR #34, branch `claude/brave-maxwell-mscmo8`).** The owner wants every garment to sit on
+him as it does in real life, at every angle and in every combination, matching the product photo. Fix each problem
+at the rule that makes it (so every outfit using that rule changes), never per outfit, and never by raising a check
+limit. The passing 3D checks did not catch any of the collar problems below: look close up.
+1. Watch PR #34's CI (all five bodies, both "How it's worn" passes). If od-event or g-outdoor-05 flag "under", the
+   check's rays pass over the back of the scarf loop and count hits on the far side, at his front, where the scarf is
+   correctly outside the jacket collar. Make `tools/check_3d.js` count only near-side hits (top hit before the neck's
+   axis) and say so in the PR. Anything else red is real: root-cause it.
+   **Known red: g-mod-27 (tee, burgundy hoodie, navy jacket worn open) "back poke" 57 to 83, every body.** Already red
+   on #34's first head. The hood is laid out over the jacket's back on purpose (`hoodDown`, `out>0`), but the jacket's
+   collar stands above the hood's fixed top (`yT` 1.535/1.545) at the back of his neck, so the hood reads as tucked
+   under it. Raising `yT` by 4 cm when `out>0` brought it to 48 (2.5 cm: no change). The fix to try is the real-life
+   one: when a hood lies out over a jacket, lower that jacket's collar at the back under the hood (its `fitCollar`
+   `hBack`, or skip the collar where the hood covers it), or put the hood's top at the jacket collar's top. The same case
+   flags w20261006-casual-04 on slim, heavier and athletic (41 to 56; it passes on dave) and hoodie-coat on heavier (47):
+   check all three on all five bodies.
+2. Smooth the scarf loop's top edge (ragged at the front in places) and check all 8 scarf outfits (q7-fairisle,
+   pub-lunch, q9-matagalpa, q8-morden, od-event, g-outdoor-05, jb11-winter, g-quiet-30).
+3. Sweep every kind of top and collar, alone and layered, close up from the front, ¾, side and back, against its
+   shop photo: tee, oversized tee, crew jumper, roll neck, half-zip, hoodie, cardigan, shirt done up and open, polo,
+   short-sleeve shirt, overshirt, zip jacket, Harrington, denim/trucker, bomber, puffer, coat, blazer, gilet. Then the
+   common layers: shirt under jumper, polo under half-zip, tee under open shirt or jacket, hoodie under jacket (hood
+   laid out over its back), scarf over coat. Fix what does not look like real clothes.
+4. Contrast collars (the Harrington's brown cord collar) are not read from the photo yet.
+How to look: `sh tools/qa/serve.sh <dir> <port>` serves a test copy; `node tools/qa/zoom.js out.png <outfit id or
+pieces JSON> "rotY,camY,camZ,lookY;..."` renders close-ups (for the neck: "0,1.56,0.9,1.47;0.8,1.56,0.9,1.47;
+1.57,1.56,0.9,1.47;3.14,1.6,0.9,1.47"); `tools/qa/card.js` renders the outfit-card stills. To test a rule, copy the
+built site, patch its `index.html` with a small script, serve it on its own port, and compare against main. Run
+`node tools/check_3d.js --site docs --ids <ids> --body dave` before pushing.
+
+0. **PR #33's failures fixed (12 Oct, branch `claude/brave-maxwell-mscmo8`, carrying #33's commits):**
+   - g-quiet-13 (polo under a half-zip under a gilet): the half-zip's collar stood off his neck at the sides in wings,
+     the polo showing inside (front poke 31 to 42). Necklines are now placed from a neck-only map and never sit lower
+     than the raised neckline under them; a collar under a closed half-zip, roll neck or hoodie is a low band
+     (CONTRIBUTING, "Necklines over necklines"; UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzz).
+   - w20261006-casual-04 on the loose fit (back poke 31): passes again.
+   - From the artifact's comments: every crew neckband had risen up the sides of his neck in horns with gaps at the
+     back corners (#33's neckline raise); necklines now lie on the slope of his shoulders and the rise is spread round
+     his neck as a neckline curves (CONTRIBUTING, "Where a neckline sits"). A polo's collar folds over to spread points;
+     an open jacket's or shirt's collar falls to points beside the opening; the dark flap under open jackets' collars
+     (collar points drawn under the jacket) is gone; the knit zip overshirt has its collar; a scarf wraps his neck
+     instead of lying over his shoulders as a cape (CONTRIBUTING, "Collars that fold", "Scarves").
+   - Scarves: the loop now rests on his shoulders and wraps the collar (a half-zip's collar folds lower under it).
+   - Still to do: the scarf loop's top edge is ragged in places at the front; od-event and g-outdoor-05 may flag
+     "under" (rays over the back of the lifted loop meet the jacket collar and scarf on the far side, at his front,
+     where the scarf is correctly outside: the check should count near-side hits only); the Harrington's brown cord
+     collar is not read from its photo (the collar is in the body's colour).
+   - g-lounge-06 tucked in (front poke 37): the waistband was still placed at the loosest cut's room after the room
+     went by the cut, so it stood 5 mm proud of a tapered pair and came through the jumper. It now lies on the trousers
+     at their own room (`eW`).
+
+1. **Slim and baggy bottoms:** done 12 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzz to 2zzzzzzzzzzzzzzzzzzzzz): `bottomCut`
+   reads every pair's cut for the model, the drawing and the fitting room's words, shorts' length from their inseam;
+   every bottom in an outfit was checked against its shop photo and 166 set in `data/cuts.json`. New picks: add them
+   there (CONTRIBUTING, "The cut of trousers and shorts"). The numbers are in `BOTCUT`.
+2. **Edit Dave's extremes:** the short sleeves are done 12 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzz: `ARMSUM`). Still open:
+   w20261006-casual-04 on a heavy, muscular build (weight 0.6, muscle 0.6, arms and legs 1), the hood's rim through
+   the padded jacket's collar at the back of his neck (back poke 33; there before today too). The same on his own
+   shape in jb-wet-day (a hoodie's hood lying out over a waterproof jacket, the jacket's collar showing as a line across
+   the top of the hood: back poke 73, on `main` too; not in the pull-request check's outfits). To test a body the page
+   has no button for, copy `docs/` and add an entry to `PRESETS` in the copy's `index.html`, e.g. `xbase:{weight:0.6,
+   muscle:0.6,arms:1,legs:1}`, then `node tools/check_3d.js --site <copy> --ids w20261006-casual-04 --body xbase`.
 3. **One set of model controls** (queue item 4). Found 12 Oct: the builder's small model uses `Live3D`'s own bar
    (`opt.bar`, `.v3-bar`, `data-v3`: Front, Side, Back, Turn, Full, Top, Face, Zip up), Edit Dave has its own Front,
    Side, Back (`.ce-bot`, `data-ceang`), the fitting room the dock (`.fr-dock`, `data-frang`, `data-frcam`,
@@ -135,7 +198,7 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
    height (the `lifted` pass in the scarf code), so over a puffer it stays tucked under the padding. A scarf should
    drape over the shoulders there: let its lower edge flare out over them instead. (Measuring the outermost cloth over
    each ring's band of height, and widening the side allowance, did not fix it; reverted.)
-10. [ ] (Frozen 12 Oct: the garment drape replaces this code.) **Polo collars.** The leaf lies flat on his shoulders with ragged edges and the stand is low; in the photos a
+10. [x] **Polo collars.** Done 12 Oct (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzz): its own folded rib band. The leaf lies flat on his shoulders with ragged edges and the stand is low; in the photos a
    polo collar is a distinct ribbed band round the neck, folded over. (Its tipping now lies on the leaf's edge: PR #27.)
 
 11. [x] **Folds and creases in trousers** Done 12 Oct, for every garment (see UPGRADE_PLAN 2zzzzzzzzzzzz). (Emma, 12 Oct: "folds and creases as it sits on a body ... like the
@@ -193,7 +256,10 @@ Newest first. Date · PR · what changed · artifact version.
 | 12 Oct 2026 | #36 | Drape proof, continued: front details on draped cloth, rib bands, a Size row in the fitting room and Cloth fit, only track-type jackets worn open draped, draped tops kept in `up` and named as `main`'s layers, `check_3d.js` takes `QA_INIT`; unchanged without the switch | not republished |
 | 12 Oct 2026 | #36 | Garment drape proof: the hoodie (with its hood), quarter-zip and jacket drape cleanly in `tools/build_garments.py`, templates in `data/garments/`, the page draws them with `window.__drape` set (`drapeTops`); unchanged without it | not republished (FtdHKg shows PR #33's build) |
 | 12 Oct 2026 | #35 | Garment drape upgrade begun: Emma's design handoff in `design/garment-drape/`, her decisions, `tools/build_garments.py` (Blender templates, in progress) and `tools/garment_view.js`; no page change | not republished (FtdHKg shows PR #33's build) |
-| 12 Oct 2026 | PR | Bottoms: slim, regular, straight, relaxed, wide and baggy clearly different in 3D and the drawing, shorts at their own length (from the inseam), the cut in words in the fitting room | FtdHKg v37 |
+| 12 Oct 2026 | PR | Every bottom's cut checked against its shop photo: 166 pairs set in `data/cuts.json` (straight, slim, wide, tapered, cuffed or open, long shorts) | FtdHKg v40 |
+| 12 Oct 2026 | PR | Loose legs as straight tubes (no bell from the side), shorts no longer flared, the seat shaped in fitted trousers, a polo's own folded rib collar | FtdHKg v39 |
+| 12 Oct 2026 | PR | Biceps and forearms build on the arms within a joint limit (`ARMSUM`), so short sleeves hold on the biggest arms | FtdHKg v38 |
+| 12 Oct 2026 | #32 | Bottoms: slim, regular, straight, relaxed, wide and baggy clearly different in 3D and the drawing, shorts at their own length (from the inseam), the cut in words in the fitting room | FtdHKg v37 |
 | 12 Oct 2026 | #31 | Trouser legs meet where his thighs do (no V showing his thighs on bigger legs); Clear view in the fitting room (H); shirts and jumpers rest on his chest and span his back instead of standing off it; the Lambretta polo plain with its chest band, its cap with its racing stripe (`crown` correction) | FtdHKg v35 |
 | 12 Oct 2026 | direct to `main` | Edit Dave: every slider back in the middle after Save (centred on his last saved look, within hard limits); biceps, forearms, thighs and calves sliders under "Arms and legs" | FtdHKg v34 |
 | 12 Oct 2026 | direct to `main` | Folds on the back of a tucked shirt, a jacket's lower back, scarves and shoes' heel counters; contact shade at cuffs, above collars and on shoes under trouser hems | FtdHKg v33 |

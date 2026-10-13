@@ -2337,6 +2337,127 @@ elbows). **Switch-on 3D check, gate set on his shape: 19 of 30 clean**; all elev
 made them worse (reverted). The way on is draping those outer layers (STATUS.md, item 0). Merged with the switch off for
 everyone; the drape preview artifact has the switch.
 
+## 2zzzzzzzzzzzzzzzzzzz. Biceps and forearms build on the arms, within a joint limit (12 Oct 2026)
+
+Edit Dave's extremes (STATUS "Now" 2): with weight 0.6, muscle 0.6, arms and legs 1 and the four new sliders at 1.8
+all at once, short sleeves showed his arm at the back of the armpit (ca-beer-garden, h10-resort: back poke 99 to 100,
+45 to 46 after the snug tops of #31). Each slider alone at its limit passed; the arm sliders added up.
+
+- `bodyW` caps the biceps and forearm morphs so that arms plus either grows no more than `ARMSUM` (2.4): with the arms
+  at 1 the biceps reach 1.4; with the arms at 1.8, 0.6; with the arms at 0 or below, their own limit (1.8). The sliders
+  keep their values; the body uses the capped ones, and the clothes follow it.
+- Checked: ca-beer-garden and h10-resort on that body (nothing flagged), and on arms, biceps and forearms all at 1.8
+  (with n4-summer-warehouse, the muscle vest): nothing flagged. The joggers at the shin (g-lounge-04) pass since #32's
+  cuts.
+- **Still open:** w20261006-casual-04 on a heavy, muscular build (weight 0.6, muscle 0.6, arms and legs 1; none of the
+  new sliders): the rim of the hoodie's hood, worn down, shows through the padded jacket's collar band at the back of
+  his neck (back poke 33). It is there on the build before #31 too. The hood is laid over the jacket's back on purpose;
+  round his neck its rim and the jacket's collar meet. Next: keep the hood's rim inside the jacket's collar (the
+  neck occupancy, `OCC.N`, when the hood is placed), or the collar outside the hood.
+
+## 2zzzzzzzzzzzzzzzzzzzz. Bottoms as the photos show them; the seat; a polo's own collar (12 Oct 2026)
+
+Emma, on the artifact, after #32: "this looks hugely baggy and wrong" (a mix card), "shorts are shown more flared than
+they should be, ensure we dont inaccurately represent clothes on the 3d model", "make straight, skinny, flared, baggy
+bottoms clear based on the advertisement", "bum in clothes appears to be rather flat compared to the unclothed version",
+and on the polo in m5-under-60: "collars still appear a bit overlapped and dettached from shirts".
+
+- **Baggy and wide legs swelled into a bell from the side.** Each leg kept the depth of the deepest section above it,
+  his seat, all the way down, and #32's wide and baggy room and `fall` over 1 added to it. A leg now takes its depth
+  from his thigh (`legSecs`: `mz` from 7 cm below the crotch, 13 cm on shorts); wide and baggy have less room (wide
+  `wide` 0.028, baggy 0.036) and no flare at the hem (`fall` 1). Compared with the shop photos of asos-weekday-baggy,
+  uq-barrel, mt-jeans-vintage, folkclothi-barrel-leg-trouser-ecru-twill and js-levis-578: wide straight tubes, the
+  barrels curving at the knee.
+- **Shorts flared:** `sfall` is now 0.82 to 1.0 (wide and baggy shorts as wide at the hem as at the thigh, no wider), the
+  hem's own flare halved (3 mm), and their depth from the thigh, not the seat.
+- **The seat:** measured over one buttock, his bare seat stands 41 mm behind the back of his thigh; in straight jeans
+  it stood 30 mm, the cloth 12 mm off the seat and 24 mm off the thigh. The cloth from the waistband to the crotch could
+  only come in 0.3 m per metre going down (`trouserGeo`'s hang), so it fell straight from the seat's fullest point; on
+  the back of a fitted pair it now comes in as fast as the cut allows (`o.seat`: skinny 1.6 to straight 1, relaxed
+  0.6, wide 0.35, baggy 0, added to 0.3), the room round the seat goes by the cut (6 mm skinny to 15 mm baggy, was 13
+  mm for all), a fitted leg's depth is not carried down from the seat (the upper hull of the leg's depth leaves out
+  the rows within 9 cm of the crotch), and regular and straight have a little less room at the thigh. Jeans now: 10 mm
+  off the seat, 20 mm off the back of the thigh.
+- **A polo's collar** was a shirt's collar laid on a polo: long leaves standing 8 to 20 mm off the stand, ragged where
+  they met over his shoulders, detached from the polo at the back and sides. A polo now has its own: a ribbed band
+  (`rib(p)`) 22 mm high at the front, 30 mm at the back, folded over once, lying on the polo (`out` 2 mm) with short
+  points (`front` 20 mm, `spread` 0.1), its tipping on the edge. A shirt's leaf also lies closer (`out` 3 mm, was 8).
+- **Check:** m5-under-60, h7-beach-50, hoodie-coat, barrel-navy, x11-matalan-casual and h7-lambretta-pool on his
+  shape: nothing flagged; the pull-request check on all bodies.
+- **Still to do (photos):** reading a pair's cut from its shop photo itself (the width of the leg at the hem against the
+  thigh, on a flat-lay) rather than from its name and fit label; most photos are on a model, so this needs the
+  photo reader's leg outline first.
+
+## 2zzzzzzzzzzzzzzzzzzzzz. Every pair's cut read from its shop photo (12 Oct 2026)
+
+Emma, on x11-matalan-casual: "make straight, skinny, flared, baggy bottoms clear based on the advertisement". The cut
+was read from the shop's fit label and the name; many names say nothing ("Trousers", "Chinos", "Jeans") or mislead
+(cargo and work words read as relaxed, "baggy" on what is a wide straight leg).
+
+- **Measuring the leg from the photo did not work.** A prototype outlined the leg in each photo and compared the hem's
+  width with the thigh's; most photos are on a model (crossed legs, a step, cropped at the knee, busy backdrops), so
+  half the readings were wrong. Dropped.
+- **Read by eye instead.** Every bottom worn in an outfit (318: 240 trousers and joggers, 78 shorts) was laid out on
+  contact sheets of its shop photo with the page's reading, and checked. 166 read differently and are in
+  `data/cuts.json` (`"<item>": "<cut> [flags]"`): 38 straight (jeans, cords and chinos read as regular, workwear read
+  as relaxed), 30 slim (tailored and smart chinos), 23 wide (painter and skate pants read as relaxed, "baggy" names that
+  are wide straight legs), 22 tapered (cuffed joggers and military chinos read as relaxed), 19 relaxed, 8 baggy, 8
+  regular; flags `cuff` (gathered at the ankle), `open` (an open hem on a jogger), `long` (shorts to the knee or
+  below, 4 pairs). Shorts: 11 read slimmer or wider than their names.
+- **Wiring:** `tools/build_site.py` checks each entry (a known item, a known cut, known flags) and puts it on the item
+  as `cut`; `bottomCut` uses it over the name: the cut, then the flags (a photo-read jogger keeps its cuff unless it
+  is straight, wide or baggy or says `open`). The 3D model, the 2D drawing and the fitting room's words all follow.
+- **Check:** every outfit with a changed pair (321) on his shape and the heavier body: nothing flagged; the
+  pull-request check on all bodies. Stored specs unchanged (they do not hold the cut).
+- **New picks** are read from their name until someone adds them to `data/cuts.json` (CONTRIBUTING, "The cut of
+  trousers and shorts").
+- **A polo under a closed layer** keeps the low stand it had before (the new folded rib collar is for a polo on top):
+  the pull-request check found the band's taller sides showing between a hoodie and its hood (g-job-06 on the loose
+  fit, front poke 32; a trouser cut change brought it into the check).
+
+## 2zzzzzzzzzzzzzzzzzzzzzz. Collars attached to their tops; necklines over necklines (12 Oct 2026)
+
+Emma (n4-under-60 ringer, and on PR #33's renders): "collars still appear a bit overlapped and detached", then "it
+still looks layered and like there's overlap that looks like misrendering at the collar".
+
+- **Collars grown from the top's own neckline** (05efecd): the neckline used to sit at one height all round, below the
+  tops of his shoulders beside his neck, so every collar grew out of a trough behind the cloth's crest. It now rises
+  there to the base of his neck (`yokeCol`, `YT` in `fitTop`); `fitCollar` grows the band at right angles to the
+  neckline and evens out only how far it is pushed; a ringer's colour is the tee's own neckband (`ringM`).
+- **That broke layered necklines.** The pull-request check flagged g-quiet-13 (a polo under a half-zip under a gilet)
+  on three bodies: the half-zip's collar stood 3 to 5 cm off his neck at the sides in wings, with a ledge where it
+  met the front, and the polo showed inside it. Switching each layering rule off in turn found the cause: the
+  half-zip's neckline was placed outside the furthest cloth under it at its height (`OCC.N`), and with the necklines
+  raised that is the top of the polo's shoulder, not its neckline. Fixed at the rule:
+  - necklines are placed from a neck-only map, `OCC.NC` (cloth within 10.5 cm of the neck's axis, as `ownNeck`
+    already did for a top's own collar). Collars still clear `OCC.N`: read from the neck-only map, the hood's rim of
+    w20261006-casual-04 came through the padded jacket's collar (back poke 72 to 115);
+  - a neckline is never lower than the raised neckline of the top under it (`NUP`): a half-zip over a polo stayed
+    up to 2.5 cm lower behind his shoulders;
+  - a shirt or polo under a closed half-zip, roll neck or hoodie keeps a low band for its collar (`cov`): none of it
+    shows, and its taller stand pushed the outer collar off his neck.
+  Tried and dropped: measuring the neckline's rise on his body alone (the yoke then climbed over the polo again),
+  hugging the hidden stand closer (no change), and limiting the sample below the neckline (halved the wings only).
+- **The waistband** (g-lounge-06 tucked in, front poke 37): when the trousers' room went by the cut (2zzzzzzzzzzzzzzzzzzzz)
+  the waistband stayed at the loosest cut's, 5 mm proud of a tapered pair, and came through the jumper over it. It
+  now lies on the trousers at their own room (`eW`).
+- **Check:** the gate set and every outfit the change touches, on all five bodies and both "How it's worn" passes (the
+  pull-request check), and the stored specs (1381 pieces, none read differently).
+- **From the artifact's comments, the same day:** the rendered checks passed, but close up the collars were wrong.
+  - Every crew neckband (tee, jumper, oversized tee) rose up the sides of his neck in horns, with gaps at the back
+    corners: the neckline was raised 3.5 cm over a few degrees where the cloth crested beside his neck. The crest came
+    from the neckline being put on the neck's oval, which beside his neck lies inside the slope of his shoulders. The
+    neckline now lies on his body where that is wider (up to 2.5 cm out), and the rise left is spread round his neck.
+    Tried and dropped: capping the rise at 6 or 10 mm (gaps stayed at the back corners), spreading it over 70 or 90
+    degrees without the averaging (a V at the back between two horns).
+  - Polo collars stood as a ribbed band with box corners: a lower stand and a longer leaf with spread points now.
+  - Open jackets (the Harrington, the wool-look jacket): the collar points meant for the 2D figure were laid on the
+    cloth under the jacket and came through on one side as a dark flap below the collar. Drawn only without the fitted
+    top now; the fitted collar's leaf falls further and spreads to points beside the opening instead.
+  - The knit zip overshirt (filed as a cardigan) had no collar; a cardigan named as an overshirt gets a shirt's.
+  - A scarf's loop was measured against the top of his shoulders and lay over them as a flat cape; it is measured
+    against the cloth round his neck now, a little fuller.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

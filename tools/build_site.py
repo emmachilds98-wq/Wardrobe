@@ -102,6 +102,26 @@ def check_fix_fields(k, fx, bad):
         bad.append(f"{k}: crown must be a small data:image/jpeg or png (a cap's crown seen from the front, under 24,000 characters)")
 
 
+CUT_KINDS = ("skinny", "slim", "tapered", "regular", "straight", "relaxed", "wide", "baggy", "barrel")
+CUT_FLAGS = ("cuff", "open", "flare", "bootcut", "long")
+
+
+def check_cuts(cuts, items):
+    """What is wrong in data/cuts.json: an unknown item, or a value that is not a cut followed by known flags."""
+    bad = []
+    for k, v in cuts.items():
+        if k.startswith("_"):
+            continue
+        if k not in items:
+            bad.append(f"{k}: no such item")
+        w = v.split() if isinstance(v, str) else []
+        if not w or w[0] not in CUT_KINDS:
+            bad.append(f"{k}: start with the cut ({', '.join(CUT_KINDS)})")
+        elif [f for f in w[1:] if f not in CUT_FLAGS]:
+            bad.append(f"{k}: unknown flag in {v!r} (known: {', '.join(CUT_FLAGS)})")
+    return bad
+
+
 def check_fixes(fixes, items):
     """What is wrong in data/fixes.json: an unknown item, a colour that is not #rrggbb, an unknown pattern, a share
     out of range, or a fix with no reason ("why") or date ("checked"). "shapes" holds corrections for one garment
@@ -439,6 +459,15 @@ def main():
             items[k]["fix"] = {f: v for f, v in fx.items() if f in FIX_FIELDS}
             if fx.get("shapes"):
                 items[k]["fix"]["shapes"] = {sh: {f: v for f, v in sub.items() if f in FIX_FIELDS} for sh, sub in fx["shapes"].items()}
+    # How trousers and shorts are cut, read from the shop photo (data/cuts.json), where the name reads it wrongly.
+    # It rides on the item as "cut", which the page uses over its reading of the name (bottomCut in page.html).
+    cuts = load("data/cuts.json") if os.path.exists(os.path.join(ROOT, "data", "cuts.json")) else {}
+    bad = check_cuts(cuts, items)
+    if bad:
+        raise SystemExit("data/cuts.json: " + "; ".join(bad))
+    for k, v in cuts.items():
+        if not k.startswith("_"):
+            items[k]["cut"] = v
     # What M, L and XL mean at each shop (data/sizecharts.json, read from the shops' own size guides by
     # tools/size_charts.py), for the size check on the cards
     if os.path.exists(os.path.join(ROOT, "data", "sizecharts.json")):

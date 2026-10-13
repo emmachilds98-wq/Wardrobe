@@ -1,7 +1,7 @@
 """Lists the outfits a change touches, for the pull-request 3D check (.github/workflows/check-3d.yml).
 
 An outfit is touched when it is new or its entry changed in data/outfits*.json, or when it uses an item whose
-correction in data/fixes.json, or whose entry in data/items*.json, changed. The base is a git ref (the branch the
+correction in data/fixes.json or cut in data/cuts.json, or whose entry in data/items*.json, changed. The base is a git ref (the branch the
 pull request goes into). Prints one id per line, at most --max of them (a spread, when there are more).
 
     python3 tools/qa/changed_outfits.py origin/main [--max 60]
@@ -54,7 +54,9 @@ def main():
     # (only what changes the drawing counts: a price or stock change does not)
     look = ("name", "cat", "fabric", "fit", "note")
     items = {k for k in set(i0) | set(i1) if {f: (i0.get(k) or {}).get(f) for f in look} != {f: (i1.get(k) or {}).get(f) for f in look}}
+    c0, c1 = at_ref(a.base, "cuts"), now("cuts")
     items |= {k for k in set(f0) | set(f1) if not k.startswith("_") and f0.get(k) != f1.get(k)}
+    items |= {k for k in set(c0) | set(c1) if not k.startswith("_") and c0.get(k) != c1.get(k)}
     ids = [k for k, o in o1.items() if o0.get(k) != o or any(p.get("item") in items for p in o.get("pieces", []))]
     if len(ids) > a.max:
         st = len(ids) / a.max
