@@ -288,6 +288,13 @@ MEAS = {
                   sleeve=64, bicep=40, wrist=25, cuff=6.5, cuff_c=24, collar=3, leaf=4.5, point=7, open=1),
     "shirt_up": dict(chest=110, length=79, shoulder=47, armhole=24, neck_w=16, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
                      sleeve=64, bicep=40, wrist=25, cuff=6.5, cuff_c=24, collar=3, leaf=4.5, point=7),
+    # a padded or puffer jacket: the track jacket's cut with a padded jacket's room (132 cm round the chest, 8 more than
+    # the track jacket, so it goes over a sweatshirt or a quarter-zip with its padding; sleeves 48 cm round the bicep),
+    # a taller stand collar, a narrow elastic hem and elastic cuffs; worn open (its front in two) or zipped up
+    "puffer": dict(chest=132, length=69, shoulder=50, armhole=27, neck_w=20, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3,
+                   band_k=0.92, sleeve=66, bicep=48, wrist=30, cuff=4, cuff_c=23, collar=7.5, pad=0.15, open=1),
+    "puffer_up": dict(chest=132, length=69, shoulder=50, armhole=27, neck_w=20, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3,
+                      band_k=0.92, sleeve=66, bicep=48, wrist=30, cuff=4, cuff_c=23, collar=7.5, pad=0.15),
     # a gilet (a bodywarmer) done up: no sleeves (no sleeve key), its armholes cut deeper and in to the point of his
     # shoulder so a jumper's or a hoodie's sleeve comes through, a plain hem and the jacket's stand collar, zipped
     "gilet": dict(chest=124, length=69, shoulder=43, armhole=27, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3, band_k=0.92,
@@ -574,6 +581,8 @@ class Garment:
                 i = [e[0] for e in c.edges].index("top"); c.edges = c.edges[:i] + parts + c.edges[i + 1:]; c.order = [e[0] for e in c.edges]
                 P["leaf"] = leaf(M, s, plen(c.edge("top")))
                 S.append(([("leaf", "neck")], [("collar", "top")], 1.0, False))
+        # (a padded jacket's padding stiffens all of it: pad is the share of the collar's stiffness its other pieces get)
+        for pc in P.values(): pc.stiff = max(pc.stiff, M.get("pad", 0.0))
         self.P, self.S = P, S
         self.hood = None
         if "hood_h" in M:
@@ -891,7 +900,9 @@ def cloth_obj(name, X, T, flat, sew, stiff=None, pins=None, mass=0.3, tension=15
     if flat is not None:
         set_key(ob, "Basis", X); fk = set_key(ob, "flat", flat); fk.value = 0.0
     if stiff is not None and stiff.any():
-        vg = ob.vertex_groups.new(name="stiff"); vg.add([int(i) for i in np.where(stiff > 0)[0]], 1.0, "REPLACE")
+        # (each point at its piece's weight: the bending stiffness runs from bending at 0 to bending_stiffness_max at 1)
+        vg = ob.vertex_groups.new(name="stiff")
+        for w in np.unique(stiff[stiff > 0]): vg.add([int(i) for i in np.where(stiff == w)[0]], float(w), "REPLACE")
     if pins is not None and len(pins):
         vg = ob.vertex_groups.new(name="pin"); vg.add([int(i) for i in pins], 1.0, "REPLACE")
     cm = ob.modifiers.new("cloth", "CLOTH"); cs = cm.settings
