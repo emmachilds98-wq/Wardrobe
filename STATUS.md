@@ -52,9 +52,11 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
    shirt, overshirt, jacket or coat) is worn over a draped tee or knit: it was cut for `main`'s closer inner layer.
    Widening the hold-in from 2 to 4 cm made it worse (tried, reverted).
    **Next, in order:**
-   1. Drape the outer layers too, so nothing `make3Dcore` builds sits over draped cloth: an overshirt and shirt (collar,
-      placket, cuffs; open and done up), a coat (long, lapels), other jackets (Harrington, denim, padded: quilting as a
-      material), a gilet. Each: `MEAS` and pattern pieces in `build_garments.py`, a run with `--debug`, a look with
+   1. Drape the outer layers too, so nothing `make3Dcore` builds sits over draped cloth. **Shirts done 13 Oct** (PR #38,
+      UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzz: `shirt` and `shirt_up`, a folded point collar, laid out over a jumper),
+      and a top is draped only when everything over it is. Next: a shirt tucked in (into the waistband), a coat (long,
+      lapels), other jackets (Harrington, denim, padded: quilting as a material), a gilet, an overshirt's patch pockets.
+      Also: q7-fairisle's draped half-zip collar comes over PR #34's tighter scarf ("under" 14, switch on only). Each: `MEAS` and pattern pieces in `build_garments.py`, a run with `--debug`, a look with
       `garment_view.js`, then `DRAPEK`/`DRAPEF` and `drapeArch`'s cut test in `page.html`. Until then, an option is to
       drape a tee or knit only when nothing `make3Dcore` builds is worn over it.
    2. Then turn the switch on for everyone (after the full 3D check with it on, all five bodies, and Emma's look).
