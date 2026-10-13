@@ -2824,6 +2824,71 @@ nothing changes.** PR #45.
   shirt's collar over the jumper's neckband, STATUS item 0), but g-outdoor-05 above.
 - *Switch off*: the gate set (31 outfits) clean; `tools/specs.js` unchanged; the pull-request check green.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped padded and puffer jackets (13 Oct 2026)
+
+The next outer layer (STATUS.md item 0.1), behind the drape switch: **with it off (the live page) nothing changes.**
+Padded and puffer jackets were the next outer layer by count: 22 outfits wear one (none hooded but o7-ski-jacket),
+and every draped top under one was drawn by `make3Dcore` instead.
+
+**The builder** (`tools/build_garments.py --only puffer,puffer_up`, about a minute and a half each in Blender):
+- `puffer` (worn open, its front in two) and `puffer_up` (zipped): the track jacket's cut with a padded jacket's room,
+  132 cm round the chest (8 more than the track jacket, so it goes over a sweatshirt or a quarter-zip), sleeves 48 cm
+  round the bicep, 69 cm long, a 7.5 cm stand collar (the track jacket's is 6.5), a narrow elastic hem (3 cm, gathered
+  to 0.92) and 4 cm elastic cuffs.
+- `pad`: the padding stiffens every piece, not just the collar. Each piece's bending stiffness is at least `pad`
+  (0.15) of the way from plain cloth to the collar's. The `stiff` vertex group now carries each point's own weight
+  (it was every stiff point at 1.0, so a `pad` would have made the whole jacket as stiff as its collar); every other
+  template's pieces are 0 or 1, so they build as before (not rebuilt).
+- Corners where pieces meet +39 degrees at most (the zipped track jacket's +37); bound 22.8 mm off his body at the
+  median open, 20.2 mm zipped; 479 and 475 KB.
+- What `pad` does is small: built with 0 and with 0.15 the drape is much the same, and the open fronts hang about
+  18 cm apart, as the track jacket template's do (`make3Dcore` draws a narrow gap). The quilting is not in the cloth:
+  its lines are the material's, as before.
+
+**The page:**
+- `drapeArch` draws a padded, puffer, quilted or down jacket from `puffer`, unless it has a hood or is a parka,
+  longline, denim, a trucker, Harrington, bomber, leather or suede, a coach, chore or waxed jacket, a fleece or borg,
+  a shacket or an overshirt (those keep `make3Dcore`'s shapes). "Button-down collar" is not down.
+- `DRAPEOPEN` lists the templates that open (jacket, shirt, puffer: worn open from the template of that name, done up
+  from `name_up`); `puffer_up` is a stand collar done up (`STANDC`: a shirt's leaf stays inside it, and a collar
+  `make3Dcore` builds under it is the low band, `stC`). The zip up the middle done up, the zip teeth along both edges
+  worn open, a small back logo as on the jacket, no photo front (as `make3Dcore`).
+- *A layer turned in to hold what is under it (`inCol`) leaves out an open front's edges* (points within 3.5 cm of the
+  fronts' centre edge on the pattern, `drapeEdge`). What shows between the edges is not under them: the quarter-zip in
+  a padded jacket's opening was pressed in under its edge and into the shirt under it, and the shirt showed through
+  (g-quiet-22's front poke).
+- *Each point is drawn back to its binding moved out of what is under it* (`drapeOut`, before `drapeSettle`), not to
+  the binding itself. The settle's pull home held the padded jacket's open edge where its binding put it, close to his
+  body, between the quarter-zip and the shirt (rays through the opening: all three within 4 mm); now the edge is out
+  over both (rays through the opening on g-quiet-22: the jacket's edge at 0.247 m, the quarter-zip 0.232, the shirt
+  0.219).
+  `window.__drapeNoPre` turns it off for comparison. Applied to every draped top: see the checks.
+
+**Checked**, switch on, against `main` switch on:
+- *The 22 padded-jacket outfits, his shape:* 21 draped (o7-ski-jacket is hooded). `main` 0 flagged (nothing is draped
+  under a padded jacket there); the first try 5 (every one worn open over two layers); now **4**:
+  - w20261006-casual-04 (front poke 86) and g-outdoor-16 (front 93), a shirt under a hoodie under the open jacket: the
+    shirt's collar showing at the hoodie's neck, beside the hood, and a few flecks of it through the hoodie's lower
+    sides, just inside the jacket's open edge near its gathered hem.
+  - g-quiet-27 (back poke 42): the tucked shirt `make3Dcore` builds comes about 5 mm through the jacket at the lower
+    back, either side (0.95 m).
+  - g-quiet-22 (back poke 34): a fleck at the back of an armhole, the armhole flecks item 0 already knows.
+  Tried on these and not kept: a thicker push-out (`__drapeTh` 0.016: the front pokes grew) and thicker layers turned
+  out under a draped top (`window.__drapeThU` 0.007, from 0.004: g-quiet-27 clean, g-quiet-22's back poke 34 to 90).
+  `__drapeThU` stays as a tunable.
+- *The gate set, the 22 and ten more draped outfits* (61, his shape): `main` 6 flagged, this 8. The four above are
+  new; **g-outdoor-05 (back poke 493: the padded shacket through the draped jacket's back) and q13-coastal (front 41)
+  are clean**, and g-outdoor-21's back poke 619 (the borg overshirt through the gilet) is gone, its front poke 150 now
+  111: drawing each point back to its binding moved out of what is under it (`drapeOut`) keeps a draped top outside
+  a jacket-weight layer `make3Dcore` builds under it, as well as outside the quarter-zip. The rest as `main`
+  (m5-argyle front poke 34, errands 50, g-quiet-29 back holes 31).
+- *The heavier body* (the 22, g-outdoor-05, g-outdoor-21 and q13-coastal): `main` 2 flagged (g-outdoor-05 back poke 35,
+  g-outdoor-21 front 185), this 5: the same four padded-jacket outfits (front poke 103 and 93, back 57 and 46) and
+  g-outdoor-21 (front 130); g-outdoor-05 clean.
+- *g-outdoor-05 on every body* (`main`, PR #45's table: back poke 35 to 580 on all five): clean on his shape, slim, athletic and
+  heavier; back poke 31 on loose. q13-coastal clean on all five.
+- *Switch off*: the gate set (31 outfits) clean; `tools/specs.js` unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

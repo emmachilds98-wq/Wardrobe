@@ -20,6 +20,26 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**13 Oct, night: draped padded and puffer jackets** (PR #47, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). **Behind the
+drape switch: with it off the live page is unchanged.** The next of item 0.1's outer layers (21 outfits blocked):
+- *Two templates,* `puffer` (worn open) and `puffer_up` (zipped): the track jacket's cut with a padded jacket's room
+  (132 cm round the chest, sleeves 48 round the bicep), a 7.5 cm stand collar, an elastic hem and cuffs, every piece a
+  little stiffer for its padding (`pad`). Hooded padded jackets and parkas keep `make3Dcore`'s shapes (o7-ski-jacket).
+- *Worn open over two layers* (a quarter-zip over a shirt), the shirt showed through the quarter-zip in the opening:
+  the layer turned in to hold what is under it (`inCol`) now leaves out the open front's edges, and each point is
+  drawn back to its binding moved out of what is under it (`drapeOut`), so the jacket's edge lies over the quarter-zip
+  rather than between it and the shirt.
+- Checked, switch on, against `main` switch on: of the 22, 4 flagged (`main` 0: nothing is draped under them there),
+  the shirt's collar at a hoodie's neck on two, a tucked shirt at the lower back on one, an armhole fleck on one
+  (UPGRADE_PLAN has each). On the gate set and 30 more draped outfits **g-outdoor-05's back poke 493 and q13-coastal's
+  front poke are gone** (the move out of what is under it also keeps a draped top outside a jacket-weight layer
+  `make3Dcore` builds under it), and g-outdoor-21's back poke 619 too; g-outdoor-05 is clean on four bodies (back
+  poke 31 on loose, was 580). On heavier, the same four padded-jacket outfits flag. Switch off: the gate set clean,
+  specs unchanged.
+**Next, in order:** the other zip jackets (item 0.1: 21 outfits), then XPBD substeps in `drapeSettle` (UPGRADE_PLAN
+2zzzzzzzzzzzzzzzzzzzzzzzzzz, research). Once PR #47 is merged, republish B8UXnh and 5A3t39 (the page and
+`data/garments/puffer.json`, `puffer_up.json`), as in the entry below.
+
 **13 Oct: this account's two artifacts are current** (B8UXnh v5, 5A3t39 v4): both republished from `main` at 51ff9ed
 (PRs #37 to #45), with the page and the twelve `data` files that changed since PR #36 (four new garment templates,
 `gilet`, `scarf`, `shirt` and `shirt_up`, seven `data/items` files and `data/photos/shirt-p1.json`); the 2D/3D smoke
@@ -205,8 +225,9 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
    1. Drape the outer layers too, so nothing `make3Dcore` builds sits over draped cloth. **Shirts done 13 Oct** (PR #38,
       UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzz: `shirt` and `shirt_up`, a folded point collar, laid out over a jumper),
       and a top is draped only when everything over it is. **Gilets done 13 Oct** (PR #39, UPGRADE_PLAN
-      2zzzzzzzzzzzzzzzzzzzzzzzzz). Next: padded and puffer jackets (21 outfits blocked; the jacket template with more
-      ease, quilting as a material), the other zip jackets (21), a shirt tucked in (into the waistband), a coat (long,
+      2zzzzzzzzzzzzzzzzzzzzzzzzz). **Padded and puffer jackets done 13 Oct** (PR #47, UPGRADE_PLAN
+      2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: `puffer` and `puffer_up`, open or zipped; hooded ones and parkas still
+      `make3Dcore`'s). Next: the other zip jackets (21), a shirt tucked in (into the waistband), a coat (long,
       lapels), Harrington and denim jackets, an overshirt's patch pockets (a jacket-weight overshirt under a gilet is
       what is left on g-outdoor-21).
       Also: q7-fairisle's draped half-zip collar comes over PR #34's tighter scarf ("under" 14, switch on only). Each: `MEAS` and pattern pieces in `build_garments.py`, a run with `--debug`, a look with
@@ -370,6 +391,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | #47 | Behind the drape switch: padded and puffer jackets draped (`puffer` worn open, `puffer_up` zipped; hooded ones and parkas still `make3Dcore`'s); an open front's edges left out of the layer holding what is under it, and each draped point drawn back to its binding moved out of what is under it (g-outdoor-05's and q13-coastal's switch-on pokes gone); live page unchanged | not republished yet (B8UXnh v5, 5A3t39 v4 are on 51ff9ed) |
 | 13 Oct 2026 | none | This account's artifacts republished from `main` (51ff9ed, PRs #37 to #45's build, as on GitHub Pages): B8UXnh the page and twelve `data` files (new garment templates `gilet`, `scarf`, `shirt`, `shirt_up`), 5A3t39 the same as a `--drape` build; 2D/3D smoke test clean on both | B8UXnh v5, 5A3t39 v4 |
 | 13 Oct 2026 | #45 | Behind the drape switch: the draped scarf wound a turn and a half (no knot on his chest, a cowl behind his neck), g-outdoor-05's scarf clear on every body, draped tops held off a bigger belly (the waistband faced the way his body does); live page unchanged | B8UXnh v5, 5A3t39 v4 (row above) |
 | 13 Oct 2026 | none | The shared-database artifact (8uqcGr2) republished from `main` (37fc3c4, PRs #40 to #43's build, as on GitHub Pages): the page, `data/garments/scarf.json` and eight `data/items` and `data/photos` files; 2D/3D smoke test clean | 8uqcGr2 v52 |
