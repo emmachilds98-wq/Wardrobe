@@ -30,6 +30,7 @@ fit as the shop's photo, layered as it would really be worn, with no skin or hol
 | `data/items.json`, `data/items-*.json` | Every pick. The build merges them; the first file to define an id wins. |
 | `data/outfits.json`, `data/outfits-*.json` | Every outfit. Merged the same way. |
 | `data/fixes.json` | Corrections for items whose shop photo the page reads wrongly. |
+| `data/cuts.json` | How a pair of trousers or shorts is cut (skinny to baggy, cuffed, long), read from its shop photo, where its name reads it wrongly. |
 | `data/sizecharts.json` | What M, L and XL mean at each shop (the chest in inches, from the shop's own size guide, body or garment), with its source page. Made by `python3 tools/size_charts.py`; the cards show it as the size check. |
 | `data/specs.json` | The stored specs: how every piece worn in an outfit is read (colours, pattern, cut, cloth, details), with where each reading came from and how far to trust it. Made by `node tools/specs.js`; never edit it by hand. |
 | `photos/*-NN.json` | Listing photos (small WebP data URLs, keyed by item id), made by `tools/fetch_photos.py`. |
@@ -254,7 +255,7 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    | `swatch` | A small square of the cloth itself, as a `data:image/jpeg;base64,...` (under 16,000 characters), repeated as the garment's cloth at `per` of its length: for a woven pattern the listing photo cannot show (a lifestyle shot of a jacquard). Cut it from the shop's own close-up product image, flat and evenly lit, and make it repeat without a seam. |
    | `place` | The front panel of a top whose design sits in one place (a yoke, a Fair Isle band across the chest and sleeves, a hem band), as a `data:image/jpeg;base64,...` (under 24,000 characters): cut from the listing photo from just beside the centre front (leave out a zip or placket) to the side seam, and from the base of the collar to the bottom of the hem, then flipped so the centre is on the left. Fill any background with the cloth's colour. It is laid on by height, the hem at the bottom and the base of the collar at the top, mirrored round the body and run round each arm. |
    | `crown` | A cap's crown seen from the front (its stripes, lettering or logo), cut from the shop photo as a `data:image/jpeg;base64,...` (under 24,000 characters), with any background at its top corners filled in the cap's colour: laid over the front of the 3D cap's crown, fading into the cap's own colour round the sides. |
-| `why` | Required: what the shop photo shows, in a sentence. |
+   | `why` | Required: what the shop photo shows, in a sentence. |
    | `checked` | Required: the date you checked it against the shop's page. |
 
    The build checks every entry (a known item, `#rrggbb` colours, a known pattern, shares between 0 and 1, `why` and
@@ -262,6 +263,13 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
 5. **If a whole kind of photo is read wrongly**, change the reader in `page.html`, but only with `dump.js` run before
    and after on every outfit, and the differences looked at one by one. A change that makes any item worse is
    reverted, even if it fixes others.
+6. **The cut of trousers and shorts** (skinny, slim, tapered, regular, straight, relaxed, wide, baggy or barrel) is read
+   from the shop's fit label and the name (`bottomCut`). Where the shop photo shows otherwise, set it in
+   `data/cuts.json`: the cut, then any flags: `cuff` (gathered at the ankle), `open` (an open hem on a jogger), `flare`
+   or `bootcut`, `long` (shorts to the knee or below), e.g. `"r10-ue-rapid": "tapered cuff"`. Judge it from the
+   photo: the hem's width against the thigh's, and whether the leg narrows from the knee. The build stops on an unknown
+   item, cut or flag. Every bottom in an outfit was read this way on 12 Oct 2026; a new pick is read from its name
+   until it is added.
 
 ## How clothes are fitted to Dave
 
@@ -282,6 +290,36 @@ All fitting happens in `make3Dcore` in `page.html`, on the real body in `data/bo
   pushed outside them (`occPushPt`), so nothing underneath can come through. A garment's body that lies on his arm's
   part of the body mesh (the front of a gilet's shoulder) clears the shoulders of what is under it as well as his arm. Collars (`fitCollar`) are built round the
   neck base and stand on what is under them. Sleeves under a long-sleeved outer layer are not built.
+- **Necklines over necklines.** A top's neckline rises at the sides of his neck to the base of it (where his shoulders
+  rise into it), and never sits lower than the raised neckline of the top under it (`NUP` in `fitTop`). Where it goes
+  round what is under it is read from the neck-only map (`OCC.NC`: cloth within 10.5 cm of the neck's axis), not the
+  full neck map (`OCC.N`, which reaches 13 cm). A map holds the furthest cloth at each height, and with the neckline
+  raised the furthest cloth at that height is the top of his shoulder: read from `OCC.N`, a half-zip's neckline went
+  3 to 5 cm out round a polo's and its collar stood off his neck in wings. A collar's own clearance (`fitCollar`)
+  still reads `OCC.N`, since a hood's rim sits further out than that. A shirt or polo under a closed half-zip, roll
+  neck or hoodie keeps only a low band (1 cm) for a collar, since none of it shows.
+- **A hood laid over a jacket.** A hoodie's hood rim stands up round his neck inside whatever is worn over the
+  hoodie, so it is left out of the map a top's yoke lies on (`fitCollar`'s `stand`, `noOccY`): a jacket's yoke climbed
+  it and the jacket's neckline rose 2 to 5 cm up his neck after it, in wings beside the hood. It stays in the neck maps,
+  so the jacket's neckline and collar still go round it. The hood itself lies out over the jacket's back (`hoodDown`),
+  and every collar drawn after it (a piece worn over the hoodie) is pressed down under it at the back and sides, to a
+  fifth of its height, rising to full height at the front (`HOODO`): at full height the collar crossed the top of the
+  hood. Check g-mod-27, w20261006-casual-04 and hoodie-coat on all five bodies from behind.
+- **Where a neckline sits.** Beside his neck the slope of his shoulders rises past the neck's oval (`B3.neck`), so a
+  neckline put on the oval lies inside him there. In `yokeCol` it lies on his body where that is wider than the oval
+  (`fitMaps().N`, up to 2.5 cm out), as a crew neck lies on the slope of the shoulder. What rise is still needed is then
+  spread round his neck as a real neckline curves (each rise carried 90 degrees either way on a soft falloff, then
+  averaged over 35 degrees): raised only where the cloth crested, it climbed 3.5 cm in a few degrees beside his neck,
+  the back stayed down between two horns and every crew neckband showed gaps at the back corners. Check a neckline
+  change on a tee, a crew jumper and an oversized tee from the back and both sides, close up, not only from the front.
+- **Collars that fold.** A polo's collar is a low stand and a leaf that falls past the neckline to points spread over
+  the placket; worn open, a shirt's or jacket's leaf falls further with its points spread back beside the opening.
+  With the fitted top the leaf makes the points: the separate collar points are drawn only on the 2D-built figure
+  (laid on the cloth under an open jacket, they came through it as a dark flap). A cardigan named as an overshirt
+  (or shacket, shirt jacket, collar) gets a shirt's collar.
+- **Scarves.** The loop round his neck is measured only against cloth within 3.5 cm of the neck, or a collar; the top
+  of his shoulders is left to the ray down that lifts the loop's lower edge onto them (measured against them, the
+  loop lay over his shoulders as a flat cape).
 - **Trousers and shorts.** Cut as a pair is (`trouserGeo`): each half is one piece of cloth from the waistband to the
   hem. Over the hips and seat it lies on the hull of his body (hollows bridged) plus the ease, and below the widest
   point it falls in a line. The halves meet down the middle, front and back, and along the crotch seam, 2 to 4 cm
