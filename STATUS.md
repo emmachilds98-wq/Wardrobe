@@ -20,6 +20,14 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**13 Oct, later: shirts are draped** (PR #38, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzz), behind the drape switch like
+the rest of the drape: **with the switch off the live page is unchanged.** Two new templates, `shirt` (worn open) and
+`shirt_up` (done up), with a point collar folded over its stand, buttoned cuffs, and the placket and buttons drawn on
+the cloth. A top is draped only when everything worn over it is too; a shirt's collar leaf lies out over a crew
+jumper; each draped layer is held inside the draped bodies over it. Switch-on 3D check, gate set plus five shirt
+outfits on his shape: **28 of 30 clean** (the gate set alone was 19 of 30 before). What is left is listed in item 0
+below. **Next engineer, start at item 0.1.**
+
 **13 Oct: PR #33's and #34's work is back on `main`** (PR #37, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzz). Both were
 closed unmerged when the drape proof went in, and republishing Emma's artifact from `main` rolled their fixes back; Emma
 chose to bring them back first. On `main` again: every pair's cut read from its shop photo (`data/cuts.json`), the arm
@@ -47,10 +55,21 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
    its hood, quarter-zip, track jacket open and zipped up, jumper, roll neck, tee) built by `tools/build_garments.py`
    (headless Blender); drawn in the page by `drapeTops` (bound to his warped body, settled inner to outer), with front
    details, photo fronts, prints and `place` maps on the cloth, a Size row in the fitting room and Cloth fit.
-   **Where the switch-on 3D check stands** (`QA_INIT='window.__drape=1' node tools/check_3d.js ...`, gate set on his
-   shape): 19 of 30 clean. Every flag is a small back poke (34 to 155 px) where a top `make3Dcore` still builds (a
-   shirt, overshirt, jacket or coat) is worn over a draped tee or knit: it was cut for `main`'s closer inner layer.
-   Widening the hold-in from 2 to 4 cm made it worse (tried, reverted).
+   **Where the switch-on 3D check stands** (`QA_INIT='window.__drape=1' node tools/check_3d.js ...`, the gate set plus
+   wk-lounge, barrel-chore, c6-denim, m5-argyle and cold-commute; 13 Oct, PR #38): **28 of 30 clean on his shape** (was
+   19 of 30 on the gate set alone: every flag then was a draped tee or knit coming through a top `make3Dcore` built over
+   it, now never drawn so). Still flagged, with the switch on only:
+   - m5-argyle (a shirt under a crew jumper), front poke 32 to 49 on every body: the shirt's collar lying out over the
+     jumper's neckband, which close up looks right; the four-sides rule reads the leaf beside his neck as enclosed by
+     the jumper. Look before changing the check.
+   - q7-fairisle, "under" 10 to 15 on every body: the draped half-zip's collar comes over the scarf (PR #34 made the
+     scarf wrap closer). The same without the shirts. The scarf needs to know a draped collar (`collarMs` holds only
+     `make3Dcore`'s).
+   - heavier: belly skin under draped tees and knits (h10-surf, jb11-cheapest, lazy-sunday, q7-fairisle, m5-argyle),
+     the same on `main`'s drape: the templates are short over the heavier belly (grade length with the belly, not
+     only round him: `drapeGrade`'s `sy`).
+   - wk-lounge on heavier and loose (back poke 44, holes 29 to 31): its long-sleeved tee is not draped (the tee
+     template is short-sleeved) and comes through the draped shirt's back. A long-sleeved tee template fixes it.
    **Next, in order:**
    1. Drape the outer layers too, so nothing `make3Dcore` builds sits over draped cloth. **Shirts done 13 Oct** (PR #38,
       UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzz: `shirt` and `shirt_up`, a folded point collar, laid out over a jumper),
@@ -65,7 +84,8 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
    4. A size per piece in the fitting room (now one size for all draped tops).
    5. Separately, its own pull request: the page's armpit tear (`warpMan` moves arm and chest skin apart by up to
       1.7 cm; blend them as the builder's `Body.armW` does, clothes by the nearest skin's blend; full 3D check).
-   - Building: `python3 tools/build_garments.py --only <kind> --debug <dir>` (Blender 4.5 LTS downloads itself; or
+   - Building: `python3 tools/build_garments.py --only <kind> --debug <dir>` (Blender 4.5 LTS downloads itself, and
+     MakeHuman's assets from GitHub, both reachable from a claude.ai cloud session; or
      `pip install bpy` and run the script with that Python), about 3 minutes a kind; `--reuse` re-drapes a hood alone.
      Rules learnt: every sewn piece faces outward (the build stops otherwise: mirror the piece), rib bands and cuffs are
      pieces of their own, the relax smooths without shrinking, the body is blended at the armpits.
@@ -210,6 +230,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 13 Oct 2026 | #38 | Shirts draped behind the switch (`shirt` open, `shirt_up` done up: a point collar folded over its stand, cuffs, placket and buttons); a top draped only when all over it is; a shirt's leaf out over a jumper; layers held in under the draped bodies over them; live page unchanged | FtdHKg v44 |
 | 13 Oct 2026 | #37 | PR #33's and #34's work back on `main` (bottoms' cuts from their photos, `ARMSUM`, the seat, polo collars, necklines at the base of his neck, collars grown from their tops, scarves that wrap); a hood laid over an open jacket (the jacket's neckline no longer climbs the hood rim, its collar pressed down under the hood); the scarf check counts near-side hits only | FtdHKg v43 |
 | 12 Oct 2026 | none | FtdHKg republished from `main` (e0bcb1d, PR #36's build, as on GitHub Pages), which rolled #33's and #34's fixes back on it until #37 | FtdHKg v42 |
 | 12 Oct 2026 | #36 (merged) | Garment drape upgrade merged behind its switch: seven draped kinds (hoodie and hood, quarter-zip, track jacket open and zipped, jumper, roll neck, tee), photo looks and details on the cloth, Size row, layering; live page unchanged; drape preview artifact with a Draped clothes switch | B8UXnh v4 (GitHub build), 5A3t39 v4 (drape preview) |
