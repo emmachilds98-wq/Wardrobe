@@ -4124,7 +4124,7 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
     drapeSettle(XS,st.cl,layerCols(),st.grp,null,window.__drapeSteps||60,XS.slice());
     /* (and in front of what is under it down his front, found by a ray from in front at each point: a jacket's toggles
        and its open front's edge are too thin a scatter of points for the settle to hold it out, and showed through the
-       ends. Then a short settle toward where it was put, so a point moved alone does not stand out) */
+       ends. Then a short settle, so the cloth round a point moved alone follows it rather than it standing out) */
     var dm=[];man.traverse(function(o){if(o.isMesh&&!o.isInstancedMesh&&o.visible&&/^up/.test(o.userData.kind||"")&&o.geometry&&o.geometry.attributes.position)dm.push(o);});
     if(dm.length){var rcS=new T.Raycaster(),oS=new T.Vector3(),dS=new T.Vector3(0,0,-1).transformDirection(man.matrixWorld),hp=new T.Vector3(),mv=0;rcS.far=0.4;
       /* (only where it is the scarf's front layer: where one end crosses the other, the end under it moved out came
@@ -4136,21 +4136,23 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
       var oD=new T.Vector3(),wD=new T.Vector3();
       /* (round his neck is above 1.42 m, and behind and at the sides down to 1.32: the loop's lower edge there lies out
          over his shoulders, and a jacket's back came up over it) */
-      var push=function(q,ux,uz){var qx=XS[q*3],qy=XS[q*3+1],qz=XS[q*3+2],df=-9;
+      var held=new Uint8Array(st.n),push=function(q,ux,uz){var qx=XS[q*3],qy=XS[q*3+1],qz=XS[q*3+2],df=-9;
         var along=function(px,py,pz){return px*ux+pz*uz;};   /* (how far out along the ray's way: z in front, out from his neck round it) */
         wD.set(-ux,0,-uz).transformDirection(man.matrixWorld);
         oS.set(qx+ux*0.3,qy,qz+uz*0.3).applyMatrix4(man.matrixWorld);rcS.set(oS,wD);var hO=rcS.intersectObject(sme,false);if(hO.length){hp.copy(hO[0].point).applyMatrix4(inv);if(along(hp.x,hp.y,hp.z)>along(qx,qy,qz)+0.004)return;}
         [[0,0],[0.007,0],[-0.007,0],[0,0.007],[0,-0.007]].forEach(function(d){var sx=d[0]*uz,sz=-d[0]*ux;   /* (and 7 mm round it, across the way and up and down: an edge between two of its points) */
           oS.set(qx+sx+ux*0.3,qy+d[1],qz+sz+uz*0.3).applyMatrix4(man.matrixWorld);rcS.set(oS,wD);
           var hS=rcS.intersectObjects(dm,false);if(hS.length){hp.copy(hS[0].point).applyMatrix4(inv);var a2=along(hp.x,hp.y,hp.z);if(a2>df)df=a2;}});
-        var aq=along(qx,qy,qz);if(df>-9&&df+0.009>aq){var mvd=df+0.009-aq;XS[q*3]+=ux*mvd;XS[q*3+2]+=uz*mvd;mv++;}};
+        var aq=along(qx,qy,qz);if(df>-9&&df+0.009>aq){var mvd=df+0.009-aq;XS[q*3]+=ux*mvd;XS[q*3+2]+=uz*mvd;held[q]=1;mv++;}};
       for(var q=0;q<st.n;q++){var qx=XS[q*3],qy=XS[q*3+1],qz=XS[q*3+2],ring=qy>1.42||(qy>1.32&&qz<0.02);if(qy<0.8||(!ring&&qz<0.05))continue;
         if(!ring){push(q,0,1);continue;}
         var rl=Math.hypot(qx,qz)||1;push(q,qx/rl,qz/rl);
         /* (and at the sides of his neck, from the side as well: an open jacket's collar ends there, its tip standing out
            across the way out from his neck, and from straight out the rays passed beside it) */
         if(Math.abs(qx)>0.06)push(q,qx>0?1:-1,0);}
-      if(mv)drapeSettle(XS,st.cl,layerCols(),st.grp,null,12,XS.slice());}
+      /* (the points moved are held where they were moved and the rest follows them: left free too, the settle drew
+         them back up to 2 cm, and an open jacket's collar tip came through again at the side of his neck) */
+      if(mv)drapeSettle(XS,st.cl,layerCols(),st.grp,held,12,XS.slice());}
     drapeScarf(man,ctx.scarf,st,XS);}}
 /* a draped scarf's cloth, its design and its fringes: the band in the scarf's own colour, each end in its design where
    the shop photo gives one (fixes.json strip, laid from the foot up 44 cm, as make3Dcore's scarf), and a fringe of loose
