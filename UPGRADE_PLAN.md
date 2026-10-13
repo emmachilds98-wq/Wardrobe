@@ -2698,6 +2698,58 @@ changes.** PR #41.
   "under" (STATUS item 0) is clean with the switch on, on `main` too since PR #40's live scarf.
 - *The pull-request check (switch off)*: green; the live page is unchanged.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzz. Emma's comments: dark jeans, straight and relaxed legs, cuffs, four designs from the shop photos (13 Oct 2026)
+
+Nine comments on her artifact (FtdHKg, v45), each answered in its thread.
+
+**Trousers.**
+- *m5-under-60, "colour of these trousers is wrong".* The Matalan jeans' photo reads near black (#161719), outside the
+  dark wash's range, so the denim rule put the dark wash's mid indigo (#2c3d5e) in its place, which the studio light drew
+  a bright blue. A general fix was tried first: keep the reading's own depth, clamped into the wash's range, in the
+  wash's blue. `dump.js` before and after: 23 readings moved, 14 of them on items without a fixes.json colour, and 6 of
+  those came out further from their photo (dark indigo jeans read just as near black as a rinse does; a light wash read
+  grey). Reverted, as the rule says; `mt-jeans-straight` has a fixes.json `col` (#222a3a, the lit cloth in its photo).
+- *m5-under-60, "slightly flared when they're straight leg"; x11-matalan-casual, "balloon a bit too much outwards
+  below the crotch line".* Measured on his saved shape (a probe reading the trousers' mesh, its width and depth at 12
+  heights): round the leg, straight came out 3% wider at the knee and hem than at the thigh, relaxed 15%, wide 19%,
+  baggy 25%. Two causes: 12 Oct's numbers, which made the fits tell apart, let the room grow below the thigh (`wide`)
+  and kept nearly all of it to the hem (`fall` 0.9 to 1); and the hem's own fullness, 12 mm front to back over its
+  last 15 cm, was carried up the shin by the hull as a cone. A real straight leg is about 70% of the thigh at the knee
+  and hem; on his body the knee and calf hold it out. Now (`BOTCUT`): straight `wide` 0.004, `fall` 0.82; relaxed
+  `e0` 0.017, `wide` 0.01, `fall` 0.82; wide 0.018 and 0.95; baggy 0.024 and 0.97 (skinny to regular unchanged).
+  Round the leg against the thigh, at the knee and the hem: straight 0.94 and 0.89, relaxed 0.99 and 0.94 (1.5 cm more
+  round the thigh than straight), wide 1.08 and 1.07, baggy 1.13 and 1.12. The hem is fuller by 1.5 mm across and 6 mm
+  front to back, set back 16 mm (was 4, 12 and 10), so its back edge is where it was and the heel stays inside. The
+  x11 joggers were `wide` in `data/cuts.json`; their name says relaxed straight and Emma says relaxed: `relaxed open`.
+- *s10-admiral, "tracksuit bottom material looks like leather and it's unclear when something has elasticated bottoms
+  vs straight / baggy leg opening".* "SikSilk" matched `/silk/` in `descOf`, so all 8 SikSilk pieces were satin
+  (roughness 0.42, shiny): now `/satin|\bsilk/`. The SikSilk smart joggers have an open hem in the photo (`cuts.json`
+  `tapered open`). A cuffed jogger only had its hem raised off the shoe, so a relaxed or baggy pair with cuffs hung open
+  at the ankle. Now the leg gathers into a 5 cm rib cuff round his ankle (`legSecs`, after the hull, which would bridge
+  it), the cloth just above standing out over it a little, and a rib band a shade darker than the leg (`cuffM`).
+
+**Designs from the shop photos** (all in `data/fixes.json`, each checked against the shop's own page):
+- *s5-walk, "dark grey shirt missing the chequer pattern and shows the red version".* The listing page's main image is
+  its first colourway, red; the stored photo is now the dark grey colourway's own flat-lay from the same listing (from
+  the shop, shrunk as `fetch_photos.py` does, 360 x 450), and a `swatch` of its window-pane check (two repeats cut
+  from it, matched to repeat without a seam).
+- *h9-boardshort, "flower board short design missing".* Its photo is a lifestyle shot from behind that the page cannot
+  read. `swatch`: three flowers cut from the shop's close-up, laid on its blue in a repeating square.
+- *s10-admiral, "design on the top isn't clear".* The photo's front was laid on as a flat patch: the side panels showed
+  as a faint square. A `place` panel, and two new uses: with `slv` the sleeves stay plain (`placeMap`'s `plainArm`: each
+  arm takes the panel's side seam at its height, or the panels ran down his forearms), and `back: false` keeps the back
+  plain, as the shop's back photo shows.
+- *m7-harrington, "missing the design on this shirt".* The Lambretta polo's band of gold and black checks: `place`, cut
+  from the middle of a check square at the centre front so the two mirrored halves meet as one square; `col2` gives its
+  tipping gold (it was cream).
+- *x11-swim, "print of the t shirt is also missing".* A model photo gives no chest print (by rule: the model may be
+  turned). New fields `print` and `at`: the print cut from the shop's flat photo of the tee on a hanger, and where it
+  sits as the reader's own prints are placed. The cloth round it is made clear as the reader does (`printCv`); laid on
+  the front only (`decal.only`), as the shop's back photo is plain.
+
+**Checks.** `tools/specs.js`: 14 pieces read differently, all meant (the six corrections, and the eight SikSilk pieces
+no longer satin). 3D check, the changed outfits and the gate set: see the Log line for this PR.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

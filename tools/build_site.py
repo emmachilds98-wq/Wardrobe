@@ -73,7 +73,7 @@ def load_groups(items):
     return groups
 
 
-FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch", "named", "slv", "place", "crown", "strip")
+FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch", "named", "slv", "place", "crown", "strip", "print", "at", "back")
 
 
 def check_fix_fields(k, fx, bad):
@@ -88,7 +88,7 @@ def check_fix_fields(k, fx, bad):
             bad.append(f"{k}: {f} must be a share between 0 and 1")
     if "front" in fx and fx["front"] not in (True, False):
         bad.append(f"{k}: front must be true or false")
-    for f in ("decal", "named"):
+    for f in ("decal", "named", "back"):
         if f in fx and fx[f] is not False:
             bad.append(f"{k}: {f} can only be false")
     if "swatch" in fx and not (isinstance(fx["swatch"], str) and re.match(r"data:image/(jpeg|png);base64,", fx["swatch"])
@@ -103,6 +103,16 @@ def check_fix_fields(k, fx, bad):
     if "strip" in fx and not (isinstance(fx["strip"], str) and re.match(r"data:image/(jpeg|png);base64,", fx["strip"])
                               and len(fx["strip"]) <= 24000):
         bad.append(f"{k}: strip must be a small data:image/jpeg or png (a scarf's end, straightened, under 24,000 characters)")
+    if "print" in fx and not (isinstance(fx["print"], str) and re.match(r"data:image/(jpeg|png);base64,", fx["print"])
+                              and len(fx["print"]) <= 24000):
+        bad.append(f"{k}: print must be a small data:image/jpeg or png (a chest print, under 24,000 characters)")
+    if ("print" in fx) != ("at" in fx):
+        bad.append(f"{k}: print and at go together (the print, and where it sits)")
+    if "at" in fx and not (isinstance(fx["at"], list) and len(fx["at"]) == 3
+                           and all(isinstance(v, (int, float)) and not isinstance(v, bool) and 0 < v < 1 for v in fx["at"])):
+        bad.append(f"{k}: at must be [x, y, w], each a share between 0 and 1")
+    if "back" in fx and "place" not in fx:
+        bad.append(f"{k}: back:false goes with place (a placed design on the front only)")
 
 
 CUT_KINDS = ("skinny", "slim", "tapered", "regular", "straight", "relaxed", "wide", "baggy", "barrel")

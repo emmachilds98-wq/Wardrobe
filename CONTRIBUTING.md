@@ -244,7 +244,7 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    | --- | --- |
    | `col` | The main colour, `#rrggbb`, sampled from the cloth in the shop photo (not the shadows or highlights). It also drops the photo's front and sleeve colour, read from the same wrong reading. |
    | `col2` | The second colour (stripes, checks, trim), `#rrggbb`, or `""` for none. |
-   | `slv` | The sleeves' own colour, `#rrggbb`, when they differ from the body (raglan sleeves in another colour). |
+   | `slv` | The sleeves' own colour, `#rrggbb`, when they differ from the body (raglan sleeves in another colour). With `place`, the sleeves stay plain in it instead of carrying the panel round each arm (a sweatshirt whose side panels would otherwise run down the forearms). |
    | `named` | `false` when the colour the listing names is only part of the piece (a yoke, a peak, the sleeves): the photo is then read as it is. |
    | `pat` | `plain`, `hstripe` (across), `vstripe` (down), `check` or `print`. `plain` also drops a read swatch or front. |
    | `per` | Stripe or check spacing as a share of the garment's length, between 0 and 1 (a Breton is about 0.04). |
@@ -253,7 +253,9 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    | `decal` | `false` drops the chest graphic cut from the photo (when it picked up something that is not a print). |
    | `shapes` | For a set sold as one listing and worn as two pieces (a tee and shorts, one photo): corrections for one garment shape only, as `{"shorts": {"col": "#5f5f62"}}`, laid over the item's own. |
    | `swatch` | A small square of the cloth itself, as a `data:image/jpeg;base64,...` (under 16,000 characters), repeated as the garment's cloth at `per` of its length: for a woven pattern the listing photo cannot show (a lifestyle shot of a jacquard). Cut it from the shop's own close-up product image, flat and evenly lit, and make it repeat without a seam. |
-   | `place` | The front panel of a top whose design sits in one place (a yoke, a Fair Isle band across the chest and sleeves, a hem band), as a `data:image/jpeg;base64,...` (under 24,000 characters): cut from the listing photo from just beside the centre front (leave out a zip or placket) to the side seam, and from the base of the collar to the bottom of the hem, then flipped so the centre is on the left. Fill any background with the cloth's colour. It is laid on by height, the hem at the bottom and the base of the collar at the top, mirrored round the body and run round each arm. |
+   | `place` | The front panel of a top whose design sits in one place (a yoke, a Fair Isle band across the chest and sleeves, a hem band), as a `data:image/jpeg;base64,...` (under 24,000 characters): cut from the listing photo from just beside the centre front (leave out a zip or placket) to the side seam, and from the base of the collar to the bottom of the hem, then flipped so the centre is on the left. Fill any background with the cloth's colour, and paint out a logo or neck label on one side (it would come out mirrored on the other). For a band of checks, start at the middle of a square so the two halves meet as one. It is laid on by height, the hem at the bottom and the base of the collar at the top, mirrored round the body and run round each arm. |
+   | `back` | `false`, with `place`: the design is on the front only (the shop's back photo is plain), so the back takes the panel's side seam, plain. |
+   | `print`, `at` | A chest print the reader cannot take (a model photo gives none), cut from the shop's flat photo of the garment as a `data:image/jpeg;base64,...` (under 24,000 characters) with the cloth round it, and where it sits, `[x, y, w]`: its centre across and down and its width, as shares of the garment from sleeve end to sleeve end and from the collar to the hem. The cloth round it is made clear (its border's colour), as with the prints the reader cuts. Laid on the front only: check the shop's back photo, and leave the back plain if it is. |
    | `crown` | A cap's crown seen from the front (its stripes, lettering or logo), cut from the shop photo as a `data:image/jpeg;base64,...` (under 24,000 characters), with any background at its top corners filled in the cap's colour: laid over the front of the 3D cap's crown, fading into the cap's own colour round the sides. |
    | `strip` | A scarf's design along its length (stripes, lettering, a logo near the fringe): one end cut from the shop's flat-lay photo, turned upright and cropped from just above the fringe to about two thirds of the way up, as a `data:image/jpeg;base64,...` (under 24,000 characters). Laid along each hanging end of the 3D scarf, the fringe end at the bottom (the shorter end shows its lower part); the loop round his neck stays in the scarf's main colour. |
    | `why` | Required: what the shop photo shows, in a sentence. |
@@ -328,7 +330,12 @@ All fitting happens in `make3Dcore` in `page.html`, on the real body in `data/bo
   legs part in an arch. A leg's inside that would run past the middle is eased back to a narrow gap, never onto his
   thigh (`thighGap`). Never build trousers from his skin pushed outward: see *Lessons learned*. The leg's cut comes from `fit` and the name:
   wide/baggy/barrel/parachute, relaxed/loose/carpenter/cargo, slim/tapered/cuffed/jogger, bootcut/flare, cropped/ankle.
-  Over boots the hem rests on the boot. Cuffed joggers gather above the shoe.
+  Over boots the hem rests on the boot. Cuffed joggers gather above the shoe into a rib cuff that hugs the ankle (5 cm,
+  a shade darker than the leg), the cloth just above it blousing a little, so a cuff never reads as an open hem. No
+  cut but bootcut and flare is wider at the hem than at the knee, and only wide and baggy are wider at the knee than
+  at the thigh: measured round the leg on his saved shape, straight and relaxed narrow to about 0.9 of the thigh at
+  the hem, wide stays at about 1.07 and baggy 1.12 (`BOTCUT`). A fuller hem built into the sections spreads up the
+  shin as a cone through the hull, which reads as a flare (13 Oct).
 - **His skin under the clothes.** The body's triangles that clothes cover are left out, so skin can never poke
   through cloth (`bodyIdx`, from rules per region and height). After the clothes are built, any of those triangles
   that no cloth actually goes round (checked on the maps of what he wears) are put back, so the edge of a neckline, a

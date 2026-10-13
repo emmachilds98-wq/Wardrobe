@@ -20,6 +20,16 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**13 Oct, evening: Emma's nine comments on her artifact** (PR #42, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzz). Live
+page changes, all checked: straight and relaxed legs no longer widen below the thigh (`BOTCUT`, and the hem's own
+fullness no longer spreads up the shin as a cone); cuffed joggers gather into a rib cuff at the ankle; "SikSilk" is no
+longer read as silk (satin); six `data/fixes.json` corrections (the Matalan jeans' colour; the Mountain Warehouse shirt's
+photo, now its dark grey colourway, and its check; the Brakeburn board shorts' flowers; the Admiral sweatshirt's side
+panels; the Lambretta polo's band of checks; the Saltrock tee's print); two `data/cuts.json` lines. New correction
+fields: `print` and `at` (a chest print from a flat photo when the shop's photo is on a model), `back: false` and
+`slv` with `place`. A general denim rule for the jeans was tried and reverted (it moved 6 other pairs further from their
+photos): see the plan entry. Each thread has a reply; FtdHKg is republished from this build once it merges.
+
 **13 Oct, late: a draped scarf, behind the drape switch** (PR #41, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzz). **With
 the switch off the live page is unchanged.** A scarf template (`tools/build_garments.py --only scarf`,
 `data/garments/scarf.json`: 180 x 14 cm, once round his neck, both ends down his front, draped in Blender over his body
@@ -30,6 +40,17 @@ on his shape (one speck of collar). **Next engineer, start here for the scarf:**
 1. The crossing on his chest bunches into a knot: in `scarf_path` try the ends leaving the loop under it (a tuck) rather
    than over it, or a gentler twist where each end leaves the loop (`join`: more points, the band's width turning over
    10 cm); look at each try with `node tools/garment_view.js <debug>/scarf-draped.json out.png` before the page.
+   *Tried 13 Oct, evening (scratch only, nothing committed; each run about 2 minutes once Blender is unpacked):*
+   (a) the band turning gradually from flat on his chest to upright round his neck along a join 16 cm long, the ends
+   hung apart (8 cm left, 6 cm right of the middle) rather than crossing: laid out it looks right, but draped the
+   front of the loop slides down his chest and opens into a shawl, the ends spread to his shoulders: the crossing ends
+   are what hold the loop's front up. (b) The same with the whole first turn's top edge held, not only behind his neck:
+   worse, an end swings round behind his shoulder. (c) "Once around" as it is usually tied (the middle across the
+   front of his neck, the ends crossed behind it and brought forward over his shoulders, a turn and a half): no knot,
+   but a turn and a half of a 14 cm band round his collar uses most of the 180 cm, so the ends reach only his upper
+   chest, and draped the loop spreads over his shoulders. Untried: (c) with a narrower band (a 28 cm scarf folded in
+   three, or 180 x 20 folded once) and a loop held by friction only at the back; or keeping the crossing and hiding it
+   under the loop (the tuck).
 2. The loop stands high behind his neck (the pinned edge, `pins` in `drape_scarf`): try pinning lower on the loop, or
    releasing the pins for the last 20 frames.
 3. g-outdoor-05 "under 4" (switch on, his shape): the jacket collar's tip between the scarf's outer layer and its edge
