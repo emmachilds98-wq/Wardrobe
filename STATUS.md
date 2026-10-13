@@ -82,7 +82,16 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
      only round him: `drapeGrade`'s `sy`).
    - wk-lounge on heavier and loose (back poke 44, holes 29 to 31): its long-sleeved tee is not draped (the tee
      template is short-sleeved) and comes through the draped shirt's back. A long-sleeved tee template fixes it.
-   - **Gilets (PR #39), switch on, the 40 gilet outfits on his shape:** GILET_RESULT
+   - **Gilets (PR #39), switch on, the 40 gilet outfits on his shape:** **29 of 40 clean** (15 flagged at first; the
+     collar and belt rules in UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzz cleared four and roughly halved most of the rest;
+     the 25 clean at first are still clean). Still flagged, with the switch on only:
+     - 8 at the base of his neck, front poke 38 to 83 (errands, g-job-11, g-job-15, g-outdoor-01, g-outdoor-03,
+       g-quiet-13, g-quiet-18, g-quiet-26): the top under it seen inside the gilet's stand collar. Close up a roll neck
+       there looks right; a shirt's leaf held inside the collar is crumpled and shows. Look before changing the check:
+       the four-sides rule reads anything inside a stand collar as enclosed by it.
+     - g-outdoor-21, front poke 151 and back 619: a borg-lined overshirt (jacket-weight, built by `make3Dcore`) under
+       the gilet comes through its back; it goes when jacket-weight overshirts are draped.
+     - g-job-13 back poke 40 (small marks near the back hem) and g-quiet-29 back holes 29: not looked at yet.
    **Next, in order:**
    1. Drape the outer layers too, so nothing `make3Dcore` builds sits over draped cloth. **Shirts done 13 Oct** (PR #38,
       UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzz: `shirt` and `shirt_up`, a folded point collar, laid out over a jumper),
@@ -246,7 +255,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
-| 13 Oct 2026 | #39 | Gilets draped behind the switch (`gilet`: sleeveless, done up, stand collar, hem band; zip and work pockets on the cloth); a shirt's leaf stays inside a stand collar done up over it; belts under draped tops; the fitting room says a shirt with a tie stays tucked; live page otherwise unchanged | ARTIFACT_V |
+| 13 Oct 2026 | #39 | Gilets draped behind the switch (`gilet`: sleeveless, done up, stand collar, hem band; zip and work pockets on the cloth); a shirt's leaf stays inside a stand collar done up over it; belts under draped tops; the fitting room says a shirt with a tie stays tucked; live page otherwise unchanged | 8uqcGr2 v51 |
 | 13 Oct 2026 | none | The shared-database artifact (8uqcGr2) republished from `main` (9c35b06, PR #38's build); five photo packs no longer in `docs/` removed from it | 8uqcGr2 v50 |
 | 13 Oct 2026 | #38 | Shirts draped behind the switch (`shirt` open, `shirt_up` done up: a point collar folded over its stand, cuffs, placket and buttons); a top draped only when all over it is; a shirt's leaf out over a jumper; layers held in under the draped bodies over them; live page unchanged | FtdHKg v44 |
 | 13 Oct 2026 | #37 | PR #33's and #34's work back on `main` (bottoms' cuts from their photos, `ARMSUM`, the seat, polo collars, necklines at the base of his neck, collars grown from their tops, scarves that wrap); a hood laid over an open jacket (the jacket's neckline no longer climbs the hood rim, its collar pressed down under the hood); the scarf check counts near-side hits only | FtdHKg v43 |

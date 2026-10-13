@@ -2547,7 +2547,11 @@ outfits, none worn open). Next by that count: padded and puffer jackets (21) and
   tucked, so the belt is under it. Left out, the belt came through the gilet at his waist (q13-coastal, front poke 224
   before the collar rule, 101 after it, clean with it).
 - **Switch-on 3D check of the 40 gilet outfits on his shape** (`QA_INIT='window.__drape=1'`): 15 flagged at first,
-  every one at the neck or waist; after the three rules above, GILET_RESULT_PLAN
+  every one at the neck or waist; after the three rules above, 29 of 40 are clean (the 25 clean at first
+  still are). Left: eight at the base of his neck (front poke 38 to 83: the top under it seen inside the gilet's stand
+  collar; a roll neck there looks right close up, a shirt's leaf held inside it is crumpled), g-outdoor-21 (a
+  borg-lined overshirt built by `make3Dcore` comes through the gilet's back: back poke 619), g-job-13 (back poke 40)
+  and g-quiet-29 (back holes 29). The pull-request check, with the switch off, is unchanged.
 
 ## 3. Next steps
 
