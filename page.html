@@ -4162,8 +4162,11 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
   /* (and so is its body's cloth folded back on itself, facing in toward his middle: a padded jacket's open front curls in
      at its lower corner, inside the hoodie under it, and that fold, turned in, pushed the shirt under the hoodie out
      through it) */
+  /* (all of it, for a collar leaf held inside a stand collar done up over it: but not that layer's own leaf, folded
+     down outside its stand. Held inside the leaf too, a shirt's or a polo's leaf lay between a zipped-up Harrington's
+     stand and leaf and came through the leaf in patches, back and front, m7-harrington and two coach jackets) */
   function inCol(O,all){var P=[],Nn=[],ef=drapeSplit(O.t)?drapeEdge(O.t):null,X=O.X,N=O.N;
-    for(var q=0;q<O.t.n;q++){var g=O.t.grp[q];if((all||!g)&&!(ef&&ef[q])&&(g||N[q*3]*X[q*3]+N[q*3+2]*(X[q*3+2]-zc)>=0))for(var a=0;a<3;a++){P.push(X[q*3+a]);Nn.push(-N[q*3+a]);}}
+    for(var q=0;q<O.t.n;q++){var g=O.t.grp[q];if((all||!g)&&!(ef&&ef[q])&&!(all&&O.lf&&O.lf[q])&&(g||N[q*3]*X[q*3]+N[q*3+2]*(X[q*3+2]-zc)>=0))for(var a=0;a<3;a++){P.push(X[q*3+a]);Nn.push(-N[q*3+a]);}}
     return drapeCol(new Float32Array(P),new Float32Array(Nn),0.006,0.02);}
   /* (his body split, torso and arms, so a sleeve is not pushed off his side nor his side off his arm; the clothes under
      it whole: a tee's sleeve under a jacket's armhole, which is part of the jacket's body) */

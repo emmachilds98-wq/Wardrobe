@@ -293,10 +293,10 @@ MEAS = {
     "shirt_up": dict(chest=110, length=79, shoulder=47, armhole=24, neck_w=16, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
                      sleeve=64, bicep=40, wrist=25, cuff=6.5, cuff_c=24, collar=3, leaf=4.5, point=7),
     # a polo: the tee's body, a little higher at the front of the neck, short sleeves finished in a 2.5 cm rib armband a
-    # little closer than the sleeve, and a knitted collar (a 2 cm stand and a 6 cm leaf folded down over it, 7 cm to its
+    # little closer than the sleeve, and a knitted collar (a 2 cm stand and a 4.5 cm leaf folded down over it, 6.5 cm to its
     # points) closed round his neck; the page draws its placket and buttons
     "polo": dict(chest=108, length=72, shoulder=46, armhole=22, neck_w=17, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
-                 sleeve=23, bicep=38, wrist=35, cuff=2.5, cuff_c=33, collar=2, leaf=6, point=7),
+                 sleeve=23, bicep=38, wrist=35, cuff=2.5, cuff_c=33, collar=2, leaf=4.5, point=6.5),
     # a padded or puffer jacket: the track jacket's cut with a padded jacket's room (132 cm round the chest, 8 more than
     # the track jacket, so it goes over a sweatshirt or a quarter-zip with its padding; sleeves 48 cm round the bicep),
     # a taller stand collar, a narrow elastic hem and elastic cuffs; worn open (its front in two) or zipped up
