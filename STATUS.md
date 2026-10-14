@@ -403,7 +403,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
-| 14 Oct 2026 | PRA | "S - S" and "SS" shirts short-sleeved (23; three outfits' Stan Ray shirts now `sshirt`); a shirt's collar under a draped stand collar done up only its foot (w20261006-casual-04 done up, g-job-11, g-job-15, g-quiet-13 clean) | ARTA |
+| 14 Oct 2026 | #50 | "S - S" and "SS" shirts short-sleeved (23; three outfits' Stan Ray shirts now `sshirt`); a shirt's collar under a draped stand collar done up only its foot (w20261006-casual-04 done up, g-job-11, g-job-15, g-quiet-13 clean) | FtdHKg v49 |
 | 14 Oct 2026 | none | FtdHKg republished from `main` (451852e, PR #48's build: draped clothes only), the page and four `data/garments` files; now the one artifact kept in step with `main` | FtdHKg v48 |
 | 13 Oct 2026 | #47 | Behind the drape switch: padded and puffer jackets draped (`puffer` worn open, `puffer_up` zipped; hooded ones and parkas still `make3Dcore`'s); an open front's edges left out of the layer holding what is under it, and each draped point drawn back to its binding moved out of what is under it (g-outdoor-05's and q13-coastal's switch-on pokes gone); live page unchanged | not republished yet (B8UXnh v5, 5A3t39 v4 are on 51ff9ed) |
 | 13 Oct 2026 | none | This account's artifacts republished from `main` (51ff9ed, PRs #37 to #45's build, as on GitHub Pages): B8UXnh the page and twelve `data` files (new garment templates `gilet`, `scarf`, `shirt`, `shirt_up`), 5A3t39 the same as a `--drape` build; 2D/3D smoke test clean on both | B8UXnh v5, 5A3t39 v4 |
