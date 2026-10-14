@@ -22,6 +22,11 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**14 Oct: a hoodie's hood over an open track jacket's collar** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Before the hood
+settles, an open zip jacket's stand collar is folded down and pressed under the hood, so the hood lies over it. The
+last four hoodie-under-jacket flags are gone (x11-ellesse, jb10-winter-kx3, jb9-ukd-softshell, st-daily).
+**Next:** XPBD substeps in `drapeSettle`.
+
 **14 Oct: a hoodie's hood over a jacket's collar** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). The hood no longer settles
 against a shirt collar worn over it: it lies over the collar, which is pressed in under it. A chore or denim jacket
 over a hoodie is draped again (hoodie-chore, n4-ravon).
@@ -456,6 +461,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 14 Oct 2026 | #58 | A hoodie's hood lies over an open zip jacket's stand collar (folded down and pressed under it); the last 4 hoodie-under-jacket flags fixed | FtdHKg v57 |
 | 14 Oct 2026 | #57 | A hoodie's hood lies over a jacket's shirt collar (the collar pressed in under it); a chore or denim jacket over a hoodie is draped again (2 outfits) | FtdHKg v56 |
 | 14 Oct 2026 | #56 | Draped bombers (`bomber`, `bomber_up`: rib collar, cuffs and hem band; 5 bombers, 5 outfits) | FtdHKg v55 |
 | 14 Oct 2026 | #55 | Draped chore and denim jackets (`chore`, `trucker`, each open or done up: 8 jackets, 8 outfits; over a hoodie `make3Dcore`'s); a bag's strap laid over draped tops | FtdHKg v54 |
