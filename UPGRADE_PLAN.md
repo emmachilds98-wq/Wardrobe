@@ -2950,6 +2950,53 @@ under one, plus the gate set, as worn and done up (`--wear zip=up,tuck=out`), ag
 - Seen, not fixed: a hoodie's drawstrings fleck the chest under a zipped puffer (the check does not see them);
   dc-3in1-green has no photo.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped hooded zip jackets and collared zip jackets (14 Oct 2026)
+
+The next of item 0.1's outer layers. Looking at every jacket in an outfit beside its photo (the hood entry above), the
+zip jackets the track jacket template did not fit were of two kinds: hooded (shells, windbreakers, softshells, hooded
+fleeces) and collared (Harringtons, coach jackets, Capitol and Eisenhower jackets).
+
+- *Four templates* (`tools/build_garments.py`, `MEAS`):
+  - `jacket_hood` (worn open) and `jacket_hood_up` (zipped): the track jacket's cut with no collar, a 3 cm hem band,
+    and a two-piece hood sewn into the neckline, 37 cm high and 27 deep (a hoodie's is 35 and 25: it goes over a cap).
+    The hood is draped after the jacket, as the hoodie's is.
+  - `jacket_coll` and `jacket_coll_up`: the track jacket's cut 2 cm shorter, a rib hem, and a shirt's collar a size
+    up (a 3 cm stand and a 5 cm leaf, 7.5 cm to its points).
+- *In the page:*
+  - `drapeArch` gives `jacket_hood` to a jacket with a hood (`hoodOn`), unless it is padded, insulated, a parka, a ski,
+    wax, denim or sherpa-lined jacket. These keep `make3Dcore`'s shapes until a hooded puffer exists.
+  - It gives `jacket_coll` to a Harrington, coach, Capitol or Eisenhower jacket or a collar blouson (not a padded,
+    wax, denim, wool or fleece one, nor a bomber).
+  - A stand-collar "zip-up blouson" stays on the track jacket. On the collared template a hoodie under it, zipped,
+    showed at the sides of his neck (st-daily, front poke 44); on the track jacket it is clean.
+  - The hood is drawn for any template that has one, not only a hoodie's, out over what is worn over it.
+  - A hoodie's hood under a hooded jacket, draped or not, is left out (it lies inside the jacket's).
+  - A shirt's leaf stays inside any hooded layer, as it did inside a hoodie's hood.
+  - Zipped, the hooded jacket gets a zip from its neckline down with a pull at the top. The collared one gets the
+    track jacket's zip up to its stand. Worn open, both get zip teeth along each front edge.
+  - `jacket_coll_up` counts as a stand collar done up (`STANDC`, `stC`).
+- 25 hooded jackets (32 outfits) and 12 collared jackets (17 outfits) are now draped.
+
+**Checked**, his shape, as worn and done up (`--wear zip=up,tuck=out`), against `main`:
+- The 32 hooded-jacket outfits: as worn, `main` 0 flagged and this 0. Done up, `main` 0 and this 1: g-quiet-24, back
+  holes 29 (limit 25), a sliver of background between his left arm and the zipped jacket's side above the hem. This
+  is the kind g-outdoor-12 and g-quiet-29 show on `main`; not fixed.
+- The 17 collared-jacket outfits: 0 flagged either way, as on `main`.
+- On the other four bodies (slim, athletic, heavier, loose), the 50 outfits as worn, against `main` where flagged:
+  - g-outdoor-05 on loose had a back poke of 34: a padded shacket under the hooded jacket came through between his
+    shoulder blades. A hooded jacket is now held 7 mm off a jacket-weight overshirt (`thJ`; 4 mm under the other
+    templates), and it is clean.
+  - Three new flags on athletic, all back holes of the g-quiet-24 kind: g-quiet-24 (52), jb10-offshore (37) and
+    g-mod-17 (34). Each is a sliver of background between his left arm, his hand and the jacket's side above the hem.
+    Not fixed; next to look at with the other hem holes.
+  - The rest are as on `main`: st-daily's front poke on all four (its hoodie under the track jacket, 78 to 100) and
+    nw-oldskool's back holes on heavier and loose (35, 30).
+- *Also, the small data change STATUS asked for:* g-mod-27's Duck and Cover top is a quarter-zip with no hood in its
+  photo (the shop calls it a "1/4 zip hoodie"). It is renamed a quarter-zip sweatshirt, and its piece in g-mod-27 is
+  `halfzip` (it was `hoodie`). g-mod-27's front poke of 110 on his shape is gone, and `descOf` reads its zip as half,
+  not full.
+- `tools/specs.js`: only the Duck and Cover top changes (no longer a hoodie; its zip half).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

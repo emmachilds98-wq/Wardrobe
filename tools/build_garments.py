@@ -299,6 +299,20 @@ MEAS = {
                    band_k=0.92, sleeve=66, bicep=48, wrist=30, cuff=4, cuff_c=23, collar=7.5, pad=0.15, open=1),
     "puffer_up": dict(chest=132, length=69, shoulder=50, armhole=27, neck_w=20, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3,
                       band_k=0.92, sleeve=66, bicep=48, wrist=30, cuff=4, cuff_c=23, collar=7.5, pad=0.15),
+    # a hooded zip jacket (a shell, windbreaker, softshell or hooded fleece): the track jacket's cut with no collar, its
+    # hood sewn into the neckline, a little bigger than a hoodie's (it goes over a cap, and over a hoodie's hood when
+    # it is up); worn open (its front in two) or zipped up
+    "jacket_hood": dict(chest=124, length=69, shoulder=49, armhole=25.5, neck_w=19.5, neck_f=7, neck_b=2.2, sh_drop=4.5, band=3,
+                        band_k=0.95, sleeve=65, bicep=44, wrist=28, cuff=4, cuff_c=24, hood_h=37, hood_d=27, open=1),
+    "jacket_hood_up": dict(chest=124, length=69, shoulder=49, armhole=25.5, neck_w=19.5, neck_f=7, neck_b=2.2, sh_drop=4.5,
+                           band=3, band_k=0.95, sleeve=65, bicep=44, wrist=28, cuff=4, cuff_c=24, hood_h=37, hood_d=27),
+    # a collared zip jacket (a Harrington, a coach or a Capitol jacket): the track jacket's cut a little shorter, a rib hem,
+    # and a shirt's collar a size up (a 3 cm stand and a 5 cm leaf folded down over it, 7.5 cm to its points); worn open
+    # (its front in two, the collar open at the front) or zipped up
+    "jacket_coll": dict(chest=124, length=66, shoulder=49, armhole=25.5, neck_w=18.5, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=4.5,
+                        band_k=0.9, sleeve=65, bicep=43, wrist=27, cuff=5, cuff_c=22, collar=3, leaf=5, point=7.5, open=1),
+    "jacket_coll_up": dict(chest=124, length=66, shoulder=49, armhole=25.5, neck_w=18.5, neck_f=7.5, neck_b=2.2, sh_drop=4.5,
+                           band=4.5, band_k=0.9, sleeve=65, bicep=43, wrist=27, cuff=5, cuff_c=22, collar=3, leaf=5, point=7.5),
     # a gilet (a bodywarmer) done up: no sleeves (no sleeve key), its armholes cut deeper and in to the point of his
     # shoulder so a jumper's or a hoodie's sleeve comes through, a plain hem and the jacket's stand collar, zipped
     "gilet": dict(chest=124, length=69, shoulder=43, armhole=27, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3, band_k=0.92,
