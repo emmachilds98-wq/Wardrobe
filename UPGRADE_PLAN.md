@@ -2997,6 +2997,32 @@ fleeces) and collared (Harringtons, coach jackets, Capitol and Eisenhower jacket
   not full.
 - `tools/specs.js`: only the Duck and Cover top changes (no longer a hoodie; its zip half).
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped hooded padded jackets (14 Oct 2026)
+
+The next of item 0.1's outer layers: padded and insulated jackets with a hood, which neither the puffer template (a
+stand collar) nor `jacket_hood` (a shell's room) fitted.
+
+- *Two templates* (`tools/build_garments.py`, `MEAS`): `puffer_hood` (worn open) and `puffer_hood_up` (zipped), the
+  padded jacket's cut and padding with no stand collar and a padded hood, 38 cm high and 28 deep. The neckline is a
+  centimetre narrower than the padded jacket's (19 cm). At 20 cm, with no stand collar to hold it, the open jacket's
+  padded fronts slid off his shoulders in Blender and the whole jacket fell down his arms.
+- *In the page:*
+  - `drapeArch` gives `puffer_hood` to a hooded (`hoodOn`) padded, puffer, quilted, down or insulated jacket, unless
+    it is a parka, a coat or longline, a ski or 3-in-1 jacket, an overhead smock or denim, wax, leather or sherpa.
+  - Zip teeth along each open front, or the zip from the neckline with its pull when done up (as `jacket_hood`).
+  - A hooded padded jacket is held 14 mm off the draped layers under it (10 under the others: `layerCols(th)`). At
+    10 a lambswool quarter-zip came through its back in spots (w20261008-casual-03, back poke 32).
+  - It is held 12 mm off a jacket-weight overshirt under it (`thJ`). At 4 an overshirt's back came through on the
+    athletic and loose fits (g-casual-16, 146 and 162); at 7 athletic still had 62.
+  - Under a neck warmer it keeps `make3Dcore`'s shapes, its hood tucked under. Draped, the padded hood lay over the
+    neck warmer at the back of his neck (jb11-winter, under 3 to 19). Held inside the neck warmer, it bunched and came
+    through the jacket's back, whatever the gap.
+- Eight jackets in 14 outfits are now draped (the two Closure London puffers, the Brakeburn Landcross, the Hurden, the
+  Regatta Northdale, the Passenger Dylan, the Mountain Warehouse Seasons and the Craghoppers Vamos).
+
+**Checked**: the 14 outfits and every outfit with a scarf (21) on all five bodies, as worn and done up: 0 flagged
+(`main` 0). Stored specs unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
