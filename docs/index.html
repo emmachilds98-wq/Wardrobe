@@ -4067,13 +4067,25 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
   function innerCols(k,out,th0,lx){var ins={},lo=ctx&&ctx.under||[];(out?inner.slice(k+1).concat(ctx&&ctx.over||[]):inner.slice(0,k).concat(lo)).forEach(function(p){if(!p._drape)ins[p.item]=out?1:1+(jacketShirt(p)?(window.__drapeThJ==null?0.004:window.__drapeThJ):lo.indexOf(p)>=0&&lx?lx:0);});var uP=[[],[]],uN=[[],[]];
     man.traverse(function(o){if(!o.isMesh||o.isInstancedMesh||o.userData.draped||!o.userData.item||!ins[o.userData.item]||!o.geometry.attributes.position)return;var g=o.geometry,pa=g.attributes.position,na=g.attributes.normal;
       var isArm=false,a=o;while(a&&a!==man){if(a.userData.arm)isArm=true;a=a.parent;}var M=new T.Matrix4().multiplyMatrices(inv,o.matrixWorld),Nm=new T.Matrix3().getNormalMatrix(M),nv=new T.Vector3();
-      for(var j=0;j<pa.count;j++){v.fromBufferAttribute(pa,j).applyMatrix4(M);if(na)nv.fromBufferAttribute(na,j).applyMatrix3(Nm).normalize();else nv.set(0,0,1);
+      function add(){nv.normalize();
         /* (turned the way his body faces at its nearest point. Turned away from that point, as it was, the waistband of
            his trousers under the overhang of a bigger belly faced in, the belly being above it and further out, and
            pressed a draped tee or jumper into his belly, his skin showing through it) */
         var sd=isArm?1:0,c=sd?cA:cB,q=drapeNear(c,v.x,v.y,v.z);
         if(q>=0&&nv.x*c.N[q*3]+nv.y*c.N[q*3+1]+nv.z*c.N[q*3+2]<0)nv.negate();if(out)nv.negate();
-        var ex=ins[o.userData.item]-1;uP[sd].push(v.x+nv.x*ex,v.y+nv.y*ex,v.z+nv.z*ex);uN[sd].push(nv.x,nv.y,nv.z);}});
+        var ex=ins[o.userData.item]-1;uP[sd].push(v.x+nv.x*ex,v.y+nv.y*ex,v.z+nv.z*ex);uN[sd].push(nv.x,nv.y,nv.z);}
+      for(var j=0;j<pa.count;j++){v.fromBufferAttribute(pa,j).applyMatrix4(M);if(na)nv.fromBufferAttribute(na,j).applyMatrix3(Nm);else nv.set(0,0,1);add();}
+      /* (and points inside its triangles over 2 cm a side, about 1 cm apart, their normals between their corners'. The
+         collider pushes along the nearest point's normal, and on a coarse shape, a waistband in 5 cm steps, the nearest
+         to cloth lying on its face could be a corner of its top edge, facing up: a shirt worn open over a tee tucked in
+         sank into the band's back corners, the trousers showing through it) */
+      var ix=g.index,nt=(ix?ix.count:pa.count)/3,A=new T.Vector3(),B=new T.Vector3(),C=new T.Vector3(),nA=new T.Vector3(),nB=new T.Vector3(),nC=new T.Vector3();
+      for(var t=0;t<nt;t++){var i0=ix?ix.getX(t*3):t*3,i1=ix?ix.getX(t*3+1):t*3+1,i2=ix?ix.getX(t*3+2):t*3+2;
+        A.fromBufferAttribute(pa,i0);B.fromBufferAttribute(pa,i1);C.fromBufferAttribute(pa,i2);var L=Math.max(A.distanceTo(B),B.distanceTo(C),C.distanceTo(A));if(!(L>0.02))continue;
+        A.applyMatrix4(M);B.applyMatrix4(M);C.applyMatrix4(M);if(na){nA.fromBufferAttribute(na,i0).applyMatrix3(Nm);nB.fromBufferAttribute(na,i1).applyMatrix3(Nm);nC.fromBufferAttribute(na,i2).applyMatrix3(Nm);}
+        var S=Math.ceil(L/0.01);for(var a=0;a<=S;a++)for(var b=0;a+b<=S;b++){var c3=S-a-b;if(a===S||b===S||c3===S)continue;var wa=a/S,wb=b/S,wc=c3/S;
+          v.set(A.x*wa+B.x*wb+C.x*wc,A.y*wa+B.y*wb+C.y*wc,A.z*wa+B.z*wb+C.z*wc);if(na)nv.set(nA.x*wa+nB.x*wb+nC.x*wc,nA.y*wa+nB.y*wb+nC.y*wc,nA.z*wa+nB.z*wb+nC.z*wc);else nv.set(0,0,1);
+          if(nv.lengthSq()<1e-8)nv.set(0,0,1);add();}}});
     var th=th0||(out?0.006:(window.__drapeThU||0.004)),rc=out?0.02:0.04;return [drapeCol(new Float32Array(uP[0]),new Float32Array(uN[0]),th,rc),drapeCol(new Float32Array(uP[1]),new Float32Array(uN[1]),th,rc)];}
   var cU=null,cUA=null,cO=null,cOA=null;
   var done=[],hoodies=[],recs=[];
