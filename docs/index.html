@@ -4119,7 +4119,13 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
        Laid out over it, the gilet's collar came through the leaf. So under a hoodie: laid out over the hoodie, the leaf
        came through its hood, which lies round his neck over the hoodie's neckline) */
     if(R.lf){var pin=new Uint8Array(t.n),oo=over.map(function(d,j){var O=recs[di+1+j];return STANDC[O.t.arch]||(O.t.hood&&O.p.shape==="hoodie")?inCol(O,true):d.col;});for(var q=0;q<t.n;q++)pin[q]=R.lf[q]?0:1;
-      drapeSettle(X,drapeGrade(t.cl,R.G,R.sy),[c0.concat(oo),c1.concat(oo),c1.concat(oo),c0.concat(oo),c0.concat(oo)],t.grp,pin,window.__drapeSteps||60,X.slice());}
+      drapeSettle(X,drapeGrade(t.cl,R.G,R.sy),[c0.concat(oo),c1.concat(oo),c1.concat(oo),c0.concat(oo),c0.concat(oo)],t.grp,pin,window.__drapeSteps||60,X.slice());
+      /* (for the checks: the leaf lies out over the layers worn over the shirt up to the first stand collar or hooded
+         hoodie, which it stays inside, so it counts as outside the outermost of them. Counted as the shirt, the leaf
+         beside his neck, the jumper's back neckband above it, read as the shirt showing through the jumper) */
+      var lo=-1;for(var j=di+1;j<recs.length&&!(STANDC[recs[j].t.arch]||(recs[j].t.hood&&recs[j].p.shape==="hoodie"));j++)lo=j;
+      if(lo>=0){var li=-1,lm=new Uint8Array(t.m);for(var f=0;f<t.pieces.length;f++)if(t.pieces[f].name==="leaf")li=f;for(j=0;j<t.m;j++)lm[j]=t.piece[j]===li?1:0;
+        R.me.userData.leaf=lm;R.me.userData.leafOver="up"+recs[lo].k;}}
     R.N=done[di].N=drapeNormals(X,t.cl.W,t.n);done[di].col=R.col();
     var g=R.me.geometry,pa=g.attributes.position.array,na=g.attributes.normal.array;
     for(var j=0;j<t.m;j++){var w=t.vmap[j];for(var a=0;a<3;a++){pa[j*3+a]=X[w*3+a];na[j*3+a]=R.N[w*3+a];}}g.attributes.position.needsUpdate=g.attributes.normal.needsUpdate=true;g.computeBoundingSphere();}
