@@ -3165,6 +3165,29 @@ renders the hoodies and jackets hung lower and bunched at the hem. Small steps p
 under gravity; this settle is a short relaxation from a pose already close to rest. Not adopted; nothing on the page
 changed. (The worst edge, both ways, is likely a few points a collider pushes hard; not looked into.)
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped polos (14 Oct 2026)
+
+Polos were the largest group of tops still drawn by `make3Dcore` (89 outfits). There is a new template, `polo`: the
+tee's body (108 cm round the chest, 72 cm long), its neckline a little higher at the front, short sleeves finished in a
+2.5 cm rib armband, and a knitted collar (a 2 cm stand and a 4.5 cm leaf folded down over it, 6.5 cm to its points)
+closed round his neck. Its collar, leaf and armbands are in the page's rib. `drapeDetails` draws the placket: 12 cm
+down the front, two lines of stitching, a line across its foot and two buttons (not when the shop photo is laid over
+the front, which shows its own). A long-sleeved, zip, rugby or polo-neck polo and a knitted polo jumper keep
+`make3Dcore`'s shapes, as does a polo tucked in or under a layer that is not draped.
+
+- *First cut, a 6 cm leaf to 7 cm points*: side holes 26 at his throat on loose (m5-under-60), the collar's points
+  standing off his neck. The 4.5 cm leaf (the shirt's) lies closer.
+- *A collar leaf under a done-up stand collar that has its own leaf* (a zipped-up Harrington or coach jacket,
+  `jacket_coll_up`, or a done-up chore or denim jacket): the inner leaf is held inside that layer turned in, and the
+  layer's own leaf, folded down outside its stand, was part of that. Held inside the leaf too, the inner leaf lay
+  between the stand and the leaf and came through the leaf in patches, back and front (back poke 46 to 59 on dave and
+  loose: m7-harrington, m5-loafer-skate, m7-pretty-green). A shirt under the same jacket did the same on `main`. Now
+  the outer layer's own leaf is left out of what holds the inner one in (`inCol`): the inner leaf stays inside the
+  stand.
+
+**Checked**: the 89 polo outfits on all five bodies as worn, and done up on dave and loose; the 34 outfits with a shirt
+under a jacket done up on dave. All clean but q13-coastal on heavier (front poke 41), which flags the same on `main`.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
