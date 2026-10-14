@@ -24,9 +24,9 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 **14 Oct: draped parkas** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). There are two new templates, `parka`
 and `parka_up`: a long, roomy hooded zip jacket (78 cm). Hooded coats (four, in five outfits) are now draped; other
-coats keep `make3Dcore`'s. Clean on four bodies; athletic has three hem holes by his hand.
-**Next, in order:** the hem holes by his hand (athletic and done-up: g-quiet-24, jb10-offshore, g-mod-17 and the three
-parka outfits), then denim, bomber, field and chore jackets. Then XPBD substeps in `drapeSettle`.
+coats keep `make3Dcore`'s. The hem holes by his hand were the check's: it now counts a draped sleeve as his arm
+(`sleeveMask`), as it does `make3Dcore`'s, and the six athletic and done-up cases are clean. Clean on all five bodies.
+**Next, in order:** denim, bomber, field and chore jackets. Then XPBD substeps in `drapeSettle`.
 
 **14 Oct: draped hooded padded jackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). There are two new
 templates, `puffer_hood` and `puffer_hood_up`: the padded jacket's cut with a padded hood. Eight jackets (14 outfits)

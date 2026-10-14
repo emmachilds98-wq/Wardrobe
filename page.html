@@ -4144,7 +4144,10 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
     for(var f=0;f<I.length;f+=3){var pc=t.pieces[t.piece[I[f]]],end=ring&&pc.grp>0&&pc.grp<3&&Math.max(P[I[f]*2+1],P[I[f+1]*2+1],P[I[f+2]*2+1])<0.012;
       ((knit&&(pc.band>0||pc.name==="collar"))||(ring&&(pc.name==="collar"||end))?B:A).push(I[f],I[f+1],I[f+2]);}
     g.setIndex(new T.BufferAttribute(new Uint32Array(A.concat(B)),1));g.addGroup(0,A.length,0);g.addGroup(A.length,B.length,1);
-    var m=pm(p).clone();m.side=T.DoubleSide;var mr=knit?ctx.rib(p).clone():(ring?ctx.mat(p.col2&&p.col2!==p.col?p.col2:(cc(p.col)[1]?"#f2efe8":"#1f2026"),0.85):m);mr.side=T.DoubleSide;var me=new T.Mesh(g,[m,mr]);me.castShadow=me.receiveShadow=true;me.userData={item:p.item,what:p.what,kind:kind,draped:true,open:/jacket|puffer|parka/.test(t.arch)||t.arch==="shirt"};man.add(me);return {N:N,me:me};}
+    var m=pm(p).clone();m.side=T.DoubleSide;var mr=knit?ctx.rib(p).clone():(ring?ctx.mat(p.col2&&p.col2!==p.col?p.col2:(cc(p.col)[1]?"#f2efe8":"#1f2026"),0.85):m);mr.side=T.DoubleSide;var me=new T.Mesh(g,[m,mr]);me.castShadow=me.receiveShadow=true;me.userData={item:p.item,what:p.what,kind:kind,draped:true,open:/jacket|puffer|parka/.test(t.arch)||t.arch==="shirt"};
+    /* (which corners are sleeve or cuff, for the 3D check: a gap between a sleeve and his side is background seen past
+       him, as it is for make3Dcore's sleeves, which hang from his arm) */
+    var sm=new Uint8Array(t.m);for(j=0;j<t.m;j++){var gj=t.grp[t.vmap[j]];sm[j]=gj===1||gj===2?1:0;}me.userData.sleeveMask=sm;man.add(me);return {N:N,me:me};}
   /* (60 steps; layers kept 1 cm apart, as at 6 mm the layer under it showed through at the back of the armholes on the
      larger bodies; window.__drapeSteps and __drapeTh try others) */
   var G=1,sy=1;

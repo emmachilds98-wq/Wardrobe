@@ -90,11 +90,12 @@ async function checkOutfit(arg) {
   const onArm = n => { for (let a = n; a; a = a.parent) if (a.userData && a.userData.arm) return true; return false; };
   const armOf = new Map(); kinds.forEach(n => armOf.set(n, onArm(n)));
   const armM = new T.MeshBasicMaterial({ color: new T.Color(1, 1, 1), side: T.DoubleSide }), restM = new T.MeshBasicMaterial({ color: new T.Color(0.5, 0.5, 0.5), side: T.DoubleSide });
-  /* a top is one piece, sleeves and all: its own arm mask (per vertex) says which parts are sleeve */
+  /* a top is one piece, sleeves and all: its own arm mask (per vertex) says which parts are sleeve (a draped top's
+     sleeveMask, the same, kept apart from armMask so that the page's other uses of armMask leave it as it was) */
   const maskM = new T.ShaderMaterial({ side: T.DoubleSide,
     vertexShader: "attribute float armF; varying float vA; void main(){ vA = armF; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }",
     fragmentShader: "varying float vA; void main(){ gl_FragColor = vec4(vA > 0.5 ? 1.0 : 0.5, 0.0, 0.0, 1.0); }" });
-  const armMat = n => { if (armOf.get(n)) return armM; const am = n.userData.armMask, g = n.geometry;
+  const armMat = n => { if (armOf.get(n)) return armM; const am = n.userData.armMask || n.userData.sleeveMask, g = n.geometry;
     if (am && !n.isInstancedMesh && g && g.attributes.position && am.length === g.attributes.position.count) {
       if (!g.attributes.armF) g.setAttribute("armF", new T.Float32BufferAttribute(Float32Array.from(am), 1)); return maskM; }
     return restM; };

@@ -3041,7 +3041,17 @@ The next of item 0.1's outer layers: the hooded coats, which were all `make3Dcor
 
 **Checked**: the five outfits on all five bodies, as worn and done up, against `main` (0 flagged everywhere). His
 shape, slim, heavier and loose: 0 flagged. Athletic: three new back or front holes of the hem-by-his-hand kind
-(n3-parka 37, x11-tokyo 32 as worn; o10-elements 35 done up), the family PR #52 left on athletic; next.
+(n3-parka 37, x11-tokyo 32 as worn; o10-elements 35 done up), the family PR #52 left on athletic. These are fixed
+below.
+
+**The hem holes by his hand** were the check's, not the clothes'. Its holes count already lets through background
+seen between his arm and his body (an arm pass paints what hangs from his arm), and a `make3Dcore` top marks its
+sleeves for that pass with a per-vertex `armMask`. A draped top had no such mask, so the slit between a draped
+sleeve and the coat's side, just above his hand, counted as a hole. Draped meshes now carry a `sleeveMask` (the
+template's sleeve and cuff pieces, groups 1 and 2) and `check_3d.js` reads it where it reads `armMask`. It is kept
+apart from `armMask` because the page also reads that (the proportions warp and the occlusion maps), and nothing
+drawn changes. Athletic, as worn and done up: n3-parka, x11-tokyo, o10-elements, g-quiet-24, jb10-offshore and
+g-mod-17 are clean; his shape done up, g-quiet-24 is clean.
 
 ## 3. Next steps
 
