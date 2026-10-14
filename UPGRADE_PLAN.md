@@ -3023,6 +3023,36 @@ stand collar) nor `jacket_hood` (a shell's room) fitted.
 **Checked**: the 14 outfits and every outfit with a scarf (21) on all five bodies, as worn and done up: 0 flagged
 (`main` 0). Stored specs unchanged.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped parkas (14 Oct 2026)
+
+The next of item 0.1's outer layers: the hooded coats, which were all `make3Dcore`'s (no template for a coat).
+
+- *Two templates* (`tools/build_garments.py`, `MEAS`): `parka` (worn open) and `parka_up` (zipped), a hooded zip
+  jacket cut long and roomy: 78 cm long, 128 round the chest, a plain 3 cm hem (a drawcord, not a rib) and a 38 x 28
+  cm hood. At 84 cm its hem came level with his hands: on the heavier fit his hands showed through it from behind
+  (festival, back poke 34), and on slim and athletic slivers of background showed between hand and hem.
+- *In the page:* `drapeArch` takes a coat as a parka: draped only when it is hooded (`hoodOn`) and not an overcoat,
+  mac, trench, car coat, duffle, pea coat, fishtail, fur, sherpa, leather or 3-in-1. Zip teeth when open, the zip and
+  its pull when done up; held 7 mm off an overshirt (`thJ`, as `jacket_hood`). It counts as worn open for the checks
+  (the mesh's `open`, as the jackets'); unmarked, the fleece in its open front read as poking through it (o10-elements,
+  front poke 234).
+- Four coats in five outfits are now draped: the Uniqlo Blocktech parka, the Community Clothing parka, the Tokyo
+  Laundry padded parka and the Animal Elements longline waterproof.
+
+**Checked**: the five outfits on all five bodies, as worn and done up, against `main` (0 flagged everywhere). His
+shape, slim, heavier and loose: 0 flagged. Athletic: three new back or front holes of the hem-by-his-hand kind
+(n3-parka 37, x11-tokyo 32 as worn; o10-elements 35 done up), the family PR #52 left on athletic. These are fixed
+below.
+
+**The hem holes by his hand** were the check's, not the clothes'. Its holes count already lets through background
+seen between his arm and his body (an arm pass paints what hangs from his arm), and a `make3Dcore` top marks its
+sleeves for that pass with a per-vertex `armMask`. A draped top had no such mask, so the slit between a draped
+sleeve and the coat's side, just above his hand, counted as a hole. Draped meshes now carry a `sleeveMask` (the
+template's sleeve and cuff pieces, groups 1 and 2) and `check_3d.js` reads it where it reads `armMask`. It is kept
+apart from `armMask` because the page also reads that (the proportions warp and the occlusion maps), and nothing
+drawn changes. Athletic, as worn and done up: n3-parka, x11-tokyo, o10-elements, g-quiet-24, jb10-offshore and
+g-mod-17 are clean; his shape done up, g-quiet-24 is clean.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

@@ -321,6 +321,12 @@ MEAS = {
                         band_k=0.92, sleeve=66, bicep=48, wrist=30, cuff=4, cuff_c=23, hood_h=38, hood_d=28, pad=0.15, open=1),
     "puffer_hood_up": dict(chest=132, length=70, shoulder=50, armhole=27, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3,
                            band_k=0.92, sleeve=66, bicep=48, wrist=30, cuff=4, cuff_c=23, hood_h=38, hood_d=28, pad=0.15),
+    # a parka: a hooded zip jacket cut long, to his upper thighs (78 cm), roomier (128 cm round the chest) for what
+    # goes under it, a plain hem (a drawcord, not a rib) and its hood a size up again; worn open or zipped up
+    "parka": dict(chest=128, length=78, shoulder=50, armhole=26.5, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3,
+                  band_k=0.98, sleeve=66, bicep=46, wrist=29, cuff=4, cuff_c=24, hood_h=38, hood_d=28, open=1),
+    "parka_up": dict(chest=128, length=78, shoulder=50, armhole=26.5, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3,
+                     band_k=0.98, sleeve=66, bicep=46, wrist=29, cuff=4, cuff_c=24, hood_h=38, hood_d=28),
     # a gilet (a bodywarmer) done up: no sleeves (no sleeve key), its armholes cut deeper and in to the point of his
     # shoulder so a jumper's or a hoodie's sleeve comes through, a plain hem and the jacket's stand collar, zipped
     "gilet": dict(chest=124, length=69, shoulder=43, armhole=27, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3, band_k=0.92,
