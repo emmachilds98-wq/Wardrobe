@@ -3122,6 +3122,26 @@ the same counts: st-daily (78 to 109) and three softshell or track jackets over 
 jb10-winter-kx3 (34 to 74) and jb9-ukd-softshell (42 to 65), all front poke, on every body. Those three are not in the gate
 set; they are next to look at.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. A hoodie's hood over an open track jacket's collar (14 Oct 2026)
+
+After PR #57 four outfits with a hoodie under an open zip jacket still flagged front poke on every body, as on `main`:
+x11-ellesse, jb10-winter-kx3 and jb9-ukd-softshell (a track jacket or softshell, 34 to 74) and st-daily (a zip-up
+blouson, 78 to 109). All four jackets are the `jacket` template, with a stand collar. The hood, settled against that
+collar, came out of the jacket's neck between the collar and his neck on one side and over it on the other, and showed
+through the collar beside his chin.
+
+- *The fix* (`drapeTops`, the hoods): before a hoodie's hood settles, an open `jacket` worn over it has its stand
+  collar folded down to a third of its height (each collar point drawn toward the nearest point of the jacket's body
+  below it), as the hood's weight presses a soft collar down. Then, as a chore jacket's collar since #57, the collar is
+  left out of what the hood settles against and pressed 4 mm under the hood where it is within 1.5 cm. The hood lies
+  over the low collar on both sides.
+- *Tried first:* pressing the standing collar under the hood (the #57 fix on its own). It passed the check, but the
+  collar came through the hood in patches either side of his neck.
+- Done up (`jacket_up`), a hooded jacket over the hoodie and every other template are as before.
+
+**Checked**: the 16 outfits with a hoodie under a jacket or coat, on all five bodies, as worn and done up: all clean,
+the four above included.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
