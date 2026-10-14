@@ -3084,6 +3084,23 @@ shoulder) and the bag to 3.5 cm.
 **Checked**: the ten outfits with these jackets and every outfit with a bag (32), on all five bodies, as worn and done
 up. Clean, except st-daily's front poke (its hoodie under the track jacket, 78 to 109, as on `main`).
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped bombers (14 Oct 2026)
+
+The last of item 0.1's named jacket families: bombers, all `make3Dcore`'s until now.
+
+- *Two templates* (`tools/build_garments.py`, `MEAS`): `bomber` (worn open) and `bomber_up` (zipped). The track
+  jacket's cut a little roomier and shorter (122 cm round the chest, 64 long), gathered into a 6 cm rib hem band and
+  6 cm rib cuffs, with a 4.5 cm rib collar standing round his neck.
+- *In the page:* `drapeArch` sends a jacket named bomber, MA-1 or flight jacket to `bomber`, unless it is hooded,
+  padded, quilted, insulated, leather, or lined or collared in shearling, sherpa, borg or fur (an aviator). Its band,
+  cuffs and collar are drawn in the page's rib, as a knit's are (`mesh`). Open, it gets zip teeth along each front
+  edge (in metal); zipped, the zip from the collar's top to the hem; done up it counts as a closed collar (`STANDC`).
+- Five bombers in five outfits are now draped: the Air Yarn knitted bomber (ca-dinner), the Interlock bomber
+  (ca-town), the Matalan faux-suede bomber (m5-cold-mod), the Fred Perry bomber (n3-bomber-ecru) and the Zara
+  technical bomber (nw-zara).
+
+**Checked**: the five outfits on all five bodies, as worn and done up: 0 flagged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
