@@ -2287,7 +2287,7 @@ var state={view:"shop",dept:"all",shop:"all",col:"all",tfit:"all",fab:"all",comp
   tocc:"everyday",twx:(function(){var m=new Date().getMonth();return m>=10||m<=1?"cold":(m>=4&&m<=7?"warm":"mild");})(),mocc:"everyday",mwx:"all"};
 var lim={picks:PAGE,fits:FITPAGE};
 /* the automatic 3D checks (tools/check_3d.js) open the page with ?qa=1 and drive it through this */
-if(/[?&]qa=1\b/.test(location.search))window.__qa=function(){return {make3D:make3D,fitById:fitById,effPieces:effPieces,trueFor:trueFor,LOOK:LOOK,TRUE:TRUE,byId:byId,dressed:dressed,loadThree:loadThree,body:function(){return BODY;},bodyPos:bodyPos,propWarp:propWarp,cc:cc,descOf:descOf,getPh:getPh,sampleLook:sampleLook,pieceLook:pieceLook,sgKind:sgKind,shopSize:shopSize,guessShape:guessShape,wear:function(w){w=w||{};ZIPM=w.zip||"";TUCKM=w.tuck||"";TURNM=w.turn||"";}};};
+if(/[?&]qa=1\b/.test(location.search))window.__qa=function(){return {make3D:make3D,fitById:fitById,effPieces:effPieces,trueFor:trueFor,LOOK:LOOK,TRUE:TRUE,byId:byId,dressed:dressed,loadThree:loadThree,loadFor:gtplFor,body:function(){return BODY;},bodyPos:bodyPos,propWarp:propWarp,cc:cc,descOf:descOf,getPh:getPh,sampleLook:sampleLook,pieceLook:pieceLook,sgKind:sgKind,shopSize:shopSize,guessShape:guessShape,wear:function(w){w=w||{};ZIPM=w.zip||"";TUCKM=w.tuck||"";TURNM=w.turn||"";}};};
 var items=[],fits=[],byId={},fitById={},meta={},profile={},phase="loading",fitsSeen=false;
 var db=null,canShare=true,saved={},votes={},myfits=[],local={saved:{},votes:{},myfits:{},owned:{}};
 var owned={},shopInfo={},staticMode=false,catFiles=false,swaps={},locked={},colCache={};
@@ -3423,13 +3423,15 @@ function loadBody(){
     var B={n:d.n,pos:dec(d.pos,Float32Array),idx:dec(d.idx,Uint16Array),treg:dec(d.treg,Uint8Array),ao:d.ao?dec(d.ao,Uint8Array):null,regions:d.regions,sec:d.sec,secd:d.secd,lm:d.lm,lmd:d.lmd||{},sliders:d.sliders||[],morphs:{},cache:{}};
     Object.keys(d.morphs).forEach(function(k){B.morphs[k]={i:dec(d.morphs[k].i,Uint16Array),d:dec(d.morphs[k].d,Int16Array)};});
     var f=d.face;B.face={x0:f.x0,y0:f.y0,st:f.st,nx:f.nx,ny:f.ny,z:dec(f.z,Int16Array)};
-    BODY=B;return loadGarments().then(function(){return B;});}).catch(function(){BODY=null;return null;});}
+    BODY=B;return B;}).catch(function(){BODY=null;return null;});}
   return bodyP;
 }
-function loadThree(){
-  if(window.THREE)return loadBody();
-  if(!threeP){threeP=new Promise(function(ok,no){var sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";sc.onload=ok;sc.onerror=function(){threeP=null;no();};document.head.appendChild(sc);});}
-  return threeP.then(loadBody);
+/* (ps: the pieces about to be drawn, whose garment templates it waits for too, fetched alongside Three.js and his body) */
+function loadThree(ps){var b;
+  if(window.THREE)b=loadBody();
+  else{if(!threeP){threeP=new Promise(function(ok,no){var sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";sc.onload=ok;sc.onerror=function(){threeP=null;no();};document.head.appendChild(sc);});}
+    b=threeP.then(loadBody);}
+  return ps?Promise.all([b,gtplFor(ps)]).then(function(r){return r[0];}):b;
 }
 /* a texture from a piece's photo look, sized to the real cloth: the uv of every garment runs about 1.2 units per
    metre round the body and 3.33 per metre down it, so a tile S metres across repeats 1/(1.2 S) and 1/(3.33 S) times */
@@ -3845,16 +3847,16 @@ function drapeLeaf(t){var li=-1,f;for(f=0;f<t.pieces.length;f++)if(t.pieces[f].n
 /* (the jacket template is an open, zipped track jacket with a stand collar; a padded or puffer jacket is drawn from the
    puffer template, a roomier cut with a taller collar, unless it has a hood or is a parka; other jackets, denim, hooded,
    waxed or worked, keep make3Dcore's shapes until they have templates of their own) */
-function drapeArch(p){var a=DRAPEK[p.shape];if(!window.__drape||!a||!GTPL[a])return null;var n=(((byId[p.item]||{}).name||"")+" "+(p.what||"")).toLowerCase(),D=p.desc||{};
+function drapeArch(p){var a=DRAPEK[p.shape];if(!window.__drape||!a)return null;var n=(((byId[p.item]||{}).name||"")+" "+(p.what||"")).toLowerCase(),D=p.desc||{};
   /* (each template is one cut: a jumper a crew neck with long sleeves, not a knitted vest, a V neck or a cardigan; a tee
      short-sleeved, or long-sleeved from tee_ls, a crew neck or a henley (drapeDetails draws its placket), not a raglan or
      baseball tee, whose sleeves are cut another way, a V or a mock neck) */
   if(a==="jumper"&&(D.neck==="v"||/vest|sleeveless|tank|slipover|tabard|cardigan|v[- ]?neck|polo[- ]?neck|turtle|zip/.test(n)))return null;
   if(a==="tee"){if(/raglan|baseball|vest|sleeveless|tank|crop|mock[- ]?neck/.test(n)||D.neck==="v"||D.neck==="mock")return null;
-    if(/long[- ]?sleeve|longsleeve|\bl\/s\b|\blong\b/.test(n))return GTPL.tee_ls?"tee_ls":null;   /* (not a longline tee: a long body, short sleeves) */if(/henley/.test(n)||D.neck==="henley")return null;}
+    if(/long[- ]?sleeve|longsleeve|\bl\/s\b|\blong\b/.test(n))return "tee_ls";   /* (not a longline tee: a long body, short sleeves) */if(/henley/.test(n)||D.neck==="henley")return null;}
   if(a==="jacket"){
     if(/puffer|puffa|padded|quilt|(^|[^-\w])down\b(?![- ]?collar)/.test(n)){
-      if(!GTPL.puffer||HOODRE.test(n)||/parka|longline|denim|trucker|harrington|bomber|leather|suede|coach|chore|wax|fleece|sherpa|borg|shacket|overshirt/.test(n))return null;return "puffer";}
+      if(HOODRE.test(n)||/parka|longline|denim|trucker|harrington|bomber|leather|suede|coach|chore|wax|fleece|sherpa|borg|shacket|overshirt/.test(n))return null;return "puffer";}
     if(!/track|tricot|venaria|softshell|windbreaker|funnel|zip[- ]?(through|up)\b|full[- ]?zip/.test(n)||/puffer|padded|quilt|parka|denim|trucker|harrington|bomber|leather|suede|coach|chore|work|hood|wax|fleece|sherpa|borg|down\b/.test(n))return null;}
   /* (the shirt template is a long-sleeved shirt with a point collar on a stand: a band, grandad, camp or Cuban collar,
      and a jacket-weight overshirt (a chore jacket, a shacket), keep make3Dcore's shapes) */
@@ -3864,15 +3866,33 @@ function drapeArch(p){var a=DRAPEK[p.shape];if(!window.__drape||!a||!GTPL[a])ret
   if(a==="gilet"&&/hood|tailor|suit|waistcoat/.test(n))return null;
   return a;}
 function gtplDec(b64,A){var s=atob(b64),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return new A(u.buffer);}
-function gtplPart(d){var o={n:d.n,m:d.m,pieces:d.pieces,pos:gtplDec(d.pos,Float32Array),vmap:gtplDec(d.vmap,Uint16Array),piece:gtplDec(d.piece,Uint8Array),
-    pat:gtplDec(d.pat,Float32Array),idx:gtplDec(d.idx,Uint16Array),tri:gtplDec(d.bind.tri,Uint16Array),w:gtplDec(d.bind.w,Float32Array)};
-  if(d.pins)o.pins=gtplDec(d.pins,Uint16Array);
+/* an array of a template, as tools/garment_pack.py stores it: uint16 column by column, each the step from the one
+   before, a float one over its column's range (o + q s); or, in an older file, the array itself in base64 */
+function gtplArr(v,A){if(typeof v==="string")return gtplDec(v,A);var u=gtplDec(v.d,Uint16Array),k=v.k,n=u.length/k,o=new A(u.length),c,i,q;
+  for(c=0;c<k;c++){q=0;for(i=0;i<n;i++){q=(q+u[c*n+i])&65535;o[i*k+c]=v.o?v.o[c]+q*v.s[c]:q;}}return o;}
+function gtplPart(d){var o={n:d.n,m:d.m,pieces:d.pieces,pos:gtplArr(d.pos,Float32Array),vmap:gtplArr(d.vmap,Uint16Array),piece:gtplArr(d.piece,Uint8Array),
+    pat:gtplArr(d.pat,Float32Array),idx:gtplArr(d.idx,Uint16Array),tri:gtplArr(d.bind.tri,Uint16Array),w:gtplArr(d.bind.w,Float32Array)};
+  if(d.pins)o.pins=gtplArr(d.pins,Uint16Array);
   /* each welded point's piece group (0 the body of the garment, 1 and 2 his left and right sleeve, 3 the hood) */
   o.grp=new Uint8Array(o.n);for(var j=o.m-1;j>=0;j--)o.grp[o.vmap[j]]=o.pieces[o.piece[j]].grp;
   return o;}
-function loadGarments(){if(!window.__drape)return Promise.resolve();
-  return Promise.all(DRAPEF.map(function(a){return fetch("data/garments/"+a+".json").then(function(r){return r.ok?r.json():null;}).then(function(d){
-    if(!d)return;var t=gtplPart(d);t.arch=a;t.scale=d.scale;t.meas=d.meas_cm||{};if(d.hood)t.hood=gtplPart(d.hood);GTPL[a]=t;}).catch(function(){});}));}
+/* Each template is fetched the first time an outfit needs it (a few hundred KB each, so not all fourteen up front):
+   one promise per kind, kept, that never fails. Whatever draws an outfit (loadThree with its pieces, a live view's
+   update, the stills) waits for its kinds first, so a draped kind is never drawn the old way while it loads; only
+   one that could not be fetched (GTPLX) is, as make3Dcore builds it. */
+var GTPLP={},GTPLX={};
+function gtplGet(a){if(!GTPLP[a])GTPLP[a]=fetch("data/garments/"+a+".json").then(function(r){if(!r.ok)throw new Error(a);return r.json();}).then(function(d){
+    var t=gtplPart(d);t.arch=a;t.scale=d.scale;t.meas=d.meas_cm||{};if(d.hood)t.hood=gtplPart(d.hood);GTPL[a]=t;}).catch(function(){GTPLX[a]=1;});
+  return GTPLP[a];}
+/* the templates an outfit can be drawn from: each top's (a jacket's, a shirt's and a padded jacket's both open and
+   done up, so How it's worn switches at once) and the scarf's, read from the pieces as make3Dcore reads them */
+function gtplNeed(ps){var a=[];if(!window.__drape)return a;
+  dressed(ps||[]).forEach(function(p0){var p=Object.assign({},p0),k;p.desc=descOf(byId[p0.item],p0);
+    if(UPPER[p.shape]&&(k=drapeArch(p))){a.push(k);if(DRAPEOPEN[k])a.push(k+"_up");}
+    if(p.shape==="scarf")a.push("scarf");});
+  return a;}
+function gtplFor(ps){return Promise.all(gtplNeed(ps).map(gtplGet));}
+function gtplHave(ps){return gtplNeed(ps).every(function(a){return GTPL[a]||GTPLX[a];});}
 /* the cloth's own constraints: every edge (stretch), and across every pair of triangles sharing an edge (bending, softer),
    at their lengths as draped on his saved shape */
 function drapeCloth(t,X){var n=t.n,I=t.idx,vm=t.vmap,P=t.pat,E={},A=[],B=[],K=[],DX=[],DY=[],opp={};
@@ -5453,7 +5473,7 @@ function make3Dcore(pieces){
      same jacket zipped up) */
   /* (a top tucked in keeps make3Dcore's shape, which goes into the waistband: the templates hang loose to the hem) */
   var TUCK0=tuckList(up,tuckOn(lo,!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo))),pieces.some(function(q){return q.shape==="tie";})));
-  up.forEach(function(p,k){p._drape=false;var a=bodyOn&&!TUCK0[k]&&drapeArch(p);if(DRAPEOPEN[a]&&!openWorn(p,up))a=GTPL[a+"_up"]?a+"_up":null;else if(a&&!DRAPEOPEN[a]&&openWorn(p,up))a=null;   /* (only a jacket's, a shirt's and a padded jacket's templates open) */
+  up.forEach(function(p,k){p._drape=false;var a=bodyOn&&!TUCK0[k]&&drapeArch(p);if(DRAPEOPEN[a]&&!openWorn(p,up))a=a+"_up";else if(a&&!DRAPEOPEN[a]&&openWorn(p,up))a=null;if(a&&!GTPL[a])a=null;   /* (only a jacket's, a shirt's and a padded jacket's templates open) */
     if(a){p._drape=true;p._arch=a;}});
   /* (a top is draped only when everything worn over it is too: make3Dcore's tops are cut for its own closer inner
      layers, and over draped cloth they let it through at the back and the shoulders) */
@@ -6699,7 +6719,9 @@ function Live3D(box,pieces,opt){
     if(el.parentNode!==box)box.insertBefore(el,box.firstChild);
     el.onpointerdown=onDown;el.onpointermove=onMove;el.onpointerup=onUp;el.onpointercancel=onUp;el.onwheel=onWheel;
     W=0;H=0;clearTimeout(h.tm);cancelAnimationFrame(h.raf);loop();};
-  h.update=function(ps){var old=o;o=mk(ps);h.o=o;dispose3D(old);syncZip();};
+  /* (new pieces whose templates are not in yet: the model as it is stays until they are, then the newest pieces asked for) */
+  var upN=0;h.update=function(ps){var u=++upN;cur=ps;if(!gtplHave(ps)){gtplFor(ps).then(function(){if(h.on&&u===upN)h.update(ps);});return;}
+    var old=o;o=mk(ps);h.o=o;dispose3D(old);syncZip();};
   h.zoomTo=function(v){tZ=Math.max(0,Math.min(1,v));tPan=0;};
   /* for the fitting room's own controls: how he is worn and lit, the camera (kept when the outfit changes), pins */
   h.wear=function(w){if(!w)return Object.assign({},wear);var ch=false;Object.keys(w).forEach(function(k){if(k in wear&&wear[k]!==w[k]){wear[k]=w[k];ch=true;}});if(ch)h.update(cur);return Object.assign({},wear);};
@@ -6732,6 +6754,7 @@ function Live3D(box,pieces,opt){
     if(el.parentNode===box)box.removeChild(el);
     if(top&&liveStack.length)liveStack[liveStack.length-1].activate();};
   liveStack.push(h);h.activate();
+  if(!gtplHave(pieces))h.update(pieces);   /* (every caller waits for the templates first, loadThree(pieces); this is for one that did not) */
   return h;
 }
 function live3DFail(box,msg,again){
@@ -6746,12 +6769,13 @@ function snap3D(ps,k,rot,first){
   if(rot!=null)k+="@"+rot;
   if(snapCache[k])return Promise.resolve(snapCache[k]);
   /* (first: the fitting room's own stills go ahead of the outfit cards') */
+  gtplFor(ps);   /* (its templates start coming while the stills before it are drawn) */
   return new Promise(function(ok){snapQ[first?"unshift":"push"]({ps:ps,k:k,ok:ok,rot:rot});pumpSnap();});
 }
 function pumpSnap(){
   if(snapBusy||!snapQ.length)return;snapBusy=true;
   var j=snapQ.shift();
-  setTimeout(function(){
+  gtplFor(j.ps).then(function(){setTimeout(function(){
     try{
       var T=window.THREE;
       if(!snapR){snapR=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});snapR.setPixelRatio(1);snapR.setSize(360,735);if(T.sRGBEncoding)snapR.outputEncoding=T.sRGBEncoding;snapR.toneMapping=T.ACESFilmicToneMapping;snapR.toneMappingExposure=1.08;snapR.shadowMap.enabled=true;snapR.shadowMap.type=T.PCFSoftShadowMap;snapR.domElement.addEventListener("webglcontextlost",function(e){e.preventDefault();snapR=null;},false);}
@@ -6762,7 +6786,7 @@ function pumpSnap(){
       snapCache[j.k]=url;j.ok(url);
     }catch(e){j.ok("");}
     snapBusy=false;pumpSnap();
-  },0);
+  },0);});
 }
 /* Wherever a figure is drawn: the 2D drawing, or in 3D mode a placeholder the still render replaces. */
 function figOut(pieces,hi){
@@ -6830,6 +6854,8 @@ function wearRows(ps,w){var rows=[],ups=dressed(ps).filter(function(p){return UP
   }finally{ZIPM="";}
   /* (with the drape switch on: one size for the draped tops, each one's chest and length at it against his chest) */
   var dps=ups.filter(function(p){return drapeArch(p);}).sort(function(a,b){return layRank(b)-layRank(a);});
+  var dmiss=dps.map(drapeArch).filter(function(a){return !GTPL[a]&&!GTPLX[a];});if(dmiss.length)Promise.all(dmiss.map(gtplGet)).then(function(){if($("fr-wear"))frWear();});
+  dps=dps.filter(function(p){return GTPL[drapeArch(p)];});
   if(dps.length&&BODY){var z=w.size||"",st={S:-2,M:-1,XL:1,XXL:2}[z]||0;
     rows.push({k:"size",p:dps[0],l:"Size",o:DRAPE_SIZES,cur:z,note:dps.map(function(p){var tm=GTPL[drapeArch(p)].meas||{};return frNoun(p)+": chest "+Math.round((tm.chest||120)+8*st)+" cm, length "+Math.round((tm.length||70)+2*st)+" cm";}).join("; ")+
       " (cut as L; draped tops only). His chest: "+Math.round(drapeChest())+" cm."});}
@@ -6964,12 +6990,11 @@ function frModeSet(m){
 }
 function frStart3D(){
   var box=$("fr-3d");if(!box)return;var msg=box.querySelector(".zf-3dmsg");
-  loadThree().then(function(){
+  loadThree(frPieces()).then(function(){
     if(!$("fr-3d")||!$("zoom").open)return;var ps=frPieces();
     if(z3&&z3.box===box&&z3.on){z3.wear(FR.wear);z3.update(ps);frPinSel();return;}
     stop3D();
     try{z3=Live3D(box,ps,{spin:false,onPick:frPick,onFrame:frFrame,wear:FR.wear,dock:document.querySelector("#fr .cam-dock")});z3.box=box;if(FR.view)z3.setView(FR.view);if(msg)msg.hidden=true;frPinSel();
-      if(window.__drape)loadBody().then(function(){if($("fr-wear"))frWear();});   /* (the draped tops' size row needs their templates) */
       z3.onLost=function(){stop3D();live3DFail(box,msg,frStart3D);};}
     catch(e){z3=null;live3DFail(box,msg,frStart3D);}
   },function(){if(msg)msg.textContent="The 3D model could not load. Check the connection and try again.";});
@@ -7034,7 +7059,7 @@ function cmpStills(){
 function cmpLive(id){
   if(z3&&z3.cmp){z3.stop();z3=null;}Array.prototype.forEach.call(document.querySelectorAll("#cmp .cmp-col"),function(c){c.classList.remove("live");});
   CMP.live=id||"";if(!id)return;var box=document.querySelector('#cmp [data-cmp3d="'+id+'"]'),f=fitById[id];if(!box||!f)return;
-  loadThree().then(function(){if(CMP.live!==id||!$("cmp").open)return;stop3D();try{z3=Live3D(box,effPieces(f),{spin:CMP.spin});z3.cmp=true;z3.setRot(CMP.ang);if(CMP.spin)z3.spinning(true);box.closest(".cmp-col").classList.add("live");}catch(e){z3=null;}},function(){});}
+  loadThree(effPieces(f)).then(function(){if(CMP.live!==id||!$("cmp").open)return;stop3D();try{z3=Live3D(box,effPieces(f),{spin:CMP.spin});z3.cmp=true;z3.setRot(CMP.ang);if(CMP.spin)z3.spinning(true);box.closest(".cmp-col").classList.add("live");}catch(e){z3=null;}},function(){});}
 function cmpAngle(a){CMP.ang=a;CMP.spin=false;clearInterval(CMP.tm);CMP.tm=0;cmpSync();cmpStills();if(z3&&z3.cmp)z3.turnTo(a);}
 /* Turn: the stills step round together (each angle is rendered once, then cached), the live one spins */
 function cmpSpin(){CMP.spin=!CMP.spin;clearInterval(CMP.tm);CMP.tm=0;cmpSync();if(z3&&z3.cmp)z3.spinning(CMP.spin);
@@ -7351,7 +7376,7 @@ function drawBuild(){
   if(!draw.some(function(p){return LOWER[p.shape];})){draw.push({item:"",shape:"trousers",col:"stone",what:""});}
   if(figMode()==="3d"){
     $("b-fig").style.display="none";var bd=$("b-3d");bd.hidden=false;$("b-3d-edit").hidden=false;
-    loadThree().then(function(){if(figMode()!=="3d")return;if(zb&&zb.on){zb.update(draw);}else{try{zb=Live3D(bd,draw,{dock:bd.clientWidth>=240});zb.onLost=function(){zb.stop();zb=null;live3DFail(bd,null,function(){drawBuild();});};}catch(e){zb=null;live3DFail(bd,null,function(){drawBuild();});}}},function(){bd.textContent="The 3D model could not load.";});
+    loadThree(draw).then(function(){if(figMode()!=="3d")return;if(zb&&zb.on){zb.update(draw);}else{try{zb=Live3D(bd,draw,{dock:bd.clientWidth>=240});zb.onLost=function(){zb.stop();zb=null;live3DFail(bd,null,function(){drawBuild();});};}catch(e){zb=null;live3DFail(bd,null,function(){drawBuild();});}}},function(){bd.textContent="The 3D model could not load.";});
   }else{
     if(zb){zb.stop();zb=null;}$("b-3d").hidden=true;$("b-3d-edit").hidden=true;$("b-fig").style.display="";
     $("b-fig").innerHTML=figure(draw);
@@ -8316,7 +8341,7 @@ function ceWipeAt(x){CEV.wipe=Math.max(4,Math.min(96,x));var w=$("ce-wipe"),d=$(
 function ceLinesMake(){CEV.M=ceMeasure();var box=$("ce-lines");if(!box)return;box.innerHTML=(CEV.M||[]).map(function(m){return '<div class="ce-ln"><i></i><span>'+esc(m.l)+' <b>'+ceIn(m.m)+'in</b></span></div>';}).join("");}
 function ceStart(){
   var box=$("ce-3d"),ld=box.querySelector(".ce-load");
-  loadThree().then(function(){if(!$("chared").open)return;if(cePrev){cePrev.stop();cePrev=null;}
+  loadThree(cePieces).then(function(){if(!$("chared").open)return;if(cePrev){cePrev.stop();cePrev=null;}
     var st=box.parentNode,dk=st.querySelector(".cam-dock");if(!dk){st.insertAdjacentHTML("beforeend",camDock({wear:true}));dk=st.querySelector(".cam-dock");}
     try{cePrev=Live3D(box,cePieces,{zoom:CE_ZOOM[ceTab]||0,spin:false,onFrame:ceFrame,dock:dk});if(ld)ld.hidden=true;CEV.key="";CEV.snapped="";ceLinesMake();ceForm();cePrev.onLost=function(){if(cePrev){cePrev.stop();cePrev=null;}live3DFail(box,ld,ceStart);};}
     catch(e){cePrev=null;live3DFail(box,ld,ceStart);}

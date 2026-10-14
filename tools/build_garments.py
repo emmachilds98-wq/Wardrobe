@@ -98,6 +98,7 @@ from mathutils.geometry import delaunay_2d_cdt
 
 sys.path.insert(0, HERE)
 import build_body as BB  # noqa: E402
+import garment_pack as GP  # noqa: E402
 
 
 def b64(a):
@@ -1167,8 +1168,8 @@ def drape_scarf(body, a, F, scale):
     let fall."""
     P = body.rel; N = vnormals(P, body.idx)
     jp = os.path.join(a.out, "jumper.json")
-    J = json.load(open(jp)); Xj = unb64(J["pos"], np.float32).reshape(-1, 3).astype(np.float64)
-    Tj = unb64(J["vmap"], np.uint16).astype(np.int64)[unb64(J["idx"], np.uint16).astype(np.int64)].reshape(-1, 3)
+    J = json.load(open(jp)); Xj = GP.unpack(J["pos"], np.float32).reshape(-1, 3).astype(np.float64)
+    Tj = GP.unpack(J["vmap"], np.uint16).astype(np.int64)[GP.unpack(J["idx"], np.uint16).astype(np.int64)].reshape(-1, 3)
     pc, nu, nv = scarf_piece(scale)
     L = pc.V[:, 1].max(); W = pc.V[:, 0].max()
     bvs = [(mathutils.bvhtree.BVHTree.FromPolygons(P.tolist(), body.idx.tolist()), False),
@@ -1273,7 +1274,7 @@ def drape_scarf(body, a, F, scale):
     st = np.linalg.norm(Xs[E[:, 0]] - Xs[E[:, 1]], axis=1) / R
     print("  draped: edge/pattern 5%% %.3f, median %.3f, 95%% %.3f" % tuple(np.percentile(st, [5, 50, 95])), flush=True)
     path = os.path.join(a.out, "scarf.json")
-    out_ = {"v": 1, "arch": "scarf", "size": "one", "meas_cm": dict(SCARF), "scale": round(scale, 5), "char": dict(body.char),
+    out_ = {"v": 2, "arch": "scarf", "size": "one", "meas_cm": dict(SCARF), "scale": round(scale, 5), "char": dict(body.char),
             "about": "Made by tools/build_garments.py: a scarf folded along its length, wound a turn and a half round Dave's "
                      "neck with both ends down his front and draped over his body and the draped jumper in headless Blender. As the other "
                      "templates: pos, vmap, piece, pat (x across the band, y along it from the longer end's foot), idx, bind."}
@@ -1318,19 +1319,21 @@ def template(pieces, can, Xs, T, body, regs_of):
     h = np.abs(W[:, 2])
     print("  bound to his body: height off it median %.1f mm, 95%% %.1f, max %.1f" % tuple(1000 * np.percentile(h, [50, 95, 100])), flush=True)
     return {"pieces": [{"name": k, "grp": pieces[k].grp, "band": round(pieces[k].band, 4), "stiff": pieces[k].stiff} for k in names],
-            "n": len(Xs), "pos": b64(Xs.astype(np.float32)), "m": len(can), "vmap": b64(can.astype(np.uint16)),
-            "piece": b64(pid.astype(np.uint8)), "pat": b64(np.vstack([pieces[k].V for k in names]).astype(np.float32)),
-            "idx": b64(np.asarray(T, np.uint16)), "bind": {"tri": b64(tri.astype(np.uint16)), "w": b64(W.astype(np.float32))}}
+            "n": len(Xs), "pos": GP.pack(Xs, 3), "m": len(can), "vmap": GP.pack(can, 1),
+            "piece": GP.pack(pid, 1), "pat": GP.pack(np.vstack([pieces[k].V for k in names]), 2),
+            "idx": GP.pack(np.asarray(T), 3), "bind": {"tri": GP.pack(tri, 1), "w": GP.pack(W, 3)}}
 
 
 def write_template(path, G, body, can, Xs, T, hood=None):
     regs_of = lambda pc: ARM_REG if pc.grp in (1, 2) else TORSO_REG
-    out = {"v": 1, "arch": G.arch, "size": "L", "meas_cm": G.M, "scale": round(G.s, 5),
+    out = {"v": 2, "arch": G.arch, "size": "L", "meas_cm": G.M, "scale": round(G.s, 5),
            "char": {k: v for k, v in body.char.items()},
            "about": "Made by tools/build_garments.py: sewn from flat pattern pieces and draped on Dave (CHAR_DEF, after "
-                    "propWarp) in headless Blender. pos: welded points (float32 x, y, z, his warped frame; the page scales "
+                    "propWarp) in headless Blender. Every array is packed as tools/garment_pack.py says (uint16, column by column, "
+                    "each the step from the one before; floats quantised over each column's range, value = o + q s). pos: "
+                    "welded points (x, y, z, his warped frame; the page scales "
                     "the figure by 1/scale afterwards). Pattern points: vmap (their welded point), piece, pat (their place "
-                    "on the flat pattern in metres: x round, y up from the hem), idx (triangles over them, uint16). bind: "
+                    "on the flat pattern in metres: x round, y up from the hem), idx (triangles over them). bind: "
                     "each welded point's body triangle (data/body.json idx) and b, c, h: X = (1-b-c) A + b B + c C + h n, "
                     "n the unit normal cross(B-A, C-A). hood.pins: hood point, garment point it is sewn to."}
     out.update(template(G.P, can, Xs, T, body, regs_of))
@@ -1338,7 +1341,7 @@ def write_template(path, G, body, can, Xs, T, hood=None):
         Xd, Th, canh, offh, pin, pg = hood
         Th_un = np.vstack([G.hood[k].T + offh[k] for k in G.hood])
         out["hood"] = template(G.hood, canh, Xd, Th_un, body, lambda pc: TORSO_REG)
-        out["hood"]["pins"] = b64(np.stack([pin, pg], 1).astype(np.uint16))
+        out["hood"]["pins"] = GP.pack(np.stack([pin, pg], 1), 2)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     json.dump(out, open(path, "w"), separators=(",", ":"))
     print("  wrote %s (%.0f KB)" % (os.path.relpath(path, ROOT), os.path.getsize(path) / 1024), flush=True)

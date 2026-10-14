@@ -69,6 +69,7 @@ async function checkOutfit(arg) {
     const src = await new Promise(r => X.getPh(p.item, r)); if (!src) { X.LOOK[p.item] = null; continue; }
     const L = await X.sampleLook(src, p.shape, X.descOf(it, p)); X.LOOK[p.item] = L || null; X.TRUE[p.item] = L ? L.str : "";
   }
+  if (X.loadFor) await X.loadFor(ps);   // the garment templates this outfit is drawn from, fetched as the page fetches them
   const W = 300, H = 440;
   if (!window.__qaR) { window.__qaR = new T.WebGLRenderer({ antialias: false, preserveDrawingBuffer: true }); window.__qaR.setSize(W, H); }
   const r = window.__qaR, gl = r.getContext();

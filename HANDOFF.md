@@ -263,6 +263,18 @@ collar leaf folded over its stand). Rules in the page: a top is draped only when
 out over what is worn over the shirt (`drapeLeaf`), and after all have settled each layer's body is held inside the
 draped bodies over it; front details are laid last. A preview build (`build_site.py --drape`) shows a
 Draped clothes switch. Where it stands and what comes next: STATUS.md item 0 and UPGRADE_PLAN.md 2zzzzzzzzzzzzzzzzzz.
+Since 14 Oct the templates are stored compact and fetched one kind at a time, as an outfit needs them:
+- *Storage* (`tools/garment_pack.py`, which `build_garments.py` writes through): every array uint16, column by column,
+  each value the step from the one before; floats (`pos`, `pat`, `bind.w`) quantised over each column's own range,
+  value = `o + q s`, the range in the file. About 0.70 of the size and 0.40 gzipped; the largest move in any point
+  rebuilt on his body is 0.02 mm. `python3 tools/garment_pack.py` converts older (`"v": 1`, float32) files in place
+  and reports sizes and differences; the page reads either form (`gtplArr`).
+- *Loading* (`gtplGet`, one kept promise per kind; `gtplNeed` reads the kinds from the pieces as `make3Dcore` does,
+  a jacket's, shirt's or padded jacket's both open and done up): `loadThree(pieces)` waits for them with Three.js and
+  the body, a live view's `update` keeps the model it has until the new pieces' templates are in, and the stills
+  queue waits per outfit. `drapeArch` decides from the piece alone, never from what has loaded. A kind that could
+  not be fetched (`GTPLX`) is drawn as `make3Dcore` builds it. The QA hooks: `__qa().loadFor(pieces)` (check_3d
+  awaits it per outfit), and `tools/qa/inject.py`'s `loadThree` fetches every template.
 Leave the old garment-geometry rules alone while the drape replaces them (STATUS.md queue items 9 and 10, scarf edges,
 contrast collars).
 
