@@ -1746,7 +1746,8 @@ function upperArt(p,dim){
     h='<path d="'+(vb2?"M112 92 L109 118 L120 176 L131 118 L128 92":v?"M117 "+H+" L117 166 L108 92 L113 92 L123 166 L123 "+H:"M103 "+H+" L105 150 L112 92 L118 92 L112 150 L110 "+H)+' Z" fill="rgba(0,0,0,'+(dim?".04":".16")+')"/>';
     h+=body(l,p,dim)+body(r,p,dim);
     var nmU=(((byId[p.item]||{}).name||"")+" "+p.what).toLowerCase();
-    if((s==="coat"||s==="jacket")&&/parka|anorak|cagoule|waterproof|rain|puffer|puffa|padded|down jacket|hood|shell|ski/.test(nmU)&&!/blazer|overcoat|trench/.test(nmU)){
+    var hF=((byId[p.item]||{}).fix||{}).hood;
+    if((s==="coat"||s==="jacket")&&(hF||/parka|anorak|cagoule|waterproof|rain|puffer|puffa|padded|down jacket|hood|shell|ski/.test(nmU))&&!/blazer|overcoat|trench/.test(nmU)){
       /* Parkas, waterproofs and puffers: a hood rim round the neck, open zips, flap pockets and a waist cord, no lapels. */
       var hd="M95 98 Q90 88 98 82 Q106 78 112 84 L110 97 Z";
       h+=P("g",hd)+P("g",mir(hd))+P("d","M97 88 Q103 83 110 86 M143 88 Q137 83 130 86")+
@@ -2968,6 +2969,7 @@ function normFix(f){if(!f||typeof f!=="object")return null;var o={},hx=/^#[0-9a-
   if(/^(plain|hstripe|vstripe|check|print|argyle)$/.test(f.pat||"")){o.pat=f.pat;n++;}
   ["per","duty"].forEach(function(k){var v=Number(f[k]);if(v>0&&v<1){o[k]=v;n++;}});
   ["front","decal","named","back"].forEach(function(k){if(f[k]===false){o[k]=false;n++;}});if(f.front===true){o.front=true;n++;}
+  if(typeof f.hood==="boolean"){o.hood=f.hood;n++;}   /* (a jacket's or coat's hood, when the name does not say) */
   if(typeof f.swatch==="string"&&/^data:image\/(jpeg|png);base64,/.test(f.swatch)&&f.swatch.length<=16000){o.swatch=f.swatch;n++;}
   if(typeof f.place==="string"&&/^data:image\/(jpeg|png);base64,/.test(f.place)&&f.place.length<=24000){o.place=f.place;n++;}
   if(typeof f.crown==="string"&&/^data:image\/(jpeg|png);base64,/.test(f.crown)&&f.crown.length<=24000){o.crown=f.crown;n++;}   /* (a cap's crown from the front: its design) */
@@ -3796,6 +3798,9 @@ function warpMan(man,PW,hzc){var T=window.THREE,v=new T.Vector3(),mi=new T.Matri
    The fitting room's "How it's worn" toggles do the same for tucks (TUCKM "in" or "out") and trouser hems (TURNM "up"
    for turn-ups, "down" for a plain hem with a break), and its light (LIGHTM "" studio, "day" or "eve"). */
 var ZIPM="",TUCKM="",TURNM="",LIGHTM="",SIZEM="",HOODRE=/parka|hooded|\bhood\b|active jacket|anorak|stormbreak|cagoule|kagool|pac[- ]?a[- ]?mac|rain ?jacket|waterproof jacket|rain shell/;   /* (rain jackets and cagoules have hoods even when the name does not say so) */
+/* (a hood shown in the shop photo though the name does not say so, or none though it seems to: the hood correction
+   in data/fixes.json decides over the name) */
+function hoodOn(p,n){var F=(byId[p.item]||{}).fix;return F&&F.hood!=null?!!F.hood:HOODRE.test(n);}
 /* an overshirt (shacket, chore shirt, flannel) over a tee or shirt is worn open, as a jacket is */
 /* which of the tops (inner first) are tucked in, when the outfit tucks (on): a shirt or polo next to him, but not one
    worn open (it hangs loose over what is under it) or an overshirt over another shirt; and a tee or vest under a
@@ -3854,8 +3859,8 @@ function drapeArch(p){var a=DRAPEK[p.shape];if(!window.__drape||!a||!GTPL[a])ret
     if(/long[- ]?sleeve|longsleeve|\bl\/s\b|\blong\b/.test(n))return GTPL.tee_ls?"tee_ls":null;   /* (not a longline tee: a long body, short sleeves) */if(/henley/.test(n)||D.neck==="henley")return null;}
   if(a==="jacket"){
     if(/puffer|puffa|padded|quilt|(^|[^-\w])down\b(?![- ]?collar)/.test(n)){
-      if(!GTPL.puffer||HOODRE.test(n)||/parka|longline|denim|trucker|harrington|bomber|leather|suede|coach|chore|wax|fleece|sherpa|borg|shacket|overshirt/.test(n))return null;return "puffer";}
-    if(!/track|tricot|venaria|softshell|windbreaker|funnel|zip[- ]?(through|up)\b|full[- ]?zip/.test(n)||/puffer|padded|quilt|parka|denim|trucker|harrington|bomber|leather|suede|coach|chore|work|hood|wax|fleece|sherpa|borg|down\b/.test(n))return null;}
+      if(!GTPL.puffer||hoodOn(p,n)||/parka|longline|denim|trucker|harrington|bomber|leather|suede|coach|chore|wax|fleece|sherpa|borg|shacket|overshirt/.test(n))return null;return "puffer";}
+    if(!/track|tricot|venaria|softshell|windbreaker|funnel|zip[- ]?(through|up)\b|full[- ]?zip/.test(n)||/puffer|padded|quilt|parka|denim|trucker|harrington|bomber|leather|suede|coach|chore|work|hood|wax|fleece|sherpa|borg|down\b/.test(n)||hoodOn(p,n))return null;}
   /* (the shirt template is a long-sleeved shirt with a point collar on a stand: a band, grandad, camp or Cuban collar,
      and a jacket-weight overshirt (a chore jacket, a shacket), keep make3Dcore's shapes) */
   if(a==="shirt"&&(/^(band|camp)$/.test(D.collar||"")||/grandad|granddad|mandarin|band collar|collarless|camp collar|cuban|revere|short[- ]?sleeve|s\/s|\bs ?- ?s\b|\bss\b/.test(n)||jacketShirt(p)))return null;
@@ -5917,8 +5922,9 @@ function make3Dcore(pieces){
        hoodie counts, so the hood lies over it rather than poking through its back) */
     var eTop=e,eRun=e;up.slice(k+1).forEach(function(q,j){var i=k+1+j,Lq=LAYER[q.shape]||0,eq=[0.008,0.017,0.03][Lq]+0.004*i+(lay(q)%1?0.006:0)+((q.desc||{}).fit==="loose"?0.012:((q.desc||{}).fit==="relaxed"?0.006:0));
       eq=Math.max(eq,eRun+0.007);eRun=eq;if(PUFFRE.test(nm(q)))eq+=0.014;eTop=Math.max(eTop,eq);});var hOut=Math.max(0,eTop+0.004-e);
-    var hoodOut=up.slice(k+1).some(function(q){return /^(coat|jacket)$/.test(q.shape)&&HOODRE.test(nm(q));});
-    if(p.shape==="hoodie"&&(!hid||!hoodOut)){if(bodyOn){hoodDown(m,e,hOut,false,p.col,!hid&&!!FT);HOODO=true;   /* (on his upper back; under a jacket it lies out over the jacket and its collar) */}else add(new T.SphereGeometry(0.115,26,16,0,Math.PI*2,0,Math.PI*0.55),m,0,1.49,-0.085,1.05,0.62,0.85,-0.35,0,0);}
+    var hoodOut=up.slice(k+1).some(function(q){return /^(coat|jacket)$/.test(q.shape)&&hoodOn(q,nm(q));});
+    if(p.shape==="hoodie"&&!hoodOut){if(bodyOn){hoodDown(m,e,hOut,false,p.col,!hid&&!!FT);HOODO=true;   /* (on his upper back; under a jacket it lies out over the jacket and its collar; under a hooded jacket, open or
+       closed, it lies inside the jacket's own hood, which covers it) */}else add(new T.SphereGeometry(0.115,26,16,0,Math.PI*2,0,Math.PI*0.55),m,0,1.49,-0.085,1.05,0.62,0.85,-0.35,0,0);}
     if(p.shape==="hoodie"&&!hidF&&!p._proj){
       [-1,1].forEach(function(s){tube([[s*0.03,1.49,frontZ(1.45,e)+0.012],[s*0.034,1.42,frontZ(1.4,e)+0.01],[s*0.036,1.36,frontZ(1.36,e)+0.008]],0.0028,white,8);});
       /* the kangaroo pocket, laid on the cloth (narrower at the top), with its two slanted openings */
@@ -6022,7 +6028,7 @@ function make3Dcore(pieces){
         bt.forEach(function(by){if(by>hem+0.02)add(new T.CylinderGeometry(0.0075,0.0075,0.004,14),bm,0,by,cz(by)+0.001,1,1,1,Math.PI/2,0,0);});}}
     if(p.shape==="halfzip"){tube([[0,1.485,frontZ(1.47,e)+0.004],[0,1.42,frontZ(1.42,e)+0.004],[0,1.34,frontZ(1.34,e)+0.004]],0.0035,metal,8);if(FT)fitCollar(FT,{h:pieces.some(function(q){return q.shape==="scarf"||q.shape==="snood";})?0.03:0.048,lean:0.62,gap:0.3,mat:rib(p),rows:5});   /* (under a scarf the collar is folded down inside it: standing full height, it rose 4 cm above the loop to his jaw) */else if(bodyOn){var hzc=rib(p).clone();hzc.side=T.DoubleSide;sec([1.497,1.522,1.548].map(function(y,i){var nk=NK(y);return [y,nk[1]+e*0.45+0.009+i*0.003,nk[2]+e*0.45+0.009+i*0.003,0,nk[4]];}),hzc,{seg:44,gap:0.32,k:1,sq:2});}   /* (its funnel collar round his neck, parted at the zip) */
       else band(1.476,0.05,0.08+e*0.6,0.074+e*0.6,rib(p),{gap:0.35,z:-0.01});}
-    if(HOODRE.test(n0)&&(p.shape==="coat"||p.shape==="jacket")){if(bodyOn){hoodDown(m,e,0,true,p.col);}
+    if(hoodOn(p,n0)&&(p.shape==="coat"||p.shape==="jacket")){if(bodyOn){hoodDown(m,e,0,true,p.col,pieces.some(function(q){return q.shape==="scarf"||q.shape==="snood";}));   /* (under a scarf or neck warmer it starts thin, tucked under it) */}
       else add(new T.SphereGeometry(0.12,26,16,0,Math.PI*2,0,Math.PI*0.55),m,0,1.5,-0.09,1.08,0.6,0.85,-0.4,0,0);}
     if(!hidF&&/pocket|cargo|chore|field|work|safari|utility/.test(n0)&&(p.shape==="jacket"||p.shape==="coat"||p.shape==="shirt"||p.shape==="gilet")){
       [-1,1].forEach(function(s){var py=p.shape==="shirt"?1.33:Math.max(hem+0.09,0.92),px=EX?EX(py,s)+s*0.068:s*(open?0.115:0.085),ew=e+(py<1.06&&waistE?0.022:0);add(new T.BoxGeometry(0.062,0.068,0.008),m,px,py,surfZ(py,px,ew)+0.002,1,1,1,0,s*Math.min(0.6,Math.abs(px)*3.2),0);});}

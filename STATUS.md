@@ -22,6 +22,15 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**14 Oct: hoods the names do not mention** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). 25 jackets whose shop photos show
+a hood get a `hood` correction in `data/fixes.json` (read before the name by `hoodOn`), so they are drawn hooded and
+kept off the draped track and puffer templates. A hoodie's hood under a hooded jacket lies inside the jacket's hood
+(three outfits' back pokes gone), a hood under a neck warmer is tucked under it, p6-mx-breeze is slate grey rather
+than black, and the Sealskinz tee filed as a coat is a tee (g-outdoor-11 leaves it out). Against `main`, of 84 outfits:
+as worn 8 flagged to 5, done up 1 to 0, nothing newly flagged.
+**Next, in order:** draped templates for a hooded zip jacket and a collared zip jacket (`tools/build_garments.py`), the
+two kinds most of item 0.1's remaining zip jackets are, then XPBD substeps in `drapeSettle`.
+
 **14 Oct: PR #48's red 3D check fixed; FtdHKg republished from `main`** (v48, PR #48's build; UPGRADE_PLAN
 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). PR #48 merged with w20261006-casual-04 red done up (front poke 53): a short-sleeved
 "Stan Ray S - S" shirt read as long-sleeved, its collar showing inside a zipped puffer's stand collar. "S - S" and "SS"
@@ -403,6 +412,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 14 Oct 2026 | #51 | `hood` corrections for 25 jackets hooded in their photos (drawn hooded, off the track and puffer templates); a hoodie's hood under a hooded jacket inside its hood (jb-wet-day, jb8-wet-day, jb9-wet-dealer clean), a hood under a neck warmer tucked under it; p6-mx-breeze slate grey; the Sealskinz tee a tee | FtdHKg v50 |
 | 14 Oct 2026 | #50 | "S - S" and "SS" shirts short-sleeved (23; three outfits' Stan Ray shirts now `sshirt`); a shirt's collar under a draped stand collar done up only its foot (w20261006-casual-04 done up, g-job-11, g-job-15, g-quiet-13 clean) | FtdHKg v49 |
 | 14 Oct 2026 | none | FtdHKg republished from `main` (451852e, PR #48's build: draped clothes only), the page and four `data/garments` files; now the one artifact kept in step with `main` | FtdHKg v48 |
 | 13 Oct 2026 | #47 | Behind the drape switch: padded and puffer jackets draped (`puffer` worn open, `puffer_up` zipped; hooded ones and parkas still `make3Dcore`'s); an open front's edges left out of the layer holding what is under it, and each draped point drawn back to its binding moved out of what is under it (g-outdoor-05's and q13-coastal's switch-on pokes gone); live page unchanged | not republished yet (B8UXnh v5, 5A3t39 v4 are on 51ff9ed) |

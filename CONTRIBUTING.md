@@ -250,6 +250,7 @@ When an outfit is shown, each piece goes through four steps. Knowing them is how
    | `per` | Stripe or check spacing as a share of the garment's length, between 0 and 1 (a Breton is about 0.04). |
    | `duty` | How much of each stripe repeat is the second colour, between 0 and 1. |
    | `front` | `false` drops the photo front (when a model photo was taken for a flat-lay); `true` always lays it on (a front the reader refuses, as a Fair Isle yoke; with `pat` `plain`, a plain piece with one band or logo across the chest, the rest plain even when the listing's name says "stripe"). |
+   | `hood` | `true` for a jacket or coat whose shop photo shows a hood its name does not mention (a windbreaker, a padded or softshell jacket): it is drawn with one, and kept off the draped track jacket and puffer templates, which have none. `false` for none though the name seems to say so. |
    | `decal` | `false` drops the chest graphic cut from the photo (when it picked up something that is not a print). |
    | `shapes` | For a set sold as one listing and worn as two pieces (a tee and shorts, one photo): corrections for one garment shape only, as `{"shorts": {"col": "#5f5f62"}}`, laid over the item's own. |
    | `swatch` | A small square of the cloth itself, as a `data:image/jpeg;base64,...` (under 16,000 characters), repeated as the garment's cloth at `per` of its length: for a woven pattern the listing photo cannot show (a lifestyle shot of a jacquard). Cut it from the shop's own close-up product image, flat and evenly lit, and make it repeat without a seam. |
