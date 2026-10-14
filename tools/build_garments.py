@@ -281,6 +281,10 @@ MEAS = {
     # a tee: short sleeves open at the end (wrist: all round there), a plain hem, a 2 cm neckband
     "tee": dict(chest=108, length=72, shoulder=46, armhole=22, neck_w=17, neck_f=8, neck_b=2, sh_drop=4.5, band=0, band_k=1,
                 sleeve=21, bicep=38, wrist=36, cuff=0, cuff_c=0, collar=2),
+    # a long-sleeved tee: the tee's body and neckband, its sleeves to the wrist (a little narrower round the arm than
+    # the short sleeve, tapering to the wrist) and finished in a narrow 3 cm rib cuff, as a long-sleeved tee is
+    "tee_ls": dict(chest=108, length=72, shoulder=46, armhole=22, neck_w=17, neck_f=8, neck_b=2, sh_drop=4.5, band=0, band_k=1,
+                   sleeve=64, bicep=36, wrist=23, cuff=3, cuff_c=19, collar=2),
     # a shirt: a point collar (a 3 cm stand and a 4.5 cm leaf folded down over it, 7 cm to its points), buttoned cuffs
     # a little narrower than the sleeve, a plain hem; worn open (its front in two, the collar open at the front) or done
     # up (the front one piece, the page draws its placket and buttons)
