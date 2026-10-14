@@ -2889,6 +2889,34 @@ and every draped top under one was drawn by `make3Dcore` instead.
   heavier; back poke 31 on loose. q13-coastal clean on all five.
 - *Switch off*: the gate set (31 outfits) clean; `tools/specs.js` unchanged.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Short-sleeved "S - S" shirts; a shirt's collar inside a done-up stand collar (14 Oct 2026)
+
+PR #48 (draped clothes only) merged with one 3D check red: w20261006-casual-04 worn done up and untucked
+(`--wear zip=up,tuck=out`), front poke 53. A shirt under a SikSilk full-zip hoodie under the Dickies Scobey puffer, zipped
+up: the shirt's collar showed at the side of his neck, inside the puffer's 7.5 cm stand collar.
+
+- *The shirt is short-sleeved.* "Stan Ray S - S Flannel Shirt": the shops' feeds write S/S as "S - S" (and others as
+  "SS Shirt"), which `guessShape` and `make_outfits.py` did not read, so it was drawn as a long-sleeved shirt, the draped
+  `shirt` template, its pink cuffs out of the jacket's sleeves. Both now read `s - s` and `ss` as short sleeves (23 shirts
+  in the catalogue, all short-sleeved in their photos); the three outfits that wear the two Stan Ray shirts have them
+  as `sshirt`, and `drapeArch` keeps them off the long-sleeved template too.
+- *The collar under a stand collar done up.* As an `sshirt` it is `make3Dcore`'s, its collar a 1 cm band under a closed
+  hoodie, and that band still showed inside the puffer's collar (front poke 58). Under a draped gilet, zipped jacket or
+  zipped puffer (`stC`, whose stand collar is sewn round its neckline) the collar is now only its foot, 4 mm.
+  `tools/qa/ray.js` takes `QA_ROT` to probe a pixel the check flagged from its own angle (the front view is 0.15).
+
+**Checked**, his shape, the 71 outfits with a shirt, short-sleeved shirt or polo and a gilet or jacket, as worn and done
+up (`--wear zip=up,tuck=out`), against `main`:
+- As worn: `main` 11 flagged, this 8. Clean now: g-job-11 (front poke 42), g-job-15 (54) and g-quiet-13 (48), the
+  collar inside a gilet's stand collar (STATUS item 0's "8 at the base of his neck"); g-outdoor-21's front poke 70 to 49.
+  The rest as `main`: errands, g-quiet-18 and g-outdoor-01 (front poke 44 to 51, the top inside a gilet's collar that is
+  not a shirt's), g-quiet-22 (back poke 42), g-mod-22, g-quiet-29 and g-outdoor-06 (back holes 27 to 29).
+- Done up: `main` 10 flagged, this 6. Clean now: w20261006-casual-04 (front poke 53, the red check), g-job-11, g-job-15
+  and g-quiet-13. The rest as `main`: errands, g-quiet-18, g-outdoor-01, g-outdoor-16 (front poke 44 to 58: a shirt
+  under a hoodie under the padded jacket, the hoodie's neck beside the hood, UPGRADE_PLAN's padded-jacket entry),
+  g-outdoor-12 and g-quiet-29 (back holes 27 and 30).
+- `tools/specs.js`: the two Stan Ray shirts move from `shirt` to `sshirt`; nothing else read differently.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

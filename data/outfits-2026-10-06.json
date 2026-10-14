@@ -7,7 +7,7 @@
    {
     "col": "burgundy",
     "item": "jeanstore-stan-ray-s-s-flannel-shirt-red-gingham",
-    "shape": "shirt",
+    "shape": "sshirt",
     "what": "Red shirt"
    },
    {
@@ -97,7 +97,7 @@
    {
     "col": "blue",
     "item": "jeanstore-stan-ray-s-s-flannel-shirt-blue-gingham",
-    "shape": "shirt",
+    "shape": "sshirt",
     "what": "Blue shirt"
    },
    {
@@ -214,7 +214,7 @@
    {
     "col": "burgundy",
     "item": "jeanstore-stan-ray-s-s-flannel-shirt-red-gingham",
-    "shape": "shirt",
+    "shape": "sshirt",
     "what": "Red shirt"
    },
    {
