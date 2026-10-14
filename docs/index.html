@@ -5590,6 +5590,11 @@ function make3Dcore(pieces){
        inside it the hood bunched and came through the jacket's back) */
     if(/^puffer_hood/.test(a)&&pieces.some(function(q){return q.shape==="snood"||(q.shape==="scarf"&&/neck warmer|snood|buff/i.test(q.what||""));}))a=null;
     if(a){p._drape=true;p._arch=a;}});
+  /* (a collared shirt or polo under a hoodie with a done-up stand collar over that keeps make3Dcore's shapes: the
+     hood, pressed up round his neck by the stand, lay in a crumpled ring round the draped collar, which showed through
+     its folds, w20261006-casual-04 done up) */
+  up.forEach(function(p,k){if(!p._drape||!/^(s?shirt|polo)/.test(p._arch))return;
+    for(var j=k+1;j<up.length;j++)if(up[j]._drape&&up[j]._arch==="hoodie")for(var l=j+1;l<up.length;l++)if(up[l]._drape&&STANDC[up[l]._arch]){p._drape=false;delete p._arch;return;}});
   /* (a top is draped only when everything worn over it is too: make3Dcore's tops are cut for its own closer inner
      layers, and over draped cloth they let it through at the back and the shoulders) */
   for(var dk=up.length-1,dOver=false;dk>=0;dk--){if(dOver)up[dk]._drape=false;if(!up[dk]._drape)dOver=true;}

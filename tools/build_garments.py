@@ -294,10 +294,12 @@ MEAS = {
                      sleeve=64, bicep=40, wrist=25, cuff=6.5, cuff_c=24, collar=3, leaf=4.5, point=7),
     # a short-sleeved shirt: the shirt's cut and point collar, a little shorter (it is worn out as often as in), its
     # sleeves to above the elbow, finished in a 2.5 cm turned-up band a little closer than the sleeve; worn open or done
-    # up as the shirt is. (With a plain hem and no band, worn open, its leaf stood straight out from the stand at the back)
+    # up as the shirt is. (With a plain hem and no band, worn open, its leaf stood straight out from the stand at the back.
+    # Done up, its shoulders slope half a centimetre more: with the open one's, it sat higher on him than the long
+    # shirt does, and its collar showed above a half-zip's stand at the sides of his neck, w20261008-quiet-04)
     "sshirt": dict(chest=110, length=76, shoulder=47, armhole=24, neck_w=16, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
                    sleeve=24, bicep=41, wrist=37, cuff=2.5, cuff_c=36, collar=3, leaf=4.5, point=7, open=1),
-    "sshirt_up": dict(chest=110, length=76, shoulder=47, armhole=24, neck_w=16, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
+    "sshirt_up": dict(chest=110, length=76, shoulder=47, armhole=24, neck_w=16, neck_f=7.5, neck_b=2, sh_drop=5, band=0, band_k=1,
                       sleeve=24, bicep=41, wrist=37, cuff=2.5, cuff_c=36, collar=3, leaf=4.5, point=7),
     # a polo: the tee's body, a little higher at the front of the neck, short sleeves finished in a 2.5 cm rib armband a
     # little closer than the sleeve, and a knitted collar (a 2 cm stand and a 4.5 cm leaf folded down over it, 6.5 cm to its
