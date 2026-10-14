@@ -3829,7 +3829,7 @@ function jacketShirt(p){return overshirt(p)&&/shacket|shirt jacket|chore|insulat
    first, against his body, the clothes under it and the layers already settled; a hoodie's hood last, out over
    anything worn over the hoodie. Lengths are the draped garment's on his saved shape, so on him it keeps its drape;
    on another body it moves with him and settles. See UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzz. */
-var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt",gilet:"gilet"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up","gilet","scarf","puffer","puffer_up"];   /* (jacket_up, shirt_up, puffer_up: the jacket zipped up, the shirt done up and the padded jacket zipped up, for one worn closed) */
+var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt",gilet:"gilet"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up","gilet","scarf","puffer","puffer_up","tee_ls"];   /* (jacket_up, shirt_up, puffer_up: the jacket zipped up, the shirt done up and the padded jacket zipped up, for one worn closed; tee_ls: a tee with long sleeves) */
 /* (the templates with a stand collar done up round his neck) */
 var STANDC={gilet:1,jacket_up:1,halfzip:1,rollneck:1,puffer_up:1};
 /* (the templates that open: drawn from the template of that name worn open, and from name_up done up) */
@@ -3847,9 +3847,11 @@ function drapeLeaf(t){var li=-1,f;for(f=0;f<t.pieces.length;f++)if(t.pieces[f].n
    waxed or worked, keep make3Dcore's shapes until they have templates of their own) */
 function drapeArch(p){var a=DRAPEK[p.shape];if(!window.__drape||!a||!GTPL[a])return null;var n=(((byId[p.item]||{}).name||"")+" "+(p.what||"")).toLowerCase(),D=p.desc||{};
   /* (each template is one cut: a jumper a crew neck with long sleeves, not a knitted vest, a V neck or a cardigan; a tee
-     short-sleeved) */
+     short-sleeved, or long-sleeved from tee_ls, a crew neck or a henley (drapeDetails draws its placket), not a raglan or
+     baseball tee, whose sleeves are cut another way, a V or a mock neck) */
   if(a==="jumper"&&(D.neck==="v"||/vest|sleeveless|tank|slipover|tabard|cardigan|v[- ]?neck|polo[- ]?neck|turtle|zip/.test(n)))return null;
-  if(a==="tee"&&(/long[- ]?sleeve|longsleeve|\bl\/s\b|\blong\b|raglan|baseball|henley|vest|sleeveless|tank|crop/.test(n)||D.neck==="henley"||D.neck==="v"))return null;
+  if(a==="tee"){if(/raglan|baseball|vest|sleeveless|tank|crop|mock[- ]?neck/.test(n)||D.neck==="v"||D.neck==="mock")return null;
+    if(/long[- ]?sleeve|longsleeve|\bl\/s\b|\blong\b/.test(n))return GTPL.tee_ls?"tee_ls":null;   /* (not a longline tee: a long body, short sleeves) */if(/henley/.test(n)||D.neck==="henley")return null;}
   if(a==="jacket"){
     if(/puffer|puffa|padded|quilt|(^|[^-\w])down\b(?![- ]?collar)/.test(n)){
       if(!GTPL.puffer||HOODRE.test(n)||/parka|longline|denim|trucker|harrington|bomber|leather|suede|coach|chore|wax|fleece|sherpa|borg|shacket|overshirt/.test(n))return null;return "puffer";}
@@ -4016,6 +4018,14 @@ function drapeDetails(man,p,t,X,N,ctx,kind,proj){var T=window.THREE,DS=p.desc||{
       (q[1]?[q[1]*0.003,q[1]*0.032]:[-0.017,0.017]).forEach(function(x){var st=[];for(var k=0;k<=16;k++)st.push(on(q[0],x,top-0.004-(top-E.y0-0.004)*k/16,0.0012));line(st,0.0006,seamK,40);});
       if(!tie&&q[1]<=0)for(var by=top-0.025;by>E.y0+0.05;by-=0.09)btn(q[0],q[1]?-0.0175:0,by);});
     if(t.arch==="shirt_up"&&!tie){var C3=drapeExt(t,"collar");btn("collar",C3.x1-0.009,C3.y1*0.5);}}
+  if(t.arch==="tee_ls"&&!proj&&(DS.neck==="henley"||/henley/.test(n0))){
+    /* a henley's placket: 11 cm down the middle of the front from the neckband, stitched down both sides and across its
+       foot, and three buttons a shade of the cloth (make3Dcore's) */
+    var hm=ctx.mat(shade(col,0.75),0.5),ht=F.ym-0.004,hb=ht-0.11;
+    [-0.011,0.011].forEach(function(x){var st=[];for(var k=0;k<=8;k++)st.push(on("front",x,ht-(ht-hb)*k/8,0.0012));line(st,0.0006,seamK,20);});
+    line([on("front",-0.011,hb,0.0012),on("front",0,hb,0.0012),on("front",0.011,hb,0.0012)],0.0006,seamK,6);
+    [0.02,0.05,0.08].forEach(function(d){var q=drapeAt(t,X,N,"front",0,ht-d);if(!q)return;var b=new T.Mesh(new T.CylinderGeometry(0.0035,0.0035,0.002,12),hm);
+      b.position.set(q.p[0]+q.n[0]*0.0018,q.p[1]+q.n[1]*0.0018,q.p[2]+q.n[2]*0.0018);b.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),new T.Vector3(q.n[0],q.n[1],q.n[2]));out.push(b);});}
   if(t.arch==="jacket_up"||t.arch==="puffer_up"||t.arch==="gilet"){   /* zipped up: the zip from the collar's top down the middle to the hem */
     var C2=drapeExt(t,"collar"),B2=drapeExt(t,"front_band"),zu=[];for(var k=0;k<=3;k++)zu.push(on("collar",C2.x1-0.002,C2.y1*(1-k/3),0.003));
     for(k=1;k<=14;k++)zu.push(on("front",0,F.ym-(F.ym-F.y0)*k/14,0.003));zu.push(on("front_band",0,B2.y0+0.004,0.003));
@@ -4092,7 +4102,7 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
     /* (a knit's rib pieces, its hem band, cuffs and a quarter-zip's collar, in the page's rib, as make3Dcore draws them) */
     /* (a ringer tee's neckband and the ends of its sleeves in its second colour, as make3Dcore's bands are: its own
        colour, white on dark cloth, black on light) */
-    var DS=p.desc||{},knit=ctx&&/^(hoodie|halfzip|jumper|rollneck|cardigan)$/.test(p.shape)&&t.arch&&!t.pins,ring=ctx&&DS.ringer&&!DS.tipped&&t.arch==="tee",A=[],B=[],I=t.idx,P=t.pat;
+    var DS=p.desc||{},knit=ctx&&/^(hoodie|halfzip|jumper|rollneck|cardigan)$/.test(p.shape)&&t.arch&&!t.pins,ring=ctx&&DS.ringer&&!DS.tipped&&/^tee(_ls)?$/.test(t.arch),A=[],B=[],I=t.idx,P=t.pat;
     for(var f=0;f<I.length;f+=3){var pc=t.pieces[t.piece[I[f]]],end=ring&&pc.grp>0&&pc.grp<3&&Math.max(P[I[f]*2+1],P[I[f+1]*2+1],P[I[f+2]*2+1])<0.012;
       ((knit&&(pc.band>0||pc.name==="collar"))||(ring&&(pc.name==="collar"||end))?B:A).push(I[f],I[f+1],I[f+2]);}
     g.setIndex(new T.BufferAttribute(new Uint32Array(A.concat(B)),1));g.addGroup(0,A.length,0);g.addGroup(A.length,B.length,1);
@@ -4126,7 +4136,13 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
        Laid out over it, the gilet's collar came through the leaf. So under a hoodie: laid out over the hoodie, the leaf
        came through its hood, which lies round his neck over the hoodie's neckline) */
     if(R.lf){var pin=new Uint8Array(t.n),oo=over.map(function(d,j){var O=recs[di+1+j];return STANDC[O.t.arch]||(O.t.hood&&O.p.shape==="hoodie")?inCol(O,true):d.col;});for(var q=0;q<t.n;q++)pin[q]=R.lf[q]?0:1;
-      drapeSettle(X,drapeGrade(t.cl,R.G,R.sy),[c0.concat(oo),c1.concat(oo),c1.concat(oo),c0.concat(oo),c0.concat(oo)],t.grp,pin,window.__drapeSteps||60,X.slice());}
+      drapeSettle(X,drapeGrade(t.cl,R.G,R.sy),[c0.concat(oo),c1.concat(oo),c1.concat(oo),c0.concat(oo),c0.concat(oo)],t.grp,pin,window.__drapeSteps||60,X.slice());
+      /* (for the checks: the leaf lies out over the layers worn over the shirt up to the first stand collar or hooded
+         hoodie, which it stays inside, so it counts as outside the outermost of them. Counted as the shirt, the leaf
+         beside his neck, the jumper's back neckband above it, read as the shirt showing through the jumper) */
+      var lo=-1;for(var j=di+1;j<recs.length&&!(STANDC[recs[j].t.arch]||(recs[j].t.hood&&recs[j].p.shape==="hoodie"));j++)lo=j;
+      if(lo>=0){var li=-1,lm=new Uint8Array(t.m);for(var f=0;f<t.pieces.length;f++)if(t.pieces[f].name==="leaf")li=f;for(j=0;j<t.m;j++)lm[j]=t.piece[j]===li?1:0;
+        R.me.userData.leaf=lm;R.me.userData.leafOver="up"+recs[lo].k;}}
     remesh(di);}
   /* a hoodie's hood, last: its neckline on the hoodie's, the rest out over whatever is worn over the hoodie */
   hoodies.forEach(function(H){var h=H.t.hood;h.cl=h.cl||drapeCloth(h,h.pos);var X=drapeBind(h,BP,G),pin=new Uint8Array(h.n),P2=h.pins;
