@@ -4238,13 +4238,22 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
        hood settles against, and once the hood lies, pressed in 4 mm under it where it is within 1.5 cm: the hood comes
        out of the jacket's neck and lies over its collar. Settled against the collar, the hood's sides crumpled between
        it and his neck and the hoodie's neckline showed through, hoodie-chore and n4-ravon on four of the five bodies) */
-    var LC=layerCols(),sc2=function(R2,i){return i>hi&&R2.lf;};
+    /* (an open zip jacket's stand collar, a track jacket's or a softshell's, folded down to a third of its height first, as the
+       hood's weight presses a soft collar down: standing, the hood came out of the jacket's neck between the collar and
+       his neck on one side and over it on the other, and showed through the collar beside his chin, x11-ellesse,
+       jb10-winter-kx3 and jb9-ukd-softshell on all five bodies. Then, as a chore jacket's collar, left out of what the
+       hood settles against and pressed under it. Pressed under the hood standing, the collar came through the hood) */
+    recs.forEach(function(R2,i){if(i<=hi||R2.t.arch!=="jacket")return;var t2=R2.t,X2=R2.X,X0=X2.slice(),B=[],q,a;for(q=0;q<t2.n;q++)if(t2.grp[q]===0&&X0[q*3+1]>1.3)B.push(q);
+      for(q=0;q<t2.n;q++){if(t2.grp[q]!==4)continue;var o=q*3,bb=-1,bd=1e9;for(var k=0;k<B.length;k++){var u=B[k]*3,dd=(X0[o]-X0[u])*(X0[o]-X0[u])+(X0[o+1]-X0[u+1])*(X0[o+1]-X0[u+1])+(X0[o+2]-X0[u+2])*(X0[o+2]-X0[u+2]);if(dd<bd){bd=dd;bb=u;}}
+        if(bb>=0)for(a=0;a<3;a++)X2[o+a]=X0[bb+a]+(X0[o+a]-X0[bb+a])*0.35;}
+      remesh(i);});
+    var LC=layerCols(),sc2=function(R2,i){return i>hi&&(R2.lf||R2.t.arch==="jacket");};
     if(recs.some(sc2)){var c0=[cB,cU,cUA,cO],c1=[cA,cU,cUA,cOA];recs.forEach(function(R2,i){var c=done[i].col;
-        if(sc2(R2,i)){var cX=[],cN=[];for(var q=0;q<R2.t.n;q++)if(!R2.lf[q]&&R2.t.grp[q]!==4)for(var a=0;a<3;a++){cX.push(R2.X[q*3+a]);cN.push(R2.N[q*3+a]);}c=drapeCol(new Float32Array(cX),new Float32Array(cN),0.01);}
+        if(sc2(R2,i)){var cX=[],cN=[];for(var q=0;q<R2.t.n;q++)if(!(R2.lf&&R2.lf[q])&&R2.t.grp[q]!==4)for(var a=0;a<3;a++){cX.push(R2.X[q*3+a]);cN.push(R2.N[q*3+a]);}c=drapeCol(new Float32Array(cX),new Float32Array(cN),0.01);}
         c0.push(c);c1.push(c);});LC=[c0,c1,c1,c0,c0];}
     drapeSettle(X,drapeGrade(h.cl,G,sy),LC,h.grp,pin,window.__drapeSteps||60,X.slice());
     var hm=mesh(h,X,H.p,H.k<inner.length-1?"up"+H.k+"o":"up"+H.k),hc=drapeCol(X,hm.N,0);
-    recs.forEach(function(R2,i){if(!sc2(R2,i))return;var t2=R2.t,X2=R2.X,mv=false;for(var q=0;q<t2.n;q++){if(t2.grp[q]!==4&&!R2.lf[q])continue;
+    recs.forEach(function(R2,i){if(!sc2(R2,i))return;var t2=R2.t,X2=R2.X,mv=false;for(var q=0;q<t2.n;q++){if(t2.grp[q]!==4&&!(R2.lf&&R2.lf[q]))continue;
       var o=q*3,c=drapeNear(hc,X2[o],X2[o+1],X2[o+2]);if(c<0||Math.hypot(X2[o]-hc.P[c*3],X2[o+1]-hc.P[c*3+1],X2[o+2]-hc.P[c*3+2])>0.015)continue;
       /* (the hood's normal there turned out from him, as his body faces at its nearest point) */
       var bn=drapeNear(cB,hc.P[c*3],hc.P[c*3+1],hc.P[c*3+2]),sg=bn>=0&&hc.N[c*3]*cB.N[bn*3]+hc.N[c*3+1]*cB.N[bn*3+1]+hc.N[c*3+2]*cB.N[bn*3+2]<0?-1:1,d=0,a;
