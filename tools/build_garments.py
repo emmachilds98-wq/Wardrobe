@@ -327,6 +327,19 @@ MEAS = {
                   band_k=0.98, sleeve=66, bicep=46, wrist=29, cuff=4, cuff_c=24, hood_h=38, hood_d=28, open=1),
     "parka_up": dict(chest=128, length=78, shoulder=50, armhole=26.5, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3,
                      band_k=0.98, sleeve=66, bicep=46, wrist=29, cuff=4, cuff_c=24, hood_h=38, hood_d=28),
+    # a chore jacket (a chore, utility, field or work jacket in canvas or twill): boxy, cut to below his hips (72 cm), 122
+    # round the chest, a plain hem, buttoned cuffs and the collared jacket's shirt collar; worn open or buttoned (the
+    # page draws its buttons and pockets)
+    "chore": dict(chest=122, length=72, shoulder=49, armhole=25.5, neck_w=18.5, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=0,
+                  band_k=1, sleeve=65, bicep=43, wrist=28, cuff=5, cuff_c=25, collar=3, leaf=5, point=7.5, open=1),
+    "chore_up": dict(chest=122, length=72, shoulder=49, armhole=25.5, neck_w=18.5, neck_f=7.5, neck_b=2.2, sh_drop=4.5,
+                     band=0, band_k=1, sleeve=65, bicep=43, wrist=28, cuff=5, cuff_c=25, collar=3, leaf=5, point=7.5),
+    # a denim or trucker jacket: cut short, to his belt (64 cm), closer (118 round the chest), a 5 cm waistband buttoned
+    # round him (stiff denim, barely drawn in), buttoned cuffs and the shirt collar a size up; worn open or buttoned
+    "trucker": dict(chest=118, length=64, shoulder=48, armhole=25, neck_w=18.5, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=5,
+                    band_k=0.96, sleeve=65, bicep=42, wrist=27, cuff=5, cuff_c=24, collar=3, leaf=5, point=7.5, open=1),
+    "trucker_up": dict(chest=118, length=64, shoulder=48, armhole=25, neck_w=18.5, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=5,
+                       band_k=0.96, sleeve=65, bicep=42, wrist=27, cuff=5, cuff_c=24, collar=3, leaf=5, point=7.5),
     # a gilet (a bodywarmer) done up: no sleeves (no sleeve key), its armholes cut deeper and in to the point of his
     # shoulder so a jumper's or a hoodie's sleeve comes through, a plain hem and the jacket's stand collar, zipped
     "gilet": dict(chest=124, length=69, shoulder=43, armhole=27, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3, band_k=0.92,
