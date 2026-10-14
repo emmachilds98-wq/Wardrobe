@@ -3101,6 +3101,27 @@ The last of item 0.1's named jacket families: bombers, all `make3Dcore`'s until 
 
 **Checked**: the five outfits on all five bodies, as worn and done up: 0 flagged.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. A hoodie's hood over a jacket's collar (14 Oct 2026)
+
+PR #55 left a chore or denim jacket over a hoodie on `make3Dcore`'s shapes: the hoodie's draped hood, settled against
+the jacket's shirt collar, crumpled at the sides of his neck and the hoodie's neckline showed through it (hoodie-chore
+and n4-ravon, front poke 31 to 67 on slim, athletic, heavier and loose).
+
+- *The fix* (`drapeTops`, the hoods): a shirt collar worn over the hood (the stand and leaf of a chore, denim or
+  collared jacket, any draped layer with a leaf) is left out of what the hood settles against. Once the hood lies, the
+  collar's points within 1.5 cm of it are pressed in to 4 mm under it, and the jacket remeshed: the hood comes out of
+  the jacket's neck and lies over its collar, as a hood does. Stand collars (a gilet's, a track jacket's) are as
+  before.
+- A chore or denim jacket over a hoodie is draped again (the two outfits).
+- *Tried first:* the collar's leaf laid flat on the jacket before the hood settles, as a shirt's under a hoodie is.
+  Worse (front poke 61 and 75 on loose): the stand still held the hood's sides against his neck.
+
+**Checked**: the 16 outfits with a hoodie under a jacket or shirt, on all five bodies, as worn and done up, against
+`main`. hoodie-chore and n4-ravon (draped now) are clean. Done up, all 16 are clean. As worn, four flag as on `main`, with
+the same counts: st-daily (78 to 109) and three softshell or track jackets over a hoodie, x11-ellesse (36 to 65),
+jb10-winter-kx3 (34 to 74) and jb9-ukd-softshell (42 to 65), all front poke, on every body. Those three are not in the gate
+set; they are next to look at.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
