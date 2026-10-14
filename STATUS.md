@@ -22,6 +22,12 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**14 Oct: draped bombers** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). There are two new templates, `bomber` and `bomber_up`:
+the track jacket's cut with a rib collar, cuffs and hem band. Five bombers (five outfits) are now draped. Clean on all
+five bodies, as worn and done up.
+**Next, in order:** a hoodie's hood over a collar (so a chore or denim jacket can drape over a hoodie), then XPBD
+substeps in `drapeSettle`.
+
 **14 Oct: draped chore and denim jackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). There are four new templates, `chore` and
 `trucker`, each open or done up: buttoned, with a shirt collar, the page drawing their buttons and pockets. Eight
 jackets (eight outfits) are now draped; over a hoodie they keep `make3Dcore`'s (the hood crumpled over the collar). A
@@ -279,7 +285,7 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
       2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: `puffer` and `puffer_up`, open or zipped; hooded ones and parkas still
       `make3Dcore`'s). **Hooded and collared zip jackets done 14 Oct** (PR #52, UPGRADE_PLAN
       2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: `jacket_hood`, `jacket_coll`, each open or zipped). **Hooded padded jackets done
-      14 Oct** (PR #53, `puffer_hood`). **Parkas done 14 Oct** (PR #54, `parka`). **Chore and denim jackets done 14 Oct** (PR #55, `chore`, `trucker`). Next: a shirt tucked in (into the waistband), a coat (long,
+      14 Oct** (PR #53, `puffer_hood`). **Parkas done 14 Oct** (PR #54, `parka`). **Chore and denim jackets done 14 Oct** (PR #55, `chore`, `trucker`). **Bombers done 14 Oct** (PR #56, `bomber`). Next: a shirt tucked in (into the waistband), a coat (long,
       lapels), Harrington and denim jackets, an overshirt's patch pockets (a jacket-weight overshirt under a gilet is
       what is left on g-outdoor-21).
       Also: q7-fairisle's draped half-zip collar comes over PR #34's tighter scarf ("under" 14, switch on only). Each: `MEAS` and pattern pieces in `build_garments.py`, a run with `--debug`, a look with
@@ -444,6 +450,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 14 Oct 2026 | #56 | Draped bombers (`bomber`, `bomber_up`: rib collar, cuffs and hem band; 5 bombers, 5 outfits) | FtdHKg v55 |
 | 14 Oct 2026 | #55 | Draped chore and denim jackets (`chore`, `trucker`, each open or done up: 8 jackets, 8 outfits; over a hoodie `make3Dcore`'s); a bag's strap laid over draped tops | FtdHKg v54 |
 | 14 Oct 2026 | #54 | Draped parkas (`parka`, `parka_up`: 4 hooded coats, 5 outfits); other coats keep `make3Dcore`'s | FtdHKg v53 |
 | 14 Oct 2026 | #53 | Draped hooded padded jackets (`puffer_hood`, `puffer_hood_up`: 8 jackets, 14 outfits); one under a neck warmer keeps `make3Dcore`'s; held 14 mm off the draped layers under it and 12 mm off an overshirt | FtdHKg v52 |

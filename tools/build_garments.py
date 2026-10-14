@@ -340,6 +340,12 @@ MEAS = {
                     band_k=0.96, sleeve=65, bicep=42, wrist=27, cuff=5, cuff_c=24, collar=3, leaf=5, point=7.5, open=1),
     "trucker_up": dict(chest=118, length=64, shoulder=48, armhole=25, neck_w=18.5, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=5,
                        band_k=0.96, sleeve=65, bicep=42, wrist=27, cuff=5, cuff_c=24, collar=3, leaf=5, point=7.5),
+    # a bomber jacket: the track jacket's cut a little roomier and shorter (122 round the chest, 64 cm), gathered into
+    # a 6 cm rib hem band and 6 cm rib cuffs, a 4.5 cm rib collar standing round his neck; worn open or zipped up
+    "bomber": dict(chest=122, length=64, shoulder=49, armhole=25.5, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=6,
+                   band_k=0.86, sleeve=65, bicep=44, wrist=27, cuff=6, cuff_c=20, collar=4.5, open=1),
+    "bomber_up": dict(chest=122, length=64, shoulder=49, armhole=25.5, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=6,
+                      band_k=0.86, sleeve=65, bicep=44, wrist=27, cuff=6, cuff_c=20, collar=4.5),
     # a gilet (a bodywarmer) done up: no sleeves (no sleeve key), its armholes cut deeper and in to the point of his
     # shoulder so a jumper's or a hoodie's sleeve comes through, a plain hem and the jacket's stand collar, zipped
     "gilet": dict(chest=124, length=69, shoulder=43, armhole=27, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3, band_k=0.92,
