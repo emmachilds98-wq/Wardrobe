@@ -3858,7 +3858,7 @@ function drapeArch(p){var a=DRAPEK[p.shape];if(!window.__drape||!a||!GTPL[a])ret
     if(!/track|tricot|venaria|softshell|windbreaker|funnel|zip[- ]?(through|up)\b|full[- ]?zip/.test(n)||/puffer|padded|quilt|parka|denim|trucker|harrington|bomber|leather|suede|coach|chore|work|hood|wax|fleece|sherpa|borg|down\b/.test(n))return null;}
   /* (the shirt template is a long-sleeved shirt with a point collar on a stand: a band, grandad, camp or Cuban collar,
      and a jacket-weight overshirt (a chore jacket, a shacket), keep make3Dcore's shapes) */
-  if(a==="shirt"&&(/^(band|camp)$/.test(D.collar||"")||/grandad|granddad|mandarin|band collar|collarless|camp collar|cuban|revere|short[- ]?sleeve/.test(n)||jacketShirt(p)))return null;
+  if(a==="shirt"&&(/^(band|camp)$/.test(D.collar||"")||/grandad|granddad|mandarin|band collar|collarless|camp collar|cuban|revere|short[- ]?sleeve|s\/s|\bs ?- ?s\b|\bss\b/.test(n)||jacketShirt(p)))return null;
   /* (the gilet template is a bodywarmer done up, zipped to its stand collar: a hooded one keeps make3Dcore's shapes, and
      one worn open does (make3Dcore: only a jacket's and a shirt's templates open)) */
   if(a==="gilet"&&/hood|tailor|suit|waistcoat/.test(n))return null;
@@ -5954,7 +5954,7 @@ function make3Dcore(pieces){
            ragged corners over the shoulders; under a closed layer only its stand shows, kept low, as the band's taller sides came through between a hoodie and its hood;
            under a half-zip, roll neck or hoodie none of it shows, and its stand pushed their collars off his neck: a low band) */
         if(p.shape==="polo"&&CT!=="band"&&!hid&&!stC)fitCollar(FT,{h:0.016,hBack:0.024,lean:0.78,gap:opn?0:0.42,mat:rib(p),rows:4,fold:lf0&&!hid?{dropH:0.01,front:opn?0.03:0.035,out:0.004,outF:opn?0.014:0.012,spread:opn?0.2:0.28}:null,tip:tipM});
-        else fitCollar(FT,{h:cov?0.01:(CT==="band"?cH:cH*0.5),hBack:cov||CT==="band"?null:cH,lean:0.7,gap:opn?0:(CT==="band"?0.25:(p.shape==="polo"?0.5:0.4)),mat:m,rows:4,fold:lf0&&!hid&&!stC?{dropH:opn?0.014:0.006,front:opn?0.05:(CT==="spread"?0.032:0.05),out:opn?0.005:0.003,outF:opn?0.022:0.005,spread:opn?0.32:(CT==="spread"?0.32:0.22)}:null,lean:p.shape==="jacket"?0.35:0.7,tip:tipM});}
+        else fitCollar(FT,{h:stC?0.004:cov?0.01:(CT==="band"?cH:cH*0.5),hBack:cov||CT==="band"?null:cH,lean:0.7,gap:opn?0:(CT==="band"?0.25:(p.shape==="polo"?0.5:0.4)),mat:m,rows:4,fold:lf0&&!hid&&!stC?{dropH:opn?0.014:0.006,front:opn?0.05:(CT==="spread"?0.032:0.05),out:opn?0.005:0.003,outF:opn?0.022:0.005,spread:opn?0.32:(CT==="spread"?0.32:0.22)}:null,lean:p.shape==="jacket"?0.35:0.7,tip:tipM});}
       else if(bodyOn){var c0=NK(1.512),c1=NK(1.53),c2=NK(1.552),cT=CT==="band"?1.542:(opn?1.545:1.553);   /* the collar stands round his neck, its foot flared over the shirt's neckline (a band collar lower; worn open, it stops at the opening and sits lower) */
         sec([[1.51,c0[1]+e+0.007,c0[2]+e+0.007,0,c0[4]],[1.53,c1[1]+0.012+e*0.4,c1[2]+0.012+e*0.4,0,c1[4]],[cT,c2[1]+0.008+e*0.4,c2[2]+0.008+e*0.4,0,c2[4]]],m,{seg:44,gap:opn?Math.max(1.6,gap+0.9):(CT==="band"?0.25:0.7),k:1,sq:2,dipAll:0.012});}
       else band(1.478,0.03,0.076+e*0.4,0.072+e*0.4,m,{gap:0.7,z:-0.012,taper:0.009});
@@ -7270,7 +7270,8 @@ function guessShape(it){
   if(c!=="shoe"&&!t(/\b(toe|wing|steel|composite) ?caps?\b/)&&t(/\b(hats?|caps?|beanies?)\b/))c="acc";
   else if(t(/\bgloves?\b|\bmitt(en)?s?\b/))return "";
   if(c==="knit")return t(/hood/)?"hoodie":t(/knitted polo|polo shirt|\bpolo\b(?! neck)/)?"polo":t(/roll|turtle|funnel|mock|polo neck/)?"rollneck":t(/cardigan/)?"cardigan":t(/zip|snap|button neck/)?"halfzip":"jumper";
-  if(c==="shirt")return t(/short[- ]sleeve|s\/s|resort|cuban|bowling|camp collar|hawaiian/)?"sshirt":"shirt";
+  /* (short sleeves also as the shops' "S - S" and "SS": "Stan Ray S - S Flannel Shirt", "Pretty Green ... SS Shirt") */
+  if(c==="shirt")return t(/short[- ]sleeve|s\/s|\bs ?- ?s\b|\bss\b|resort|cuban|bowling|camp collar|hawaiian/)?"sshirt":"shirt";
   if(c==="polo")return t(/vest|tank/)?"vest":t(/polo|rugby/)?"polo":"tee";
   if(c==="trouser")return t(/short|jort/)?"shorts":"trousers";
   if(c==="coat")return t(/waistcoat/)?"waistcoat":t(/gilet|body ?warmer|\bvest\b/)?"gilet":t(/overshirt|shacket|shirt jacket/)?"shirt":t(/overcoat|\bcoat\b|parka|\bmac\b|trench|longline/)&&!t(/jacket/)?"coat":t(/parka|overcoat|trench/)?"coat":"jacket";

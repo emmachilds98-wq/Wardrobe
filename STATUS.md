@@ -10,6 +10,9 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 - claude.ai artifact (holds the shared database): <https://claude.ai/artifact/8uqcGr2eNmzbQv8UVBshY2>
 - Emma's own copy of the artifact (republished from `docs/` the same way, its own database):
   <https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn>. A session signed in to her account can only publish to this one.
+  **Since 14 Oct this is the one Wardrobe artifact Emma keeps and comments on: republish it after every merge to `main`**
+  (page `docs/index.html`, root `docs`, only the `docs/data` files that changed in `files`, no `capabilities`). She asked
+  for the other copies to go; 8uqcGr2, B8UXnh and 5A3t39 belong to other accounts, so only their owners can delete them.
 - Review and plan doc (Claude Doc): <https://claude.ai/code/artifact/a11be046-83a3-47dc-855c-67657c180e7e>
 - From the drape session (this account's own artifact, no shared database: shortlist and Edit Dave save on the device):
   the GitHub build as it stands, published as `docs/` is (page `index.html`, the changed files under `data/` in
@@ -18,6 +21,15 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
   (<https://claude.ai/artifact/5A3t39MwR6C9T5rHNED2iT>) carries the same build until the owner deletes it.
 
 ## Now
+
+**14 Oct: PR #48's red 3D check fixed; FtdHKg republished from `main`** (v48, PR #48's build; UPGRADE_PLAN
+2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). PR #48 merged with w20261006-casual-04 red done up (front poke 53): a short-sleeved
+"Stan Ray S - S" shirt read as long-sleeved, its collar showing inside a zipped puffer's stand collar. "S - S" and "SS"
+shirts are now short-sleeved, and a collar under a draped stand collar done up is only its foot (also clears three
+gilet outfits' neck pokes).
+**Next, in order:** hoods on jackets whose names do not say so (25 found by looking at all 143 jackets, coats and gilets
+in outfits beside their photos; most of "the other zip jackets" below are hooded or collared, so the track jacket
+template does not fit them), then the zip jackets that are left.
 
 **13 Oct, night: draped padded and puffer jackets** (PR #47, UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). **Behind the
 drape switch: with it off the live page is unchanged.** The next of item 0.1's outer layers (21 outfits blocked):
@@ -391,6 +403,8 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 14 Oct 2026 | PRA | "S - S" and "SS" shirts short-sleeved (23; three outfits' Stan Ray shirts now `sshirt`); a shirt's collar under a draped stand collar done up only its foot (w20261006-casual-04 done up, g-job-11, g-job-15, g-quiet-13 clean) | ARTA |
+| 14 Oct 2026 | none | FtdHKg republished from `main` (451852e, PR #48's build: draped clothes only), the page and four `data/garments` files; now the one artifact kept in step with `main` | FtdHKg v48 |
 | 13 Oct 2026 | #47 | Behind the drape switch: padded and puffer jackets draped (`puffer` worn open, `puffer_up` zipped; hooded ones and parkas still `make3Dcore`'s); an open front's edges left out of the layer holding what is under it, and each draped point drawn back to its binding moved out of what is under it (g-outdoor-05's and q13-coastal's switch-on pokes gone); live page unchanged | not republished yet (B8UXnh v5, 5A3t39 v4 are on 51ff9ed) |
 | 13 Oct 2026 | none | This account's artifacts republished from `main` (51ff9ed, PRs #37 to #45's build, as on GitHub Pages): B8UXnh the page and twelve `data` files (new garment templates `gilet`, `scarf`, `shirt`, `shirt_up`), 5A3t39 the same as a `--drape` build; 2D/3D smoke test clean on both | B8UXnh v5, 5A3t39 v4 |
 | 13 Oct 2026 | #45 | Behind the drape switch: the draped scarf wound a turn and a half (no knot on his chest, a cowl behind his neck), g-outdoor-05's scarf clear on every body, draped tops held off a bigger belly (the waistband faced the way his body does); live page unchanged | B8UXnh v5, 5A3t39 v4 (row above) |

@@ -73,7 +73,7 @@ def shape(v):
         return "hoodie" if t(r"hood") else "polo" if t(r"knitted polo|polo shirt") else "rollneck" if t(r"roll|turtle|funnel|mock|polo neck") \
             else "cardigan" if t(r"cardigan") else "halfzip" if t(r"zip|snap") else "jumper"
     if c == "shirt":
-        return "sshirt" if t(r"short[- ]sleeve|s/s|resort|cuban|bowling|camp collar|hawaiian") else "shirt"
+        return "sshirt" if t(r"short[- ]sleeve|s/s|\bs ?- ?s\b|\bss\b|resort|cuban|bowling|camp collar|hawaiian") else "shirt"
     if c == "polo":
         return "vest" if t(r"\bvest\b|tank") else "polo" if t(r"polo|rugby") else "tee"
     if c == "trouser":
