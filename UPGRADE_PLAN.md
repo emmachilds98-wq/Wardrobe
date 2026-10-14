@@ -3142,6 +3142,29 @@ through the collar beside his chin.
 **Checked**: the 16 outfits with a hoodie under a jacket or coat, on all five bodies, as worn and done up: all clean,
 the four above included.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. XPBD substeps in `drapeSettle`: tried, not adopted (14 Oct 2026)
+
+The research note in 2zzzzzzzzzzzzzzzzzzzzzzzzzz suggested XPBD with small substeps (Macklin and others, 2019) before
+more kinds are draped, for stiffness that does not depend on the iteration count. Tried behind a flag: each of the
+settle's steps split into 8 substeps of one constraint pass each, gravity, damping and the pull back to the binding
+scaled to the substep, stretch edges stiff (no compliance), bending edges given a compliance matching today's
+stiffness at 8 substeps, and the colliders every second substep (and, a second run, every substep).
+
+Measured on five outfits that drape a hoodie, a jacket or both (jb10-winter-kx3, hoodie-chore, st-daily, n4-ravon,
+s8-puffer), over every `drapeSettle` call (22), against today's solver (8 Gauss-Seidel passes per step):
+
+| Solver | Settle time | Mean stretch of the cloth's edges | Worst edge |
+| --- | --- | --- | --- |
+| Today's | 11.8 s | 3.9% | 531% |
+| XPBD, colliders every 2nd substep | 13.1 s | 6.6% | 633% |
+| XPBD, colliders every substep | 15.6 s | 6.1% | 565% |
+
+Slower and stretchier: the cloth starts at rest on him and is held there by the pull back to its binding and by the
+colliders, and those, applied before each single pass, undo more of each pass than they do once per 8 passes. In the
+renders the hoodies and jackets hung lower and bunched at the hem. Small steps pay off when the cloth falls a long way
+under gravity; this settle is a short relaxation from a pose already close to rest. Not adopted; nothing on the page
+changed. (The worst edge, both ways, is likely a few points a collider pushes hard; not looked into.)
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
