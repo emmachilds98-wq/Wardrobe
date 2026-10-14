@@ -3053,6 +3053,37 @@ apart from `armMask` because the page also reads that (the proportions warp and 
 drawn changes. Athletic, as worn and done up: n3-parka, x11-tokyo, o10-elements, g-quiet-24, jb10-offshore and
 g-mod-17 are clean; his shape done up, g-quiet-24 is clean.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped chore and denim jackets (14 Oct 2026)
+
+The next of item 0.1's outer layers after the parkas: the buttoned, collared work jackets, all `make3Dcore`'s until now.
+
+- *Four templates* (`tools/build_garments.py`, `MEAS`), each worn open or done up:
+  - `chore` and `chore_up`: a chore, utility, field or work jacket in canvas, twill or denim. Boxy, 72 cm long, 122
+    round the chest, a plain hem, buttoned cuffs and the collared jacket's shirt collar (3 cm stand, 5 cm leaf).
+  - `trucker` and `trucker_up`: a denim or trucker jacket. Cut short to his belt (64 cm), closer (118), a 5 cm
+    waistband barely drawn in (stiff denim), buttoned cuffs and the same collar.
+- *In the page:* `drapeArch` sends a jacket named chore, utility, field or work jacket to `chore`, and one named denim,
+  trucker or jean jacket to `trucker`. A hooded, softshell, insulated, padded, wax, fleece, sherpa, leather or suede one
+  keeps `make3Dcore`'s shapes, and an Eisenhower still goes to `jacket_coll`. `drapeDetails` draws the buttons every
+  10 cm (worn open on the left front; metal on denim, a shade of the cloth on a chore jacket, as `make3Dcore`'s), two
+  lines of stitching down the front done up, a chore jacket's patch pockets (two low, one on the chest) and a denim
+  jacket's two flapped chest pockets with a button each. Done up they count as a closed collar (`STANDC`), as
+  `jacket_coll_up` does.
+- *Over a hoodie* a chore or denim jacket keeps `make3Dcore`'s shapes: the hoodie's hood, laid out over the jacket's
+  shirt collar, crumpled at the sides of his neck and the hoodie's neckline showed through it (hoodie-chore and
+  n4-ravon, front poke 31 to 67 on slim, athletic, heavier and loose). Next to look at with a hood over any collar.
+- Eight jackets in eight outfits are now draped: the Matalan and Community Clothing chore jackets, the Uniqlo utility
+  jacket (wk-daily), the Ballitore field jacket, the Polar Ezra jacket, and the Community Clothing, Uniqlo and Farah
+  denim jackets.
+
+**Also: a bag's strap over draped tops.** A crossbody bag's strap is laid on the clothes `make3Dcore` built, and the
+draped tops are made after it, so on `main` a draped jumper or jacket hid the strap (loose-quiet: only the bag showed
+at his hip). `bagOut` now lifts each ring of the strap 8 mm clear of the draped cloth in front of it (below his
+shoulder) and the bag to 3.5 cm.
+
+**Checked**: the ten outfits with these jackets and every outfit with a bag (32), on all five bodies, as worn and done
+up. Clean, except st-daily's front poke (its hoodie under the track jacket, 78 to 109, as on `main`).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
