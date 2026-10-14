@@ -11,12 +11,11 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 - Emma's own copy of the artifact (republished from `docs/` the same way, its own database):
   <https://claude.ai/artifact/FtdHKgXdaBGrVmpbVYTrLn>. A session signed in to her account can only publish to this one.
 - Review and plan doc (Claude Doc): <https://claude.ai/code/artifact/a11be046-83a3-47dc-855c-67657c180e7e>
-- From the drape session (this account's own artifacts, no shared database: shortlist and Edit Dave save on the device):
-  the GitHub build as it stands (`docs/` at `main` 51ff9ed, PR #45's merge, nothing changed):
-  <https://claude.ai/artifact/B8UXnhceKPAsHpTbyzFzek>; and the drape preview, the same build with a Draped clothes switch
-  (`python3 tools/build_site.py --out <dir> --drape`, never into `docs/`): <https://claude.ai/artifact/5A3t39MwR6C9T5rHNED2iT>.
-  Both published as `docs/` is: page `index.html`, every file under `data/` in `files`, root the build folder, no
-  `capabilities`.
+- From the drape session (this account's own artifact, no shared database: shortlist and Edit Dave save on the device):
+  the GitHub build as it stands, published as `docs/` is (page `index.html`, the changed files under `data/` in
+  `files`, root `docs`, no `capabilities`): <https://claude.ai/artifact/B8UXnhceKPAsHpTbyzFzek>. Since 14 Oct there is
+  one version (draped clothes only, no switch, no preview build): the old drape preview
+  (<https://claude.ai/artifact/5A3t39MwR6C9T5rHNED2iT>) carries the same build until the owner deletes it.
 
 ## Now
 
@@ -233,7 +232,8 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
       Also: q7-fairisle's draped half-zip collar comes over PR #34's tighter scarf ("under" 14, switch on only). Each: `MEAS` and pattern pieces in `build_garments.py`, a run with `--debug`, a look with
       `garment_view.js`, then `DRAPEK`/`DRAPEF` and `drapeArch`'s cut test in `page.html`. Until then, an option is to
       drape a tee or knit only when nothing `make3Dcore` builds is worn over it.
-   2. Then turn the switch on for everyone (after the full 3D check with it on, all five bodies, and Emma's look).
+   2. Done 14 Oct (PR #48): not a switch turned on but the switch gone. The owner's decision: one version, the draped
+      clothes, no "As before" and no going back (`window.__drape` stays for the checks alone).
    3. Compact storage before many more kinds (uint16 positions: about 0.6 of the size), and load only the kinds an
       outfit uses.
    4. A size per piece in the fitting room (now one size for all draped tops).

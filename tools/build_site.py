@@ -424,8 +424,6 @@ def check_outfits(outfits, items):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default=os.path.join(ROOT, "site"))
-    ap.add_argument("--drape", action="store_true", help="a preview build showing the page's Draped clothes switch "
-                    "(window.__drapeUI; draped to start); never for docs/")
     a = ap.parse_args()
     out = a.out
     os.makedirs(os.path.join(out, "data", "photos"), exist_ok=True)
@@ -523,18 +521,11 @@ def main():
         with open(os.path.join(out, "data", name + ".json"), "w", encoding="utf-8") as f:
             json.dump(obj, f, separators=(",", ":"), ensure_ascii=False)
     shutil.copyfile(os.path.join(ROOT, "page.html"), os.path.join(out, "index.html"))
-    if a.drape:
-        # the drape preview: its own name, and the page's drape switch shown (on to start: drapeSwitch in page.html)
-        if os.path.abspath(out) == os.path.join(ROOT, "docs"): raise SystemExit("--drape is for a preview build, never docs/")
-        ix = os.path.join(out, "index.html"); h = open(ix, encoding="utf-8").read()
-        note = '<title>Wardrobe Drape Preview</title>\n<script>window.__drapeUI=1;</script>'
-        if h.count("<title>The Wardrobe</title>") != 1: raise SystemExit("--drape: page.html's title has changed")
-        open(ix, "w", encoding="utf-8").write(h.replace("<title>The Wardrobe</title>", note))
     # Dave's 3D body (tools/build_body.py); without it the page falls back to the hand-built body
     body = os.path.join(ROOT, "data", "body.json")
     if os.path.exists(body):
         shutil.copyfile(body, os.path.join(out, "data", "body.json"))
-    # the draped garment templates (tools/build_garments.py), read only with the page's drape switch on (window.__drape)
+    # the draped garment templates (tools/build_garments.py), read by the page with the body (window.__drape)
     gdir = os.path.join(ROOT, "data", "garments")
     if os.path.isdir(gdir):
         os.makedirs(os.path.join(out, "data", "garments"), exist_ok=True)

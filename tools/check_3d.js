@@ -180,7 +180,15 @@ async function checkOutfit(arg) {
   /* (in the ID pass each mesh keeps its own depth settings, so whatever wins in the page's picture wins here too: a
      shirt's photo front drawn with a depth offset once came through a jacket at a glancing angle on the page, while
      the ID pass, with no offset, showed the jacket) */
-  const idOf = n => { const m0 = [].concat(orig.get(n))[0], c = clsOf(n); if (!m0 || !(m0.polygonOffset || m0.depthWrite === false)) return idm(c);
+  /* (a draped shirt's collar leaf laid out over the layers worn over the shirt: the page marks its points and the
+     outermost layer it lies over, and the ID pass gives it that layer's class in green, so the poke count reads it as
+     outside that layer and inside anything worn over it; as the shirt in red, for everything else) */
+  const leafM = {}; const leafOf = n => { const lm = n.userData.leaf, g = n.geometry; if (!lm || !n.userData.leafOver || n.isInstancedMesh || !g || !g.attributes.position || lm.length !== g.attributes.position.count) return null;
+    const c = clsOf(n), lc = cls({ userData: { kind: n.userData.leafOver } }); if (!g.attributes.leafF) g.setAttribute("leafF", new T.Float32BufferAttribute(Float32Array.from(lm), 1));
+    return leafM[c + "|" + lc] || (leafM[c + "|" + lc] = new T.ShaderMaterial({ side: T.DoubleSide,
+      vertexShader: "attribute float leafF; varying float vL; void main(){ vL = leafF; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }",
+      fragmentShader: "varying float vL; void main(){ gl_FragColor = vec4(" + (c / 255).toFixed(6) + ", vL > 0.5 ? " + (lc / 255).toFixed(6) + " : 0.0, 0.0, 1.0); }" })); };
+  const idOf = n => { const m0 = [].concat(orig.get(n))[0], c = clsOf(n); if (!m0 || !(m0.polygonOffset || m0.depthWrite === false)) return leafOf(n) || idm(c);
     const k = [c, m0.polygonOffset ? 1 : 0, m0.polygonOffsetFactor || 0, m0.polygonOffsetUnits || 0, m0.depthWrite === false ? 0 : 1, m0.transparent ? 1 : 0].join("|");
     return idMat[k] || (idMat[k] = new T.MeshBasicMaterial({ color: new T.Color(c / 255, 0, 0), side: T.DoubleSide, polygonOffset: !!m0.polygonOffset,
       polygonOffsetFactor: m0.polygonOffsetFactor || 0, polygonOffsetUnits: m0.polygonOffsetUnits || 0, depthWrite: m0.depthWrite !== false, transparent: !!m0.transparent })); };
@@ -201,7 +209,7 @@ async function checkOutfit(arg) {
     const C0 = new Uint8Array(W * H); for (let i = 0; i < W * H; i++) C0[i] = Math.round(px[i * 4] / 10) * 10;
     kinds.forEach(n => { n.material = idOf(n); });
     r.render(o.scene, cam); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px);
-    C = new Uint8Array(W * H); for (let i = 0; i < W * H; i++) C[i] = Math.round(px[i * 4] / 10) * 10;
+    C = new Uint8Array(W * H); const LF = new Uint8Array(W * H); for (let i = 0; i < W * H; i++) { C[i] = Math.round(px[i * 4] / 10) * 10; LF[i] = Math.round(px[i * 4 + 1] / 10) * 10; }
     /* offset: where a piece's depth offset (a photo front, a print laid on the cloth) lets an inner layer cover the piece
        worn over it, compared with the same view drawn without the offsets */
     let offset = 0; for (let i = 0; i < W * H; i++) if (C[i] !== C0[i] && C[i] >= 20 && C0[i] > C[i] && C0[i] !== 140) { offset++; marks.push(i % W, (i - i % W) / W); }
@@ -251,7 +259,8 @@ async function checkOutfit(arg) {
       const c = C[y * W + x];
       if (v !== "side" && (c === 20 || c === 40 || (c >= 60 && c !== 140))) {
         let sides = 0;
-        for (const d of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { for (let t = 2; t <= R; t++) { const q = at(x + d[0] * t, y + d[1] * t); if (q === 0) break; if (isOuter(c, q)) { sides++; break; } } }
+        const cE = LF[y * W + x] > c ? LF[y * W + x] : c;   // (a collar leaf: the layer it lies over)
+        for (const d of [[1, 0], [-1, 0], [0, 1], [0, -1]]) { for (let t = 2; t <= R; t++) { const q = at(x + d[0] * t, y + d[1] * t); if (q === 0) break; if (isOuter(cE, q)) { sides++; break; } } }
         if (sides === 4 && !(c === 20 && y < H * 0.12)) { poke++; marks.push(x, y); }
       }
       if (c >= 40 && c !== 140 && c !== 50) { let bg = 0; for (const d of dirs) if (at(x + d[0] * D, y + d[1] * D) === 0) bg++; if (bg >= 7) stray++; }   // a bit of a piece standing alone
@@ -325,7 +334,8 @@ function colourOff(c) {
   const p = await b.newPage(), errs = []; p.on("pageerror", e => errs.push(e.message));
   // THREE_JS=<path to three.min.js r128>: serve Three.js from a local copy (for machines that cannot reach the CDN)
   if (process.env.THREE_JS) await p.route("**/three.js/r128/three.min.js", r => r.fulfill({ path: process.env.THREE_JS, contentType: "text/javascript" }));
-  // QA_INIT='window.__drape=1': a script run before the page (as tools/qa/zoom.js takes it), e.g. the garment drape switch
+  // QA_INIT='window.__drape=0': a script run before the page (as tools/qa/zoom.js takes it), e.g. the page as before the
+  // garment drape (draped is the default in every build since 13 Oct 2026; window.__drape=1 forces it)
   if (process.env.QA_INIT) await p.addInitScript(process.env.QA_INIT);
   // --body: check on another of Edit Dave's body types (or cloth fit) instead of his saved one, set as the page would
   // set it; the types are read from the page itself, so they never fall out of step with it
