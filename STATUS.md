@@ -22,10 +22,15 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**14 Oct: XPBD substeps in `drapeSettle`, tried and not adopted** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Split into 8
+substeps of one pass, the settle was 11 to 32% slower and the cloth's edges stretched more (mean 6.1 to 6.6% against
+3.9%); the hoodies and jackets hung lower and bunched at the hem. Nothing on the page changed.
+**Next:** the biggest groups of tops still drawn the old way, by outfits: polos (89), shirts (54), short-sleeve shirts
+(38), other jackets (38), jumpers (30), tees (24).
+
 **14 Oct: a hoodie's hood over an open track jacket's collar** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Before the hood
 settles, an open zip jacket's stand collar is folded down and pressed under the hood, so the hood lies over it. The
 last four hoodie-under-jacket flags are gone (x11-ellesse, jb10-winter-kx3, jb9-ukd-softshell, st-daily).
-**Next:** XPBD substeps in `drapeSettle`.
 
 **14 Oct: a hoodie's hood over a jacket's collar** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). The hood no longer settles
 against a shirt collar worn over it: it lies over the collar, which is pressed in under it. A chore or denim jacket
