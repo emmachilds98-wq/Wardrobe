@@ -22,6 +22,12 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**14 Oct: draped parkas** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). There are two new templates, `parka`
+and `parka_up`: a long, roomy hooded zip jacket (78 cm). Hooded coats (four, in five outfits) are now draped; other
+coats keep `make3Dcore`'s. Clean on four bodies; athletic has three hem holes by his hand.
+**Next, in order:** the hem holes by his hand (athletic and done-up: g-quiet-24, jb10-offshore, g-mod-17 and the three
+parka outfits), then denim, bomber, field and chore jackets. Then XPBD substeps in `drapeSettle`.
+
 **14 Oct: draped hooded padded jackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). There are two new
 templates, `puffer_hood` and `puffer_hood_up`: the padded jacket's cut with a padded hood. Eight jackets (14 outfits)
 are now draped; under a neck warmer one keeps `make3Dcore`'s shapes. The 14 outfits and all 21 with a scarf are clean
@@ -266,7 +272,7 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
       2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: `puffer` and `puffer_up`, open or zipped; hooded ones and parkas still
       `make3Dcore`'s). **Hooded and collared zip jackets done 14 Oct** (PR #52, UPGRADE_PLAN
       2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: `jacket_hood`, `jacket_coll`, each open or zipped). **Hooded padded jackets done
-      14 Oct** (PR #53, `puffer_hood`). Next: parkas, a shirt tucked in (into the waistband), a coat (long,
+      14 Oct** (PR #53, `puffer_hood`). **Parkas done 14 Oct** (PR #54, `parka`). Next: a shirt tucked in (into the waistband), a coat (long,
       lapels), Harrington and denim jackets, an overshirt's patch pockets (a jacket-weight overshirt under a gilet is
       what is left on g-outdoor-21).
       Also: q7-fairisle's draped half-zip collar comes over PR #34's tighter scarf ("under" 14, switch on only). Each: `MEAS` and pattern pieces in `build_garments.py`, a run with `--debug`, a look with
@@ -431,6 +437,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 14 Oct 2026 | #54 | Draped parkas (`parka`, `parka_up`: 4 hooded coats, 5 outfits); other coats keep `make3Dcore`'s | FtdHKg v53 |
 | 14 Oct 2026 | #53 | Draped hooded padded jackets (`puffer_hood`, `puffer_hood_up`: 8 jackets, 14 outfits); one under a neck warmer keeps `make3Dcore`'s; held 14 mm off the draped layers under it and 12 mm off an overshirt | FtdHKg v52 |
 | 14 Oct 2026 | #52 | Draped hooded zip jackets (`jacket_hood`, `jacket_hood_up`: 25 jackets, 32 outfits) and collared zip jackets (`jacket_coll`, `jacket_coll_up`: Harrington, coach, Capitol, Eisenhower; 12 jackets, 17 outfits); a hoodie's hood left out under a hooded jacket; g-mod-27's quarter-zip no longer a hoodie (front poke 110 gone) | FtdHKg v51 |
 | 14 Oct 2026 | #51 | `hood` corrections for 25 jackets hooded in their photos (drawn hooded, off the track and puffer templates); a hoodie's hood under a hooded jacket inside its hood (jb-wet-day, jb8-wet-day, jb9-wet-dealer clean), a hood under a neck warmer tucked under it; p6-mx-breeze slate grey; the Sealskinz tee a tee | FtdHKg v50 |
