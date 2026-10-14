@@ -22,6 +22,16 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**14 Oct: draped hooded and collared zip jackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). There are four
+new templates: `jacket_hood` and `jacket_hood_up` (the track jacket's cut with a hood), and `jacket_coll` and
+`jacket_coll_up` (a Harrington's shirt collar). 25 hooded jackets (32 outfits) and 12 collared ones (17 outfits) are
+now draped. A hoodie's hood under a hooded jacket is left out, and a hooded jacket is held 7 mm off a padded shacket.
+g-mod-27's Duck and Cover "hoodie" is a quarter-zip, and its poke of 110 is gone. On his shape the 50 outfits are
+clean as worn; done up there is one new flag, g-quiet-24 (back holes 29). On athletic three outfits show back holes
+at the hem by his left hand.
+**Next, in order:** padded hooded jackets and parkas (`make3Dcore`'s still: 16 jackets), then denim, bomber, field and
+chore jackets, and the hem holes by his hand. Then XPBD substeps in `drapeSettle`.
+
 **14 Oct: hoods the names do not mention** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). 25 jackets whose shop photos show
 a hood get a `hood` correction in `data/fixes.json` (read before the name by `hoodOn`), so they are drawn hooded and
 kept off the draped track and puffer templates. A hoodie's hood under a hooded jacket lies inside the jacket's hood
@@ -247,7 +257,9 @@ of the jacket's armholes on the bigger bodies. **Without the switch the page is 
       and a top is draped only when everything over it is. **Gilets done 13 Oct** (PR #39, UPGRADE_PLAN
       2zzzzzzzzzzzzzzzzzzzzzzzzz). **Padded and puffer jackets done 13 Oct** (PR #47, UPGRADE_PLAN
       2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: `puffer` and `puffer_up`, open or zipped; hooded ones and parkas still
-      `make3Dcore`'s). Next: the other zip jackets (21), a shirt tucked in (into the waistband), a coat (long,
+      `make3Dcore`'s). **Hooded and collared zip jackets done 14 Oct** (PR #52, UPGRADE_PLAN
+      2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: `jacket_hood`, `jacket_coll`, each open or zipped). Next: padded hooded jackets and
+      parkas, a shirt tucked in (into the waistband), a coat (long,
       lapels), Harrington and denim jackets, an overshirt's patch pockets (a jacket-weight overshirt under a gilet is
       what is left on g-outdoor-21).
       Also: q7-fairisle's draped half-zip collar comes over PR #34's tighter scarf ("under" 14, switch on only). Each: `MEAS` and pattern pieces in `build_garments.py`, a run with `--debug`, a look with
@@ -412,6 +424,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 14 Oct 2026 | #52 | Draped hooded zip jackets (`jacket_hood`, `jacket_hood_up`: 25 jackets, 32 outfits) and collared zip jackets (`jacket_coll`, `jacket_coll_up`: Harrington, coach, Capitol, Eisenhower; 12 jackets, 17 outfits); a hoodie's hood left out under a hooded jacket; g-mod-27's quarter-zip no longer a hoodie (front poke 110 gone) | FtdHKg v51 |
 | 14 Oct 2026 | #51 | `hood` corrections for 25 jackets hooded in their photos (drawn hooded, off the track and puffer templates); a hoodie's hood under a hooded jacket inside its hood (jb-wet-day, jb8-wet-day, jb9-wet-dealer clean), a hood under a neck warmer tucked under it; p6-mx-breeze slate grey; the Sealskinz tee a tee | FtdHKg v50 |
 | 14 Oct 2026 | #50 | "S - S" and "SS" shirts short-sleeved (23; three outfits' Stan Ray shirts now `sshirt`); a shirt's collar under a draped stand collar done up only its foot (w20261006-casual-04 done up, g-job-11, g-job-15, g-quiet-13 clean) | FtdHKg v49 |
 | 14 Oct 2026 | none | FtdHKg republished from `main` (451852e, PR #48's build: draped clothes only), the page and four `data/garments` files; now the one artifact kept in step with `main` | FtdHKg v48 |

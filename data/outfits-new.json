@@ -3661,8 +3661,8 @@
    {
     "col": "burgundy",
     "item": "r9-dc-slell-wine",
-    "shape": "hoodie",
-    "what": "Burgundy hoodie"
+    "shape": "halfzip",
+    "what": "Burgundy quarter-zip"
    },
    {
     "col": "navy",
@@ -3690,7 +3690,7 @@
   "wx": [
    "mild"
   ],
-  "look": "men navy T-shirt black trousers burgundy hoodie navy jacket brown shoes outfit"
+  "look": "men navy T-shirt black trousers burgundy quarter-zip navy jacket brown shoes outfit"
  },
  "g-mod-28": {
   "name": "Mustard jacket and black trousers",
