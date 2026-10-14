@@ -2917,6 +2917,39 @@ up (`--wear zip=up,tuck=out`), against `main`:
   g-outdoor-12 and g-quiet-29 (back holes 27 and 30).
 - `tools/specs.js`: the two Stan Ray shirts move from `shirt` to `sshirt`; nothing else read differently.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Hoods the names do not mention; a hoodie's hood under a hooded jacket (14 Oct 2026)
+
+Before building templates for "the other zip jackets" (STATUS item 0.1), all 143 jackets, coats and gilets worn in
+outfits were looked at beside their shop photos. Most of the zip jackets left are hooded or have a collar, so the
+track jacket template does not fit them, and 25 of them have a hood the name does not mention ("Montirex Swift
+Jacket", "Regatta Northdale insulated work jacket"). They were drawn without one, many as the draped track or puffer
+jacket.
+
+- *A `hood` correction* (`data/fixes.json`, true or false, `build_site.py` checks it): `hoodOn` reads it before the
+  name, wherever `HOODRE` decided before: the 3D hood (`make3Dcore`), the hood drawn in 2D, a hoodie's hood under it
+  (`hoodOut`), and `drapeArch`, which keeps hooded jackets off the track and puffer templates (they are
+  `make3Dcore`'s until a hooded template exists). `normFix` passes it through (it dropped any field it did not know).
+  25 entries, each checked against its photo. p6-mx-breeze was drawn near black; its photo is slate grey with a
+  sage panel, so it gets a colour correction as well.
+- *A hoodie's hood under a hooded jacket* now lies inside the jacket's hood, open or closed. Under an open jacket it was
+  laid out over the jacket, and the jacket's own hood lay at the same place (g-rave-09 back poke 77, and on `main`
+  jb-wet-day, jb8-wet-day and jb9-wet-dealer back poke 85).
+- *A jacket's hood under a scarf or neck warmer* starts thin, tucked under it (as under a standing rim), or its top
+  lay over the neck warmer at the back of his neck (jb11-winter, under 4).
+- *Data:* the Sealskinz Illington is a tee (its photo, and the shop calls it one), filed as a coat; it is now `polo`
+  and named as a tee, and g-outdoor-11 (where it was worn as a jacket over a jumper) leaves it out: "Navy jumper and
+  stone trousers", 4 pieces.
+
+**Checked**, his shape, the 84 outfits with a jacket that gains a hood, a hoodie under a jacket or coat, or a scarf
+under one, plus the gate set, as worn and done up (`--wear zip=up,tuck=out`), against `main`:
+- As worn: `main` 8 flagged, this 5. Clean now: jb-wet-day, jb8-wet-day and jb9-wet-dealer (back poke 85). The rest as
+  `main`: jb9-ukd-softshell (front poke 53), x11-ellesse (44), jb10-winter-kx3 (55), g-mod-27 (110), st-daily (109).
+- Done up: `main` 1 flagged (g-outdoor-16, front poke 58), this 0.
+- `tools/specs.js`: the 25 jackets read `fixed: hood`, p6-mx-breeze its new colours, the Sealskinz tee is no longer a
+  jacket; nothing else read differently.
+- Seen, not fixed: a hoodie's drawstrings fleck the chest under a zipped puffer (the check does not see them);
+  dc-3in1-green has no photo.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

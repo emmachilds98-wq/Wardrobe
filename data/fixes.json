@@ -1,5 +1,5 @@
 {
- "_about": "Corrections to how an item looks on Dave's 2D drawing and 3D model, for shop photos the page reads wrongly. Keyed by item id (as in data/items*.json). Fields: col and col2 (#rrggbb, the main and second colour as the shop photo shows the cloth in daylight), pat (plain, hstripe, vstripe, check or print), per and duty (stripe spacing and stripe width, as shares of the garment's length), front:false (never lay the shop photo's own front on the garment) or front:true (always lay it on, for a front the reader refuses because most of it is another colour, as a Fair Isle yoke), decal:false (no chest print or logo), named:false (the colour the listing names is only part of the piece, as a yoke or trim: the photo is read as it is), slv (#rrggbb, the sleeves' own colour, as raglan sleeves of another colour; with place, the sleeves stay plain), place (a top's front panel cut from the shop photo, centre to side seam and collar to hem, as a small data:image/jpeg: its design laid on by height, mirrored round the body), back:false (with place, the design is on the front only and the back plain), crown (a cap's crown seen from the front, cut from the shop photo as a small data:image/jpeg: its design, laid over the front of the 3D cap), strip (a scarf's end cut from the shop photo and straightened, the fringe at the bottom, as a small data:image/jpeg: its design, laid along each hanging end of the 3D scarf), print and at (a chest print the reader cannot take, as from a model photo, cut from the shop's flat photo as a small data:image/jpeg with the cloth round it, and where it sits: [x, y, w], its centre across and down the garment and its width, as shares of the garment from sleeve end to sleeve end and collar to hem; laid on the front only), why (what the shop photo shows, and what was read wrongly), checked (YYYY-MM-DD). tools/build_site.py refuses the build if an entry is malformed. See CONTRIBUTING.md, 'Correcting how an item looks'.",
+ "_about": "Corrections to how an item looks on Dave's 2D drawing and 3D model, for shop photos the page reads wrongly. Keyed by item id (as in data/items*.json). Fields: col and col2 (#rrggbb, the main and second colour as the shop photo shows the cloth in daylight), pat (plain, hstripe, vstripe, check or print), per and duty (stripe spacing and stripe width, as shares of the garment's length), front:false (never lay the shop photo's own front on the garment) or front:true (always lay it on, for a front the reader refuses because most of it is another colour, as a Fair Isle yoke), decal:false (no chest print or logo), named:false (the colour the listing names is only part of the piece, as a yoke or trim: the photo is read as it is), slv (#rrggbb, the sleeves' own colour, as raglan sleeves of another colour; with place, the sleeves stay plain), place (a top's front panel cut from the shop photo, centre to side seam and collar to hem, as a small data:image/jpeg: its design laid on by height, mirrored round the body), back:false (with place, the design is on the front only and the back plain), crown (a cap's crown seen from the front, cut from the shop photo as a small data:image/jpeg: its design, laid over the front of the 3D cap), strip (a scarf's end cut from the shop photo and straightened, the fringe at the bottom, as a small data:image/jpeg: its design, laid along each hanging end of the 3D scarf), print and at (a chest print the reader cannot take, as from a model photo, cut from the shop's flat photo as a small data:image/jpeg with the cloth round it, and where it sits: [x, y, w], its centre across and down the garment and its width, as shares of the garment from sleeve end to sleeve end and collar to hem; laid on the front only), hood (true: a jacket or coat with a hood its name does not mention, drawn with one; false: none though the name seems to say so), why (what the shop photo shows, and what was read wrongly), checked (YYYY-MM-DD). tools/build_site.py refuses the build if an entry is malformed. See CONTRIBUTING.md, 'Correcting how an item looks'.",
  "sw-open-polo": {
   "col": "#2e2f45",
   "pat": "plain",
@@ -112,8 +112,9 @@
   "pat": "print",
   "per": 0.2,
   "swatch": "data:image/jpeg;base64,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",
-  "why": "A padded ski jacket in khaki camo: large blobs of olive, sage and dark green, with an orange zip and hood lining. It was drawn plain olive; the swatch is cut from the left front panel, clear of the sleeve and the zip.",
-  "checked": "2026-10-08"
+  "hood": true,
+  "why": "A padded ski jacket in khaki camo: large blobs of olive, sage and dark green, with an orange zip and hood lining. It was drawn plain olive; the swatch is cut from the left front panel, clear of the sleeve and the zip. Hood: The shop photo shows a padded ski jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
  },
  "r11-flatspot-trousers": {
   "col": "#1b2130",
@@ -532,5 +533,128 @@
   "col": "#222a3a",
   "why": "A model shot of straight jeans in a very dark rinse, a blue-black indigo. The photo reads near black, outside the dark wash's range, so the denim rule put the dark wash's own mid indigo in its place, which drew as a bright blue on the model (Emma, 13 Oct: 'colour of these trousers is wrong').",
   "checked": "2026-10-13"
+ },
+ "80scasualc-patrick-chapman-v3-jacket-green": {
+  "hood": true,
+  "why": "The shop photo shows a zip jacket with a drawcord hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "asos-jj-windbreaker": {
+  "hood": true,
+  "why": "The shop photo shows a windbreaker with its hood up on the model; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "asos-rains": {
+  "hood": true,
+  "why": "The shop photo shows a short rain jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "hk-libero-navy": {
+  "hood": true,
+  "why": "The shop photo shows a shell jacket with a peaked hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "hollandsco-craghoppers-mens-vamos-hybrid-insulating-jacket": {
+  "hood": true,
+  "why": "The shop photo shows a quilted hybrid jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "montirex-endurance-jacket-slate-grey-platinum-grey-ascension-mtx1364-2": {
+  "hood": true,
+  "why": "The shop photo shows a running jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "montirex-swift-jacket-herb-slate-grey-326579-2703": {
+  "hood": true,
+  "why": "The shop photo shows a two-tone jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "mw-seasons": {
+  "hood": true,
+  "why": "The shop photo shows a padded jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "mx-disperse-wind": {
+  "hood": true,
+  "why": "The shop photo shows a windbreaker with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "p6-bb-landcross": {
+  "hood": true,
+  "why": "The shop photo shows a padded jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "p6-mx-breeze": {
+  "col": "#545e66",
+  "col2": "#7f8a7c",
+  "pat": "plain",
+  "hood": true,
+  "why": "The shop photo shows a colour-block windbreaker: slate grey body and sleeves (about #545e66) with an ash green yoke (#7f8a7c), and a hood; the name says only ash green, and it was drawn near black, without a hood.",
+  "checked": "2026-10-14"
+ },
+ "p6-mx-endurance": {
+  "hood": true,
+  "why": "The shop photo shows a running jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "pc-khaki-jacket": {
+  "hood": true,
+  "why": "The shop photo shows a lightweight zip jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "ps-dylan": {
+  "hood": true,
+  "why": "The shop photo shows an insulated jacket with a drawcord hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "r10-ad-mercury": {
+  "hood": true,
+  "why": "The shop photo shows a windcheater with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "r11-montirex-fleece": {
+  "hood": true,
+  "why": "The shop photo shows a fleece zip jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "r12-hc-northdale": {
+  "hood": true,
+  "why": "The shop photo shows an insulated work jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "r8-cl-alpine": {
+  "hood": true,
+  "why": "The shop photo shows a zip jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "r8-cl-puffer": {
+  "hood": true,
+  "why": "The shop photo shows a quilted puffer with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "r9-cl-puffer-blue": {
+  "hood": true,
+  "why": "The shop photo shows a quilted puffer with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "rg-arec": {
+  "hood": true,
+  "why": "The shop photo shows a softshell with a hood (the model holds it); the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "rg-daledon": {
+  "hood": true,
+  "why": "The shop photo shows a waterproof shell with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "rg-freesdale": {
+  "hood": true,
+  "why": "The shop photo shows a waterproof shell with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
+ },
+ "rg-hurden": {
+  "hood": true,
+  "why": "The shop photo shows a padded jacket with a hood; the name does not say so, so it was drawn without one.",
+  "checked": "2026-10-14"
  }
 }

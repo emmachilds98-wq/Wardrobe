@@ -73,7 +73,7 @@ def load_groups(items):
     return groups
 
 
-FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch", "named", "slv", "place", "crown", "strip", "print", "at", "back")
+FIX_FIELDS = ("col", "col2", "pat", "per", "duty", "front", "decal", "swatch", "named", "slv", "place", "crown", "strip", "print", "at", "back", "hood")
 
 
 def check_fix_fields(k, fx, bad):
@@ -86,6 +86,8 @@ def check_fix_fields(k, fx, bad):
     for f in ("per", "duty"):
         if f in fx and not (isinstance(fx[f], (int, float)) and 0 < fx[f] < 1):
             bad.append(f"{k}: {f} must be a share between 0 and 1")
+    if "hood" in fx and fx["hood"] not in (True, False):
+        bad.append(f"{k}: hood must be true or false")
     if "front" in fx and fx["front"] not in (True, False):
         bad.append(f"{k}: front must be true or false")
     for f in ("decal", "named", "back"):

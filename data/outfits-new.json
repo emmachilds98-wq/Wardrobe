@@ -4803,8 +4803,8 @@
   "look": "men indigo T-shirt olive trousers blue half-zip black shoes outfit"
  },
  "g-outdoor-11": {
-  "name": "Cream jacket and stone trousers",
-  "note": "5 pieces for £254.39, £175 below full price.",
+  "name": "Navy jumper and stone trousers",
+  "note": "4 pieces for £236.89, £158 below full price.",
   "occ": "everyday",
   "pieces": [
    {
@@ -4826,12 +4826,6 @@
     "what": "Navy jumper"
    },
    {
-    "col": "cream",
-    "item": "sealskinz-illington-mens-organic-cotton-graphic-tee-cream",
-    "shape": "jacket",
-    "what": "Cream jacket, worn open"
-   },
-   {
     "col": "olive",
     "item": "philipmorr-barbour-mens-sidwood-hiking-boot",
     "shape": "boots",
@@ -4845,7 +4839,7 @@
   "wx": [
    "cold"
   ],
-  "look": "men blue shirt stone trousers navy jumper cream jacket olive boots outfit"
+  "look": "men blue shirt stone trousers navy jumper olive boots outfit"
  },
  "g-outdoor-12": {
   "name": "Black gilet and green trousers",
