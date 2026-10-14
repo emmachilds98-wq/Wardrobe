@@ -4196,11 +4196,8 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
         var bn=drapeNear(cB,sc.P[c*3],sc.P[c*3+1],sc.P[c*3+2]),sg=bn>=0&&sc.N[c*3]*cB.N[bn*3]+sc.N[c*3+1]*cB.N[bn*3+1]+sc.N[c*3+2]*cB.N[bn*3+2]<0?-0.005:0.005;
         for(var k=0;k<3;k++)RX[o+k]=sc.P[c*3+k]+sc.N[c*3+k]*sg;}
       remesh(i);}
-    /* (as make3Dcore's hood: out over the pieces worn over the hoodie, it counts as outside them for the checks. Under a
-       scarf or neck warmer make3Dcore built, it is kept inside it, tucked under it as make3Dcore's hood is: let be, the
-       padded hood of an insulated jacket lay out over a neck warmer at the back of his neck, jb11-winter; held 6 mm off it,
-       as a draped top is, its rim still lay over the neck warmer's foot, so 18 mm) */
-    var ic=innerCols(inner.length),oc=innerCols(inner.length,true,window.__drapeThS||0.018);cU=ic[0];cUA=ic[1];cO=oc[0];cOA=oc[1];
+    /* (as make3Dcore's hood: out over the pieces worn over the hoodie, it counts as outside them for the checks) */
+    var ic=innerCols(inner.length);cU=ic[0];cUA=ic[1];cO=cOA=null;
     drapeSettle(X,drapeGrade(h.cl,G,sy),layerCols(),h.grp,pin,window.__drapeSteps||60,X.slice());
     mesh(h,X,H.p,H.k<inner.length-1?"up"+H.k+"o":"up"+H.k);});
   /* the photo's looks and the front details, on each one's cloth as it finally lies */
@@ -5508,6 +5505,10 @@ function make3Dcore(pieces){
   /* (a top tucked in keeps make3Dcore's shape, which goes into the waistband: the templates hang loose to the hem) */
   var TUCK0=tuckList(up,tuckOn(lo,!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo))),pieces.some(function(q){return q.shape==="tie";})));
   up.forEach(function(p,k){p._drape=false;var a=bodyOn&&!TUCK0[k]&&drapeArch(p);if(DRAPEOPEN[a]&&!openWorn(p,up))a=GTPL[a+"_up"]?a+"_up":null;else if(a&&!DRAPEOPEN[a]&&openWorn(p,up))a=null;   /* (only a jacket's, a shirt's and a padded jacket's templates open) */
+    /* (a hooded padded jacket under a neck warmer keeps make3Dcore's shapes, its hood tucked under the neck warmer: the
+       draped hood, padded and bulky, lay out over the neck warmer's foot at the back of his neck, jb11-winter, and held
+       inside it the hood bunched and came through the jacket's back) */
+    if(/^puffer_hood/.test(a)&&pieces.some(function(q){return q.shape==="snood"||(q.shape==="scarf"&&/neck warmer|snood|buff/i.test(q.what||""));}))a=null;
     if(a){p._drape=true;p._arch=a;}});
   /* (a top is draped only when everything worn over it is too: make3Dcore's tops are cut for its own closer inner
      layers, and over draped cloth they let it through at the back and the shoulders) */
