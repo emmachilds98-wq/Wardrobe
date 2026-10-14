@@ -22,11 +22,17 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**14 Oct: draped polos** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A new template, `polo`: the tee's body, rib armbands, a knitted
+collar closed round his neck and a two-button placket. Short-sleeved polos are draped (89 outfits have a polo). A
+shirt's or polo's collar under a zipped-up Harrington or coach jacket no longer comes through the jacket's collar.
+The 89 polo outfits are clean as worn on all five bodies and done up on dave and loose (q13-coastal on heavier flags
+as on `main`).
+**Next:** shirts (54 outfits still on `make3Dcore`'s shapes: many are tucked in), short-sleeve shirts (38), the other
+jackets (38).
+
 **14 Oct: XPBD substeps in `drapeSettle`, tried and not adopted** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Split into 8
 substeps of one pass, the settle was 11 to 32% slower and the cloth's edges stretched more (mean 6.1 to 6.6% against
 3.9%); the hoodies and jackets hung lower and bunched at the hem. Nothing on the page changed.
-**Next:** the biggest groups of tops still drawn the old way, by outfits: polos (89), shirts (54), short-sleeve shirts
-(38), other jackets (38), jumpers (30), tees (24).
 
 **14 Oct: a hoodie's hood over an open track jacket's collar** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Before the hood
 settles, an open zip jacket's stand collar is folded down and pressed under the hood, so the hood lies over it. The
@@ -466,6 +472,8 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 14 Oct 2026 | #60 | Draped polos (`polo`: rib collar and armbands, two-button placket); a collar leaf held inside a done-up Harrington's stand, not its leaf | FtdHKg v58 |
+| 14 Oct 2026 | #59 | Notes: XPBD substeps tried, not adopted (page unchanged) | (no change) |
 | 14 Oct 2026 | #58 | A hoodie's hood lies over an open zip jacket's stand collar (folded down and pressed under it); the last 4 hoodie-under-jacket flags fixed | FtdHKg v57 |
 | 14 Oct 2026 | #57 | A hoodie's hood lies over a jacket's shirt collar (the collar pressed in under it); a chore or denim jacket over a hoodie is draped again (2 outfits) | FtdHKg v56 |
 | 14 Oct 2026 | #56 | Draped bombers (`bomber`, `bomber_up`: rib collar, cuffs and hem band; 5 bombers, 5 outfits) | FtdHKg v55 |
