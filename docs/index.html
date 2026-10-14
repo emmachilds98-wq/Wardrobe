@@ -3851,7 +3851,7 @@ function drapeArch(p){var a=DRAPEK[p.shape];if(!window.__drape||!a||!GTPL[a])ret
      baseball tee, whose sleeves are cut another way, a V or a mock neck) */
   if(a==="jumper"&&(D.neck==="v"||/vest|sleeveless|tank|slipover|tabard|cardigan|v[- ]?neck|polo[- ]?neck|turtle|zip/.test(n)))return null;
   if(a==="tee"){if(/raglan|baseball|vest|sleeveless|tank|crop|mock[- ]?neck/.test(n)||D.neck==="v"||D.neck==="mock")return null;
-    if(/long|\bl\/s\b/.test(n))return GTPL.tee_ls?"tee_ls":null;if(/henley/.test(n)||D.neck==="henley")return null;}
+    if(/long[- ]?sleeve|longsleeve|\bl\/s\b|\blong\b/.test(n))return GTPL.tee_ls?"tee_ls":null;   /* (not a longline tee: a long body, short sleeves) */if(/henley/.test(n)||D.neck==="henley")return null;}
   if(a==="jacket"){
     if(/puffer|puffa|padded|quilt|(^|[^-\w])down\b(?![- ]?collar)/.test(n)){
       if(!GTPL.puffer||HOODRE.test(n)||/parka|longline|denim|trucker|harrington|bomber|leather|suede|coach|chore|wax|fleece|sherpa|borg|shacket|overshirt/.test(n))return null;return "puffer";}
