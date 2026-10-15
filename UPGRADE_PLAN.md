@@ -3297,6 +3297,57 @@ ski and 3-in-1 ones keep `make3Dcore`'s shapes. 9 outfits change.
 
 **Checked**: the 9 outfits on all five bodies as worn, and done up on dave and loose.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped blazers: a template with lapels (15 Oct 2026)
+
+Blazers, suit jackets and sport coats kept `make3Dcore`'s shapes: a stiff shell with a stand collar round his neck and
+the lapels laid on as flat strips. New templates, `blazer` (worn open, its front in two) and `blazer_up` (buttoned): a
+tailored jacket cut to cover his seat (76 cm), 114 cm round the chest, squarer shoulders, sleeves with a plain hem, and
+a shawl collar (the collar and lapels in one, rolled down the V to the button; a notched lapel is drawn as one). The
+builder has two new pieces for it:
+
+- `lapel_stand`: a stand sewn round the whole neckline, which is cut in a V 44 cm down to the top button at his waist
+  (`vneck`). It is 3 cm high round the back of his neck and narrows down each side of the V to half a centimetre at
+  the button, so its top edge is the lapel's roll line, from inside his neck to the button. `close_seams` places it
+  straight up round the back of his neck and, down the V, carried on from the front the way the front runs across the
+  seam: in across his chest, where it lies as the lapel's underside.
+- `lapel_leaf` (the new `lapel` measure): the collar and lapels, 4.5 cm deep round the back of his neck (cut as a ring's
+  part there, as a shirt collar's leaf), 8.5 cm across his chest a third of the way down and 1.5 cm at the button, cut
+  straight down the V so it lies flat. `close_seams` folds it back from the stand's top the way the stand came up and
+  lays it 7 mm out over the cloth there; `relax` keeps it 5 mm out over the front, the back and the stand while the
+  cloth is eased.
+
+In the page, `drapeArch` sends a blazer to it; a double-breasted, padded hybrid, hooded, collarless, Nehru or dinner
+jacket keeps `make3Dcore`'s shapes (only the Closure London hybrid, padded with knitted sleeves, today).
+`drapeDetails` draws its two buttons (on his right front worn open), a darker line along the lapels' edge (as
+`make3Dcore`'s), the flaps of two hip pockets and the welt of the breast pocket. 9 pieces in 13 outfits change; a blazer
+under a coat still keeps `make3Dcore`'s shapes, as every top under a layer that is not draped does (winter-formal).
+
+- *The stand carried on from the back too*: it went in over his neck, as the back is placed rolled over his shoulders
+  there. It stands straight up round the back, turning into the front's way over the first 8 cm of the V.
+- *The lapel laid 7 mm out right from its fold*: sewing it to the stand's top drew all of it back in onto the front, and
+  while it was eased its lower third went in under the front. Its fold now starts on the stand, and `relax` keeps it
+  out over the front.
+- *Sleeves 38 cm round the arm*, slimmer than a half-zip's: the half-zip showed at the back of the armholes
+  (g-mod-18 done up). 41 cm.
+- *A shirt's collar under it*: the page lays a shirt's leaf out over the layers worn over it, as over a jumper's
+  neckline. Under a half-zip and a blazer done up, it came out between the two collars. A blazer now keeps the leaf
+  inside it, as a stand collar done up and a hood do (`leafIn`), and its own collar and lapels are not laid out over a
+  coat worn over it.
+- *The lapel faces in toward him as cut*, being folded back, so as the surface that holds what is under it in, it pushed
+  the shirt's collar out through the blazer's collar at the back. The page turns its triangles round when it loads the
+  template (`drapeTurn`).
+- *4 mm off `make3Dcore`'s layers under it*, as other templates are: a tucked shirt's box pleat showed through its back
+  (jeans-blazer). 7 mm.
+
+Tried and not kept: the whole jacket stiffened a little (`pad=0.1`, as a padded jacket's), for a canvassed jacket's
+crisper front. It was barely smoother on screen, so it was left out.
+
+Left: a notched lapel would need a lapel of its own sewn to the stand and a separate collar; a wool overcoat or car coat
+can take these pieces on a long body (95 to 105 cm).
+
+**Checked**: the 13 outfits (and q9-hybrid-tie, which keeps `make3Dcore`'s shapes) on all five bodies as worn, and done
+up on dave and loose; the gate set on dave as worn and on loose done up. Stored specs unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

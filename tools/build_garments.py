@@ -382,6 +382,17 @@ MEAS = {
                    band_k=0.86, sleeve=65, bicep=44, wrist=27, cuff=6, cuff_c=20, collar=4.5, open=1),
     "bomber_up": dict(chest=122, length=64, shoulder=49, armhole=25.5, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=6,
                       band_k=0.86, sleeve=65, bicep=44, wrist=27, cuff=6, cuff_c=20, collar=4.5),
+    # a blazer (a suit jacket, a sport coat): a tailored jacket cut to cover his seat (76 cm), closer than a zip jacket (114
+    # round the chest, for a shirt or a fine knit under it), squarer shoulders (it is padded there), sleeves with a plain
+    # hem that shows the shirt's cuff, and a shawl collar: a stand round the neckline (lapel_stand), which is cut in
+    # a V down to the top button at his waist (vneck, 44 cm from his shoulder), and the collar and lapels in one piece
+    # folded back over it (lapel_leaf: 4.5 cm deep round the back of his neck, 8.5 across his chest, narrowing to the
+    # button). Worn open (its front in two) or buttoned (the front one piece, open above the button in the V). (With
+    # sleeves 38 cm round the arm, slimmer than a half-zip's, the half-zip under it showed at the back of the armholes)
+    "blazer": dict(chest=114, length=76, shoulder=47, armhole=25, neck_w=18, neck_f=44, neck_b=2.2, sh_drop=3.5, band=0, band_k=1,
+                   sleeve=64, bicep=41, wrist=29, cuff=0, cuff_c=0, collar=3, leaf=4.5, lapel=8.5, vneck=1, open=1),
+    "blazer_up": dict(chest=114, length=76, shoulder=47, armhole=25, neck_w=18, neck_f=44, neck_b=2.2, sh_drop=3.5, band=0, band_k=1,
+                      sleeve=64, bicep=41, wrist=29, cuff=0, cuff_c=0, collar=3, leaf=4.5, lapel=8.5, vneck=1),
     # a gilet (a bodywarmer) done up: no sleeves (no sleeve key), its armholes cut deeper and in to the point of his
     # shoulder so a jumper's or a hoodie's sleeve comes through, a plain hem and the jacket's stand collar, zipped
     "gilet": dict(chest=124, length=69, shoulder=43, armhole=27, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3, band_k=0.92,
@@ -540,6 +551,54 @@ def leaf(M, s, length):
     return pc
 
 
+def lapel_stand(M, s, rl, closed):
+    """A tailored jacket's collar stand (a blazer's): sewn round the whole neckline, a V down to the top button, its full
+    height round the back of his neck and narrowing down each side of the V to almost nothing at the button, so the roll
+    line along its top runs from inside his neck to the button, as a lapel's does. rl: the neckline's four parts (the V
+    on his left, the back to the middle, the back on, the V on his right). Placed carried on from the panel it is sewn to
+    (close_seams): up at the back of his neck, in across his chest down the V, where it lies as the lapel's underside."""
+    h, h0 = M["collar"] / 100 * s, 0.005 * s
+    L = sum(rl); x0 = -L / 2; cum = np.r_[0, np.cumsum(rl)]
+    hgt = lambda x: float(np.interp(x - x0, [0, cum[1], cum[3], cum[4]], [h0, h, h, h0]))
+    xs = np.linspace(L / 2, -L / 2, 121)
+    top = np.array([(x, hgt(x)) for x in xs])
+    ends = ("cf_p", "cf_n") if closed else ("end_p", "end_n")
+    pc = Piece("collar", 4, [("neck", seg((-L / 2, 0), (L / 2, 0), 30)), (ends[0], seg((L / 2, 0), (L / 2, h0), 2)), ("top", top),
+                             (ends[1], seg((-L / 2, h0), (-L / 2, 0), 2))], stiff=1.0)
+    pc.roll = True
+    return pc
+
+
+def lapel_leaf(M, s, top, xh):
+    """A tailored jacket's collar and lapels in one (a shawl collar): sewn along the top of lapel_stand and folded back
+    over it. Round the back of his neck it is a shirt collar's leaf (cut as a ring's part, its outer edge 8% longer, so
+    it lies on his shoulders); down the V it is cut straight, as a lapel lies flat on his chest, widening from the
+    collar's depth (leaf) to the lapel's (lapel) a third of the way down and narrowing to 1.5 cm at the button. top: the
+    stand's top edge it is sewn to (his left first), xh: the x of the high points of his shoulders on it. pc.lapel keeps
+    its neck edge, for placing it folded (close_seams)."""
+    h, hl, he = M["leaf"] / 100 * s, M["lapel"] / 100 * s, 0.015 * s
+    tp = top[::-1]; cl = np.r_[0, np.cumsum(np.linalg.norm(np.diff(tp, axis=0), axis=1))]
+    s1, s2 = (float(np.interp(x, tp[:, 0], cl)) for x in xh); L0 = cl[-1]
+    r0 = h / 0.08; eb = (s2 - s1) / 2 / r0; Lv = (s1 + L0 - s2) / 2
+    # the neck edge: the arc round the back, then straight on along its ends for the V (dense, with its normals)
+    t = np.linspace(-eb, eb, 200)
+    arc = np.stack([r0 * np.sin(t), r0 * np.cos(t) - r0], 1); an = np.stack([np.sin(t), np.cos(t)], 1)
+    tr = np.array([math.cos(eb), -math.sin(eb)]); nr = np.array([math.sin(eb), math.cos(eb)])
+    u = np.linspace(0, Lv, 400)[1:]
+    right = arc[-1] + u[:, None] * tr; left = (arc[0] + u[:, None] * (tr * [-1, 1]))[::-1]
+    nk = np.vstack([left, arc, right]); nn = np.vstack([np.tile(nr * [-1, 1], (len(left), 1)), an, np.tile(nr, (len(right), 1))])
+    sl = np.r_[0, np.cumsum(np.linalg.norm(np.diff(nk, axis=0), axis=1))]
+    # its depth from the neck edge: down the V (v from the shoulder to the button) widening, then narrowing
+    v = np.clip(np.maximum(s1 - sl, sl - s2) / Lv, 0, 1)
+    dep = np.where(v < 0.3, h + (hl - h) * sstep(0.0, 0.3, v), hl + (he - hl) * sstep(0.3, 1.0, v))
+    out = nk + nn * dep[:, None]
+    k = np.linspace(0, len(nk) - 1, 61).astype(int)
+    pc = Piece("leaf", 4, [("neck", resample(nk, 61)), ("end_p", seg(nk[-1], out[-1], 3)), ("out", out[k][::-1]),
+                           ("end_n", seg(out[0], nk[0], 3))], stiff=1.0)
+    pc.lapel = (nk, sl)
+    return pc
+
+
 # ---- meshing ----
 def inside(poly, pts):
     """even-odd test of each point against a closed polygon"""
@@ -653,7 +712,7 @@ class Garment:
         self.ring = ring
         rl = [plen(P[a].edge(b)) for a, b in ring]
         if "collar" in M:
-            c = collar(M, s, sum(rl), closed=not op)
+            c = lapel_stand(M, s, rl, closed=not op) if "lapel" in M else collar(M, s, sum(rl), closed=not op)
             # (its neckline cut into the same four parts)
             x0 = c.edge("neck")[0][0]; cum = np.r_[0, np.cumsum(rl)]
             parts = [seg((x0 + cum[i], 0), (x0 + cum[i + 1], 0), 8) for i in range(4)]
@@ -665,11 +724,14 @@ class Garment:
             if "leaf" in M:
                 # (the leaf along the stand's top but for 1.5 cm at each front end, where the stand buttons, folded down
                 # over it: placed so in close_seams. Along all of it, the leaf's two ends met in one point at his throat)
-                tp = c.edge("top"); cl = np.r_[0, np.cumsum(np.linalg.norm(np.diff(tp, axis=0), axis=1))]; g = 0.015 * s
-                cut = lambda a0, a1: resample(np.array([[np.interp(t, cl, tp[:, 0]), np.interp(t, cl, tp[:, 1])] for t in np.linspace(a0, a1, 12)]), 12)
-                parts = [("top_p", cut(0, g)), ("top", cut(g, cl[-1] - g)), ("top_n", cut(cl[-1] - g, cl[-1]))]
+                # (a lapel's ends come down to the button: only half a centimetre of its stand left bare there)
+                tp = c.edge("top"); cl = np.r_[0, np.cumsum(np.linalg.norm(np.diff(tp, axis=0), axis=1))]; g = (0.005 if "lapel" in M else 0.015) * s
+                # (a lapel stand's top bends where it narrows down the V: cut finer, so the bend is kept)
+                nt = 240 if "lapel" in M else 12
+                cut = lambda a0, a1, n=12: resample(np.array([[np.interp(t, cl, tp[:, 0]), np.interp(t, cl, tp[:, 1])] for t in np.linspace(a0, a1, n)]), n)
+                parts = [("top_p", cut(0, g)), ("top", cut(g, cl[-1] - g, nt)), ("top_n", cut(cl[-1] - g, cl[-1]))]
                 i = [e[0] for e in c.edges].index("top"); c.edges = c.edges[:i] + parts + c.edges[i + 1:]; c.order = [e[0] for e in c.edges]
-                P["leaf"] = leaf(M, s, plen(c.edge("top")))
+                P["leaf"] = lapel_leaf(M, s, c.edge("top"), (x0 + cum[1], x0 + cum[3])) if "lapel" in M else leaf(M, s, plen(c.edge("top")))
                 S.append(([("leaf", "neck")], [("collar", "top")], 1.0, False))
         # (a padded jacket's padding stiffens all of it: pad is the share of the collar's stiffness its other pieces get)
         for pc in P.values(): pc.stiff = max(pc.stiff, M.get("pad", 0.0))
@@ -828,6 +890,52 @@ def close_seams(pieces, X, seams, reach=0.10):
         pc = pieces[pa]; tgt = np.array([X[p][i] for p, i in ib]); src = [i for _, i in ia]
         V = pc.V; X[pa] = np.zeros((len(V), 3)); nx = V[src, 0]
         cen = tgt.mean(0)
+        if getattr(pc, "roll", False):
+            # (a tailored jacket's stand: straight up round the back of his neck, as a collar stands, and down the V
+            # carried on from the front it is sewn to, the way the front runs across the seam (from its points within 4
+            # cm on the pattern to the seam's), in across his chest; the one turning into the other over the first 8 cm
+            # of the V from his shoulder. Carried on from the back too, it went in over his neck: the back is placed
+            # rolled over his shoulders there)
+            dirs = []
+            for p, i in ib:
+                Vb = pieces[p].V; dd = np.linalg.norm(Vb - Vb[i], axis=1); near = (dd > 1e-6) & (dd < 0.04)
+                d = (X[p][i] - X[p][near]).mean(0); d /= np.linalg.norm(d) + 1e-12
+                top = Vb[Vb[:, 1] > Vb[:, 1].max() - 1e-6]
+                w = 0.0 if p == "back" else float(sstep(0.0, 0.08, np.linalg.norm(top - Vb[i], axis=1).min()))
+                d = (1 - w) * np.array([0, 1.0, 0]) + w * d; dirs.append(d / (np.linalg.norm(d) + 1e-12))
+            dirs = np.array(dirs); dirs = np.array([dirs[max(0, k - 2):k + 3].mean(0) for k in range(len(dirs))])
+            dirs /= np.linalg.norm(dirs, axis=1, keepdims=True)
+            pc.dirs = np.zeros((len(V), 3))
+            for j in range(len(V)):
+                k = int(np.argmin(np.abs(nx - V[j, 0]))); base = tgt[k]
+                rad = base - cen; rad[1] = 0; rad /= (np.linalg.norm(rad) + 1e-9)
+                X[pa][j] = base + dirs[k] * (V[j, 1] - V[src[k], 1]) + rad * 0.004; pc.dirs[j] = dirs[k]
+            continue
+        if getattr(pc, "lapel", None) is not None:
+            # (a lapel: each point by its place along the neck edge and its distance from it, folded back from the
+            # stand's top the way the stand came up, and laid 7 mm out from the cloth there (the stand, the front or
+            # the back, turned to face out from him), so it lies over the stand and on down the front across his chest,
+            # and down the back of his neck over the stand onto his shoulders. Its fold starts on the stand's top: laid
+            # out 7 mm there too, sewing it on drew all of it back in onto the front)
+            nk, sl = pc.lapel
+            d2 = ((V[:, None, :] - nk[None, :, :]) ** 2).sum(2); kk = d2.argmin(1)
+            sv, dv = sl[kk], np.sqrt(d2[np.arange(len(V)), kk])
+            fold = np.array([-pieces[p].dirs[i] for p, i in ib])
+            o = np.argsort(sv[src]); ss, tg, fd = sv[src][o], tgt[o], fold[o]
+            cloth = [k for k in pieces if not np.isnan(X[k]).any() and pieces[k].grp in (0, 4)]
+            CP = np.vstack([X[k] for k in cloth]); zc = CP[:, 2].mean()
+            CN = np.vstack([vnormals(X[k], pieces[k].T) for k in cloth])
+            CN *= np.where(np.einsum("ij,ij->i", CN, CP - np.c_[np.zeros(len(CP)), CP[:, 1], np.full(len(CP), zc)]) < 0, -1.0, 1.0)[:, None]
+            kd = mathutils.kdtree.KDTree(len(CP))
+            for k, q in enumerate(CP): kd.insert(q, k)
+            kd.balance()
+            for j in range(len(V)):
+                base = np.array([np.interp(sv[j], ss, tg[:, k]) for k in range(3)])
+                f = np.array([np.interp(sv[j], ss, fd[:, k]) for k in range(3)]); f /= np.linalg.norm(f) + 1e-12
+                raw = base + f * dv[j]
+                _, q, _ = kd.find(raw); n = CN[q]
+                X[pa][j] = raw - n * float(np.dot(raw - CP[q], n)) + n * 0.007 * float(sstep(0.0, 0.012, dv[j]))
+            continue
         if getattr(pc, "fold", None):
             # (a leaf: each point by its angle round the ring it is cut as, along the seam, and its distance from the
             # neck edge down from there, falling outward as a collar's leaf does over the stand)
@@ -913,9 +1021,10 @@ def cloth_edges(Tw, T, Vpat):
     return E, R
 
 
-def relax(X, E, R, P, N, iters=500, smooth=(0.25, 0.03), fixed=None):
+def relax(X, E, R, P, N, iters=500, smooth=(0.25, 0.03), fixed=None, over=None):
     """the cloth eased to its pattern's lengths (no gravity), kept outside his body: a Jacobi position solve. fixed:
-    points held where they are (a hood's neckline, on the garment's)"""
+    points held where they are (a hood's neckline, on the garment's). over: (points, points they lie over, triangles):
+    the first kept 5 mm out from the second (a lapel over the front, the cloth facing out from him)"""
     X0 = X.copy()
     kd = mathutils.kdtree.KDTree(len(P))
     for i, p in enumerate(P): kd.insert(p, i)
@@ -934,6 +1043,16 @@ def relax(X, E, R, P, N, iters=500, smooth=(0.25, 0.03), fixed=None):
             S = np.zeros_like(X); np.add.at(S, E[:, 0], X[E[:, 1]]); np.add.at(S, E[:, 1], X[E[:, 0]])
             X += k * (S / nb[:, None] - X)
         if fixed is not None: X[fixed] = X0[fixed]
+        if over is not None and (it % 8 == 0 or it == iters - 1):
+            top, und, Tw = over
+            Nu = vnormals(X, Tw)[und]; Xu = X[und]; zc = Xu[:, 2].mean()
+            Nu *= np.where(np.einsum("ij,ij->i", Nu, Xu - np.c_[np.zeros(len(Xu)), Xu[:, 1], np.full(len(Xu), zc)]) < 0, -1.0, 1.0)[:, None]
+            ku = mathutils.kdtree.KDTree(len(Xu))
+            for k, q in enumerate(Xu): ku.insert(q, k)
+            ku.balance()
+            for i in top:
+                _, j, _ = ku.find(X[i]); dd = float(np.dot(X[i] - Xu[j], Nu[j]))
+                if dd < 0.005: X[i] += Nu[j] * (0.005 - dd)
         if it % 8 == 0 or it == iters - 1:
             for i in range(len(X)):
                 _, j, _ = kd.find(X[i]); dd = float(np.dot(X[i] - P[j], N[j]))
@@ -1511,7 +1630,15 @@ def main():
                 print("   ", [(names[o][0], names[o][1], [e for e, ids in G.P[names[o][0]].B.items() if names[o][1] in ids]) for o in orig])
         print("  corners where pieces meet: " + ", ".join("%+.0f deg (%s at %.2f %.2f)" % (dev[w], "edge" if onb[w] else "inside", *Xw[w, :2]) for w in worst), flush=True)
         print("  welded: %d points, %d triangles, %d edges" % (nw, len(Tw), len(E)), flush=True)
-        print("  eased to the pattern: edge/pattern 5%% %.3f, median %.3f, 95%% %.3f" % tuple(relax(Xw, E, R, P0, N0)), flush=True)
+        over = None
+        if "lapel" in G.M:
+            # (a lapel kept out over the front, the back and the stand while it is eased: eased freely, its lower end
+            # went in under the front, where the two lie close)
+            on = {k: np.zeros(nw, bool) for k in G.P}
+            for k in G.P: on[k][can[off[k]:off[k] + len(G.P[k].V)]] = True
+            body_on = on["back"] | on["collar"] | np.any([on[k] for k in G.P if k.startswith("front")], axis=0)
+            over = (np.where(on["leaf"] & ~body_on)[0], np.where(body_on & ~on["leaf"])[0], Tw)
+        print("  eased to the pattern: edge/pattern 5%% %.3f, median %.3f, 95%% %.3f" % tuple(relax(Xw, E, R, P0, N0, over=over)), flush=True)
         if a.debug:
             debug_json(os.path.join(a.debug, arch + "-relaxed.json"), body, P0, [(arch, Xw, Tw, "#7a2a30")])
             pid = np.concatenate([np.full(len(G.P[k].V), i) for i, k in enumerate(G.P)])
