@@ -3834,7 +3834,7 @@ function jacketShirt(p){return overshirt(p)&&/shacket|shirt jacket|chore|insulat
    first, against his body, the clothes under it and the layers already settled; a hoodie's hood last, out over
    anything worn over the hoodie. Lengths are the draped garment's on his saved shape, so on him it keeps its drape;
    on another body it moves with him and settles. See UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzz. */
-var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt",gilet:"gilet",polo:"polo",sshirt:"sshirt",vest:"vest",blazer:"blazer"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up","gilet","scarf","puffer","puffer_up","tee_ls","jacket_hood","jacket_hood_up","jacket_coll","jacket_coll_up","puffer_hood","puffer_hood_up","parka","parka_up","chore","chore_up","trucker","trucker_up","bomber","bomber_up","polo","sshirt","sshirt_up","polo_ls","vest","kvest","camp","camp_up","blazer","blazer_up","overcoat","overcoat_up","carcoat","carcoat_up"];   /* (jacket_up, shirt_up, puffer_up, jacket_hood_up, jacket_coll_up, puffer_hood_up, parka_up, chore_up, trucker_up, bomber_up, blazer_up, overcoat_up, carcoat_up: the jacket zipped up, the shirt done up, the padded, hooded, collared and hooded padded jackets and the parka zipped up, the blazer, the overcoat and the car coat buttoned, for one worn closed; tee_ls: a tee with long sleeves) */
+var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt",gilet:"gilet",polo:"polo",sshirt:"sshirt",vest:"vest",blazer:"blazer"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up","gilet","scarf","puffer","puffer_up","tee_ls","jacket_hood","jacket_hood_up","jacket_coll","jacket_coll_up","puffer_hood","puffer_hood_up","parka","parka_up","chore","chore_up","trucker","trucker_up","bomber","bomber_up","polo","sshirt","sshirt_up","polo_ls","vest","kvest","camp","camp_up","blazer","blazer_up","overcoat","overcoat_up","carcoat","carcoat_up","jumper_v"];   /* (jacket_up, shirt_up, puffer_up, jacket_hood_up, jacket_coll_up, puffer_hood_up, parka_up, chore_up, trucker_up, bomber_up, blazer_up, overcoat_up, carcoat_up: the jacket zipped up, the shirt done up, the padded, hooded, collared and hooded padded jackets and the parka zipped up, the blazer, the overcoat and the car coat buttoned, for one worn closed; tee_ls: a tee with long sleeves) */
 /* (the templates with a stand collar done up round his neck) */
 var STANDC={gilet:1,jacket_up:1,halfzip:1,rollneck:1,puffer_up:1,jacket_coll_up:1,chore_up:1,trucker_up:1,bomber_up:1,carcoat_up:1};
 /* (the templates that open: drawn from the template of that name worn open, and from name_up done up) */
@@ -3874,11 +3874,15 @@ function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.
      baseball tee, whose sleeves are cut another way, a V or a mock neck) */
   /* (a knitted vest, a sweater vest or slipover: kvest, a V neck. A cardigan or zipped one keeps make3Dcore's shapes) */
   if(a==="jumper"&&kvest(p))return GTPL.kvest&&!/cardigan|zip|button/.test(n)?"kvest":null;
+  /* (a V-neck jumper: jumper_v, the jumper's knit cut in a 14 cm V with the knitted vest's rib laid round it) */
+  if(a==="jumper"&&(D.neck==="v"||/v[- ]?neck/.test(n))&&!/vest|sleeveless|tank|slipover|tabard|cardigan|polo[- ]?neck|turtle|zip/.test(n))return GTPL.jumper_v?"jumper_v":null;
   if(a==="jumper"&&(D.neck==="v"||/vest|sleeveless|tank|slipover|tabard|cardigan|v[- ]?neck|polo[- ]?neck|turtle|zip/.test(n)))return null;
   /* (the polo template is a short-sleeved polo, its knitted collar closed round his neck, and polo_ls the same with long
-     sleeves and rib cuffs: a zip or rugby one, a polo-neck jumper and a knitted polo jumper keep make3Dcore's shapes) */
-  if(a==="polo"){if(/zip|rugby|jumper|sweater|polo[- ]?neck|turtle|sleeveless|vest|tank/.test(n))return null;
-    if(/long[- ]?sleeve|longsleeve|\bl\/s\b/.test(n))return GTPL.polo_ls?"polo_ls":null;}
+     sleeves and rib cuffs, so a knitted polo jumper and a rugby shirt, long-sleeved with a polo's collar in their shop
+     photos. A zip polo is either, drapeDetails drawing the zip down its placket. A polo-neck jumper and a sleeveless
+     one keep make3Dcore's shapes) */
+  if(a==="polo"){if(/polo[- ]?neck|turtle|sleeveless|vest|tank/.test(n))return null;
+    if(/long[- ]?sleeve|longsleeve|\bl\/s\b|jumper|sweater|rugby/.test(n))return GTPL.polo_ls?"polo_ls":null;}
   /* (the vest template is a tank top: a scooped neck, 6 cm straps and deep armholes, bound. A sleeveless tee or a vest
      top (a tee's neck and shoulders), a muscle, training, stringer or drop-arm vest and a racer back keep make3Dcore's shapes) */
   if(a==="vest"&&/sleeveless t|vest top|tank top tee|muscle|cut[- ]?off|racer|training|gym|stringer|drop[- ]?arm|crop/.test(n))return null;
@@ -4117,11 +4121,16 @@ function drapeDetails(man,p,t,X,N,ctx,kind,proj){var T=window.THREE,DS=p.desc||{
     if(/^s?shirt_up$/.test(t.arch)&&!tie){var C3=drapeExt(t,"collar");btn("collar",C3.x1-0.009,C3.y1*0.5);}}
   if(/^polo/.test(t.arch)&&!proj){
     /* a polo's placket: 12 cm down the middle of the front from the neckline, 3.4 cm wide, its two lines of stitching
-       and the line across its foot, and two buttons (a shade of the cloth, pearl on white, as the shirt's) */
-    var pc0=cc(p.col)[0],pbm=lum(pc0)>0.82?ctx.mat("#f4f1ea",0.35):ctx.mat(shade(pc0,lum(pc0)<0.25?1.9:0.55),0.3),PE=drapeExt(t,"front"),pt=PE.ym,pl=0.12;
+       and the line across its foot, and two buttons (a shade of the cloth, pearl on white, as the shirt's); a zip polo's
+       zip down the middle of it instead, its pull at the top (metal on a light polo, a shade of the cloth on a dark one,
+       as a half-zip's), and a skipper polo's placket open, with no buttons */
+    var pc0=cc(p.col)[0],pbm=lum(pc0)>0.82?ctx.mat("#f4f1ea",0.35):ctx.mat(shade(pc0,lum(pc0)<0.25?1.9:0.55),0.3),PE=drapeExt(t,"front"),pt=PE.ym,pl=0.12,
+      pzip=/zip/.test(n0)||!!DS.zip,pskip=/skipper|johnny/.test(n0);
+    if(pzip){var pzm=lum(pc0)>0.4?ctx.metal:ctx.mat(shade(pc0,lum(pc0)<0.25?1.9:0.6),0.5),zz=[];for(var k=0;k<=6;k++)zz.push(on("front",0,pt-0.004-(pl-0.012)*k/6,0.0026));line(zz,0.0028,pzm,16);
+      var pzt=on("front",0,pt-0.014,0.006);if(pzt){var pzb=new T.Mesh(new T.BoxGeometry(0.007,0.018,0.003),ctx.metal);pzb.position.set(pzt[0],pzt[1],pzt[2]);out.push(pzb);}}
     [-0.017,0.017].forEach(function(x){var st=[];for(var k=0;k<=8;k++)st.push(on("front",x,pt-0.004-(pl-0.004)*k/8,0.0012));line(st,0.0006,seamK,20);});
     line([on("front",-0.017,pt-pl,0.0012),on("front",0,pt-pl,0.0012),on("front",0.017,pt-pl,0.0012)],0.0006,seamK,8);
-    [pt-0.03,pt-0.08].forEach(function(by){var q=drapeAt(t,X,N,"front",0,by);if(!q)return;var b=new T.Mesh(new T.CylinderGeometry(0.005,0.005,0.0022,14),pbm);
+    if(!pzip&&!pskip)[pt-0.03,pt-0.08].forEach(function(by){var q=drapeAt(t,X,N,"front",0,by);if(!q)return;var b=new T.Mesh(new T.CylinderGeometry(0.005,0.005,0.0022,14),pbm);
       b.position.set(q.p[0]+q.n[0]*0.0018,q.p[1]+q.n[1]*0.0018,q.p[2]+q.n[2]*0.0018);b.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),new T.Vector3(q.n[0],q.n[1],q.n[2]));out.push(b);});}
   if(/^(chore|trucker)(_up)?$/.test(t.arch)){
     /* a chore or denim jacket's buttons, every 10 cm from the neck down (worn open, on the left front; a denim
@@ -4172,9 +4181,9 @@ function drapeDetails(man,p,t,X,N,ctx,kind,proj){var T=window.THREE,DS=p.desc||{
     if(cup2){var CE=drapeExt(t,"front"),fl=[];for(var k=0;k<=20;k++)fl.push(on("front",0.035,CE.ym-0.01-(CE.ym-0.01-CE.y0-0.02)*k/20,0.0012));line(fl,0.0006,seamK,48);}
     (cup2?[["front",1],["front",-1]]:[["front_p",1],["front_n",-1]]).forEach(function(q){var s=q[1],E=drapeExt(t,q[0]),y0=E.ym-0.46;
       line([on(q[0],s*0.11,y0,0.0016),on(q[0],s*0.13,y0+0.09,0.0016),on(q[0],s*0.15,y0+0.18,0.0016)],0.0012,seamK,10);});}
-  if(t.arch==="kvest"){
-    /* a knitted vest's rib round its V neck: 2.4 cm wide down each side to the point, laid on the front just off its edge
-       (the neck edge at the shoulder: the front's points nearest the middle along its top) */
+  if(t.arch==="kvest"||t.arch==="jumper_v"){
+    /* a knitted vest's or a V-neck jumper's rib round its V neck: 2.4 cm wide down each side to the point, laid on the
+       front just off its edge (the neck edge at the shoulder: the front's points nearest the middle along its top) */
     var KE=drapeExt(t,"front"),kpi=-1,knw=9;for(var f=0;f<t.pieces.length;f++)if(t.pieces[f].name==="front")kpi=f;
     for(var j=0;j<t.m;j++)if(t.piece[j]===kpi&&t.pat[j*2+1]>KE.y1-0.003)knw=Math.min(knw,Math.abs(t.pat[j*2]));
     var krm=ctx.rib(p).clone();krm.side=T.DoubleSide;

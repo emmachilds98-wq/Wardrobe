@@ -25,10 +25,13 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: knitted, zip and rugby polos and V-neck jumpers** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Zip polos on
+`polo` with a drawn zip, knitted polo jumpers and a rugby shirt on `polo_ls`, and a new template, `jumper_v` (a V neck
+with the knitted vest's rib; 11 outfits). **Next:** see `UPGRADE_GUIDE.md` ("What is left"): cardigans.
+
 **15 Oct: the remaining jackets on their templates** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). 8 jackets whose shop
 photos match a template (two shirt-jackets on `chore`, three stand-collar zip jackets on `jacket`, a hooded wax jacket
-and a 3-in-1 on `jacket_hood`, a padded ski jacket on `puffer_hood`; 12 outfits). **Next:** see `UPGRADE_GUIDE.md`
-("What is left"): knitted, zip and rugby polos.
+and a 3-in-1 on `jacket_hood`, a padded ski jacket on `puffer_hood`; 12 outfits).
 
 **15 Oct: draped overcoats and a car coat** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `overcoat` and
 `overcoat_up` (the blazer's lapels on a coat to his knees) and `carcoat` and `carcoat_up` (a shirt collar, a fly front);
