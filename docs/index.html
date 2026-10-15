@@ -3888,9 +3888,13 @@ function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.
       if(hoodOn(p,n)||/softshell|insulat|padded|quilt|puffer|wax|sherpa|borg|fleece|leather|suede|bomber|harrington|shacket|overshirt/.test(n))return null;
       var cj=/chore|utility jacket|field jacket|work jacket/.test(n)?"chore":"trucker";return GTPL[cj]?cj:null;}
     if(!/track|tricot|venaria|softshell|windbreaker|funnel|zip[- ]?(through|up)\b|full[- ]?zip/.test(n)||/puffer|padded|quilt|parka|denim|trucker|harrington|bomber|leather|suede|coach|chore|work|hood|wax|fleece|sherpa|borg|down\b/.test(n)||hoodOn(p,n))return null;}
-  /* (the shirt template is a long-sleeved shirt with a point collar on a stand: a band, grandad, camp or Cuban collar,
-     and a jacket-weight overshirt (a chore jacket, a shacket), keep make3Dcore's shapes) */
-  if(a==="shirt"&&(/^(band|camp)$/.test(D.collar||"")||/grandad|granddad|mandarin|band collar|collarless|camp collar|cuban|revere|short[- ]?sleeve|s\/s|\bs ?- ?s\b|\bss\b/.test(n)||jacketShirt(p)))return null;
+  /* (a jacket-weight overshirt, a shacket in canvas, nylon or wool, is a chore jacket's cut: the chore template, boxy and
+     buttoned with a shirt collar. An insulated, padded, quilted, borg- or sherpa-lined, hooded, leather or waxed one keeps
+     make3Dcore's shapes, as such a chore jacket does) */
+  if(a==="shirt"&&jacketShirt(p))return GTPL.chore&&!hoodOn(p,n)&&!/insulat|padded|quilt|puffer|borg|sherpa|fleece|leather|suede|wax/.test(n)?"chore":null;
+  /* (the shirt template is a long-sleeved shirt with a point collar on a stand: a band, grandad, camp or Cuban collar
+     keeps make3Dcore's shapes) */
+  if(a==="shirt"&&(/^(band|camp)$/.test(D.collar||"")||/grandad|granddad|mandarin|band collar|collarless|camp collar|cuban|revere|short[- ]?sleeve|s\/s|\bs ?- ?s\b|\bss\b/.test(n)))return null;
   /* (the sshirt template is a short-sleeved shirt with a point collar on a stand: a camp, Cuban, resort, Hawaiian or
      bowling shirt (its collar lies open, flat, with no stand), a band or grandad collar, and a long-sleeved one keep
      make3Dcore's shapes) */

@@ -22,13 +22,22 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: draped shackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A jacket-weight overshirt (a shacket in
+canvas, nylon or wool) is draped from the chore jacket's template (12 outfits). Insulated, padded and borg-lined ones
+keep `make3Dcore`'s shapes.
+**Next:** tucked-in shirts, the other jackets (38 outfits), jumpers (30), tees (24).
+
+**14 Oct: draped short-sleeved shirts** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `sshirt` and `sshirt_up`:
+the shirt's cut and point collar, 76 cm long, 24 cm sleeves with a 2.5 cm turned band. 33 outfits are draped; camp,
+Cuban, resort and bowling collars keep `make3Dcore`'s shapes. A draped shirt's back print follows `make3Dcore`'s rule
+(a photo crop of a model's arm had lain on the back of an open shirt), and a shirt under a hoodie under a done-up stand
+collar keeps `make3Dcore`'s shapes. The 33 outfits are clean as worn on all five bodies and done up on dave and loose.
+
 **14 Oct: draped polos** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A new template, `polo`: the tee's body, rib armbands, a knitted
 collar closed round his neck and a two-button placket. Short-sleeved polos are draped (89 outfits have a polo). A
 shirt's or polo's collar under a zipped-up Harrington or coach jacket no longer comes through the jacket's collar.
 The 89 polo outfits are clean as worn on all five bodies and done up on dave and loose (q13-coastal on heavier flags
 as on `main`).
-**Next:** shirts (54 outfits still on `make3Dcore`'s shapes: many are tucked in), short-sleeve shirts (38), the other
-jackets (38).
 
 **14 Oct: XPBD substeps in `drapeSettle`, tried and not adopted** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Split into 8
 substeps of one pass, the settle was 11 to 32% slower and the cloth's edges stretched more (mean 6.1 to 6.6% against
@@ -472,6 +481,8 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 15 Oct 2026 | #62 | Shackets draped from the chore jacket template (12 outfits); notes for #61 | (pending) |
+| 15 Oct 2026 | #61 | Draped short-sleeved shirts (`sshirt`, `sshirt_up`; 33 outfits); a draped shirt's back print as `make3Dcore`'s | FtdHKg v59 |
 | 14 Oct 2026 | #60 | Draped polos (`polo`: rib collar and armbands, two-button placket); a collar leaf held inside a done-up Harrington's stand, not its leaf | FtdHKg v58 |
 | 14 Oct 2026 | #59 | Notes: XPBD substeps tried, not adopted (page unchanged) | (no change) |
 | 14 Oct 2026 | #58 | A hoodie's hood lies over an open zip jacket's stand collar (folded down and pressed under it); the last 4 hoodie-under-jacket flags fixed | FtdHKg v57 |
