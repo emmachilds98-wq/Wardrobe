@@ -3905,7 +3905,7 @@ function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.
      keeps make3Dcore's shapes) */
   if(a==="shirt"&&(/^(band|camp)$/.test(D.collar||"")||/grandad|granddad|mandarin|band collar|collarless|camp collar|cuban|revere|short[- ]?sleeve|s\/s|\bs ?- ?s\b|\bss\b/.test(n)))return null;
   /* (the sshirt template is a short-sleeved shirt with a point collar on a stand. A camp, Cuban, resort, Hawaiian or
-     bowling shirt, its collar lying open and flat on a 1 cm stand: camp, open at the neck done up too. A band or grandad
+     bowling shirt, its collar lying open: camp, open at the neck in a V done up too. A band or grandad
      collar, and a long-sleeved one keep make3Dcore's shapes) */
   if(a==="sshirt"&&(/grandad|granddad|mandarin|band collar|collarless|long[- ]?sleeve|\bl\/s\b/.test(n)||D.collar==="band"||jacketShirt(p)))return null;
   if(a==="sshirt"&&(D.collar==="camp"||/camp collar|cuban|revere|resort|hawaii|aloha|bowling/.test(n)))return GTPL.camp?"camp":null;
