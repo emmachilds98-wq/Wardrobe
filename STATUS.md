@@ -22,9 +22,12 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: draped resort shirts** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `camp` and `camp_up`: a boxier
+short-sleeved shirt with a camp collar lying open (in a V to the top button done up). 5 outfits; they had no collar before.
+**Next:** blazers (14), wool coats (6), the other jackets, V-neck jumpers (2).
+
 **15 Oct: draped knitted vests** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A new template, `kvest`: no sleeves, a V neck with a rib
 laid round it, the jumper's rib hem (6 outfits).
-**Next:** resort and camp shirts (5), blazers (14), wool coats (6), the other jackets, V-neck jumpers (2).
 
 **15 Oct: draped vests (tank tops)** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A new template, `vest`: a tank's 5 cm straps, a wide
 scoop and deep armholes. Plain tanks are draped (3 outfits); muscle, racer, training and vest-top cuts keep
@@ -495,7 +498,8 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
-| 15 Oct 2026 | #66 | Draped knitted vests (`kvest`: a V neck, its rib laid round the V; 6 outfits) | (pending) |
+| 15 Oct 2026 | #67 | Draped resort shirts (`camp`, `camp_up`: a camp collar lying open; 5 outfits) | (pending) |
+| 15 Oct 2026 | #66 | Draped knitted vests (`kvest`: a V neck, its rib laid round the V; 6 outfits) | FtdHKg v64 |
 | 15 Oct 2026 | #65 | Draped vests (`vest`: a tank top's straps, scoop and armholes; 3 outfits); notes for #63 and #64 | FtdHKg v63 |
 | 15 Oct 2026 | #64 | Draped long-sleeved polos (`polo_ls`; 8 outfits) | FtdHKg v62 |
 | 15 Oct 2026 | #63 | More jackets on their templates (Detroit, workwear, wool fleece, zip microfleece, smart zip; 12 outfits); a layer held 8 mm off a knitted vest | FtdHKg v61 |
