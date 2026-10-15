@@ -25,9 +25,14 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: cardigans and a knit zip overshirt** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A new template, `cardigan` and
+`cardigan_up` (`jumper_v`'s knit with its front in two, rib up the fronts and round the V, buttons and pockets drawn),
+and Closure London's knit zip overshirt on `chore` with a drawn zip (3 outfits). **Next:** see `UPGRADE_GUIDE.md` ("What
+is left"): the last jackets.
+
 **15 Oct: knitted, zip and rugby polos and V-neck jumpers** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Zip polos on
 `polo` with a drawn zip, knitted polo jumpers and a rugby shirt on `polo_ls`, and a new template, `jumper_v` (a V neck
-with the knitted vest's rib; 11 outfits). **Next:** see `UPGRADE_GUIDE.md` ("What is left"): cardigans.
+with the knitted vest's rib; 11 outfits).
 
 **15 Oct: the remaining jackets on their templates** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). 8 jackets whose shop
 photos match a template (two shirt-jackets on `chore`, three stand-collar zip jackets on `jacket`, a hooded wax jacket
@@ -519,6 +524,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 15 Oct 2026 | #73 | Cardigans and a knit zip overshirt: a new `cardigan` and `cardigan_up` (`jumper_v`'s knit with its front in two, rib up the fronts and round the V, buttons and pockets drawn) for Route One's cardigan, and Closure London's knit zip overshirt on `chore` with a drawn zip (3 pieces, 3 outfits); draped top pieces 934, 18 left, counted piece by piece. FtdHKg still to be republished from Emma's account | B8UXnh v12 |
 | 15 Oct 2026 | #72 | Knitted, zip and rugby polos and V-neck jumpers: zip polos on `polo` with a drawn zip, knitted polo jumpers and a rugby shirt on `polo_ls`, a new `jumper_v` (a V neck with the knitted vest's rib; 8 pieces, 11 outfits). FtdHKg still to be republished from Emma's account | B8UXnh v11 |
 | 15 Oct 2026 | #71 | The remaining jackets whose shop photos match a template: two shirt-jackets on `chore`, Brakeburn Classic, Napapijri Bisenzio and Closure London's hybrid on `jacket`, a hooded wax jacket and a 3-in-1 on `jacket_hood`, a padded ski jacket on `puffer_hood` (8 jackets, 12 outfits). FtdHKg still to be republished from Emma's account | B8UXnh v10 |
 | 15 Oct 2026 | #70 | Draped overcoats and a car coat (`overcoat`, `overcoat_up`: the blazer's lapels on a coat to his knees; `carcoat`, `carcoat_up`: a shirt collar, a fly front; 6 outfits); a coat over 90 cm bound to his thighs too and hung straight in the page; the blazer's lapel line drawn in front only. FtdHKg still to be republished from Emma's account | B8UXnh v9 |
