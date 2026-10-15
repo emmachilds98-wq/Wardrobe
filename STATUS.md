@@ -1,5 +1,8 @@
 # Working status: read this first
 
+**Paused 15 Oct 2026 after PR #68. The next engineer starts with [`UPGRADE_GUIDE.md`](UPGRADE_GUIDE.md):** where the
+upgrade stands, what is left in order, how to add a template, how to check outfits on the five bodies, and the pitfalls.
+
 The live working file for whoever picks up the wardrobe upgrade next (an agent or Emma). It says what is being
 worked on right now, what comes next, and how to ship. Keep it current: update **Now** when you start or stop
 something, tick the queue as items merge, and add a line to the **Log** every time `main` and the artifact change.
@@ -24,7 +27,7 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 **15 Oct: softshell, shell, wax and wool-look jackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Softshells and shells on
 the track jacket's template, wax, Isthmus and button-up jackets on `chore`, a blouson on `jacket_coll` (9 outfits).
-**Next:** blazers (14) and wool coats (6), which need a template with lapels; V-neck jumpers (2).
+**Next:** see `UPGRADE_GUIDE.md` ("What is left"): blazers and wool coats need a template with lapels.
 
 **15 Oct: draped resort shirts** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `camp` and `camp_up`: a boxier
 short-sleeved shirt with a camp collar lying open (in a V to the top button done up). 5 outfits; they had no collar before.
@@ -501,7 +504,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
-| 15 Oct 2026 | #68 | Softshell and shell jackets on the track jacket's template, wax, Isthmus and button-up jackets on `chore`, a blouson on `jacket_coll` (9 outfits) | (pending) |
+| 15 Oct 2026 | #68 | Softshell and shell jackets on the track jacket's template, wax, Isthmus and button-up jackets on `chore`, a blouson on `jacket_coll` (9 outfits); `UPGRADE_GUIDE.md` for the next engineer | FtdHKg v66 |
 | 15 Oct 2026 | #67 | Draped resort shirts (`camp`, `camp_up`: a camp collar lying open; 5 outfits) | FtdHKg v65 |
 | 15 Oct 2026 | #66 | Draped knitted vests (`kvest`: a V neck, its rib laid round the V; 6 outfits) | FtdHKg v64 |
 | 15 Oct 2026 | #65 | Draped vests (`vest`: a tank top's straps, scoop and armholes; 3 outfits); notes for #63 and #64 | FtdHKg v63 |

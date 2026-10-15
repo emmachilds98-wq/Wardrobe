@@ -1,5 +1,7 @@
 # Handover: finishing the wardrobe upgrade
 
+**Since 15 Oct 2026 the upgrade's current state and how to continue it are in [`UPGRADE_GUIDE.md`](UPGRADE_GUIDE.md); read that first.**
+
 For the next agent picking up Dave's wardrobe planner. Start with `STATUS.md`: what is in progress now, the queue
 and the log of what shipped. Then read this, then `CONTRIBUTING.md` (how
 outfits are made, matched to their shop photos and fitted, and the checks every change must pass), then
