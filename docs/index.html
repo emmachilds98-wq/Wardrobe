@@ -3881,13 +3881,16 @@ function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.
       return GTPL.puffer_hood&&!/parka|longline|\bcoat\b|3[- ]in[- ]1|ski\b|denim|trucker|harrington|bomber|leather|suede|coach|chore|wax|fleece|sherpa|borg|shacket|overshirt|anorak|cagoule|smock|half[- ]?zip|overhead|pullover/.test(n)?"puffer_hood":null;
     if(/puffer|puffa|padded|quilt|(^|[^-\w])down\b(?![- ]?collar)/.test(n)){
       if(!GTPL.puffer||hoodOn(p,n)||/parka|longline|denim|trucker|harrington|bomber|leather|suede|coach|chore|wax|fleece|sherpa|borg|shacket|overshirt/.test(n))return null;return "puffer";}
-    /* (a chore, utility, field or work jacket, in canvas, twill or denim: chore, boxy and buttoned, with a shirt collar.
-       A denim or trucker jacket: trucker, cut short to a waistband. A softshell, insulated, padded, hooded, wax,
-       fleece or sherpa-lined one keeps make3Dcore's shapes) */
-    if(/chore|utility jacket|field jacket|work jacket|denim|trucker|jean jacket/.test(n)){
-      if(hoodOn(p,n)||/softshell|insulat|padded|quilt|puffer|wax|sherpa|borg|fleece|leather|suede|bomber|harrington|shacket|overshirt/.test(n))return null;
-      var cj=/chore|utility jacket|field jacket|work jacket/.test(n)?"chore":"trucker";return GTPL[cj]?cj:null;}
-    if(!/track|tricot|venaria|softshell|windbreaker|funnel|zip[- ]?(through|up)\b|full[- ]?zip/.test(n)||/puffer|padded|quilt|parka|denim|trucker|harrington|bomber|leather|suede|coach|chore|work|hood|wax|fleece|sherpa|borg|down\b/.test(n)||hoodOn(p,n))return null;}
+    /* (a chore, utility, field, work or workwear jacket, in canvas, twill or denim, and a wool fleece shirt-jacket:
+       chore, boxy and buttoned, with a shirt collar. A denim or trucker jacket and a Carhartt Detroit (duck, cut short to
+       a waistband, its collar a shirt's): trucker. A softshell, insulated, padded, hooded, wax, fleece-lined or
+       sherpa-lined one keeps make3Dcore's shapes) */
+    if(/chore|utility jacket|field jacket|work(wear)? jacket|denim|trucker|jean jacket|detroit|wool fleece jacket/.test(n)){
+      if(hoodOn(p,n)||/softshell|insulat|padded|quilt|puffer|wax|sherpa|borg|fleece[- ]lined|leather|suede|bomber|harrington|shacket|overshirt/.test(n))return null;
+      var cj=/chore|utility jacket|field jacket|work(wear)? jacket|wool fleece/.test(n)&&!/detroit/.test(n)?"chore":"trucker";return GTPL[cj]?cj:null;}
+    /* (the track jacket's cut: a track, tricot, softshell or windbreaker jacket, a funnel-neck or zip-through one, a zip
+       microfleece and a smart zip jacket) */
+    if(!/track|tricot|venaria|softshell|windbreaker|funnel|zip[- ]?(through|up)\b|full[- ]?zip|smart zip|zip jacket|microfleece|\bfleece jacket/.test(n)||/puffer|padded|quilt|parka|denim|trucker|harrington|bomber|leather|suede|coach|chore|work|hood|wax|fleece[- ]lined|sherpa|borg|down\b|hybrid/.test(n)||hoodOn(p,n))return null;}
   /* (a jacket-weight overshirt, a shacket in canvas, nylon or wool, is a chore jacket's cut: the chore template, boxy and
      buttoned with a shirt collar. An insulated, padded, quilted, borg- or sherpa-lined, hooded, leather or waxed one keeps
      make3Dcore's shapes, as such a chore jacket does) */
@@ -4141,7 +4144,7 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
      shacket's back came through the jacket's between his shoulder blades, g-outdoor-05; under a hooded padded jacket,
      12 mm: at 7, on the athletic fit, an overshirt's back still came through its padded back, g-casual-16) */
   var thJ=0.004;
-  function innerCols(k,out,th0,lx){var ins={},lo=ctx&&ctx.under||[];(out?inner.slice(k+1).concat(ctx&&ctx.over||[]):inner.slice(0,k).concat(lo)).forEach(function(p){if(!p._drape)ins[p.item]=out?1:1+(jacketShirt(p)?(window.__drapeThJ==null?thJ:window.__drapeThJ):lo.indexOf(p)>=0&&lx?lx:0);});var uP=[[],[]],uN=[[],[]];
+  function innerCols(k,out,th0,lx){var ins={},lo=ctx&&ctx.under||[];(out?inner.slice(k+1).concat(ctx&&ctx.over||[]):inner.slice(0,k).concat(lo)).forEach(function(p){if(!p._drape)ins[p.item]=out?1:1+(jacketShirt(p)?(window.__drapeThJ==null?thJ:window.__drapeThJ):kvest(p)?(window.__drapeThV==null?0.008:window.__drapeThV):lo.indexOf(p)>=0&&lx?lx:0);});var uP=[[],[]],uN=[[],[]];
     man.traverse(function(o){if(!o.isMesh||o.isInstancedMesh||o.userData.draped||!o.userData.item||!ins[o.userData.item]||!o.geometry.attributes.position)return;var g=o.geometry,pa=g.attributes.position,na=g.attributes.normal;
       var isArm=false,a=o;while(a&&a!==man){if(a.userData.arm)isArm=true;a=a.parent;}var M=new T.Matrix4().multiplyMatrices(inv,o.matrixWorld),Nm=new T.Matrix3().getNormalMatrix(M),nv=new T.Vector3();
       function add(){nv.normalize();
