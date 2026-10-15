@@ -332,6 +332,14 @@ MEAS = {
     # collar sewn on: the page lays a rib round the V, as on the knitted vest (a stand on a V stands up off it)
     "jumper_v": dict(chest=116, length=68, shoulder=47, armhole=23.5, neck_w=17, neck_f=14, neck_b=2, sh_drop=4.5, band=5,
                      band_k=0.88, sleeve=64, bicep=38, wrist=25, cuff=6, cuff_c=19, vneck=1),
+    # a cardigan: the V-neck jumper's knit a little roomier (118 round the chest, for a shirt or a polo under it) and
+    # longer (70 cm), its V deeper (22 cm, to the top button at the middle of his chest) and its hem band less gathered;
+    # worn open (its front in two) or buttoned (the front one piece). The page lays the rib up its fronts and round the V,
+    # and draws its buttons
+    "cardigan": dict(chest=118, length=70, shoulder=47, armhole=24, neck_w=17.5, neck_f=22, neck_b=2, sh_drop=4.5, band=5,
+                     band_k=0.92, sleeve=64, bicep=39, wrist=25, cuff=6, cuff_c=19, vneck=1, open=1),
+    "cardigan_up": dict(chest=118, length=70, shoulder=47, armhole=24, neck_w=17.5, neck_f=22, neck_b=2, sh_drop=4.5, band=5,
+                        band_k=0.92, sleeve=64, bicep=39, wrist=25, cuff=6, cuff_c=19, vneck=1),
     # a padded or puffer jacket: the track jacket's cut with a padded jacket's room (132 cm round the chest, 8 more than
     # the track jacket, so it goes over a sweatshirt or a quarter-zip with its padding; sleeves 48 cm round the bicep),
     # a taller stand collar, a narrow elastic hem and elastic cuffs; worn open (its front in two) or zipped up

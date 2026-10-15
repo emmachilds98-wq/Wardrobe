@@ -25,9 +25,14 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: cardigans and a knit zip overshirt** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A new template, `cardigan` and
+`cardigan_up` (`jumper_v`'s knit with its front in two, rib up the fronts and round the V, buttons and pockets drawn),
+and Closure London's knit zip overshirt on `chore` with a drawn zip (3 outfits). **Next:** see `UPGRADE_GUIDE.md` ("What
+is left"): the last jackets.
+
 **15 Oct: knitted, zip and rugby polos and V-neck jumpers** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Zip polos on
 `polo` with a drawn zip, knitted polo jumpers and a rugby shirt on `polo_ls`, and a new template, `jumper_v` (a V neck
-with the knitted vest's rib; 11 outfits). **Next:** see `UPGRADE_GUIDE.md` ("What is left"): cardigans.
+with the knitted vest's rib; 11 outfits).
 
 **15 Oct: the remaining jackets on their templates** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). 8 jackets whose shop
 photos match a template (two shirt-jackets on `chore`, three stand-collar zip jackets on `jacket`, a hooded wax jacket

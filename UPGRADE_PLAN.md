@@ -3434,6 +3434,42 @@ recorded); a photo front laid on a dark V-neck (q10-kestin) reads near black aga
 
 **Checked**: the 11 outfits on all five bodies as worn, and done up on dave and loose. Stored specs unchanged.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Cardigans and a knit zip overshirt (15 Oct 2026)
+
+Two pieces filed as cardigans kept `make3Dcore`'s shapes, which drew a cardigan as a jacket barely open. Their shop
+photos:
+
+- Route One's Chains cardigan (g-casual-08, g-lounge-01): a V-neck cardigan, buttoned, with rib bands up the fronts and
+  round the V, a rib hem and cuffs and two patch pockets low on the fronts. A new template, `cardigan` (worn open, its
+  front in two) and `cardigan_up` (buttoned): `jumper_v`'s knit a little roomier (118 cm round the chest, for a shirt or
+  a polo under it) and longer (70 cm), its V 22 cm deep to the top button at the middle of his chest, its hem band less
+  gathered. `drapeDetails` lays a 2.4 cm rib up each front edge and round the V to the shoulder (down the middle
+  done up), five buttons on his right front (down the middle done up), and each pocket's rib top and stitching (not a
+  patch of cloth: a patch has no texture place, so the print on it came out one flat colour).
+- Closure London's knit zip overshirt (mn9-knitzip): a self-fabric shirt collar, an exposed metal zip, a plain hem and
+  one chest patch pocket. `chore`, its cut; `drapeDetails` draws the zip, along each front edge worn open and down the
+  middle done up with its pull, instead of the buttons, and only the chest pocket for a knit overshirt. (In g-quiet-13
+  the same item is filed as a half-zip and already takes `halfzip`.)
+
+`drapeArch` sends a cardigan to `cardigan` unless it is shawl-collared, zipped, hooded, sleeveless, belted, wrapped,
+longline or cropped, borg, sherpa or fleece, or has a polo collar; and a knit zip overshirt filed as a cardigan to
+`chore`. `drapeDetails`' `patch` takes a row count: the 48 cm rib down a buttoned cardigan's front, in 6 rows, cut
+through the curve of the cloth, and the knit stood out through it between rows in a dark diamond. The draped meshes mark
+a cardigan open, as a blazer is (`userData.open`): without it the 3D check counted the polo seen beside the open
+fronts' tops, between them and the back of the neck, as coming through the cardigan (front poke 57 to 124 on every
+body). g-casual-08 replaces the first of mn9-knitzip's two lines in `tools/qa/gate.txt`, so the gate has a cardigan.
+
+3 pieces in 3 outfits change, and the tee or polo under each (draped only when everything over it is) with them.
+Counted piece by piece in each outfit, draped top pieces go from 931 to 934, leaving 18. (The survey's one row per item
+had made it 932 and 20: Closure London's hybrid jacket in g-quiet-20 and Animal Elements' longline waterproof in
+g-outdoor-20 are filed as jackets there and keep `make3Dcore`'s shapes, while their first outfits take `jacket` and
+`parka`.)
+
+Left as they were: the print on Route One's cardigan tiles with visible seams, as every photo-swatch print does, on
+`main` too; and the Lyle & Scott polo's knitted collar under it is wavy, as `polo`'s collar is on its own.
+
+**Checked**: the 3 outfits on all five bodies as worn, and done up on dave and loose. Stored specs unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

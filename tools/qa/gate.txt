@@ -18,7 +18,7 @@ evening-in            # dressing gown over a check shirt, slippers
 h10-surf              # tee and shorts, cap
 jb11-winter           # workwear: jacket over a jumper, scarf, cargo trousers, boots
 lazy-sunday           # jumper, cropped trousers, slippers
-mn9-knitzip           # cardigan over a tee, jeans
+g-casual-08           # a cardigan worn open over a tee: its rib up the fronts and round the V, buttons, pockets, a print
 wedding-guest         # blazer, tucked shirt, tie, pocket square
 n4-summer-warehouse   # a muscle vest on its own (deep armholes), shorts, boots, bag
 cold-commute          # coat over a jumper over a shirt, boots

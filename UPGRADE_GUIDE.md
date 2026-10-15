@@ -1,6 +1,6 @@
 # Continuing the upgrade: a guide for the next engineer
 
-Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos and V-necks. Read this first, then `STATUS.md` (what is happening now and the
+Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks and cardigans. Read this first, then `STATUS.md` (what is happening now and the
 log), `HANDOFF.md` (how the page fits together) and `CONTRIBUTING.md` (the data rules and every check). The long
 history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections last before "3. Next steps".
 
@@ -13,11 +13,14 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   shapes (stiff shells). The upgrade replaces them with **draped templates**: real flat patterns sewn and settled
   as cloth on Dave in headless Blender (`tools/build_garments.py`, output `data/garments/<template>.json`), then fitted
   to whichever body and layers are worn, in the page (`drapeTops`, `drapeSettle`).
-- **Coverage**: 932 top pieces across the outfits are draped. Only 20 still use `make3Dcore`'s shapes, plus every top
-  worn tucked in, which is never draped (`TUCK0`). Run `tools/qa/drape_survey.js` (below) for the live list.
+- **Coverage**: 934 top pieces across the outfits are draped. Only 18 still use `make3Dcore`'s shapes, plus every top
+  worn tucked in, which is never draped (`TUCK0`). (Counted piece by piece in each outfit. `tools/qa/drape_survey.js`,
+  below, gives one row per item, its template taken from the first outfit it is in, so a piece filed under another
+  shape in another outfit can hide there: the guide said 932 and 20 until this was counted.) Run it for the live list.
 - **Templates** (`DRAPEF` in `page.html`; `_up` is the same garment done up, and the plain name is worn open where it
   can open, per `DRAPEOPEN`):
-  - Knits and tees: `tee`, `tee_ls`, `jumper`, `jumper_v` (a V neck), `rollneck`, `halfzip`, `hoodie`, `kvest`, `vest`.
+  - Knits and tees: `tee`, `tee_ls`, `jumper`, `jumper_v` (a V neck), `cardigan(_up)` (`jumper_v`'s knit with its front
+    in two), `rollneck`, `halfzip`, `hoodie`, `kvest`, `vest`.
   - Shirts and polos: `shirt(_up)`, `sshirt(_up)`, `camp(_up)`, `polo`, `polo_ls`.
   - Jackets: `jacket(_up)` (the track jacket's cut), `jacket_hood(_up)`, `jacket_coll(_up)`, `bomber(_up)`,
     `chore(_up)`, `trucker(_up)`, `puffer(_up)`, `puffer_hood(_up)`, `parka(_up)`, `gilet`.
@@ -32,8 +35,7 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 
 | Item | Pieces (outfits) | What it needs |
 | --- | --- | --- |
-| Cardigans and a knit zip overshirt | 2 (4) | A buttoned or zipped knit worn open: `jumper_v`'s V with its front in two. The biggest visible gain left. |
-| Last jackets | 4 (6) | A hooded padded gilet (a `gilet` with `puffer_hood`'s hood), a faux-leather aviator with a shearling collar (a big contrast collar), and two that failed the check once draped: the borg zip-through over a half-zip done up (g-casual-01, its collar) and Carhartt's Super Dux (jb8-superdux, the jumper under it bunched over his tool belt). |
+| Last jackets | 6 (8) | A hooded padded gilet (a `gilet` with `puffer_hood`'s hood), a faux-leather aviator with a shearling collar (a big contrast collar), and two that failed the check once draped: the borg zip-through over a half-zip done up (g-casual-01, its collar) and Carhartt's Super Dux (jb8-superdux, the jumper under it bunched over his tool belt). Also two filed as jackets in one outfit each: Closure London's smart hybrid (g-quiet-20; as a blazer it takes `jacket`) and Animal Elements' longline waterproof (g-outdoor-20; as a coat it takes `parka`). |
 | Insulated and borg-lined overshirts | 2 (4) | Tog24's insulated Adamson shacket and Matalan's borg-lined overshirt: `chore` with padding, held further off what is under them. |
 | Shirt-collared overcoat | (1) | The ASOS tobacco overcoat has a shirt collar in its photo but takes `overcoat`'s lapels (nothing in its name says otherwise): a `collar` correction in `data/fixes.json` could send it to `carcoat`. |
 | Muscle, racer and mesh vests, vest tops | 3 (3) | Variants of `vest` (deeper armholes, a racer back). Low value. |
@@ -142,3 +144,11 @@ is drawn as a shawl. The overcoat uses the same two pieces on a longer, roomier 
 - **The word rules in `drapeArch`** are matched against the item name plus the outfit's `what`. A word in either can
   send a piece to the wrong branch: "softshell work jacket" matched the chore jacket's words. Survey after every rule
   change.
+- **A template that opens must be marked open.** The 3D check counts an inner layer showing through from the front
+  only under a piece done up; it reads that from the mesh's `userData.open`, set in `drapeTops` by a list of template
+  names. A new template that opens (or whose V shows what is under it) goes in that list, or the check flags what is
+  seen beside its open fronts.
+- **Details drawn as patches follow the cloth only at their rows.** `drapeDetails`' `patch` lays a grid on the cloth,
+  6 rows unless given more: a long strip (a cardigan's front rib) cuts through the curve between rows and the cloth
+  stands out through it. Give a long strip a row every centimetre or so. A patch has no texture coordinates, so a print
+  laid on one comes out a single colour: draw a pocket on a print as its outline instead.
