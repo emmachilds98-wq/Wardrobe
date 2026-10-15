@@ -25,10 +25,14 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: the remaining jackets on their templates** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). 8 jackets whose shop
+photos match a template (two shirt-jackets on `chore`, three stand-collar zip jackets on `jacket`, a hooded wax jacket
+and a 3-in-1 on `jacket_hood`, a padded ski jacket on `puffer_hood`; 12 outfits). **Next:** see `UPGRADE_GUIDE.md`
+("What is left"): knitted, zip and rugby polos.
+
 **15 Oct: draped overcoats and a car coat** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `overcoat` and
 `overcoat_up` (the blazer's lapels on a coat to his knees) and `carcoat` and `carcoat_up` (a shirt collar, a fly front);
-a coat over 90 cm is bound to his thighs too and hangs straight in the page (6 outfits). **Next:** see
-`UPGRADE_GUIDE.md` ("What is left"): the other jackets.
+a coat over 90 cm is bound to his thighs too and hangs straight in the page (6 outfits).
 
 **15 Oct: draped blazers** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `blazer` and `blazer_up`: a tailored
 jacket with a shawl collar, its collar and lapels one piece folded back over a stand that runs down the V to the button
