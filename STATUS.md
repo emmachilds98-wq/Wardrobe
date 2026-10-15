@@ -25,12 +25,16 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: two tries that did not ship** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). An open overshirt under an open jacket was
+measured and four fixes tried; none held it in, and the diagnosis is written up. The ASOS tobacco overcoat was sent to
+`carcoat` by a collar correction and taken back: worn open, `carcoat`'s collar hardly shows.
+**Next:** see `UPGRADE_GUIDE.md` ("What is left"): the vests, the henley and mock-neck tee, tucked-in tops, or the two
+faults above.
+
 **15 Oct: collars inside open collared jackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A shirt's or a polo's collar now sits
 inside an open chore, denim, Harrington-style, car coat or aviator collar instead of crumpling over it (13 outfits
-look better, 20 checked). The
-insulated and borg-lined overshirts were tried on `chore` and held back: under their jackets they show through, as open
+look better, 20 checked). The insulated and borg-lined overshirts were tried on `chore` and held back: under their jackets they show through, as open
 overshirts under open jackets already do on `main` (g-casual-09, g-mod-11, -13, -15), which the 3D check misses.
-**Next:** see `UPGRADE_GUIDE.md` ("What is left"): an open overshirt under an open jacket.
 
 **15 Oct: the last jackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `gilet_hood` (a hooded gilet) and
 `aviator` and `aviator_up` (a big shearling collar in its own colour); a borg zip-through on `puffer`, and a hybrid and a
