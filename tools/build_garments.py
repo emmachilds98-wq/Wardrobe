@@ -310,6 +310,11 @@ MEAS = {
     # tapering) finished in a 5 cm rib cuff, as the long-sleeved tee's
     "polo_ls": dict(chest=108, length=72, shoulder=46, armhole=22, neck_w=17, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
                     sleeve=64, bicep=36, wrist=23, cuff=5, cuff_c=19, collar=2, leaf=4.5, point=6.5),
+    # a vest (a tank top): the tee's body a little closer, no sleeves (no sleeve key), 5 cm straps either side of a wide
+    # scooped neckline, 14 cm deep at the front and 6 at the back, and deep armholes. (Its 1.5 cm binding cut as the
+    # tee's neckband, a stand, stood up off the scoop and pulled it into a shallow V at his throat: left out, the edge as
+    # turned and stitched)
+    "vest": dict(chest=100, length=72, shoulder=29, armhole=27, neck_w=19, neck_f=14, neck_b=6, sh_drop=2.5, band=0, band_k=1),
     # a padded or puffer jacket: the track jacket's cut with a padded jacket's room (132 cm round the chest, 8 more than
     # the track jacket, so it goes over a sweatshirt or a quarter-zip with its padding; sleeves 48 cm round the bicep),
     # a taller stand collar, a narrow elastic hem and elastic cuffs; worn open (its front in two) or zipped up
