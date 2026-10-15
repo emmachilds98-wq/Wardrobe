@@ -3287,6 +3287,16 @@ change.
 
 **Checked**: the 5 outfits on all five bodies as worn, and done up on dave and loose.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Softshell, shell, wax and wool-look jackets on the templates (15 Oct 2026)
+
+A second survey of the jackets still on `make3Dcore`'s shapes found more cut like a template. A softshell or shell
+jacket with no hood (work ones too: "softshell work jacket" had matched the chore jacket's words and been ruled out as a
+softshell) is now draped from the track jacket's; a wax jacket, a Patagonia Isthmus and a button-up wool-look jacket
+from `chore`; a single-collar blouson from `jacket_coll`. A hooded wax jacket and the padded, sherpa- or borg-lined,
+ski and 3-in-1 ones keep `make3Dcore`'s shapes. 9 outfits change.
+
+**Checked**: the 9 outfits on all five bodies as worn, and done up on dave and loose.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

@@ -3876,7 +3876,7 @@ function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.
     /* (a collared zip jacket, a Harrington, coach, Capitol or Eisenhower jacket or a collar blouson: jacket_coll, a shirt's
        collar a size up on the jacket's cut. Not a denim or trucker jacket, nor a field or chore jacket (buttoned, below:
        trucker and chore), nor a bomber (its rib collar: bomber); a padded, wax, leather or suede one keeps make3Dcore's shapes) */
-    if(GTPL.jacket_coll&&/harrington|coach|capitol|eisenhower|collar blouson/.test(n)&&!hoodOn(p,n)&&!/puffer|puffa|padded|quilt|insulat|wax|denim|trucker|leather|suede|sherpa|borg|wool|fleece|bomber/.test(n))return "jacket_coll";
+    if(GTPL.jacket_coll&&/harrington|coach|capitol|eisenhower|collar blouson|single collar/.test(n)&&!hoodOn(p,n)&&!/puffer|puffa|padded|quilt|insulat|wax|denim|trucker|leather|suede|sherpa|borg|wool|fleece|bomber/.test(n))return "jacket_coll";
     /* (a bomber: bomber, the track jacket's cut in a rib collar, cuffs and hem band, the page's rib. A hooded, padded,
        quilted or insulated one, a leather one and one lined or collared in shearling, sherpa or fur keep
        make3Dcore's shapes) */
@@ -3887,13 +3887,15 @@ function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.
       return GTPL.puffer_hood&&!/parka|longline|\bcoat\b|3[- ]in[- ]1|ski\b|denim|trucker|harrington|bomber|leather|suede|coach|chore|wax|fleece|sherpa|borg|shacket|overshirt|anorak|cagoule|smock|half[- ]?zip|overhead|pullover/.test(n)?"puffer_hood":null;
     if(/puffer|puffa|padded|quilt|(^|[^-\w])down\b(?![- ]?collar)/.test(n)){
       if(!GTPL.puffer||hoodOn(p,n)||/parka|longline|denim|trucker|harrington|bomber|leather|suede|coach|chore|wax|fleece|sherpa|borg|shacket|overshirt/.test(n))return null;return "puffer";}
-    /* (a chore, utility, field, work or workwear jacket, in canvas, twill or denim, and a wool fleece shirt-jacket:
-       chore, boxy and buttoned, with a shirt collar. A denim or trucker jacket and a Carhartt Detroit (duck, cut short to
-       a waistband, its collar a shirt's): trucker. A softshell, insulated, padded, hooded, wax, fleece-lined or
-       sherpa-lined one keeps make3Dcore's shapes) */
-    if(/chore|utility jacket|field jacket|work(wear)? jacket|denim|trucker|jean jacket|detroit|wool fleece jacket/.test(n)){
-      if(hoodOn(p,n)||/softshell|insulat|padded|quilt|puffer|wax|sherpa|borg|fleece[- ]lined|leather|suede|bomber|harrington|shacket|overshirt/.test(n))return null;
-      var cj=/chore|utility jacket|field jacket|work(wear)? jacket|wool fleece/.test(n)&&!/detroit/.test(n)?"chore":"trucker";return GTPL[cj]?cj:null;}
+    /* (a softshell or a shell jacket with no hood, work ones too: the track jacket's cut, zipped, its stand collar) */
+    if(/softshell|shell jacket|packable shell/.test(n)&&!hoodOn(p,n)&&!/insulat|padded|quilt|puffer|sherpa|borg|fleece[- ]lined|ski\b|3[- ]in[- ]1|parka|leather|suede/.test(n))return "jacket";
+    /* (a chore, utility, field, work or workwear jacket, in canvas, twill or denim, a wool fleece shirt-jacket, a wax
+       jacket, a Patagonia Isthmus and a button-up wool-look jacket: chore, boxy and buttoned, with a shirt collar. A
+       denim or trucker jacket and a Carhartt Detroit (duck, cut short to a waistband, its collar a shirt's): trucker. A
+       softshell (above), insulated, padded, hooded, fleece-lined or sherpa-lined one keeps make3Dcore's shapes) */
+    if(/chore|utility jacket|field jacket|work(wear)? jacket|denim|trucker|jean jacket|detroit|wool fleece jacket|wax(ed)? jacket|isthmus|button[- ]up jacket/.test(n)){
+      if(hoodOn(p,n)||/softshell|insulat|padded|quilt|puffer|sherpa|borg|fleece[- ]lined|leather|suede|bomber|harrington|shacket|overshirt/.test(n))return null;
+      var cj=/chore|utility jacket|field jacket|work(wear)? jacket|wool fleece|wax(ed)? jacket|isthmus|button[- ]up jacket/.test(n)&&!/detroit/.test(n)?"chore":"trucker";return GTPL[cj]?cj:null;}
     /* (the track jacket's cut: a track, tricot, softshell or windbreaker jacket, a funnel-neck or zip-through one, a zip
        microfleece and a smart zip jacket) */
     if(!/track|tricot|venaria|softshell|windbreaker|funnel|zip[- ]?(through|up)\b|full[- ]?zip|smart zip|zip jacket|microfleece|\bfleece jacket/.test(n)||/puffer|padded|quilt|parka|denim|trucker|harrington|bomber|leather|suede|coach|chore|work|hood|wax|fleece[- ]lined|sherpa|borg|down\b|hybrid/.test(n)||hoodOn(p,n))return null;}
