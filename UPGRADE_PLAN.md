@@ -3502,6 +3502,33 @@ is held back by the half-zip rule. Draped top pieces go from 934 to 940, leaving
 **Checked**: the 8 outfits (the 6 that change, g-casual-01 and jb8-superdux) on all five bodies as worn, and done up on
 dave and loose. Stored specs unchanged.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Collars inside open collared jackets; the insulated overshirts held back (15 Oct 2026)
+
+The next item was Tog24's insulated Adamson shacket and Matalan's borg-lined overshirt (g-outdoor-05, -09, -19, -21),
+shirt-jackets in their shop photos (a shirt collar, a buttoned front, chest pockets). Sent to `chore`, each worn over a
+half-zip or a jumper and under an open jacket or a gilet, they showed two faults that were already on `main` elsewhere:
+
+- *A collar laid out over an open collared jacket.* A shirt's or a polo's collar leaf is laid out over the layers worn
+  over it unless one keeps it in (`leafIn`: a stand collar done up, a hood, lapels). Over an open chore, denim,
+  Harrington-style or car coat's collar it lay on that collar, and the two crumpled together at his shoulders: shards of
+  the polo's collar through the Harrington's (m7-harrington), of the polo's through a chore jacket's (g-job-01), of the
+  striped shirt's through a denim jacket's (c6-denim), and of an overshirt's through the jacket over it (g-mod-11, -13,
+  -15). `leafIn` now also holds a shirt's or a polo's collar inside an open jacket with a shirt's collar of its own
+  (`chore`, `trucker`, `jacket_coll`, `carcoat`, `aviator`), as worn: it sits inside the jacket's stand, under its leaf.
+  20 outfits have such a pair. In 13 the collar crumpled before and now sits neatly inside; in g-mod-11, -13 and -15
+  (an overshirt's big collar under the jacket's) it improves only a little; the rest looked right before and after.
+- *An open overshirt under an open jacket shows through it.* On `main`, g-casual-09, g-mod-11, -13 and -15 show the
+  overshirt (or, g-mod-15, the half-zip) through the jacket's fronts in patches. The 3D check does not see it: it counts
+  an inner layer showing through from the front only under a piece done up. A jacket the same size as the overshirt under
+  it, or smaller (a chore over a chore, a 118 cm denim jacket over a 122 cm chore), is part of it, but sizing the jacket up
+  9 or 16% only thinned the patches. The insulated overshirts showed the same through their jackets, and under a gilet
+  done up (g-outdoor-21) the overshirt's collar came through the gilet's (front poke 147 to 267 on every body). They keep
+  `make3Dcore`'s shapes until open-over-open layering is fixed; the routing tried is in the session's notes (`chore` for
+  an insulated or borg-lined overshirt, the jacket over a knit and such an overshirt a size or two up).
+
+**Checked**: the 20 outfits with a collared top under an open collared jacket, on all five bodies as worn and done up on
+dave and loose, and their collars before and after, close up. Stored specs unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
