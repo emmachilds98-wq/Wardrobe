@@ -3348,6 +3348,42 @@ can take these pieces on a long body (95 to 105 cm).
 **Checked**: the 13 outfits (and q9-hybrid-tie, which keeps `make3Dcore`'s shapes) on all five bodies as worn, and done
 up on dave and loose; the gate set on dave as worn and on loose done up. Stored specs unchanged.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped overcoats and a car coat (15 Oct 2026)
+
+The wool and wool-look overcoats, the longline coat and the car coat kept `make3Dcore`'s shapes (a stiff shell, every
+coat with a blazer's lapels). New templates, each worn open or buttoned:
+
+- `overcoat`, `overcoat_up`: the blazer's `lapel_stand` and `lapel_leaf` on a coat cut to his knees (104 cm), roomier
+  (128 cm round the chest, 45 round the arm) for a jumper, a hoodie or a suit jacket under it. The V reaches a top button
+  higher on his chest (36 cm), and the lapels are wider (10 cm). Three buttons; flaps on the hip pockets.
+- `carcoat`, `carcoat_up`: the same room, cut to 96 cm, with a shirt collar a size up again (a 3.5 cm stand and a 5.5 cm
+  leaf, 8 cm to its points), done up to the neck under a fly front (a line of stitching, the buttons hidden) and a
+  slanted welt pocket low on each front.
+
+`drapeArch` sends an overcoat, a wool or wool-look coat, a longline coat, a Crombie, a Chesterfield or a topcoat to
+`overcoat`, and a car coat, a mac or a balmacaan to `carcoat`. A hooded, padded, double-breasted, pea, duffle, trench,
+fur, sherpa, borg, shearling, leather or suede coat keeps `make3Dcore`'s shapes, and a hooded one is still a parka where
+it was. 5 coats in 6 outfits change, and the layers under them are draped now too (a top is draped only when everything
+over it is). The tobacco overcoat has a shirt collar in its photo but nothing in its name says so; it takes the
+overcoat's lapels, as `make3Dcore` drew it.
+
+- *Bound to his hips only*: below his seat the coat's points were placed by hip triangles up to 37 cm away and far to
+  one side of them, with barycentric weights up to 176 (12 at most elsewhere). A coat over 90 cm is now bound to his
+  thighs as well (`write_template`), and the other templates are unchanged.
+- *A ledge round his back at his hands*: the page pushes cloth out of what is under it point by point, so the coat stood
+  out over his seat and a jumper and fell back in below them. For a garment over 90 cm, `drapeHang` moves each point of
+  its body, below the top 30 cm of its piece, out at least as far as the furthest-out point above it in its column on
+  the pattern, so it hangs straight down as stiff cloth does.
+- *The blazer's lapel line round the back of his neck*: under an overcoat (winter-formal) it came through the coat's back
+  below the collar. The line is drawn down the lapels, in front, only.
+
+Left: the coat's open front edge lies a little crumpled over a suit jacket's lapel (winter-formal); a notched lapel is
+still drawn as a shawl; a shirt-collared overcoat would need a `collar` correction in `data/fixes.json`.
+
+**Checked**: the 6 outfits on all five bodies as worn, and done up on dave and loose (winter-formal flagged at the back
+of the neck, the blazer's lapel line, until the line was drawn in front only); the gate set on dave as worn and on loose
+done up. Stored specs unchanged; the four coat templates rebuild byte for byte.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

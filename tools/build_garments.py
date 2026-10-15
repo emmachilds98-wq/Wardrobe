@@ -393,6 +393,19 @@ MEAS = {
                    sleeve=64, bicep=41, wrist=29, cuff=0, cuff_c=0, collar=3, leaf=4.5, lapel=8.5, vneck=1, open=1),
     "blazer_up": dict(chest=114, length=76, shoulder=47, armhole=25, neck_w=18, neck_f=44, neck_b=2.2, sh_drop=3.5, band=0, band_k=1,
                       sleeve=64, bicep=41, wrist=29, cuff=0, cuff_c=0, collar=3, leaf=4.5, lapel=8.5, vneck=1),
+    # an overcoat (a wool or wool-look coat, a longline coat): the blazer's shawl collar on a coat cut to his knees (104
+    # cm), roomier (128 round the chest, 45 round the arm) for a jumper, a hoodie or a suit jacket under it, the V to a top
+    # button higher on his chest (36 cm) and the lapels wider (10 cm); worn open or buttoned
+    "overcoat": dict(chest=128, length=104, shoulder=50, armhole=27, neck_w=19.5, neck_f=36, neck_b=2.4, sh_drop=3.5, band=0, band_k=1,
+                     sleeve=66, bicep=45, wrist=31, cuff=0, cuff_c=0, collar=3.5, leaf=5, lapel=10, vneck=1, open=1),
+    "overcoat_up": dict(chest=128, length=104, shoulder=50, armhole=27, neck_w=19.5, neck_f=36, neck_b=2.4, sh_drop=3.5, band=0, band_k=1,
+                        sleeve=66, bicep=45, wrist=31, cuff=0, cuff_c=0, collar=3.5, leaf=5, lapel=10, vneck=1),
+    # a car coat (a mac): the overcoat's room cut a little shorter (96 cm), with a shirt collar a size up again (a 3.5 cm
+    # stand and a 5.5 cm leaf, 8 cm to its points), buttoned to the neck under a fly front; worn open or done up
+    "carcoat": dict(chest=126, length=96, shoulder=50, armhole=26.5, neck_w=19.5, neck_f=8, neck_b=2.4, sh_drop=4, band=0, band_k=1,
+                    sleeve=66, bicep=45, wrist=31, cuff=0, cuff_c=0, collar=3.5, leaf=5.5, point=8, open=1),
+    "carcoat_up": dict(chest=126, length=96, shoulder=50, armhole=26.5, neck_w=19.5, neck_f=8, neck_b=2.4, sh_drop=4, band=0, band_k=1,
+                       sleeve=66, bicep=45, wrist=31, cuff=0, cuff_c=0, collar=3.5, leaf=5.5, point=8),
     # a gilet (a bodywarmer) done up: no sleeves (no sleeve key), its armholes cut deeper and in to the point of his
     # shoulder so a jumper's or a hoodie's sleeve comes through, a plain hem and the jacket's stand collar, zipped
     "gilet": dict(chest=124, length=69, shoulder=43, armhole=27, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3, band_k=0.92,
@@ -1529,7 +1542,11 @@ def template(pieces, can, Xs, T, body, regs_of):
 
 
 def write_template(path, G, body, can, Xs, T, hood=None):
-    regs_of = lambda pc: ARM_REG if pc.grp in (1, 2) else TORSO_REG
+    # (a coat cut below his seat, over 90 cm, is bound to his thighs too: bound to his hips only, its skirt's points were
+    # placed by triangles up to 37 cm away, far to one side of them, and the page's body, a little unlike the builder's
+    # there, swung them in, so the coat narrowed below his seat into a skirt)
+    body_reg = TORSO_REG + ("thigh",) if G.M["length"] > 90 else TORSO_REG
+    regs_of = lambda pc: ARM_REG if pc.grp in (1, 2) else body_reg
     out = {"v": 1, "arch": G.arch, "size": "L", "meas_cm": G.M, "scale": round(G.s, 5),
            "char": {k: v for k, v in body.char.items()},
            "about": "Made by tools/build_garments.py: sewn from flat pattern pieces and draped on Dave (CHAR_DEF, after "
