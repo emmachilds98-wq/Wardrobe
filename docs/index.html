@@ -4144,7 +4144,7 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
      shacket's back came through the jacket's between his shoulder blades, g-outdoor-05; under a hooded padded jacket,
      12 mm: at 7, on the athletic fit, an overshirt's back still came through its padded back, g-casual-16) */
   var thJ=0.004;
-  function innerCols(k,out,th0,lx){var ins={},lo=ctx&&ctx.under||[];(out?inner.slice(k+1).concat(ctx&&ctx.over||[]):inner.slice(0,k).concat(lo)).forEach(function(p){if(!p._drape)ins[p.item]=out?1:1+(jacketShirt(p)?(window.__drapeThJ==null?thJ:window.__drapeThJ):lo.indexOf(p)>=0&&lx?lx:0);});var uP=[[],[]],uN=[[],[]];
+  function innerCols(k,out,th0,lx){var ins={},lo=ctx&&ctx.under||[];(out?inner.slice(k+1).concat(ctx&&ctx.over||[]):inner.slice(0,k).concat(lo)).forEach(function(p){if(!p._drape)ins[p.item]=out?1:1+(jacketShirt(p)?(window.__drapeThJ==null?thJ:window.__drapeThJ):kvest(p)?(window.__drapeThV==null?0.008:window.__drapeThV):lo.indexOf(p)>=0&&lx?lx:0);});var uP=[[],[]],uN=[[],[]];
     man.traverse(function(o){if(!o.isMesh||o.isInstancedMesh||o.userData.draped||!o.userData.item||!ins[o.userData.item]||!o.geometry.attributes.position)return;var g=o.geometry,pa=g.attributes.position,na=g.attributes.normal;
       var isArm=false,a=o;while(a&&a!==man){if(a.userData.arm)isArm=true;a=a.parent;}var M=new T.Matrix4().multiplyMatrices(inv,o.matrixWorld),Nm=new T.Matrix3().getNormalMatrix(M),nv=new T.Vector3();
       function add(){nv.normalize();
