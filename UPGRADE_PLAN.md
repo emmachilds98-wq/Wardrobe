@@ -3188,6 +3188,40 @@ the front, which shows its own). A long-sleeved, zip, rugby or polo-neck polo an
 **Checked**: the 89 polo outfits on all five bodies as worn, and done up on dave and loose; the 34 outfits with a shirt
 under a jacket done up on dave. All clean but q13-coastal on heavier (front poke 41), which flags the same on `main`.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped short-sleeved shirts (14 Oct 2026)
+
+Short-sleeved shirts were drawn by `make3Dcore` (38 outfits). There is a new template, `sshirt` (worn open, its front in
+two) and `sshirt_up` (done up): the shirt's cut and point collar, 76 cm long (3 cm shorter: it is worn out as often as
+in), sleeves 24 cm to above the elbow finished in a 2.5 cm turned-up band. `drapeDetails` draws the shirt's placket and
+buttons on it. A camp, Cuban, resort, Hawaiian or bowling shirt (its collar lies open and flat, with no stand), a band or
+grandad collar and a long-sleeved one keep `make3Dcore`'s shapes. 33 outfits are draped.
+
+- *A plain sleeve hem with no band*: worn open, the leaf stood straight out from the stand at the back, a ledge round his
+  neck (its outer edge 0.1 cm below the fold, against 2.3 cm on the long shirt). A 24 cm sleeve with no band at length 79
+  did the same; 26 cm sleeves, or the band, let it fold down (2.0 cm). The cloth simulation is sensitive to these: the
+  same collar on two cuts can settle differently.
+- *Done up with the open one's shoulders*: it sat higher on him than the long shirt, its collar 7 mm higher at the
+  sides of his neck, and showed above a half-zip's stand there (w20261008-quiet-04 and g-rave-06 on loose, front poke
+  44 to 50). `sshirt_up`'s shoulders slope 5 cm, not 4.5: its collar is level with the long shirt's.
+- *A print on the back of an open shirt*: a draped top laid the photo's print on its back whether or not it was worn
+  open, and for the Farah Boxworth shirt the print read from the photo was a crop of the model's arm, a patch of skin
+  on his back (ca-beer-garden). The back print now follows `make3Dcore`'s rule: on a shirt or polo only when it is a big
+  print, and none on a shirt worn open.
+- *A collared shirt under a hoodie under a done-up stand collar* (w20261006-casual-04 done up: a shirt, a full-zip
+  hoodie and a zipped padded jacket): the hood, pressed up round his neck by the stand, lay in a crumpled ring round the
+  draped collar, which showed through its folds (front poke 50; a long shirt in its place did the same). The shirt or
+  polo keeps `make3Dcore`'s shapes there.
+
+**Checked**: the 33 outfits on all five bodies as worn, and done up on dave and loose.
+
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped shackets (15 Oct 2026)
+
+A jacket-weight overshirt (a shacket in canvas, crinkled nylon or wool: `jacketShirt`) kept `make3Dcore`'s shapes after
+the shirts were draped, 16 outfits. It is a chore jacket's cut, boxy and buttoned with a shirt collar, worn open over
+the layers under it, so it is now draped from the `chore` template (`chore_up` done up). An insulated, padded, quilted,
+borg- or sherpa-lined, hooded, leather or waxed one keeps `make3Dcore`'s shapes, as such a chore jacket does (the Tog24
+Adamson and the Matalan borg-lined overshirt). 12 outfits are draped.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
