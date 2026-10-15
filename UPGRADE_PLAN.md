@@ -3411,6 +3411,29 @@ shows the dark half-zip under it in a few creases close up (g-mod-15), under the
 **Checked**: the 15 outfits (the 12 that change and the 3 of the two jackets left out) on all five bodies as worn and done
 up on dave and loose before the two were left out, then the survey: exactly the 8 jackets moved. Stored specs unchanged.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Knitted, zip and rugby polos and V-neck jumpers (15 Oct 2026)
+
+Six polos and two V-neck jumpers kept `make3Dcore`'s shapes. Their shop photos:
+
+- three zip polos (Fila's Oden, Luke 1977's Fort check, Bamboo Clothing's quarter-zip): short-sleeved polos with a zip
+  placket. `polo`, and `drapeDetails` draws the zip down the placket (metal on a light polo, a shade of the cloth on a
+  dark one) with its pull, and no buttons;
+- two knitted polo jumpers (SikSilk's, Uniqlo's Milano skipper) and a rugby shirt: long-sleeved with a polo's collar.
+  `polo_ls`; a skipper polo has no buttons;
+- two V-neck jumpers (Kestin's lambswool, Fort's combat jumper): a new template, `jumper_v`, the jumper's knit, sleeves,
+  cuffs and hem band with its neck cut in a 14 cm V and no collar sewn on; `drapeDetails` lays the knitted vest's rib
+  round the V. Over a shirt with its collar out (q10-kestin) the collar now shows in the V, which `make3Dcore`'s
+  shallow V hid.
+
+`drapeArch` sends exactly these 8 pieces (the survey before and after). 11 outfits change; the Uniqlo skipper polo stays
+`make3Dcore`'s in night-out, where it is tucked in. Draped top pieces go from 921 to 932.
+
+Left as they were: SikSilk's polo has a zip in its photo but nothing in its name or listing says so, so it is drawn with
+buttons; the rugby shirt's cream collar is drawn in the body's navy, as `make3Dcore` drew it (no second colour is
+recorded); a photo front laid on a dark V-neck (q10-kestin) reads near black against the knit sleeves, on `main` too.
+
+**Checked**: the 11 outfits on all five bodies as worn, and done up on dave and loose. Stored specs unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

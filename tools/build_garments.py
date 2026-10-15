@@ -328,6 +328,10 @@ MEAS = {
     # the rib round the V. (Cut 20 cm deep, the V showed his chest where the vest is worn with nothing under it)
     "kvest": dict(chest=110, length=66, shoulder=36, armhole=26, neck_w=18, neck_f=14, neck_b=2.5, sh_drop=4.5, band=5,
                   band_k=0.9, vneck=1),
+    # a V-neck jumper: the jumper's knit, sleeves, rib cuffs and hem band, its neck cut in a V 14 cm deep (vneck) with no
+    # collar sewn on: the page lays a rib round the V, as on the knitted vest (a stand on a V stands up off it)
+    "jumper_v": dict(chest=116, length=68, shoulder=47, armhole=23.5, neck_w=17, neck_f=14, neck_b=2, sh_drop=4.5, band=5,
+                     band_k=0.88, sleeve=64, bicep=38, wrist=25, cuff=6, cuff_c=19, vneck=1),
     # a padded or puffer jacket: the track jacket's cut with a padded jacket's room (132 cm round the chest, 8 more than
     # the track jacket, so it goes over a sweatshirt or a quarter-zip with its padding; sleeves 48 cm round the bicep),
     # a taller stand collar, a narrow elastic hem and elastic cuffs; worn open (its front in two) or zipped up

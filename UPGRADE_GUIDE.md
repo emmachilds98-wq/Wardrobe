@@ -1,6 +1,6 @@
 # Continuing the upgrade: a guide for the next engineer
 
-Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats and remaining jackets. Read this first, then `STATUS.md` (what is happening now and the
+Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos and V-necks. Read this first, then `STATUS.md` (what is happening now and the
 log), `HANDOFF.md` (how the page fits together) and `CONTRIBUTING.md` (the data rules and every check). The long
 history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections last before "3. Next steps".
 
@@ -13,11 +13,11 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   shapes (stiff shells). The upgrade replaces them with **draped templates**: real flat patterns sewn and settled
   as cloth on Dave in headless Blender (`tools/build_garments.py`, output `data/garments/<template>.json`), then fitted
   to whichever body and layers are worn, in the page (`drapeTops`, `drapeSettle`).
-- **Coverage**: 921 top pieces across the outfits are draped. Only 31 still use `make3Dcore`'s shapes, plus every top
+- **Coverage**: 932 top pieces across the outfits are draped. Only 20 still use `make3Dcore`'s shapes, plus every top
   worn tucked in, which is never draped (`TUCK0`). Run `tools/qa/drape_survey.js` (below) for the live list.
 - **Templates** (`DRAPEF` in `page.html`; `_up` is the same garment done up, and the plain name is worn open where it
   can open, per `DRAPEOPEN`):
-  - Knits and tees: `tee`, `tee_ls`, `jumper`, `rollneck`, `halfzip`, `hoodie`, `kvest`, `vest`.
+  - Knits and tees: `tee`, `tee_ls`, `jumper`, `jumper_v` (a V neck), `rollneck`, `halfzip`, `hoodie`, `kvest`, `vest`.
   - Shirts and polos: `shirt(_up)`, `sshirt(_up)`, `camp(_up)`, `polo`, `polo_ls`.
   - Jackets: `jacket(_up)` (the track jacket's cut), `jacket_hood(_up)`, `jacket_coll(_up)`, `bomber(_up)`,
     `chore(_up)`, `trucker(_up)`, `puffer(_up)`, `puffer_hood(_up)`, `parka(_up)`, `gilet`.
@@ -32,11 +32,10 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 
 | Item | Pieces (outfits) | What it needs |
 | --- | --- | --- |
-| Knitted, zip and rugby polos | 6 (9) | A knitted polo jumper could use `polo_ls` with the jumper's rib; a zip polo needs the half-zip's zip on the polo collar. The biggest visible gain left. |
+| Cardigans and a knit zip overshirt | 2 (4) | A buttoned or zipped knit worn open: `jumper_v`'s V with its front in two. The biggest visible gain left. |
 | Last jackets | 4 (6) | A hooded padded gilet (a `gilet` with `puffer_hood`'s hood), a faux-leather aviator with a shearling collar (a big contrast collar), and two that failed the check once draped: the borg zip-through over a half-zip done up (g-casual-01, its collar) and Carhartt's Super Dux (jb8-superdux, the jumper under it bunched over his tool belt). |
+| Insulated and borg-lined overshirts | 2 (4) | Tog24's insulated Adamson shacket and Matalan's borg-lined overshirt: `chore` with padding, held further off what is under them. |
 | Shirt-collared overcoat | (1) | The ASOS tobacco overcoat has a shirt collar in its photo but takes `overcoat`'s lapels (nothing in its name says otherwise): a `collar` correction in `data/fixes.json` could send it to `carcoat`. |
-| V-neck jumpers | 2 (2) | `jumper` with the `vneck` measure and the rib V that `drapeDetails` lays on `kvest`. Small. |
-| Cardigans | 2 (4) | A buttoned knit, open: the `kvest` V with sleeves, its front in two. |
 | Muscle, racer and mesh vests, vest tops | 3 (3) | Variants of `vest` (deeper armholes, a racer back). Low value. |
 | Baseball henley, mock-neck tee | 2 (3) | Raglan sleeves are not in the builder; low value. |
 | Tucked-in tops | many | Never draped (`TUCK0`): only with tailoring, a belt or a tie. A draped top would need its hem taken inside the trousers. Large job, modest gain. |
