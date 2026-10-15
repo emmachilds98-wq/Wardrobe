@@ -3222,6 +3222,44 @@ the layers under it, so it is now draped from the `chore` template (`chore_up` d
 borg- or sherpa-lined, hooded, leather or waxed one keeps `make3Dcore`'s shapes, as such a chore jacket does (the Tog24
 Adamson and the Matalan borg-lined overshirt). 12 outfits are draped.
 
+**Checked**: the 12 outfits on all five bodies as worn, and done up on dave and loose.
+
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. More jackets on the templates they are cut like (15 Oct 2026)
+
+A survey of the tops still on `make3Dcore`'s shapes found jackets cut like a template that their names did not reach. A
+Carhartt Detroit (duck, cut short to a waistband, a shirt's collar) is now draped from `trucker`; a workwear jacket and a
+wool fleece shirt-jacket from `chore`; a zip microfleece and a smart zip jacket from the track jacket's. A fleece-lined
+one keeps `make3Dcore`'s shapes (the word "fleece" alone no longer rules a jacket out). 12 outfits change.
+
+- *A draped layer over a knitted vest*: a Closure London zip jacket, newly draped, over a chunky knitted vest
+  (`make3Dcore`'s) and a shirt; the vest's shoulders came through the jacket's back on athletic and heavier
+  (g-quiet-09, back poke 73 and 75). A layer is now held 8 mm further off a knitted vest (`innerCols`, `kvest`).
+
+**Checked**: the 12 jacket outfits and the 6 knitted-vest outfits on all five bodies as worn, and done up on dave and
+loose.
+
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped long-sleeved polos (15 Oct 2026)
+
+A new template, `polo_ls`: the polo's body and knitted collar with the long-sleeved tee's sleeves (a little narrower
+round the arm, tapering) and a 5 cm rib cuff. A zip, rugby or knitted-jumper polo keeps `make3Dcore`'s shapes. 8 outfits
+change.
+
+**Checked**: the 8 outfits on all five bodies as worn, and done up on dave and loose.
+
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped vests (tank tops) (15 Oct 2026)
+
+A new template, `vest`: the tee's body a little closer (100 cm round the chest), no sleeves, 5 cm straps either side of
+a wide scooped neckline (14 cm deep at the front, 6 at the back) and deep armholes. A plain tank is draped; a sleeveless
+tee or vest top (a tee's neck and shoulders), a muscle, training, stringer or drop-arm vest and a racer back keep
+`make3Dcore`'s shapes, as does a knitted vest (a jumper). 3 outfits change (rv-black-smart, rv-track, rv-vest-cargo).
+
+- *A tee's neckband on the scoop*: cut as the tee's (a 1.5 cm stand, its top edge 4% shorter), the binding stood up
+  off the scoop and drew it into a shallow V at his throat. Left out, the neckline lies as a turned, stitched edge.
+- *The first cut* (36 cm across the shoulders, a 19 cm neck) hung as a sleeveless tee, its straps out to the point of
+  his shoulder; 29 cm and a 19 cm neck, sloping 2.5 cm, gives a tank's straps.
+
+**Checked**: the 3 outfits on all five bodies as worn, and done up on dave and loose.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

@@ -22,6 +22,17 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: draped vests (tank tops)** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A new template, `vest`: a tank's 5 cm straps, a wide
+scoop and deep armholes. Plain tanks are draped (3 outfits); muscle, racer, training and vest-top cuts keep
+`make3Dcore`'s shapes.
+**Next:** resort and camp shirts (5), knitted vests (8, a V neck), blazers (14), wool coats (6), the other jackets.
+
+**15 Oct: draped long-sleeved polos** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A new template, `polo_ls` (8 outfits).
+
+**15 Oct: more jackets on the templates they are cut like** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A Carhartt Detroit on
+`trucker`, workwear and wool fleece jackets on `chore`, zip microfleeces and smart zip jackets on the track jacket's
+(12 outfits); a layer is held 8 mm further off a knitted vest.
+
 **15 Oct: draped shackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A jacket-weight overshirt (a shacket in
 canvas, nylon or wool) is draped from the chore jacket's template (12 outfits). Insulated, padded and borg-lined ones
 keep `make3Dcore`'s shapes.
@@ -481,7 +492,10 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
-| 15 Oct 2026 | #62 | Shackets draped from the chore jacket template (12 outfits); notes for #61 | (pending) |
+| 15 Oct 2026 | #65 | Draped vests (`vest`: a tank top's straps, scoop and armholes; 3 outfits); notes for #63 and #64 | (pending) |
+| 15 Oct 2026 | #64 | Draped long-sleeved polos (`polo_ls`; 8 outfits) | FtdHKg v62 |
+| 15 Oct 2026 | #63 | More jackets on their templates (Detroit, workwear, wool fleece, zip microfleece, smart zip; 12 outfits); a layer held 8 mm off a knitted vest | FtdHKg v61 |
+| 15 Oct 2026 | #62 | Shackets draped from the chore jacket template (12 outfits); notes for #61 | FtdHKg v60 |
 | 15 Oct 2026 | #61 | Draped short-sleeved shirts (`sshirt`, `sshirt_up`; 33 outfits); a draped shirt's back print as `make3Dcore`'s | FtdHKg v59 |
 | 14 Oct 2026 | #60 | Draped polos (`polo`: rib collar and armbands, two-button placket); a collar leaf held inside a done-up Harrington's stand, not its leaf | FtdHKg v58 |
 | 14 Oct 2026 | #59 | Notes: XPBD substeps tried, not adopted (page unchanged) | (no change) |
