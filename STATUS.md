@@ -512,6 +512,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 15 Oct 2026 | #70 | Draped overcoats and a car coat (`overcoat`, `overcoat_up`: the blazer's lapels on a coat to his knees; `carcoat`, `carcoat_up`: a shirt collar, a fly front; 6 outfits); a coat over 90 cm bound to his thighs too and hung straight in the page; the blazer's lapel line drawn in front only. FtdHKg still to be republished from Emma's account | B8UXnh v9 |
 | 15 Oct 2026 | #69 | Draped blazers (`blazer`, `blazer_up`: a shawl collar, its collar and lapels one piece folded back over a stand that runs down the V to the button; 13 outfits); a shirt's collar kept inside a blazer. FtdHKg still to be republished from Emma's account | B8UXnh v8 |
 | 15 Oct 2026 | none | This account's B8UXnh republished from `main` (0382659, PR #68's build: the page and the 41 `docs/data` files changed since e8a471f). FtdHKg cannot be reached from this account | B8UXnh v7 |
 | 15 Oct 2026 | #68 | Softshell and shell jackets on the track jacket's template, wax, Isthmus and button-up jackets on `chore`, a blouson on `jacket_coll` (9 outfits); `UPGRADE_GUIDE.md` for the next engineer | FtdHKg v66 |
