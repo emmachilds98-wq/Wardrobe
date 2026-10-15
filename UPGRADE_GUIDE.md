@@ -1,6 +1,6 @@
 # Continuing the upgrade: a guide for the next engineer
 
-Written 15 Oct 2026, when work paused after PR #68. Read this first, then `STATUS.md` (what is happening now and the
+Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers. Read this first, then `STATUS.md` (what is happening now and the
 log), `HANDOFF.md` (how the page fits together) and `CONTRIBUTING.md` (the data rules and every check). The long
 history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections last before "3. Next steps".
 
@@ -13,7 +13,7 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   shapes (stiff shells). The upgrade replaces them with **draped templates**: real flat patterns sewn and settled
   as cloth on Dave in headless Blender (`tools/build_garments.py`, output `data/garments/<template>.json`), then fitted
   to whichever body and layers are worn, in the page (`drapeTops`, `drapeSettle`).
-- **Coverage**: 890 top pieces across the outfits are draped. Only 62 still use `make3Dcore`'s shapes, plus every top
+- **Coverage**: 903 top pieces across the outfits are draped. Only 49 still use `make3Dcore`'s shapes, plus every top
   worn tucked in, which is never draped (`TUCK0`). Run `tools/qa/drape_survey.js` (below) for the live list.
 - **Templates** (`DRAPEF` in `page.html`; `_up` is the same garment done up, and the plain name is worn open where it
   can open, per `DRAPEOPEN`):
@@ -21,6 +21,7 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   - Shirts and polos: `shirt(_up)`, `sshirt(_up)`, `camp(_up)`, `polo`, `polo_ls`.
   - Jackets: `jacket(_up)` (the track jacket's cut), `jacket_hood(_up)`, `jacket_coll(_up)`, `bomber(_up)`,
     `chore(_up)`, `trucker(_up)`, `puffer(_up)`, `puffer_hood(_up)`, `parka(_up)`, `gilet`.
+  - Tailoring: `blazer(_up)` (a shawl collar: the collar and lapels in one, rolled down the V to the button).
   - Accessories: `scarf`.
 - **Which template a piece gets**: `drapeArch(p)` in `page.html` decides, from the piece's shape and the words in its
   item name and `what`. It returns `null` for anything a template would draw wrongly; that piece keeps `make3Dcore`'s
@@ -30,8 +31,8 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 
 | Item | Pieces (outfits) | What it needs |
 | --- | --- | --- |
-| Blazers and suits | 10 (15) | A template with lapels. See "Blazers: the idea parked" below. The biggest visible gain left. |
-| Wool overcoats, car coat | 5 (6) | The blazer's lapels on a long coat (95 to 105 cm), once blazers work. |
+| Wool overcoats, car coat | 5 (6) | The blazer's `lapel_stand` and `lapel_leaf` on a long coat (95 to 105 cm), roomier for a jacket under it. See "Lapels" below. The biggest visible gain left. |
+| Hybrid blazer | 1 (1) | The Closure London hybrid (a padded front, knitted sleeves) keeps `make3Dcore`'s shapes. |
 | Other jackets | 13 (14) | Hooded wax, borg, sherpa-lined, faux leather with a shearling collar, padded ski, 3-in-1; and 4 whose cut is unknown from the name (Folk Zaki, Brakeburn Classic Navy, Patrick Finn, Napapijri Bisenzio): look at the shop photos before choosing a template. |
 | Knitted, zip and rugby polos | 6 (9) | A knitted polo jumper could use `polo_ls` with the jumper's rib; a zip polo needs the half-zip's zip on the polo collar. |
 | V-neck jumpers | 2 (2) | `jumper` with the `vneck` measure and the rib V that `drapeDetails` lays on `kvest`. Small. |
@@ -43,18 +44,20 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 
 Also noticed, not fixed: on rv-black-smart the link chain is drawn as a straight bar across his neck, on `main` too.
 
-### Blazers: the idea parked
+### Lapels (the blazer, 15 Oct 2026)
 
-Not shipped; tried for a few minutes before the pause, never rendered. The builder now has a `vneck` measure (the
-front's neckline runs straight down to its point, `bodice`), and `camp_up` showed that a shirt collar (stand plus
-folded leaf) sewn round a V neckline lies open down both sides of the V like a small lapel. So a first blazer could be:
-the jacket's body (about 112 cm round the chest, 76 long), `vneck` with `neck_f` about 30 (to the top button at his
-waist), `collar=3, leaf=5.5, point=9`, `open=1` for worn open and a `blazer_up` without it. That gives a **shawl
-lapel** (no notch), which may be close enough on screen. Then render it and check whether the leaf lies flat on the
-chest or stands up. The placement in `close_seams` drops a leaf "down and out" from the ring's centre, which is right
-at the back of the neck but not low on the chest, where a lapel should fall sideways. A notched lapel would need a
-lapel piece of its own sewn along the V and placed folded back. `make3Dcore`'s blazer has much behaviour to keep
-(done up at the waist, the shirt and tie in the V: `vDone`, `fitTop`'s `gapAt`, `upperArt`); read those first.
+Shipped as `blazer` and `blazer_up`; the full story is in `UPGRADE_PLAN.md`, "Draped blazers". The front's neckline is a
+V 44 cm deep (`vneck`) to the top button. Two pieces make the collar:
+
+- `lapel_stand` is sewn round the whole neckline. It is 3 cm high at the back and narrows down the V to half a centimetre
+  at the button, so its top edge is the roll line. `close_seams` stands it straight up at the back and lays it in across
+  his chest down the V, carried on from the front.
+- `lapel_leaf` (`lapel` measure) is the collar and lapels in one. It is folded back over the stand and laid 7 mm out on
+  the cloth; `relax` keeps it out over the front while the cloth is eased (its `over` argument).
+
+The page turns the leaf's triangles round when it loads the template (`drapeTurn`): folded back, it faces in as cut.
+A blazer keeps a shirt's collar inside it (`leafIn`), and its own lapels are never laid out over a coat. A notched lapel
+is drawn as a shawl. For an overcoat, start from the blazer's entry in `MEAS` with a longer, roomier body.
 
 ## How to add or extend a template
 
@@ -130,6 +133,9 @@ lapel piece of its own sewn along the V and placed folded back. `make3Dcore`'s b
 - **A photo print on the back** of a draped top follows `make3Dcore`'s rule: on a shirt or polo, only when it is a
   big print, and never on a shirt worn open. Some photo crops are a model's arm.
 - **XPBD substeps in `drapeSettle`** were tried and rejected: slower, and the cloth stretched more.
+- **A piece folded back faces in.** A collar leaf or lapel is cut facing out and folded over, so its normals point in
+  toward him. The page uses normals to hold the layers under a garment inside it, so a lapel facing in pushed a shirt's
+  collar out through it. Turn such a piece round on load (`drapeTurn`), as the blazer's is.
 - **The word rules in `drapeArch`** are matched against the item name plus the outfit's `what`. A word in either can
   send a piece to the wrong branch: "softshell work jacket" matched the chore jacket's words. Survey after every rule
   change.

@@ -25,9 +25,13 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: draped blazers** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `blazer` and `blazer_up`: a tailored
+jacket with a shawl collar, its collar and lapels one piece folded back over a stand that runs down the V to the button
+(13 outfits; worn open or buttoned). **Next:** see `UPGRADE_GUIDE.md` ("What is left"): wool overcoats on the same
+lapel pieces.
+
 **15 Oct: softshell, shell, wax and wool-look jackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Softshells and shells on
 the track jacket's template, wax, Isthmus and button-up jackets on `chore`, a blouson on `jacket_coll` (9 outfits).
-**Next:** see `UPGRADE_GUIDE.md` ("What is left"): blazers and wool coats need a template with lapels.
 
 **15 Oct: draped resort shirts** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `camp` and `camp_up`: a boxier
 short-sleeved shirt with a camp collar lying open (in a V to the top button done up). 5 outfits; they had no collar before.
@@ -504,6 +508,8 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 15 Oct 2026 | #69 | Draped blazers (`blazer`, `blazer_up`: a shawl collar, its collar and lapels one piece folded back over a stand that runs down the V to the button; 13 outfits); a shirt's collar kept inside a blazer. FtdHKg still to be republished from Emma's account | B8UXnh v8 |
+| 15 Oct 2026 | none | This account's B8UXnh republished from `main` (0382659, PR #68's build: the page and the 41 `docs/data` files changed since e8a471f). FtdHKg cannot be reached from this account | B8UXnh v7 |
 | 15 Oct 2026 | #68 | Softshell and shell jackets on the track jacket's template, wax, Isthmus and button-up jackets on `chore`, a blouson on `jacket_coll` (9 outfits); `UPGRADE_GUIDE.md` for the next engineer | FtdHKg v66 |
 | 15 Oct 2026 | #67 | Draped resort shirts (`camp`, `camp_up`: a camp collar lying open; 5 outfits) | FtdHKg v65 |
 | 15 Oct 2026 | #66 | Draped knitted vests (`kvest`: a V neck, its rib laid round the V; 6 outfits) | FtdHKg v64 |
