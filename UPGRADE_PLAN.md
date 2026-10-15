@@ -3529,6 +3529,35 @@ half-zip or a jumper and under an open jacket or a gilet, they showed two faults
 **Checked**: the 20 outfits with a collared top under an open collared jacket, on all five bodies as worn and done up on
 dave and loose, and their collars before and after, close up. Stored specs unchanged.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Two tries that did not ship: open-over-open layering, a shirt-collared overcoat (15 Oct 2026)
+
+No change to the page; what was learnt, for whoever takes these on.
+
+*An open overshirt under an open jacket* (g-mod-15: a half-zip, Luke 1977's black shacket on `chore`, Patrick Finn's
+pale jacket on `chore`). With a temporary hook keeping each draped layer's settled points, measured against the jacket's
+nearest point and normal: 345 of the shacket's 4,516 body points lie outside the jacket, almost all on the front, 1.5 to
+11 cm from the jacket's opening, by a median of 5 mm and up to 20; elsewhere the jacket stands a healthy 10 mm off it.
+They are outside already after the jacket's own settle over the shacket (569 points before the pass that holds inner
+layers in, 345 after it). Tried, each measured the same way:
+
+- the hold-in pass's reach from 2 to 4 cm, and 60 steps instead of 20: 352, 339 and 376 points outside;
+- holding the shacket with the jacket's cloth that faces in too. `inCol` leaves out cloth facing in toward his middle
+  (for a padded jacket's front curling in at its corner); of the jacket's 285 such points on the front, 211 are neither
+  over nor under another ply, so they are the far sides of ordinary creases in an open front, not a fold. Including them
+  by angle (down to cosines of -0.3, -0.6, or all): 304, 325 and 277 points outside;
+- a thinner push off the half-zip under it in that pass (5 and 3 mm instead of 10): the shacket stays out (319, 327) and
+  the half-zip comes through the shacket instead (141 and 117 points).
+
+So the jacket's settle over it fails first, in the creases of its open front, and the hold-in cannot undo it. Next to
+try: settling the jacket and the overshirt together, or flattening an open front's creases where a layer is under it.
+
+*The shirt-collared overcoat.* ASOS's tobacco wool-look overcoat (cold-commute) has a pointed shirt collar buttoned to
+the neck and raglan sleeves in its shop photo, a balmacaan, though its name says overcoat (the black one in the same
+range has lapels, and `overcoat` is right for it). A `collar` correction in `data/fixes.json` (`shirt` or `lapel`, read by
+`drapeArch` through `normFix`) sent it to `carcoat`. Worn open, `carcoat`'s collar hardly shows, as on `main` in
+ms-one-shop, and the coat fell to mid-thigh, not below his knee as in the photo; `overcoat`'s long coat with lapels was
+the better likeness, so the correction was taken out. Next: make `carcoat`'s collar show worn open.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
