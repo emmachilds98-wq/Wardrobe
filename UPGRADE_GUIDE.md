@@ -1,6 +1,6 @@
 # Continuing the upgrade: a guide for the next engineer
 
-Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers. Read this first, then `STATUS.md` (what is happening now and the
+Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers and overcoats. Read this first, then `STATUS.md` (what is happening now and the
 log), `HANDOFF.md` (how the page fits together) and `CONTRIBUTING.md` (the data rules and every check). The long
 history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections last before "3. Next steps".
 
@@ -13,7 +13,7 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   shapes (stiff shells). The upgrade replaces them with **draped templates**: real flat patterns sewn and settled
   as cloth on Dave in headless Blender (`tools/build_garments.py`, output `data/garments/<template>.json`), then fitted
   to whichever body and layers are worn, in the page (`drapeTops`, `drapeSettle`).
-- **Coverage**: 903 top pieces across the outfits are draped. Only 49 still use `make3Dcore`'s shapes, plus every top
+- **Coverage**: 909 top pieces across the outfits are draped. Only 43 still use `make3Dcore`'s shapes, plus every top
   worn tucked in, which is never draped (`TUCK0`). Run `tools/qa/drape_survey.js` (below) for the live list.
 - **Templates** (`DRAPEF` in `page.html`; `_up` is the same garment done up, and the plain name is worn open where it
   can open, per `DRAPEOPEN`):
@@ -22,6 +22,7 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   - Jackets: `jacket(_up)` (the track jacket's cut), `jacket_hood(_up)`, `jacket_coll(_up)`, `bomber(_up)`,
     `chore(_up)`, `trucker(_up)`, `puffer(_up)`, `puffer_hood(_up)`, `parka(_up)`, `gilet`.
   - Tailoring: `blazer(_up)` (a shawl collar: the collar and lapels in one, rolled down the V to the button).
+  - Coats: `overcoat(_up)` (the blazer's lapels on a coat to his knees), `carcoat(_up)` (a shirt collar, a fly front).
   - Accessories: `scarf`.
 - **Which template a piece gets**: `drapeArch(p)` in `page.html` decides, from the piece's shape and the words in its
   item name and `what`. It returns `null` for anything a template would draw wrongly; that piece keeps `make3Dcore`'s
@@ -31,9 +32,9 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 
 | Item | Pieces (outfits) | What it needs |
 | --- | --- | --- |
-| Wool overcoats, car coat | 5 (6) | The blazer's `lapel_stand` and `lapel_leaf` on a long coat (95 to 105 cm), roomier for a jacket under it. See "Lapels" below. The biggest visible gain left. |
+| Other jackets | 13 (14) | Hooded wax, borg, sherpa-lined, faux leather with a shearling collar, padded ski, 3-in-1; and 4 whose cut is unknown from the name (Folk Zaki, Brakeburn Classic Navy, Patrick Finn, Napapijri Bisenzio): look at the shop photos before choosing a template. The biggest visible gain left. |
 | Hybrid blazer | 1 (1) | The Closure London hybrid (a padded front, knitted sleeves) keeps `make3Dcore`'s shapes. |
-| Other jackets | 13 (14) | Hooded wax, borg, sherpa-lined, faux leather with a shearling collar, padded ski, 3-in-1; and 4 whose cut is unknown from the name (Folk Zaki, Brakeburn Classic Navy, Patrick Finn, Napapijri Bisenzio): look at the shop photos before choosing a template. |
+| Shirt-collared overcoat | (1) | The ASOS tobacco overcoat has a shirt collar in its photo but takes `overcoat`'s lapels (nothing in its name says otherwise): a `collar` correction in `data/fixes.json` could send it to `carcoat`. |
 | Knitted, zip and rugby polos | 6 (9) | A knitted polo jumper could use `polo_ls` with the jumper's rib; a zip polo needs the half-zip's zip on the polo collar. |
 | V-neck jumpers | 2 (2) | `jumper` with the `vneck` measure and the rib V that `drapeDetails` lays on `kvest`. Small. |
 | Cardigans | 2 (4) | A buttoned knit, open: the `kvest` V with sleeves, its front in two. |
@@ -57,7 +58,7 @@ V 44 cm deep (`vneck`) to the top button. Two pieces make the collar:
 
 The page turns the leaf's triangles round when it loads the template (`drapeTurn`): folded back, it faces in as cut.
 A blazer keeps a shirt's collar inside it (`leafIn`), and its own lapels are never laid out over a coat. A notched lapel
-is drawn as a shawl. For an overcoat, start from the blazer's entry in `MEAS` with a longer, roomier body.
+is drawn as a shawl. The overcoat uses the same two pieces on a longer, roomier body.
 
 ## How to add or extend a template
 
@@ -133,6 +134,10 @@ is drawn as a shawl. For an overcoat, start from the blazer's entry in `MEAS` wi
 - **A photo print on the back** of a draped top follows `make3Dcore`'s rule: on a shirt or polo, only when it is a
   big print, and never on a shirt worn open. Some photo crops are a model's arm.
 - **XPBD substeps in `drapeSettle`** were tried and rejected: slower, and the cloth stretched more.
+- **A long coat needs its thighs and to hang.** Bound to his hips only, a coat's skirt was placed by triangles far
+  away, and the page swung it in. Pushed out only where something is under it, it stood out over his seat and fell back
+  in below. A garment over 90 cm is bound to his thighs too (`write_template`) and hung straight in the page
+  (`drapeHang`).
 - **A piece folded back faces in.** A collar leaf or lapel is cut facing out and folded over, so its normals point in
   toward him. The page uses normals to hold the layers under a garment inside it, so a lapel facing in pushed a shirt's
   collar out through it. Turn such a piece round on load (`drapeTurn`), as the blazer's is.
