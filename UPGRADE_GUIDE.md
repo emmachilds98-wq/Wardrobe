@@ -1,6 +1,6 @@
 # Continuing the upgrade: a guide for the next engineer
 
-Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers and overcoats. Read this first, then `STATUS.md` (what is happening now and the
+Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats and remaining jackets. Read this first, then `STATUS.md` (what is happening now and the
 log), `HANDOFF.md` (how the page fits together) and `CONTRIBUTING.md` (the data rules and every check). The long
 history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections last before "3. Next steps".
 
@@ -13,7 +13,7 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   shapes (stiff shells). The upgrade replaces them with **draped templates**: real flat patterns sewn and settled
   as cloth on Dave in headless Blender (`tools/build_garments.py`, output `data/garments/<template>.json`), then fitted
   to whichever body and layers are worn, in the page (`drapeTops`, `drapeSettle`).
-- **Coverage**: 909 top pieces across the outfits are draped. Only 43 still use `make3Dcore`'s shapes, plus every top
+- **Coverage**: 921 top pieces across the outfits are draped. Only 31 still use `make3Dcore`'s shapes, plus every top
   worn tucked in, which is never draped (`TUCK0`). Run `tools/qa/drape_survey.js` (below) for the live list.
 - **Templates** (`DRAPEF` in `page.html`; `_up` is the same garment done up, and the plain name is worn open where it
   can open, per `DRAPEOPEN`):
@@ -32,10 +32,9 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 
 | Item | Pieces (outfits) | What it needs |
 | --- | --- | --- |
-| Other jackets | 13 (14) | Hooded wax, borg, sherpa-lined, faux leather with a shearling collar, padded ski, 3-in-1; and 4 whose cut is unknown from the name (Folk Zaki, Brakeburn Classic Navy, Patrick Finn, Napapijri Bisenzio): look at the shop photos before choosing a template. The biggest visible gain left. |
-| Hybrid blazer | 1 (1) | The Closure London hybrid (a padded front, knitted sleeves) keeps `make3Dcore`'s shapes. |
+| Knitted, zip and rugby polos | 6 (9) | A knitted polo jumper could use `polo_ls` with the jumper's rib; a zip polo needs the half-zip's zip on the polo collar. The biggest visible gain left. |
+| Last jackets | 4 (6) | A hooded padded gilet (a `gilet` with `puffer_hood`'s hood), a faux-leather aviator with a shearling collar (a big contrast collar), and two that failed the check once draped: the borg zip-through over a half-zip done up (g-casual-01, its collar) and Carhartt's Super Dux (jb8-superdux, the jumper under it bunched over his tool belt). |
 | Shirt-collared overcoat | (1) | The ASOS tobacco overcoat has a shirt collar in its photo but takes `overcoat`'s lapels (nothing in its name says otherwise): a `collar` correction in `data/fixes.json` could send it to `carcoat`. |
-| Knitted, zip and rugby polos | 6 (9) | A knitted polo jumper could use `polo_ls` with the jumper's rib; a zip polo needs the half-zip's zip on the polo collar. |
 | V-neck jumpers | 2 (2) | `jumper` with the `vneck` measure and the rib V that `drapeDetails` lays on `kvest`. Small. |
 | Cardigans | 2 (4) | A buttoned knit, open: the `kvest` V with sleeves, its front in two. |
 | Muscle, racer and mesh vests, vest tops | 3 (3) | Variants of `vest` (deeper armholes, a racer back). Low value. |

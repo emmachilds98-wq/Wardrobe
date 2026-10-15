@@ -3384,6 +3384,33 @@ still drawn as a shawl; a shirt-collared overcoat would need a `collar` correcti
 of the neck, the blazer's lapel line, until the line was drawn in front only); the gate set on dave as worn and on loose
 done up. Stored specs unchanged; the four coat templates rebuild byte for byte.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. The remaining jackets on their templates (15 Oct 2026)
+
+The jackets left on `make3Dcore`'s shapes were looked at in their shop photos, and most are cut like a template
+already made. `drapeArch` now sends:
+
+- to `chore` (boxy, buttoned, a shirt collar): Patrick Finn's jacket and Folk's Zaki jacket, shirt-jackets with flapped
+  chest pockets (nothing in their names says so);
+- to `jacket` (the track jacket's cut, a stand collar, zipped): Brakeburn's Classic and Napapijri's Bisenzio, zipped to
+  a stand collar in their photos, and Closure London's smart hybrid jacket, worn as a blazer (a quilted front and
+  knitted sleeves zipped to a stand collar);
+- to `jacket_hood`: a hooded wax jacket and a 3-in-1 waterproof (its shell);
+- to `puffer_hood`: a padded ski jacket, hooded and padded to the hip.
+
+8 jackets in 12 outfits change, and the layers under them are draped too. Draped top pieces go from 909 to 921.
+
+- *Carhartt's sherpa-lined Super Dux on `jacket_hood`*: draped, it brought the jumper under it into the drape, and the
+  jumper's hem bunched over the top of his tool belt (jb8-superdux front poke 71 to 102 on three bodies). It keeps
+  `make3Dcore`'s shapes.
+- *The borg zip-through on `jacket`*: over a half-zip done up, the half-zip's collar came through the jacket's stand
+  collar and shoulders on the slim and heavier bodies (g-casual-01 back poke 44 and 57). It keeps `make3Dcore`'s shapes.
+
+Left: those two, a hooded padded gilet and a faux-leather aviator with a shearling collar. The pale Patrick Finn jacket
+shows the dark half-zip under it in a few creases close up (g-mod-15), under the check's limits.
+
+**Checked**: the 15 outfits (the 12 that change and the 3 of the two jackets left out) on all five bodies as worn and done
+up on dave and loose before the two were left out, then the survey: exactly the 8 jackets moved. Stored specs unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
