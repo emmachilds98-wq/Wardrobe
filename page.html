@@ -3834,11 +3834,12 @@ function jacketShirt(p){return overshirt(p)&&/shacket|shirt jacket|chore|insulat
    first, against his body, the clothes under it and the layers already settled; a hoodie's hood last, out over
    anything worn over the hoodie. Lengths are the draped garment's on his saved shape, so on him it keeps its drape;
    on another body it moves with him and settles. See UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzz. */
-var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt",gilet:"gilet",polo:"polo",sshirt:"sshirt",vest:"vest",blazer:"blazer",cardigan:"cardigan"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up","gilet","scarf","puffer","puffer_up","tee_ls","jacket_hood","jacket_hood_up","jacket_coll","jacket_coll_up","puffer_hood","puffer_hood_up","parka","parka_up","chore","chore_up","trucker","trucker_up","bomber","bomber_up","polo","sshirt","sshirt_up","polo_ls","vest","kvest","camp","camp_up","blazer","blazer_up","overcoat","overcoat_up","carcoat","carcoat_up","jumper_v","cardigan","cardigan_up"];   /* (jacket_up, shirt_up, puffer_up, jacket_hood_up, jacket_coll_up, puffer_hood_up, parka_up, chore_up, trucker_up, bomber_up, blazer_up, overcoat_up, carcoat_up, cardigan_up: the jacket zipped up, the shirt done up, the padded, hooded, collared and hooded padded jackets and the parka zipped up, the blazer, the overcoat, the car coat and the cardigan buttoned, for one worn closed; tee_ls: a tee with long sleeves) */
+var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt",gilet:"gilet",polo:"polo",sshirt:"sshirt",vest:"vest",blazer:"blazer",cardigan:"cardigan"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up","gilet","scarf","puffer","puffer_up","tee_ls","jacket_hood","jacket_hood_up","jacket_coll","jacket_coll_up","puffer_hood","puffer_hood_up","parka","parka_up","chore","chore_up","trucker","trucker_up","bomber","bomber_up","polo","sshirt","sshirt_up","polo_ls","vest","kvest","camp","camp_up","blazer","blazer_up","overcoat","overcoat_up","carcoat","carcoat_up","jumper_v","cardigan","cardigan_up","gilet_hood","aviator","aviator_up"];   /* (jacket_up, shirt_up, puffer_up, jacket_hood_up, jacket_coll_up, puffer_hood_up, parka_up, chore_up, trucker_up, bomber_up, blazer_up, overcoat_up, carcoat_up, cardigan_up, aviator_up: the jacket zipped up, the shirt done up, the padded, hooded, collared and hooded padded jackets and the parka zipped up, the blazer, the overcoat, the car coat and the cardigan buttoned and the aviator zipped up, for one worn closed; gilet_hood: a
+   gilet with a hood, done up; tee_ls: a tee with long sleeves) */
 /* (the templates with a stand collar done up round his neck) */
-var STANDC={gilet:1,jacket_up:1,halfzip:1,rollneck:1,puffer_up:1,jacket_coll_up:1,chore_up:1,trucker_up:1,bomber_up:1,carcoat_up:1};
+var STANDC={gilet:1,jacket_up:1,halfzip:1,rollneck:1,puffer_up:1,jacket_coll_up:1,chore_up:1,trucker_up:1,bomber_up:1,carcoat_up:1,aviator_up:1};
 /* (the templates that open: drawn from the template of that name worn open, and from name_up done up) */
-var DRAPEOPEN={jacket:1,shirt:1,sshirt:1,puffer:1,jacket_hood:1,jacket_coll:1,puffer_hood:1,parka:1,chore:1,trucker:1,bomber:1,camp:1,blazer:1,overcoat:1,carcoat:1,cardigan:1};
+var DRAPEOPEN={jacket:1,shirt:1,sshirt:1,puffer:1,jacket_hood:1,jacket_coll:1,puffer_hood:1,parka:1,chore:1,trucker:1,bomber:1,camp:1,blazer:1,overcoat:1,carcoat:1,cardigan:1,aviator:1};
 /* (a template whose front is cut in two, worn open: the jacket, the shirt and the padded jacket) */
 function drapeSplit(t){return !!DRAPEOPEN[t.arch];}
 /* (a split template's welded points within 3.5 cm of its fronts' centre edge on the pattern, the edges of its opening) */
@@ -3897,11 +3898,24 @@ function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.
   if(a==="tee"){if(/raglan|baseball|vest|sleeveless|tank|crop|mock[- ]?neck/.test(n)||D.neck==="v"||D.neck==="mock")return null;
     if(/long[- ]?sleeve|longsleeve|\bl\/s\b|\blong\b/.test(n))return GTPL.tee_ls?"tee_ls":null;   /* (not a longline tee: a long body, short sleeves) */if(/henley/.test(n)||D.neck==="henley")return null;}
   if(a==="jacket"){
+    /* (a hooded longline waterproof filed as a jacket: parka, a hooded zip jacket cut long, as it is filed as a coat
+       (Animal Elements', g-outdoor-20). A padded, wool, fur, sherpa, borg, leather or suede one, a 3-in-1 and a poncho
+       keep make3Dcore's shapes) */
+    if(hoodOn(p,n)&&/longline|long line/.test(n)&&!/puffer|puffa|padded|quilt|insulat|wool|fur\b|sherpa|borg|leather|suede|denim|3[- ]in[- ]1|poncho|cape/.test(n))return GTPL.parka?"parka":null;
+    /* (a smart hybrid jacket, a quilted front and knitted sleeves zipped to a stand collar in Closure London's shop photo:
+       the track jacket's cut, as it is filed as a blazer, g-quiet-20) */
+    if(/hybrid/.test(n)&&!hoodOn(p,n))return GTPL.jacket?"jacket":null;
+    /* (an aviator or flying jacket, faux leather or suede with a shearling collar: aviator, the collared jacket's cut with
+       a waistband and a big collar, drawn in the shearling's colour. A hooded or padded one keeps make3Dcore's shapes) */
+    if(/aviator|flying jacket|shearling[- ](style )?collar|\bb-?3\b/.test(n)&&/leather|suede|aviator|flying/.test(n))return GTPL.aviator&&!hoodOn(p,n)&&!/puffer|puffa|padded|quilt/.test(n)?"aviator":null;
+    /* (a borg or teddy fleece zip-through, thick pile zipped to a tall stand collar in Closure London's shop photo: the
+       padded jacket's room and taller collar, puffer. Over a half-zip it keeps make3Dcore's shapes: see by TUCK0) */
+    if(/borg|teddy/.test(n)&&/zip[- ]?(through|up)\b|full[- ]?zip|borg jacket|teddy jacket/.test(n)&&!hoodOn(p,n)&&!/lined|leather|suede|denim|trucker|aviator|collar/.test(n))return GTPL.puffer?"puffer":null;
     /* (a hooded zip jacket, a shell, windbreaker, softshell or hooded fleece: jacket_hood; so a hooded wax jacket and a
        3-in-1 waterproof (its shell, the warm layer zipped in under it), each a hooded zip jacket in its shop photo. A
        padded or insulated one (the puffer's room), a parka, a denim or sherpa-lined jacket and a ski jacket keep
-       make3Dcore's shapes. (Carhartt's sherpa-lined Super Dux, draped, brought the jumper under it into the drape, and
-       the jumper's hem bunched over the top of his tool belt, jb8-superdux) */
+       make3Dcore's shapes. (Carhartt's sherpa-lined Super Dux, draped here and on puffer_hood, brought the tee under it
+       into the drape, and the tee's hem showed between the jacket's and the top of his tool belt, jb8-superdux) */
     if(hoodOn(p,n)&&GTPL.jacket_hood&&!/puffer|puffa|padded|quilt|insulat|(^|[^-\w])down\b|parka|longline|\bcoat\b|ski\b|denim|trucker|sherpa|borg|leather|suede|anorak|cagoule|smock|half[- ]?zip|overhead|pullover/.test(n))return "jacket_hood";
     /* (a collared zip jacket, a Harrington, coach, Capitol or Eisenhower jacket or a collar blouson: jacket_coll, a shirt's
        collar a size up on the jacket's cut. Not a denim or trucker jacket, nor a field or chore jacket (buttoned, below:
@@ -3931,8 +3945,7 @@ function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.
       var cj=/chore|utility jacket|field jacket|work(wear)? jacket|wool fleece|wax(ed)? jacket|isthmus|button[- ]up jacket|patrick finn|zaki/.test(n)&&!/detroit/.test(n)?"chore":"trucker";return GTPL[cj]?cj:null;}
     /* (the track jacket's cut: a track, tricot, softshell or windbreaker jacket, a funnel-neck or zip-through one, a zip
        microfleece, a smart zip jacket, and two whose names do not say, zipped to a stand collar in their shop photos:
-       Brakeburn's Classic and Napapijri's Bisenzio. A borg one keeps make3Dcore's shapes: draped over a half-zip done up,
-       the half-zip's collar came through its stand collar and shoulders on the slim and heavier bodies, g-casual-01) */
+       Brakeburn's Classic and Napapijri's Bisenzio. A borg zip-through takes the padded jacket's cut, above) */
     if(!/track|tricot|venaria|softshell|windbreaker|funnel|zip[- ]?(through|up)\b|full[- ]?zip|smart zip|zip jacket|microfleece|\bfleece jacket|brakeburn classic|bisenzio/.test(n)||/puffer|padded|quilt|parka|denim|trucker|harrington|bomber|leather|suede|coach|chore|work|hood|wax|fleece[- ]lined|sherpa|borg|down\b|hybrid/.test(n)||hoodOn(p,n))return null;}
   /* (a jacket-weight overshirt, a shacket in canvas, nylon or wool, is a chore jacket's cut: the chore template, boxy and
      buttoned with a shirt collar. An insulated, padded, quilted, borg- or sherpa-lined, hooded, leather or waxed one keeps
@@ -3946,9 +3959,11 @@ function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.
      collar, and a long-sleeved one keep make3Dcore's shapes) */
   if(a==="sshirt"&&(/grandad|granddad|mandarin|band collar|collarless|long[- ]?sleeve|\bl\/s\b/.test(n)||D.collar==="band"||jacketShirt(p)))return null;
   if(a==="sshirt"&&(D.collar==="camp"||/camp collar|cuban|revere|resort|hawaii|aloha|bowling/.test(n)))return GTPL.camp?"camp":null;
-  /* (the gilet template is a bodywarmer done up, zipped to its stand collar: a hooded one keeps make3Dcore's shapes, and
-     one worn open does (make3Dcore: only a jacket's and a shirt's templates open)) */
-  if(a==="gilet"&&/hood|tailor|suit|waistcoat/.test(n))return null;
+  /* (the gilet template is a bodywarmer done up, zipped to its stand collar; a hooded one is gilet_hood, the gilet's cut
+     with the hooded padded jacket's hood (Luke 1977's BUB, a quilted gilet with a hood in its shop photo). A tailored or
+     suit gilet keeps make3Dcore's shapes, and one worn open does (make3Dcore: only a jacket's and a shirt's templates open)) */
+  if(a==="gilet"&&/tailor|suit|waistcoat/.test(n))return null;
+  if(a==="gilet"&&(hoodOn(p,n)||/hood/.test(n)))return GTPL.gilet_hood?"gilet_hood":null;
   return a;}
 function gtplDec(b64,A){var s=atob(b64),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return new A(u.buffer);}
 function gtplPart(d){var o={n:d.n,m:d.m,pieces:d.pieces,pos:gtplDec(d.pos,Float32Array),vmap:gtplDec(d.vmap,Uint16Array),piece:gtplDec(d.piece,Uint8Array),
@@ -4230,18 +4245,18 @@ function drapeDetails(man,p,t,X,N,ctx,kind,proj){var T=window.THREE,DS=p.desc||{
     line([on("front",-0.011,hb,0.0012),on("front",0,hb,0.0012),on("front",0.011,hb,0.0012)],0.0006,seamK,6);
     [0.02,0.05,0.08].forEach(function(d){var q=drapeAt(t,X,N,"front",0,ht-d);if(!q)return;var b=new T.Mesh(new T.CylinderGeometry(0.0035,0.0035,0.002,12),hm);
       b.position.set(q.p[0]+q.n[0]*0.0018,q.p[1]+q.n[1]*0.0018,q.p[2]+q.n[2]*0.0018);b.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),new T.Vector3(q.n[0],q.n[1],q.n[2]));out.push(b);});}
-  if(t.arch==="jacket_up"||t.arch==="puffer_up"||t.arch==="gilet"||t.arch==="jacket_coll_up"||t.arch==="bomber_up"){   /* zipped up: the zip from the collar's top down the middle to the hem */
+  if(t.arch==="jacket_up"||t.arch==="puffer_up"||t.arch==="gilet"||t.arch==="jacket_coll_up"||t.arch==="bomber_up"||t.arch==="aviator_up"){   /* zipped up: the zip from the collar's top down the middle to the hem */
     var C2=drapeExt(t,"collar"),B2=drapeExt(t,"front_band"),zu=[];for(var k=0;k<=3;k++)zu.push(on("collar",C2.x1-0.002,C2.y1*(1-k/3),0.003));
     for(k=1;k<=14;k++)zu.push(on("front",0,F.ym-(F.ym-F.y0)*k/14,0.003));zu.push(on("front_band",0,B2.y0+0.004,0.003));
     line(zu,0.0035,/harrington|denim|leather|suede|duck|canvas|detroit|carhartt|bomber|work/.test(n0)?ctx.metal:ctx.mat(shade(col,0.72),0.55),40);
     var tb2=on("collar",C2.x1-0.002,C2.y1-0.01,0.007);if(tb2){var tb3=new T.Mesh(new T.BoxGeometry(0.008,0.022,0.004),ctx.metal);tb3.position.set(tb2[0],tb2[1],tb2[2]);out.push(tb3);}}
-  if(t.arch==="jacket_hood_up"||t.arch==="puffer_hood_up"||t.arch==="parka_up"){   /* zipped up: the zip from the neckline down the middle to the hem, its pull at the top */
+  if(t.arch==="jacket_hood_up"||t.arch==="puffer_hood_up"||t.arch==="parka_up"||t.arch==="gilet_hood"){   /* zipped up: the zip from the neckline down the middle to the hem, its pull at the top */
     var B5=drapeExt(t,"front_band"),zh=[];for(var k=0;k<=14;k++)zh.push(on("front",0,F.ym-0.004-(F.ym-0.004-F.y0)*k/14,0.003));zh.push(on("front_band",0,B5.y0+0.004,0.003));
     line(zh,0.0035,ctx.mat(shade(col,0.72),0.55),40);var tb5=on("front",0,F.ym-0.014,0.007);if(tb5){var tb6=new T.Mesh(new T.BoxGeometry(0.008,0.022,0.004),ctx.metal);tb6.position.set(tb5[0],tb5[1],tb5[2]);out.push(tb6);}}
   if(t.arch==="gilet"&&/pocket|cargo|chore|field|work|safari|utility/.test(n0)){   /* a work bodywarmer's patch pockets low on the front, either side of the zip (make3Dcore's) */
     var pm4=ctx.pm(p).clone();pm4.side=T.DoubleSide;[[0.06,0.2],[-0.2,-0.06]].forEach(function(q){var yb=F.y0+0.03,yt=yb+0.16;patch("front",q[0],q[1],q[0],q[1],yb,yt,0.0028,pm4);
       line([on("front",q[0],yt,0.0034),on("front",q[1],yt,0.0034)],0.0012,seamK,6);});}
-  if(t.arch==="jacket_hood"||t.arch==="jacket_coll"||t.arch==="puffer_hood"||t.arch==="parka"||t.arch==="bomber"||(t.arch==="jacket"||t.arch==="puffer")&&/zip|parka|puffer|padded|harrington|bomber|waterproof|shell|track|softshell|fleece|anorak|windbreaker|sherpa|active jacket|down\b/.test(n0)){
+  if(t.arch==="jacket_hood"||t.arch==="jacket_coll"||t.arch==="puffer_hood"||t.arch==="parka"||t.arch==="bomber"||t.arch==="aviator"||(t.arch==="jacket"||t.arch==="puffer")&&/zip|parka|puffer|padded|harrington|bomber|waterproof|shell|track|softshell|fleece|anorak|windbreaker|sherpa|active jacket|down\b/.test(n0)){
     /* an open zip's teeth along each front edge (make3Dcore's zipT and zipM) */
     var zm=/harrington|denim|leather|suede|duck|canvas|detroit|carhartt|bomber|work/.test(n0)?ctx.metal:ctx.mat(shade(col,0.72),0.55);
     [["front_p",1],["front_n",-1]].forEach(function(q){var E=drapeExt(t,q[0]),B=drapeExt(t,q[0]+"_band"),x=q[1]>0?0.003:-0.003,zt=[];
@@ -4332,11 +4347,12 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
     /* (a knit's rib pieces, its hem band, cuffs and a quarter-zip's collar, in the page's rib, as make3Dcore draws them) */
     /* (a ringer tee's neckband and the ends of its sleeves in its second colour, as make3Dcore's bands are: its own
        colour, white on dark cloth, black on light) */
-    var DS=p.desc||{},knit=ctx&&(/^(hoodie|halfzip|jumper|rollneck|cardigan)$/.test(p.shape)||/^(bomber|polo)/.test(t.arch))&&t.arch&&!t.pins,ring=ctx&&DS.ringer&&!DS.tipped&&/^tee(_ls)?$/.test(t.arch),A=[],B=[],I=t.idx,P=t.pat;
+    /* (an aviator's collar and its leaf in the shearling's colour: its second colour, or a cream fleece) */
+    var DS=p.desc||{},knit=ctx&&(/^(hoodie|halfzip|jumper|rollneck|cardigan)$/.test(p.shape)||/^(bomber|polo)/.test(t.arch))&&t.arch&&!t.pins,ring=ctx&&DS.ringer&&!DS.tipped&&/^tee(_ls)?$/.test(t.arch),shear=ctx&&/^aviator/.test(t.arch),A=[],B=[],I=t.idx,P=t.pat;
     for(var f=0;f<I.length;f+=3){var pc=t.pieces[t.piece[I[f]]],end=ring&&pc.grp>0&&pc.grp<3&&Math.max(P[I[f]*2+1],P[I[f+1]*2+1],P[I[f+2]*2+1])<0.012;
-      ((knit&&(pc.band>0||pc.name==="collar"||(pc.name==="leaf"&&/^polo/.test(t.arch))))||(ring&&(pc.name==="collar"||end))?B:A).push(I[f],I[f+1],I[f+2]);}
+      ((knit&&(pc.band>0||pc.name==="collar"||(pc.name==="leaf"&&/^polo/.test(t.arch))))||(ring&&(pc.name==="collar"||end))||(shear&&(pc.name==="collar"||pc.name==="leaf"))?B:A).push(I[f],I[f+1],I[f+2]);}
     g.setIndex(new T.BufferAttribute(new Uint32Array(A.concat(B)),1));g.addGroup(0,A.length,0);g.addGroup(A.length,B.length,1);
-    var m=pm(p).clone();m.side=T.DoubleSide;var mr=knit?ctx.rib(p).clone():(ring?ctx.mat(p.col2&&p.col2!==p.col?p.col2:(cc(p.col)[1]?"#f2efe8":"#1f2026"),0.85):m);mr.side=T.DoubleSide;var me=new T.Mesh(g,[m,mr]);me.castShadow=me.receiveShadow=true;me.userData={item:p.item,what:p.what,kind:kind,draped:true,open:/jacket|puffer|parka|chore|trucker|bomber|blazer|overcoat|carcoat|cardigan/.test(t.arch)||/^(s?shirt|camp)$/.test(t.arch)};   /* (a blazer or a cardigan buttoned too: its V shows what is under it, make3Dcore's vDone) */
+    var m=pm(p).clone();m.side=T.DoubleSide;var mr=knit?ctx.rib(p).clone():(ring?ctx.mat(p.col2&&p.col2!==p.col?p.col2:(cc(p.col)[1]?"#f2efe8":"#1f2026"),0.85):(shear?ctx.mat(p.col2&&p.col2!==p.col?p.col2:"#e6d8bf",0.95):m));mr.side=T.DoubleSide;var me=new T.Mesh(g,[m,mr]);me.castShadow=me.receiveShadow=true;me.userData={item:p.item,what:p.what,kind:kind,draped:true,open:/jacket|puffer|parka|chore|trucker|bomber|blazer|overcoat|carcoat|cardigan|aviator/.test(t.arch)||/^(s?shirt|camp)$/.test(t.arch)};   /* (a blazer or a cardigan buttoned too: its V shows what is under it, make3Dcore's vDone) */
     /* (which corners are sleeve or cuff, for the 3D check: a gap between a sleeve and his side is background seen past
        him, as it is for make3Dcore's sleeves, which hang from his arm) */
     var sm=new Uint8Array(t.m);for(j=0;j<t.m;j++){var gj=t.grp[t.vmap[j]];sm[j]=gj===1||gj===2?1:0;}me.userData.sleeveMask=sm;man.add(me);return {N:N,me:me};}
@@ -4351,7 +4367,14 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
        10 mm a lambswool quarter-zip came through it in spots across his shoulder blades, w20261008-casual-03) */
     var thP=/^puffer_hood/.test(t.arch)?(window.__drapeThP==null?0.014:window.__drapeThP):0;
     var H=window.__drapeNoPre?X.slice():drapeOut(X,layerCols(thP),t.grp);if(t.meas.length>90&&!window.__drapeNoHang)drapeHang(t,X,H);X.set(H);
-    drapeSettle(X,drapeGrade(t.cl,G,sy),layerCols(thP),t.grp,null,window.__drapeSteps||60,H);var r=mesh(t,X,p,"up"+k);
+    drapeSettle(X,drapeGrade(t.cl,G,sy),layerCols(thP),t.grp,null,window.__drapeSteps||60,H);
+    /* (an aviator's big collar lies out over its own shoulders: its leaf laid out over the rest of the jacket after the
+       settle, the rest held where it is. Settled with it, the jacket's shoulders, pushed out over what is under it, came
+       up through the leaf in patches, nw-docs) */
+    if(/^aviator/.test(t.arch)){var alf=drapeLeaf(t);if(alf){var aN=drapeNormals(X,t.cl.W,t.n),aX=[],aNs=[],apin=new Uint8Array(t.n);
+      for(var q=0;q<t.n;q++){apin[q]=alf[q]?0:1;if(!alf[q])for(var a=0;a<3;a++){aX.push(X[q*3+a]);aNs.push(aN[q*3+a]);}}
+      var aC=drapeCol(new Float32Array(aX),new Float32Array(aNs),0.005);drapeSettle(X,drapeGrade(t.cl,G,sy),layerCols(thP).map(function(L){return L.concat([aC]);}),t.grp,apin,30,X.slice());}}
+    var r=mesh(t,X,p,"up"+k);
     /* (a shirt's collar leaf is left out of what the layers over it lie on, and laid out over them afterwards: a crew
        jumper's neckline sits under it, as worn. Settled under the jumper it came through the jumper's shoulders) */
     /* (a blazer's or an overcoat's leaf is its collar and lapels, part of what is worn over it lies on: laid out over a coat, as a shirt's
@@ -5735,6 +5758,10 @@ function make3Dcore(pieces){
        draped hood, padded and bulky, lay out over the neck warmer's foot at the back of his neck, jb11-winter, and held
        inside it the hood bunched and came through the jacket's back) */
     if(/^puffer_hood/.test(a)&&pieces.some(function(q){return q.shape==="snood"||(q.shape==="scarf"&&/neck warmer|snood|buff/i.test(q.what||""));}))a=null;
+    /* (a borg zip-through over a half-zip keeps make3Dcore's shapes, and so the layers under it: draped, on the track
+       jacket's cut or the padded jacket's, the half-zip's collar came through its collar at the back of his neck on three
+       bodies, g-casual-01) */
+    if(/^puffer/.test(a)&&/borg|teddy/.test(nm(p))&&up.slice(0,k).some(function(q){return q.shape==="halfzip";}))a=null;
     if(a){p._drape=true;p._arch=a;}});
   /* (a collared shirt or polo under a hoodie with a done-up stand collar over that keeps make3Dcore's shapes: the
      hood, pressed up round his neck by the stand, lay in a crumpled ring round the draped collar, which showed through
@@ -6057,7 +6084,7 @@ function make3Dcore(pieces){
     /* (a blazer done up still shows what is under it in its V: the shirt's collar, placket and tie) */
     var hid=up.slice(k+1).some(function(q){return !openWorn(q,up)&&!vDone(q)&&!slvless(q);}),cov=up.slice(k+1).some(function(q){return !openWorn(q,up)&&/^(halfzip|rollneck|hoodie)$/.test(q.shape);});   /* (under a closed layer whose own collar covers his neck) */
     /* (and under a draped gilet or jacket done up, whose stand collar is sewn round its neckline: the collar came through it at the front) */
-    var stC=up.slice(k+1).some(function(q){return q._drape&&(q._arch==="gilet"||q._arch==="jacket_up"||q._arch==="puffer_up"||q._arch==="jacket_coll_up"||q._arch==="chore_up"||q._arch==="trucker_up"||q._arch==="bomber_up");});if(stC)cov=true;
+    var stC=up.slice(k+1).some(function(q){return q._drape&&(q._arch==="gilet"||q._arch==="jacket_up"||q._arch==="puffer_up"||q._arch==="jacket_coll_up"||q._arch==="chore_up"||q._arch==="trucker_up"||q._arch==="bomber_up"||q._arch==="aviator_up");});if(stC)cov=true;
     /* (a closed gilet or waistcoat hides the front too: pockets, plackets and cords under it are not made) */
     var hidF=hid||up.slice(k+1).some(function(q){return !openWorn(q,up)&&!vDone(q)&&/^(gilet|waistcoat)$/.test(q.shape);});
     var zipT=/zip|parka|puffer|padded|harrington|bomber|waterproof|shell|track|softshell|fleece|bodywarmer|anorak|windbreaker|sherpa|active jacket|down\b/.test(n0)||(p.shape==="gilet"&&!/tailor|suit|waistcoat/.test(n0));
