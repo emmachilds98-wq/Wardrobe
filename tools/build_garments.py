@@ -315,6 +315,11 @@ MEAS = {
     # tee's neckband, a stand, stood up off the scoop and pulled it into a shallow V at his throat: left out, the edge as
     # turned and stitched)
     "vest": dict(chest=100, length=72, shoulder=29, armhole=27, neck_w=19, neck_f=14, neck_b=6, sh_drop=2.5, band=0, band_k=1),
+    # a knitted vest (a sweater vest, a slipover): the jumper's knit a little closer, no sleeves (no sleeve key), its
+    # armholes cut in and deep, a V neck 14 cm deep at the front (vneck), and the jumper's 5 cm rib hem band; the page lays
+    # the rib round the V. (Cut 20 cm deep, the V showed his chest where the vest is worn with nothing under it)
+    "kvest": dict(chest=110, length=66, shoulder=36, armhole=26, neck_w=18, neck_f=14, neck_b=2.5, sh_drop=4.5, band=5,
+                  band_k=0.9, vneck=1),
     # a padded or puffer jacket: the track jacket's cut with a padded jacket's room (132 cm round the chest, 8 more than
     # the track jacket, so it goes over a sweatshirt or a quarter-zip with its padding; sleeves 48 cm round the bicep),
     # a taller stand collar, a narrow elastic hem and elastic cuffs; worn open (its front in two) or zipped up
@@ -428,7 +433,10 @@ def bodice(M, kind, s, split=False):
     nperp = -np.array([sd[1], -sd[0]]) if sd[1] > 0 else np.array([sd[1], -sd[0]])
     nperp = perp.copy()
     k1 = max(nd * 0.6, 0.012)
-    if kind == "front":
+    if kind == "front" and M.get("vneck"):
+        # (a V neck: from the shoulder straight down and in to its point, a little full at the top)
+        nk = bez((nw, L), np.array((nw, L)) + nperp * 0.02 * s, (nw * 0.3, L - nd * 0.7), (0, L - nd))
+    elif kind == "front":
         nk = bez((nw, L), np.array((nw, L)) + nperp * k1, (nw * 0.5, L - nd), (0, L - nd))
     else:
         nk = bez((nw, L), np.array((nw, L)) + nperp * k1, (nw * 0.45, L - nd), (0, L - nd))

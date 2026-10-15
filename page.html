@@ -3834,7 +3834,7 @@ function jacketShirt(p){return overshirt(p)&&/shacket|shirt jacket|chore|insulat
    first, against his body, the clothes under it and the layers already settled; a hoodie's hood last, out over
    anything worn over the hoodie. Lengths are the draped garment's on his saved shape, so on him it keeps its drape;
    on another body it moves with him and settles. See UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzz. */
-var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt",gilet:"gilet",polo:"polo",sshirt:"sshirt",vest:"vest"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up","gilet","scarf","puffer","puffer_up","tee_ls","jacket_hood","jacket_hood_up","jacket_coll","jacket_coll_up","puffer_hood","puffer_hood_up","parka","parka_up","chore","chore_up","trucker","trucker_up","bomber","bomber_up","polo","sshirt","sshirt_up","polo_ls","vest"];   /* (jacket_up, shirt_up, puffer_up, jacket_hood_up, jacket_coll_up, puffer_hood_up, parka_up, chore_up, trucker_up, bomber_up: the jacket zipped up, the shirt done up, the padded, hooded, collared and hooded padded jackets and the parka zipped up, for one worn closed; tee_ls: a tee with long sleeves) */
+var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt",gilet:"gilet",polo:"polo",sshirt:"sshirt",vest:"vest"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up","gilet","scarf","puffer","puffer_up","tee_ls","jacket_hood","jacket_hood_up","jacket_coll","jacket_coll_up","puffer_hood","puffer_hood_up","parka","parka_up","chore","chore_up","trucker","trucker_up","bomber","bomber_up","polo","sshirt","sshirt_up","polo_ls","vest","kvest"];   /* (jacket_up, shirt_up, puffer_up, jacket_hood_up, jacket_coll_up, puffer_hood_up, parka_up, chore_up, trucker_up, bomber_up: the jacket zipped up, the shirt done up, the padded, hooded, collared and hooded padded jackets and the parka zipped up, for one worn closed; tee_ls: a tee with long sleeves) */
 /* (the templates with a stand collar done up round his neck) */
 var STANDC={gilet:1,jacket_up:1,halfzip:1,rollneck:1,puffer_up:1,jacket_coll_up:1,chore_up:1,trucker_up:1,bomber_up:1};
 /* (the templates that open: drawn from the template of that name worn open, and from name_up done up) */
@@ -3857,6 +3857,8 @@ function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.
   /* (each template is one cut: a jumper a crew neck with long sleeves, not a knitted vest, a V neck or a cardigan; a tee
      short-sleeved, or long-sleeved from tee_ls, a crew neck or a henley (drapeDetails draws its placket), not a raglan or
      baseball tee, whose sleeves are cut another way, a V or a mock neck) */
+  /* (a knitted vest, a sweater vest or slipover: kvest, a V neck. A cardigan or zipped one keeps make3Dcore's shapes) */
+  if(a==="jumper"&&kvest(p))return GTPL.kvest&&!/cardigan|zip|button/.test(n)?"kvest":null;
   if(a==="jumper"&&(D.neck==="v"||/vest|sleeveless|tank|slipover|tabard|cardigan|v[- ]?neck|polo[- ]?neck|turtle|zip/.test(n)))return null;
   /* (the polo template is a short-sleeved polo, its knitted collar closed round his neck, and polo_ls the same with long
      sleeves and rib cuffs: a zip or rugby one, a polo-neck jumper and a knitted polo jumper keep make3Dcore's shapes) */
@@ -4095,6 +4097,13 @@ function drapeDetails(man,p,t,X,N,ctx,kind,proj){var T=window.THREE,DS=p.desc||{
         else{pocket(q[0],s2,o+0.04,o+0.2,E.y0+0.06,E.y0+0.23,false);if(s2>0)pocket(q[0],s2,o+0.05,o+0.16,top-0.25,top-0.12,false);}});});
     if(den&&!cup){var Bn=drapeExt(t,"front_n_band");if(Bn.y1>-9)cbtn("front_n_band",-0.02,(Bn.y0+Bn.y1)/2);}
     if(den&&cup){var Bu=drapeExt(t,"front_band");if(Bu.y1>-9)cbtn("front_band",0,(Bu.y0+Bu.y1)/2);}}
+  if(t.arch==="kvest"){
+    /* a knitted vest's rib round its V neck: 2.4 cm wide down each side to the point, laid on the front just off its edge
+       (the neck edge at the shoulder: the front's points nearest the middle along its top) */
+    var KE=drapeExt(t,"front"),kpi=-1,knw=9;for(var f=0;f<t.pieces.length;f++)if(t.pieces[f].name==="front")kpi=f;
+    for(var j=0;j<t.m;j++)if(t.piece[j]===kpi&&t.pat[j*2+1]>KE.y1-0.003)knw=Math.min(knw,Math.abs(t.pat[j*2]));
+    var krm=ctx.rib(p).clone();krm.side=T.DoubleSide;
+    if(knw<1)[-1,1].forEach(function(s){patch("front",s*0.004,s*0.028,s*(knw+0.001),s*(knw+0.025),KE.ym-0.004,KE.y1-0.004,0.0025,krm);});}
   if(t.arch==="tee_ls"&&!proj&&(DS.neck==="henley"||/henley/.test(n0))){
     /* a henley's placket: 11 cm down the middle of the front from the neckband, stitched down both sides and across its
        foot, and three buttons a shade of the cloth (make3Dcore's) */

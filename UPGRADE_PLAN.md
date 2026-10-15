@@ -3260,6 +3260,19 @@ tee or vest top (a tee's neck and shoulders), a muscle, training, stringer or dr
 
 **Checked**: the 3 outfits on all five bodies as worn, and done up on dave and loose.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped knitted vests (15 Oct 2026)
+
+A knitted vest (a sweater vest, a slipover: `kvest`, a jumper by its shape) kept `make3Dcore`'s shapes, as the jumper
+template has sleeves and a crew neck. A new template, `kvest`: the jumper's knit a little closer (110 cm round the
+chest), no sleeves, armholes cut in and deep, a V neck (a new `vneck` measure: the front's neckline runs straight down
+and in to its point) and the jumper's 5 cm rib hem band. `drapeDetails` lays a 2.4 cm rib down each side of the V, in
+the page's rib. A cardigan-style, zipped or buttoned one keeps `make3Dcore`'s shapes. 6 outfits change (3 vests).
+
+- *A V cut 20 cm deep*: g-casual-16 wears the vest with nothing under it, under an open overshirt and hoodie, and the V
+  showed his chest (chest skin 73 to 85 on every body). Cut 14 cm deep, as `make3Dcore`'s, it is clean.
+
+**Checked**: the 6 outfits on all five bodies as worn, and done up on dave and loose.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
