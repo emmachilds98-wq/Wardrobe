@@ -519,6 +519,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 15 Oct 2026 | #72 | Knitted, zip and rugby polos and V-neck jumpers: zip polos on `polo` with a drawn zip, knitted polo jumpers and a rugby shirt on `polo_ls`, a new `jumper_v` (a V neck with the knitted vest's rib; 8 pieces, 11 outfits). FtdHKg still to be republished from Emma's account | B8UXnh v11 |
 | 15 Oct 2026 | #71 | The remaining jackets whose shop photos match a template: two shirt-jackets on `chore`, Brakeburn Classic, Napapijri Bisenzio and Closure London's hybrid on `jacket`, a hooded wax jacket and a 3-in-1 on `jacket_hood`, a padded ski jacket on `puffer_hood` (8 jackets, 12 outfits). FtdHKg still to be republished from Emma's account | B8UXnh v10 |
 | 15 Oct 2026 | #70 | Draped overcoats and a car coat (`overcoat`, `overcoat_up`: the blazer's lapels on a coat to his knees; `carcoat`, `carcoat_up`: a shirt collar, a fly front; 6 outfits); a coat over 90 cm bound to his thighs too and hung straight in the page; the blazer's lapel line drawn in front only. FtdHKg still to be republished from Emma's account | B8UXnh v9 |
 | 15 Oct 2026 | #69 | Draped blazers (`blazer`, `blazer_up`: a shawl collar, its collar and lapels one piece folded back over a stand that runs down the V to the button; 13 outfits); a shirt's collar kept inside a blazer. FtdHKg still to be republished from Emma's account | B8UXnh v8 |
