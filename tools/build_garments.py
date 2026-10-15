@@ -323,6 +323,16 @@ MEAS = {
     # tee's neckband, a stand, stood up off the scoop and pulled it into a shallow V at his throat: left out, the edge as
     # turned and stitched)
     "vest": dict(chest=100, length=72, shoulder=29, armhole=27, neck_w=19, neck_f=14, neck_b=6, sh_drop=2.5, band=0, band_k=1),
+    # a sleeveless tee (a vest top, a training or muscle tank with a crew neck): the tee's body and 2 cm neckband, no
+    # sleeves (no sleeve key), its armholes cut in to a 42 cm shoulder and deep (25 cm), as the shop photos'. Its neckline
+    # is 1.5 cm higher at the front than the tee's: cut like the tee's, with no sleeves to carry it, its front hung from
+    # the neckband and dipped into a V at his throat, deeper than the tee's
+    "vest_tee": dict(chest=106, length=72, shoulder=42, armhole=25, neck_w=17, neck_f=6.5, neck_b=2, sh_drop=4, band=0, band_k=1,
+                     collar=2),
+    # a mock-neck tee: the long-sleeved tee's body, sleeves and cuffs, its neckline a little higher at the front (5 cm, as
+    # the roll neck's) and a 3.5 cm band standing round his neck instead of a neckband
+    "tee_mock": dict(chest=108, length=72, shoulder=46, armhole=22, neck_w=16.5, neck_f=5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
+                     sleeve=64, bicep=36, wrist=23, cuff=3, cuff_c=19, collar=3.5),
     # a knitted vest (a sweater vest, a slipover): the jumper's knit a little closer, no sleeves (no sleeve key), its
     # armholes cut in and deep, a V neck 14 cm deep at the front (vneck), and the jumper's 5 cm rib hem band; the page lays
     # the rib round the V. (Cut 20 cm deep, the V showed his chest where the vest is worn with nothing under it)

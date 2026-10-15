@@ -7,7 +7,7 @@ festival              # long coat over a short-sleeved shirt with shorts, bag, s
 wk-lounge             # open check shirt over a long-sleeved tee, wide trousers, slippers
 smart-casual          # blazer, tucked striped shirt, belt, shoes
 g-job-09              # workwear: gilet over a polo, cargo trousers, boots, cap
-rv-field              # hooded jacket worn open over a vest, shorts, boots, bucket hat
+rv-field              # hooded jacket worn open over a sleeveless tee (vest_tee), shorts, boots, bucket hat
 g-lounge-04           # knitted vest over a tee, joggers, slippers
 m10-oxford-tiebar     # tucked shirt with a tie and chain
 mn-smart              # blazer over a roll neck
@@ -20,7 +20,7 @@ jb11-winter           # workwear: jacket over a jumper, scarf, cargo trousers, b
 lazy-sunday           # jumper, cropped trousers, slippers
 g-casual-08           # a cardigan worn open over a tee: its rib up the fronts and round the V, buttons, pockets, a print
 wedding-guest         # blazer, tucked shirt, tie, pocket square
-n4-summer-warehouse   # a muscle vest on its own (deep armholes), shorts, boots, bag
+n4-summer-warehouse   # a mesh muscle vest on its own: a scooped tank (vest), shorts, boots, bag
 cold-commute          # coat over a jumper over a shirt, boots
 barrel-chore          # overshirt over a tee, barrel-leg trousers
 h10-cuban             # Cuban-collar shirt, shorts
@@ -36,3 +36,6 @@ autumn-budget         # dark cords whose legs must part below the crotch (Emma's
 g-outdoor-05          # a scarf with its design from the shop photo (strip) hanging inside an open jacket, fringed ends
 g-mod-10              # a hooded gilet over a collared shirt: the shirt's collar inside the hood's neckline
 nw-docs               # an aviator worn open over a tee: its big shearling collar out over its own shoulders
+rv13-black            # a sleeveless tee on its own (vest_tee): a crew neck, deep armholes
+mn-cold               # a mock-neck tee (tee_mock) under a jumper under a coat: its band standing round his neck
+g-casual-03           # a henley on tee: its placket and buttons with a photo print

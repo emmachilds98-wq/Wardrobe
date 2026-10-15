@@ -3558,6 +3558,30 @@ range has lapels, and `overcoat` is right for it). A `collar` correction in `dat
 ms-one-shop, and the coat fell to mid-thigh, not below his knee as in the photo; `overcoat`'s long coat with lapels was
 the better likeness, so the correction was taken out. Next: make `carcoat`'s collar show worn open.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. A sleeveless tee, a mock-neck tee and the henleys draped (15 Oct 2026)
+
+Six pieces in six outfits, each matched to its shop photo:
+
+- *A sleeveless tee*, a new template `vest_tee`: the tee's body and 2 cm neckband with no sleeves, 42 cm across the
+  shoulders and armholes 25 cm deep. Volcom's vest top (rv13-black) and 4505's training tank (rv-field) have a tee's crew
+  neck and shoulders in their photos, not a tank's straps; `drapeArch` sends a vest whose name says sleeveless tee, vest
+  top, training, gym or muscle tee here. Cut first to the tee's neckline (8 cm deep at the front), its front hung from the
+  neckband and dipped into a V at his throat, deeper than the tee's own; 6.5 cm matches the tee.
+- *ASOS's mesh muscle vest* (n4-summer-warehouse) is a scooped tank in its photo, so it goes to `vest` as it is. A
+  stringer, drop-arm, racer-back or cropped vest still returns `null`.
+- *A mock-neck tee*, a new template `tee_mock`: `tee_ls` with a 3.5 cm band standing round his neck, for Uniqlo's
+  long-sleeved mock neck (mn-cold, under a jumper under a coat). A short-sleeved mock neck still returns `null`.
+- *The henleys*: HUF's baseball henley (g-casual-03, -07) has set-in sleeves in its photo, where a baseball tee's are
+  raglan, so it goes to `tee` and `drapeDetails` draws the henley placket and buttons as on any henley tee (the placket
+  rule now covers `tee` and `tee_ls` only, not the new templates).
+
+Draped top pieces 946 of 952 (counted per piece in each outfit); left are Carhartt's Super Dux, the four insulated and
+borg-lined overshirts, and the borg zip-through over a half-zip.
+
+**Checked**: the six outfits on all five bodies as worn and done up on dave and loose, each close up against `main`,
+and the vest top's neckline against the plain tee's; the 34 gate outfits on dave; stored specs unchanged. rv13-black,
+mn-cold and g-casual-03 added to the gate set.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

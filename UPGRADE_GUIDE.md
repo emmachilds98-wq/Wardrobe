@@ -1,6 +1,6 @@
 # Continuing the upgrade: a guide for the next engineer
 
-Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks, cardigans, the last jackets and collars under open jackets. Read this first, then `STATUS.md` (what is happening now and the
+Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks, cardigans, the last jackets, collars under open jackets, and the sleeveless tee, henley and mock-neck tee. Read this first, then `STATUS.md` (what is happening now and the
 log), `HANDOFF.md` (how the page fits together) and `CONTRIBUTING.md` (the data rules and every check). The long
 history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections last before "3. Next steps".
 
@@ -13,15 +13,17 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   shapes (stiff shells). The upgrade replaces them with **draped templates**: real flat patterns sewn and settled
   as cloth on Dave in headless Blender (`tools/build_garments.py`, output `data/garments/<template>.json`), then fitted
   to whichever body and layers are worn, in the page (`drapeTops`, `drapeSettle`).
-- **Coverage**: 940 top pieces across the outfits are draped. Only 12 still use `make3Dcore`'s shapes, plus every top
-  worn tucked in, which is never draped (`TUCK0`): 11 that `drapeArch` sends nowhere and the borg zip-through in
+- **Coverage**: 946 top pieces across the outfits are draped. Only 6 still use `make3Dcore`'s shapes, plus every top
+  worn tucked in, which is never draped (`TUCK0`): 5 that `drapeArch` sends nowhere (Carhartt's Super Dux and the
+  four insulated and borg-lined overshirts) and the borg zip-through in
   g-casual-01, which it sends to `puffer` but which stays on `make3Dcore` over a half-zip (see the rule by `TUCK0`). (Counted piece by piece in each outfit. `tools/qa/drape_survey.js`,
   below, gives one row per item, its template taken from the first outfit it is in, so a piece filed under another
   shape in another outfit can hide there: the guide said 932 and 20 until this was counted.) Run it for the live list.
 - **Templates** (`DRAPEF` in `page.html`; `_up` is the same garment done up, and the plain name is worn open where it
   can open, per `DRAPEOPEN`):
   - Knits and tees: `tee`, `tee_ls`, `jumper`, `jumper_v` (a V neck), `cardigan(_up)` (`jumper_v`'s knit with its front
-    in two), `rollneck`, `halfzip`, `hoodie`, `kvest`, `vest`.
+    in two), `rollneck`, `halfzip`, `hoodie`, `kvest`, `vest` (a tank), `vest_tee` (a sleeveless tee: the tee's crew
+    neck, no sleeves, deep armholes), `tee_mock` (`tee_ls` with a 3.5 cm band standing round his neck).
   - Shirts and polos: `shirt(_up)`, `sshirt(_up)`, `camp(_up)`, `polo`, `polo_ls`.
   - Jackets: `jacket(_up)` (the track jacket's cut), `jacket_hood(_up)`, `jacket_coll(_up)`, `bomber(_up)`,
     `chore(_up)`, `trucker(_up)`, `puffer(_up)`, `puffer_hood(_up)`, `parka(_up)`, `aviator(_up)` (a big collar drawn in the
@@ -40,9 +42,8 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 | Two jackets that fail the check draped | 2 (2) | Carhartt's Super Dux (jb8-superdux): on `jacket_hood` and on `puffer_hood` the tee under it shows between its hem and the top of his tool belt; it would need cutting longer, or the belt worn over its hem. The borg zip-through over a half-zip (g-casual-01): on `jacket` and on `puffer` the half-zip's collar comes through its collar at the back of his neck. |
 | An open overshirt under an open jacket | (4 on `main`) | g-casual-09, g-mod-11, -13 and -15 show the overshirt (g-mod-15 the half-zip) through the jacket's fronts in patches; the 3D check misses it (see the pitfalls). Measured in g-mod-15 (UPGRADE_PLAN, the last section): about 8% of the overshirt's body lies outside the jacket, on its front 1.5 to 11 cm from the opening, by 5 mm (up to 20). It is already outside after the jacket's own settle over it (569 points), and the pass that holds it in brings that to 345 but no further. Longer reach or more steps for that pass, holding the overshirt with the jacket's backward-facing cloth too (`inCol` leaves out cloth facing in, which is mostly the far side of the creases in an open front, not a fold), or a thinner push from the half-zip under it each moved it by only a few points, or pushed the half-zip through instead. Sizing the jacket up thins the patches. Next to try: settling the jacket and the overshirt together, or smoothing an open front's creases where something is under it. |
 | Insulated and borg-lined overshirts | 2 (4) | Tog24's Adamson and Matalan's borg-lined overshirt are `chore`'s cut, but draped under their jackets they show through them as above, and under a done-up gilet (g-outdoor-21) their collar comes through the gilet's. Do the row above first. |
-| Shirt-collared overcoat | (1) | The ASOS tobacco overcoat (cold-commute) has a shirt collar buttoned to the neck in its photo, a car coat's, but takes `overcoat`'s lapels. Sent to `carcoat` (a `collar` correction tried, then taken out), it came out worse: worn open, `carcoat`'s collar hardly shows (ms-one-shop on `main` too) and the coat falls to mid-thigh, not below the knee. Make `carcoat`'s collar show worn open first. |
-| Muscle, racer and mesh vests, vest tops | 3 (3) | Variants of `vest` (deeper armholes, a racer back). Low value. |
-| Baseball henley, mock-neck tee | 2 (3) | Raglan sleeves are not in the builder; low value. |
+| Shirt-collared overcoat | (1) | The ASOS tobacco overcoat (cold-commute) has a shirt collar buttoned to the neck in its photo, a car coat's, but takes `overcoat`'s lapels. Sent to `carcoat` (a `collar` correction tried, then taken out), it came out worse. Looked at again: worn open, `carcoat`'s collar is there but lies flat and low, a narrow turn at his neck (ms-one-shop); the bigger miss is length, `carcoat` falls to mid-thigh and this coat to below the knee. It would need a long car coat (a balmacaan: `carcoat`'s collar and fly front on `overcoat`'s length and raglan sleeves). One outfit; low value. |
+| Stringers, racer backs, drop-arm and cropped vests; raglan and baseball tees | 0 now | None are in the outfits now; `drapeArch` returns `null` for them so they keep `make3Dcore`'s shapes when one is added. A racer back and a raglan sleeve are not in the builder. |
 | Tucked-in tops | many | Never draped (`TUCK0`): only with tailoring, a belt or a tie. A draped top would need its hem taken inside the trousers. Large job, modest gain. |
 | Newer Three.js | | Queue item 6 in `STATUS.md` (r128 now). Emma said yes on 12 Oct. |
 
@@ -133,6 +134,9 @@ is drawn as a shawl. The overcoat uses the same two pieces on a longer, roomier 
   Keep a V to about 14 cm unless every outfit has a layer under it.
 - **Straps of a tank**: cut 36 cm across the shoulders, it hangs as a sleeveless tee. A tank is about 29 cm across with
   a 19 cm neck.
+- **A sleeveless tee cut to the tee's neckline** dips into a V at his throat, deeper than the tee's: with no sleeves,
+  its front hangs from the neckband. `vest_tee` is cut 1.5 cm higher at the front (6.5 cm deep), which matches the tee.
+  The tee's own crew dips a little at the front too; compare against it, not a perfect circle.
 - **Layers over make3Dcore's shapes**: a draped layer over a knitted vest needs 8 mm more room (`innerCols`). A shirt
   or polo under a hoodie under a done-up stand collar keeps `make3Dcore`'s shapes. A top is draped only when
   everything over it is draped too.
