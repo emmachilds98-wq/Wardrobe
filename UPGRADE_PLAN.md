@@ -3273,6 +3273,20 @@ the page's rib. A cardigan-style, zipped or buttoned one keeps `make3Dcore`'s sh
 
 **Checked**: the 6 outfits on all five bodies as worn, and done up on dave and loose.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped resort shirts (15 Oct 2026)
+
+A resort, camp, Cuban, revere, Hawaiian or bowling shirt kept `make3Dcore`'s shapes when the short-sleeved shirts were
+draped, and `make3Dcore` draws it with no collar at all. New templates, `camp` (worn open, its front in two) and
+`camp_up` (done up): the short-sleeved shirt's cut a little boxier (116 cm round the chest), a straight hem, and a
+collar that lies open, a 2.5 cm stand under a 5 cm leaf, 8 cm to its points. Done up, the neck is cut in a 14 cm V
+(`vneck`) to the top button, so the collar lies open in it as a camp collar does, with no button on the stand. 5 outfits
+change.
+
+- *A 1 cm stand under a 6 cm leaf* (a camp collar has almost none): the leaf did not fold down over it; it crumpled at
+  the back of his neck and barely showed at the front. On the short-sleeved shirt's 2.5 cm stand it folds down.
+
+**Checked**: the 5 outfits on all five bodies as worn, and done up on dave and loose.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

@@ -3834,11 +3834,11 @@ function jacketShirt(p){return overshirt(p)&&/shacket|shirt jacket|chore|insulat
    first, against his body, the clothes under it and the layers already settled; a hoodie's hood last, out over
    anything worn over the hoodie. Lengths are the draped garment's on his saved shape, so on him it keeps its drape;
    on another body it moves with him and settles. See UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzz. */
-var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt",gilet:"gilet",polo:"polo",sshirt:"sshirt",vest:"vest"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up","gilet","scarf","puffer","puffer_up","tee_ls","jacket_hood","jacket_hood_up","jacket_coll","jacket_coll_up","puffer_hood","puffer_hood_up","parka","parka_up","chore","chore_up","trucker","trucker_up","bomber","bomber_up","polo","sshirt","sshirt_up","polo_ls","vest","kvest"];   /* (jacket_up, shirt_up, puffer_up, jacket_hood_up, jacket_coll_up, puffer_hood_up, parka_up, chore_up, trucker_up, bomber_up: the jacket zipped up, the shirt done up, the padded, hooded, collared and hooded padded jackets and the parka zipped up, for one worn closed; tee_ls: a tee with long sleeves) */
+var GTPL={},DRAPEK={hoodie:"hoodie",halfzip:"halfzip",jacket:"jacket",jumper:"jumper",rollneck:"rollneck",tee:"tee",shirt:"shirt",gilet:"gilet",polo:"polo",sshirt:"sshirt",vest:"vest"},DRAPEF=["hoodie","halfzip","jacket","jacket_up","jumper","rollneck","tee","shirt","shirt_up","gilet","scarf","puffer","puffer_up","tee_ls","jacket_hood","jacket_hood_up","jacket_coll","jacket_coll_up","puffer_hood","puffer_hood_up","parka","parka_up","chore","chore_up","trucker","trucker_up","bomber","bomber_up","polo","sshirt","sshirt_up","polo_ls","vest","kvest","camp","camp_up"];   /* (jacket_up, shirt_up, puffer_up, jacket_hood_up, jacket_coll_up, puffer_hood_up, parka_up, chore_up, trucker_up, bomber_up: the jacket zipped up, the shirt done up, the padded, hooded, collared and hooded padded jackets and the parka zipped up, for one worn closed; tee_ls: a tee with long sleeves) */
 /* (the templates with a stand collar done up round his neck) */
 var STANDC={gilet:1,jacket_up:1,halfzip:1,rollneck:1,puffer_up:1,jacket_coll_up:1,chore_up:1,trucker_up:1,bomber_up:1};
 /* (the templates that open: drawn from the template of that name worn open, and from name_up done up) */
-var DRAPEOPEN={jacket:1,shirt:1,sshirt:1,puffer:1,jacket_hood:1,jacket_coll:1,puffer_hood:1,parka:1,chore:1,trucker:1,bomber:1};
+var DRAPEOPEN={jacket:1,shirt:1,sshirt:1,puffer:1,jacket_hood:1,jacket_coll:1,puffer_hood:1,parka:1,chore:1,trucker:1,bomber:1,camp:1};
 /* (a template whose front is cut in two, worn open: the jacket, the shirt and the padded jacket) */
 function drapeSplit(t){return !!DRAPEOPEN[t.arch];}
 /* (a split template's welded points within 3.5 cm of its fronts' centre edge on the pattern, the edges of its opening) */
@@ -3904,10 +3904,11 @@ function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.
   /* (the shirt template is a long-sleeved shirt with a point collar on a stand: a band, grandad, camp or Cuban collar
      keeps make3Dcore's shapes) */
   if(a==="shirt"&&(/^(band|camp)$/.test(D.collar||"")||/grandad|granddad|mandarin|band collar|collarless|camp collar|cuban|revere|short[- ]?sleeve|s\/s|\bs ?- ?s\b|\bss\b/.test(n)))return null;
-  /* (the sshirt template is a short-sleeved shirt with a point collar on a stand: a camp, Cuban, resort, Hawaiian or
-     bowling shirt (its collar lies open, flat, with no stand), a band or grandad collar, and a long-sleeved one keep
-     make3Dcore's shapes) */
-  if(a==="sshirt"&&(/^(band|camp)$/.test(D.collar||"")||/grandad|granddad|mandarin|band collar|collarless|camp collar|cuban|revere|resort|hawaii|aloha|bowling|long[- ]?sleeve|\bl\/s\b/.test(n)||jacketShirt(p)))return null;
+  /* (the sshirt template is a short-sleeved shirt with a point collar on a stand. A camp, Cuban, resort, Hawaiian or
+     bowling shirt, its collar lying open and flat on a 1 cm stand: camp, open at the neck done up too. A band or grandad
+     collar, and a long-sleeved one keep make3Dcore's shapes) */
+  if(a==="sshirt"&&(/grandad|granddad|mandarin|band collar|collarless|long[- ]?sleeve|\bl\/s\b/.test(n)||D.collar==="band"||jacketShirt(p)))return null;
+  if(a==="sshirt"&&(D.collar==="camp"||/camp collar|cuban|revere|resort|hawaii|aloha|bowling/.test(n)))return GTPL.camp?"camp":null;
   /* (the gilet template is a bodywarmer done up, zipped to its stand collar: a hooded one keeps make3Dcore's shapes, and
      one worn open does (make3Dcore: only a jacket's and a shirt's templates open)) */
   if(a==="gilet"&&/hood|tailor|suit|waistcoat/.test(n))return null;
@@ -4058,7 +4059,7 @@ function drapeDetails(man,p,t,X,N,ctx,kind,proj){var T=window.THREE,DS=p.desc||{
     var yb=F.y0+0.015,yt=yb+0.17,pm2=ctx.pm(p).clone();pm2.side=T.DoubleSide;patch("front",-0.15,0.15,-0.075,0.075,yb,yt,0.0028,pm2);
     [-1,1].forEach(function(s){line([on("front",s*0.075,yt-0.004,0.0034),on("front",s*0.112,yb+0.07,0.0034),on("front",s*0.15,yb+0.004,0.0034)],0.0014,seamK,8);});
     if(DS.zip==="full"){var fz=[];for(k=0;k<=12;k++)fz.push(on("front",0,F.ym-(F.ym-F.y0)*k/12,0.0032));fz.push(on("front_band",0,0.01,0.0032));line(fz,0.0032,ctx.metal,24);}}
-  if(/^s?shirt(_up)?$/.test(t.arch)){
+  if(/^(s?shirt|camp)(_up)?$/.test(t.arch)){
     /* a shirt's placket, two lines of stitching down the front edge, and its buttons every 9 cm from the stand down
        (a shade of the cloth, pearl on white, as make3Dcore's: on his right, worn open; none under a tie) and one on
        the stand. Pattern x: the front's middle at 0 done up; worn open, each front's edge at 0 */
@@ -4069,7 +4070,7 @@ function drapeDetails(man,p,t,X,N,ctx,kind,proj){var T=window.THREE,DS=p.desc||{
     fronts.forEach(function(q){var E=drapeExt(t,q[0]),top=drapeSplit(t)?E.y1:E.ym;
       (q[1]?[q[1]*0.003,q[1]*0.032]:[-0.017,0.017]).forEach(function(x){var st=[];for(var k=0;k<=16;k++)st.push(on(q[0],x,top-0.004-(top-E.y0-0.004)*k/16,0.0012));line(st,0.0006,seamK,40);});
       if(!tie&&q[1]<=0)for(var by=top-0.025;by>E.y0+0.05;by-=0.09)btn(q[0],q[1]?-0.0175:0,by);});
-    if(/_up$/.test(t.arch)&&!tie){var C3=drapeExt(t,"collar");btn("collar",C3.x1-0.009,C3.y1*0.5);}}
+    if(/^s?shirt_up$/.test(t.arch)&&!tie){var C3=drapeExt(t,"collar");btn("collar",C3.x1-0.009,C3.y1*0.5);}}
   if(/^polo/.test(t.arch)&&!proj){
     /* a polo's placket: 12 cm down the middle of the front from the neckline, 3.4 cm wide, its two lines of stitching
        and the line across its foot, and two buttons (a shade of the cloth, pearl on white, as the shirt's) */
@@ -4214,7 +4215,7 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
     for(var f=0;f<I.length;f+=3){var pc=t.pieces[t.piece[I[f]]],end=ring&&pc.grp>0&&pc.grp<3&&Math.max(P[I[f]*2+1],P[I[f+1]*2+1],P[I[f+2]*2+1])<0.012;
       ((knit&&(pc.band>0||pc.name==="collar"||(pc.name==="leaf"&&/^polo/.test(t.arch))))||(ring&&(pc.name==="collar"||end))?B:A).push(I[f],I[f+1],I[f+2]);}
     g.setIndex(new T.BufferAttribute(new Uint32Array(A.concat(B)),1));g.addGroup(0,A.length,0);g.addGroup(A.length,B.length,1);
-    var m=pm(p).clone();m.side=T.DoubleSide;var mr=knit?ctx.rib(p).clone():(ring?ctx.mat(p.col2&&p.col2!==p.col?p.col2:(cc(p.col)[1]?"#f2efe8":"#1f2026"),0.85):m);mr.side=T.DoubleSide;var me=new T.Mesh(g,[m,mr]);me.castShadow=me.receiveShadow=true;me.userData={item:p.item,what:p.what,kind:kind,draped:true,open:/jacket|puffer|parka|chore|trucker|bomber/.test(t.arch)||/^s?shirt$/.test(t.arch)};
+    var m=pm(p).clone();m.side=T.DoubleSide;var mr=knit?ctx.rib(p).clone():(ring?ctx.mat(p.col2&&p.col2!==p.col?p.col2:(cc(p.col)[1]?"#f2efe8":"#1f2026"),0.85):m);mr.side=T.DoubleSide;var me=new T.Mesh(g,[m,mr]);me.castShadow=me.receiveShadow=true;me.userData={item:p.item,what:p.what,kind:kind,draped:true,open:/jacket|puffer|parka|chore|trucker|bomber/.test(t.arch)||/^(s?shirt|camp)$/.test(t.arch)};
     /* (which corners are sleeve or cuff, for the 3D check: a gap between a sleeve and his side is background seen past
        him, as it is for make3Dcore's sleeves, which hang from his arm) */
     var sm=new Uint8Array(t.m);for(j=0;j<t.m;j++){var gj=t.grp[t.vmap[j]];sm[j]=gj===1||gj===2?1:0;}me.userData.sleeveMask=sm;man.add(me);return {N:N,me:me};}
@@ -5613,7 +5614,7 @@ function make3Dcore(pieces){
   /* (a collared shirt or polo under a hoodie with a done-up stand collar over that keeps make3Dcore's shapes: the
      hood, pressed up round his neck by the stand, lay in a crumpled ring round the draped collar, which showed through
      its folds, w20261006-casual-04 done up) */
-  up.forEach(function(p,k){if(!p._drape||!/^(s?shirt|polo)/.test(p._arch))return;
+  up.forEach(function(p,k){if(!p._drape||!/^(s?shirt|polo|camp)/.test(p._arch))return;
     for(var j=k+1;j<up.length;j++)if(up[j]._drape&&up[j]._arch==="hoodie")for(var l=j+1;l<up.length;l++)if(up[l]._drape&&STANDC[up[l]._arch]){p._drape=false;delete p._arch;return;}});
   /* (a top is draped only when everything worn over it is too: make3Dcore's tops are cut for its own closer inner
      layers, and over draped cloth they let it through at the back and the shoulders) */

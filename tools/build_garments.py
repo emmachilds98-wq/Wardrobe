@@ -301,6 +301,14 @@ MEAS = {
                    sleeve=24, bicep=41, wrist=37, cuff=2.5, cuff_c=36, collar=3, leaf=4.5, point=7, open=1),
     "sshirt_up": dict(chest=110, length=76, shoulder=47, armhole=24, neck_w=16, neck_f=7.5, neck_b=2, sh_drop=5, band=0, band_k=1,
                       sleeve=24, bicep=41, wrist=37, cuff=2.5, cuff_c=36, collar=3, leaf=4.5, point=7),
+    # a resort shirt (a camp, Cuban or revere collar): the short-sleeved shirt's cut a little boxier (116 cm round the
+    # chest) with a straight hem, its collar a 2.5 cm stand under a 5 cm leaf, 8 cm to its points, that lies open. Worn
+    # open, its front in two; done up, the neck cut in a 14 cm V (vneck) to the top button, the collar open in it. (On a
+    # 1 cm stand, as a camp collar's, the leaf did not fold down: it crumpled at the back of his neck)
+    "camp": dict(chest=116, length=74, shoulder=48, armhole=24, neck_w=16, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
+                 sleeve=24, bicep=43, wrist=39, cuff=2.5, cuff_c=38, collar=2.5, leaf=5, point=8, open=1),
+    "camp_up": dict(chest=116, length=74, shoulder=48, armhole=24, neck_w=16, neck_f=14, neck_b=2, sh_drop=5, band=0, band_k=1,
+                    sleeve=24, bicep=43, wrist=39, cuff=2.5, cuff_c=38, collar=2.5, leaf=5, point=8, vneck=1),
     # a polo: the tee's body, a little higher at the front of the neck, short sleeves finished in a 2.5 cm rib armband a
     # little closer than the sleeve, and a knitted collar (a 2 cm stand and a 4.5 cm leaf folded down over it, 6.5 cm to its
     # points) closed round his neck; the page draws its placket and buttons
