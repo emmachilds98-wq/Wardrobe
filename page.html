@@ -4327,8 +4327,11 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
   /* (all of it, for a collar leaf held inside a stand collar done up over it: but not that layer's own leaf, folded
      down outside its stand. Held inside the leaf too, a shirt's or a polo's leaf lay between a zipped-up Harrington's
      stand and leaf and came through the leaf in patches, back and front, m7-harrington and two coach jackets) */
-  /* (a layer worn over a shirt that keeps the shirt's collar leaf inside it: a stand collar done up, a hood, lapels) */
-  function leafIn(O){return !!(STANDC[O.t.arch]||O.t.hood||O.t.meas.lapel);}
+  /* (a layer worn over a shirt that keeps the shirt's collar leaf inside it: a stand collar done up, a hood, lapels, and
+     an open jacket with a shirt's collar of its own, a chore, denim, Harrington-style, car coat's or aviator's, whose
+     collar a shirt's or a polo's sits inside, as worn. Laid out over an open jacket's, the two collars crumpled together
+     at his shoulders and the shirt's or the polo's came through in shards, m7-harrington, g-job-01, c6-denim) */
+  function leafIn(O){return !!(STANDC[O.t.arch]||O.t.hood||O.t.meas.lapel||(window.__leafInC!==0&&/^(chore|trucker|jacket_coll|carcoat|aviator)$/.test(O.t.arch)));}
   function inCol(O,all){var P=[],Nn=[],ef=drapeSplit(O.t)?drapeEdge(O.t):null,X=O.X,N=O.N;
     for(var q=0;q<O.t.n;q++){var g=O.t.grp[q];if((all||!g)&&!(ef&&ef[q])&&!(all&&O.lf&&O.lf[q])&&(g||N[q*3]*X[q*3]+N[q*3+2]*(X[q*3+2]-zc)>=0))for(var a=0;a<3;a++){P.push(X[q*3+a]);Nn.push(-N[q*3+a]);}}
     return drapeCol(new Float32Array(P),new Float32Array(Nn),0.006,0.02);}

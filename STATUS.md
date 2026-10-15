@@ -25,10 +25,16 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: collars inside open collared jackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A shirt's or a polo's collar now sits
+inside an open chore, denim, Harrington-style, car coat or aviator collar instead of crumpling over it (13 outfits
+look better, 20 checked). The
+insulated and borg-lined overshirts were tried on `chore` and held back: under their jackets they show through, as open
+overshirts under open jackets already do on `main` (g-casual-09, g-mod-11, -13, -15), which the 3D check misses.
+**Next:** see `UPGRADE_GUIDE.md` ("What is left"): an open overshirt under an open jacket.
+
 **15 Oct: the last jackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `gilet_hood` (a hooded gilet) and
 `aviator` and `aviator_up` (a big shearling collar in its own colour); a borg zip-through on `puffer`, and a hybrid and a
 longline waterproof filed as jackets on `jacket` and `parka` (6 outfits). Carhartt's Super Dux stays on `make3Dcore`.
-**Next:** see `UPGRADE_GUIDE.md` ("What is left"): the insulated and borg-lined overshirts.
 
 **15 Oct: cardigans and a knit zip overshirt** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A new template, `cardigan` and
 `cardigan_up` (`jumper_v`'s knit with its front in two, rib up the fronts and round the V, buttons and pockets drawn),
@@ -528,6 +534,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 15 Oct 2026 | #75 | A shirt's or a polo's collar sits inside an open chore, denim, Harrington-style, car coat or aviator collar instead of crumpling over it (`leafIn`; 20 outfits checked, 13 better). The insulated and borg-lined overshirts were tried on `chore` and held back: open overshirts under open jackets show through them, on `main` too, which the 3D check misses. FtdHKg still to be republished from Emma's account | B8UXnh v14 |
 | 15 Oct 2026 | #74 | The last jackets: a new `gilet_hood` (a hooded gilet) and `aviator` and `aviator_up` (a big shearling collar in its own colour, laid out over its own shoulders), a borg zip-through on `puffer` (not over a half-zip), and a hybrid and a longline waterproof filed as jackets on `jacket` and `parka` (7 uses, 6 outfits; Carhartt's Super Dux stays on `make3Dcore`); draped top pieces 940, 12 left. FtdHKg still to be republished from Emma's account | B8UXnh v13 |
 | 15 Oct 2026 | #73 | Cardigans and a knit zip overshirt: a new `cardigan` and `cardigan_up` (`jumper_v`'s knit with its front in two, rib up the fronts and round the V, buttons and pockets drawn) for Route One's cardigan, and Closure London's knit zip overshirt on `chore` with a drawn zip (3 pieces, 3 outfits); draped top pieces 934, 18 left, counted piece by piece. FtdHKg still to be republished from Emma's account | B8UXnh v12 |
 | 15 Oct 2026 | #72 | Knitted, zip and rugby polos and V-neck jumpers: zip polos on `polo` with a drawn zip, knitted polo jumpers and a rugby shirt on `polo_ls`, a new `jumper_v` (a V neck with the knitted vest's rib; 8 pieces, 11 outfits). FtdHKg still to be republished from Emma's account | B8UXnh v11 |

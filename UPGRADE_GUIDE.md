@@ -1,6 +1,6 @@
 # Continuing the upgrade: a guide for the next engineer
 
-Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks, cardigans and the last jackets. Read this first, then `STATUS.md` (what is happening now and the
+Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks, cardigans, the last jackets and collars under open jackets. Read this first, then `STATUS.md` (what is happening now and the
 log), `HANDOFF.md` (how the page fits together) and `CONTRIBUTING.md` (the data rules and every check). The long
 history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections last before "3. Next steps".
 
@@ -38,14 +38,17 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 | Item | Pieces (outfits) | What it needs |
 | --- | --- | --- |
 | Two jackets that fail the check draped | 2 (2) | Carhartt's Super Dux (jb8-superdux): on `jacket_hood` and on `puffer_hood` the tee under it shows between its hem and the top of his tool belt; it would need cutting longer, or the belt worn over its hem. The borg zip-through over a half-zip (g-casual-01): on `jacket` and on `puffer` the half-zip's collar comes through its collar at the back of his neck. |
-| Insulated and borg-lined overshirts | 2 (4) | Tog24's insulated Adamson shacket and Matalan's borg-lined overshirt: `chore` with padding, held further off what is under them. |
+| An open overshirt under an open jacket | (4 on `main`) | g-casual-09, g-mod-11, -13 and -15 show the overshirt (g-mod-15 the half-zip) through the jacket's fronts in patches. The 3D check misses it (see the pitfalls). A jacket no bigger than the overshirt is part of it; sizing the jacket up only thins the patches. Look at how the inner layer is held in near an open jacket's fronts (`inCol` leaves out 3.5 cm either side of the opening, `drapeEdge`). |
+| Insulated and borg-lined overshirts | 2 (4) | Tog24's Adamson and Matalan's borg-lined overshirt are `chore`'s cut, but draped under their jackets they show through them as above, and under a done-up gilet (g-outdoor-21) their collar comes through the gilet's. Do the row above first. |
 | Shirt-collared overcoat | (1) | The ASOS tobacco overcoat has a shirt collar in its photo but takes `overcoat`'s lapels (nothing in its name says otherwise): a `collar` correction in `data/fixes.json` could send it to `carcoat`. |
 | Muscle, racer and mesh vests, vest tops | 3 (3) | Variants of `vest` (deeper armholes, a racer back). Low value. |
 | Baseball henley, mock-neck tee | 2 (3) | Raglan sleeves are not in the builder; low value. |
 | Tucked-in tops | many | Never draped (`TUCK0`): only with tailoring, a belt or a tie. A draped top would need its hem taken inside the trousers. Large job, modest gain. |
 | Newer Three.js | | Queue item 6 in `STATUS.md` (r128 now). Emma said yes on 12 Oct. |
 
-Also noticed, not fixed: on rv-black-smart the link chain is drawn as a straight bar across his neck, on `main` too.
+Also noticed, not fixed, on `main` too: on rv-black-smart the link chain is drawn as a straight bar across his neck;
+in n4-stone-navy his chest shows through the shirt's front under the Harrington; in g-quiet-30 dark spikes stand out
+round his neck under the jacket; in pub-lunch the scarf crumples at his neck inside the wax jacket.
 
 ### Lapels (the blazer, 15 Oct 2026)
 
@@ -159,3 +162,6 @@ is drawn as a shawl. The overcoat uses the same two pieces on a longer, roomier 
   pushed out over the tee, come up through it; the page lays such a leaf out over the rest of its jacket after the settle
   (by `drapeTops`' first settle). In the builder, give a big leaf `relax`'s `over` too (a leaf of 8 cm or more gets it),
   or it starts the drape inside the body and self-collision keeps it there.
+- **The 3D check does not see through an open front.** It counts an inner layer showing through from the front only
+  under a piece done up (`openC` in `check_3d.js`), so an overshirt or a collar coming through an open jacket's fronts
+  passes. Look at open layers close up, from the front and both three-quarter views, before trusting a pass.
