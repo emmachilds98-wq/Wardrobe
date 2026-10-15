@@ -422,6 +422,18 @@ MEAS = {
     # shoulder so a jumper's or a hoodie's sleeve comes through, a plain hem and the jacket's stand collar, zipped
     "gilet": dict(chest=124, length=69, shoulder=43, armhole=27, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=3, band_k=0.92,
                   collar=6.5),
+    # a hooded gilet: the gilet's cut with no stand collar, the hooded padded jacket's hood sewn into a neckline a little
+    # wider and lower at the front, as a hoodie's (it is always done up, so nothing slides off his shoulders), zipped.
+    # (Cut to the gilet's neckline, a shirt's collar under it came through the hood's front either side of his neck)
+    "gilet_hood": dict(chest=124, length=69, shoulder=43, armhole=27, neck_w=20, neck_f=9, neck_b=2.2, sh_drop=4.5, band=3,
+                       band_k=0.92, hood_h=38, hood_d=28),
+    # an aviator (a flying jacket, faux leather or suede with a shearling collar): the collared jacket's cut, a 5 cm
+    # waistband barely drawn in, and a big collar, a 4 cm stand under a 8 cm leaf, 11 cm to its points, that lies out
+    # over his shoulders (the page draws it in the shearling's colour); worn open or zipped up
+    "aviator": dict(chest=124, length=66, shoulder=49, armhole=25.5, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=5,
+                    band_k=0.96, sleeve=65, bicep=44, wrist=28, cuff=5, cuff_c=24, collar=4, leaf=8, point=11, open=1),
+    "aviator_up": dict(chest=124, length=66, shoulder=49, armhole=25.5, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=5,
+                       band_k=0.96, sleeve=65, bicep=44, wrist=28, cuff=5, cuff_c=24, collar=4, leaf=8, point=11),
 }
 H = 0.014   # mesh spacing (m)
 
@@ -1660,9 +1672,10 @@ def main():
         print("  corners where pieces meet: " + ", ".join("%+.0f deg (%s at %.2f %.2f)" % (dev[w], "edge" if onb[w] else "inside", *Xw[w, :2]) for w in worst), flush=True)
         print("  welded: %d points, %d triangles, %d edges" % (nw, len(Tw), len(E)), flush=True)
         over = None
-        if "lapel" in G.M:
+        if "lapel" in G.M or G.M.get("leaf", 0) >= 8:
             # (a lapel kept out over the front, the back and the stand while it is eased: eased freely, its lower end
-            # went in under the front, where the two lie close)
+            # went in under the front, where the two lie close. So is a big collar's leaf lying out over his shoulders,
+            # an aviator's: eased freely, the jacket's back and shoulders came through it in patches)
             on = {k: np.zeros(nw, bool) for k in G.P}
             for k in G.P: on[k][can[off[k]:off[k] + len(G.P[k].V)]] = True
             body_on = on["back"] | on["collar"] | np.any([on[k] for k in G.P if k.startswith("front")], axis=0)

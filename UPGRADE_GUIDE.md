@@ -1,6 +1,6 @@
 # Continuing the upgrade: a guide for the next engineer
 
-Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks and cardigans. Read this first, then `STATUS.md` (what is happening now and the
+Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks, cardigans and the last jackets. Read this first, then `STATUS.md` (what is happening now and the
 log), `HANDOFF.md` (how the page fits together) and `CONTRIBUTING.md` (the data rules and every check). The long
 history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections last before "3. Next steps".
 
@@ -13,8 +13,9 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   shapes (stiff shells). The upgrade replaces them with **draped templates**: real flat patterns sewn and settled
   as cloth on Dave in headless Blender (`tools/build_garments.py`, output `data/garments/<template>.json`), then fitted
   to whichever body and layers are worn, in the page (`drapeTops`, `drapeSettle`).
-- **Coverage**: 934 top pieces across the outfits are draped. Only 18 still use `make3Dcore`'s shapes, plus every top
-  worn tucked in, which is never draped (`TUCK0`). (Counted piece by piece in each outfit. `tools/qa/drape_survey.js`,
+- **Coverage**: 940 top pieces across the outfits are draped. Only 12 still use `make3Dcore`'s shapes, plus every top
+  worn tucked in, which is never draped (`TUCK0`): 11 that `drapeArch` sends nowhere and the borg zip-through in
+  g-casual-01, which it sends to `puffer` but which stays on `make3Dcore` over a half-zip (see the rule by `TUCK0`). (Counted piece by piece in each outfit. `tools/qa/drape_survey.js`,
   below, gives one row per item, its template taken from the first outfit it is in, so a piece filed under another
   shape in another outfit can hide there: the guide said 932 and 20 until this was counted.) Run it for the live list.
 - **Templates** (`DRAPEF` in `page.html`; `_up` is the same garment done up, and the plain name is worn open where it
@@ -23,7 +24,8 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
     in two), `rollneck`, `halfzip`, `hoodie`, `kvest`, `vest`.
   - Shirts and polos: `shirt(_up)`, `sshirt(_up)`, `camp(_up)`, `polo`, `polo_ls`.
   - Jackets: `jacket(_up)` (the track jacket's cut), `jacket_hood(_up)`, `jacket_coll(_up)`, `bomber(_up)`,
-    `chore(_up)`, `trucker(_up)`, `puffer(_up)`, `puffer_hood(_up)`, `parka(_up)`, `gilet`.
+    `chore(_up)`, `trucker(_up)`, `puffer(_up)`, `puffer_hood(_up)`, `parka(_up)`, `aviator(_up)` (a big collar drawn in the
+    shearling's colour), `gilet`, `gilet_hood` (a hood, no stand collar).
   - Tailoring: `blazer(_up)` (a shawl collar: the collar and lapels in one, rolled down the V to the button).
   - Coats: `overcoat(_up)` (the blazer's lapels on a coat to his knees), `carcoat(_up)` (a shirt collar, a fly front).
   - Accessories: `scarf`.
@@ -35,7 +37,7 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 
 | Item | Pieces (outfits) | What it needs |
 | --- | --- | --- |
-| Last jackets | 6 (8) | A hooded padded gilet (a `gilet` with `puffer_hood`'s hood), a faux-leather aviator with a shearling collar (a big contrast collar), and two that failed the check once draped: the borg zip-through over a half-zip done up (g-casual-01, its collar) and Carhartt's Super Dux (jb8-superdux, the jumper under it bunched over his tool belt). Also two filed as jackets in one outfit each: Closure London's smart hybrid (g-quiet-20; as a blazer it takes `jacket`) and Animal Elements' longline waterproof (g-outdoor-20; as a coat it takes `parka`). |
+| Two jackets that fail the check draped | 2 (2) | Carhartt's Super Dux (jb8-superdux): on `jacket_hood` and on `puffer_hood` the tee under it shows between its hem and the top of his tool belt; it would need cutting longer, or the belt worn over its hem. The borg zip-through over a half-zip (g-casual-01): on `jacket` and on `puffer` the half-zip's collar comes through its collar at the back of his neck. |
 | Insulated and borg-lined overshirts | 2 (4) | Tog24's insulated Adamson shacket and Matalan's borg-lined overshirt: `chore` with padding, held further off what is under them. |
 | Shirt-collared overcoat | (1) | The ASOS tobacco overcoat has a shirt collar in its photo but takes `overcoat`'s lapels (nothing in its name says otherwise): a `collar` correction in `data/fixes.json` could send it to `carcoat`. |
 | Muscle, racer and mesh vests, vest tops | 3 (3) | Variants of `vest` (deeper armholes, a racer back). Low value. |
@@ -152,3 +154,8 @@ is drawn as a shawl. The overcoat uses the same two pieces on a longer, roomier 
   6 rows unless given more: a long strip (a cardigan's front rib) cuts through the curve between rows and the cloth
   stands out through it. Give a long strip a row every centimetre or so. A patch has no texture coordinates, so a print
   laid on one comes out a single colour: draw a pocket on a print as its outline instead.
+- **A garment is not settled against itself.** `drapeSettle` holds each garment off his body and the layers under it,
+  not off its own pieces. A collar leaf lying wide over its own shoulders (the aviator's) had the jacket's shoulders,
+  pushed out over the tee, come up through it; the page lays such a leaf out over the rest of its jacket after the settle
+  (by `drapeTops`' first settle). In the builder, give a big leaf `relax`'s `over` too (a leaf of 8 cm or more gets it),
+  or it starts the drape inside the body and self-collision keeps it there.

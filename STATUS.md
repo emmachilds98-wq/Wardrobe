@@ -25,10 +25,14 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: the last jackets** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `gilet_hood` (a hooded gilet) and
+`aviator` and `aviator_up` (a big shearling collar in its own colour); a borg zip-through on `puffer`, and a hybrid and a
+longline waterproof filed as jackets on `jacket` and `parka` (6 outfits). Carhartt's Super Dux stays on `make3Dcore`.
+**Next:** see `UPGRADE_GUIDE.md` ("What is left"): the insulated and borg-lined overshirts.
+
 **15 Oct: cardigans and a knit zip overshirt** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). A new template, `cardigan` and
 `cardigan_up` (`jumper_v`'s knit with its front in two, rib up the fronts and round the V, buttons and pockets drawn),
-and Closure London's knit zip overshirt on `chore` with a drawn zip (3 outfits). **Next:** see `UPGRADE_GUIDE.md` ("What
-is left"): the last jackets.
+and Closure London's knit zip overshirt on `chore` with a drawn zip (3 outfits).
 
 **15 Oct: knitted, zip and rugby polos and V-neck jumpers** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Zip polos on
 `polo` with a drawn zip, knitted polo jumpers and a rugby shirt on `polo_ls`, and a new template, `jumper_v` (a V neck
@@ -524,6 +528,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 15 Oct 2026 | #74 | The last jackets: a new `gilet_hood` (a hooded gilet) and `aviator` and `aviator_up` (a big shearling collar in its own colour, laid out over its own shoulders), a borg zip-through on `puffer` (not over a half-zip), and a hybrid and a longline waterproof filed as jackets on `jacket` and `parka` (7 uses, 6 outfits; Carhartt's Super Dux stays on `make3Dcore`); draped top pieces 940, 12 left. FtdHKg still to be republished from Emma's account | B8UXnh v13 |
 | 15 Oct 2026 | #73 | Cardigans and a knit zip overshirt: a new `cardigan` and `cardigan_up` (`jumper_v`'s knit with its front in two, rib up the fronts and round the V, buttons and pockets drawn) for Route One's cardigan, and Closure London's knit zip overshirt on `chore` with a drawn zip (3 pieces, 3 outfits); draped top pieces 934, 18 left, counted piece by piece. FtdHKg still to be republished from Emma's account | B8UXnh v12 |
 | 15 Oct 2026 | #72 | Knitted, zip and rugby polos and V-neck jumpers: zip polos on `polo` with a drawn zip, knitted polo jumpers and a rugby shirt on `polo_ls`, a new `jumper_v` (a V neck with the knitted vest's rib; 8 pieces, 11 outfits). FtdHKg still to be republished from Emma's account | B8UXnh v11 |
 | 15 Oct 2026 | #71 | The remaining jackets whose shop photos match a template: two shirt-jackets on `chore`, Brakeburn Classic, Napapijri Bisenzio and Closure London's hybrid on `jacket`, a hooded wax jacket and a 3-in-1 on `jacket_hood`, a padded ski jacket on `puffer_hood` (8 jackets, 12 outfits). FtdHKg still to be republished from Emma's account | B8UXnh v10 |

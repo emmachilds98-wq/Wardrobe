@@ -3470,6 +3470,38 @@ Left as they were: the print on Route One's cardigan tiles with visible seams, a
 
 **Checked**: the 3 outfits on all five bodies as worn, and done up on dave and loose. Stored specs unchanged.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. The last jackets (15 Oct 2026)
+
+Eight uses of six jackets kept `make3Dcore`'s shapes. From their shop photos:
+
+- Luke 1977's BUB gilet (g-mod-03, g-mod-10): a quilted gilet with a hood. A new template, `gilet_hood`: the gilet's cut
+  with no stand collar and the hooded padded jacket's hood, zipped (`drapeDetails` draws the zip from the neckline to the
+  hem). Cut to the gilet's neckline, the orange shirt's collar under it came through the hood's front either side of his
+  neck (g-mod-10, front poke 33 on the heavier body and showing on dave); its neckline is a centimetre wider and 1.5 cm
+  lower at the front, as a hoodie's, and the collar sits inside it.
+- George's faux-leather jacket with a shearling-style collar (nw-docs): an aviator. A new template, `aviator` (open) and
+  `aviator_up`: the collared jacket's cut with a 5 cm waistband and a big collar, a 4 cm stand under an 8 cm leaf, 11 cm to
+  its points, drawn in the shearling's colour (the piece's second colour, or a cream fleece: the mesh's second material,
+  as a knit's rib is). Two things kept the jacket coming up through the collar in patches: in the builder the leaf started
+  the drape inside the body, so `relax` now keeps a leaf of 8 cm or more out over the body (`over`, as a lapel's), and in
+  the page a garment is not settled against itself, so the aviator's leaf is laid out over the rest of the jacket after
+  its settle, the rest held where it is.
+- Closure London's borg zip-through (s8-borg): thick pile zipped to a tall stand collar. `puffer`, the padded jacket's
+  room and taller collar. Over a half-zip (g-casual-01) it keeps `make3Dcore`'s shapes, and so the layers under it: there,
+  on `puffer` as on `jacket`, the half-zip's collar came through its collar at the back of his neck on three bodies.
+- Closure London's smart hybrid filed as a jacket (g-quiet-20) takes `jacket`, as it does filed as a blazer; Animal
+  Elements' longline waterproof filed as a jacket (g-outdoor-20) takes `parka`, as it does filed as a coat.
+
+Left: Carhartt's Super Dux (jb8-superdux). On `puffer_hood`, as on `jacket_hood`, the tee under it shows between its hem
+and the top of his tool belt (front poke 71 to 106); it keeps `make3Dcore`'s shapes. In g-quiet-20 the pink shirt, longer
+than the hybrid jacket, bunches out at his hips below the jacket's gathered hem.
+
+`drapeArch` sends exactly these 7 uses (the routing of every piece in every outfit before and after); g-casual-01's borg
+is held back by the half-zip rule. Draped top pieces go from 934 to 940, leaving 12.
+
+**Checked**: the 8 outfits (the 6 that change, g-casual-01 and jb8-superdux) on all five bodies as worn, and done up on
+dave and loose. Stored specs unchanged.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
