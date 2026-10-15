@@ -306,6 +306,10 @@ MEAS = {
     # points) closed round his neck; the page draws its placket and buttons
     "polo": dict(chest=108, length=72, shoulder=46, armhole=22, neck_w=17, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
                  sleeve=23, bicep=38, wrist=35, cuff=2.5, cuff_c=33, collar=2, leaf=4.5, point=6.5),
+    # a long-sleeved polo: the polo's body and knitted collar, its sleeves to the wrist (a little narrower round the arm,
+    # tapering) finished in a 5 cm rib cuff, as the long-sleeved tee's
+    "polo_ls": dict(chest=108, length=72, shoulder=46, armhole=22, neck_w=17, neck_f=7.5, neck_b=2, sh_drop=4.5, band=0, band_k=1,
+                    sleeve=64, bicep=36, wrist=23, cuff=5, cuff_c=19, collar=2, leaf=4.5, point=6.5),
     # a padded or puffer jacket: the track jacket's cut with a padded jacket's room (132 cm round the chest, 8 more than
     # the track jacket, so it goes over a sweatshirt or a quarter-zip with its padding; sleeves 48 cm round the bicep),
     # a taller stand collar, a narrow elastic hem and elastic cuffs; worn open (its front in two) or zipped up
