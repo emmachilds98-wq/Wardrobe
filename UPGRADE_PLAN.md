@@ -3776,6 +3776,36 @@ with a deep skin and red hair; card stills of three outfits against `main` (a me
 same as `main` against itself: the face's noise); the smoke test (the same cards and renders as `main`, no errors);
 the navigation check and the gate set on all five bodies in the pull-request check.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. A tidier Edit Dave: six tabs, the rest folded away (16 Oct 2026)
+
+Section 5, item 2, its second half. Edit Dave had eight tabs, and Face, Hair and the moustache were long lists.
+
+*Six tabs*: Body, Face, Hair, Facial hair, Skin and eyes, Clothes fit (`CES`). Each shows its few main controls, the
+rest under folds as Size and shape already did, so every control is two taps from the tab row (the tab, then its fold):
+
+- Body: the five body types, then Height, Weight, Muscle and Shoulder width; folds for Fine-tune the body (waist,
+  chest, belly, hips, neck, shoulder slope, body depth), Arms and legs, Proportions (leg length first, then torso, arms,
+  neck and head, with His proportions and Average man), and His measurements (the card as before; the fold's line says
+  whether he is in his sizes, open or closed, `ceMeasSum`). The old Body type and Proportions tabs are in it.
+- Face: face width, jaw, chin, jawline, nose and expression; folds for More of his face (under the chin, lips, ears,
+  eye size), Brows and Glasses.
+- Hair: the style and the colour (natural colour, shade, grey, sun-lightened ends); folds for The cut and Curls.
+- Facial hair: the moustache's style, its colour (with Match hair) and the beard; a fold for the moustache's shape,
+  there when he has one. The colour shows with a beard and no moustache too.
+- Skin and eyes, and Clothes fit, as they were.
+
+*One reset per tab*: "Reset face" and so on beside the tab's heading, there when the tab has changes: it puts that
+tab's controls back to how he was saved (the per-slider resets stay, on a changed slider only).
+
+*Labels above their choices*, as on a phone, so a row of swatches or chips has the panel's width; sliders a little
+tighter (3 px less padding each) and the body-type figures smaller, so no tab runs past a 1280 x 800 laptop screen with
+its folds closed. The camera still zooms to the part being changed (`CE_ZOOM`). On a phone the six tabs are one
+scrolling row of chips under the model, the controls below them.
+
+**Checked**: every tab on a 1280 x 800 screen with its folds closed (the side panel's content at most 631 px of its 640),
+and at 390 px wide; a tab's reset; the change count and badges; saved looks unchanged (no change to the look's keys);
+no page errors.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4030,7 +4060,8 @@ layout is checked at 390 px wide, saved looks load unchanged, and Emma has looke
 and new options; the panel layout).
 
 **First half done 16 Oct 2026** (PR #83, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: skin tone on two sliders, hair colours beyond brown and
-a grey slider, eleven eye colours). Still to do: the panel's layout, for Emma to look at before it ships.
+a grey slider, eleven eye colours). **Second half done 16 Oct 2026** (PR #84, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: six tabs, the
+rest folded away, one reset per tab), shipped for Emma to check on the live page.
 
 ### 3. Shoes, and how the trousers meet them
 
