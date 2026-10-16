@@ -3834,8 +3834,10 @@ comes out of the collar.
 *The welt* is centred on the shoe and sits at the sole's edge.
 
 **Checked**: the feet sheet before and after (every straight, loose and wide leg shows the heel from behind; slim legs rest
-on it; boots, cuffed joggers and shorts unchanged but for the trainer's collar); card stills against `main`; the gate set
-on dave locally; the smoke test; the gate set on all five bodies and both ways of wearing in the pull-request check.
+on it; boots, cuffed joggers and shorts unchanged but for the trainer's collar); card stills of five outfits against `main`
+(the same but for the feet: a mean difference of 0.47 levels, against 0.18 for `main` against itself); the gate set and
+the 8 outfits changed most on dave locally (45, none flagged: skin, sunk, poke and holes all 0); the smoke test (the same
+as `main`); the gate set on all five bodies and both ways of wearing in the pull-request check.
 
 ## 3. Next steps
 
