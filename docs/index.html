@@ -1863,7 +1863,7 @@ var OPENFT=/\bsliders?\b|\bslides?\b|sandals?|flip[- ]?flops?|\bflips?\b/;   /* 
 function dressed(ps){return bareChest(ps)?ps.concat([{item:"",shape:"tee",col:"white",what:"Plain T-shirt",fixed:true}]):ps;}
 /* The drawing's face follows Edit Dave, as the 3D model does: his beard and moustache style, eye and brow colour,
    brow weight and arch, and glasses (skin and hair colours come through the page's colour settings, applyChar2D). */
-function face2D(ac){var C=CHAR||{},tc=C.tacheCol||"#7a4a2c",bc=C.browCol||C.hair||"#38261b",h="";
+function face2D(ac){var C=CHAR||{},tc=C.tacheCol||C.hair||"#7a4a2c",bc=C.browCol||C.hair||"#38261b",h="";
   /* beard: stubble is a shadow along the jaw; a short beard is a soft band round the jaw and chin in his beard colour */
   if(C.beard==="stubble")h+='<path d="M103.5 55 Q105 72 120 77 Q135 72 136.5 55 Q131 67 120 68 Q109 67 103.5 55 Z" fill="'+tc+'" opacity=".22"/>';
   else if(C.beard==="full")h+='<path d="M102.5 50 Q103 71 120 78.5 Q137 71 137.5 50 Q136 63 131 67 Q126 70.5 120 70.5 Q114 70.5 109 67 Q104 63 102.5 50 Z" fill="'+tc+'" opacity=".9"/><path d="M106 64 Q112 69 120 69.5 Q128 69 134 64" fill="none" stroke="'+tc+'" stroke-width="1.4" opacity=".6"/>';
@@ -1887,7 +1887,7 @@ function face2D(ac){var C=CHAR||{},tc=C.tacheCol||"#7a4a2c",bc=C.browCol||C.hair
 /* his skin, hair and moustache colours on the drawing come from Edit Dave */
 function applyChar2D(){try{var r=document.documentElement.style;if(CHAR.skin)r.setProperty("--skin",CHAR.skin);if(CHAR.hair)r.setProperty("--hair",CHAR.hair);
   /* (the curls' highlight lines: a lighter tone of a hair colour other than his browns) */
-  if(CHAR.hair&&((CHAR.hairFam&&CHAR.hairFam!=="brown")||Number(CHAR.hairGrey)>0))r.setProperty("--hairhl",mixHex(CHAR.hair,"#ffffff",0.28));else r.removeProperty("--hairhl");if(CHAR.tacheCol)r.setProperty("--tache",CHAR.tacheCol);}catch(e){}}
+  if(CHAR.hair&&((CHAR.hairFam&&CHAR.hairFam!=="brown")||Number(CHAR.hairGrey)>0))r.setProperty("--hairhl",mixHex(CHAR.hair,"#ffffff",0.28));else r.removeProperty("--hairhl");if(CHAR.tacheCol||CHAR.hair)r.setProperty("--tache",CHAR.tacheCol||CHAR.hair);}catch(e){}}
 function figure(pieces,hi){
   pieces=dressed(pieces).map(function(p){var q=pieceLook(p);q.desc=descOf(byId[p.item],p);if(!q.col2&&q.desc.col2w)q.col2=q.desc.col2w;return q;});
   var up=[],lo=null,ft=null,ac={};FIGUPS=pieces;
@@ -3587,6 +3587,9 @@ function hairBase(){return CHAR.hairShade!=null?rampAt(hairF().r,CHAR.hairShade)
 function hairCol(){return greyed(hairBase());}
 function hairTipCol(){return greyed(mixHex(hairBase(),hairF().tip,0.1+0.45*(CHAR.hairLight==null?0.55:Number(CHAR.hairLight))));}
 function browColor(){return CHAR.browCol||toneMul(hairCol(),1.2);}   /* (brows that match his hair follow its colour, shade and grey) */
+/* his moustache and beard: their own colour (his is a little redder than his hair), or, set to Match hair, his hair's
+   colour, shade and grey */
+function tacheColor(){return CHAR.tacheCol||hairCol();}
 function browKf(){return 1+0.42*(Number(CHAR.browThick)||0);}
 /* the beard only shapes the jaw when he has a short beard */
 function beardGeo(x,y,z){return CHAR.beard==="full"?beardAt(x,y,z):0;}
@@ -3596,14 +3599,14 @@ function faceTex(){
   var fk=charKey();if(faceTx&&faceTx.ck===fk)return faceTx;var T=window.THREE,W=1024,H=512,cv=document.createElement("canvas");cv.width=W;cv.height=H;var g=cv.getContext("2d"),im=g.createImageData(W,H),D=im.data;
   var bk=CHAR.beard==="full"?1:(CHAR.beard==="stubble"?0.22:0);
   function hx(h){return [1,3,5].map(function(i){return parseInt(h.substr(i,2),16);});}
-  var sk=hx(CHAR.skin),s0=hx("#e2b08f"),bl=hx("#e0927f").map(function(v,k){return sk[k]*v/s0[k];}),bs=hx(shade(CHAR.tacheCol,0.95)),hr=hx(shade(hairCol(),1.06));
+  var sk=hx(CHAR.skin),s0=hx("#e2b08f"),bl=hx("#e0927f").map(function(v,k){return sk[k]*v/s0[k];}),bs=hx(shade(tacheColor(),0.95)),hr=hx(shade(hairCol(),1.06));
   for(var py=0;py<H;py++){var th=(py+0.5)/H*Math.PI,y=Math.cos(th),st=Math.sin(th);
     for(var px=0;px<W;px++){var ph=(px+0.5)/W*Math.PI*2,x=-Math.cos(ph)*st,z=Math.sin(ph)*st;
       var ch=Math.max(0,1-Math.hypot(Math.abs(x)-0.5,y+0.18)/0.3)*(z>0.4?1:0),so=Math.max(0,1-Math.hypot(Math.abs(x)-0.36,y-0.03)/0.17)*(z>0.6?1:0);
       var b=beardAt(x,y,z),s=scalpAt(x,y,z),i=(py*W+px)*4,n=(Math.random()-0.5)*6;
       for(var k=0;k<3;k++){var v=sk[k];v+=(bl[k]-v)*0.38*ch;v*=1-0.1*so;v+=(bs[k]-v)*0.82*b*bk;v+=(hr[k]-v)*s;D[i+k]=v+n;}D[i+3]=255;}}
   g.putImageData(im,0,0);
-  var tc=CHAR.tacheCol,cols=[shade(tc,0.83),shade(tc,0.95),shade(tc,0.72),shade(tc,1.07),shade(tc,0.62)];g.lineCap="round";
+  var tc=tacheColor(),cols=[shade(tc,0.83),shade(tc,0.95),shade(tc,0.72),shade(tc,1.07),shade(tc,0.62)];g.lineCap="round";
   var nB=CHAR.beard==="full"?60000:(CHAR.beard==="stubble"?26000:0),sl=CHAR.beard==="stubble"?0.35:1;
   for(var m=0;m<nB;m++){var bx=Math.random()*W,by=H*0.42+Math.random()*H*0.58,t2=by/H*Math.PI,p2=bx/W*Math.PI*2,s2=Math.sin(t2);
     if(Math.random()>beardAt(-Math.cos(p2)*s2,Math.cos(t2),Math.sin(p2)*s2))continue;
@@ -3612,7 +3615,7 @@ function faceTex(){
   faceTx=new T.CanvasTexture(cv);faceTx.anisotropy=4;faceTx.colorSpace=T.SRGBColorSpace;faceTx.keep=true;faceTx.ck=fk;return faceTx;
 }
 function tacheTex(){ /* the moustache as hairs falling from under the nose, with a ragged lower edge (cut out by alphaTest) */
-  if(tacheTx&&tacheTx.ck===CHAR.tacheCol)return tacheTx;var T=window.THREE,cv=document.createElement("canvas");cv.width=256;cv.height=128;var tc=CHAR.tacheCol,g=cv.getContext("2d"),cols=[shade(tc,0.94),shade(tc,1.06),shade(tc,0.83),shade(tc,1.18),shade(tc,0.72),shade(tc,1.12)];
+  if(tacheTx&&tacheTx.ck===tacheColor())return tacheTx;var T=window.THREE,cv=document.createElement("canvas");cv.width=256;cv.height=128;var tc=tacheColor(),g=cv.getContext("2d"),cols=[shade(tc,0.94),shade(tc,1.06),shade(tc,0.83),shade(tc,1.18),shade(tc,0.72),shade(tc,1.12)];
   g.fillStyle=tc;g.beginPath();g.moveTo(10,0);g.lineTo(246,0);g.lineTo(250,96);g.lineTo(128,104);g.lineTo(6,96);g.closePath();g.fill();g.lineCap="round";
   for(var i=0;i<5200;i++){var x=Math.random()*256,y=Math.random()*100,l=10+Math.random()*22;g.strokeStyle=cols[i%6];g.globalAlpha=0.6+Math.random()*0.4;g.lineWidth=1+Math.random()*1.2;
     g.beginPath();g.moveTo(x,y);g.lineTo(x+(x-128)*0.04+(Math.random()-0.5)*4,Math.min(126,y+l));g.stroke();}
@@ -3760,7 +3763,7 @@ function bodyCols(c){var k=charKey()+bodyKey();if(c.col&&c.colK===k)return c.col
      photos on his skin, #e2b08f, and as much deeper and redder in proportion on another, so a deep skin is not given
      pink lips and cheeks) */
   var sk=lin(CHAR.skin),s0=lin("#e2b08f");function rel(h){var a=lin(h);return String(CHAR.skin).toLowerCase()==="#e2b08f"?a:[sk[0]*a[0]/s0[0],sk[1]*a[1]/s0[1],sk[2]*a[2]/s0[2]];}
-  var lip=lin(shade(CHAR.skin,0.8)),lipT=rel("#b86a5e"),warm=rel("#d98374"),hr=lin(shade(hairCol(),0.8)),bd=lin(shade(CHAR.tacheCol,0.85)),SK=L.skull;
+  var lip=lin(shade(CHAR.skin,0.8)),lipT=rel("#b86a5e"),warm=rel("#d98374"),hr=lin(shade(hairCol(),0.8)),bd=lin(shade(tacheColor(),0.85)),SK=L.skull;
   var ey=L.eye[1],my=L.mouth[0],mz=L.mouth[1],bk=CHAR.beard==="full"?0.9:(CHAR.beard==="stubble"?0.32:0);
   for(var i=0;i<n;i++){var x=P[i*3],y=P[i*3+1],z=P[i*3+2],r=sk[0],g=sk[1],b=sk[2];
     if(y>L.chin-0.06){
@@ -5743,7 +5746,7 @@ function make3Dcore(pieces){
        lip line, in three shades of his moustache colour; each style changes the root area and how the hairs lie */
     var tY=0.004*(Number(CHAR.tacheY)||0),tZ=0.0016*(Number(CHAR.tacheZ)||0),tWk=1+0.3*(Number(CHAR.tacheW)||0),tDk=Math.max(0.35,1+0.6*(Number(CHAR.tacheDen)||0)),tDr=Number(CHAR.tacheDroop)||0;
     tgt=man;var NT=Math.round(({chevron:1500,walrus:2100,handlebar:1200,pencil:900}[CHAR.tache]||1500)*tDk),hG=new T.CylinderGeometry(0.0001,0.00028,1,3,1);
-    var tc=CHAR.tacheCol,TMS=[mat(shade(tc,0.82),0.75),mat(tc,0.72),mat(toneMul(tc,1.18),0.7)].map(function(mm){var im=new T.InstancedMesh(hG,mm,NT);im.count=0;return im;});
+    var tc=tacheColor(),TMS=[mat(shade(tc,0.82),0.75),mat(tc,0.72),mat(toneMul(tc,1.18),0.7)].map(function(mm){var im=new T.InstancedMesh(hG,mm,NT);im.count=0;return im;});
     var to=new T.Object3D(),tu=new T.Vector3(0,1,0),td=new T.Vector3(),seedT=7;function rt(){seedT=(seedT*16807)%2147483647;return seedT/2147483647;}
     /* the roots fill the upper lip from right under the nose down to just above the lip, and each hair falls to
        about the line of the mouth (the walrus a little past it), so the moustache sits on the upper lip, not over the mouth */
@@ -8644,7 +8647,7 @@ var CE=[
   {g:"face",k:"glassCol",l:"Frames",t:"sw",o:["#2b2622","#5a3a24","#8a6a3a","#9a9a96","#c9a35a"],when:function(){return CHAR.glasses!=="none";}},
   {g:"face",h:"Moustache"},
   {g:"face",k:"tache",l:"Style",t:"seg",o:[["none","None"],["chevron","Chevron"],["walrus","Walrus"],["handlebar","Handlebar"],["pencil","Pencil"]]},
-  {g:"face",k:"tacheCol",l:"Colour",t:"sw",o:["#35251b","#5a3a24","#7a4a2c","#93582f","#a8683a","#c08850"],when:function(){return CHAR.tache!=="none";}},
+  {g:"face",k:"tacheCol",l:"Colour",t:"sw",o:["","#35251b","#5a3a24","#7a4a2c","#93582f","#a8683a","#c08850"],when:function(){return CHAR.tache!=="none";}},
   Object.assign(SL("face","tacheY","Position","Lower","Higher"),{when:function(){return CHAR.tache!=="none";}}),
   Object.assign(SL("face","tacheZ","Depth","Closer to the skin","Further out"),{when:function(){return CHAR.tache!=="none";}}),
   Object.assign(SL("face","tacheW","Width","Narrower","Wider"),{when:function(){return CHAR.tache!=="none";}}),
@@ -8713,7 +8716,7 @@ function ceSet(k,v,drag){if(CHAR[k]===v)return;cePush(!drag);CHAR[k]=v;var c=CE.
   else if(c){var vl=$("ce-v-"+k);if(vl)vl.textContent=ceLabel(c,v);ceSlSync(k);}
   ceGrads();$("ce-msg").textContent="";ceApply();}
 /* a choice's buttons and colour box, and a slider's thumb and words, after the value changed some other way */
-function ceSwSync(k){var v=CHAR[k];Array.prototype.forEach.call(document.querySelectorAll('#chared [data-ce="'+k+'"]'),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-cv")===String(v).toLowerCase()));});var ci=$("ce-c-"+k);if(ci&&/^#[0-9a-f]{6}$/i.test(v))ci.value=v;}
+function ceSwSync(k){var v=CHAR[k];Array.prototype.forEach.call(document.querySelectorAll('#chared [data-ce="'+k+'"]'),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-cv")===String(v).toLowerCase()));});var ci=$("ce-c-"+k),hv=/^#[0-9a-f]{6}$/i.test(v)?v:(k==="tacheCol"?tacheColor():(k==="browCol"?browColor():""));if(ci&&/^#[0-9a-f]{6}$/i.test(hv))ci.value=hv;}
 function ceSlMove(k){var c=ceDef(k),ri=$("ce-r-"+k),vl=$("ce-v-"+k);if(!c)return;if(ri)ri.value=cePos(c,CHAR[k]);if(vl)vl.textContent=ceLabel(c,CHAR[k]);ceSlSync(k);}
 /* a colour slider's track: the colours it runs through from end to end, as they stand with the other colour sliders */
 function ceGrad(c){var a=[];for(var i=0;i<=12;i++){var p=i/6-1;a.push(c.grad(ceVal(c,p))+" "+(i*100/12).toFixed(1)+"%");}return "linear-gradient(90deg,"+a.join(",")+")";}
@@ -8778,7 +8781,7 @@ function ceRow(c){
   if(c.t==="sl"||c.t==="range")return ceSlider(c);
   var v=CHAR[c.k],h='<div class="ce-row"><span class="label" id="ce-l-'+c.k+'">'+esc(c.l)+'</span><div class="ce-opts" role="group" aria-labelledby="ce-l-'+c.k+'">';
   if(c.t==="seg"){h+=c.o.map(function(o){return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="'+o[0]+'" aria-pressed="'+(v===o[0])+'">'+esc(o[1])+'</button>';}).join("");}
-  else if(c.t==="sw"){h+=c.o.map(function(o){if(o==="")return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="" aria-pressed="'+(!v)+'">Match hair</button>';return '<button type="button" class="ce-sw" style="background:'+o+'" data-ce="'+c.k+'" data-cv="'+o+'" aria-pressed="'+(String(v).toLowerCase()===o)+'" aria-label="'+esc(c.l+" "+o)+'"></button>';}).join("")+'<input type="color" id="ce-c-'+c.k+'" data-cec="'+c.k+'" value="'+esc(v||browColor())+'" aria-label="'+esc(c.l+", any colour")+'">';}
+  else if(c.t==="sw"){h+=c.o.map(function(o){if(o==="")return '<button type="button" class="chip" data-ce="'+c.k+'" data-cv="" aria-pressed="'+(!v)+'">Match hair</button>';return '<button type="button" class="ce-sw" style="background:'+o+'" data-ce="'+c.k+'" data-cv="'+o+'" aria-pressed="'+(String(v).toLowerCase()===o)+'" aria-label="'+esc(c.l+" "+o)+'"></button>';}).join("")+'<input type="color" id="ce-c-'+c.k+'" data-cec="'+c.k+'" value="'+esc(v||(c.k==="tacheCol"?tacheColor():browColor()))+'" aria-label="'+esc(c.l+", any colour")+'">';}
   return h+'</div></div>';}
 function ceList(keys){return keys.map(function(k){if(k.indexOf("h:")===0)return '<h3 class="ce-sub">'+esc(k.slice(2))+'</h3>';var c=ceDef(k);if(!c||(c.when&&!c.when()))return "";return ceRow(c);}).join("");}
 function ceForm(){
