@@ -25,11 +25,17 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**16 Oct: shoes made on a last** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 3, its second half). Each kind of shoe has its own
+last, made on his own foot: a trainer, runner, skate shoe, dress shoe, loafer, deck shoe, slipper, Chelsea, desert,
+work and hiking boot each with its toe, heel and sole, an opening round his ankle with its lining and rolled edge, a
+tongue and laces, and its details (a Chelsea's gussets, three stripes, a Chuck's toe cap, a brogue's punched wingtip, a
+loafer's strap). His ankle and instep show in the opening, in a sock where he wears one.
+**Next:** a relaxed stance (item 4), its first step.
+
 **16 Oct: trouser hems rest on the shoe** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 3, its first half). From behind, a
 trouser no longer covers the shoe to its sole: the back of the hem rises onto the heel, so the heel and sole show under
 it, and a slim leg stands behind the heel or rests on it rather than seeming tucked into the shoe. A trainer's upper ends
 at its padded collar (8 cm up at the heel), and a dress shoe's welt no longer shows as a ring behind the heel.
-**Next:** the shoe templates (item 3, its second half).
 
 **16 Oct: a tidier Edit Dave** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 2, its second half). Six tabs (Body, Face,
 Hair, Facial hair, Skin and eyes, Clothes fit), each with its few main controls and the rest under folds, a reset for
