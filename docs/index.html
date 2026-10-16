@@ -578,13 +578,14 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
 .fr-top{position:absolute;top:14px;left:84px;right:84px;display:flex;justify-content:space-between;align-items:center;gap:8px;pointer-events:none}
 .fr-top>*{pointer-events:auto}
 .fr-top .fr-seg{background:color-mix(in srgb,var(--surface) 92%,transparent)}
+.fr-tsegs{display:flex;flex-wrap:wrap;gap:6px 8px;min-width:0}
 .fr-top .fr-seg button{font-size:.75rem;padding:6px 11px}
 .fr-top .fr-seg button[aria-pressed="true"]{background:var(--badge);color:var(--on-badge)}
 .fr-hint{font-size:.75rem;color:var(--board-ink);background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line);border-radius:999px;padding:6px 11px}
 .fr-dock{position:absolute;right:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:4px;background:color-mix(in srgb,var(--surface) 95%,transparent);border:1px solid var(--line);border-radius:10px;padding:6px;box-shadow:0 10px 24px -14px rgba(20,32,27,.45)}
 .fr-dock button{font:inherit;font-size:.75rem;font-weight:600;width:52px;height:34px;border-radius:6px;border:0;background:transparent;color:var(--ink);cursor:pointer}
 .fr-dock button[data-dkang][aria-pressed="true"]{background:var(--badge);color:var(--on-badge)}
-.fr-dock button[data-dkcam][aria-pressed="true"],.fr-dock button[data-dkspin][aria-pressed="true"],.fr-dock button[data-dkwear][aria-pressed="true"]{background:var(--chip)}
+.fr-dock button[data-dkcam][aria-pressed="true"],.fr-dock button[data-dkspin][aria-pressed="true"],.fr-dock button[data-dkwear][aria-pressed="true"],.fr-dock button[data-dkpose][aria-pressed="true"]{background:var(--chip)}
 /* (the same dock on the builder's small model, smaller, and in Edit Dave) */
 .dk-wear{display:contents}
 .fr-dock .dk-wear button{height:auto;min-height:34px;line-height:1.15;padding:4px 2px}
@@ -3468,6 +3469,7 @@ function loadBody(){
     var B={n:d.n,pos:dec(d.pos,Float32Array),idx:dec(d.idx,Uint16Array),treg:dec(d.treg,Uint8Array),ao:d.ao?dec(d.ao,Uint8Array):null,regions:d.regions,sec:d.sec,secd:d.secd,lm:d.lm,lmd:d.lmd||{},sliders:d.sliders||[],morphs:{},cache:{}};
     Object.keys(d.morphs).forEach(function(k){B.morphs[k]={i:dec(d.morphs[k].i,Uint16Array),d:dec(d.morphs[k].d,Int16Array)};});
     var f=d.face;B.face={x0:f.x0,y0:f.y0,st:f.st,nx:f.nx,ny:f.ny,z:dec(f.z,Int16Array)};
+    if(d.rig)B.rig={parts:d.rig.parts,b:dec(d.rig.b,Uint8Array),w:dec(d.rig.w,Uint8Array)};   /* (his skeleton, for the live views' poses: poseRig) */
     BODY=B;return loadGarments().then(function(){return B;});}).catch(function(){BODY=null;return null;});}
   return bodyP;
 }
@@ -3808,7 +3810,7 @@ var SKIN_GLSL="float sk_h3(vec3 p){p=fract(p*0.3183099+0.1);p*=17.0;return fract
 function skinMaterial(){var T=window.THREE,m=new T.MeshStandardMaterial({vertexColors:true,roughness:0.5,metalness:0,emissive:new T.Color("#3a160c"),emissiveIntensity:0.16});
   m.extensions={derivatives:true};
   m.onBeforeCompile=function(sh){
-    sh.vertexShader=sh.vertexShader.replace("#include <common>","#include <common>\nvarying vec3 vSkP;").replace("#include <project_vertex>","#include <project_vertex>\nvSkP=transformed;");   /* (on the skin itself, not in the room: from the room, the pores crawled over him as he turned and swayed) */
+    sh.vertexShader=sh.vertexShader.replace("#include <common>","#include <common>\nvarying vec3 vSkP;\n#ifdef SK_REST\nattribute vec3 skRest;\n#endif").replace("#include <project_vertex>","#include <project_vertex>\n#ifdef SK_REST\nvSkP=skRest;\n#else\nvSkP=transformed;\n#endif");   /* (on the skin itself, not in the room: from the room, the pores crawled over him as he turned and swayed. Posed, from where he stood: poseSkinRest) */
     sh.fragmentShader=sh.fragmentShader.replace("#include <common>","#include <common>\nvarying vec3 vSkP;\n"+SKIN_GLSL).replace("#include <normal_fragment_maps>",
       "#include <normal_fragment_maps>\n{float h=sk_hgt(vSkP)*0.00009;vec3 sx=dFdx(-vViewPosition),sy=dFdy(-vViewPosition);vec2 dh=vec2(dFdx(h),dFdy(h));vec3 sk1=cross(sy,normal),sk2=cross(normal,sx);float dt=dot(sx,sk1);vec3 gr=sign(dt)*(dh.x*sk1+dh.y*sk2);normal=normalize(abs(dt)*normal-gr);}");
   };
@@ -7383,6 +7385,211 @@ function bagOut(man,S){var T=window.THREE,dm=[];man.traverse(function(o){if(o.is
     for(j=0;j<R;j++){v.fromBufferAttribute(pa,i*R+j).applyMatrix4(Mw);v.z+=lift;v.applyMatrix4(inv);pa.setXYZ(i*R+j,v.x,v.y,v.z);}moved=true;}
   if(moved){pa.needsUpdate=true;g.computeVertexNormals();}
   S.bx.getWorldPosition(c);var zb=zAt(c.x,c.y);if(zb>-1&&zb+0.035>c.z){c.z=zb+0.035;S.bx.parent.worldToLocal(c);S.bx.position.copy(c);}}
+/* ---- Poses (UPGRADE_PLAN section 5, item 4) ----
+   His skeleton comes with his body: tools/build_body.py writes body.json's "rig", the parts of him that move as one
+   (hips, waist, chest, neck, head, and each side's collarbone, upper arm, forearm, hand, thigh, shin and foot), each
+   with a pivot and a tail found again on his figure as Edit Dave and the proportions have shaped it, and the four
+   strongest parts of every point of his skin. A pose turns the parts about their pivots and every point moves with
+   its parts, blended by weight. His clothes bend with him (poseRig): their cloth with the skin under it, each layer of
+   his tops with the layer over it, buttons and pockets with their cloth, his hair and the rest with the skin nearest
+   them; and while he is posed, the sleeves and sides of a layer under long sleeves are not drawn. Only the live views
+   pose him, and he holds still once posed; the cards and the stored specs show him standing. */
+var POSES=[["","Standing"],["ease","At ease"],["walk","Walking"],["arms","Arms out"]],POSEM="";
+try{var pz0=localStorage.getItem("dw-pose");if(POSES.some(function(p){return p[0]===pz0;}))POSEM=pz0;}catch(e){}
+function poseName(k){return (POSES.filter(function(p){return p[0]===(k||"");})[0]||POSES[0])[1];}
+/* each pose, part by part: l a turn of the part on its parent (as he stands), w its turn in the room, aim a point
+   the part is turned to; move: where his hips go. Angles in degrees about the room's axes: x (a leg or arm forward
+   is negative, his toes down positive), y (his left side back positive), z (his left side up positive); his left is +x.
+   aim keeps a point where it was as he stood (his standing foot), turning the part to it from wherever its parent has
+   taken it */
+var POSEDEF={
+  /* his weight on his right leg: that hip up and out, the left knee eased forward, the shoulders the other way, arms hanging */
+  ease:function(J){return {move:[-0.03,0,0],
+    hips:{l:[["z",-6],["y",5]]},waist:{l:[["z",5],["y",-2.5]]},chest:{l:[["z",4.5],["y",-2]]},neck:{l:[["z",-2]]},head:{l:[["z",-2],["y",6]]},
+    "thigh.R":{aim:J.ankle("R")},"shin.R":{w:[]},"foot.R":{w:[["y",-6]]},
+    "thigh.L":{l:[["x",-15],["z",-2]]},"shin.L":{l:[["x",25]]},"foot.L":{w:[["y",10],["x",4]]},
+    "uarm.L":{w:[["z",2],["x",-2]]},"uarm.R":{w:[["z",-3]]},"farm.L":{l:[["x",-8]]},"farm.R":{l:[["x",-5]]}};},
+  /* mid-stride: his left leg forward on its heel, the right behind on its toes, the arms swinging the other way */
+  walk:function(J){return {
+    hips:{l:[["y",-5]]},waist:{l:[["y",4]]},chest:{l:[["y",5]]},head:{w:[]},
+    "thigh.L":{l:[["x",-22]]},"shin.L":{l:[["x",7]]},"foot.L":{w:[["x",-9]]},
+    "thigh.R":{l:[["x",15]]},"shin.R":{l:[["x",24]]},"foot.R":{w:[["x",24]]},
+    "uarm.R":{w:[["x",-15],["z",-4]]},"farm.R":{l:[["x",-16]]},"uarm.L":{w:[["x",12],["z",1]]},"farm.L":{l:[["x",-6]]}};},
+  /* his arms lifted out to the sides, to see the sides of what he wears and the cut under the arms */
+  arms:function(J){return {
+    "clav.L":{l:[["z",5]]},"clav.R":{l:[["z",-5]]},"uarm.L":{w:[["z",30]]},"uarm.R":{w:[["z",-30]]},"farm.L":{l:[["x",-10]]},"farm.R":{l:[["x",-10]]}};}
+};
+/* his rig as built: where his joints are, and the parts every point on him moves with (made once a figure, the first
+   time he is posed) */
+function poseRig(man){if(man.userData.rig!==undefined)return man.userData.rig;man.userData.rig=null;
+  var T=window.THREE,RG=BODY&&BODY.rig,body=null;if(!RG)return null;man.traverse(function(o){if(o.isMesh&&o.userData.isBody)body=o;});if(!body)return null;
+  var t0=Date.now(),n=BODY.n,np=RG.parts.length,inv=new T.Matrix4(),v=new T.Vector3(),i,j;man.updateMatrixWorld(true);inv.copy(man.matrixWorld).invert();
+  function toMan(o){return new T.Matrix4().multiplyMatrices(inv,o.matrixWorld);}
+  var bpa=body.geometry.attributes.position,bm=toMan(body),BP=new Float32Array(n*3);
+  for(i=0;i<n;i++){v.fromBufferAttribute(bpa,i).applyMatrix4(bm);BP[i*3]=v.x;BP[i*3+1]=v.y;BP[i*3+2]=v.z;}
+  function at(J){var x=0,y=0,z=0;J.i.forEach(function(q){x+=BP[q*3];y+=BP[q*3+1];z+=BP[q*3+2];});var m=J.i.length;return new T.Vector3(x/m+J.o[0],y/m+J.o[1],z/m+J.o[2]);}
+  var R={parts:RG.parts.map(function(p){return {n:p.n,p:p.p,h:at(p.h),t:at(p.t)};}),ix:{},recs:[],np:np};R.parts.forEach(function(p,q){R.ix[p.n]=q;});
+  /* the skin's points in a grid of 3 cm cells, those of his arms apart from the rest */
+  var AM=body.userData.armMask||bodyArmMask(),C=0.03,GA=new Map(),GB=new Map();
+  function key(a,b,c){return (a+512)*1048576+(b+512)*1024+(c+512);}
+  for(i=0;i<n;i++){var G=AM[i]?GA:GB,k=key(Math.floor(BP[i*3]/C),Math.floor(BP[i*3+1]/C),Math.floor(BP[i*3+2]/C)),L=G.get(k);if(!L)G.set(k,L=[]);L.push(i);}
+  var SB=RG.b,SW=RG.w,acc=new Float32Array(np),bi=[0,0,0,0],bd=[0,0,0,0];
+  /* the parts at a point: those of the four nearest points of skin, nearer ones counting more (and how near the nearest is) */
+  function near(sets,x,y,z,B,W,o,rmax){var cx=Math.floor(x/C),cy=Math.floor(y/C),cz=Math.floor(z/C),m=0,r,s,a,b,c,q;
+    for(r=1;r<=(rmax||16)&&m<4;r*=2){m=0;for(s=0;s<sets.length;s++)for(a=-r;a<=r;a++)for(b=-r;b<=r;b++)for(c=-r;c<=r;c++){var L=sets[s].get(key(cx+a,cy+b,cz+c));if(!L)continue;
+      for(q=0;q<L.length;q++){var p=L[q],dx=BP[p*3]-x,dy=BP[p*3+1]-y,dz=BP[p*3+2]-z,d=dx*dx+dy*dy+dz*dz,e;if(m<4)e=m++;else if(d<bd[3])e=3;else continue;
+        while(e>0&&bd[e-1]>d){bd[e]=bd[e-1];bi[e]=bi[e-1];e--;}bd[e]=d;bi[e]=p;}}}
+    acc.fill(0);for(q=0;q<m;q++){var wq=1/(Math.sqrt(bd[q])+0.004);for(s=0;s<4;s++)acc[SB[bi[q]*4+s]]+=wq*SW[bi[q]*4+s];}
+    top4(B,W,o);return m?bd[0]:Infinity;}
+  /* the four strongest of the parts gathered in acc, adding up to 1 */
+  function top4(B,W,o){var tot=0,s,q;for(s=0;s<4;s++){var best=0;for(q=1;q<np;q++)if(acc[q]>acc[best])best=q;B[o+s]=best;W[o+s]=Math.max(0,acc[best]);tot+=W[o+s];acc[best]=-1;}
+    for(s=0;s<4;s++)W[o+s]=tot>0?W[o+s]/tot:(s?0:1);}
+  /* cloth in a grid (G2: cell to pairs of its mesh and point): the parts at a point from the four nearest points of it
+     within rad (only those of a sleeve, mk 1, or of a body, mk 0, or either, -1; of a layer over ly, or any, -1);
+     whether there were any */
+  var cr=[null,null,null,null],cj=[0,0,0,0],cd=[0,0,0,0];
+  function fromCloth(G2,x,y,z,B,W,o,rad,mk,ly){var cx=Math.floor(x/C),cy=Math.floor(y/C),cz=Math.floor(z/C),m=0,a,b,c,q,e,R2=rad*rad,rc=Math.ceil(rad/C);
+    for(a=-rc;a<=rc;a++)for(b=-rc;b<=rc;b++)for(c=-rc;c<=rc;c++){var L=G2.get(key(cx+a,cy+b,cz+c));if(!L)continue;
+      for(q=0;q<L.length;q+=2){var r2=L[q],jj=L[q+1];if(ly>=0&&!(r2.ly>ly))continue;if(mk>=0&&(r2.am?r2.am[jj]:0)!==mk)continue;
+        var dx=r2.P[jj*3]-x,dy=r2.P[jj*3+1]-y,dz=r2.P[jj*3+2]-z,d=dx*dx+dy*dy+dz*dz;if(d>R2)continue;if(m<4)e=m++;else if(d<cd[3])e=3;else continue;
+        while(e>0&&cd[e-1]>d){cd[e]=cd[e-1];cr[e]=cr[e-1];cj[e]=cj[e-1];e--;}cd[e]=d;cr[e]=r2;cj[e]=jj;}}
+    if(!m)return false;acc.fill(0);for(q=0;q<m;q++){var wq=1/(Math.sqrt(cd[q])+0.004);for(var s=0;s<4;s++)acc[cr[q].B[cj[q]*4+s]]+=wq*cr[q].W[cj[q]*4+s];}
+    top4(B,W,o);return true;}
+  /* the triangles of a mesh with a corner not in cut, its material groups kept (and as it was, to go back to) */
+  function shown(g,cut){var I=g.index&&g.index.array;if(!I)return null;var gr=g.groups.length?g.groups:[{start:0,count:I.length,materialIndex:0}],out=[],ng=[],nc=0;
+    gr.forEach(function(G){var st=out.length;for(var t=G.start;t<G.start+G.count;t+=3){if(cut[I[t]]&&cut[I[t+1]]&&cut[I[t+2]]){nc++;continue;}out.push(I[t],I[t+1],I[t+2]);}ng.push({start:st,count:out.length-st,materialIndex:G.materialIndex});});
+    return nc?{idx:new (I.constructor)(out),groups:ng,idx0:I,groups0:g.groups.map(function(G){return Object.assign({},G);})}:null;}
+  /* whether the cloth nearest a point (within 3 cm) is a sleeve (1) or a body (0), or there is none (-1) */
+  function nearest(G2,x,y,z){var cx=Math.floor(x/C),cy=Math.floor(y/C),cz=Math.floor(z/C),bd2=C*C,res=-1,a,b,c,q;
+    for(a=-1;a<=1;a++)for(b=-1;b<=1;b++)for(c=-1;c<=1;c++){var L=G2.get(key(cx+a,cy+b,cz+c));if(!L)continue;
+      for(q=0;q<L.length;q+=2){var r2=L[q],jj=L[q+1],dx=r2.P[jj*3]-x,dy=r2.P[jj*3+1]-y,dz=r2.P[jj*3+2]-z,d=dx*dx+dy*dy+dz*dz;if(d<bd2){bd2=d;res=r2.am?r2.am[jj]:0;}}}
+    return res;}
+  /* a point that says nothing of his arms (his hair, a hat, a piece on no cloth of its own): the skin of his arms if that
+     is plainly nearer than the rest (within 60% of the distance, and 6 cm) */
+  var tB=new Uint8Array(4),tW=new Float32Array(4);
+  function nearAuto(x,y,z,B,W,o){var dB=near([GB],x,y,z,B,W,o),dA=near([GA],x,y,z,tB,tW,0,2);if(Math.sqrt(dA)<0.6*Math.sqrt(dB))for(var q=0;q<4;q++){B[o+q]=tB[q];W[o+q]=tW[q];}}
+  /* the body first (its own weights), then everything else on him */
+  var bw=new Float32Array(n*4);for(i=0;i<n*4;i++)bw[i]=SW[i]/255;
+  function rec(o,P,N,B,W){var M=toMan(o),id=M.equals(new T.Matrix4());return {o:o,P:P,N:N,B:B,W:W,Mi:id?null:M.clone().invert(),Ni:id?null:new T.Matrix3().getNormalMatrix(M.clone().invert())};}
+  var bnr=body.geometry.attributes.normal,BN=new Float32Array(n*3),nm=new T.Matrix3().getNormalMatrix(bm);
+  for(i=0;i<n;i++){v.fromBufferAttribute(bnr,i).applyMatrix3(nm).normalize();BN[i*3]=v.x;BN[i*3+1]=v.y;BN[i*3+2]=v.z;}
+  R.recs.push(rec(body,BP,BN,SB,bw));R.body=R.recs[0];
+  /* (his soles, where he meets the floor: the skin of his feet low down) */
+  R.feet=[];for(i=0;i<n;i++)if(BP[i*3+1]<0.06)R.feet.push(i);
+  R.floor=Infinity;R.feet.forEach(function(q){R.floor=Math.min(R.floor,BP[q*3+1]);});
+  /* everything else on him. First the cloth of his clothes, from the skin: sleeves, and what is in his arms' groups,
+     from the skin of his arms, the body of a top from the rest; trousers, shoes and the things he carries from his body
+     and legs only (the skin of his hands, hanging by his thighs, took the trousers with them as his arms moved) */
+  var seen=new Set(),later=[],cloth=[],CL=new Map();seen.add(body.geometry);
+  function cell(X,j){return key(Math.floor(X[j*3]/C),Math.floor(X[j*3+1]/C),Math.floor(X[j*3+2]/C));}
+  function put2(G2,r,j){var k2=cell(r.P,j),L2=G2.get(k2);if(!L2)G2.set(k2,L2=[]);L2.push(r,j);}
+  man.traverse(function(o){if(!o.isMesh||o===body||!o.geometry||!o.geometry.attributes.position)return;
+    var arm=false,a=o;while(a&&a!==man){if(a.userData.arm)arm=true;a=a.parent;}
+    var M=toMan(o),kd=o.userData.kind||"",sets=arm?[GA]:/^(lo|ft|acc)$/.test(kd)?[GB]:null,r;
+    if(o.isInstancedMesh){var cnt=o.count,Q=[],B=new Uint8Array(cnt*4),W=new Float32Array(cnt*4),mi=new T.Matrix4(),IP=new Float32Array(cnt*3);
+      for(j=0;j<cnt;j++){o.getMatrixAt(j,mi);var q=new T.Matrix4().multiplyMatrices(M,mi);Q.push(q);v.setFromMatrixPosition(q);IP[j*3]=v.x;IP[j*3+1]=v.y;IP[j*3+2]=v.z;}
+      r=rec(o,null,null,B,W);r.Q=Q;r.IP=IP;R.recs.push(r);if(sets)for(j=0;j<cnt;j++)near(sets,IP[j*3],IP[j*3+1],IP[j*3+2],B,W,j*4);else later.push(r);return;}
+    var g=o.geometry;if(seen.has(g)){g=g.clone();o.geometry=g;}seen.add(g);
+    var pa=g.attributes.position,na=g.attributes.normal,m=pa.count,P=new Float32Array(m*3),N=na?new Float32Array(m*3):null,B2=new Uint8Array(m*4),W2=new Float32Array(m*4),
+      AMk=o.userData.armMask||g.userData.armMask,SM=o.userData.sleeveMask,nmk=new T.Matrix3().getNormalMatrix(M),own=!!(sets||AMk||SM),am=own?new Uint8Array(m):null;
+    for(j=0;j<m;j++){v.fromBufferAttribute(pa,j).applyMatrix4(M);P[j*3]=v.x;P[j*3+1]=v.y;P[j*3+2]=v.z;
+      if(own){am[j]=arm||(AMk&&AMk[j]===1)||(SM&&SM[j]===1)?1:0;near(am[j]?[GA]:(AMk||SM)?[GB]:sets,P[j*3],P[j*3+1],P[j*3+2],B2,W2,j*4);}
+      if(N){v.fromBufferAttribute(na,j).applyMatrix3(nmk).normalize();N[j*3]=v.x;N[j*3+1]=v.y;N[j*3+2]=v.z;}}
+    r=rec(o,P,N,B2,W2);r.am=am;R.recs.push(r);if(!own){later.push(r);return;}
+    var ly=/^up(\d*)/.exec(kd);if(ly){r.ly=Number(ly[1]||0);cloth.push(r);}
+    if(ly||kd==="lo")poseSmooth(r,np,0.02);});
+  /* (the cloth's parts are evened out over about 2 cm of it, as each mesh is made above, so it does not tear where they
+     change: where a sleeve is sewn in under his arm, down the seat of his trousers) */
+  /* Then each layer of his tops under another moves as the layer over it does, where it is covered (within 3 cm), a
+     sleeve as the sleeve over it and a body as the body over it: taken from the skin, a jumper's sleeve and a coat's
+     sleeve over it were made apart, and the jumper came through the coat as he lifted his arms. (Not the point straight
+     out over it: the side of a jumper under a coat looks out at the coat's sleeve, and went up with it) */
+  cloth.sort(function(x,y){return y.ly-x.ly;});var OG=new Map(),hasO=false;
+  cloth.forEach(function(r){var X=r.P,m=X.length/3,B3=new Uint8Array(r.B),W3=new Float32Array(r.W),ch=false;
+    if(hasO)for(j=0;j<m;j++)if(fromCloth(OG,X[j*3],X[j*3+1],X[j*3+2],B3,W3,j*4,0.03,r.am[j],r.ly))ch=true;
+    if(ch){r.B.set(B3);r.W.set(W3);}for(j=0;j<m;j++)put2(OG,r,j);hasO=true;
+    var it=r.o.userData.item;if(it){var G2=CL.get(it);if(!G2)CL.set(it,G2=new Map());for(j=0;j<m;j++)put2(G2,r,j);}});
+  /* Posed, a sleeve inside the sleeve of a layer over it (above that sleeve's cuff, as his arm hangs) is not drawn. The
+     draped sleeves lie crumpled against his sides under his arms, unseen as he stands; as his arms move the folds of a
+     coat's sleeve open, and the jumper's sleeve inside showed through them in patches. Standing, all of it is drawn */
+  var yA=(R.parts[R.ix["uarm.L"]].h.y+R.parts[R.ix["uarm.R"]].h.y)/2,cuff={};cloth.forEach(function(r){var X=r.P;for(j=0;j<X.length/3;j++)if(r.am[j]){var k3=r.ly+(X[j*3]<0?"R":"L");cuff[k3]=Math.min(cuff[k3]==null?9:cuff[k3],X[j*3+1]);}});
+  function inSleeve(ly,x,y){for(var k3 in cuff)if(parseInt(k3,10)>ly&&k3.slice(-1)===(x<0?"R":"L")&&cuff[k3]<y-0.03)return true;return false;}
+  /* (and the body of a layer by his arm below his armpit, under a layer with long sleeves: the folds of its sleeve and
+     side open there as his arm swings, and the jumper under a coat showed through them as he walked. Higher up, the skin
+     of his shoulders counts as his arm's, and the jumper went beside a coat's lapels) */
+  function underLong(ly,x,y,z){var cx=Math.floor(x/C),cy=Math.floor(y/C),cz=Math.floor(z/C),a,b,c,q;
+    for(a=-1;a<=1;a++)for(b=-1;b<=1;b++)for(c=-1;c<=1;c++){var L=OG.get(key(cx+a,cy+b,cz+c));if(!L)continue;
+      for(q=0;q<L.length;q+=2){var r2=L[q],jj=L[q+1];if(!(r2.ly>ly)||r2.am[jj])continue;var k3=r2.ly+(x<0?"R":"L");if(!(cuff[k3]<1.1))continue;
+        var dx=r2.P[jj*3]-x,dy=r2.P[jj*3+1]-y,dz=r2.P[jj*3+2]-z;if(dx*dx+dy*dy+dz*dz<0.0009)return true;}}return false;}
+  cloth.forEach(function(r){var X=r.P,m=X.length/3,cut=new Uint8Array(m),any=0;
+    for(j=0;j<m;j++){var x=X[j*3],y=X[j*3+1],z=X[j*3+2];if(r.am[j]?inSleeve(r.ly,x,y):(y<yA-0.1&&near([GA],x,y,z,tB,tW,0,2)<0.0025&&underLong(r.ly,x,y,z))){cut[j]=1;any=1;}}
+    if(any){r.cut=cut;r.hide=shown(r.o.geometry,cut);}});
+  /* Last, what sits on a piece's cloth (buttons, pockets, cuffs, collars), from that cloth: from the sleeves of it or
+     from its body, whichever most of it is nearest (a coat's pocket, under the cuff of its sleeve as his arm hangs, went
+     with the sleeve) */
+  /* (one laid over a piece's cloth on the same points, as a draped knit's pattern is, its unused points at nought: point for point) */
+  function twin(r){var it=r.o.userData.item;if(!it||!r.P)return null;var c=cloth.filter(function(q){return q.o.userData.item===it&&q.P.length===r.P.length;})[0];if(!c)return null;
+    var on=0,ok=0;for(var q=0;q<r.P.length/3;q++){var x=r.P[q*3],y=r.P[q*3+1],z=r.P[q*3+2];if(!x&&!y&&!z)continue;on++;if(Math.hypot(x-c.P[q*3],y-c.P[q*3+1],z-c.P[q*3+2])<0.02)ok++;}
+    return on&&ok>0.9*on?c:null;}
+  later.forEach(function(r){var tw=twin(r);if(tw){r.B.set(tw.B);r.W.set(tw.W);if(tw.cut)r.hide=shown(r.o.geometry,tw.cut);return;}
+    var G2=r.o.userData.item&&CL.get(r.o.userData.item),X=r.P||r.IP,n2=X.length/3,votes=[0,0],mk=-1;
+    if(G2){for(j=0;j<n2;j+=Math.max(1,n2>>6)){var nv=nearest(G2,X[j*3],X[j*3+1],X[j*3+2]);if(nv>=0)votes[nv]++;}if(votes[0]+votes[1])mk=votes[1]>votes[0]?1:0;}
+    for(j=0;j<n2;j++)if(!(mk>=0&&fromCloth(G2,X[j*3],X[j*3+1],X[j*3+2],r.B,r.W,j*4,C,mk,-1)))nearAuto(X[j*3],X[j*3+1],X[j*3+2],r.B,r.W,j*4);});
+  R.ms=Date.now()-t0;man.userData.rig=R;return R;}
+function poseSmooth(r,np,sg){var P=r.P,m=P.length/3,g=r.o.geometry,I=g.index?g.index.array:null,id=new Int32Array(m),H=new Map(),nu=0,j,k,q;
+  for(j=0;j<m;j++){var kk=Math.round(P[j*3]*1e4)+","+Math.round(P[j*3+1]*1e4)+","+Math.round(P[j*3+2]*1e4),c=H.get(kk);if(c===undefined){c=nu++;H.set(kk,c);}id[j]=c;}
+  var nb=[];for(j=0;j<nu;j++)nb.push([]);var nt=I?I.length/3:m/3,el=0,ne=0;
+  function ed(u,w){el+=Math.hypot(P[u*3]-P[w*3],P[u*3+1]-P[w*3+1],P[u*3+2]-P[w*3+2]);ne++;}
+  for(j=0;j<nt;j++){var i0=I?I[j*3]:j*3,i1=I?I[j*3+1]:j*3+1,i2=I?I[j*3+2]:j*3+2,a=id[i0],b=id[i1],c2=id[i2];if(a!==b){nb[a].push(b);nb[b].push(a);ed(i0,i1);}if(b!==c2){nb[b].push(c2);nb[c2].push(b);ed(i1,i2);}if(a!==c2){nb[a].push(c2);nb[c2].push(a);ed(i0,i2);}}
+  /* (a step spreads them by about half an edge squared: as many steps as reach sg, whatever the mesh's size) */
+  var it=ne?Math.max(1,Math.min(40,Math.round(2*Math.pow(sg/(el/ne),2)))):0;
+  var used=[],seenP=new Uint8Array(np);for(j=0;j<m*4;j++)if(r.W[j]>0&&!seenP[r.B[j]]){seenP[r.B[j]]=1;used.push(r.B[j]);}var nu2=used.length;if(nu2<2)return;
+  var col=new Int8Array(np).fill(-1);used.forEach(function(p,i){col[p]=i;});var A=new Float32Array(nu*nu2),cnt=new Uint16Array(nu),A2=new Float32Array(nu*nu2);
+  for(j=0;j<m;j++){var u=id[j];cnt[u]++;for(k=0;k<4;k++){var w=r.W[j*4+k];if(w>0)A[u*nu2+col[r.B[j*4+k]]]+=w;}}
+  for(j=0;j<nu;j++)for(k=0;k<nu2;k++)A[j*nu2+k]/=cnt[j];
+  for(var s=0;s<it;s++){for(j=0;j<nu;j++){var L=nb[j],f=L.length?0.5/L.length:0;for(k=0;k<nu2;k++){var t=0;for(q=0;q<L.length;q++)t+=A[L[q]*nu2+k];A2[j*nu2+k]=L.length?A[j*nu2+k]*0.5+t*f:A[j*nu2+k];}}var sw=A;A=A2;A2=sw;}
+  var tmp=new Float32Array(nu2);
+  for(j=0;j<m;j++){var u2=id[j];for(k=0;k<nu2;k++)tmp[k]=A[u2*nu2+k];var tot=0;
+    for(k=0;k<4;k++){var best=0;for(q=1;q<nu2;q++)if(tmp[q]>tmp[best])best=q;r.B[j*4+k]=used[best];r.W[j*4+k]=Math.max(0,tmp[best]);tot+=r.W[j*4+k];tmp[best]=-1;}
+    for(k=0;k<4;k++)r.W[j*4+k]=tot>0?r.W[j*4+k]/tot:(k?0:1);}}
+/* a pose's turn of every part (on its parent) and his hips' move, worked out on his own joints */
+function poseSolve(R,name){var T=window.THREE,P=R.parts,D=Math.PI/180,spec=POSEDEF[name]?POSEDEF[name]({ankle:function(s){return P[R.ix["shin."+s]].t.clone();}}):{};
+  function quat(list){var q=new T.Quaternion();(list||[]).forEach(function(a){q.premultiply(new T.Quaternion().setFromAxisAngle(new T.Vector3(a[0]==="x"?1:0,a[0]==="y"?1:0,a[0]==="z"?1:0),a[1]*D));});return q;}
+  var ql=[],qw=[],M=[],mv=new T.Vector3().fromArray(spec.move||[0,0,0]);
+  for(var g=0;g<P.length;g++){var p=P[g],s=spec[p.n],qp=p.p>=0?qw[p.p]:new T.Quaternion(),q=new T.Quaternion();
+    if(s&&s.w)q.copy(qp).invert().multiply(quat(s.w));
+    else if(s&&s.aim){var hW=p.h.clone().applyMatrix4(M[p.p]),d0=s.aim.clone().sub(p.h).normalize(),d1=s.aim.clone().sub(hW).applyQuaternion(qp.clone().invert()).normalize();q.setFromUnitVectors(d0,d1);}
+    else if(s&&s.l)q.copy(quat(s.l));
+    ql[g]=q;qw[g]=qp.clone().multiply(q);M[g]=poseMat(p,q,p.p>=0?M[p.p]:null,mv);}
+  return {q:ql,mv:mv,k:name||""};}
+function poseMat(p,q,Mp,mv){var T=window.THREE,L=new T.Matrix4().makeTranslation(p.h.x,p.h.y,p.h.z).multiply(new T.Matrix4().makeRotationFromQuaternion(q)).multiply(new T.Matrix4().makeTranslation(-p.h.x,-p.h.y,-p.h.z));
+  return Mp?Mp.clone().multiply(L):new T.Matrix4().makeTranslation(mv.x,mv.y,mv.z).multiply(L);}
+/* pose him: every point on him moved by its parts (S from poseSolve, or between two of them), his feet kept on the floor */
+function poseApply(R,S){var T=window.THREE,P=R.parts,np=P.length,A=new Float32Array(np*12),M=[],g,i,j;
+  for(g=0;g<np;g++){M[g]=poseMat(P[g],S.q[g],P[g].p>=0?M[P[g].p]:null,S.mv);var e=M[g].elements;A.set([e[0],e[4],e[8],e[12],e[1],e[5],e[9],e[13],e[2],e[6],e[10],e[14]],g*12);}
+  /* (down to the floor, or up off it, by his lowest point of skin) */
+  var b=R.body,lo=Infinity;R.feet.forEach(function(q){var y=0,x=b.P[q*3],yy=b.P[q*3+1],z=b.P[q*3+2];for(var s=0;s<4;s++){var w=b.W[q*4+s];if(!w)continue;var k=b.B[q*4+s]*12;y+=w*(A[k+4]*x+A[k+5]*yy+A[k+6]*z+A[k+7]);}lo=Math.min(lo,y);});
+  var dy=isFinite(lo)?R.floor-lo:0;for(g=0;g<np;g++)A[g*12+7]+=dy;
+  var v=new T.Vector3(),n3=new T.Vector3(),m4=new T.Matrix4();
+  R.recs.forEach(function(r){var o=r.o,B=r.B,W=r.W;
+    if(r.hide&&!!S.k!==!!r.hidden){var g0=o.geometry,hd=r.hidden=!!S.k;g0.setIndex(new window.THREE.BufferAttribute(hd?r.hide.idx:r.hide.idx0,1));g0.clearGroups();(hd?r.hide.groups:r.hide.groups0).forEach(function(G){g0.addGroup(G.start,G.count,G.materialIndex);});}
+    if(r.Q){for(j=0;j<r.Q.length;j++){var c=[0,0,0,0,0,0,0,0,0,0,0,0];for(var s=0;s<4;s++){var w=W[j*4+s];if(!w)continue;var k=B[j*4+s]*12;for(var t=0;t<12;t++)c[t]+=w*A[k+t];}
+        m4.set(c[0],c[1],c[2],c[3],c[4],c[5],c[6],c[7],c[8],c[9],c[10],c[11],0,0,0,1).multiply(r.Q[j]);if(r.Mi)m4.premultiply(r.Mi);o.setMatrixAt(j,m4);}
+      o.instanceMatrix.needsUpdate=true;o.boundingSphere=null;o.boundingBox=null;return;}
+    var g2=o.geometry,pa=g2.attributes.position.array,na=r.N&&g2.attributes.normal?g2.attributes.normal.array:null,Pp=r.P,N=r.N,m=Pp.length/3;
+    for(j=0;j<m;j++){var j4=j*4,a0=B[j4]*12,a1=B[j4+1]*12,a2=B[j4+2]*12,a3=B[j4+3]*12,w0=W[j4],w1=W[j4+1],w2=W[j4+2],w3=W[j4+3],x=Pp[j*3],y=Pp[j*3+1],z=Pp[j*3+2],
+        c0=w0*A[a0]+w1*A[a1]+w2*A[a2]+w3*A[a3],c1=w0*A[a0+1]+w1*A[a1+1]+w2*A[a2+1]+w3*A[a3+1],c2=w0*A[a0+2]+w1*A[a1+2]+w2*A[a2+2]+w3*A[a3+2],c3=w0*A[a0+3]+w1*A[a1+3]+w2*A[a2+3]+w3*A[a3+3],
+        c4=w0*A[a0+4]+w1*A[a1+4]+w2*A[a2+4]+w3*A[a3+4],c5=w0*A[a0+5]+w1*A[a1+5]+w2*A[a2+5]+w3*A[a3+5],c6=w0*A[a0+6]+w1*A[a1+6]+w2*A[a2+6]+w3*A[a3+6],c7=w0*A[a0+7]+w1*A[a1+7]+w2*A[a2+7]+w3*A[a3+7],
+        c8=w0*A[a0+8]+w1*A[a1+8]+w2*A[a2+8]+w3*A[a3+8],c9=w0*A[a0+9]+w1*A[a1+9]+w2*A[a2+9]+w3*A[a3+9],c10=w0*A[a0+10]+w1*A[a1+10]+w2*A[a2+10]+w3*A[a3+10],c11=w0*A[a0+11]+w1*A[a1+11]+w2*A[a2+11]+w3*A[a3+11];
+      v.set(c0*x+c1*y+c2*z+c3,c4*x+c5*y+c6*z+c7,c8*x+c9*y+c10*z+c11);if(r.Mi)v.applyMatrix4(r.Mi);pa[j*3]=v.x;pa[j*3+1]=v.y;pa[j*3+2]=v.z;
+      if(na){x=N[j*3];y=N[j*3+1];z=N[j*3+2];n3.set(c0*x+c1*y+c2*z,c4*x+c5*y+c6*z,c8*x+c9*y+c10*z);if(r.Ni)n3.applyMatrix3(r.Ni);n3.normalize();na[j*3]=n3.x;na[j*3+1]=n3.y;na[j*3+2]=n3.z;}}
+    g2.attributes.position.needsUpdate=true;if(na)g2.attributes.normal.needsUpdate=true;g2.computeBoundingSphere();g2.boundingBox=null;});
+  R.cur=S;}
+/* (the pores of his skin stay where they are on him as he moves: the skin material reads them from where he stood) */
+function poseSkinRest(R){var o=R.body.o,g=o.geometry;if(g.attributes.skRest)return;g.setAttribute("skRest",new window.THREE.BufferAttribute(new Float32Array(g.attributes.position.array),3));
+  var m=o.material;if(m&&!Array.isArray(m)){m.defines=Object.assign({},m.defines,{SK_REST:""});m.needsUpdate=true;}}
+/* between two poses (f from 0 to 1) */
+function poseMix(a,b,f){return {q:a.q.map(function(q,i){return q.clone().slerp(b.q[i],f);}),mv:a.mv.clone().lerp(b.mv,f),k:f>=1?b.k:(a.k||b.k)};}
 function dispose3D(o){if(!o)return;o.scene.traverse(function(n){if(n.geometry)n.geometry.dispose();if(n.material){[].concat(n.material).forEach(function(m){if(m.map&&m.map!==bumpTex&&!m.map.keep)m.map.dispose();m.dispose();});}});}
 /* A live view you can turn: used by the large outfit view, the builder and Edit Dave.
    They all share ONE WebGL renderer. Phones allow only a few WebGL contexts per page, and each view used
@@ -7404,26 +7611,32 @@ function camAt(z,k){var f=Math.max(1,k||1),e=z*z*(3-2*z),fy=BODY?1.665:1.69;retu
    Edit Dave, the builder's small model). Turn him (Front, ¾, Side, Back), frame him (Full, Top, Feet, Face) and set him
    turning; with wear, How it's worn as toggles (done up, tucked, turned up: wearRows, the fitting room's rows). sm: the
    builder's small one (no ¾ or Feet). Each dock knows its view (dock.__v, set by Live3D), and one handler below works
-   them all; fr-dk buttons are left out on phones, as in the fitting room. */
+   them all; fr-dk buttons are left out on phones, as in the fitting room. With pose (Edit Dave, the builder: the
+   fitting room has its own Pose row by the light), a Pose button that takes him to the next of POSES. */
 function camDock(o){o=o||{};
   return '<div class="fr-dock cam-dock'+(o.sm?" sm":"")+'" role="group" aria-label="Camera'+(o.wear?" and how it's worn":"")+'">'+
     '<button type="button" data-dkang="0">Front</button><button type="button" data-dkang="0.785" class="fr-dk dk-x" aria-label="Three-quarter view">¾</button><button type="button" data-dkang="1.571">Side</button><button type="button" data-dkang="3.1416">Back</button><i></i>'+
     '<button type="button" data-dkcam="full" class="fr-dk" aria-label="Whole figure">Full</button><button type="button" data-dkcam="top" class="fr-dk" aria-label="Top half">Top</button><button type="button" data-dkcam="feet" class="fr-dk dk-x" aria-label="His feet">Feet</button><button type="button" data-dkcam="face" aria-label="His face">Face</button><i class="fr-dk"></i><button type="button" data-dkspin class="fr-dk" aria-pressed="false">Turn</button>'+
-    (o.wear?'<span class="dk-wear"></span>':"")+'</div>';}
+    (o.pose?'<i></i><button type="button" data-dkpose aria-pressed="false">Pose</button>':"")+(o.wear?'<span class="dk-wear"></span>':"")+'</div>';}
 /* the lit buttons: the view he is turned to (unless turning), the framing, turning */
 function dockSync(dk,h){if(!dk||!h||!h.on)return;var r=((h.rot()%(Math.PI*2))+Math.PI*2)%(Math.PI*2),fr=h.framing(),sp=h.spinning();
   Array.prototype.forEach.call(dk.querySelectorAll("[data-dkang]"),function(b){var a=Number(b.getAttribute("data-dkang")),d=Math.abs(((r-a+Math.PI*3)%(Math.PI*2))-Math.PI);b.setAttribute("aria-pressed",String(!sp&&d<0.2));});
   Array.prototype.forEach.call(dk.querySelectorAll("[data-dkcam]"),function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-dkcam")===fr));});
-  var sb=dk.querySelector("[data-dkspin]");if(sb)sb.setAttribute("aria-pressed",String(sp));}
+  var sb=dk.querySelector("[data-dkspin]");if(sb)sb.setAttribute("aria-pressed",String(sp));
+  var pb=dk.querySelector("[data-dkpose]");if(pb&&h.pose){var pk=h.pose();pb.setAttribute("aria-pressed",String(!!pk));pb.setAttribute("aria-label","Pose: "+poseName(pk)+". Change his pose");pb.title="Pose: "+poseName(pk);}}
+/* a new pose chosen (in the fitting room's Pose row or with a dock's Pose button): kept for every live view, and remembered */
+function poseSet(k){POSEM=k||"";try{localStorage.setItem("dw-pose",POSEM);}catch(e){}
+  Array.prototype.forEach.call(document.querySelectorAll("[data-frpose]"),function(x){x.setAttribute("aria-pressed",String(x.getAttribute("data-frpose")===POSEM));});}
 /* How it's worn in the dock: one toggle per row that has two ways (wearRows), lit when it is done up, tucked or turned up */
 var DKWEAR={zip:["up","Done up","open"],tuck:["in","Tucked","out"],turn:["up","Turned up","down"]};
 function dockWear(dk,h){var box=dk&&dk.querySelector(".dk-wear");if(!box||!h)return;var rows=wearRows(h.pieces(),h.wear()).filter(function(r){return DKWEAR[r.k]&&r.o.length===2;});
   box.innerHTML=rows.length?'<i></i>'+rows.map(function(r){var on=DKWEAR[r.k];return '<button type="button" data-dkwear="'+r.k+'" aria-pressed="'+(r.cur===on[0])+'" aria-label="'+esc(r.l+": "+on[1].toLowerCase())+'">'+on[1]+'</button>';}).join(""):"";}
-document.addEventListener("click",function(e){var t=e.target,b=t.closest&&t.closest("[data-dkang],[data-dkcam],[data-dkspin],[data-dkwear]");if(!b)return;
+document.addEventListener("click",function(e){var t=e.target,b=t.closest&&t.closest("[data-dkang],[data-dkcam],[data-dkspin],[data-dkwear],[data-dkpose]");if(!b)return;
   var dk=b.closest(".cam-dock"),v=dk&&dk.__v;if(!v||!v.on)return;
   if(b.hasAttribute("data-dkang"))v.turnTo(Number(b.getAttribute("data-dkang")));
   else if(b.hasAttribute("data-dkcam"))v.frameTo(b.getAttribute("data-dkcam"));
   else if(b.hasAttribute("data-dkspin"))v.spinning(!v.spinning());
+  else if(b.hasAttribute("data-dkpose")){var pi=POSES.map(function(p){return p[0];}).indexOf(v.pose()),nk=POSES[(pi+1)%POSES.length][0];poseSet(nk);v.pose(nk);v.say(poseName(nk));}
   else{var k=b.getAttribute("data-dkwear"),on=DKWEAR[k],o={};o[k]=b.getAttribute("aria-pressed")==="true"?on[2]:on[0];v.wear(o);dockWear(dk,v);}
   dockSync(dk,v);});
 function Live3D(box,pieces,opt){
@@ -7432,7 +7645,10 @@ function Live3D(box,pieces,opt){
      as worn, "in" or "out"; turn "" as listed, "up" or "down" (trouser hems); light "" studio, "day" or "eve" */
   var wear=Object.assign({zip:"",tuck:"",turn:"",light:"",size:""},opt.wear||{}),cur=pieces;   /* (size: a draped top's, "" as cut, drapeTops) */
   function setG(){ZIPM=wear.zip;TUCKM=wear.tuck;TURNM=wear.turn;LIGHTM=wear.light;SIZEM=wear.size||"";}function clrG(){ZIPM="";TUCKM="";TURNM="";LIGHTM="";SIZEM="";}
-  function mk(ps){cur=ps;setG();try{return anchor(make3D(ps));}finally{clrG();}}
+  /* his pose (POSES: "" standing), kept while the pieces change; a new figure takes it at once */
+  var pose=opt.pose!=null?opt.pose:POSEM,tw=null;
+  function mk(ps){cur=ps;setG();try{return anchor(posed(make3D(ps)));}finally{clrG();}}
+  function posed(ob){if(pose){var R=poseRig(ob.man);if(R){poseSkinRest(R);poseApply(R,poseSolve(R,pose));}}return ob;}
   /* where each piece's pin sits: a point on the front of the piece that is not covered by anything worn over it (rays
      from the front over a grid across the piece, nearest the middle and upper part first), kept in his own frame */
   function anchor(ob){var T=window.THREE,boxes={},ms=[];ob.man.rotation.y=0;ob.scene.updateMatrixWorld(true);
@@ -7453,7 +7669,7 @@ function Live3D(box,pieces,opt){
   /* the label for a tapped garment, and the camera dock (camDock: the fitting room's, on every live model): opt.dock
      true makes a small one in the box, with How it's worn; an element is a dock the caller has placed */
   var tip=document.createElement("p");tip.className="v3-tip";tip.hidden=true;box.appendChild(tip);
-  var dock=null;if(opt.dock===true){box.insertAdjacentHTML("beforeend",camDock({sm:true,wear:true}));dock=box.lastElementChild;}else if(opt.dock&&opt.dock.nodeType===1)dock=opt.dock;
+  var dock=null;if(opt.dock===true){box.insertAdjacentHTML("beforeend",camDock({sm:true,wear:true,pose:true}));dock=box.lastElementChild;}else if(opt.dock&&opt.dock.nodeType===1)dock=opt.dock;
   function syncBar(){if(dock)dockSync(dock,h);}
   function syncZip(){if(dock)dockWear(dock,h);}
   box.tabIndex=box.tabIndex>=0?box.tabIndex:0;
@@ -7470,7 +7686,10 @@ function Live3D(box,pieces,opt){
     if(!shown()){h.tm=setTimeout(function(){h.raf=requestAnimationFrame(loop);},400);return;}
     fit();
     if(tRot!=null){rot+=(tRot-rot)*0.14;if(Math.abs(tRot-rot)<0.002){rot=tRot;tRot=null;}}else if(spin&&!drag)rot+=0.006;
-    z+=(tZ-z)*0.16;if(!drag||drag.ax!=="y")pan+=(clampPan(tPan)-pan)*0.2;o.man.rotation.y=rot;place();
+    z+=(tZ-z)*0.16;if(!drag||drag.ax!=="y")pan+=(clampPan(tPan)-pan)*0.2;
+    /* (from one pose to the next in under half a second, once, when asked: he does not move by himself) */
+    if(tw){var f=Math.min(1,(Date.now()-tw.t0)/450);poseApply(tw.R,poseMix(tw.a,tw.b,f*f*(3-2*f)));if(f>=1){tw=null;anchor(o);}}
+    o.man.rotation.y=rot;place();
     if(flash&&Date.now()>flash){flash=0;glow(null);}
     try{r.render(o.scene,cam);}catch(e){}
     if(opt.onFrame){try{opt.onFrame(h);}catch(e){}}
@@ -7511,7 +7730,13 @@ function Live3D(box,pieces,opt){
     if(el.parentNode!==box)box.insertBefore(el,box.firstChild);
     el.onpointerdown=onDown;el.onpointermove=onMove;el.onpointerup=onUp;el.onpointercancel=onUp;el.onwheel=onWheel;
     W=0;H=0;clearTimeout(h.tm);cancelAnimationFrame(h.raf);loop();};
-  h.update=function(ps){var old=o;o=mk(ps);h.o=o;dispose3D(old);syncZip();};
+  h.update=function(ps){var old=o;tw=null;o=mk(ps);h.o=o;dispose3D(old);syncZip();};
+  /* his pose: k one of POSES' keys; he moves to it (at once if motion is reduced, or he is not posable) */
+  h.pose=function(k){if(k==null)return pose;k=k||"";if(k===pose)return pose;pose=k;var R=poseRig(o.man);if(!R)return pose;poseSkinRest(R);
+    var b=poseSolve(R,k),a=tw?poseMix(tw.a,tw.b,Math.min(1,(Date.now()-tw.t0)/450)):(R.cur||poseSolve(R,""));
+    if(still||!h.active){tw=null;poseApply(R,b);anchor(o);}else tw={R:R,a:a,b:b,t0:Date.now()};syncBar();return pose;};
+  /* a word by him for a moment (the pose he has taken) */
+  h.say=function(s){tip.textContent=s;tip.hidden=false;clearTimeout(tip.t);tip.t=setTimeout(function(){tip.hidden=true;},1800);};
   h.zoomTo=function(v){tZ=Math.max(0,Math.min(1,v));tPan=0;};
   /* for the fitting room's own controls: how he is worn and lit, the camera (kept when the outfit changes), pins */
   h.wear=function(w){if(!w)return Object.assign({},wear);var ch=false;Object.keys(w).forEach(function(k){if(k in wear&&wear[k]!==w[k]){wear[k]=w[k];ch=true;}});if(ch)h.update(cur);return Object.assign({},wear);};
@@ -7669,7 +7894,7 @@ function frShell(){
       '<div class="fr-stage" id="fr-stage">'+
         '<div class="fr-live"><div class="zf-3d" id="fr-3d" aria-label="3D model of Dave in the outfit. Drag to turn him, scroll to zoom, tap a piece."><p class="msg zf-3dmsg">Loading the 3D model…</p></div>'+
           '<div class="fr-over"><div class="fr-ruler" id="fr-ruler" hidden><b id="fr-ht"></b><i></i><i></i><i></i></div><div id="fr-pins"></div>'+
-            '<div class="fr-top">'+frSeg("data-frlight",[["","Studio"],["day","Daylight"],["eve","Evening"]],FR.wear.light,"Light")+'<span class="fr-hint">Drag to turn · scroll to zoom · tap a piece</span></div>'+
+            '<div class="fr-top"><span class="fr-tsegs">'+frSeg("data-frlight",[["","Studio"],["day","Daylight"],["eve","Evening"]],FR.wear.light,"Light")+frSeg("data-frpose",POSES,POSEM,"Pose")+'</span><span class="fr-hint">Drag to turn · scroll to zoom · tap a piece</span></div>'+
             camDock()+
             '<div class="fr-scrub"><label class="vh" for="fr-turn">Turn him round</label><input type="range" id="fr-turn" min="0" max="360" step="1" value="0"><span class="fr-scl" aria-hidden="true"><span>Front</span><span>Side</span><span>Back</span><span>Side</span><span>Front</span></span></div>'+
             '<span class="fr-hchip" id="fr-hchip"></span></div></div>'+
@@ -7870,6 +8095,7 @@ document.addEventListener("click",function(e){var b,t=e.target;if(!t.closest||!t
   if((b=t.closest("[data-frclear]"))){frClear(!FR.clear);return;}
   if((b=t.closest("[data-frsel]"))){frSelect(b.getAttribute("data-frsel"));if(b.classList.contains("fr-mpin")&&FR.tab==="dave")frTab("pieces");return;}
   if((b=t.closest("[data-frwear]"))){var k=b.getAttribute("data-frwear"),v=b.getAttribute("data-v");FR.wear[k]=v;frWear();frPinSel();var md=$("fr").getAttribute("data-mode");if(z3&&z3.on)z3.wear(FR.wear);else if(md==="0")frModeSet("0");return;}
+  if((b=t.closest("[data-frpose]"))){poseSet(b.getAttribute("data-frpose"));if(z3&&z3.on&&z3.pose)z3.pose(POSEM);return;}
   if((b=t.closest("[data-frlight]"))){FR.wear.light=b.getAttribute("data-frlight");try{localStorage.setItem("dw-light",FR.wear.light);}catch(x){}$("fr").setAttribute("data-light",FR.wear.light);
     Array.prototype.forEach.call(document.querySelectorAll("#fr [data-frlight]"),function(x){x.setAttribute("aria-pressed",String(x===b));});if(z3&&z3.on)z3.wear(FR.wear);return;}
   if((b=t.closest("[data-frstep]"))){frStep(Number(b.getAttribute("data-frstep")));return;}
@@ -9176,7 +9402,7 @@ function ceLinesMake(){CEV.M=ceMeasure();var box=$("ce-lines");if(!box)return;bo
 function ceStart(){
   var box=$("ce-3d"),ld=box.querySelector(".ce-load");
   loadThree().then(function(){if(!$("chared").open)return;if(cePrev){cePrev.stop();cePrev=null;}
-    var st=box.parentNode,dk=st.querySelector(".cam-dock");if(!dk){st.insertAdjacentHTML("beforeend",camDock({wear:true}));dk=st.querySelector(".cam-dock");}
+    var st=box.parentNode,dk=st.querySelector(".cam-dock");if(!dk){st.insertAdjacentHTML("beforeend",camDock({wear:true,pose:true}));dk=st.querySelector(".cam-dock");}
     try{cePrev=Live3D(box,cePieces,{zoom:CE_ZOOM[ceTab]||0,spin:false,onFrame:ceFrame,dock:dk});if(ld)ld.hidden=true;CEV.key="";CEV.snapped="";ceLinesMake();ceForm();cePrev.onLost=function(){if(cePrev){cePrev.stop();cePrev=null;}live3DFail(box,ld,ceStart);};}
     catch(e){cePrev=null;live3DFail(box,ld,ceStart);}
   },function(){if(ld){ld.hidden=false;ld.textContent="The 3D model could not load. Check the connection and try again.";}});
