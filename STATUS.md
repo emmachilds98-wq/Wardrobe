@@ -25,7 +25,12 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
-**16 Oct: ways back** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). No more dead ends: the fitting room closes again with Back and its
+**16 Oct: a clear jawline** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 1). His face no longer runs softly into his
+neck: the body build takes MakeHuman's fold of fat under the chin out, a little fat out of the face and squares the
+angle of the jaw below the ear, moving only the face below the eyes (every body measurement below it is unchanged).
+Edit Dave's Face tab has "Jawline" and "Under the chin". **Next:** item 2, skin tone on a slider and a tidier Edit Dave.
+
+**16 Oct: ways back** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). No more dead ends: the fitting room closes again with Back and its
 own buttons once its 3D model has run, and Edit Dave closes at all (a stale line in `Live3D`'s stop threw first); Back
 closes Edit Dave and Compare; Edit Dave asks before dropping changes not saved; Compare has a way out on a phone; the
 title goes to the start. A new check, `tools/qa/nav.js`, walks every view and dialog on a desktop and a phone screen
@@ -35,7 +40,7 @@ and runs on every pull request.
 to tackle each item and when it is done: a clear jawline without the double-chin shadow, skin tone on a slider and a
 tidier Edit Dave with more options, the shoes and how trouser hems meet them, a relaxed stance, tucked-in tops (a first
 try is under way), draped trousers and shorts, then the remaining tops, the 3D check, fabrics, sizing and speed.
-**Next:** item 1, his jawline.
+(Item 1, his jawline, is done: above.)
 
 **16 Oct: Three.js 0.186.1** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). The page moved from r128 to the current release, the
 module build from cdnjs, with colours, lights and shadows set to draw as before: card stills match `main`, and the
@@ -565,6 +570,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 16 Oct 2026 | #82 | A clear jawline: the base body takes MakeHuman's `neck-double-decr` 1, `head-fat-decr` 0.65, `head-square` 0.55 and `chin-bones` 0.45, the jaw targets limited to the face below the eyes (`LOWER_FACE`, so the crown and the whole body's scale stay put); Edit Dave's "Jawline" and "Under the chin" (new morphs, last); FtdHKg still to be republished from Emma's account | B8UXnh v19 |
 | 16 Oct 2026 | #81 | Ways back: the fitting room closes with Back and its buttons once its 3D model has run, and Edit Dave closes (a stale `bar` line in `Live3D`'s stop threw first); Edit Dave and Compare are steps in history (`dlgPush` / `dlgPop`); Edit Dave asks before dropping changes; Compare's header and a ‹ back on a phone; the title links to Shop; `tools/qa/nav.js` and its pull-request job; FtdHKg still to be republished from Emma's account | B8UXnh v18 |
 | 16 Oct 2026 | #79 | Three.js r128 → 0.186.1 (the module build from cdnjs): colour management off, `colorSpace` for textures and renderers, lights ×π, `PCFShadowMap`, the fold shader's normal; QA scripts and the 3D check updated (`THREE_JS` is a folder now). Card stills match `main`. The insulated overshirts tried again with a thicker gap and held back. FtdHKg still to be republished from Emma's account | B8UXnh v17 |
 | 15 Oct 2026 | #78 | An open overshirt held inside an open jacket: where two draped jacket-weight layers are worn, the one over is cut a size up, both have their creases filled out, and the one under is held under it by a ray toward his body (g-mod-15, -11, -13, g-casual-09; 83% less showing through over the four on five bodies). New `tools/qa/through.js` measures a layer showing through an open front. The insulated and borg overshirts tried again and held back. FtdHKg still to be republished from Emma's account | B8UXnh v16 |

@@ -5,13 +5,14 @@ CC0 by the MakeHuman project (https://github.com/makehumancommunity/makehuman, L
 No MakeHuman program code is used: this script reads the asset files itself.
 
 What it does:
-  1. Shapes a young adult man: slim, tall, average muscle (MakeHuman "macro" targets).
+  1. Shapes a young adult man: slim, tall, average muscle (MakeHuman "macro" targets), with a clear jawline (no
+     double chin; the jaw targets move the face below the eyes only, LOWER_FACE).
   2. Poses him relaxed with the skeleton and skin weights: arms down by his sides, elbows soft, feet
      under the hips, fingers loosely curled.
   3. Lines him up with the frame the clothes are drawn in (1 unit = 1 m, feet on y=0, facing +z),
      fitting his heights (ankle, knee, crotch, waist, shoulder, chin, crown) to that frame.
   4. Bakes the Edit Dave options as morph targets in the posed space: build, shoulders, middle,
-     face width and nose size.
+     face width and nose size, the jawline and under the chin.
   5. Measures cross-sections of the torso, arms, legs and neck for the clothes (base and per morph),
      labels every face by body region (so clothes can hide what they cover), and records head
      landmarks (eyes, nose, mouth, ears, skull) and a face depth map for placing the moustache,
