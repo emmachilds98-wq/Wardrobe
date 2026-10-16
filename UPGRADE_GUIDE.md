@@ -1,6 +1,6 @@
 # Continuing the upgrade: a guide for the next engineer
 
-Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks, cardigans, the last jackets, collars under open jackets, and the sleeveless tee, henley and mock-neck tee. Read this first, then `STATUS.md` (what is happening now and the
+Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks, cardigans, the last jackets, collars under open jackets, the sleeveless tee, henley and mock-neck tee, and open overshirts under open jackets. Read this first, then `STATUS.md` (what is happening now and the
 log), `HANDOFF.md` (how the page fits together) and `CONTRIBUTING.md` (the data rules and every check). The long
 history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections last before "3. Next steps".
 
@@ -40,8 +40,8 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 | Item | Pieces (outfits) | What it needs |
 | --- | --- | --- |
 | Two jackets that fail the check draped | 2 (2) | Carhartt's Super Dux (jb8-superdux): on `jacket_hood` and on `puffer_hood` the tee under it shows between its hem and the top of his tool belt; it would need cutting longer, or the belt worn over its hem. The borg zip-through over a half-zip (g-casual-01): on `jacket` and on `puffer` the half-zip's collar comes through its collar at the back of his neck. |
-| An open overshirt under an open jacket | (4 on `main`) | g-casual-09, g-mod-11, -13 and -15 show the overshirt (g-mod-15 the half-zip) through the jacket's fronts in patches; the 3D check misses it (see the pitfalls). Measured in g-mod-15 (UPGRADE_PLAN, the last section): about 8% of the overshirt's body lies outside the jacket, on its front 1.5 to 11 cm from the opening, by 5 mm (up to 20). It is already outside after the jacket's own settle over it (569 points), and the pass that holds it in brings that to 345 but no further. Longer reach or more steps for that pass, holding the overshirt with the jacket's backward-facing cloth too (`inCol` leaves out cloth facing in, which is mostly the far side of the creases in an open front, not a fold), or a thinner push from the half-zip under it each moved it by only a few points, or pushed the half-zip through instead. Sizing the jacket up thins the patches. Next to try: settling the jacket and the overshirt together, or smoothing an open front's creases where something is under it. |
-| Insulated and borg-lined overshirts | 2 (4) | Tog24's Adamson and Matalan's borg-lined overshirt are `chore`'s cut, but draped under their jackets they show through them as above, and under a done-up gilet (g-outdoor-21) their collar comes through the gilet's. Do the row above first. |
+| Shards beside the neck, open over open | (2) | Since the fix for an open overshirt under an open jacket (UPGRADE_PLAN, the last section), what is left of it is a few small shards of the shacket beside his neck in g-mod-11 and g-mod-13, where the shacket's collar meets the jacket's, and a dark hole at the back of g-casual-09's left shoulder (on `main` before the fix too). Measure with `tools/qa/through.js`. |
+| Insulated and borg-lined overshirts | 2 (4) | Tog24's Adamson and Matalan's borg overshirt are `chore`'s cut, and were tried on it again with the open-over-open fix. Under open jackets (g-outdoor-05, -09) the padded shacket still came through the jacket's lower front and round his neck in jagged patches, and under a done-up gilet (g-outdoor-21) the gilet bulged and creased at his neck; only g-outdoor-19 was passable. They may need a thicker gap under the jacket, as a padded layer is. |
 | Shirt-collared overcoat | (1) | The ASOS tobacco overcoat (cold-commute) has a shirt collar buttoned to the neck in its photo, a car coat's, but takes `overcoat`'s lapels. Sent to `carcoat` (a `collar` correction tried, then taken out), it came out worse. Looked at again: worn open, `carcoat`'s collar is there but lies flat and low, a narrow turn at his neck (ms-one-shop); the bigger miss is length, `carcoat` falls to mid-thigh and this coat to below the knee. It would need a long car coat (a balmacaan: `carcoat`'s collar and fly front on `overcoat`'s length and raglan sleeves). One outfit; low value. |
 | Stringers, racer backs, drop-arm and cropped vests; raglan and baseball tees | 0 now | None are in the outfits now; `drapeArch` returns `null` for them so they keep `make3Dcore`'s shapes when one is added. A racer back and a raglan sleeve are not in the builder. |
 | Tucked-in tops | many | Never draped (`TUCK0`): only with tailoring, a belt or a tie. A draped top would need its hem taken inside the trousers. Large job, modest gain. |
@@ -99,6 +99,10 @@ is drawn as a shawl. The overcoat uses the same two pieces on a longer, roomier 
   - `QA_BODY=athletic` uses another body; `QA_WEAR=zip=up,tuck=out` sets how the outfit is worn.
   - `QA_INIT='window.__drape=0'` shows `make3Dcore`'s shapes, for a before and after.
   - A JSON list of pieces renders a garment on its own: `'[{"col":"black","item":"<id>","shape":"vest","what":"Vest"}]'`.
+- **Show-through under an open front**: `node tools/qa/through.js <outfit ids>` counts the pixels of small patches of
+  any layer lying wholly inside the outermost draped top's outline, in flat colours from 8 directions. The 3D check
+  misses these (see the pitfalls). Single outfits are noisy: compare totals over several outfits on all five bodies
+  (`QA_BODY`). `THROUGH_SAVE=out.png` saves two views with the counted patches in red.
 - **3D check**: `node tools/check_3d.js --site <dir> --ids @list.txt --body <b> [--wear zip=up,tuck=out] --out <dir> --debug`.
   - **Bodies**: run every affected outfit on all five bodies (dave, slim, athletic, heavier, loose) as worn, and done
     up (`--wear zip=up,tuck=out`) on dave and loose.
@@ -168,4 +172,11 @@ is drawn as a shawl. The overcoat uses the same two pieces on a longer, roomier 
   or it starts the drape inside the body and self-collision keeps it there.
 - **The 3D check does not see through an open front.** It counts an inner layer showing through from the front only
   under a piece done up (`openC` in `check_3d.js`), so an overshirt or a collar coming through an open jacket's fronts
-  passes. Look at open layers close up, from the front and both three-quarter views, before trusting a pass.
+  passes. Look at open layers close up, from the front and both three-quarter views, and measure them with
+  `tools/qa/through.js`, before trusting a pass.
+- **Two jacket-weight layers from one pattern at one size have nowhere to go.** A shacket on `chore` under a chore
+  jacket, both 122 cm round, came out through the jacket in pleats however the hold-in pass was tuned. `drapeTops` cuts
+  a jacket-weight layer over another a size up (8 cm round), fills both layers' creases out, and holds the one under
+  in by a ray toward his body (`DRAPEJW`, `drapeFill`, `drapePress`, `drapeUnder`), only where two are worn.
+- **Measured cloth is noisy.** A small change to a settle moves every crumple, and one outfit's count can halve or
+  double either way. Judge a change by totals over several outfits on all five bodies, not by one render.

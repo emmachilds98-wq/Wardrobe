@@ -25,12 +25,18 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**15 Oct: an open overshirt held inside an open jacket** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). The shacket came through the
+jacket in g-mod-15, -11, -13 and g-casual-09 because the jacket was cut no bigger than the shacket. Where two draped
+jacket-weight layers are worn, the one over is now cut a size up, both have their creases filled out, and the one under
+is held under by a ray toward his body (83% less showing through, measured with a new tool, `tools/qa/through.js`).
+The insulated and borg overshirts were tried again on `chore` and held back.
+**Next:** see `UPGRADE_GUIDE.md` ("What is left"): the two jackets that fail, the insulated overshirts, tucked-in tops,
+or the newer Three.js.
+
 **15 Oct: a sleeveless tee, a mock-neck tee and the henleys** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `vest_tee` (a
 sleeveless tee: the tee's crew neck, no sleeves, deep armholes) for a vest top and a training tank, and `tee_mock` (a
 long-sleeved tee with a mock neck); ASOS's mesh muscle vest on `vest`, HUF's baseball henley on `tee` with its placket
 (6 pieces, 6 outfits). Draped top pieces 946, 6 left.
-**Next:** see `UPGRADE_GUIDE.md` ("What is left"): open-over-open layering (then the insulated overshirts), the two
-jackets that fail, tucked-in tops, or the newer Three.js.
 
 **15 Oct: two tries that did not ship** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). An open overshirt under an open jacket was
 measured and four fixes tried; none held it in, and the diagnosis is written up. The ASOS tobacco overcoat was sent to
@@ -543,6 +549,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 15 Oct 2026 | #78 | An open overshirt held inside an open jacket: where two draped jacket-weight layers are worn, the one over is cut a size up, both have their creases filled out, and the one under is held under it by a ray toward his body (g-mod-15, -11, -13, g-casual-09; 83% less showing through over the four on five bodies). New `tools/qa/through.js` measures a layer showing through an open front. The insulated and borg overshirts tried again and held back. FtdHKg still to be republished from Emma's account | B8UXnh v16 |
 | 15 Oct 2026 | #77 | A sleeveless tee, a mock-neck tee and the henleys: new `vest_tee` (the tee's crew neck, no sleeves, deep armholes) for Volcom's vest top and 4505's training tank, new `tee_mock` (`tee_ls` with a mock neck) for Uniqlo's, ASOS's mesh muscle vest on `vest`, HUF's baseball henley on `tee` with its placket (6 pieces, 6 outfits); draped top pieces 946, 6 left. FtdHKg still to be republished from Emma's account | B8UXnh v15 |
 | 15 Oct 2026 | #75 | A shirt's or a polo's collar sits inside an open chore, denim, Harrington-style, car coat or aviator collar instead of crumpling over it (`leafIn`; 20 outfits checked, 13 better). The insulated and borg-lined overshirts were tried on `chore` and held back: open overshirts under open jackets show through them, on `main` too, which the 3D check misses. FtdHKg still to be republished from Emma's account | B8UXnh v14 |
 | 15 Oct 2026 | #74 | The last jackets: a new `gilet_hood` (a hooded gilet) and `aviator` and `aviator_up` (a big shearling collar in its own colour, laid out over its own shoulders), a borg zip-through on `puffer` (not over a half-zip), and a hybrid and a longline waterproof filed as jackets on `jacket` and `parka` (7 uses, 6 outfits; Carhartt's Super Dux stays on `make3Dcore`); draped top pieces 940, 12 left. FtdHKg still to be republished from Emma's account | B8UXnh v13 |
