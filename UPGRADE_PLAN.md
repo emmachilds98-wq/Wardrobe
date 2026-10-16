@@ -3908,7 +3908,13 @@ with trousers and two with shorts for each) on dave and slim, 36 of them on athl
 as on `main`; the stored specs (no piece read differently), the smoke test (the same as `main`) and the navigation
 check; the time to build an outfit's model, about 4% more (profiled on five outfits).
 
-## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. A little life in the live views: a slow breath and a sway (16 Oct 2026)
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. A little life in the live views: a slow breath and a sway (16 Oct 2026; taken out the same day)
+
+**Taken out (16 Oct, PR #89).** Emma: "he's just rocking side to side. It feels like a glitch rather than natural",
+and it almost made her travel sick. A lean of the whole figure from his feet is not a weight shift: nothing in him
+bends, so the whole picture tilts to and fro. He stands still again in the live views. The skin's pores stay placed on
+the skin itself. What he needs instead is a stance of his own and poses to choose from, which take his body rigged
+(item 4, the second step, below).
 
 Section 5, item 4, its first step (the relaxed stance itself comes after the trousers are draped). Emma: he stood like a
 game character waiting for input, square to the camera and perfectly still.
@@ -4246,9 +4252,10 @@ Done when (first step): the movement is subtle enough not to distract, stops on 
 no frame rate on a phone. (Second step): the gate set clean on all five bodies in the new stance and card stills
 reviewed.
 
-**First step done 16 Oct 2026** (PR #88, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: a slow breath and a sway of his weight in the live views, the
-whole figure moving together, still while he is being turned and for reduced motion). The second step waits for the
-trousers to be draped (item 6).
+*First step tried and taken out (16 Oct 2026)* (PR #88, then PR #89, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): a slow breath and a sway of his
+weight in the live views, the whole figure moving together. Emma found it read as the picture rocking, a glitch that
+made her feel travel sick. Without a rig, nothing in him bends, so any movement is the whole figure tilting or
+stretching. Poses to choose from are what she asked for instead: the second step, below, with its rig.
 
 ### 5. Tucked-in tops (a first try is under way)
 

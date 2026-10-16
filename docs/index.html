@@ -7447,19 +7447,9 @@ function Live3D(box,pieces,opt){
   var T=window.THREE,r=liveRenderer(),cam=new T.PerspectiveCamera(24,1,0.05,50),o=mk(pieces);
   var h={box:box,on:true,raf:0,tm:0,active:false,o:o},rot=0.35,tRot=null,z=opt.zoom||0,tZ=z,W=0,H=0,ptr={},pinch=null,drag=null,down=null,flash=0,pan=0,tPan=0;
   var still=!!(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches),spin=opt.spin!==false&&!still;
-  /* a little life (UPGRADE_PLAN section 5, item 4, its first step): a slow breath and his weight swaying a little from
-     foot to foot, the whole figure moving together (a lean of under a degree from his feet, over 7 seconds, and a rise of
-     2 mm in 1000 with each breath, over 4.6), so every garment stays where it is. It settles while someone turns or zooms
-     him and comes back a few seconds after; it is off for anyone who has asked for reduced motion (still), and cards,
-     which are stills, never have it */
-  var lifeOn=opt.life!==false&&!still,lifeA=0,lifeT0=0,lifeT=0,lifeIdle=0,lifeS=new T.Matrix4();
-  function life(){var now=performance.now(),dt=lifeT?Math.min(0.5,(now-lifeT)/1000):0;lifeT=now;if(!lifeT0)lifeT0=now;
-    /* (easing in over about two seconds and out in a quarter of one, by the clock, whatever the frame rate) */
-    var calm=lifeOn&&!drag&&!pinch&&tRot==null&&Math.abs(tZ-z)<0.002&&now-lifeIdle>2500;lifeA+=((calm?1:0)-lifeA)*(1-Math.exp(-dt/(calm?0.7:0.08)));
-    var ts=(now-lifeT0)/1000,sw=0.014*Math.sin(ts*2*Math.PI/7.2)*lifeA,br=0.002*(0.5-0.5*Math.cos(ts*2*Math.PI/4.6))*lifeA;
-    lifeS.set(1,sw,0,0,0,1+br,0,0,0,0,1,0,0,0,0,1);
-    /* (folded into his own matrix whenever it is made, so anything that places a pin on him moves with him) */
-    if(o.man.__life!==lifeS){o.man.__life=lifeS;o.man.updateMatrix=function(){T.Object3D.prototype.updateMatrix.call(this);this.matrix.multiply(this.__life);};}}
+  /* (he stands still: a breath and a sway of his weight from foot to foot, the whole figure leaning from his feet, read
+     as the picture rocking, a glitch, and made Emma feel travel sick, 16 Oct. A stance of his own is the rig's job,
+     UPGRADE_PLAN section 5, item 4) */
   /* the label for a tapped garment, and the camera dock (camDock: the fitting room's, on every live model): opt.dock
      true makes a small one in the box, with How it's worn; an element is a dock the caller has placed */
   var tip=document.createElement("p");tip.className="v3-tip";tip.hidden=true;box.appendChild(tip);
@@ -7480,7 +7470,7 @@ function Live3D(box,pieces,opt){
     if(!shown()){h.tm=setTimeout(function(){h.raf=requestAnimationFrame(loop);},400);return;}
     fit();
     if(tRot!=null){rot+=(tRot-rot)*0.14;if(Math.abs(tRot-rot)<0.002){rot=tRot;tRot=null;}}else if(spin&&!drag)rot+=0.006;
-    z+=(tZ-z)*0.16;if(!drag||drag.ax!=="y")pan+=(clampPan(tPan)-pan)*0.2;o.man.rotation.y=rot;life();place();
+    z+=(tZ-z)*0.16;if(!drag||drag.ax!=="y")pan+=(clampPan(tPan)-pan)*0.2;o.man.rotation.y=rot;place();
     if(flash&&Date.now()>flash){flash=0;glow(null);}
     try{r.render(o.scene,cam);}catch(e){}
     if(opt.onFrame){try{opt.onFrame(h);}catch(e){}}
@@ -7488,7 +7478,7 @@ function Live3D(box,pieces,opt){
     h.raf=requestAnimationFrame(loop);}
   /* drag to turn, wheel or pinch to zoom, tap a garment to see which piece it is */
   var el=r.domElement;
-  function onDown(e){if(!h.active)return;lifeIdle=performance.now();ptr[e.pointerId]={x:e.clientX,y:e.clientY};var ids=Object.keys(ptr);
+  function onDown(e){if(!h.active)return;ptr[e.pointerId]={x:e.clientX,y:e.clientY};var ids=Object.keys(ptr);
     if(ids.length===2){var a=ptr[ids[0]],b2=ptr[ids[1]];pinch={d:Math.hypot(a.x-b2.x,a.y-b2.y),z:tZ};drag=null;}
     else{drag={x:e.clientX,y:e.clientY,r:rot,p:pan,ax:null};down={x:e.clientX,y:e.clientY,t:Date.now()};spin=false;tRot=null;syncBar();}
     try{el.setPointerCapture(e.pointerId);}catch(x){}}
@@ -7502,8 +7492,8 @@ function Live3D(box,pieces,opt){
   function onUp(e){if(!h.active)return;delete ptr[e.pointerId];if(Object.keys(ptr).length<2)pinch=null;
     if(drag&&down&&Math.hypot(e.clientX-down.x,e.clientY-down.y)<6&&Date.now()-down.t<450)pick(e);
     drag=null;down=null;}
-  function onWheel(e){if(!h.active)return;lifeIdle=performance.now();e.preventDefault();tZ=Math.max(0,Math.min(1,tZ-e.deltaY*0.0012));}
-  function onKey(e){if(!h.active)return;lifeIdle=performance.now();var k=e.key;
+  function onWheel(e){if(!h.active)return;e.preventDefault();tZ=Math.max(0,Math.min(1,tZ-e.deltaY*0.0012));}
+  function onKey(e){if(!h.active)return;var k=e.key;
     if(k==="ArrowLeft"||k==="ArrowRight"){spin=false;tRot=(tRot==null?rot:tRot)+(k==="ArrowLeft"?-0.4:0.4);syncBar();e.preventDefault();}
     else if(k==="+"||k==="="){tZ=Math.min(1,tZ+0.2);e.preventDefault();}else if(k==="-"){tZ=Math.max(0,tZ-0.2);e.preventDefault();}
     else if((k==="ArrowUp"||k==="ArrowDown")&&z>0.12){tPan=clampPan(tPan+(k==="ArrowUp"?0.12:-0.12)*o.k);e.preventDefault();}}
