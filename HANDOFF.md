@@ -97,7 +97,7 @@ should match. Emma asked for the upgrade to continue until that is done.
 | Edit Dave and fitting room | `CHAR`, `openCE`, `UNDERWEAR`; Edit Dave's sections `CES`, `ceForm`, `ceSlider`, `ceFrame` (measuring lines, saved/now wipe) |
 | The fitting room (large view of an outfit) | `openZoom`, `FR`, `frShell`, `frFill`, `frFrame` (pins, ruler), `frClear` (clear view: the model alone), `frWearRows` (`wearRows` for any wear); the camera dock on every live model: `camDock`, `dockSync`, `dockWear` (Live3D's `opt.dock`); how it is worn: `ZIPM`, `TUCKM`, `TURNM`, `LIGHTM`, `tuckOn`, `turnOn`; `Live3D` (`wear`, `turnTo`, `frameTo`, `project`, `still`) |
 | Compare outfits | `CMP`, `cmpAdd`, `cmpRender`, `cmpLive`; stills by angle in `snap3D(ps,k,rot,first)` |
-| Views, Back button and links | `setView` (history steps), `route` (reads `#shop`, `#fits`…, `#fit/<id>`), `openZoom` / `closeZoom` / `zoomGone` |
+| Views, Back button and links | `setView` (history steps), `route` (reads `#shop`, `#fits`…, `#fit/<id>`), `openZoom` / `closeZoom` / `zoomGone`; Edit Dave and Compare are steps too (`dlgPush` / `dlgPop`, `{dlg:"ce"}` or `"cmp"` in the state), and Edit Dave asks before dropping changes (`ceTryClose`); checked by `tools/qa/nav.js` |
 | Builder | `suggest` (budget, kept pieces, formality via `FORMAL` / `formalRange`), `budgetSet` (the £60/£100/£150 sets), `teeFor` |
 | His wardrobe | `ownPieces`, `ownFits`, `renderMine`; the wear log is `wearOwn` / `wearLine` (`wears` and `log` on each owned piece) |
 

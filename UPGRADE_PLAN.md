@@ -3662,6 +3662,43 @@ through the jacket's lower front, and the done-up gilet in -21 goes lumpy at his
 colours against `main` on 40 outfits; the gate set on dave; the smoke test (2D and 3D); the live fitting room and Edit
 Dave open.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Ways back: no dead ends in the views and dialogs (16 Oct 2026)
+
+Emma: "sometimes I end up on pages where I can't return the page back or go to the homepage". A walk through every
+view and dialog on a desktop and a phone screen (Back, Forward, Escape, each dialog's own buttons) found:
+
+- *The fitting room would not close with Back or its own buttons once its 3D model had run*, and Edit Dave would not
+  close at all: `Live3D`'s `stop` still removed a toolbar (`bar`) that no longer exists, so it threw before the dialog
+  closed (since the camera dock replaced the toolbar). Back changed the address and left the large view open; Close,
+  Cancel and Escape in Edit Dave did nothing. The stale line is gone.
+- *Edit Dave and Compare were not steps in history*: Back changed the page under them and left them open. Opening
+  either now adds an entry at the same address (`dlgPush`, `{dlg:"ce"}` or `{dlg:"cmp"}` added to the state), so Back
+  closes it (Edit Dave over the large view leaves the large view open), and closing it any other way steps back off
+  its entry (`dlgPop`), so nothing is left behind to press Back through. Compare opened over the large view takes the
+  large view's place, so Back from it returns to the outfits. A reload clears a dialog's entry.
+- *Edit Dave dropped changes not saved without a word* when closed. With a change not saved, Close, Cancel, Escape
+  and Back now ask first: "Keep your changes to Dave?", Save and close, Discard changes, Keep editing (`ceTryClose`,
+  `#ce-ask`; Escape again dismisses the question).
+- *On a phone Compare had no way out*: its Close button was hidden with the other header buttons, and its header sat in
+  the 6px row of the stripe that phones hide, so its title was cut off too. It has a ‹ back button, as the fitting
+  room has, and its header has its own row.
+- *No way to the start but the Shop button*: the title, "The Wardrobe" (or her name), is now a link to Shop, in the
+  page (no reload), with a focus ring for the keyboard. The fitting room's ‹ on a phone is labelled "Back to the
+  outfits" for screen readers.
+
+What already worked and still does: the menu stays on screen when scrolled, Back and Forward walk the views, a shared
+`#fit/<id>` link opens the outfit large, and Escape closes the large view.
+
+**The check**: `tools/qa/nav.js` walks all of it on a desktop and a phone screen (74 checks: each way in, each way out,
+a visible way out in every dialog, Compare's header in view, the question before dropping changes, no page errors)
+and exits 1 on any failure. It runs in the pull-request check as its own job ("Ways back"). On `main` before this
+change it fails 16 of the desktop checks and stops. Run it after any change to the views, the menu, a dialog or
+`route`.
+
+**Checked**: `nav.js` on desktop and phone, all passed; on `main`'s build it fails as above. Screenshots of the
+question in Edit Dave (desktop and phone), Compare's header on a phone and the title's focus ring. The smoke test
+(2D and 3D) has no page errors. Nothing in the 3D builder changed.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

@@ -708,6 +708,10 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
 .ce-acts{display:flex;justify-content:flex-end;align-items:center;gap:8px;flex-wrap:wrap}
 .ce-acts .btn[disabled]{opacity:.45;cursor:default}
 .ce-n{font-size:.82rem;font-weight:600;color:var(--tan);margin-right:6px}
+.mast h1 a.home{color:inherit;text-decoration:none}.mast h1 a.home:hover{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}.mast h1 a.home:focus-visible{outline:2px solid var(--green);outline-offset:4px;border-radius:2px}
+.ce-ask{position:absolute;inset:auto 16px 16px auto;z-index:5;max-width:420px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-left:4px solid var(--tan);border-radius:8px;padding:14px 16px;box-shadow:0 8px 30px rgba(0,0,0,.18);display:flex;flex-direction:column;gap:10px}
+.ce-ask[hidden]{display:none}.ce-ask p{margin:0;font-weight:600}.ce-ask-b{display:flex;gap:8px;flex-wrap:wrap}
+@media (max-width:700px){.ce-ask{inset:auto 12px calc(12px + env(safe-area-inset-bottom)) 12px;max-width:none}}
 .ce-main{display:grid;grid-template-columns:208px minmax(0,1fr) 440px;min-height:0}
 .ce-nav{border-right:1px solid var(--line);padding:16px 10px;display:flex;flex-direction:column;gap:2px;min-height:0;overflow:auto}
 .ce-tab{font:inherit;font-size:.88rem;font-weight:500;text-align:left;display:flex;justify-content:space-between;align-items:center;gap:6px;padding:10px 12px;border:0;border-radius:5px;background:transparent;color:var(--ink);cursor:pointer}
@@ -846,7 +850,8 @@ dialog.fr-dlg{width:min(1360px,98vw);height:min(880px,96vh);max-height:96vh;over
 .cmp-wx{cursor:default;background:var(--surface)}
 @media (max-width:720px){
   dialog.cmp-dlg{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;margin:0;border:0;border-radius:0}
-  .cmp-head{padding:8px 16px;min-height:0}.cmp-head .msg{display:none}
+  .cmp{grid-template-rows:auto minmax(0,1fr) auto}   /* (its stripe is hidden on a phone: the header had the stripe's 6px row) */
+  .cmp-head{padding:6px 12px 8px;padding-top:max(6px,env(safe-area-inset-top));min-height:0;gap:6px;justify-content:flex-start}.cmp-head .msg{display:none}.cmp-head .fr-title{flex:1;align-items:center;text-align:center;margin-right:50px}
   .cmp-cols{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
   .cmp-col,.cmp-add{flex:none;width:62vw;scroll-snap-align:start}
   .cmp-foot{gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom))}.cmp-foot>.msg{display:none}
@@ -866,7 +871,7 @@ main:focus{outline:none}
 <div class="wrap">
 
   <header class="mast">
-    <h1 id="mast-h">The Wardrobe</h1>
+    <h1 id="mast-h"><a class="home" href="#shop" data-go="shop" title="Back to the start (Shop)">The Wardrobe</a></h1>
     <p class="status" id="status">Loading this week's picks…</p>
   </header>
 
@@ -1467,6 +1472,7 @@ main:focus{outline:none}
 </div>
 
 <dialog class="zoom chared fr-dlg" id="chared" aria-labelledby="chared-h"><div class="ce">
+  <div class="ce-ask" id="ce-ask" role="alertdialog" aria-labelledby="ce-ask-t" hidden><p id="ce-ask-t">Keep your changes to Dave?</p><div class="ce-ask-b"><button class="btn" type="button" data-ceask="save">Save and close</button><button class="btn ghost" type="button" data-ceask="discard">Discard changes</button><button class="btn ghost" type="button" data-ceask="keep">Keep editing</button></div></div>
   <div class="stripe fr-stripe"></div>
   <header class="ce-head"><button class="ce-cancel" type="button" data-cclose>Cancel</button>
     <div class="fr-title"><span class="label">Fitting room</span><h2 id="chared-h">Edit Dave</h2></div>
@@ -1484,7 +1490,7 @@ main:focus{outline:none}
 <dialog class="zoom fr-dlg" id="zoom" aria-labelledby="zoom-h"><div id="zoom-body"></div></dialog>
 <dialog class="zoom fr-dlg cmp-dlg" id="cmp" aria-labelledby="cmp-h"><div class="cmp">
   <div class="stripe fr-stripe"></div>
-  <header class="cmp-head"><div class="fr-title"><span class="label">Fitting room</span><h2 id="cmp-h">Compare outfits</h2></div>
+  <header class="cmp-head"><button class="fr-back" type="button" data-cmpclose aria-label="Close Compare">‹</button><div class="fr-title"><span class="label">Fitting room</span><h2 id="cmp-h">Compare outfits</h2></div>
     <div class="fr-acts"><span class="msg">Up to 4 · from the shortlist or any outfit card</span><button class="act" type="button" data-cmpclose>Close</button></div></header>
   <div class="cmp-cols" id="cmp-cols"></div><p class="msg cmp-empty" id="cmp-empty" hidden>Add an outfit with Compare on any outfit card.</p>
   <footer class="cmp-foot"><span class="msg">All turn together</span><span class="fr-seg" role="group" aria-label="Angle"><button type="button" data-cmpang="0">Front</button><button type="button" data-cmpang="0.785">¾</button><button type="button" data-cmpang="1.571">Side</button><button type="button" data-cmpang="3.1416">Back</button></span>
@@ -7130,7 +7136,7 @@ function Live3D(box,pieces,opt){
   h.k=function(){return o.k;};
   h.lostCtx=function(){h.active=false;cancelAnimationFrame(h.raf);clearTimeout(h.tm);if(h.onLost)h.onLost();};
   h.stop=function(){if(!h.on)return;h.on=false;h.active=false;cancelAnimationFrame(h.raf);clearTimeout(h.tm);dispose3D(o);
-    box.removeEventListener("keydown",onKey);if(bar&&bar.parentNode)bar.parentNode.removeChild(bar);if(tip.parentNode)tip.parentNode.removeChild(tip);
+    box.removeEventListener("keydown",onKey);if(tip.parentNode)tip.parentNode.removeChild(tip);
     var i=liveStack.indexOf(h),top=i===liveStack.length-1;if(i>=0)liveStack.splice(i,1);
     if(el.parentNode===box)box.removeChild(el);
     if(top&&liveStack.length)liveStack[liveStack.length-1].activate();};
@@ -7250,7 +7256,7 @@ function frHeight(){var h=Number(CHAR.height)||183,i=Math.round(h/2.54),ft=Math.
 function frShell(){
   $("zoom-body").innerHTML='<div class="fr" id="fr" data-mode="3" data-tab="pieces" data-light="'+esc(FR.wear.light)+'">'+
     '<div class="stripe fr-stripe"></div>'+
-    '<header class="fr-head"><button class="fr-back" type="button" data-zclose aria-label="Close">‹</button>'+
+    '<header class="fr-head"><button class="fr-back" type="button" data-zclose aria-label="Back to the outfits">‹</button>'+
       '<div class="fr-title"><span class="label" id="fr-kick"></span><h2 id="zoom-h"></h2><span class="fr-of" id="fr-of"></span></div>'+
       '<span class="fr-seg fr-modes" role="group" aria-label="How to show the outfit"><button type="button" data-zlay="3">3D model</button><button type="button" data-zlay="1">Photos, to scale</button><button type="button" data-zlay="s">Split</button><button type="button" data-zlay="0" class="fr-2d">Drawing</button></span>'+
       '<div class="fr-acts"><div class="fr-tot" id="fr-tot"></div><span id="fr-save"></span><button class="act fr-cmp" type="button" data-cmpadd="">Compare</button><button class="act fr-x" type="button" data-zclose>Close</button></div></header>'+
@@ -7406,8 +7412,10 @@ var CMP={ids:[],ang:0,spin:false,live:"",tm:0};
 var CMPA=[0,0.785,1.571,2.356,3.1416,3.927,4.712,5.498];
 function cmpShortlist(){var ks={};Object.keys(saved||{}).concat(Object.keys(local.saved||{})).forEach(function(k){if(k.indexOf("o_")===0&&savedOf(k))ks[k.slice(2)]=1;});return Object.keys(ks).filter(function(id){return fitById[id];});}
 function cmpAdd(id){if(!fitById[id])return;if(CMP.ids.indexOf(id)<0){if(CMP.ids.length>=4)CMP.ids.shift();CMP.ids.push(id);}cmpOpen();}
-function cmpOpen(){var d=$("cmp");if(!d)return;var z=$("zoom");if(z&&z.open)closeZoom();if(typeof d.showModal==="function"){if(!d.open)d.showModal();}else d.setAttribute("open","");cmpRender();}
-function cmpClose(){cmpLive("");clearInterval(CMP.tm);CMP.tm=0;CMP.spin=false;var d=$("cmp");if(d&&d.open){if(d.close)d.close();else d.removeAttribute("open");}}
+function cmpOpen(){var d=$("cmp");if(!d)return;var z=$("zoom"),zo=z&&z.open;if(zo){zoomNoBack=true;closeZoom();}if(typeof d.showModal==="function"){if(!d.open)d.showModal();}else d.setAttribute("open","");
+  /* over the large view, Compare takes its place in history (Back from Compare returns to the outfits) */
+  var hs=history.state||{};if(zo&&hs.fit){try{history.replaceState({v:state.view,dlg:"cmp"},"","#"+state.view);}catch(e){}}else dlgPush("cmp");cmpRender();}
+function cmpClose(){cmpLive("");clearInterval(CMP.tm);CMP.tm=0;CMP.spin=false;var d=$("cmp");if(d&&d.open){if(d.close)d.close();else{d.removeAttribute("open");dlgPop("cmp");}}}
 function cmpWx(){var fs=CMP.ids.map(function(id){return fitById[id];}).filter(Boolean);if(fs.length<2)return "";
   var common=WX.slice(1).map(function(w){return w[0];}).filter(function(w){return fs.every(function(f){return f.wx.indexOf(w)>=0;});});
   return common.length?"Same weather: "+common.map(function(w){return label(WX,w).toLowerCase();}).join(", "):"Made for different weather";}
@@ -7453,7 +7461,7 @@ document.addEventListener("click",function(e){var b,t=e.target;
   if((b=t.closest("#cmp [data-zoom]"))){e.stopPropagation();cmpClose();openZoom(b.getAttribute("data-zoom"));return;}
 },true);
 document.addEventListener("change",function(e){if(e.target&&e.target.id==="cmp-pick"&&e.target.value){var v=e.target.value;CMP.ids.push(v);cmpRender();}});
-(function(){var d=$("cmp");if(!d)return;d.addEventListener("close",function(){cmpLive("");clearInterval(CMP.tm);CMP.tm=0;CMP.spin=false;});})();
+(function(){var d=$("cmp");if(!d)return;d.addEventListener("close",function(){cmpLive("");clearInterval(CMP.tm);CMP.tm=0;CMP.spin=false;dlgPop("cmp");});})();
 /* the fitting room's own buttons */
 document.addEventListener("click",function(e){var b,t=e.target;if(!t.closest||!t.closest("#fr"))return;
   if((b=t.closest("[data-frclear]"))){frClear(!FR.clear);return;}
@@ -7893,7 +7901,7 @@ function renderProfile(){
   $("size-notes").innerHTML=notes.map(function(n){return "<li>"+esc(n)+"</li>";}).join("");
   $("owns").hidden=true;
   var nm=typeof profile.name==="string"?profile.name.trim().slice(0,30):"";
-  $("mast-h").textContent=nm?nm+"'s Wardrobe":"The Wardrobe";document.title=$("mast-h").textContent;
+  var mh=document.querySelector("#mast-h a")||$("mast-h");mh.textContent=nm?nm+"'s Wardrobe":"The Wardrobe";document.title=mh.textContent;
   renderMeasure();
   var mc=profile.colours&&typeof profile.colours==="object"?profile.colours:null,box=$("mycols");
   box.hidden=!mc;
@@ -8039,7 +8047,7 @@ function setView(v,keep,how){
 }
 /* Addresses the page understands: #shop, #fits and the other views, a style (#classic), and one outfit shown large
    (#fit/<outfit id>), which can be shared as a link or reached with Back and Forward. */
-var pendFit="",zoomFrom=null,afterPop=null;
+var pendFit="",zoomFrom=null,afterPop=null,zoomNoBack=false;   /* (zoomNoBack: Compare, opening over the large view, has put its own entry in its place) */
 function fitHash(id){return "#fit/"+encodeURIComponent(id);}
 function hashFit(){var m=/^#fit\/(.+)$/.exec(location.hash||"");if(!m)return "";try{return decodeURIComponent(m[1]);}catch(e){return m[1];}}
 function closeZoom(){stop3D();var zd=$("zoom");if(zd&&zd.open){if(zd.close)zd.close();else{zd.removeAttribute("open");zoomGone();}}}
@@ -8048,10 +8056,18 @@ function refocus(el){if(el&&el.isConnected&&(document.activeElement===document.b
 function zoomGone(){
   /* keyboard users land back on the button that opened it (after Back, which moves focus to the page) */
   var from=zoomFrom;zoomFrom=null;refocus(from);
-  try{if(history.state&&history.state.fit){afterPop=from;history.back();}else if(hashFit()){history.replaceState({v:state.view},"","#"+state.view);}}catch(e){}}
+  try{if(zoomNoBack){zoomNoBack=false;}else if(history.state&&history.state.fit){afterPop=from;history.back();}else if(hashFit()){history.replaceState({v:state.view},"","#"+state.view);}}catch(e){}}
+/* Edit Dave and Compare, over the page, are steps in history too: opening one adds an entry at the same address
+   ({dlg:"ce"} or {dlg:"cmp"} added to the state), so Back closes it, Edit Dave over an outfit's large view included,
+   and closing it with its own buttons or Escape steps back off that entry. (Before, Back changed the page under an
+   open Edit Dave or Compare, and left it open) */
+function dlgPush(k){try{var st=Object.assign({},history.state||{});if(st.dlg===k)return;st.dlg=k;history.pushState(st,"",location.href);}catch(e){}}
+function dlgPop(k){try{if(history.state&&history.state.dlg===k)history.back();}catch(e){}}
 function route(how){
-  var id=hashFit(),h=(location.hash||"").slice(1);
-  if(id){if(state.view!=="fits")setView("fits",true,how);if(fitById[id]){openZoom(id);}else{pendFit=id;}return;}
+  var id=hashFit(),h=(location.hash||"").slice(1),st=history.state||{},ce=$("chared"),cm=$("cmp");
+  if(ce&&ce.open&&st.dlg!=="ce"&&!ceTryClose("pop"))return;
+  if(cm&&cm.open&&st.dlg!=="cmp")cmpClose();
+  if(id){if(state.view!=="fits")setView("fits",true,how);var zd0=$("zoom");if(zd0&&zd0.open&&zoomId===id)return;if(fitById[id]){openZoom(id);}else{pendFit=id;}return;}
   var zd=$("zoom");if(zd&&zd.open)closeZoom();
   if(VIEWS.indexOf(h)>=0&&h!==state.view)setView(h,false,how);
 }
@@ -8423,7 +8439,7 @@ $("b-save").addEventListener("click",function(){
 document.addEventListener("click",function(e){
   var t=e.target,b;
   if((b=t.closest("[data-skip]"))){e.preventDefault();var mn=$("main");if(mn){mn.focus();mn.scrollIntoView({block:"start"});}return;}
-  if((b=t.closest("[data-go]"))){setView(b.getAttribute("data-go"));return;}
+  if((b=t.closest("[data-go]"))){if(b.tagName==="A")e.preventDefault();setView(b.getAttribute("data-go"));return;}
   if((b=t.closest("[data-dept]"))){state.dept=b.getAttribute("data-dept");state.cats=[];lim.picks=PAGE;renderPicks();syncMarks();$("picks").scrollIntoView({block:"start"});return;}
   if((b=t.closest("[data-cat]"))){var ck=b.getAttribute("data-cat"),ci=state.cats.indexOf(ck);if(ci>=0){state.cats.splice(ci,1);}else{state.cats.push(ck);}lim.picks=PAGE;renderPicks();syncMarks();return;}
   if((b=t.closest("[data-tile]"))){var tk=b.getAttribute("data-tile");state.cats=[tk];state.dept=SUBDEPT[tk]||"all";lim.picks=PAGE;renderPicks();syncMarks();$("picks").scrollIntoView({block:"start"});return;}
@@ -8732,13 +8748,20 @@ function openCE(fitId,wear){
   ceWearSet(wear||"under");ceTab="size";CEV.key="";CEV.snapped="";ceWipeAt(CEV.wipe);
   ceForm();$("ce-msg").textContent="";
   if(typeof dlg.showModal==="function"){if(!dlg.open)dlg.showModal();}else{dlg.setAttribute("open","");}
-  ceStart();
+  $("ce-ask").hidden=true;dlgPush("ce");ceStart();
 }
 function closeCE(save){
-  var dlg=$("chared");if(cePrev){cePrev.stop();cePrev=null;}
+  var dlg=$("chared");$("ce-ask").hidden=true;if(cePrev){try{cePrev.stop();}catch(e){}cePrev=null;}
   if(!save&&ceSaved){Object.assign(CHAR,ceSaved);}
   ceSaved=null;if(dlg&&dlg.open){if(dlg.close)dlg.close();else dlg.removeAttribute("open");}
+  dlgPop("ce");
 }
+/* closing Edit Dave (its Close or Cancel, Escape, or Back): with changes not saved, first ask whether to keep them
+   (Save and close, Discard changes, Keep editing) rather than drop them; gives whether it closed. After Back the
+   entry is put back, so the dialog is still a step in history while it asks */
+function ceTryClose(src){var ask=$("ce-ask");
+  if(ceSaved&&ceDirty()>0&&ask){if(src==="pop")dlgPush("ce");ask.hidden=false;var b=ask.querySelector("[data-ceask]");if(b)b.focus();return false;}
+  closeCE(false);return true;}
 function saveChar(){
   try{localStorage.setItem("dw-char",JSON.stringify(CHAR));}catch(x){}
   snapCache={};
@@ -8752,7 +8775,8 @@ function saveChar(){
 document.addEventListener("click",function(e){var b;
   if((b=e.target.closest("[data-chared]"))){e.preventDefault();openCE(b.getAttribute("data-chared-fit")||(zoomId&&$("zoom").open?zoomId:""),b.getAttribute("data-chared-wear")||"");return;}
   if((b=e.target.closest("[data-cewear]"))){ceWearSet(b.getAttribute("data-cewear"),true);return;}
-  if((b=e.target.closest("[data-cclose]"))){closeCE(false);return;}
+  if((b=e.target.closest("[data-cclose]"))){ceTryClose("btn");return;}
+  if((b=e.target.closest("[data-ceask]"))){var ak=b.getAttribute("data-ceask");if(ak==="keep"){$("ce-ask").hidden=true;var cx=Array.prototype.filter.call(document.querySelectorAll("#chared [data-cclose]"),function(x){return x.offsetParent;})[0];if(cx)cx.focus();}else{if(ak==="save")saveChar();closeCE(ak==="save");}return;}
   if((b=e.target.closest("[data-cet]"))){ceTab=b.getAttribute("data-cet");ceForm();if(cePrev&&cePrev.zoomTo)cePrev.zoomTo(CE_ZOOM[ceTab]||0);return;}
   if((b=e.target.closest("[data-ce]"))){ceSet(b.getAttribute("data-ce"),b.getAttribute("data-cv"));return;}
   if((b=e.target.closest("[data-cers]"))){var rk=b.getAttribute("data-cers"),rv=ceSaved&&ceSaved[rk]!=null?ceSaved[rk]:CHAR_DEF[rk];ceSet(rk,rv);var ri=$("ce-r-"+rk),rc=ceDef(rk);if(ri&&rc)ri.value=cePos(rc,rv);return;}
@@ -8773,14 +8797,16 @@ $("chared").addEventListener("toggle",function(e){if(e.target.classList&&e.targe
   $("ce-hand").addEventListener("pointerdown",function(e){drag=true;try{e.target.setPointerCapture(e.pointerId);}catch(x){}e.preventDefault();});
   $("ce-hand").addEventListener("pointermove",function(e){if(drag)at(e);});
   $("ce-hand").addEventListener("pointerup",function(){drag=false;});$("ce-hand").addEventListener("pointercancel",function(){drag=false;});})();
-$("chared").addEventListener("cancel",function(e){e.preventDefault();closeCE(false);});
+$("chared").addEventListener("cancel",function(e){e.preventDefault();if(!$("ce-ask").hidden){$("ce-ask").hidden=true;return;}ceTryClose("esc");});
+/* (a browser may close a dialog itself after Escape is held off more than once without a click between: tidy up as Discard) */
+$("chared").addEventListener("close",function(){if(ceSaved||cePrev)closeCE(false);});
 $("ce-save").addEventListener("click",saveChar);
 $("ce-undo").addEventListener("click",function(){var last=ceHist.pop();if(!last)return;Object.keys(CHAR_DEF).forEach(function(k){CHAR[k]=last[k];});ceLastPush=0;ceForm();ceApply();$("ce-msg").textContent="Undone.";});
 $("ce-reset").addEventListener("click",function(){cePush();ceLastPush=0;Object.keys(CHAR_DEF).forEach(function(k){CHAR[k]=CHAR_DEF[k];});ceForm();ceApply();$("ce-msg").textContent="Back to his defaults. Save to keep them.";});
 /* see the changes on other kinds of clothes: tailoring, knits, coats, shorts */
 $("ce-next").addEventListener("click",function(){if(!fits.length)return;ceFit=(ceFit+1+Math.floor(Math.random()*7))%fits.length;ceOut=effPieces(fits[ceFit]);ceWearSet("outfit");$("ce-msg").textContent="Showing him in “"+fits[ceFit].name+"”.";});
 syncChips();paintStyle();
-(function(){var v="";try{pendFit=hashFit();v=pendFit?"fits":(location.hash||"").slice(1)||localStorage.getItem("dw-view")||"";}catch(e){}setView(v||"shop",true,"init");})();
+(function(){var v="";try{if(history.state&&history.state.dlg)history.replaceState(Object.assign({},history.state,{dlg:null}),"",location.href);}catch(e){}try{pendFit=hashFit();v=pendFit?"fits":(location.hash||"").slice(1)||localStorage.getItem("dw-view")||"";}catch(e){}setView(v||"shop",true,"init");})();
 renderAll();
 
 /* The GitHub Pages copy has no database: it reads the exported files next to the page, and keeps marks on the device. */
