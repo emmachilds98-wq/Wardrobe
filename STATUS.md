@@ -25,11 +25,16 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**16 Oct: a tidier Edit Dave** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 2, its second half). Six tabs (Body, Face,
+Hair, Facial hair, Skin and eyes, Clothes fit), each with its few main controls and the rest under folds, a reset for
+each tab, and no tab longer than a laptop screen with its folds closed. **Next:** item 3, the shoes and how trouser hems
+meet them.
+
 **16 Oct: skin tone on a slider, and more colours** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 2, its first half). Edit
 Dave's Skin and colouring tab has Tone (very fair to very deep, through real skin tones, every step looking as big as
 the next) and Undertone (cool and pink to olive) under a row of quick swatches, and eleven eye colours; his hair can be
 black, brown, red or blond, with a Shade and a Grey slider. Each colour slider shows its colours on its track. Saved
-looks load as they were. The moustache and beard keep their own colour, with a Match hair choice. **Next:** the panel's layout (item 2's second half, for Emma to look at before it ships).
+looks load as they were. The moustache and beard keep their own colour, with a Match hair choice.
 
 **16 Oct: a clear jawline** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 1). His face no longer runs softly into his
 neck: the body build takes MakeHuman's fold of fat under the chin out, a little fat out of the face and squares the
@@ -576,7 +581,8 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
-| 16 Oct 2026 | #83 | Skin tone on two sliders (Tone through eleven real skin tones spaced evenly in OKLab, Undertone from cool to olive; `CHAR.skin` is still the colour, so saved looks load as they were), hair colours beyond brown (black, red, blond, and a Grey slider; his browns with no grey are the same colours as before), eleven eye colours; colour sliders show their colours on the track; brows that match his hair follow it; cheeks and lips tinted from his own skin (no pink on a deep skin); Match hair for the moustache and beard, which keep their own colour by default | FtdHKg vNEXT |
+| 16 Oct 2026 | #PANEL | A tidier Edit Dave: six tabs (Body, Face, Hair, Facial hair, Skin and eyes, Clothes fit), main controls with the rest under folds (`CES` folds), a reset per tab, labels above their choices, no tab past a 1280 x 800 screen with its folds closed | FtdHKg vNEXT2 |
+| 16 Oct 2026 | #83 | Skin tone on two sliders (Tone through eleven real skin tones spaced evenly in OKLab, Undertone from cool to olive; `CHAR.skin` is still the colour, so saved looks load as they were), hair colours beyond brown (black, red, blond, and a Grey slider; his browns with no grey are the same colours as before), eleven eye colours; colour sliders show their colours on the track; brows that match his hair follow it; cheeks and lips tinted from his own skin (no pink on a deep skin); Match hair for the moustache and beard, which keep their own colour by default | FtdHKg v68 |
 | 16 Oct 2026 | none | FtdHKg republished from `main` (8d918c3, PR #82's build: the page and 15 `docs/data` files changed since 0382659, the build it had) | FtdHKg v67 |
 | 16 Oct 2026 | #82 | A clear jawline: the base body takes MakeHuman's `neck-double-decr` 1, `head-fat-decr` 0.65, `head-square` 0.55 and `chin-bones` 0.45, the jaw targets limited to the face below the eyes (`LOWER_FACE`, so the crown and the whole body's scale stay put); Edit Dave's "Jawline" and "Under the chin" (new morphs, last); FtdHKg still to be republished from Emma's account | B8UXnh v19 |
 | 16 Oct 2026 | #81 | Ways back: the fitting room closes with Back and its buttons once its 3D model has run, and Edit Dave closes (a stale `bar` line in `Live3D`'s stop threw first); Edit Dave and Compare are steps in history (`dlgPush` / `dlgPop`); Edit Dave asks before dropping changes; Compare's header and a ‹ back on a phone; the title links to Shop; `tools/qa/nav.js` and its pull-request job; FtdHKg still to be republished from Emma's account | B8UXnh v18 |

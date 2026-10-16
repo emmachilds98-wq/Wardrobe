@@ -38,7 +38,7 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 ## What is left, in a sensible order
 
 The plan for the model from here, in order, with how to tackle each item and when it is done, is `UPGRADE_PLAN.md`
-section 5 (16 Oct 2026): his jawline (done 16 Oct, PR #82), Edit Dave's skin tone and new colours (done 16 Oct, PR #83) and its panel layout, the shoes and trouser hems, a relaxed stance,
+section 5 (16 Oct 2026): his jawline (done 16 Oct, PR #82), Edit Dave's skin tone and new colours (done 16 Oct, PR #83) and its panel layout (done 16 Oct, PR #PANEL), the shoes and trouser hems, a relaxed stance,
 tucked-in tops, draped trousers, then the items below and the rest. The table lists the tops still on `make3Dcore`.
 
 | Item | Pieces (outfits) | What it needs |
