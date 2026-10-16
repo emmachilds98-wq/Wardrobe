@@ -4116,7 +4116,7 @@ Done when: the shoe shows at the back under every trouser that does not reach th
 the `sunk` count clean on all five bodies, and the feet sheet better than `main`. Two pull requests (the hem; the shoe
 templates), then a third once trousers are draped (item 6), when the hem settles on the shoe as cloth.
 
-**First pull request done 16 Oct 2026** (PR #HEM, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: the hem rests on the heel, slim legs on a trainer's
+**First pull request done 16 Oct 2026** (PR #85, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: the hem rests on the heel, slim legs on a trainer's
 heel, a trainer's collar, the welt inside the heel). Next: the shoe templates.
 
 ### 4. A relaxed, natural stance
