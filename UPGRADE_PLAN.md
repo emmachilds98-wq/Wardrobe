@@ -3732,6 +3732,38 @@ hoods, roll necks, funnel necks and scarves against `main` (the same 2 flagged o
 90 and 96 on `main`, 97 and 104 now); card stills of five outfits against `main` (the same brightness, a mean
 difference of 0.2 levels); the smoke test.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Skin tone on a slider, hair colours beyond brown, more eye colours (16 Oct 2026)
+
+Section 5, item 2, its first half (the panel's layout is the second, for Emma to look at first).
+
+*Skin* (Edit Dave, Skin and colouring): two sliders under a row of seven quick swatches. Tone runs from very fair to
+very deep through eleven real skin tones (the old seven swatches with lighter, deeper and in-between ones; his own,
+`#e2b08f`, the fourth), spaced along the slider by how different they look in OKLab, so every step of it looks as big as
+the next. Undertone runs from cool and pink through neutral (the anchors themselves) and warm and golden to olive: a
+turn of hue, a change of chroma and a touch of lightness, worked out in OKLab's lightness, chroma and hue (`skinFrom`).
+The colour itself is still `CHAR.skin`, so a look saved before loads as it was, and the lips, nose, eyelids and the 2D
+figure, all worked out from it, follow. The sliders' places are saved too (`skinTone`, `skinUnder`) but are not part of
+the look (`CHAR_UI`: they do not change `charKey`, the card stills' cache, or the count of changes). A colour picked or
+saved off the ramp keeps its colour, and the sliders show the nearest place to it (`skinFit`, the nearest colour in
+OKLab); moving both back to where they were saved gives back the saved colour exactly.
+
+*Hair*: a Natural colour choice (black, brown, red, blond: `HAIRF`, each a ramp from darkest to lightest, with the
+colour its ends lighten toward in the sun) above the Shade slider (the old Brown slider, its words for each colour),
+and a Grey slider (none, a little grey, salt and pepper, mostly grey, silver: toward a darker grey at first and silver
+at the end, gently at first, `greyed`). His browns with no grey give exactly the colours as before (`hairCol`,
+`hairTipCol`). The 2D figure's curls take a lighter line of a hair colour other than his browns.
+
+*Eyes*: eleven colours (pale blue, grey, a darker green, amber and dark brown added to the six).
+
+*The colour sliders* show the colours they run through on their tracks, as they stand with the other colour sliders
+(Tone's track follows the undertone, Grey's the shade), and keep their own ends rather than his saved setting in the
+middle (`ceRng`), so a track is always the same run of colours; the ◆ marks the saved one.
+
+**Checked**: saved looks load unchanged (the default skin, hair and ends' colours are the same hex values as on `main`); the
+sliders at both ends on a desktop and a 390 px phone screen; a swatch and a picked colour move the sliders, and the
+sliders back to where they were saved give back the saved colour; undo, the sliders' resets and Back to his defaults;
+one change counted per colour; the gate set on dave; the navigation check; the smoke test.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
