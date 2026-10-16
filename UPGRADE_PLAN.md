@@ -4060,7 +4060,7 @@ layout is checked at 390 px wide, saved looks load unchanged, and Emma has looke
 and new options; the panel layout).
 
 **First half done 16 Oct 2026** (PR #83, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: skin tone on two sliders, hair colours beyond brown and
-a grey slider, eleven eye colours). **Second half done 16 Oct 2026** (PR #PANEL, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: six tabs, the
+a grey slider, eleven eye colours). **Second half done 16 Oct 2026** (PR #84, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: six tabs, the
 rest folded away, one reset per tab), shipped for Emma to check on the live page.
 
 ### 3. Shoes, and how the trousers meet them
