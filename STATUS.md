@@ -25,11 +25,10 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
-**16 Oct: a little life in the live views** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 4, its first step). In the fitting
-room and Edit Dave he breathes and his weight sways a little from foot to foot, the whole figure moving together so his
-clothes stay where they are; he keeps still while he is being turned or zoomed, and for anyone who has asked for reduced
-motion. Cards are unchanged.
-**Next:** tucked-in tops (item 5).
+**16 Oct: he stands still again** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). The breath and sway added in PR #88 read as the whole picture
+rocking side to side, a glitch that made Emma feel travel sick, and are taken out (PR #89). She asked for poses to choose
+from instead: those need his body rigged (section 5, item 4, its second step).
+**Next:** poses (item 4, the rig), or tucked-in tops (item 5, a first try in progress).
 
 **16 Oct: shoes made on a last** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 3, its second half). Each kind of shoe has its own
 last, made on his own foot: a trainer, runner, skate shoe, dress shoe, loafer, deck shoe, slipper, Chelsea, desert,
@@ -597,6 +596,8 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 16 Oct 2026 | #89 | He stands still again: the breath and sway of PR #88 taken out (they read as the picture rocking, and made Emma feel travel sick) | B8UXnh v23 |
+| 16 Oct 2026 | #88 | A breath and a sway in the live views (`life` in `Live3D`), the skin's pores placed on the skin itself (`vSkP`) | B8UXnh v22 |
 | 16 Oct 2026 | #87 | Shoes made on a last: one per kind (`SHT`), fitted to his foot (`shoeFoot`), with an opening round his ankle, its lining and rolled edge, a tongue and laces, a heel counter and a sole for its kind (`shoeTpl`, `shoeSole`, `shoeDetail`); his ankle and instep show in the opening, in a sock where he wears one (`shoeFeet`); `window.__shoeTpl=0` draws the old pods | B8UXnh v21 (FtdHKg needs Emma's account) |
 | 16 Oct 2026 | #85 | Trouser hems rest on the shoe: the back rises onto the heel (`hemB`: 3 cm on a trainer, 2.5 on a shoe), each leg deepened backward round the heel near the ground (`cut.heel`), a slim leg on a trainer resting on its heel (`cut.onHeel`); a trainer's upper ends at its collar (`capT`); a dress shoe's welt centred and at the sole's edge | FtdHKg v70 |
 | 16 Oct 2026 | #84 | A tidier Edit Dave: six tabs (Body, Face, Hair, Facial hair, Skin and eyes, Clothes fit), main controls with the rest under folds (`CES` folds), a reset per tab, labels above their choices, no tab past a 1280 x 800 screen with its folds closed | FtdHKg v69 |
