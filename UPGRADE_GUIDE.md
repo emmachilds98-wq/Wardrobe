@@ -1,6 +1,6 @@
 # Continuing the upgrade: a guide for the next engineer
 
-Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks, cardigans, the last jackets, collars under open jackets, the sleeveless tee, henley and mock-neck tee, and open overshirts under open jackets. Read this first, then `STATUS.md` (what is happening now and the
+Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks, cardigans, the last jackets, collars under open jackets, the sleeveless tee, henley and mock-neck tee, open overshirts under open jackets, and Three.js 0.186.1. Read this first, then `STATUS.md` (what is happening now and the
 log), `HANDOFF.md` (how the page fits together) and `CONTRIBUTING.md` (the data rules and every check). The long
 history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections last before "3. Next steps".
 
@@ -41,11 +41,10 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 | --- | --- | --- |
 | Two jackets that fail the check draped | 2 (2) | Carhartt's Super Dux (jb8-superdux): on `jacket_hood` and on `puffer_hood` the tee under it shows between its hem and the top of his tool belt; it would need cutting longer, or the belt worn over its hem. The borg zip-through over a half-zip (g-casual-01): on `jacket` and on `puffer` the half-zip's collar comes through its collar at the back of his neck. |
 | Shards beside the neck, open over open | (2) | Since the fix for an open overshirt under an open jacket (UPGRADE_PLAN, the last section), what is left of it is a few small shards of the shacket beside his neck in g-mod-11 and g-mod-13, where the shacket's collar meets the jacket's, and a dark hole at the back of g-casual-09's left shoulder (on `main` before the fix too). Measure with `tools/qa/through.js`. |
-| Insulated and borg-lined overshirts | 2 (4) | Tog24's Adamson and Matalan's borg overshirt are `chore`'s cut, and were tried on it again with the open-over-open fix. Under open jackets (g-outdoor-05, -09) the padded shacket still came through the jacket's lower front and round his neck in jagged patches, and under a done-up gilet (g-outdoor-21) the gilet bulged and creased at his neck; only g-outdoor-19 was passable. They may need a thicker gap under the jacket, as a padded layer is. |
+| Insulated and borg-lined overshirts | 2 (4) | Tog24's Adamson and Matalan's borg overshirt are `chore`'s cut, and were tried on it again with the open-over-open fix. Under open jackets (g-outdoor-05, -09) the padded shacket still came through the jacket's lower front and round his neck in jagged patches, and under a done-up gilet (g-outdoor-21) the gilet bulged and creased at his neck; only g-outdoor-19 was passable. Tried again with a padded layer's 14 mm gap under the jacket, a 12 cm size step and an 8 mm push back under it: `tools/qa/through.js` over the four fell from 1,008 to 457 pixels, but `main`'s flat shapes count 9, 0, 15 and 821 (g-outdoor-21's pocket flaps through the gilet), and g-outdoor-05 and -09 still show shards, so they stay. |
 | Shirt-collared overcoat | (1) | The ASOS tobacco overcoat (cold-commute) has a shirt collar buttoned to the neck in its photo, a car coat's, but takes `overcoat`'s lapels. Sent to `carcoat` (a `collar` correction tried, then taken out), it came out worse. Looked at again: worn open, `carcoat`'s collar is there but lies flat and low, a narrow turn at his neck (ms-one-shop); the bigger miss is length, `carcoat` falls to mid-thigh and this coat to below the knee. It would need a long car coat (a balmacaan: `carcoat`'s collar and fly front on `overcoat`'s length and raglan sleeves). One outfit; low value. |
 | Stringers, racer backs, drop-arm and cropped vests; raglan and baseball tees | 0 now | None are in the outfits now; `drapeArch` returns `null` for them so they keep `make3Dcore`'s shapes when one is added. A racer back and a raglan sleeve are not in the builder. |
 | Tucked-in tops | many | Never draped (`TUCK0`): only with tailoring, a belt or a tie. A draped top would need its hem taken inside the trousers. Large job, modest gain. |
-| Newer Three.js | | Queue item 6 in `STATUS.md` (r128 now). Emma said yes on 12 Oct. |
 
 Also noticed, not fixed, on `main` too: on rv-black-smart the link chain is drawn as a straight bar across his neck;
 in n4-stone-navy his chest shows through the shirt's front under the Harrington; in g-quiet-30 dark spikes stand out
@@ -178,5 +177,11 @@ is drawn as a shawl. The overcoat uses the same two pieces on a longer, roomier 
   jacket, both 122 cm round, came out through the jacket in pleats however the hold-in pass was tuned. `drapeTops` cuts
   a jacket-weight layer over another a size up (8 cm round), fills both layers' creases out, and holds the one under
   in by a ray toward his body (`DRAPEJW`, `drapeFill`, `drapePress`, `drapeUnder`), only where two are worn.
+- **Three.js is 0.186.1, the module build**, loaded by `loadThree` from `THREE_URL` and copied onto `window.THREE`.
+  Colour management is off (`ColorManagement.enabled=false`), so a colour is taken as given and only a texture marked
+  `colorSpace=T.SRGBColorSpace` is decoded, as r128 drew them; a new texture from a photo or canvas needs that line.
+  A light's intensity is ×π of what r128 took (`PI` in the stage lights). `PCFSoftShadowMap` is gone (`PCFShadowMap`).
+  A shader patched at `normal_fragment_maps` has `nonPerturbedNormal`, not `geometryNormal` (declared later now).
+  A QA script that renders flat colours must set `outputColorSpace=T.LinearSRGBColorSpace` (`check_3d.js`, `through.js`).
 - **Measured cloth is noisy.** A small change to a settle moves every crumple, and one outfit's count can halve or
   double either way. Judge a change by totals over several outfits on all five bodies, not by one render.

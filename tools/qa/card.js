@@ -8,7 +8,7 @@ const p=await b.newPage({viewport:{width:1000,height:800}});if(process.env.QA_BO
 const errs=[];p.on('pageerror',e=>errs.push(e.message));await p.goto('http://localhost:'+(process.env.QA_PORT||8770)+'/',{waitUntil:'networkidle'});await p.waitForTimeout(2500);
 const urls=await p.evaluate(async(a)=>{await window.__dw.loadThree();const T=window.THREE,out=[];
  const rd=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});rd.setPixelRatio(1);rd.setSize(360,735);if(T.sRGBEncoding)rd.outputEncoding=T.sRGBEncoding;
- rd.toneMapping=T.ACESFilmicToneMapping;rd.toneMappingExposure=1.08;rd.shadowMap.enabled=true;rd.shadowMap.type=T.PCFSoftShadowMap;
+ rd.toneMapping=T.ACESFilmicToneMapping;rd.toneMappingExposure=1.08;rd.shadowMap.enabled=true;rd.shadowMap.type="outputColorSpace" in rd?T.PCFShadowMap:T.PCFSoftShadowMap;
  for(const id of a.ids){const f=window.__dw.fitById[id];if(!f){out.push(null);continue;}const ps=window.__dw.effPieces(f);await new Promise(r=>{window.__dw.trueFor(ps,r);setTimeout(r,4000);});
   window.__dw.setLite(true);let o;try{o=window.__dw.make3D(ps);}finally{window.__dw.setLite(false);}
   const k=Math.max(1,o.k||1),cam=new T.PerspectiveCamera(13,240/490,0.1,50);cam.position.set(0,0.95*k,8.7*k);cam.lookAt(0,0.93*k,0);o.man.rotation.y=0.32;rd.render(o.scene,cam);

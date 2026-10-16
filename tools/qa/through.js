@@ -25,7 +25,7 @@ for(const id of ids){const p=await b.newPage();if(process.env.QA_INIT)await p.ad
   man.traverse(m=>{if(!m.isMesh)return;let it=m.userData.item||(m.userData.isBody?'body':'other');if(it!==top&&m.userData.item&&!m.userData.sleeveMask)it+='#detail';if(!(it in ids))ids[it]=nid++;const c=col(ids[it]);
     const mat=new T.MeshBasicMaterial({color:new T.Color(c[0]/255,c[1]/255,c[2]/255),side:T.DoubleSide});m.material=Array.isArray(m.material)?m.material.map(()=>mat):mat;});
   const byKey={};Object.keys(ids).forEach(k=>{const c=col(ids[k]);byKey[(c[0]<<16)|(c[1]<<8)|c[2]]=k;});
-  const W=600,H=720,rd=new T.WebGLRenderer({antialias:false,preserveDrawingBuffer:true});rd.setSize(W,H);rd.setClearColor(0xffffff);o.scene.background=null;rd.toneMapping=T.NoToneMapping;if(T.LinearEncoding)rd.outputEncoding=T.LinearEncoding;
+  const W=600,H=720,rd=new T.WebGLRenderer({antialias:false,preserveDrawingBuffer:true});rd.setSize(W,H);rd.setClearColor(0xffffff);o.scene.background=null;rd.toneMapping=T.NoToneMapping;if("outputColorSpace" in rd)rd.outputColorSpace=T.LinearSRGBColorSpace;else rd.outputEncoding=T.LinearEncoding;
   const tc=col(ids[top]),tal={},res=[];
   for(let v=0;v<8;v++){const cam=new T.PerspectiveCamera(24,W/H,0.05,50);cam.position.set(0,1.3,2.6);cam.lookAt(0,1.2,0);man.rotation.y=v*Math.PI/4;rd.render(o.scene,cam);
     const gl=rd.getContext(),px=new Uint8Array(W*H*4);gl.readPixels(0,0,W,H,gl.RGBA,gl.UNSIGNED_BYTE,px);

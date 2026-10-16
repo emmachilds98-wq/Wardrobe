@@ -34,8 +34,8 @@
    --body     check on another of Edit Dave's body types (slim, average, athletic, heavier) or cloth fits (close, loose)
    --wear     check as the fitting room's "How it's worn" toggles set it: tuck=in|out, turn=up|down, zip=up|open
               (comma separated, e.g. --wear tuck=in,turn=up)
-   Needs Playwright and Chromium (CHROME_PATH to use a particular Chromium; THREE_JS to load Three.js r128 from a local
-   file when the CDN cannot be reached). */
+   Needs Playwright and Chromium (CHROME_PATH to use a particular Chromium; THREE_JS, a folder holding Three.js's
+   three.module.min.js and three.core.js, to load it locally when the CDN cannot be reached). */
 const fs = require("fs"), path = require("path"), http = require("http");
 let chromium;
 try { ({ chromium } = require("playwright")); } catch (e) {
@@ -199,12 +199,12 @@ async function checkOutfit(arg) {
   for (const v in views) {
     o.man.rotation.y = views[v];
     // as the page shows it
-    r.toneMapping = T.ACESFilmicToneMapping; r.toneMappingExposure = 1.08; r.outputEncoding = T.sRGBEncoding; r.shadowMap.enabled = true;
+    r.toneMapping = T.ACESFilmicToneMapping; r.toneMappingExposure = 1.08; if ("outputColorSpace" in r) r.outputColorSpace = T.SRGBColorSpace; else r.outputEncoding = T.sRGBEncoding; r.shadowMap.enabled = true;
     o.scene.background = new T.Color("#e6dfd0"); kinds.forEach(n => { n.material = orig.get(n); });
     r.render(o.scene, cam); const shot = r.domElement.toDataURL("image/png"); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px); const lit = px.slice(), marks = [], soft = [];
     let skin = 0, see = 0, sunk = 0; const where = {};   // (which part of him each fault is over, for the report)
     // the ID pass
-    r.toneMapping = T.NoToneMapping; r.outputEncoding = T.LinearEncoding; r.shadowMap.enabled = false; o.scene.background = new T.Color(0, 0, 0);
+    r.toneMapping = T.NoToneMapping; if ("outputColorSpace" in r) r.outputColorSpace = T.LinearSRGBColorSpace; else r.outputEncoding = T.LinearEncoding; r.shadowMap.enabled = false; o.scene.background = new T.Color(0, 0, 0);
     kinds.forEach(n => { n.material = idm(clsOf(n)); });
     r.render(o.scene, cam); gl.readPixels(0, 0, W, H, gl.RGBA, gl.UNSIGNED_BYTE, px);
     const C0 = new Uint8Array(W * H); for (let i = 0; i < W * H; i++) C0[i] = Math.round(px[i * 4] / 10) * 10;
@@ -333,8 +333,9 @@ function colourOff(c) {
   const b = await chromium.launch({ executablePath: process.env.CHROME_PATH || (fs.existsSync("/opt/pw-browsers/chromium-1194/chrome-linux/chrome") ? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" : undefined),
     args: ["--use-gl=swiftshader", "--enable-unsafe-swiftshader"] });
   const p = await b.newPage(), errs = []; p.on("pageerror", e => errs.push(e.message));
-  // THREE_JS=<path to three.min.js r128>: serve Three.js from a local copy (for machines that cannot reach the CDN)
-  if (process.env.THREE_JS) await p.route("**/three.js/r128/three.min.js", r => r.fulfill({ path: process.env.THREE_JS, contentType: "text/javascript" }));
+  // THREE_JS=<folder holding three.module.min.js and three.core.js>: serve Three.js from a local copy (for machines that
+  // cannot reach the CDN)
+  if (process.env.THREE_JS) await p.route("**/ajax/libs/three.js/**", r => r.fulfill({ path: path.join(process.env.THREE_JS, path.basename(new URL(r.request().url()).pathname)), contentType: "text/javascript", headers: { "access-control-allow-origin": "*" } }));
   // QA_INIT='window.__drape=0': a script run before the page (as tools/qa/zoom.js takes it), e.g. the page as before the
   // garment drape (draped is the default in every build since 13 Oct 2026; window.__drape=1 forces it)
   if (process.env.QA_INIT) await p.addInitScript(process.env.QA_INIT);

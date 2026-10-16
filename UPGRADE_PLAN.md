@@ -3624,6 +3624,44 @@ padded shacket came through the jacket's lower front and round his neck in jagge
 loose; each against `main` close up from the front, three-quarter and back; the 34 gate outfits on dave; stored specs
 unchanged. g-mod-15 added to the gate set.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Three.js 0.186.1; the insulated overshirts once more (16 Oct 2026)
+
+*Three.js r128 → 0.186.1* (the drape plan's step 1; Emma said yes on 12 Oct). The current release has no script build,
+only modules, so `loadThree` imports `three.module.min.js` from cdnjs (`THREE_URL`; it imports `three.core.js` beside
+it) and copies its exports onto a plain object kept as `window.THREE`, so the page's `var T=window.THREE` is unchanged.
+To draw as before:
+
+- colour management off (`ColorManagement.enabled=false`): colours are taken as given and only textures marked sRGB
+  are decoded, as r128 did with `sRGBEncoding`; every `encoding=T.sRGBEncoding` is now `colorSpace=T.SRGBColorSpace`,
+  and the renderers' `outputEncoding` is `outputColorSpace`;
+- the four stage lights ×π (since r155 Three.js no longer multiplies a light by π itself);
+- `PCFShadowMap` (`PCFSoftShadowMap` is gone);
+- the fold shader, patched in at `normal_fragment_maps`, reads `nonPerturbedNormal`: `geometryNormal` is now declared
+  only later, with the lights, and the shader did not compile.
+
+QA scripts: the 3D check's flat-colour pass and `through.js` set `outputColorSpace=T.LinearSRGBColorSpace` (the
+default is sRGB now, which shifted every ID colour); `THREE_JS` names a folder holding the two module files, routed for
+`**/ajax/libs/three.js/**`; `garment_view.js` loads the module itself. All keep working on `main`'s r128 too, for
+before and after renders.
+
+Card stills (`tools/qa/card.js`, five outfits) against `main`: mean brightness within 0.6 of 255, mean difference
+about one level; what differs is thin lines along crease edges and shadow outlines (the shadow filter). Fine stripes
+blend a little lighter (a striped polo's measured colour rose about 20 levels): sRGB textures are now decoded before
+they are filtered, not after, which is the correct order. The 3D check on a spread of 40 outfits on dave reads the
+same per-view counts as on `main` but for one, jb9-hirst-apron, whose front poke is 41 against 34, flagged on `main`
+too (the limit is 30); garment colours within 3 levels for 90% of pieces, fine patterns (stripes, cord, a patterned
+knit) up to 27 lighter. The gate set is clean; the fitting room's live view turns and Edit Dave opens.
+
+*The insulated and borg overshirts* were tried once more on `chore`, now with a padded layer's 14 mm gap under the jacket
+over them, a 12 cm size step and an 8 mm push back under it. `tools/qa/through.js` over g-outdoor-05, -09, -19 and -21
+on dave: 1,008 pixels on `chore` as before, 655 with the gap, 457 with all three; `main`'s flat shapes count 9, 0, 15
+and 821 (the last its pocket flaps through the gilet). g-outdoor-05 and -09 still show the padded shacket in shards
+through the jacket's lower front, and the done-up gilet in -21 goes lumpy at his neck. Held back.
+
+**Checked**: the page loads 0.186.1 with no errors; card stills against `main`; the 3D check's per-view counts and
+colours against `main` on 40 outfits; the gate set on dave; the smoke test (2D and 3D); the live fitting room and Edit
+Dave open.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

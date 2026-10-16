@@ -411,8 +411,9 @@ runs the build checks and the 3D check automatically, but run them yourself firs
 6. **Check how it can be worn.** The fitting room lets anyone tuck the top in or out, turn trouser hems up or down and
    do jackets up or open (`TUCKM`, `TURNM`, `ZIPM` in `page.html`). A fitting change must pass those too: add
    `--wear tuck=in,turn=up` and `--wear zip=up,tuck=out` to the 3D check on the gate set.
-7. **No CDN?** A machine that cannot reach cdnjs (some cloud sandboxes) can serve Three.js r128 from a local copy:
-   `npm pack three@0.128.0`, unpack it, and run the check with `THREE_JS=<dir>/package/build/three.min.js`.
+7. **No CDN?** A machine that cannot reach cdnjs (some cloud sandboxes) can serve Three.js 0.186.1 from a local copy:
+   `npm pack three@0.186.1`, unpack it, and run the check with `THREE_JS=<dir>/package/build` (the folder holding
+   `three.module.min.js` and `three.core.js`).
 
 ### What the 3D check measures
 

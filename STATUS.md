@@ -25,13 +25,18 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**16 Oct: Three.js 0.186.1** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). The page moved from r128 to the current release, the
+module build from cdnjs, with colours, lights and shadows set to draw as before: card stills match `main`, and the
+3D check reads the same numbers on 40 outfits compared. Every QA script loads it (`THREE_JS` is now a folder).
+The insulated overshirts were tried once more with a thicker gap and held back.
+**Next:** see `UPGRADE_GUIDE.md` ("What is left"): the two jackets that fail, the insulated overshirts, the shards
+beside the neck, or tucked-in tops.
+
 **15 Oct: an open overshirt held inside an open jacket** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). The shacket came through the
 jacket in g-mod-15, -11, -13 and g-casual-09 because the jacket was cut no bigger than the shacket. Where two draped
 jacket-weight layers are worn, the one over is now cut a size up, both have their creases filled out, and the one under
 is held under by a ray toward his body (83% less showing through, measured with a new tool, `tools/qa/through.js`).
 The insulated and borg overshirts were tried again on `chore` and held back.
-**Next:** see `UPGRADE_GUIDE.md` ("What is left"): the two jackets that fail, the insulated overshirts, tucked-in tops,
-or the newer Three.js.
 
 **15 Oct: a sleeveless tee, a mock-neck tee and the henleys** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). New templates, `vest_tee` (a
 sleeveless tee: the tee's crew neck, no sleeves, deep armholes) for a vest top and a training tank, and `tee_mock` (a
@@ -478,9 +483,10 @@ In order. Each item is small enough for one pull request. Tick it and add a Log 
    no bar.
 5. [x] **Untucked with a tie.** Decided 13 Oct: a shirt with a tie stays tucked (`tuckOn`, as a tie is worn); the
    fitting room's tuck row now shows only "Tucked", with the note "Worn with a tie, the shirt stays tucked in." (PR #39).
-6. [ ] **Newer Three.js** (r128 now). Emma said yes on 12 Oct (the drape plan's step 1, `design/garment-drape/README.md`).
-   Plan doc "Engine and body", still to do. Check every QA script and the 3D check still run, and that card stills
-   look the same.
+6. [x] **Newer Three.js.** Done 16 Oct: 0.186.1, the module build from cdnjs (`THREE_URL`, `loadThree`), colour
+   management off so colours draw as under r128, `colorSpace` for textures and renderers, lights ×π, `PCFShadowMap`,
+   the fold shader on `nonPerturbedNormal`. Card stills match `main` (mean brightness within 0.6 of 255); fine
+   stripes blend a little lighter, as sRGB textures are now decoded before they are filtered.
 7. [x] **Shoe lasts.** Done 11 Oct: a last per kind of shoe from its name (`lastK`, `LASTS`: dress, Chelsea,
    loafer, work and safety, hiking, boot, desert and chukka, skate) scaling the profile slice by slice; soles by kind
    (thin with a stacked heel, lugged, pale crepe); boot shafts by kind; a loafer's apron seam and penny strap or
@@ -549,6 +555,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 16 Oct 2026 | #79 | Three.js r128 → 0.186.1 (the module build from cdnjs): colour management off, `colorSpace` for textures and renderers, lights ×π, `PCFShadowMap`, the fold shader's normal; QA scripts and the 3D check updated (`THREE_JS` is a folder now). Card stills match `main`. The insulated overshirts tried again with a thicker gap and held back. FtdHKg still to be republished from Emma's account | B8UXnh v17 |
 | 15 Oct 2026 | #78 | An open overshirt held inside an open jacket: where two draped jacket-weight layers are worn, the one over is cut a size up, both have their creases filled out, and the one under is held under it by a ray toward his body (g-mod-15, -11, -13, g-casual-09; 83% less showing through over the four on five bodies). New `tools/qa/through.js` measures a layer showing through an open front. The insulated and borg overshirts tried again and held back. FtdHKg still to be republished from Emma's account | B8UXnh v16 |
 | 15 Oct 2026 | #77 | A sleeveless tee, a mock-neck tee and the henleys: new `vest_tee` (the tee's crew neck, no sleeves, deep armholes) for Volcom's vest top and 4505's training tank, new `tee_mock` (`tee_ls` with a mock neck) for Uniqlo's, ASOS's mesh muscle vest on `vest`, HUF's baseball henley on `tee` with its placket (6 pieces, 6 outfits); draped top pieces 946, 6 left. FtdHKg still to be republished from Emma's account | B8UXnh v15 |
 | 15 Oct 2026 | #75 | A shirt's or a polo's collar sits inside an open chore, denim, Harrington-style, car coat or aviator collar instead of crumpling over it (`leafIn`; 20 outfits checked, 13 better). The insulated and borg-lined overshirts were tried on `chore` and held back: open overshirts under open jackets show through them, on `main` too, which the 3D check misses. FtdHKg still to be republished from Emma's account | B8UXnh v14 |
