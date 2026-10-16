@@ -3893,7 +3893,10 @@ further forward than the pod's, and its corners).
 the toe (the ends are kept now); the rolled edge round the opening was wound inside out, so from outside a boot's
 padded collar floated off its top with the sock showing under it; swelling the upper itself toward a padded collar
 crumpled the edge where the rows' ends turn from the topline to the lacing (the roll is the edge's own now); a gap
-`+0.004` left the back of every boot's shaft open in a slit.
+`+0.004` left the back of every boot's shaft open in a slit; and a bow's ends, drawn out forward from the knot, stood
+out from under a trouser hem at a boot's front, closing a pocket of background between them (od-hike on heavier, caught
+by the pull-request check): the laces take the upper's true normal now (`shoeOn`, across the row and along the foot),
+and the ends hang down along it.
 
 **Checked**: the feet sheet against `main` (14 outfits, front, three-quarter, side and back at the feet: every kind now
 reads as itself; from the back the heel and sole show under every straight, loose and wide leg; no ring or gap at the
@@ -3901,7 +3904,7 @@ hem); 28 kinds on their own close up (16 more from the shops: a runner, a Chuck 
 two New Balance, a trail runner, Chelsea boots plain and chunky, a chunky lace-up boot, a hiking boot, brogues, an
 Oxford, penny and tassel loafers, a Dr Martens 1461, a deck shoe); the 3D check on 71 outfits across the kinds (four
 with trousers and two with shorts for each) on dave and slim, 36 of them on athletic, heavier and loose and done up
-(`--wear zip=up,tuck=out`) on dave and loose, and the gate set on dave: none flagged (sunk, skin, holes and poke all 0),
+(`--wear zip=up,tuck=out`) on dave and loose, and the gate set on dave, slim and heavier: none flagged (sunk, skin, holes and poke all 0),
 as on `main`; the stored specs (no piece read differently), the smoke test (the same as `main`) and the navigation
 check; the time to build an outfit's model, about 4% more (profiled on five outfits).
 

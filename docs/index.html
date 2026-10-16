@@ -6755,7 +6755,10 @@ function make3Dcore(pieces){
     shoeSole(LS);shoeDetail(LS);
     return {LS:LS,RW:RW};}
   /* on the upper: a point at arc length s up side sd of row o, lifted off it by off, and its outward normal there */
-  function shoeOn(LS,o,sd,sa,off){var p=LS.at(o,sd,sa),nx=sd*p[3],ny=-sd*p[2];return {p:LS.W(p[0]+nx*(off||0),p[1]+ny*(off||0),o.rel),n:[LS.s*nx,ny,0]};}
+  function shoeOn(LS,o,sd,sa,off){var p=LS.at(o,sd,sa),S0=sd>0?o.Sl:o.Sm,fr=sa/(S0||1),oa=LS.sec(o.rel+0.002),ob=LS.sec(o.rel-0.002),
+      pa=LS.at(oa,sd,fr*(sd>0?oa.Sl:oa.Sm)),pb=LS.at(ob,sd,fr*(sd>0?ob.Sl:ob.Sm)),ax=p[2],ay=p[3],bx=pa[0]-pb[0],by=pa[1]-pb[1],bz=0.004,
+      nx=ay*bz,ny=-ax*bz,nz=ax*by-ay*bx,l;if(nx*sd*p[3]-ny*sd*p[2]<0){nx=-nx;ny=-ny;nz=-nz;}l=Math.hypot(nx,ny,nz)||1;nx/=l;ny/=l;nz/=l;   /* (its true normal, across the row and along the foot: up a boot's front it faces forward) */
+    off=off||0;return {p:LS.W(p[0]+nx*off,p[1]+ny*off,o.rel+nz*off),n:[LS.s*nx,ny,nz]};}
   function shoeSY(o,sd,y){var S=sd>0?o.sl:o.sm;for(var k=1;k<o.y.length;k++)if(o.y[k]>=y)return S[k-1]+(S[k]-S[k-1])*(y-o.y[k-1])/((o.y[k]-o.y[k-1])||1);return S[S.length-1];}
   /* a piece laid on the upper (a heel counter, a toe cap, a gusset, a strap): for each row rel, fn gives the arc
      lengths it covers on the outer and inner side, [s0, s1, s0', s1'] (s1 at the spine joins the two over the top),
@@ -6779,12 +6782,16 @@ function make3Dcore(pieces){
       E.forEach(function(pr,j){pr.forEach(function(q){var hook=hk&&j<3;if(hook)add(new T.SphereGeometry(0.0032,10,8),eyM,q.p[0]+q.n[0]*0.002,q.p[1]+q.n[1]*0.002,q.p[2]);
         else{var e=add(new T.TorusGeometry(0.0026,hk?0.0009:0.0006,6,12),eyM,q.p[0],q.p[1],q.p[2]);e.lookAt(q.p[0]+q.n[0],q.p[1]+q.n[1],q.p[2]+q.n[2]);}});});
       /* criss-crossed from the toe up, each run arching over the tongue */
-      var mid=function(a,b,h){var n=[(a.n[0]+b.n[0])/2,(a.n[1]+b.n[1])/2+0.6,0],l=Math.hypot(n[0],n[1])||1;return [(a.p[0]+b.p[0])/2+n[0]/l*h,(a.p[1]+b.p[1])/2+n[1]/l*h,(a.p[2]+b.p[2])/2];};
+      var mid=function(a,b,h){var n=[a.n[0]+b.n[0],a.n[1]+b.n[1],a.n[2]+b.n[2]],l=Math.hypot(n[0],n[1],n[2])||1;return [(a.p[0]+b.p[0])/2+n[0]/l*h,(a.p[1]+b.p[1])/2+n[1]/l*h,(a.p[2]+b.p[2])/2+n[2]/l*h];};
       var LN=E.length;if(LN>1){tube([E[LN-1][0].p,mid(E[LN-1][0],E[LN-1][1],0.0028),E[LN-1][1].p],lr,lcM,8);
         for(i=LN-1;i>0;i--){tube([E[i][0].p,mid(E[i][0],E[i-1][1],0.0034),E[i-1][1].p],lr,lcM,8);tube([E[i][1].p,mid(E[i][1],E[i-1][0],0.0042),E[i-1][0].p],lr,lcM,8);}
         /* tied at the top: two loops and the ends */
-        var kn=mid(E[0][0],E[0][1],0.004);[-1,1].forEach(function(sd){var lp=add(new T.TorusGeometry(0.0085,lr,6,16),lcM,kn[0]+sd*0.009,kn[1]+0.001,kn[2]+0.002,1,0.5,1);lp.rotation.set(-0.5,sd*0.5,0);
-          tube([kn,[kn[0]+sd*0.006,kn[1]-0.012,kn[2]+0.016],[kn[0]+sd*0.009,kn[1]-0.026,kn[2]+0.024]],lr,lcM,6);});}}
+        /* (lying on the upper, the ends hanging down along it: on a boot's front they stood out forward from under a
+           trouser hem, closing a pocket of background between them, 16 Oct) */
+        var kn=mid(E[0][0],E[0][1],0.0035),nk=[E[0][0].n[0]+E[0][1].n[0],E[0][0].n[1]+E[0][1].n[1],E[0][0].n[2]+E[0][1].n[2]],nl=Math.hypot(nk[0],nk[1],nk[2])||1;nk=nk.map(function(v){return v/nl;});
+        var gd=[-nk[1]*nk[0],-1-nk[1]*nk[1],-nk[1]*nk[2]],gl=Math.hypot(gd[0],gd[1],gd[2])||1;gd=gd.map(function(v){return v/gl;});
+        [-1,1].forEach(function(sd){var lp=add(new T.TorusGeometry(0.0085,lr,6,16),lcM,kn[0]+sd*0.009,kn[1]-gd[1]*0.002,kn[2]-gd[2]*0.002,1,0.5,1);lp.lookAt(lp.position.x+nk[0],lp.position.y+nk[1],lp.position.z+nk[2]);lp.rotateZ(sd*0.35);
+          tube([kn,[kn[0]+sd*0.005+gd[0]*0.012+nk[0]*0.0015,kn[1]+gd[1]*0.012+nk[1]*0.0015,kn[2]+gd[2]*0.012+nk[2]*0.0015],[kn[0]+sd*0.008+gd[0]*0.025+nk[0]*0.0025,kn[1]+gd[1]*0.025+nk[1]*0.0025,kn[2]+gd[2]*0.025+nk[2]*0.0025]],lr,lcM,6);});}}
     /* a boot's pull tab at the back of its top; a Chelsea's at the front too, and its elastic sides */
     if(boot){var bk=LS.sec(LS.zb+0.0006),tp=shoeOn(LS,bk,1,bk.cut[0]?bk.cut[0].s:bk.Sl,0.0012),tbM=k==="chelsea"?mat(shade(fcol,0.5),0.85):fm;
       add(new T.TorusGeometry(0.0085,0.0022,6,16,Math.PI),tbM,tp.p[0],tp.p[1]+0.0005,tp.p[2]-0.0035,1,1.35,0.6,0,0,0);   /* (a loop, standing up from the back of the top) */
