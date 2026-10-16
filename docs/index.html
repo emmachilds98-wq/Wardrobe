@@ -3386,7 +3386,7 @@ function figMode(){return FIG.allow2d?FIG.mode:"3d";}
 /* Dave's look for the 3D model, set in "Edit Dave". The page owner's choice is shared through the database
    (meta/character); anyone else's stays on their device. The defaults are the look the owner saved as his current
    base (his saved dimensions, 7 Oct 2026): no beard, a moustache. Edit Dave's sliders have his last saved look in the middle (ceRng). */
-var CHAR_DEF={height:183,skin:"#e2b08f",hair:"#38261b",hairVol:0.6,tache:"pencil",tacheCol:"#7a4a2c",beard:"none",eyes:"#5d86b5",brows:"thin",glasses:"none",glassCol:"#2b2622",weight:-0.649,muscle:-0.25,shoulderW:-0.15,chest:-0.428,waistW:-0.1,belly:0.25,hips:-0.167,arms:-0.3,legs:0.675,neckW:-0.15,bicep:0,forearm:0,thigh:0,calf:0,faceW:0,jaw:0,chin:0,noseSize:0,lips:0,ears:0,eyeSize:0,smile:0.3,
+var CHAR_DEF={height:183,skin:"#e2b08f",hair:"#38261b",hairVol:0.6,tache:"pencil",tacheCol:"#7a4a2c",beard:"none",eyes:"#5d86b5",brows:"thin",glasses:"none",glassCol:"#2b2622",weight:-0.649,muscle:-0.25,shoulderW:-0.15,chest:-0.428,waistW:-0.1,belly:0.25,hips:-0.167,arms:-0.3,legs:0.675,neckW:-0.15,bicep:0,forearm:0,thigh:0,calf:0,faceW:0,jaw:0,chin:0,jawLine:0,underChin:0,noseSize:0,lips:0,ears:0,eyeSize:0,smile:0.3,
   tacheY:0,tacheZ:0,tacheV:2,propV:3,tacheW:1,tacheLen:0,tacheDen:1,tacheDroop:0.45,browCol:"",browThick:-0.4,browY:-0.25,browArch:-0.1,browTilt:-0.25,browLen:-0.05,
   hairStyle:"short",hairShade:0.26,hairLight:0.4,curlK:1.6,hairLenK:1.438,fringe:1,freckles:0.3,legLen:-0.9,torsoLen:0.38,armLen:0,neckLen:-0.63,headSize:0.225,
   hairTop:-1.012,hairSides:-0.183,hairBack:0.64,hairFinish:"natural",curlSize:1.084,frizz:-1,hairDir:-0.63,fringeLen:-0.37,torsoDepth:-0.138,shoulderSlope:0.951,clothFit:0};
@@ -8563,6 +8563,8 @@ var CE=[
   SL("face","faceW","Face width","Narrower","Wider"),
   SL("face","jaw","Jaw","Softer","Wider, squarer"),
   SL("face","chin","Chin","Less prominent","More prominent"),
+  SL("face","jawLine","Jawline","Softer","More defined"),
+  SL("face","underChin","Under the chin","Fuller","Tucked in"),
   SL("face","noseSize","Nose","Smaller","Bigger"),
   SL("face","lips","Lips","Thinner","Fuller"),
   SL("face","ears","Ears","Smaller","Bigger"),
@@ -8649,7 +8651,7 @@ var CES=[
   {k:"size",l:"Size and shape",main:["height","weight","muscle","shoulderW","waistW","legLen"],fine:["chest","belly","hips","neckW","shoulderSlope","torsoDepth"],limbs:["arms","bicep","forearm","legs","thigh","calf"]},
   {k:"prop",l:"Proportions",items:["legLen","torsoLen","armLen","neckLen","headSize","_prop"]},
   {k:"fit",l:"Clothes fit",items:["clothFit","h:How clothes fit is a guide to the cut: closer or looser than the listing's own fit."]},
-  {k:"face",l:"Face",items:["faceW","jaw","chin","noseSize","lips","ears","eyeSize","smile","h:Brows","browCol","browThick","browY","browArch","browTilt","browLen","h:Glasses","glasses","glassCol"]},
+  {k:"face",l:"Face",items:["faceW","jaw","chin","jawLine","underChin","noseSize","lips","ears","eyeSize","smile","h:Brows","browCol","browThick","browY","browArch","browTilt","browLen","h:Glasses","glasses","glassCol"]},
   {k:"tache",l:"Moustache and beard",items:["tache","tacheCol","tacheY","tacheZ","tacheW","tacheLen","tacheDen","tacheDroop","h:Beard","beard"]},
   {k:"hair",l:"Hair",items:CE.filter(function(c){return c.g==="hair";}).map(function(c){return c.h?"h:"+c.h:c.k;})},
   {k:"skin",l:"Skin and colouring",items:["skin","eyes","freckles"]}];
