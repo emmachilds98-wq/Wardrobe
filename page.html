@@ -4051,6 +4051,45 @@ function drapeSettle(P,cl,cols,grp,pin,steps,home){var Q=P.slice(),n=cl.n,G=-9.8
 function drapeNormals(P,W,n){var N=new Float32Array(n*3);for(var f=0;f<W.length;f+=3){var a=W[f]*3,b=W[f+1]*3,c=W[f+2]*3,ux=P[b]-P[a],uy=P[b+1]-P[a+1],uz=P[b+2]-P[a+2],vx=P[c]-P[a],vy=P[c+1]-P[a+1],vz=P[c+2]-P[a+2],
     x=uy*vz-uz*vy,y=uz*vx-ux*vz,z=ux*vy-uy*vx;[a,b,c].forEach(function(o){N[o]+=x;N[o+1]+=y;N[o+2]+=z;});}
   for(var o=0;o<N.length;o+=3){var l=Math.hypot(N[o],N[o+1],N[o+2])||1;N[o]/=l;N[o+1]/=l;N[o+2]/=l;}return N;}
+/* the jacket-weight templates, a jacket, coat or overshirt (drapeTops: one worn over another is cut a size up from it,
+   its creases filled and the one under it held under it) */
+var DRAPEJW=/^(chore|trucker|jacket|jacket_coll|jacket_hood|bomber|puffer|puffer_hood|aviator|gilet|gilet_hood|blazer|overcoat|carcoat|parka)(_up)?$/;
+/* a draped garment's body moved out to its cloth smoothed (10 times halfway to the mean of its neighbours), where that
+   is further out from his body (along his body's normal at its nearest point), its creases filled */
+function drapeFill(t,X,cB){var A=t.cl.A,B=t.cl.B,n=t.n,Y=new Float32Array(X),Z=new Float32Array(n*3),c=new Float32Array(n),i,e,a;
+  for(e=0;e<A.length;e++){c[A[e]]++;c[B[e]]++;}
+  for(var it=0;it<10;it++){Z.fill(0);for(e=0;e<A.length;e++){var p=A[e]*3,q=B[e]*3;for(a=0;a<3;a++){Z[p+a]+=Y[q+a];Z[q+a]+=Y[p+a];}}
+    for(i=0;i<n;i++)if(c[i])for(a=0;a<3;a++)Y[i*3+a]=Y[i*3+a]*0.5+Z[i*3+a]/c[i]*0.5;}
+  var N=drapeNormals(X,t.cl.W,n);
+  for(i=0;i<n;i++){if(t.grp[i]!==0)continue;var o=i*3,b=drapeNear(cB,X[o],X[o+1],X[o+2]),nx=N[o],ny=N[o+1],nz=N[o+2];
+    if(b>=0&&nx*cB.N[b*3]+ny*cB.N[b*3+1]+nz*cB.N[b*3+2]<0){nx=-nx;ny=-ny;nz=-nz;}
+    var d=(Y[o]-X[o])*nx+(Y[o+1]-X[o+1])*ny+(Y[o+2]-X[o+2])*nz;if(d>0){X[o]+=nx*d;X[o+1]+=ny*d;X[o+2]+=nz*d;}}}
+/* the points of X marked in m pressed under the cloth OX (normals ON) where they are within r of it: gap under its
+   surface, its normal turned out from him as his body faces at its nearest point. Gives whether any moved */
+function drapePress(X,m,OX,ON,cB,r,gap){var hc=drapeCol(OX,ON,0,0.03),mv=false;
+  for(var q=0;q<m.length;q++){if(!m[q])continue;var o=q*3,c=drapeNear(hc,X[o],X[o+1],X[o+2]);if(c<0)continue;var c3=c*3;if(Math.hypot(X[o]-OX[c3],X[o+1]-OX[c3+1],X[o+2]-OX[c3+2])>r)continue;
+    var bn=drapeNear(cB,OX[c3],OX[c3+1],OX[c3+2]),sg=bn>=0&&ON[c3]*cB.N[bn*3]+ON[c3+1]*cB.N[bn*3+1]+ON[c3+2]*cB.N[bn*3+2]<0?-1:1,d=0,a;
+    for(a=0;a<3;a++)d+=(X[o+a]-OX[c3+a])*ON[c3+a]*sg;if(d>-gap){for(a=0;a<3;a++)X[o+a]-=ON[c3+a]*sg*(d+gap);mv=true;}}
+  return mv;}
+/* the points of the draped layer R (but its collar leaf) with the draped layer O's cloth between them and his body,
+   within L along his body's normal at their nearest point (his torso, or his arms for a sleeve), put back gap under the
+   nearest of it.
+   O's triangles are binned by 2 cm cell; the ray is walked in 1 cm steps. Gives whether any moved */
+function drapeUnder(R,O,cB,cA,L,gap){var t=O.t,OX=O.X,I=t.idx,vm=t.vmap,h=0.02,G=new Map(),T=[],f,i,j,k;
+  for(f=0;f<I.length;f+=3){var a=vm[I[f]],b=vm[I[f+1]],c=vm[I[f+2]];if(a===b||b===c||a===c)continue;T.push(a*3,b*3,c*3);var ti=T.length/3-1,x0=1e9,x1=-1e9,y0=1e9,y1=-1e9,z0=1e9,z1=-1e9;
+    [a,b,c].forEach(function(v){x0=Math.min(x0,OX[v*3]);x1=Math.max(x1,OX[v*3]);y0=Math.min(y0,OX[v*3+1]);y1=Math.max(y1,OX[v*3+1]);z0=Math.min(z0,OX[v*3+2]);z1=Math.max(z1,OX[v*3+2]);});
+    for(i=Math.floor(x0/h);i<=Math.floor(x1/h);i++)for(j=Math.floor(y0/h);j<=Math.floor(y1/h);j++)for(k=Math.floor(z0/h);k<=Math.floor(z1/h);k++){var key=i+","+j+","+k,Lc=G.get(key);if(!Lc)G.set(key,Lc=[]);Lc.push(ti);}}
+  var X=R.X,n=R.t.n,mv=false,st=Math.ceil(L/0.01);
+  for(var q=0;q<n;q++){if(R.lf&&R.lf[q])continue;var g=R.t.grp[q],bc=g===1||g===2?cA:cB,o=q*3,bq=drapeNear(bc,X[o],X[o+1],X[o+2]);if(bq<0)continue;
+    var dx=-bc.N[bq*3],dy=-bc.N[bq*3+1],dz=-bc.N[bq*3+2],best=1e9,seen=new Set();
+    for(var s=0;s<=st;s++){var key=Math.floor((X[o]+dx*L*s/st)/h)+","+Math.floor((X[o+1]+dy*L*s/st)/h)+","+Math.floor((X[o+2]+dz*L*s/st)/h),Ls=G.get(key);if(!Ls)continue;
+      for(var u=0;u<Ls.length;u++){var tj=Ls[u];if(seen.has(tj))continue;seen.add(tj);var pa=T[tj*3],pb=T[tj*3+1],pc=T[tj*3+2],
+        e1x=OX[pb]-OX[pa],e1y=OX[pb+1]-OX[pa+1],e1z=OX[pb+2]-OX[pa+2],e2x=OX[pc]-OX[pa],e2y=OX[pc+1]-OX[pa+1],e2z=OX[pc+2]-OX[pa+2],
+        px=dy*e2z-dz*e2y,py=dz*e2x-dx*e2z,pz=dx*e2y-dy*e2x,det=e1x*px+e1y*py+e1z*pz;if(Math.abs(det)<1e-12)continue;var iv=1/det,
+        tx=X[o]-OX[pa],ty=X[o+1]-OX[pa+1],tz=X[o+2]-OX[pa+2],uu=(tx*px+ty*py+tz*pz)*iv;if(uu<0||uu>1)continue;var qx=ty*e1z-tz*e1y,qy=tz*e1x-tx*e1z,qz=tx*e1y-ty*e1x,vv=(dx*qx+dy*qy+dz*qz)*iv;if(vv<0||uu+vv>1)continue;
+        var tt=(e2x*qx+e2y*qy+e2z*qz)*iv;if(tt>0&&tt<L&&tt<best)best=tt;}}
+    if(best<1e9){X[o]+=dx*(best+gap);X[o+1]+=dy*(best+gap);X[o+2]+=dz*(best+gap);mv=true;}}
+  return mv;}
 /* each point on his warped body: X = (1-b-c) A + b B + c C + h n (its body triangle, as the builder bound it) */
 function drapeBind(t,BP,sx){var X=new Float32Array(t.n*3),I=BODY.idx;sx=sx||1;
   for(var i=0;i<t.n;i++){var f=t.tri[i]*3,a=I[f]*3,b=I[f+1]*3,c=I[f+2]*3,wb=t.w[i*3],wc=t.w[i*3+1],h=t.w[i*3+2],wa=1-wb-wc;
@@ -4371,8 +4410,13 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
     var sm=new Uint8Array(t.m);for(j=0;j<t.m;j++){var gj=t.grp[t.vmap[j]];sm[j]=gj===1||gj===2?1:0;}me.userData.sleeveMask=sm;man.add(me);return {N:N,me:me};}
   /* (60 steps; layers kept 1 cm apart, as at 6 mm the layer under it showed through at the back of the armholes on the
      larger bodies; window.__drapeSteps and __drapeTh try others) */
-  var G=1,sy=1;
-  list.forEach(function(p){var t=GTPL[p._arch||drapeArch(p)];if(!t)return;thJ=/^(jacket_hood|parka)/.test(t.arch)?0.007:/^puffer_hood/.test(t.arch)?0.012:0.004;G=drapeSize(t.meas&&t.meas.chest);sy=1+(G-1)*0.35;var k=inner.indexOf(p),ic=innerCols(k,false,t.meas.lapel?(window.__drapeThB==null?0.007:window.__drapeThB):0,/^puffer/.test(t.arch)?(window.__drapeThL==null?0.003:window.__drapeThL):0),oc=innerCols(k,true);cU=ic[0];cUA=ic[1];cO=oc[0];cOA=oc[1];t.cl=t.cl||drapeCloth(t,t.pos);var X=drapeBind(t,BP,G);
+  /* (a jacket worn over a draped jacket-weight layer, an overshirt or a shacket, is cut a size up from it: 8 cm more
+     round his chest than that layer as it is graded. Drawn from one pattern at one size, a shacket on chore under a
+     chore jacket, g-mod-15 and g-mod-11, or under a smaller trucker, g-mod-13, had nowhere to go but out through the
+     jacket, crumpled in pleats through its front) */
+  var G=1,sy=1,effIn=0,stackJW=list.filter(function(p){var t=GTPL[p._arch||drapeArch(p)];return t&&DRAPEJW.test(t.arch);}).length>1;
+  list.forEach(function(p){var t=GTPL[p._arch||drapeArch(p)];if(!t)return;thJ=/^(jacket_hood|parka)/.test(t.arch)?0.007:/^puffer_hood/.test(t.arch)?0.012:0.004;G=drapeSize(t.meas&&t.meas.chest);
+    var ch=t.meas&&t.meas.chest||120,jw=DRAPEJW.test(t.arch),onJW=jw&&effIn>0;if(onJW)G=Math.max(G,(effIn+8)/ch);if(jw)effIn=Math.max(effIn,ch*G);sy=1+(G-1)*0.35;var k=inner.indexOf(p),ic=innerCols(k,false,t.meas.lapel?(window.__drapeThB==null?0.007:window.__drapeThB):0,/^puffer/.test(t.arch)?(window.__drapeThL==null?0.003:window.__drapeThL):0),oc=innerCols(k,true);cU=ic[0];cUA=ic[1];cO=oc[0];cOA=oc[1];t.cl=t.cl||drapeCloth(t,t.pos);var X=drapeBind(t,BP,G);
     /* (what each point is drawn back to is where its binding puts it moved out of what is under it: drawn back to the
        binding itself, a padded jacket's open front edge, bound close to his body, settled between the quarter-zip and
        the shirt under it) */
@@ -4387,12 +4431,17 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
     if(/^aviator/.test(t.arch)){var alf=drapeLeaf(t);if(alf){var aN=drapeNormals(X,t.cl.W,t.n),aX=[],aNs=[],apin=new Uint8Array(t.n);
       for(var q=0;q<t.n;q++){apin[q]=alf[q]?0:1;if(!alf[q])for(var a=0;a<3;a++){aX.push(X[q*3+a]);aNs.push(aN[q*3+a]);}}
       var aC=drapeCol(new Float32Array(aX),new Float32Array(aNs),0.005);drapeSettle(X,drapeGrade(t.cl,G,sy),layerCols(thP).map(function(L){return L.concat([aC]);}),t.grp,apin,30,X.slice());}}
+    /* (and where two are worn, one over the other, the creases of both filled out: each point of its body moved out to
+       where its cloth smoothed over its neighbours lies, where that is further out from him, never in. An open front
+       settles into folds a few centimetres apart, and in the jacket's hollows the shacket's folds came through it,
+       g-mod-15 and g-casual-09) */
+    if(stackJW&&jw)drapeFill(t,X,cB);
     var r=mesh(t,X,p,"up"+k);
     /* (a shirt's collar leaf is left out of what the layers over it lie on, and laid out over them afterwards: a crew
        jumper's neckline sits under it, as worn. Settled under the jumper it came through the jumper's shoulders) */
     /* (a blazer's or an overcoat's leaf is its collar and lapels, part of what is worn over it lies on: laid out over a coat, as a shirt's
        collar is over a jumper, its lapels came out through the coat's front) */
-    var R={p:p,t:t,X:X,k:k,me:r.me,N:r.N,lf:t.meas.lapel?null:drapeLeaf(t),G:G,sy:sy};R.col=function(th){th=th||window.__drapeTh||0.01;var X=R.X,N=R.N,lf=R.lf;if(!lf)return drapeCol(X,N,th);var cX=[],cN=[];
+    var R={p:p,t:t,X:X,k:k,me:r.me,N:r.N,lf:t.meas.lapel?null:drapeLeaf(t),G:G,sy:sy,jw:jw};R.col=function(th){th=th||window.__drapeTh||0.01;var X=R.X,N=R.N,lf=R.lf;if(!lf)return drapeCol(X,N,th);var cX=[],cN=[];
       for(var q=0;q<t.n;q++)if(!lf[q])for(var a=0;a<3;a++){cX.push(X[q*3+a]);cN.push(N[q*3+a]);}return drapeCol(new Float32Array(cX),new Float32Array(cN),th);};
     recs.push(R);done.push({col:R.col(),X:X,N:r.N});if(t.hood)hoodies.push({p:p,t:t,X:X,k:k});});
   /* then, from the outside in, each draped layer under another is held inside the ones over it (its body inside
@@ -4420,6 +4469,18 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
       if(lo>=0){var li=-1,lm=new Uint8Array(t.m);for(var f=0;f<t.pieces.length;f++)if(t.pieces[f].name==="leaf")li=f;for(j=0;j<t.m;j++)lm[j]=t.piece[j]===li?1:0;
         R.me.userData.leaf=lm;R.me.userData.leafOver="up"+recs[lo].k;}}
     remesh(di);}
+  /* then, where two jacket-weight layers are worn, each layer under one held under it for good: its collar leaf pressed
+     4 mm under the jacket's surface where it is within 1.5 cm of it, and wherever the jacket's cloth lies between a
+     point of it and his body (a ray 3 cm in from the point, toward his body at its nearest point), that point put back
+     5 mm under the jacket.
+     (The shacket's collar is the jacket's size and shape, and held inside it by the settle, it came through the
+     jacket's fronts beside his neck, g-mod-11 and g-mod-13. The settle holds cloth off the nearest point of the jacket
+     along that point's normal, and in the folds of an open front, the far side of a fold facing in, a shacket's pleat
+     lay on the jacket between its points, g-casual-09. What shows between the jacket's open fronts has no jacket
+     between it and him, and is let be) */
+  if(stackJW)for(di=recs.length-2;di>=0;di--){var R=recs[di],mv=false;
+    for(var oi=di+1;oi<recs.length;oi++){var O=recs[oi];if(!O.jw)continue;if(R.lf&&leafIn(O)&&drapePress(R.X,R.lf,O.X,O.N,cB,0.015,0.004))mv=true;if(drapeUnder(R,O,cB,cA,0.03,0.005))mv=true;}
+    if(mv)remesh(di);}
   /* a hoodie's or a hooded jacket's hood, last: its neckline on its garment's, the rest out over whatever is worn over it.
      (Under a hooded jacket, draped or not, a hoodie's hood lies inside the jacket's, which covers it, as make3Dcore's) */
   hoodies.forEach(function(H){var hk=inner.indexOf(H.p);if(inner.slice(hk+1).some(function(q){return /^(coat|jacket)$/.test(q.shape)&&hoodOn(q,ctx&&ctx.nm?ctx.nm(q):"");}))return;var h=H.t.hood;h.cl=h.cl||drapeCloth(h,h.pos);var X=drapeBind(h,BP,G),pin=new Uint8Array(h.n),P2=h.pins;

@@ -3582,6 +3582,48 @@ borg-lined overshirts, and the borg zip-through over a half-zip.
 and the vest top's neckline against the plain tee's; the 34 gate outfits on dave; stored specs unchanged. rv13-black,
 mn-cold and g-casual-03 added to the gate set.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. An open overshirt held inside an open jacket (15 Oct 2026)
+
+*Why it came through.* In the four outfits (g-mod-15, g-mod-11, g-mod-13, g-casual-09) the overshirt is a shacket on
+`chore`, 122 cm round, under a chore jacket of the same 122 cm (g-mod-15, -11), a smaller trucker of 118 cm (g-mod-13)
+or a track jacket of only 124 (g-casual-09). Drawn from one pattern at one size, the shacket had nowhere to go: rays
+through the patches found it crumpled into pleats, two and three plies deep, passing back and forth through the
+jacket's front, which had settled into vertical folds a few centimetres apart.
+
+*The measure.* The 3D check does not count a layer coming through an open front. A new tool, `tools/qa/through.js`,
+renders each outfit with every item in a flat colour from 8 directions and counts the pixels of small patches of any
+layer lying wholly inside the outermost top's outline. Over the four outfits on the five bodies, `main` counts
+18,743; outfits with one open layer over a closed one count 0 to 80 each on dave. Single outfits are noisy, so each
+try was judged by that total.
+
+*The fix* (only where two draped jacket-weight layers are worn, `DRAPEJW`: the four, g-casual-16, g-mod-10 and
+winter-formal):
+
+- the layer over is cut a size up from the one under: 8 cm more round his chest than that layer as graded;
+- both layers' creases are filled out after each one's settle (`drapeFill`: the cloth smoothed, 10 times halfway to the
+  mean of its neighbours, each point moved out to it along the normal turned from him where that is further out,
+  never in);
+- after the hold-in pass, the layer under's collar leaf is pressed 4 mm under the jacket where it is within 1.5 cm of it
+  (`drapePress`, as the hood presses a shirt's collar), and every point of it with the jacket's cloth between it and
+  his body within 3 cm, along his body's normal, is put 5 mm under the nearest of it (`drapeUnder`, the jacket's
+  triangles binned by 2 cm). What shows between the open fronts has no jacket between it and him, and is let be.
+
+Totals over the four outfits on the five bodies: crease fill alone 9,281; with the size up 4,752; with the collar
+pressed and the ray 3,240 (83% less than `main`). Tried and left out: the draped layers' collider normals turned out
+from him (worse on three of the four, on dave); each point under a jacket projected inside its nearest jacket point
+(worse on three of the four, on dave); the layer under's pleats flattened inward (5,374); a 12 cm
+size step (4,784); a 14 mm gap between all draped layers (4,288, as good, but it changes every layered outfit). Left:
+a few small shards beside his neck in g-mod-11 and g-mod-13, and a dark hole at the back of g-casual-09's left
+shoulder, on `main` before too.
+
+*The insulated and borg overshirts* were tried on `chore` again with the fix. Under open jackets (g-outdoor-05, -09) the
+padded shacket came through the jacket's lower front and round his neck in jagged patches; under a done-up gilet
+(g-outdoor-21) the gilet bulged and creased at his neck; g-outdoor-19 was passable. Held back.
+
+**Checked**: the seven outfits with two draped jacket-weight layers on all five bodies as worn and done up on dave and
+loose; each against `main` close up from the front, three-quarter and back; the 34 gate outfits on dave; stored specs
+unchanged. g-mod-15 added to the gate set.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

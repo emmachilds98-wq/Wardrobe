@@ -39,3 +39,4 @@ nw-docs               # an aviator worn open over a tee: its big shearling colla
 rv13-black            # a sleeveless tee on its own (vest_tee): a crew neck, deep armholes
 mn-cold               # a mock-neck tee (tee_mock) under a jumper under a coat: its band standing round his neck
 g-casual-03           # a henley on tee: its placket and buttons with a photo print
+g-mod-15              # an open shacket under an open chore jacket over a half-zip: two jacket-weight layers, open over open
