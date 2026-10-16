@@ -3751,7 +3751,13 @@ OKLab); moving both back to where they were saved gives back the saved colour ex
 colour its ends lighten toward in the sun) above the Shade slider (the old Brown slider, its words for each colour),
 and a Grey slider (none, a little grey, salt and pepper, mostly grey, silver: toward a darker grey at first and silver
 at the end, gently at first, `greyed`). His browns with no grey give exactly the colours as before (`hairCol`,
-`hairTipCol`). The 2D figure's curls take a lighter line of a hair colour other than his browns.
+`hairTipCol`). Brows set to match his hair follow its colour, shade and grey (`browColor`), as does the hairline
+drawn on his scalp. The 2D figure's curls take a lighter line of a hair colour other than his browns. The moustache
+keeps its own colour choice.
+
+*Deeper skin*: the warmth of his cheeks, nose and ears and the tint of his lips were fixed colours chosen from his
+photos (`#d98374`, `#b86a5e`), which gave a deep skin pink lips and red cheeks. They are now his own skin's: the same
+colours on his skin, `#e2b08f`, and as much deeper and redder in proportion on another (`bodyCols`, `faceTex`).
 
 *Eyes*: eleven colours (pale blue, grey, a darker green, amber and dark brown added to the six).
 
@@ -4016,6 +4022,9 @@ How:
 Done when: every control is two taps away at most, no tab runs past one laptop screen with its folds closed, the phone
 layout is checked at 390 px wide, saved looks load unchanged, and Emma has looked at it. One or two pull requests (skin
 and new options; the panel layout).
+
+**First half done 16 Oct 2026** (PR #83, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: skin tone on two sliders, hair colours beyond brown and
+a grey slider, eleven eye colours). Still to do: the panel's layout, for Emma to look at before it ships.
 
 ### 3. Shoes, and how the trousers meet them
 
