@@ -4121,6 +4121,13 @@ templates), then a third once trousers are draped (item 6), when the hem settles
 **First pull request done 16 Oct 2026** (PR #85, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: the hem rests on the heel, slim legs on a trainer's
 heel, a trainer's collar, the welt inside the heel). Next: the shoe templates.
 
+*Tried and held back (16 Oct)*: trimming a dress shoe's and a loafer's upper to a top line, as the trainer's is trimmed
+to its collar (`capT`), the line about 6.5 cm up at the heel, 5.5 under the ankle bones and rising to the throat. Clamping
+the upper's points gives a flat lid with a jagged edge where it meets the sides (the upper has 36 points round it), the
+top of his bare foot shows at a loafer's opening and at the back of his heel, and under trousers his instep showed
+between the hem and a brogue's throat. A shoe template needs an opening with an inner lining drawn, and his foot hidden
+inside it (or a sock drawn on it), rather than the upper cut down.
+
 ### 4. A relaxed, natural stance
 
 What: he stands like a game character waiting for input: square to the camera, arms straight down, weight even, head
