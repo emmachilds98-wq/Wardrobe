@@ -39,7 +39,8 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 
 The plan for the model from here, in order, with how to tackle each item and when it is done, is `UPGRADE_PLAN.md`
 section 5 (16 Oct 2026): his jawline (done 16 Oct, PR #82), Edit Dave's skin tone and new colours (done 16 Oct, PR #83) and its panel layout (done 16 Oct, PR #84), the shoes and trouser hems (the hems done 16 Oct, PR #85, the shoes PR #87), a relaxed stance and poses (a breath and a
-sway in the live views was tried in PR #88 and taken out in PR #89: it read as the picture rocking),
+sway in the live views was tried in PR #88 and taken out in PR #89: it read as the picture rocking; four poses to choose
+from in the live views followed, on his skeleton from the body script; a default stance is Emma's call),
 tucked-in tops, draped trousers, then the items below and the rest. The table lists the tops still on `make3Dcore`.
 
 | Item | Pieces (outfits) | What it needs |

@@ -3939,6 +3939,68 @@ every frame already, and the sway is one small matrix a frame. Card stills of fi
 mean difference of 0.18 levels, against 0.17 for `main` against itself). The gate set on dave, the smoke test and the
 navigation check.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Poses to choose from in the live views: his skeleton (16 Oct 2026)
+
+Section 5, item 4, its second step, done the light way. Emma, after the sway was taken out: "give options to pose the
+model another way". The live views (the fitting room, Edit Dave, the builder's small model, the comparison) have four
+poses: **Standing** (as he always stood, the default), **At ease** (his weight on his right leg, that hip up and out,
+the left knee eased forward, the shoulders the other way, the head turned a little), **Walking** (mid-stride, the left
+leg forward on its heel, the right behind on its toes, the arms swinging the other way) and **Arms out** (his arms
+lifted out to the sides, 30 degrees more than he holds them, to see the sides of what he wears). He moves to a new pose in under
+half a second, once, when it is chosen (at once for anyone who has asked for reduced motion), and then holds still.
+Cards, prints and the stored specs show him standing.
+
+*Where he bends* (`tools/build_body.py`, `rig_export`): MakeHuman's skeleton and weights, which the body script already
+used to pose him relaxed, gathered into 19 parts that move as one (hips, waist, chest, neck, head, and each side's
+collarbone, upper arm, forearm, hand, thigh, shin and foot), written into `data/body.json` as `rig` (147 KB; every other
+key is unchanged). Each part has a pivot and a tail, each given as the middle of the 24 points of skin nearest it that
+move with the part or the one above, plus an offset, so the page finds his joints again on his figure as Edit Dave and
+the proportions have shaped it; and every point of skin has its four strongest parts.
+
+*How he is posed* (page, `poseRig`, `poseSolve`, `poseApply`, `POSEDEF`): each pose turns the parts about their
+pivots (on the parent part, or as he stands in the room, or, for his standing foot, aimed so it stays where it was), and
+every point moves with its parts blended by weight; then he is set back on the floor by his lowest point of skin. The
+rest of what he wears is bound once a figure, the first time he is posed (0.3 to 0.7 s; each pose after that takes 10
+to 100 ms):
+- The cloth of his clothes from the skin nearest it: sleeves, and what is in his arms' groups, from the skin of his
+  arms; the body of a top from the rest; trousers, shoes and the things he carries from his body and legs only (the skin
+  of his hands, hanging by his thighs, at first took the trousers with them as his arms moved).
+- Each garment's weights evened out over about 2 cm of its own cloth (as many steps as reach that, whatever the mesh's
+  size), so it does not tear where they change: where a sleeve is sewn in under his arm, down the seat of his trousers.
+- Each layer of his tops under another then moves as the layer over it does where it is covered (within 3 cm), a
+  sleeve as the sleeve over it and a body as the body over it. Taken from the skin, a jumper and a coat over it were
+  bound apart, and the jumper came through the coat as he lifted his arms. (Taking the point straight out over each
+  point was tried, and made it worse: the side of a jumper looks out at the coat's sleeve hanging by it.)
+- What sits on a piece's cloth (buttons, pockets, cuffs) from that cloth, from its sleeves or its body, whichever most
+  of it is nearest (a coat's pocket, under the cuff of its sleeve as his arm hangs, went with the sleeve and flew out
+  with it); a mesh laid over a garment on the same points (a draped knit's pattern) point for point; anything else
+  (his hair, a hat, glasses) from the skin plainly nearest.
+- Posed, a sleeve inside the sleeve of a layer over it (above that sleeve's cuff) is not drawn, nor the body of a layer
+  by his arm below his armpit under a layer with long sleeves. The draped sleeves lie crumpled against his sides under
+  his arms, unseen as he stands; as his arms move the folds of a coat's sleeve and side open, and the jumper under it
+  showed through in patches. Standing, everything is drawn as before.
+- The skin's pores are read from where he stood (`skRest`), so they do not slide over him as he moves.
+
+*Where to choose*: the fitting room has a Pose row under the light; Edit Dave's and the builder's camera docks have a
+Pose button that takes him to the next pose and says which. The choice is kept for every live view and remembered
+(`dw-pose`).
+
+**Checked**: renders of 12 outfits in every pose from the front, the side and the back (an open overcoat and a long
+coat over a jumper and a shirt, two open jackets over a half-zip, an open blazer over a shirt, an open cardigan over a
+tee, a half-zip with a scarf, a suit with a tie, a dressing gown, a padded jacket over a hoodie, a backpack, a gilet
+over a polo, shorts with a bag and sunglasses), on dave and two of them on heavier and slim, and close-ups of the seat mid-stride and under the arms with them out.
+Triangles stretched to over 2.5 times their length, on 19 outfits: none over 20 for any piece in any pose but the hem
+of a long coat or a dressing gown mid-stride (80 to 90, where the back vent opens between his legs), and about 5 in
+the seat of the trousers. The fitting room's Pose row at desktop and phone widths (each pose lit and remembered, a change
+of how it's worn keeping the pose, and Standing back exactly as built), Edit Dave's Pose button through all four, no
+errors. The gate set on dave, the stored specs, the smoke test and the navigation check, standing (none of them poses
+him).
+
+**What is not done**: the poses are blended skinning, not cloth: a coat's hem follows his legs rather than swinging, and
+nothing settles under gravity. Under a coat's arms the drape's own folds show as his arms lift (in the coat's colour).
+Edit Dave's measuring lines stay where they are on him standing. A relaxed default stance (the plan's original second
+step) can be one of these poses made the default once Emma has looked at them.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4256,6 +4318,10 @@ reviewed.
 weight in the live views, the whole figure moving together. Emma found it read as the picture rocking, a glitch that
 made her feel travel sick. Without a rig, nothing in him bends, so any movement is the whole figure tilting or
 stretching. Poses to choose from are what she asked for instead: the second step, below, with its rig.
+
+*Second step done the light way (16 Oct 2026)* (section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): his skeleton from the body script, and four poses
+to choose from in the live views (Standing, At ease, Walking, Arms out). The templates are not draped again on a new
+stance: the clothes bend with him by the skin under them. Standing stays the default until Emma has looked at them.
 
 ### 5. Tucked-in tops (a first try is under way)
 

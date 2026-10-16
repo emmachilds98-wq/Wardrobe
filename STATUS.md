@@ -25,10 +25,18 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**16 Oct: poses to choose from** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 4, its second step). The live views have four
+poses: Standing (as he always stood, the default), At ease (his weight on one leg), Walking (mid-stride) and Arms out.
+His skeleton now comes with his body (`data/body.json`'s `rig`, from MakeHuman's, by `tools/build_body.py`); his
+clothes bend with the skin under them, inner layers as the layer over them. He moves to a new pose once, in under half a
+second, and holds still. The fitting room has a Pose row under the light; Edit Dave and the builder have a Pose button
+in their camera docks. Cards and the stored specs stay standing.
+**Next:** Emma to try the poses (and say whether one should be his default stance), then tucked-in tops (item 5, a
+first try in progress).
+
 **16 Oct: he stands still again** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). The breath and sway added in PR #88 read as the whole picture
 rocking side to side, a glitch that made Emma feel travel sick, and are taken out (PR #89). She asked for poses to choose
-from instead: those need his body rigged (section 5, item 4, its second step).
-**Next:** poses (item 4, the rig), or tucked-in tops (item 5, a first try in progress).
+from instead: those need his body rigged (section 5, item 4, its second step, done the same day above).
 
 **16 Oct: shoes made on a last** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 3, its second half). Each kind of shoe has its own
 last, made on his own foot: a trainer, runner, skate shoe, dress shoe, loafer, deck shoe, slipper, Chelsea, desert,
@@ -596,6 +604,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 16 Oct 2026 | #90 | Poses to choose from in the live views (Standing, At ease, Walking, Arms out): his skeleton in `data/body.json` (`rig`), his clothes bending with him (`poseRig`), a Pose row in the fitting room and a Pose button in Edit Dave's and the builder's docks | B8UXnh v24 |
 | 16 Oct 2026 | #89 | He stands still again: the breath and sway of PR #88 taken out (they read as the picture rocking, and made Emma feel travel sick) | B8UXnh v23 |
 | 16 Oct 2026 | #88 | A breath and a sway in the live views (`life` in `Live3D`), the skin's pores placed on the skin itself (`vSkP`) | B8UXnh v22 |
 | 16 Oct 2026 | #87 | Shoes made on a last: one per kind (`SHT`), fitted to his foot (`shoeFoot`), with an opening round his ankle, its lining and rolled edge, a tongue and laces, a heel counter and a sole for its kind (`shoeTpl`, `shoeSole`, `shoeDetail`); his ankle and instep show in the opening, in a sock where he wears one (`shoeFeet`); `window.__shoeTpl=0` draws the old pods | B8UXnh v21 (FtdHKg needs Emma's account) |

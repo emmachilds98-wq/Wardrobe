@@ -274,6 +274,51 @@ def region_of(bone):
     return "head"
 
 
+# The page's skeleton (poses in the live views): MakeHuman's bones gathered into the parts that move as one. Each part
+# starts at a bone (its pivot is that bone's head, as he stands) and takes every bone below it that starts no part of
+# its own; fingers, toes and the face go with the hand, the foot and the head.
+POSE_PARTS = [("hips", "root", None), ("waist", "spine04", "hips"), ("chest", "spine02", "waist"), ("neck", "neck01", "chest"),
+              ("head", "head", "neck")]
+for _s in ("L", "R"):
+    POSE_PARTS += [("clav." + _s, "clavicle." + _s, "chest"), ("uarm." + _s, "upperarm01." + _s, "clav." + _s),
+                   ("farm." + _s, "lowerarm01." + _s, "uarm." + _s), ("hand." + _s, "wrist." + _s, "farm." + _s),
+                   ("thigh." + _s, "upperleg01." + _s, "hips"), ("shin." + _s, "lowerleg01." + _s, "thigh." + _s),
+                   ("foot." + _s, "foot." + _s, "shin." + _s)]
+# where each part ends (its tail, as he stands): the bone whose tail it is
+POSE_TAIL = {"waist": "spine03", "chest": "spine01", "neck": "neck03", "head": "head", "clav": "shoulder01", "uarm": "upperarm02",
+             "farm": "lowerarm02", "hand": "finger3-3", "thigh": "upperleg02", "shin": "lowerleg02", "foot": "toe3-1", "hips": "spine05"}
+
+
+def rig_export(rig, V, M, skin, used, frame, Pf):
+    """The parts, their pivots and tails, and each kept vertex's four strongest parts. A joint is given as the middle of
+    the 24 kept vertices nearest it that move with its part or the part above, plus an offset: the page finds it again
+    on his figure as Edit Dave and the proportions have shaped it."""
+    names = [p[0] for p in POSE_PARTS]; start = {p[1]: i for i, p in enumerate(POSE_PARTS)}
+    def part(b):
+        while b not in start: b = rig.bones[b]["parent"]
+        return start[b]
+    W = np.zeros((len(V), len(names)))
+    for i, l in enumerate(skin):
+        for b, w in l: W[i, part(b)] += w
+    Wu = W[used]; Pf = Pf[used]
+    top = np.argsort(-Wu, 1)[:, :4]; tw = np.take_along_axis(Wu, top, 1)
+    q = np.round(tw / tw.sum(1, keepdims=True) * 255).astype(int); q[:, 0] += 255 - q.sum(1)   # (they add up to 255)
+    top = np.where(q > 0, top, 0)
+    def joint(pt, gi):
+        par = [gi] + ([names.index(POSE_PARTS[gi][2])] if POSE_PARTS[gi][2] else [])
+        cand = np.where(Wu[:, par].sum(1) > 0.5)[0]
+        near = cand[np.argsort(np.linalg.norm(Pf[cand] - pt, axis=1))[:24]]
+        return {"i": [int(k) for k in near], "o": [round(float(v), 4) for v in pt - Pf[near].mean(0)]}
+    parts = []
+    for gi, (nm, b0, par) in enumerate(POSE_PARTS):
+        side = "." + nm.split(".")[1] if "." in nm else ""
+        tb = POSE_TAIL[nm.split(".")[0]] + side
+        hd = frame((M[b0] @ np.r_[rig.head(V, b0), 1])[None, :3])[0]
+        tl = frame((M[tb] @ np.r_[rig.tail(V, tb), 1])[None, :3])[0]
+        parts.append({"n": nm, "p": names.index(par) if par else -1, "h": joint(hd, gi), "t": joint(tl, gi)})
+    return {"parts": parts, "b": b64(top.astype(np.uint8)), "w": b64(q.astype(np.uint8))}
+
+
 # Heights the clothes are drawn through (the same as the old hand-built body, so the garment code fits).
 TORSO_Y = [0.83, 0.9, 0.97, 1.05, 1.13, 1.22, 1.3, 1.37, 1.43, 1.47, 1.495, 1.515]
 NECK_Y = [1.47, 1.515, 1.56, 1.61]
@@ -537,6 +582,7 @@ def main():
         "treg": b64(treg.astype(np.uint8)), "ao": b64(np.round(ao * 255).astype(np.uint8)), "regions": REGIONS, "morphs": morphs,
         "sec": base_sec, "secd": msec, "lm": lm, "lmd": lmd, "sliders": list(SLIDERS),
         "face": {"x0": fx0, "y0": round(float(fy0), 4), "st": st, "nx": int(Z.shape[1]), "ny": int(Z.shape[0]), "z": b64(zq)},
+        "rig": rig_export(rig, V, M, skin, used, frame, Pf),
     }
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     with open(a.out, "w") as f:
