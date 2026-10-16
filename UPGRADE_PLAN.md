@@ -3806,6 +3806,37 @@ scrolling row of chips under the model, the controls below them.
 and at 390 px wide; a tab's reset; the change count and badges; saved looks unchanged (no change to the look's keys);
 no page errors.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Trouser hems rest on the shoe; a trainer's collar; the welt inside the heel (16 Oct 2026)
+
+Section 5, item 3, its first pull request (the hem; the shoe templates are the second). Emma: from the back the trouser
+hem dropped to the floor and covered the heel, so the shoe all but disappeared.
+
+*What a feet sheet showed* (13 outfits, front, side, three-quarter back and back at the feet, `zoom.js` with the camera
+at 0.22 m): the hem sat 3.5 cm up all round and rose only at the front (`hemF`), so from behind a straight or loose leg
+covered the shoe to its sole; a slim leg's back came in front of the heel, the heel counter showed through it and the
+cloth read as tucked into the shoe; a dress shoe's welt, an oval centred 6 cm forward, reached 1.5 cm behind the heel and
+3 mm out past the sole, a thin wire ring at the ground round every dress shoe; and a trainer's upper closed over his
+ankle up to 13 cm at the back, hiding its own padded collar.
+
+*The hem*: the back now rises onto the heel as the front does over the vamp (`hemB` in `trouserGeo`): 3 cm on a
+trainer, 2.5 cm on a shoe, 1 cm on a slipper, so from behind the heel and sole show under it. Boots keep the hem over
+the shaft, and shorts, cropped legs and cuffed joggers are as they were.
+
+*Round the heel*: near the ground each leg is deepened backward, its front left where it is, until the back of the heel
+and its two corners are inside it with 6 mm to spare (`legSecs`, `cut.heel`), coming in from mid-calf so the back falls in
+one line from the calf to the heel. A trainer's heel is broad: a slim leg that would have to stand more than 1.5 cm
+behind it rests its back on top of it instead (`cut.onHeel`, the hem's back 8 cm up), as a slim pair does.
+
+*A trainer's upper* ends at its padded collar, about 8 cm up at the heel and rising a little toward the front, with the
+tongue above it in front of the ankle (`capT` in `upperGeo`); its collar and heel tab now show, and with shorts the sock
+comes out of the collar.
+
+*The welt* is centred on the shoe and sits at the sole's edge.
+
+**Checked**: the feet sheet before and after (every straight, loose and wide leg shows the heel from behind; slim legs rest
+on it; boots, cuffed joggers and shorts unchanged but for the trainer's collar); card stills against `main`; the gate set
+on dave locally; the smoke test; the gate set on all five bodies and both ways of wearing in the pull-request check.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4084,6 +4115,9 @@ How:
 Done when: the shoe shows at the back under every trouser that does not reach the floor in real life, no ring or gap,
 the `sunk` count clean on all five bodies, and the feet sheet better than `main`. Two pull requests (the hem; the shoe
 templates), then a third once trousers are draped (item 6), when the hem settles on the shoe as cloth.
+
+**First pull request done 16 Oct 2026** (PR #HEM, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: the hem rests on the heel, slim legs on a trainer's
+heel, a trainer's collar, the welt inside the heel). Next: the shoe templates.
 
 ### 4. A relaxed, natural stance
 
