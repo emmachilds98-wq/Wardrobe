@@ -25,12 +25,17 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**16 Oct: a little life in the live views** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 4, its first step). In the fitting
+room and Edit Dave he breathes and his weight sways a little from foot to foot, the whole figure moving together so his
+clothes stay where they are; he keeps still while he is being turned or zoomed, and for anyone who has asked for reduced
+motion. Cards are unchanged.
+**Next:** tucked-in tops (item 5).
+
 **16 Oct: shoes made on a last** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 3, its second half). Each kind of shoe has its own
 last, made on his own foot: a trainer, runner, skate shoe, dress shoe, loafer, deck shoe, slipper, Chelsea, desert,
 work and hiking boot each with its toe, heel and sole, an opening round his ankle with its lining and rolled edge, a
 tongue and laces, and its details (a Chelsea's gussets, three stripes, a Chuck's toe cap, a brogue's punched wingtip, a
 loafer's strap). His ankle and instep show in the opening, in a sock where he wears one.
-**Next:** a relaxed stance (item 4), its first step.
 
 **16 Oct: trouser hems rest on the shoe** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 3, its first half). From behind, a
 trouser no longer covers the shoe to its sole: the back of the hem rises onto the heel, so the heel and sole show under
@@ -592,6 +597,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 16 Oct 2026 | #87 | Shoes made on a last: one per kind (`SHT`), fitted to his foot (`shoeFoot`), with an opening round his ankle, its lining and rolled edge, a tongue and laces, a heel counter and a sole for its kind (`shoeTpl`, `shoeSole`, `shoeDetail`); his ankle and instep show in the opening, in a sock where he wears one (`shoeFeet`); `window.__shoeTpl=0` draws the old pods | B8UXnh v21 (FtdHKg needs Emma's account) |
 | 16 Oct 2026 | #85 | Trouser hems rest on the shoe: the back rises onto the heel (`hemB`: 3 cm on a trainer, 2.5 on a shoe), each leg deepened backward round the heel near the ground (`cut.heel`), a slim leg on a trainer resting on its heel (`cut.onHeel`); a trainer's upper ends at its collar (`capT`); a dress shoe's welt centred and at the sole's edge | FtdHKg v70 |
 | 16 Oct 2026 | #84 | A tidier Edit Dave: six tabs (Body, Face, Hair, Facial hair, Skin and eyes, Clothes fit), main controls with the rest under folds (`CES` folds), a reset per tab, labels above their choices, no tab past a 1280 x 800 screen with its folds closed | FtdHKg v69 |
 | 16 Oct 2026 | #83 | Skin tone on two sliders (Tone through eleven real skin tones spaced evenly in OKLab, Undertone from cool to olive; `CHAR.skin` is still the colour, so saved looks load as they were), hair colours beyond brown (black, red, blond, and a Grey slider; his browns with no grey are the same colours as before), eleven eye colours; colour sliders show their colours on the track; brows that match his hair follow it; cheeks and lips tinted from his own skin (no pink on a deep skin); Match hair for the moustache and beard, which keep their own colour by default | FtdHKg v68 |

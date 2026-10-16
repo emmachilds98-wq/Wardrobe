@@ -3908,6 +3908,31 @@ with trousers and two with shorts for each) on dave and slim, 36 of them on athl
 as on `main`; the stored specs (no piece read differently), the smoke test (the same as `main`) and the navigation
 check; the time to build an outfit's model, about 4% more (profiled on five outfits).
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. A little life in the live views: a slow breath and a sway (16 Oct 2026)
+
+Section 5, item 4, its first step (the relaxed stance itself comes after the trousers are draped). Emma: he stood like a
+game character waiting for input, square to the camera and perfectly still.
+
+*What it does* (`Live3D`, `life`): in the fitting room, Edit Dave, the comparison and the builder's small model, his
+weight sways a little from foot to foot (a lean from his feet of under a degree, about 2.5 cm at the top of his head,
+over 7.2 seconds) and he breathes (a rise of 2 mm in 1000, about 3.5 mm at his head, over 4.6 seconds). The whole
+figure moves together: the two are folded into his own matrix whenever it is made (`man.updateMatrix`), so every
+garment stays where it is and the pins on him follow. His feet stay on the floor (the lean is a shear from them, not a
+turn). It eases out in a quarter of a second when someone drags, pinches, zooms or turns him, or presses a key, and back
+in over two seconds once they have left him alone for two and a half, timed by the clock whatever the frame rate. It is
+off for anyone who has asked for reduced motion (`prefers-reduced-motion`, which already stopped him turning), and
+cards, which are stills, never have it.
+
+*The skin's pores* were placed by where his skin is in the room, so they crawled over him as he swayed (and as he
+turned); they are placed on the skin itself now (`vSkP` in `skinMaterial`).
+
+**Checked**: the top of his head followed in the fitting room (q7-fairisle) over 6 minutes: it moves across by up to
+2 cm and up by up to 3.5 mm while his feet stay where they are, settles while he is dragged round and comes back after;
+with reduced motion it does not move at all, before or after the drag. The frame costs nothing more: the live view drew
+every frame already, and the sway is one small matrix a frame. Card stills of five outfits against `main`: the same (a
+mean difference of 0.18 levels, against 0.17 for `main` against itself). The gate set on dave, the smoke test and the
+navigation check.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4220,6 +4245,10 @@ How, in two steps:
 Done when (first step): the movement is subtle enough not to distract, stops on touch and for reduced motion, and costs
 no frame rate on a phone. (Second step): the gate set clean on all five bodies in the new stance and card stills
 reviewed.
+
+**First step done 16 Oct 2026** (PR #88, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: a slow breath and a sway of his weight in the live views, the
+whole figure moving together, still while he is being turned and for reduced motion). The second step waits for the
+trousers to be draped (item 6).
 
 ### 5. Tucked-in tops (a first try is under way)
 
