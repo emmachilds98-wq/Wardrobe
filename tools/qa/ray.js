@@ -1,12 +1,12 @@
 // node tools/qa/ray.js <outfit id> "[[x,y],...]" : which meshes a ray from the front meets at each point, and how deep (find what pokes through what)
 // QA_BODY=slim|average|athletic|heavier|close|loose renders on another of Edit Dave's body types or cloth fits (tools/qa/body.js)
 // QA_ROT=0.15 turns him first (radians, as check_3d.js's views: front 0.15), to probe a pixel it flagged
-// QA_WEAR=tuck=in,turn=up,zip=up renders it as the fitting room's "How it's worn" toggles set it; THREE_JS=<three.min.js> serves Three.js locally
+// QA_WEAR=tuck=in,turn=up,zip=up renders it as the fitting room's "How it's worn" toggles set it; THREE_JS=<folder> serves Three.js locally (three.module.min.js and three.core.js)
 const {chromium}=require('playwright');
 const WEAR=Object.fromEntries((process.env.QA_WEAR||'').split(',').filter(Boolean).map(kv=>kv.split('=')));
 (async()=>{const id=process.argv[2],pts=JSON.parse(process.argv[3]);
 const b=await chromium.launch({args:['--use-gl=swiftshader','--enable-webgl','--ignore-gpu-blocklist']});
-const p=await b.newPage();if(process.env.QA_BODY){const ch=require('./body').charFor(require('fs').readFileSync(require('path').join(__dirname,'../../docs/index.html'),'utf8'),process.env.QA_BODY);if(ch)await p.addInitScript(c=>localStorage.setItem('dw-char',JSON.stringify(c)),ch);}if(process.env.THREE_JS)await p.route('**/three.js/r128/three.min.js',r=>r.fulfill({path:process.env.THREE_JS,contentType:'text/javascript'}));await p.goto('http://localhost:'+(process.env.QA_PORT||8770)+'/',{waitUntil:'networkidle'});await p.waitForTimeout(2500);
+const p=await b.newPage();if(process.env.QA_BODY){const ch=require('./body').charFor(require('fs').readFileSync(require('path').join(__dirname,'../../docs/index.html'),'utf8'),process.env.QA_BODY);if(ch)await p.addInitScript(c=>localStorage.setItem('dw-char',JSON.stringify(c)),ch);}if(process.env.THREE_JS)await p.route('**/ajax/libs/three.js/**',r=>r.fulfill({path:require('path').join(process.env.THREE_JS,require('path').basename(new URL(r.request().url()).pathname)),contentType:'text/javascript',headers:{'access-control-allow-origin':'*'}}));await p.goto('http://localhost:'+(process.env.QA_PORT||8770)+'/',{waitUntil:'networkidle'});await p.waitForTimeout(2500);
 const r=await p.evaluate(async(a)=>{await window.__dw.loadThree();const T=window.THREE;const f=window.__dw.fitById[a.id];const ps0=window.__dw.effPieces(f);
  await new Promise(r=>{window.__dw.trueFor(ps0,r);setTimeout(r,4000);});if(a.wear)window.__dw.wear(a.wear);let o;try{o=window.__dw.make3D(ps0);}finally{window.__dw.wear(null);}o.man.rotation.y=a.rot;o.scene.updateMatrixWorld(true);
  const rc=new T.Raycaster();const out=[];for(const q of a.pts){rc.set(new T.Vector3(q[0],q[1],2),new T.Vector3(0,0,-1));

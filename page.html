@@ -3371,7 +3371,8 @@ function flatLay(order){
    his photos. Each piece takes the colour and pattern of its shop photo.
    One builder (make3D) feeds three uses: the live view you can turn (large outfit view and the builder),
    and still renders that replace the drawings on outfit cards when the page is set to 3D.
-   Three.js (r128) loads from cdnjs the first time any 3D view is needed. */
+   Three.js (0.186.1, the module build) loads from cdnjs the first time any 3D view is needed. */
+var THREE_URL="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.186.1/three.module.min.js";
 var threeP=null,z3=null,zb=null;
 var FIG={mode:"2d",allow2d:true};
 try{FIG.mode=localStorage.getItem("dw-fig")==="3d"?"3d":"2d";FIG.allow2d=localStorage.getItem("dw-allow2d")!=="0";}catch(e){}
@@ -3430,7 +3431,9 @@ function loadBody(){
 }
 function loadThree(){
   if(window.THREE)return loadBody();
-  if(!threeP){threeP=new Promise(function(ok,no){var sc=document.createElement("script");sc.src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";sc.onload=ok;sc.onerror=function(){threeP=null;no();};document.head.appendChild(sc);});}
+  /* (the module build, its exports copied onto a plain object kept as window.THREE, as the old script build set it.
+     Colour management off: colours are taken as given and only textures marked sRGB are decoded, as r128 drew them) */
+  if(!threeP){threeP=import(THREE_URL).then(function(ns){var T=Object.assign({},ns);T.ColorManagement.enabled=false;window.THREE=T;},function(e){threeP=null;throw e;});}
   return threeP.then(loadBody);
 }
 /* a texture from a piece's photo look, sized to the real cloth: the uv of every garment runs about 1.2 units per
@@ -3453,7 +3456,7 @@ function lookTex(p,L){var T=window.THREE,FL=(FL_CM[p.shape]||72)/100,key=p.item+
     x.fillStyle=gC(L.c2);x.fillRect(0,0,128,128);x.fillStyle=gC(L.c1);x.beginPath();x.moveTo(64,0);x.lineTo(128,64);x.lineTo(64,128);x.lineTo(0,64);x.closePath();x.fill();
     x.strokeStyle=gC(L.c3||"#e8e6e0");x.lineWidth=2.2;x.beginPath();x.moveTo(0,0);x.lineTo(128,128);x.moveTo(128,0);x.lineTo(0,128);x.stroke();t=new T.CanvasTexture(cv);}
   else return null;
-  t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(1/(1.2*S*(L.pat==="argyle"?0.72:1)),1/(3.33*S));if(T.sRGBEncoding)t.encoding=T.sRGBEncoding;t.keep=true;LTX[key]=t;return t;}
+  t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(1/(1.2*S*(L.pat==="argyle"?0.72:1)),1/(3.33*S));t.colorSpace=T.SRGBColorSpace;t.keep=true;LTX[key]=t;return t;}
 /* Cloth colours as the scene shows them: the key light lifts mid-tones by about a fifth, so cloth is laid down a
    little deeper (a gamma of 1.2, which barely moves whites and blacks) and the rendered piece reads as the photo does */
 function gC(h){if(typeof h!=="string"||!/^#[0-9a-f]{6}$/i.test(h))return h;return "#"+[1,3,5].map(function(i){var v=parseInt(h.substr(i,2),16)/255;return ("0"+Math.round(255*Math.pow(v,1.2)).toString(16)).slice(-2);}).join("");}
@@ -3478,7 +3481,7 @@ function tex3D(kind,c1,c2){
   else if(kind==="quilt"||kind==="diamond"){x.globalAlpha=.45;x.lineWidth=2.5;for(i=0;i<128;i+=32){x.beginPath();x.moveTo(0,i);x.lineTo(128,i);x.stroke();}}
   else if(kind==="fleece"||kind==="mesh"){x.globalAlpha=.25;for(i=0;i<900;i++){x.fillRect(Math.random()*128,Math.random()*128,2,2);}}
   else{x.globalAlpha=.06;for(i=0;i<500;i++){x.fillRect(Math.random()*128,Math.random()*128,1.5,1.5);}}
-  var t=new T.CanvasTexture(cv);t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(kind==="cord"?9:3,3);if(T.sRGBEncoding)t.encoding=T.sRGBEncoding;return t;
+  var t=new T.CanvasTexture(cv);t.wrapS=t.wrapT=T.RepeatWrapping;t.repeat.set(kind==="cord"?9:3,3);t.colorSpace=T.SRGBColorSpace;return t;
 }
 var bumpTex=null;
 function clothBump(){ /* fine weave noise shared by every garment, so cloth catches the light like fabric */
@@ -3551,14 +3554,14 @@ function faceTex(){
     if(Math.random()>beardAt(-Math.cos(p2)*s2,Math.cos(t2),Math.sin(p2)*s2))continue;
     var len=(4+Math.random()*5)*sl,dx=(Math.random()-0.5)*3;g.strokeStyle=cols[m%5];g.globalAlpha=(0.55+Math.random()*0.35)*(sl<1?0.55:1);g.lineWidth=0.9+Math.random()*0.8;
     [0,-W,W].forEach(function(o){g.beginPath();g.moveTo(bx+o,by);g.lineTo(bx+o+dx,by+len);g.stroke();});}
-  faceTx=new T.CanvasTexture(cv);faceTx.anisotropy=4;if(T.sRGBEncoding)faceTx.encoding=T.sRGBEncoding;faceTx.keep=true;faceTx.ck=fk;return faceTx;
+  faceTx=new T.CanvasTexture(cv);faceTx.anisotropy=4;faceTx.colorSpace=T.SRGBColorSpace;faceTx.keep=true;faceTx.ck=fk;return faceTx;
 }
 function tacheTex(){ /* the moustache as hairs falling from under the nose, with a ragged lower edge (cut out by alphaTest) */
   if(tacheTx&&tacheTx.ck===CHAR.tacheCol)return tacheTx;var T=window.THREE,cv=document.createElement("canvas");cv.width=256;cv.height=128;var tc=CHAR.tacheCol,g=cv.getContext("2d"),cols=[shade(tc,0.94),shade(tc,1.06),shade(tc,0.83),shade(tc,1.18),shade(tc,0.72),shade(tc,1.12)];
   g.fillStyle=tc;g.beginPath();g.moveTo(10,0);g.lineTo(246,0);g.lineTo(250,96);g.lineTo(128,104);g.lineTo(6,96);g.closePath();g.fill();g.lineCap="round";
   for(var i=0;i<5200;i++){var x=Math.random()*256,y=Math.random()*100,l=10+Math.random()*22;g.strokeStyle=cols[i%6];g.globalAlpha=0.6+Math.random()*0.4;g.lineWidth=1+Math.random()*1.2;
     g.beginPath();g.moveTo(x,y);g.lineTo(x+(x-128)*0.04+(Math.random()-0.5)*4,Math.min(126,y+l));g.stroke();}
-  tacheTx=new T.CanvasTexture(cv);if(T.sRGBEncoding)tacheTx.encoding=T.sRGBEncoding;tacheTx.keep=true;tacheTx.ck=tc;return tacheTx;
+  tacheTx=new T.CanvasTexture(cv);tacheTx.colorSpace=T.SRGBColorSpace;tacheTx.keep=true;tacheTx.ck=tc;return tacheTx;
 }
 function strandTex(){ /* fine hairs across a tube, for the brows */
   if(strandTx)return strandTx;var T=window.THREE,cv=document.createElement("canvas");cv.width=256;cv.height=32;var g=cv.getContext("2d");
@@ -3757,7 +3760,7 @@ function irisTex(col){if(irisTx[col])return irisTx[col];var T=window.THREE,cv=do
   for(var y=0;y<64;y++){var r=y/63;for(var x2=0;x2<256;x2++){var i=(y*256+x2)*4,k;
     if(r<0.3){k=0.04;}else{var f=fib[x2]*(0.85+0.3*Math.sin(x2*0.9+r*14));k=r<0.42?1.25:(r>0.86?0.45+0.5*(1-(r-0.86)/0.14)*0.4:0.95);k*=f;if(r>0.3&&r<0.34)k*=0.6;}
     for(var j=0;j<3;j++)D[i+j]=Math.max(0,Math.min(255,c[j]*k+(r<0.3?0:6)));D[i+3]=255;}}
-  g.putImageData(im,0,0);var t=new T.CanvasTexture(cv);if(T.sRGBEncoding)t.encoding=T.sRGBEncoding;t.keep=true;irisTx[col]=t;return t;}
+  g.putImageData(im,0,0);var t=new T.CanvasTexture(cv);t.colorSpace=T.SRGBColorSpace;t.keep=true;irisTx[col]=t;return t;}
 /* Proportions from Edit Dave: legs, torso, neck and arm length and head size. Everything is built at his
    standard proportions, then one pass stretches heights band by band (feet unchanged, then legs, torso, neck,
    and a head scaled as a whole), and arms are re-hung from the shoulder at their own length. The body and the
@@ -4126,7 +4129,7 @@ function drapeLooks(man,p,t,X,N,me,ctx,kind){var T=window.THREE,L=p.look,out=[];
     return function(y){if(!a.length)return 0;if(y<=a[0][0])return a[0][1];for(var i=1;i<a.length;i++)if(y<=a[i][0]){var f=(y-a[i-1][0])/(a[i][0]-a[i-1][0]||1);return a[i-1][1]+(a[i][1]-a[i-1][1])*f;}return a[a.length-1][1];};}
   function mat(tx,photo){return new T.MeshStandardMaterial(photo?{map:tx,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:0,polygonOffsetUnits:-4,roughness:0.9,metalness:0}:
     {map:tx,transparent:true,alphaTest:0.25,roughness:0.85,metalness:0,polygonOffset:true,polygonOffsetFactor:0,polygonOffsetUnits:-4,depthWrite:false,side:T.DoubleSide});}
-  function decal(D2,pcName,cx,cy,w,h,lift){var pc=pid(pcName);if(pc<0)return;var py=centre(pc),tx=D2.cv?new T.CanvasTexture(D2.cv):new T.TextureLoader().load(D2.url);if(T.sRGBEncoding)tx.encoding=T.sRGBEncoding;
+  function decal(D2,pcName,cx,cy,w,h,lift){var pc=pid(pcName);if(pc<0)return;var py=centre(pc),tx=D2.cv?new T.CanvasTexture(D2.cv):new T.TextureLoader().load(D2.url);tx.colorSpace=T.SRGBColorSpace;
     var NX=10,NY=10,pos=[],uv=[],ix=[];for(var j=0;j<=NY;j++)for(var i=0;i<=NX;i++){var q=drapeAt(t,X,N,pcName,cx+(i/NX-0.5)*w,py(cy+(0.5-j/NY)*h));if(!q)return;
       pos.push(q.p[0]+q.n[0]*lift,q.p[1]+q.n[1]*lift,q.p[2]+q.n[2]*lift);uv.push(i/NX,1-j/NY);}
     for(j=0;j<NY;j++)for(i=0;i<NX;i++){var a=j*(NX+1)+i;ix.push(a,a+NX+1,a+1,a+1,a+NX+1,a+NX+2);}
@@ -4135,7 +4138,7 @@ function drapeLooks(man,p,t,X,N,me,ctx,kind){var T=window.THREE,L=p.look,out=[];
   var s0=p.shape,proj=!!(L.front&&fr>=0&&!/jacket|gilet|puffer/.test(t.arch)&&!drapeSplit(t));
   if(proj){   /* the photo's front, from the band (its own hem strip left out) to the neckline, across the cloth as seen from the front */
     var F=L.front,cv=document.createElement("canvas");cv.width=F.cv.width;cv.height=F.cv.height;cv.getContext("2d").drawImage(F.cv,0,0);gCv(cv);
-    var tx=new T.CanvasTexture(cv);if(T.sRGBEncoding)tx.encoding=T.sRGBEncoding;tx.anisotropy=4;
+    var tx=new T.CanvasTexture(cv);tx.colorSpace=T.SRGBColorSpace;tx.anisotropy=4;
     var cropB=pid("front_band")>=0?0.07:0,pt=s0==="hoodie"?[1.66,0.24]:(s0==="rollneck"?[1.565,0.14]:[1.535,0.11]),yP=pt[0]-pt[1]*(pt[0]-hemG),yB=yF+0.006,yT=Math.min(1.47,yP),hw0=halfW(fr,hemG+0.35*(1.4-hemG))*0.985;
     var pos=new Float32Array(t.m*3),uv=new Float32Array(t.m*2),ok=new Uint8Array(t.m),ix=[];
     for(j=0;j<t.m;j++){if(t.piece[j]!==fr)continue;var q=t.vmap[j]*3;for(var k=0;k<3;k++)pos[j*3+k]=X[q+k]+N[q+k]*0.0012;var u=0.5+X[q]/(2*hw0),vv=(yP-X[q+1])/(yP-yB);
@@ -4569,7 +4572,7 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
 function drapeScarf(man,S,t,X){var T=window.THREE,p=S.p,N=drapeNormals(X,t.cl.W,t.n),P=t.pat,I=t.idx,W=0,L=0,j,EL=0.44;
   for(j=0;j<t.m;j++){W=Math.max(W,P[j*2]);L=Math.max(L,P[j*2+1]);}
   var F=(byId[p.item]||{}).fix,SI=F&&F.strip?swImg(F.strip):null,sM=null;
-  if(SI&&SI.complete&&SI.naturalWidth){var tx=new T.Texture(SI);tx.encoding=T.sRGBEncoding;tx.anisotropy=4;tx.needsUpdate=true;sM=S.m.clone();sM.map=tx;sM.color=new T.Color(0xffffff);}
+  if(SI&&SI.complete&&SI.naturalWidth){var tx=new T.Texture(SI);tx.colorSpace=T.SRGBColorSpace;tx.anisotropy=4;tx.needsUpdate=true;sM=S.m.clone();sM.map=tx;sM.color=new T.Color(0xffffff);}
   var end=function(j){var y=P[j*2+1];return Math.min(y,L-y);};
   function part(tris,mat,stripUV){if(!tris.length)return;var n=tris.length,pos=new Float32Array(n*3),nr=new Float32Array(n*3),uv=new Float32Array(n*2);
     for(var q=0;q<n;q++){var pj=tris[q],w=t.vmap[pj],y=P[pj*2+1];for(var k=0;k<3;k++){pos[q*3+k]=X[w*3+k];nr[q*3+k]=N[w*3+k];}
@@ -4732,7 +4735,7 @@ function foldSeed(t){var h=2166136261;t=String(t||"");for(var i=0;i<t.length;i++
 function foldMat(m,kind,U){if(!m||window.__nofold||!(U.fAmp>0))return m;m.userData.fold=kind;m.extensions=Object.assign({},m.extensions||{},{derivatives:true});
   m.onBeforeCompile=function(sh){Object.keys(U).forEach(function(k){sh.uniforms[k]={value:U[k]};});
     sh.vertexShader=sh.vertexShader.replace("#include <common>","#include <common>\nattribute vec4 fold;varying vec4 vFold;").replace("#include <begin_vertex>","#include <begin_vertex>\nvFold=fold;");
-    sh.fragmentShader=sh.fragmentShader.replace("#include <common>","#include <common>\n"+FOLD_GLSL.pre+"\n"+FOLD_GLSL[kind]).replace("#include <normal_fragment_maps>","#include <normal_fragment_maps>\nnormal=fPerturb(-vViewPosition,geometryNormal,normal,foldDH(),1.0);");};
+    sh.fragmentShader=sh.fragmentShader.replace("#include <common>","#include <common>\n"+FOLD_GLSL.pre+"\n"+FOLD_GLSL[kind]).replace("#include <normal_fragment_maps>","#include <normal_fragment_maps>\nnormal=fPerturb(-vViewPosition,nonPerturbedNormal,normal,foldDH(),1.0);");};
   m.customProgramCacheKey=function(){return "fold-"+kind;};m.needsUpdate=true;return m;}
 /* the body of a top cut as slices (vests, gilets, waistcoats), as the fitted tops carry it: round him and up */
 function foldTorso(g,zc){var P=g.attributes.position.array,n=P.length/3,F=new Float32Array(n*4);
@@ -4846,10 +4849,11 @@ function make3Dcore(pieces){
   /* (most of the soft light now comes from the room round him, studioEnv; the sky light keeps a little of its share for
      where the room cannot be made, and the drawn-only figure keeps all of it) */
   var LGk=LIGHTM||"studio",envK=bodyOn&&!window.__noenv?1:0;scene.onBeforeRender=function(r){if(envK)scene.environment=studioEnv(r,LGk);};
-  scene.add(new T.HemisphereLight(LG?LG.sky:0xffffff,LG?LG.gnd:0xb8a88a,(LG?LG.hi:(bodyOn?0.52:0.6))*(envK?0.3:1)));
-  var key=new T.DirectionalLight(LG?LG.key:0xfff8f0,(LG?LG.k:(bodyOn?1.18:1.05))*(envK?0.85:1));key.position.set(LG?LG.kp[0]:-2.2,LG?LG.kp[1]:3.4,LG?LG.kp[2]:3.2);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-1;key.shadow.camera.right=1;key.shadow.camera.top=2.2;key.shadow.camera.bottom=-0.2;key.shadow.bias=-0.0005;key.shadow.radius=3;scene.add(key);
-  var fill=new T.DirectionalLight(LG?LG.fill:0xeef2ff,(LG?LG.f:0.34)*(envK?0.5:1));fill.position.set(2.6,1.4,2.6);scene.add(fill);
-  var rim=new T.DirectionalLight(0xffffff,LG?LG.rim:0.5);rim.position.set(1.5,2.6,-3);scene.add(rim);
+  /* (each light's intensity times pi, PI below: since r155 Three.js no longer multiplies a light by pi itself, as r128 did) */
+  var PI=Math.PI;scene.add(new T.HemisphereLight(LG?LG.sky:0xffffff,LG?LG.gnd:0xb8a88a,PI*(LG?LG.hi:(bodyOn?0.52:0.6))*(envK?0.3:1)));
+  var key=new T.DirectionalLight(LG?LG.key:0xfff8f0,PI*(LG?LG.k:(bodyOn?1.18:1.05))*(envK?0.85:1));key.position.set(LG?LG.kp[0]:-2.2,LG?LG.kp[1]:3.4,LG?LG.kp[2]:3.2);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-1;key.shadow.camera.right=1;key.shadow.camera.top=2.2;key.shadow.camera.bottom=-0.2;key.shadow.bias=-0.0005;key.shadow.radius=3;scene.add(key);
+  var fill=new T.DirectionalLight(LG?LG.fill:0xeef2ff,PI*(LG?LG.f:0.34)*(envK?0.5:1));fill.position.set(2.6,1.4,2.6);scene.add(fill);
+  var rim=new T.DirectionalLight(0xffffff,PI*(LG?LG.rim:0.5));rim.position.set(1.5,2.6,-3);scene.add(rim);
   var floor=new T.Mesh(new T.CircleGeometry(0.75,48),new T.ShadowMaterial({opacity:0.24}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;scene.add(floor);
   var man=new T.Group();scene.add(man);
   function C(col){return new T.Color(col).convertSRGBToLinear();}
@@ -6020,7 +6024,7 @@ function make3Dcore(pieces){
   /* a shirt is tucked in when it is worn with tailoring: a blazer, waistcoat or tie, or suit trousers */
   /* a picture laid onto the front of what he wears (a print, graphic or logo from the shop photo), as a patch that
      follows the cloth: each point is put on the surface found by a ray from the front */
-  function decalPatch(D2,cx0,cy0,w,h,lift,back){var tx=D2.cv?new T.CanvasTexture(D2.cv):new T.TextureLoader().load(D2.url);if(T.sRGBEncoding)tx.encoding=T.sRGBEncoding;
+  function decalPatch(D2,cx0,cy0,w,h,lift,back){var tx=D2.cv?new T.CanvasTexture(D2.cv):new T.TextureLoader().load(D2.url);tx.colorSpace=T.SRGBColorSpace;
     var NX=10,NY=10,v=[],uv=[],ix=[];
     /* (from behind, x runs the other way, so the print reads the right way round there too) */
     for(var j=0;j<=NY;j++)for(var i=0;i<=NX;i++){var x=cx0+(back?-1:1)*(i/NX-0.5)*w,y=cy0+(0.5-j/NY)*h;v.push(x,y,back?backZ(y,x)-(lift||0.0016):surfZ(y,x,0)+(lift||0.0016));uv.push(i/NX,1-j/NY);}
@@ -6051,7 +6055,7 @@ function make3Dcore(pieces){
      the collar to the hem: its pockets, panels, plackets, prints and logos as sold. The photo is a flat rectangle the
      width of the body, so it keeps that width up the chest; its sides fade where the garment turns away. */
   function frontPhoto(F,hem,s0,m,secsAll){var cv=document.createElement("canvas");cv.width=F.cv.width;cv.height=F.cv.height;cv.getContext("2d").drawImage(F.cv,0,0);gCv(cv);
-    var tx=new T.CanvasTexture(cv);if(T.sRGBEncoding)tx.encoding=T.sRGBEncoding;tx.anisotropy=4;
+    var tx=new T.CanvasTexture(cv);tx.colorSpace=T.SRGBColorSpace;tx.anisotropy=4;
     /* (a knit with a ribbed hem band: the photo stops at the band, and its own hem strip is left out, or it lay over the
        drawn band in patches and doubled its ribs) */
     var bandH=/^(jumper|hoodie|halfzip|rollneck|cardigan)$/.test(s0)?0.045:0,cropB=bandH?0.07:0;
@@ -6135,7 +6139,7 @@ function make3Dcore(pieces){
       var draw=function(){cx.drawImage(im,0,0,64,256);var d=cx.getImageData(0,0,64,256),D=d.data,LUT=new Uint8Array(256);
         for(var i=0;i<256;i++){var u=i/255,w=sstep(0.05,0.3,u);LUT[i]=Math.round(255*(u*(1-w)+Math.pow(u,1.25)*w));}
         for(i=0;i<D.length;i+=4){D[i]=LUT[D[i]];D[i+1]=LUT[D[i+1]];D[i+2]=LUT[D[i+2]];}cx.putImageData(d,0,0);tx.needsUpdate=true;};if(im.complete&&im.naturalWidth)draw();else im.addEventListener("load",draw);
-      tx.wrapS=T.MirroredRepeatWrapping;tx.wrapT=T.ClampToEdgeWrapping;if(T.sRGBEncoding)tx.encoding=T.sRGBEncoding;tx.keep=true;PLTX[url]=tx;}
+      tx.wrapS=T.MirroredRepeatWrapping;tx.wrapT=T.ClampToEdgeWrapping;tx.colorSpace=T.SRGBColorSpace;tx.keep=true;PLTX[url]=tx;}
     var v=new T.Vector3();
     ms.forEach(function(me){var M=me.material,MA=Array.isArray(M)?M:[M];if(!me.geometry||!me.geometry.attributes.position||!MA.some(function(q){return q&&q.map;}))return;
       me.updateWorldMatrix(true,false);var pa=me.geometry.attributes.position,uv=new Float32Array(pa.count*2);
@@ -6651,7 +6655,7 @@ function make3Dcore(pieces){
       if(CRI&&CRI.complete&&CRI.naturalWidth){var cvC=document.createElement("canvas"),wC=cvC.width=CRI.naturalWidth,hC=cvC.height=CRI.naturalHeight,cxC=cvC.getContext("2d");
         cxC.drawImage(CRI,0,0);cxC.globalCompositeOperation="destination-in";var gC=cxC.createLinearGradient(0,0,wC,0);
         gC.addColorStop(0,"rgba(0,0,0,0)");gC.addColorStop(0.1,"rgba(0,0,0,1)");gC.addColorStop(0.9,"rgba(0,0,0,1)");gC.addColorStop(1,"rgba(0,0,0,0)");cxC.fillStyle=gC;cxC.fillRect(0,0,wC,hC);
-        var txC=new T.CanvasTexture(cvC);txC.encoding=T.sRGBEncoding;txC.anisotropy=4;
+        var txC=new T.CanvasTexture(cvC);txC.colorSpace=T.SRGBColorSpace;txC.anisotropy=4;
         var A0=1.45,NUd=28,NVd=12,dv=[],du=[],di=[],Pb=crownP(0,0),Pt=crownP(0,1),xw=Math.abs(crownP(Math.PI/2,0)[0])||0.09;
         for(var jv=0;jv<=NVd;jv++)for(var ju=0;ju<=NUd;ju++){var Pd=crownP(-A0+2*A0*ju/NUd,jv/NVd);dv.push(Pd[0]*1.004,Pd[1]+0.0005,Pd[2]*1.004);
           du.push(Math.max(0,Math.min(1,0.5+Pd[0]/(2*xw))),Math.max(0,Math.min(1,(Pd[1]-Pb[1])/(Pt[1]-Pb[1]))));}
@@ -6828,7 +6832,7 @@ function make3Dcore(pieces){
         var thE=0.006,E0=null,dyE=0.012,stF=(byId[p.item]||{}).fix,stI=stF&&stF.strip?swImg(stF.strip):null,stM=null;
         /* (its design, where the shop photo has one: fixes.json "strip", one end cut from the photo and straightened,
            the fringe at the bottom, laid along each end) */
-        if(stI&&stI.complete&&stI.naturalWidth){var stT=new T.Texture(stI);stT.encoding=T.sRGBEncoding;stT.anisotropy=4;stT.needsUpdate=true;stM=sm2.clone();stM.map=stT;stM.color=new T.Color(0xffffff);}
+        if(stI&&stI.complete&&stI.naturalWidth){var stT=new T.Texture(stI);stT.colorSpace=T.SRGBColorSpace;stT.anisotropy=4;stT.needsUpdate=true;stM=sm2.clone();stM.map=stT;stM.color=new T.Color(0xffffff);}
         /* (on the cloth, and on what is laid on it: a zip and its pull, buttons, a pocket, collar points; the cloth's depth
            map holds the tops alone, and a half-zip's pull came through the scarf) */
         var dMsE=[],rcE=new T.Raycaster(),oE=new T.Vector3(),dE=new T.Vector3(0,0,-1);if(bodyOn){man.updateMatrixWorld(true);man.traverse(function(n){if(n.isMesh&&n.visible&&/^up/.test(n.userData.kind||"")&&wraps.indexOf(n)<0)dMsE.push(n);});}
@@ -6984,7 +6988,7 @@ function liveRenderer(){
   if(liveR&&!liveR.lost)return liveR;
   var T=window.THREE,r=new T.WebGLRenderer({antialias:true,alpha:true});
   r.setPixelRatio(Math.min(window.innerWidth<700?1.5:2,window.devicePixelRatio||1));
-  if(T.sRGBEncoding)r.outputEncoding=T.sRGBEncoding;r.toneMapping=T.ACESFilmicToneMapping;r.toneMappingExposure=1.08;r.shadowMap.enabled=true;r.shadowMap.type=T.PCFSoftShadowMap;
+  r.outputColorSpace=T.SRGBColorSpace;r.toneMapping=T.ACESFilmicToneMapping;r.toneMappingExposure=1.08;r.shadowMap.enabled=true;r.shadowMap.type=T.PCFShadowMap;
   r.domElement.addEventListener("webglcontextlost",function(e){e.preventDefault();r.lost=true;liveStack.forEach(function(h){h.lostCtx();});},false);
   r.domElement.className="v3-cv";liveR=r;return r;
 }
@@ -7153,7 +7157,7 @@ function pumpSnap(){
   setTimeout(function(){
     try{
       var T=window.THREE;
-      if(!snapR){snapR=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});snapR.setPixelRatio(1);snapR.setSize(360,735);if(T.sRGBEncoding)snapR.outputEncoding=T.sRGBEncoding;snapR.toneMapping=T.ACESFilmicToneMapping;snapR.toneMappingExposure=1.08;snapR.shadowMap.enabled=true;snapR.shadowMap.type=T.PCFSoftShadowMap;snapR.domElement.addEventListener("webglcontextlost",function(e){e.preventDefault();snapR=null;},false);}
+      if(!snapR){snapR=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});snapR.setPixelRatio(1);snapR.setSize(360,735);snapR.outputColorSpace=T.SRGBColorSpace;snapR.toneMapping=T.ACESFilmicToneMapping;snapR.toneMappingExposure=1.08;snapR.shadowMap.enabled=true;snapR.shadowMap.type=T.PCFShadowMap;snapR.domElement.addEventListener("webglcontextlost",function(e){e.preventDefault();snapR=null;},false);}
       LITE3D=true;var o;try{o=make3D(j.ps);}finally{LITE3D=false;}var f=Math.max(1,o.k||1),cam=new T.PerspectiveCamera(13,240/490,0.1,50);cam.position.set(0,0.95*f,8.7*f);cam.lookAt(0,0.93*f,0);o.man.rotation.y=j.rot!=null?j.rot:0.32;snapR.render(o.scene,cam);
       var url=snapR.domElement.toDataURL("image/webp",0.86);if(url.indexOf("image/webp")<0)url=snapR.domElement.toDataURL("image/png");
       dispose3D(o);

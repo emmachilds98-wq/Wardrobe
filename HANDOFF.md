@@ -49,7 +49,7 @@ should match. Emma asked for the upgrade to continue until that is done.
 ## How to work
 
 1. Branch from `main`.
-2. Edit `page.html`. This is the whole page: CSS, the 2D figure, the Three.js r128 3D builder and
+2. Edit `page.html`. This is the whole page: CSS, the 2D figure, the Three.js 3D builder (0.186.1) and
    the shop.
 3. Build: `python3 tools/build_site.py --out docs` (copies the page to `docs/index.html` and writes
    `docs/data`).
@@ -223,10 +223,9 @@ and tie are made, and the 3D check treats its front as open).
      of curls); a level of detail by distance would help phones there too.
    - Build the body and hair once and swap only the clothes.
 4. **Engine and poses (Phase 2):**
-   - Three.js r128 → r160+. `encoding` becomes `colorSpace`, the `if(T.sRGBEncoding)` guards
-     must change, and lights need about ×π.
+   - Done 16 Oct: Three.js r128 → 0.186.1, the module build (`THREE_URL`, `loadThree`): colour management off,
+     `colorSpace` for textures and renderers, lights ×π, `PCFShadowMap`; card stills match `main`.
    - Then three poses.
-   - Ask Emma first: it is a listed decision.
 5. **Garment templates (Phase 3):**
    - About 45 archetypes draped in headless Blender (download.blender.org is reachable), with
      morphs for length, ease and leg width.

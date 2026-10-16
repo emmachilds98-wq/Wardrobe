@@ -1,11 +1,11 @@
 // node multi.js out.png shape item1,item2,... [view]  : one close-up per item, with its shop photo under it
 //   view: chest (default), legs (trousers, shorts, skirts), or feet (shoes and boots, turned to show the side as shop photos do)
-// THREE_JS=<three.min.js> serves Three.js locally (for machines that cannot reach the CDN)
+// THREE_JS=<folder> serves Three.js locally (three.module.min.js and three.core.js) (for machines that cannot reach the CDN)
 // QA_BODY=slim|average|athletic|heavier|close|loose renders on another of Edit Dave's body types or cloth fits (tools/qa/body.js)
 const {chromium}=require('playwright');
 (async()=>{const out=process.argv[2],shape=process.argv[3],ids=process.argv[4].split(','),view=process.argv[5]||'chest';
 const b=await chromium.launch({args:['--use-gl=swiftshader','--enable-webgl','--ignore-gpu-blocklist']});
-const p=await b.newPage({viewport:{width:1000,height:800}});if(process.env.THREE_JS)await p.route('**/three.js/r128/three.min.js',r=>r.fulfill({path:process.env.THREE_JS,contentType:'text/javascript'}));if(process.env.QA_BODY){const ch=require('./body').charFor(require('fs').readFileSync(require('path').join(__dirname,'../../docs/index.html'),'utf8'),process.env.QA_BODY);if(ch)await p.addInitScript(c=>localStorage.setItem('dw-char',JSON.stringify(c)),ch);}await p.goto('http://localhost:'+(process.env.QA_PORT||8770)+'/',{waitUntil:'networkidle'});await p.waitForTimeout(2500);
+const p=await b.newPage({viewport:{width:1000,height:800}});if(process.env.THREE_JS)await p.route('**/ajax/libs/three.js/**',r=>r.fulfill({path:require('path').join(process.env.THREE_JS,require('path').basename(new URL(r.request().url()).pathname)),contentType:'text/javascript',headers:{'access-control-allow-origin':'*'}}));if(process.env.QA_BODY){const ch=require('./body').charFor(require('fs').readFileSync(require('path').join(__dirname,'../../docs/index.html'),'utf8'),process.env.QA_BODY);if(ch)await p.addInitScript(c=>localStorage.setItem('dw-char',JSON.stringify(c)),ch);}await p.goto('http://localhost:'+(process.env.QA_PORT||8770)+'/',{waitUntil:'networkidle'});await p.waitForTimeout(2500);
 const urls=await p.evaluate(async(a)=>{await window.__dw.loadThree();const T=window.THREE,W=300,H=300;
  const rd=new T.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});rd.setSize(W,H);rd.setClearColor(0xe8e2d6);if(T.sRGBEncoding)rd.outputEncoding=T.sRGBEncoding;rd.toneMapping=T.ACESFilmicToneMapping;const out=[];
  for(const id of a.ids){const ps0=[{item:id,shape:a.shape,col:'white',what:'x'},{item:'sw-tailored-grey',shape:'trousers',col:'grey',what:'t'}];

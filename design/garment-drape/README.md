@@ -74,6 +74,8 @@ garment shape.
 - Ask Emma for the two listed decisions (newer Three.js and Blender-made templates) and Dave's measurements.
 
 ### 1. Engine: Three.js r128 → current
+- Done 16 Oct 2026: 0.186.1 from cdnjs (UPGRADE_PLAN, the Three.js section). Integrity hashes were left out: a
+  dynamic `import()` cannot carry one, and the version is pinned in the URL.
 - `loadThree()` loads `three.min.js` r128 from cdnjs. Move to the module build (current release, pinned with
   integrity hashes).
 - `encoding` becomes `colorSpace`; replace the `if(T.sRGBEncoding)` guards. Light intensities need about ×π.
