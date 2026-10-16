@@ -3732,6 +3732,50 @@ hoods, roll necks, funnel necks and scarves against `main` (the same 2 flagged o
 90 and 96 on `main`, 97 and 104 now); card stills of five outfits against `main` (the same brightness, a mean
 difference of 0.2 levels); the smoke test.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Skin tone on a slider, hair colours beyond brown, more eye colours (16 Oct 2026)
+
+Section 5, item 2, its first half (the panel's layout is the second, for Emma to look at first).
+
+*Skin* (Edit Dave, Skin and colouring): two sliders under a row of seven quick swatches. Tone runs from very fair to
+very deep through eleven real skin tones (the old seven swatches with lighter, deeper and in-between ones; his own,
+`#e2b08f`, the fourth), spaced along the slider by how different they look in OKLab, so every step of it looks as big as
+the next. Undertone runs from cool and pink through neutral (the anchors themselves) and warm and golden to olive: a
+turn of hue, a change of chroma and a touch of lightness, worked out in OKLab's lightness, chroma and hue (`skinFrom`).
+The colour itself is still `CHAR.skin`, so a look saved before loads as it was, and the lips, nose, eyelids and the 2D
+figure, all worked out from it, follow. The sliders' places are saved too (`skinTone`, `skinUnder`) but are not part of
+the look (`CHAR_UI`: they do not change `charKey`, the card stills' cache, or the count of changes). A colour picked or
+saved off the ramp keeps its colour, and the sliders show the nearest place to it (`skinFit`, the nearest colour in
+OKLab); moving both back to where they were saved gives back the saved colour exactly.
+
+*Hair*: a Natural colour choice (black, brown, red, blond: `HAIRF`, each a ramp from darkest to lightest, with the
+colour its ends lighten toward in the sun) above the Shade slider (the old Brown slider, its words for each colour),
+and a Grey slider (none, a little grey, salt and pepper, mostly grey, silver: toward a darker grey at first and silver
+at the end, gently at first, `greyed`). His browns with no grey give exactly the colours as before (`hairCol`,
+`hairTipCol`). Brows set to match his hair follow its colour, shade and grey (`browColor`), as does the hairline
+drawn on his scalp. The 2D figure's curls take a lighter line of a hair colour other than his browns. The moustache
+and beard keep their own colour (his is a little redder than his hair, and they often differ), with a Match hair
+choice first in their colours (Emma's ask, 16 Oct): set to it, `CHAR.tacheCol` is empty and they take his hair's
+colour, shade and grey (`tacheColor`); a swatch or a picked colour gives them their own colour again.
+
+*Deeper skin*: the warmth of his cheeks, nose and ears and the tint of his lips were fixed colours chosen from his
+photos (`#d98374`, `#b86a5e`), which gave a deep skin pink lips and red cheeks. They are now his own skin's: the same
+colours on his skin, `#e2b08f`, and as much deeper and redder in proportion on another (`bodyCols`, `faceTex`).
+
+*Eyes*: eleven colours (pale blue, grey, a darker green, amber and dark brown added to the six).
+
+*The colour sliders* show the colours they run through on their tracks, as they stand with the other colour sliders
+(Tone's track follows the undertone, Grey's the shade), and keep their own ends rather than his saved setting in the
+middle (`ceRng`), so a track is always the same run of colours; the ◆ marks the saved one.
+
+**Checked**: saved looks load unchanged (the default skin, hair and ends' colours are the same hex values as on `main`); the
+sliders at both ends on a desktop and a 390 px phone screen; a swatch and a picked colour move the sliders, and the
+sliders back to where they were saved give back the saved colour; undo, the sliders' resets and Back to his defaults;
+one change counted per colour; Match hair on the moustache (it follows his hair from brown to blond, a swatch gives it
+its own again); close-ups of red with some grey, blond, black on a very deep skin, silver and a deep skin; the 2D figure
+with a deep skin and red hair; card stills of three outfits against `main` (a mean difference of 0.18 levels, the
+same as `main` against itself: the face's noise); the smoke test (the same cards and renders as `main`, no errors);
+the navigation check and the gate set on all five bodies in the pull-request check.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -3984,6 +4028,9 @@ How:
 Done when: every control is two taps away at most, no tab runs past one laptop screen with its folds closed, the phone
 layout is checked at 390 px wide, saved looks load unchanged, and Emma has looked at it. One or two pull requests (skin
 and new options; the panel layout).
+
+**First half done 16 Oct 2026** (PR #83, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: skin tone on two sliders, hair colours beyond brown and
+a grey slider, eleven eye colours). Still to do: the panel's layout, for Emma to look at before it ships.
 
 ### 3. Shoes, and how the trousers meet them
 
