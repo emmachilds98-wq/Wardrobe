@@ -4957,8 +4957,19 @@ function make3Dcore(pieces){
       if(sh&&!cut.brief)rx+=0.003*sstep(BL.crotch-0.12,yBot,y),rz+=0.003*sstep(BL.crotch-0.12,yBot,y);   /* (a little fuller at the hem; shorts hang about as wide as the thigh, and wider read as flared) */
       /* (at the hem a little fuller and set back, so the heel of the shoe stays inside. Set back more than it is
          fuller: 12 mm fuller front to back, the hull below carried it up the shin as a cone and the leg read flared) */
-      var lb=sh?0:sstep(0.2,0.05,y);
-      out.push([y,rx+0.0015*lb,rz+0.006*lb,q[3],q[4]-0.016*lb]);});
+      var lb=sh?0:sstep(0.2,0.05,y),r=[y,rx+0.0015*lb,rz+0.006*lb,q[3],q[4]-0.016*lb];
+      /* (and round the shoe's heel: where a slim leg's back came in front of the heel counter, the counter showed
+         through it and the cloth read as tucked into the shoe. The leg is deepened backward, its front left where it is,
+         until the back of the heel and its two corners are well inside it) */
+      if(!sh&&cut.heel&&y<0.32){var hx=s*cut.heel.x,rt=s*0.1,d=0;
+        /* (for each, at its distance to the side, the leg's back there 6 mm behind it: the depth that takes, front kept) */
+        [[0,-0.081],[0.033,-0.07],[-0.033,-0.07]].forEach(function(c){var px=hx+Math.cos(rt)*c[0]+Math.sin(rt)*c[1],pz=Math.cos(rt)*c[1]-Math.sin(rt)*c[0],a2=(px-r[3])/r[1];
+          if(Math.abs(a2)>0.95)return;var w=Math.sqrt(1-a2*a2);d=Math.max(d,2*(r[4]-r[2]*w-pz+0.006)/(1+w));});
+        /* (a trainer's heel is broad: a slim leg that would have to stand out more than 1.5 cm behind it to take it in
+           rests its back on it instead, cut.onHeel, as a slim pair does) */
+        if(cut.heel.tr&&y<0.06&&d>0.015)cut.onHeel=true;
+        d=Math.min(cut.heel.tr?0.015:0.035,d)*sstep(0.32,0.12,y);r[2]+=d/2;r[4]-=d/2;}   /* (coming in from mid-calf, so the back falls in one line from the calf to the heel) */
+      out.push(r);});
     /* (cloth spans from one support to the next: from the thigh it falls in a straight line over the calf to the hem,
        rather than going in at the knee and out again round the calf, which drew a wobbling leg) */
     if(!cut.brief&&out.length>2)[1,2].forEach(function(k){var H=[];out.forEach(function(q,i){if(k===2&&(cut.seat>=1||sh)&&q[0]>BL.crotch-0.09)return;while(H.length>1){var a=out[H[H.length-2]],b=out[H[H.length-1]];
@@ -5125,7 +5136,7 @@ function make3Dcore(pieces){
             x=P[c][0]+(ex-P[c][0])*w;z=P[c][1]+(ez-P[c][1])*w;
             /* (the inside eases onto its limit rather than stopping flat against it, so the leg keeps a rounded edge) */
             var dd=s*x-xin;if(dd<bw)x=s*(xin+bw*Math.exp((dd-bw)/bw));
-            if(o.hemF){var fd=y-hem;if(fd<0.09)yy+=o.hemF*Math.pow(Math.max(0,cs),1.6)*(1-fd/0.09);}}
+            if(o.hemF||o.hemB){var fd=y-hem;if(fd<0.09)yy+=((o.hemF||0)*Math.pow(Math.max(0,cs),1.6)+(o.hemB||0)*Math.pow(Math.max(0,-cs),1.6))*(1-fd/0.09);}}
           rv[c]=pos.length/3;pos.push(x,yy,z);uv.push(U[c],(y-hem)/0.3);sideA.push(s);fdL.push(s*Math.sin(ph[c]),Math.cos(ph[c]),y,s);if(c===bc0)outer[sd].push([x,yy,z]);}   /* (fold: round the leg, the outside positive) */
         vid.push(rv);});
       for(r=0;r<vid.length-1;r++)for(c=0;c<M-1;c++){var a=vid[r][c],b=vid[r][c+1],c3=vid[r+1][c],d=vid[r+1][c+1];if(a<0||b<0||c3<0||d<0)continue;
@@ -5944,7 +5955,9 @@ function make3Dcore(pieces){
     var SEATF={skinny:1.6,slim:1.4,tapered:1.2,regular:1.1,straight:1,relaxed:0.6,wide:0.35,baggy:0,barrel:0.6}[BC.k]||0,cutL={e0:BC.e0,fall:BC.fall,len:BC.len,sfall:BC.sfall,seat:SEATF};if(BC.barrel)cutL.barrel=BC.barrel;if(BC.flare)cutL.flare=BC.flare;if(BC.bot)cutL.bot=BC.bot;
     if(und)cutL={brief:true};   /* (the fitting room's plain boxer briefs) */
     else if(!sh&&ft&&ft.shape==="boots"){cutL.boot=true;if(!cutL.bot)cutL.bot=/chelsea|dealer|chukka|desert/.test(nm(ft))?0.09:0.122;}   /* (over boots the hem rests on the boot's front, so its toe, laces and the start of its shaft show) */
-    var cuffd=BC.cuff;if(cuffd&&!sh&&!und){cutL.bot=Math.max(cutL.bot||0,0.088);cutL.cuff=true;}   /* (a cuffed jogger gathers at his ankle, above the shoe) */
+    var cuffd=BC.cuff;if(cuffd&&!sh&&!und){cutL.bot=Math.max(cutL.bot||0,0.088);cutL.cuff=true;}
+    /* (where the shoe's heel is, as the shoe is placed below: under his foot, its toe turned out 0.1) */
+    if(!sh&&!und&&ft&&!cutL.boot&&bodyOn)cutL.heel={x:BL.foot.x,tr:ft.shape==="trainers"};   /* (a cuffed jogger gathers at his ankle, above the shoe) */
     var LYB=BL?BL.crotch-0.075:0,LS0=bodyOn?{"-1":legSecs(-1,sh,wide,cutL),"1":legSecs(1,sh,wide,cutL)}:null,LSs=bodyOn?{"-1":smoothSecs(LS0["-1"],sh?6:16),"1":smoothSecs(LS0["1"],sh?6:16)}:null;
     var LWme=null;
     /* underwear (the fitting room): boxer briefs are his own skin from the waist to the top of the thighs, lifted by the
@@ -5978,7 +5991,10 @@ function make3Dcore(pieces){
         fWhisk:jean?1:(tail?0.45:(jog?0.6:0.8)),fInner:wide?0.45:0.65,fSeat:0.6,fKneeK:sh?0:(jean?1.2:1)*(wide?0.6:1),fBreak:brk*1.3,fGather:cuffd&&!sh?0.9:0,fDrape:sh?0.3:(wide?2.5:(jog?1.4:1)),fCrease:tail&&!sh?0.85:0};}
     var eW={skinny:0.006,slim:0.007,tapered:0.008,regular:0.009,straight:0.01,relaxed:0.012,wide:0.013,baggy:0.015,barrel:0.012}[BC.k]||0.013;   /* (the room at his waist and seat, by the cut) */
     if(bodyOn&&!und)LWme=trouserGeo(eW+tE,1.03,LSs,BL.crotch-0.022-0.6*wide,lm,{seat:SEATF,wr:sh?null:legDrape(FU.fSeed,LSs["1"][0][0],brk),fold:FU,
-      hemF:!sh&&!cuffd?(cutL.bot?0.02:(ft&&ft.shape==="boots"?0.045:(ft&&ft.shape==="trainers"?0.068:0.058))):0});
+      hemF:!sh&&!cuffd?(cutL.bot?0.02:(ft&&ft.shape==="boots"?0.045:(ft&&ft.shape==="trainers"?0.068:0.058))):0,
+      /* (and at the back it rests on the heel, so the heel and sole show under it from behind: it fell to the floor there
+         and the shoe all but disappeared, Emma's note of 16 Oct. Over boots the hem stays on the shaft) */
+      hemB:!sh&&!cuffd&&!cutL.bot&&ft?(ft.shape==="trainers"?(cutL.onHeel?0.045:0.03):(ft.shape==="slippers"?0.01:0.025)):0});   /* (on a trainer's heel: its top, 8 cm up at the back) */
     if(LWme)CSH.push(LWme);
     /* a cuffed jogger's rib cuff, in rib knit round the gathered end of each leg (legSecs), so the cuff reads as one */
     var cuffM=cloth(shade((lo.look&&/^#[0-9a-f]{6}$/i.test(lo.look.c1||"")?lo.look.c1:cc(lo.col)[0]),0.86),"rib",lo.col2||"",0.95);   /* (a shade darker than the leg, as a rib knit reads beside the cloth) */
@@ -6512,9 +6528,9 @@ function make3Dcore(pieces){
   /* the upper on a last: round over the top, its sides coming straight down to a flat base on the sole (rows [z, half
      width, half height] heel to toe), its toe rounded off and the heel closed (as an even oval all round it read as a pod
      sitting on a plate) */
-  function upperGeo(rows,lift){var NU=36,pos=[],uv=[],ix=[],fd=[],r2=rows.slice(),L=r2[r2.length-1];r2.push([L[0]+0.004,L[1]*0.7,L[2]*0.88],[L[0]+0.007,L[1]*0.42,L[2]*0.66],[L[0]+0.0085,L[1]*0.18,L[2]*0.4]);
+  function upperGeo(rows,lift,cap){var NU=36,pos=[],uv=[],ix=[],fd=[],r2=rows.slice(),L=r2[r2.length-1];r2.push([L[0]+0.004,L[1]*0.7,L[2]*0.88],[L[0]+0.007,L[1]*0.42,L[2]*0.66],[L[0]+0.0085,L[1]*0.18,L[2]*0.4]);
     var pw=function(v,n){return (v<0?-1:1)*Math.pow(Math.abs(v),2/n);};
-    r2.forEach(function(q){for(var k=0;k<NU;k++){var u=k/NU*Math.PI*2,sn=Math.sin(u),cs=Math.cos(u),n=cs>=0?2.6:7;pos.push(q[1]*pw(sn,n),lift+q[2]+q[2]*pw(cs,n),q[0]);uv.push(k/NU,q[0]/0.3);fd.push(sn,cs,q[0],0);}});
+    r2.forEach(function(q){for(var k=0;k<NU;k++){var u=k/NU*Math.PI*2,sn=Math.sin(u),cs=Math.cos(u),n=cs>=0?2.6:7;var yy=lift+q[2]+q[2]*pw(cs,n);if(cap)yy=Math.min(yy,cap(q[0]));pos.push(q[1]*pw(sn,n),yy,q[0]);uv.push(k/NU,q[0]/0.3);fd.push(sn,cs,q[0],0);}});
     var R=r2.length;for(var i=0;i<R-1;i++)for(var k=0;k<NU;k++){var a=i*NU+k,b=i*NU+(k+1)%NU,c=a+NU,d=b+NU;ix.push(a,c,b,b,c,d);}
     [[0,-1],[R-1,1]].forEach(function(e){var q=r2[e[0]],ci=pos.length/3;pos.push(0,lift+q[2],q[0]+e[1]*0.002);uv.push(0.5,q[0]/0.3);fd.push(0,-1,q[0],0);for(var k=0;k<NU;k++){var a=e[0]*NU+k,b=e[0]*NU+(k+1)%NU;if(e[1]<0)ix.push(ci,a,b);else ix.push(ci,b,a);}});
     var g=new T.BufferGeometry();g.setAttribute("position",new T.Float32BufferAttribute(pos,3));g.setAttribute("uv",new T.Float32BufferAttribute(uv,2));g.setAttribute("fold",new T.Float32BufferAttribute(fd,4));g.setIndex(ix);g.computeVertexNormals();return g;}
@@ -6582,7 +6598,11 @@ function make3Dcore(pieces){
     if(ft&&deckS)rows=shoeS.map(function(q,i){return [q[0],q[1]*(i>=6?0.95:1),q[2]*(i>=3?(i>=5?0.78:0.86):0.94)];});
     /* (the upper creases across its top where it flexes, behind the ball of the foot: a trainer's canvas or mesh most,
        leather a little) */
-    var upM=add(ft?upperGeo(rows,lift):shoeGeo(rows,lift),ft?foldMat(fm.clone(),"ft",{fAmp:trainer?0.0016:(boot?0.0014:0.0011),fSeed:foldSeed(ft.item+"|"+s),fWid:trainer?1.3:1,fZ0:0.115,fHeel:rows[0][0],fCtr:slip?0:(trainer?1.1:(deckS?0.6:(boot?0.8:1)))}):fm,x,0,0.0,1,1,1,0,rot,0);
+    /* (a trainer's upper ends at its padded collar, about 8 cm up at the heel and rising a little to the front, with the
+       tongue above it in front of the ankle: closed over his ankle up to 13 cm, it hid the collar and stood too tall and
+       broad at the back for a trouser hem to rest on) */
+    var capT=trainer?function(z){return z<0.04?0.088+0.151*(z+0.01)+Math.pow(Math.max(0,z)/0.04,2)*0.05:9;}:null;
+    var upM=add(ft?upperGeo(rows,lift,capT):shoeGeo(rows,lift),ft?foldMat(fm.clone(),"ft",{fAmp:trainer?0.0016:(boot?0.0014:0.0011),fSeed:foldSeed(ft.item+"|"+s),fWid:trainer?1.3:1,fZ0:0.115,fHeel:rows[0][0],fCtr:slip?0:(trainer?1.1:(deckS?0.6:(boot?0.8:1)))}):fm,x,0,0.0,1,1,1,0,rot,0);
     if(!ft)return;
     hemShade(upM,true);   /* (in the shade of the trouser hem over it) */
     function at(z,y,dx){return [x+Math.sin(rot)*z+Math.cos(rot)*(dx||0),y,Math.cos(rot)*z-Math.sin(rot)*(dx||0)];}
@@ -6623,7 +6643,9 @@ function make3Dcore(pieces){
         tube([[kn[0],kn[1]+0.002,kn[2]],[kn[0]+Math.cos(rot)*sd*0.012,kn[1]-0.006,kn[2]+0.012]],0.0016,rhM,4);});}
     else if(shoeK&&lastK==="work")lugS();   /* (safety shoes: the boot's lugged sole) */
     else if(shoeK){thin();
-      var wl=at(0.06,0.019);add(new T.TorusGeometry(1,0.0018,4,40),mat(shade(fcol,0.7),0.6),wl[0],wl[1],wl[2],0.056,0.15,1,Math.PI/2,0,rot);   /* welt */
+      /* welt (round the shoe from heel to toe, at the sole's edge: centred 6 cm forward it reached 1.5 cm behind the
+         heel, and 3 mm wider than the sole it stood out from it, a thin wire ring round every dress shoe at the ground) */
+      var wl=at(0.077,0.019);add(new T.TorusGeometry(1,0.0018,4,40),mat(shade(fcol,0.7),0.6),wl[0],wl[1],wl[2],0.053,0.149,1,Math.PI/2,0,rot);
       /* a loafer: the moccasin apron stitched round the top of the forefoot, and a strap across the vamp (a penny loafer's
          with its slot, a tassel loafer's with two tassels) */
       if(lastK==="loafer"){var stM=mat(shade(fcol,0.62),0.7),ap=[];for(var a6=-1;a6<=1.0001;a6+=0.1){var t6=a6*Math.PI/2;ap.push(surf(0.09+0.12*Math.pow(Math.cos(t6),0.5),Math.sin(t6)*1.15,0.0008));}tube(ap,0.0012,stM,40);

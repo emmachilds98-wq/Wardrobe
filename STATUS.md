@@ -25,10 +25,15 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**16 Oct: trouser hems rest on the shoe** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 3, its first half). From behind, a
+trouser no longer covers the shoe to its sole: the back of the hem rises onto the heel, so the heel and sole show under
+it, and a slim leg stands behind the heel or rests on it rather than seeming tucked into the shoe. A trainer's upper ends
+at its padded collar (8 cm up at the heel), and a dress shoe's welt no longer shows as a ring behind the heel.
+**Next:** the shoe templates (item 3, its second half).
+
 **16 Oct: a tidier Edit Dave** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 2, its second half). Six tabs (Body, Face,
 Hair, Facial hair, Skin and eyes, Clothes fit), each with its few main controls and the rest under folds, a reset for
-each tab, and no tab longer than a laptop screen with its folds closed. **Next:** item 3, the shoes and how trouser hems
-meet them.
+each tab, and no tab longer than a laptop screen with its folds closed.
 
 **16 Oct: skin tone on a slider, and more colours** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 2, its first half). Edit
 Dave's Skin and colouring tab has Tone (very fair to very deep, through real skin tones, every step looking as big as
@@ -581,7 +586,8 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
-| 16 Oct 2026 | #84 | A tidier Edit Dave: six tabs (Body, Face, Hair, Facial hair, Skin and eyes, Clothes fit), main controls with the rest under folds (`CES` folds), a reset per tab, labels above their choices, no tab past a 1280 x 800 screen with its folds closed | FtdHKg vNEXT2 |
+| 16 Oct 2026 | #85 | Trouser hems rest on the shoe: the back rises onto the heel (`hemB`: 3 cm on a trainer, 2.5 on a shoe), each leg deepened backward round the heel near the ground (`cut.heel`), a slim leg on a trainer resting on its heel (`cut.onHeel`); a trainer's upper ends at its collar (`capT`); a dress shoe's welt centred and at the sole's edge | FtdHKg vNEXT |
+| 16 Oct 2026 | #84 | A tidier Edit Dave: six tabs (Body, Face, Hair, Facial hair, Skin and eyes, Clothes fit), main controls with the rest under folds (`CES` folds), a reset per tab, labels above their choices, no tab past a 1280 x 800 screen with its folds closed | FtdHKg v69 |
 | 16 Oct 2026 | #83 | Skin tone on two sliders (Tone through eleven real skin tones spaced evenly in OKLab, Undertone from cool to olive; `CHAR.skin` is still the colour, so saved looks load as they were), hair colours beyond brown (black, red, blond, and a Grey slider; his browns with no grey are the same colours as before), eleven eye colours; colour sliders show their colours on the track; brows that match his hair follow it; cheeks and lips tinted from his own skin (no pink on a deep skin); Match hair for the moustache and beard, which keep their own colour by default | FtdHKg v68 |
 | 16 Oct 2026 | none | FtdHKg republished from `main` (8d918c3, PR #82's build: the page and 15 `docs/data` files changed since 0382659, the build it had) | FtdHKg v67 |
 | 16 Oct 2026 | #82 | A clear jawline: the base body takes MakeHuman's `neck-double-decr` 1, `head-fat-decr` 0.65, `head-square` 0.55 and `chin-bones` 0.45, the jaw targets limited to the face below the eyes (`LOWER_FACE`, so the crown and the whole body's scale stay put); Edit Dave's "Jawline" and "Under the chin" (new morphs, last); FtdHKg still to be republished from Emma's account | B8UXnh v19 |
