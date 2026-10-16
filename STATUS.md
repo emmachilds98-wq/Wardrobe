@@ -25,12 +25,16 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**16 Oct: the plan for the model from here** (UPGRADE_PLAN section 5). What is left on the 3D model, in order, with how
+to tackle each item and when it is done: a clear jawline without the double-chin shadow, skin tone on a slider and a
+tidier Edit Dave with more options, the shoes and how trouser hems meet them, a relaxed stance, tucked-in tops (a first
+try is under way), draped trousers and shorts, then the remaining tops, the 3D check, fabrics, sizing and speed.
+**Next:** item 1, his jawline.
+
 **16 Oct: Three.js 0.186.1** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). The page moved from r128 to the current release, the
 module build from cdnjs, with colours, lights and shadows set to draw as before: card stills match `main`, and the
 3D check reads the same numbers on 40 outfits compared. Every QA script loads it (`THREE_JS` is now a folder).
 The insulated overshirts were tried once more with a thicker gap and held back.
-**Next:** see `UPGRADE_GUIDE.md` ("What is left"): the two jackets that fail, the insulated overshirts, the shards
-beside the neck, or tucked-in tops.
 
 **15 Oct: an open overshirt held inside an open jacket** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). The shacket came through the
 jacket in g-mod-15, -11, -13 and g-casual-09 because the jacket was cut no bigger than the shacket. Where two draped

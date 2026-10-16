@@ -3849,3 +3849,200 @@ for commit 9e3f504, before that update.
 - Done 12 Oct 2026: a yes to the newer Three.js and the Blender templates, and proof first behind
   a switch (2zzzzzzzzzzzzzzzzz).
 - Which step to start with (recommended: 1 to 3).
+
+## 5. The 3D model from here: what is left and how to tackle it (16 Oct 2026)
+
+Where it stands. 946 of the 952 tops in the outfits are draped: real flat patterns sewn and settled on Dave in
+headless Blender (48 templates in `data/garments/`), fitted to his body and layered in the page (`drapeTops`). The page
+runs Three.js 0.186.1. Still drawn by `make3Dcore`'s hand-built shapes: every pair of trousers and shorts (560 pieces,
+one in every outfit), every top worn tucked in (about 30 outfits as worn, and any outfit with the fitting room's
+Tucked toggle on), six other tops, the dressing gowns (5), and the shoes (557), hats, bags and other accessories. Dave
+stands in one stiff pose. Items 1 to 4 are the notes of 16 Oct (his jaw, Edit Dave, the shoes, a relaxed stance);
+the rest is in order of what it does for the look. Each says how to go about it and when it is done.
+
+### How to work (every item)
+
+- One item per pull request. Try it behind a switch first (`window.__<name>`, read with `QA_INIT`), compare with
+  `main` on the served copies (8770 and 8771, `tools/qa/serve.sh`), then make it the default and take the switch out.
+- Measure, don't eyeball alone: `tools/check_3d.js` on every affected outfit on all five bodies as worn, and done up
+  and tucked (`--wear zip=up` / `tuck=in`) on dave and loose; `tools/qa/through.js` for any layer under an open front
+  (the 3D check cannot see it there); `tools/qa/zoom.js` close-ups against `main` from the front, three-quarter and back;
+  `tools/qa/card.js` stills for anything that changes light, colour, shape or materials. Single outfits are noisy:
+  judge a change by totals over several outfits and bodies.
+- Then the gate set on dave, stored specs (`tools/specs.js` and `specs_diff.py --ci`), `tools/qa/smoke.js`, a section
+  in this file with what was tried and the **Checked** line, the guide's "What is left", `STATUS.md`, and republish the
+  artifact.
+
+### 1. A clear jawline, without the double-chin shadow
+
+What: under his jaw the face runs softly into the neck, and the key light (above and to his right) leaves a soft
+shadow band there, so in the three-quarter and side views it reads as a double chin. It looks the same with the studio
+environment off (`window.__noenv`), so it is the shape and the key light, not the room.
+
+How:
+- Separate shape from light: close-ups (`zoom.js` at the face, front, three-quarter and side) with shadows off and the
+  key light moved, on all five bodies.
+- Shape: a morph on the body mesh that tucks the skin under the chin up toward the jaw and sharpens the line of the
+  jawbone from the chin to below the ear (the angle under the chin made closer to a right angle), on by default for
+  his saved shape. Expose it in Edit Dave's Face tab as "Jawline" (softer to more defined) and "Under the chin"
+  (fuller to tucked in); the heavier body type keeps a little softness.
+- Light: if a band remains, soften the key light's shadow under the jaw (its `shadow.radius` and `bias`, or a little
+  fill from below, as light bounces off his shirt), checked on card stills so nothing else darkens.
+
+Done when: his jaw reads as a clear line from the front, three-quarter and side on every body type, card stills
+reviewed against `main`, and the smoke test clean. One pull request.
+
+### 2. Edit Dave: skin tone on a slider, more options, a tidier panel
+
+What: skin is seven fixed swatches; the panel has eight tabs, and some (Face, Hair, Moustache) are long lists.
+
+How:
+- Skin tone as two sliders: Tone (very light to very deep, a smooth ramp through real skin tones, about ten anchors
+  interpolated in a perceptual colour space so every step looks even) and Undertone (cool and pink, neutral, warm and
+  golden, olive). Keep a row of a few quick swatches above them. Store the result as `CHAR.skin` (a colour, as now) plus
+  the two slider values, so looks saved before still load the same, and the lips, nose, eyelids and the 2D figure, which
+  are all worked out from `CHAR.skin`, follow.
+- More options where they are asked for: the jaw (item 1), hair colour beyond brown (black, blond, red, and a grey
+  slider), and more eye colours.
+- A tidier panel: at most six tabs (Body, Face, Hair, Facial hair, Skin and eyes, Fit), each showing its few main
+  controls with the rest under a "More" fold, as Size and shape already does; one reset per tab; the camera zooming to
+  the part being changed (`CE_ZOOM`); on a phone, the tabs as one scrolling row with the controls in a sheet below the
+  model.
+
+Done when: every control is two taps away at most, no tab runs past one laptop screen with its folds closed, the phone
+layout is checked at 390 px wide, saved looks load unchanged, and Emma has looked at it. One or two pull requests (skin
+and new options; the panel layout).
+
+### 3. Shoes, and how the trousers meet them
+
+What: seen from the back, the trouser hem drops to the floor and covers the heel, so the shoe all but disappears (most
+straight and wide trousers over shoes and trainers); a thin ring shows round one trainer's heel at the ground (a pale
+pair under navy trousers); the shoes are rounded slipper-like shapes (one smooth dome over the foot), and boots are
+plain tubes.
+
+How:
+- The hem: shape `make3Dcore`'s trouser hem to the shoe it is over, higher at the back (resting on the heel counter,
+  about 2 to 3 cm above the floor) and breaking over the front of the shoe, from the shoe's heel height and length
+  (`lastK`); boots keep the hem over the shaft, shorts and cropped legs are unchanged. Then find and remove the ring.
+- The shoes: shoe templates made in Blender like the garments, one mesh per last (trainer, chunky trainer, runner,
+  derby or oxford, loafer, Chelsea, chukka and desert, work boot, hiking boot, slipper, sandal) with a toe box and vamp,
+  an opening at the ankle, a heel counter, a shaped sole, lacing on the front, and zones (upper, sole, laces, trims)
+  coloured from the photo reading as now; scaled to his foot.
+- A feet sheet to judge by: 12 or more outfits across the footwear kinds, front, side and back at the feet (`zoom.js`
+  with the camera at 0.25 m), against `main`.
+
+Done when: the shoe shows at the back under every trouser that does not reach the floor in real life, no ring or gap,
+the `sunk` count clean on all five bodies, and the feet sheet better than `main`. Two pull requests (the hem; the shoe
+templates), then a third once trousers are draped (item 6), when the hem settles on the shoe as cloth.
+
+### 4. A relaxed, natural stance
+
+What: he stands like a game character waiting for input: square to the camera, arms straight down, weight even, head
+level, perfectly still.
+
+How, in two steps:
+- Now, in the live views only (the fitting room, Edit Dave): a little life that keeps every garment where it is, as
+  the whole figure moves together. A slow breath and a slight sway of his weight (a degree or so, over 6 to 8 seconds),
+  stopped when someone turns the model and for anyone who has asked for reduced motion
+  (`prefers-reduced-motion`). Cards stay still.
+- Then the real fix, a relaxed default stance: his weight on one leg with the hip shifted, shoulders dropped, arms a
+  little bent with the hands soft near his thighs, the head turned slightly. It needs his body rigged (an armature and
+  skin weights in Blender, exported with `data/body.json`), every template draped again on the new pose (they are bound
+  to the pose they were built on), and the shapes `make3Dcore` still draws (trousers, shoes, accessories) moved with
+  it, so it comes after the trousers and shoes are templates (items 3 and 6). After that, two more poses to choose from.
+
+Done when (first step): the movement is subtle enough not to distract, stops on touch and for reduced motion, and costs
+no frame rate on a phone. (Second step): the gate set clean on all five bodies in the new stance and card stills
+reviewed.
+
+### 5. Tucked-in tops (a first try is under way)
+
+What: a shirt, polo or tee tucked in (worn with tailoring, a visible belt or a tie, or tailored trousers; `TUCK0`)
+keeps `make3Dcore`'s shape, which ends at the waistband, because a template hangs loose to its hem.
+
+How (the first try, behind `window.__tuckDrape`, works this way; tried on smart-casual, jeans-blazer, knit-polo-dinner
+and g-job-02):
+- Let the tucked tops drape (no tie yet). After the settle, keep each point of the body below the top of the
+  waistband 3 mm inside the trousers, read from `make3Dcore`'s legwear map (`OCC.L`, passed into `drapeTops`), as
+  `make3Dcore` tucks its own shirts (`F.tucked`). Then a short settle with those points held, so the cloth above
+  blouses over the waistband, and the same again after the layers over it settle.
+- Take the waistband's top, angle by angle, from the trousers' own mesh: the map reaches about 6 cm higher (1.04 m
+  against 0.98 m at the front), and cut there it left a strip of skin between the hem and the waistband.
+- More than 4 cm below the waistband's top, lay the cloth on his body and leave it undrawn: the map holds nothing at
+  the front below his crotch, and a long shirt's tails hung out over the trousers there.
+- The belt goes over a tucked top, not under it (`innerCols`); buttons and other details below the waistband are
+  left out.
+- Then ties (9 outfits): draw the tie on the draped shirt's placket (in `drapeDetails`, as the buttons are), under a
+  blazer's V when there is one, so a shirt with a tie can drape too.
+
+Done when: no skin between hem and waistband and nothing hanging out on any body, the gate set clean with
+`--wear tuck=in`, and close-ups as good as or better than `main`. Two pull requests: without ties, then ties.
+
+### 6. Draped trousers and shorts (the largest change left)
+
+What: every outfit's legwear is `make3Dcore`'s fitted legs (radial maps, painted folds, the crotch seam and cuts by
+`bottomCut`). They are clean but stiff, and they set the look of every card.
+
+How:
+- Templates in headless Blender, as for the tops (`tools/build_garments.py`): front and back leg panels per cut, a
+  waistband and fly, sewn and settled on Dave's base body with his legs as the page poses them. Cuts: straight
+  (chinos, jeans), slim, wide and barrel, tapered with cuffs (joggers), cargo (pockets drawn by `drapeDetails`), and
+  shorts by length.
+- In the page, settle the legwear first (before any top), against his body and the shoes (built first, so trousers
+  break over a shoe or a boot); turn-ups (`TURNM`) as a folded hem band.
+- Tops then tuck into the draped waistband: hold a tucked top inside the trousers' own surface turned in, in place of
+  the legwear map (item 5's code moves over).
+- Proof first: straight chinos in three outfits behind a switch; then one cut at a time.
+
+Done when: the `legs`, `form` and `under` counts stay clean on all five bodies with both `--wear` runs (the legs must
+part below his crotch, as Emma asked on 10 Oct), boots and turn-ups look right close up, and card stills are reviewed
+against `main`. About five pull requests, one per group of cuts.
+
+### 7. The tops still on `make3Dcore`, and known faults
+
+- **Shards beside his neck, open over open** (g-mod-11, -13): press the inner layer's stand and yoke under the
+  jacket's collar too (`drapePress`, now for its collar leaf only), and measure with `through.js` on five bodies.
+- **Insulated and borg overshirts** (Tog24's Adamson, Matalan's borg overshirt; 4 uses): tried twice on `chore` and
+  held back (the numbers are in the last two sections). They need a padded overshirt of their own: `chore`'s cut
+  with more room and a padded layer's gap under a jacket over it (14 mm, as `puffer_hood` takes), and a done-up gilet
+  over one graded up to clear it.
+- **Carhartt's Super Dux** (jb8-superdux): the tee shows between its hem and his tool belt. Give `data/fixes.json` a
+  `length` correction read when the template is graded, or draw the tool belt over the jacket's hem.
+- **A borg zip-through over a half-zip** (g-casual-01): press the half-zip's collar inside the borg's stand collar, as a
+  shirt's leaf is pressed under a jacket's collar.
+- **A long car coat** (the ASOS tobacco overcoat, cold-commute): a balmacaan, `carcoat`'s collar and fly on
+  `overcoat`'s length. Raglan sleeves in the builder would also let raglan and baseball tees drape.
+- **Dressing gowns** (5 outfits): a wrap template with its belt; low.
+- **Known faults on `main`**, each a small look: the link chain drawn as a straight bar across his neck
+  (rv-black-smart); his chest through the shirt under the Harrington (n4-stone-navy); dark spikes (g-quiet-30); the
+  scarf in pub-lunch; jb9-hirst-apron's front poke (41 against a limit of 30, not in the gate set).
+
+### 8. The 3D check sees through open fronts
+
+Make `through.js`'s count part of `check_3d.js` (a `through` count with a limit, for outfits with an open layer), so
+CI catches a layer showing through an open jacket, which it now passes. Add g-mod-11 and g-mod-13 to the gate set.
+
+### 9. Fabrics as materials
+
+The fabric library (`STATUS.md` queue 8; the drape plan's step 5): cord, waffle, fleece, quilting and denim as
+materials (normal maps from CC0 sets) chosen by the photo reading's fabric, not only colours; and turn down the
+painted folds (`FOLD_GLSL`) where the draped cloth now folds for real. Done when stored specs and the `colour` count do
+not move and card stills are reviewed.
+
+### 10. Sizing from size charts
+
+Grade each draped top from `data/sizecharts.json` (chest, length, sleeve) for his size, not from the template's fixed
+measures, and show the numbers in the fitting room (the drape plan's step 3). It needs Emma's call on Dave's
+measurements first (`STATUS.md`, "Needs Emma").
+
+### 11. Speed on phones
+
+Build the body and hair once and swap only the clothes; a level of detail for his curls; cache each outfit's settled
+garments per body (`bodyKey()`) for the card stills. Measure on a phone-sized profile before and after.
+
+### Needed from Emma
+
+- Dave's measurements, or a yes to keep the model's shape (sizing, item 10).
+- A look at the new Edit Dave panel (item 2) before it ships.
+- Republish her own copy of the artifact (FtdHKg) from her account.
+

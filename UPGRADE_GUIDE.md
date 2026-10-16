@@ -37,6 +37,10 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
 
 ## What is left, in a sensible order
 
+The plan for the model from here, in order, with how to tackle each item and when it is done, is `UPGRADE_PLAN.md`
+section 5 (16 Oct 2026): his jawline, Edit Dave's skin tone and panel, the shoes and trouser hems, a relaxed stance,
+tucked-in tops, draped trousers, then the items below and the rest. The table lists the tops still on `make3Dcore`.
+
 | Item | Pieces (outfits) | What it needs |
 | --- | --- | --- |
 | Two jackets that fail the check draped | 2 (2) | Carhartt's Super Dux (jb8-superdux): on `jacket_hood` and on `puffer_hood` the tee under it shows between its hem and the top of his tool belt; it would need cutting longer, or the belt worn over its hem. The borg zip-through over a half-zip (g-casual-01): on `jacket` and on `puffer` the half-zip's collar comes through its collar at the back of his neck. |
