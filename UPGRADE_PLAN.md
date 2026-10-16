@@ -3689,7 +3689,7 @@ view and dialog on a desktop and a phone screen (Back, Forward, Escape, each dia
 What already worked and still does: the menu stays on screen when scrolled, Back and Forward walk the views, a shared
 `#fit/<id>` link opens the outfit large, and Escape closes the large view.
 
-**The check**: `tools/qa/nav.js` walks all of it on a desktop and a phone screen (70 checks: each way in, each way out,
+**The check**: `tools/qa/nav.js` walks all of it on a desktop and a phone screen (74 checks: each way in, each way out,
 a visible way out in every dialog, Compare's header in view, the question before dropping changes, no page errors)
 and exits 1 on any failure. It runs in the pull-request check as its own job ("Ways back"). On `main` before this
 change it fails 16 of the desktop checks and stops. Run it after any change to the views, the menu, a dialog or
