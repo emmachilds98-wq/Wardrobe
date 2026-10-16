@@ -92,7 +92,8 @@ should match. Emma asked for the upgrade to continue until that is done.
 | 3D scene | `make3D` / `make3Dcore`. Tops: `fitTop`, `wrapGeo` / `wrap`. Trousers: `trouserGeo` (cut as a pair, one piece per half), `legSecs` (each leg's hanging shape, from `bottomCut`: the cut as `data/cuts.json` reads it from the shop photo, else by the fit label and name, `BOTCUT`), `thighGap` and `thighIn` (how near the middle his thighs come). Collars: `fitCollar`. Layers: occupancy maps `occPushPt` / `occAddMesh` |
 | Cloth textures | `lookTex` (3D), `lookFill` (2D) |
 | Folds, light and contact shade | `FOLD_GLSL` (`lo` trousers, `up` tops and sleeves, `ft` shoes, `sc` scarves) through `foldMat`, settings in `FU`, `UT` and at each call; `studioEnv` (the room's light); `layerShade`, `hemShade` and the skin shade after the neck skin is restored. `window.__nofold`, `__noenv`, `__nocs` turn each off |
-| Accessories, shoes, boots, ties, bags | The long `else if(p.shape===...)` chain near the end of `make3Dcore` |
+| Shoes and boots | The shoe templates in `make3Dcore` (`SHT`, one last per kind; `shoeLast`, `shoeTpl`, `shoeSole`, `shoeDetail`; `shoeFeet` hides his foot inside the shoe and draws his socks); `window.__shoeTpl=0` draws the old pods. Sandals, sliders and flip-flops are still drawn on his bare foot just before them |
+| Accessories, ties, bags | The long `else if(p.shape===...)` chain near the end of `make3Dcore` |
 | 2D drawing | `figure()`, `face2D`, `applyChar2D` |
 | Edit Dave and fitting room | `CHAR`, `openCE`, `UNDERWEAR`; Edit Dave's sections `CES`, `ceForm`, `ceSlider`, `ceFrame` (measuring lines, saved/now wipe) |
 | The fitting room (large view of an outfit) | `openZoom`, `FR`, `frShell`, `frFill`, `frFrame` (pins, ruler), `frClear` (clear view: the model alone), `frWearRows` (`wearRows` for any wear); the camera dock on every live model: `camDock`, `dockSync`, `dockWear` (Live3D's `opt.dock`); how it is worn: `ZIPM`, `TUCKM`, `TURNM`, `LIGHTM`, `tuckOn`, `turnOn`; `Live3D` (`wear`, `turnTo`, `frameTo`, `project`, `still`) |
@@ -195,8 +196,8 @@ and tie are made, and the 3D check treats its front as open).
    - Done (PR #18): beanies and bucket hats are made on the skull map as caps are (`hatShell`, `HATBAND`).
      **Hats still to do:** a tech cap with a neck flap (Saltrock Warp) draws as a plain cap.
    - **Footwear still to do:**
-     - Every shoe is one generic last: a hiking shoe, a skate shoe and a runner look alike, and a
-       Nike's tick is a bar. Shoe lasts by type are Phase 6.
+     - Done (PR #87): a last per kind of shoe (`SHT`). Still to do: a Nike's tick and other makers' marks (a trainer
+       gets three stripes or a plain side panel).
      - Shoes and boots are not read for soles (their photos' floors and reflections read as
        soles), so a crepe-soled desert boot is drawn with a dark sole unless its name says crepe.
      - Tan and cognac leather reads a little dark and red (shop lighting correction).

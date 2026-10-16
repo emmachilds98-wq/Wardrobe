@@ -3839,6 +3839,72 @@ on it; boots, cuffed joggers and shorts unchanged but for the trainer's collar);
 the 8 outfits changed most on dave locally (45, none flagged: skin, sunk, poke and holes all 0); the smoke test (the same
 as `main`); the gate set on all five bodies and both ways of wearing in the pull-request check.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Shoes made on a last: an opening round his ankle, a heel and a sole for each kind (16 Oct 2026)
+
+Section 5, item 3, its second pull request (the hems were the first, PR #85). Emma: the shoes were rounded slipper-like
+shapes, one smooth dome over the foot, and boots plain tubes.
+
+*What the feet sheet showed on `main`* (12 kinds on their own with shorts and 14 outfits, front, three-quarter, side and
+back at the feet): every shoe one long pod on a slab. A trainer's toe ran to a point, a dress shoe, a loafer and a
+slipper were the same dome in other colours, nothing opened round his ankle (his leg went into the top of the pod),
+laces were three dashes on top, and a boot was the pod with a tube stood on it.
+
+*Made here, not in Blender.* The plan said templates made in Blender like the garments. A shoe is rigid, so there is no
+cloth to settle, and made in the page it fits his foot as Edit Dave gives it: the back of his heel, the tip of his toes
+and the middle of his foot across its widest are measured on the body (`shoeFoot`; the middle is 6 mm in from
+`BL.foot.x`). One last per kind (`SHT` in `make3Dcore`): trainer, runner, chunky trainer, skate shoe, dress shoe
+(derby, Oxford, brogue), work shoe, loafer, deck shoe, slipper, Chelsea, desert or chukka boot, work boot, hiking boot
+and lace-up boot, with variants for a high top (a Chuck 70, a hi Vans) and for a chunky or platform sole (`shoeVar`).
+Each gives the outline at the sole (a round heel, his foot's width, a toe rounder or more pointed with its tip toward
+the big toe), the sole's height along the foot (the heel, down through the waist, the toe's spring), the spine over his
+instep and the toe box's height, and the topline. The shoes follow his feet, which point straight ahead (they used to
+turn out by 6 degrees, which his foot inside them would not).
+
+*The upper* (`shoeLast`, `shoeTpl`) is made in rows across the foot, each a curve from the sole up one side to the
+spine and down the other; a boot's widens from his foot into a shaft round his leg (`B3.leg`), leaning in above the
+heel round his Achilles. Where the opening is, each side stops where the topline cuts it (high at the back of the heel,
+down under his ankle bones, up to the lacing's top corner or round a loafer's throat; a boot at the top of its shaft) or
+where the lacing's gap begins, so the opening's edge is the rows' own ends rather than points clamped to a line (the
+flat lid with a jagged edge, tried and held back on 16 Oct). Inside is a lining, joined to the upper by a rolled edge
+(fuller on a trainer's and a work boot's padded collar), and a tongue lies under the lacing, up a little past it.
+
+*The sole*, by kind (`shoeSole`): a trainer's cupsole in two tones, up over the upper's edge; a runner's foam, flared
+at the heel, on a dark outsole; a skate shoe's vulcanised sidewall with its foxing stripe; a dress shoe's thin sole
+on a stacked heel with its rubber top piece; a boot's thick sole with a tread band and lugs round its edge; a desert
+boot's pale crepe; a deck shoe's flat sole; a slipper's soft one. Its colour is as before: a gum or white sole as named,
+the photo's reading only for trainers, crepe and deck shoes.
+
+*Details* (`shoeDetail`): laces criss-crossed from the toe up, arching over the tongue and tied in a bow; holes for a
+trainer's and a shoe's eyelets, metal rings and speed hooks on a boot; a boot's pull loop; a Chelsea's elastic gussets
+and front tab; a trainer's heel counter (in the listing's second colour) and its rounded heel tab; three stripes on an
+Adidas, else a side panel in the second colour or the photo's accent; a Chuck's rubber toe cap; a Vans's suede toe and
+side stripe; a safety boot's toe cap and a hiking boot's rubber rand; a loafer's apron stitching and its penny strap or
+two tassels; a deck shoe's raised moccasin seam and the rawhide lace round its collar, tied over the instep; a brogue's
+wingtip punched with holes; an Oxford's toe cap stitched across.
+
+*His foot* (`shoeFeet`) is no longer hidden whole below 10 cm (20 cm in a boot): only what is inside a shoe more than
+6 mm below its opening goes, so his ankle and instep show in the opening. Where he wears socks (crew socks with shorts,
+as before; with trousers, dark socks in the trousers' own shade, except in slippers) a sock is drawn on what shows: a
+copy of his skin 1.8 mm out from it, cut level at the sock's top, ribbed, with its cuff. With shorts, loafers, deck
+shoes and slippers stay sockless, as before. The trouser hem rests on the new heel (`cut.heel` takes its back, 1.6 cm
+further forward than the pod's, and its corners).
+
+*What went wrong on the way*: a sole whose last row fell to the filter that drops rows closer than 0.5 mm stood open at
+the toe (the ends are kept now); the rolled edge round the opening was wound inside out, so from outside a boot's
+padded collar floated off its top with the sock showing under it; swelling the upper itself toward a padded collar
+crumpled the edge where the rows' ends turn from the topline to the lacing (the roll is the edge's own now); a gap
+`+0.004` left the back of every boot's shaft open in a slit.
+
+**Checked**: the feet sheet against `main` (14 outfits, front, three-quarter, side and back at the feet: every kind now
+reads as itself; from the back the heel and sole show under every straight, loose and wide leg; no ring or gap at the
+hem); 28 kinds on their own close up (16 more from the shops: a runner, a Chuck 70, two Vans, a Samba, an Air Force 1,
+two New Balance, a trail runner, Chelsea boots plain and chunky, a chunky lace-up boot, a hiking boot, brogues, an
+Oxford, penny and tassel loafers, a Dr Martens 1461, a deck shoe); the 3D check on 71 outfits across the kinds (four
+with trousers and two with shorts for each) on dave and slim, 36 of them on athletic, heavier and loose and done up
+(`--wear zip=up,tuck=out`) on dave and loose, and the gate set on dave: none flagged (sunk, skin, holes and poke all 0),
+as on `main`; the stored specs (no piece read differently), the smoke test (the same as `main`) and the navigation
+check; the time to build an outfit's model, about 4% more (profiled on five outfits).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4120,6 +4186,10 @@ templates), then a third once trousers are draped (item 6), when the hem settles
 
 **First pull request done 16 Oct 2026** (PR #85, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: the hem rests on the heel, slim legs on a trainer's
 heel, a trainer's collar, the welt inside the heel). Next: the shoe templates.
+
+**Second pull request done 16 Oct 2026** (PR #87, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: a last per kind of shoe, made on his own foot, with
+an opening round his ankle, its lining and rolled edge, a tongue and laces, a heel counter and a sole for its kind; his
+ankle and instep show in the opening, in a sock where he wears one). The third comes with draped trousers (item 6).
 
 *Tried and held back (16 Oct)*: trimming a dress shoe's and a loafer's upper to a top line, as the trainer's is trimmed
 to its collar (`capT`), the line about 6.5 cm up at the heel, 5.5 under the ankle bones and rising to the throat. Clamping
