@@ -5,13 +5,14 @@ CC0 by the MakeHuman project (https://github.com/makehumancommunity/makehuman, L
 No MakeHuman program code is used: this script reads the asset files itself.
 
 What it does:
-  1. Shapes a young adult man: slim, tall, average muscle (MakeHuman "macro" targets).
+  1. Shapes a young adult man: slim, tall, average muscle (MakeHuman "macro" targets), with a clear jawline (no
+     double chin; the jaw targets move the face below the eyes only, LOWER_FACE).
   2. Poses him relaxed with the skeleton and skin weights: arms down by his sides, elbows soft, feet
      under the hips, fingers loosely curled.
   3. Lines him up with the frame the clothes are drawn in (1 unit = 1 m, feet on y=0, facing +z),
      fitting his heights (ankle, knee, crotch, waist, shoulder, chin, crown) to that frame.
   4. Bakes the Edit Dave options as morph targets in the posed space: build, shoulders, middle,
-     face width and nose size.
+     face width and nose size, the jawline and under the chin.
   5. Measures cross-sections of the torso, arms, legs and neck for the clothes (base and per morph),
      labels every face by body region (so clothes can hide what they cover), and records head
      landmarks (eyes, nose, mouth, ears, skull) and a face depth map for placing the moustache,
@@ -74,7 +75,16 @@ TARGETS = {
     "cheek_l": "cheek/l-cheek-volume-incr.target", "cheek_r": "cheek/r-cheek-volume-incr.target",
     "fold_l": "eyes/l-eye-eyefold-down.target", "fold_r": "eyes/r-eye-eyefold-down.target",
     "lid_l": "eyes/l-eye-height2-decr.target", "lid_r": "eyes/r-eye-height2-decr.target",
+    # a clear jawline (16 Oct 2026): no fold of fat under the chin, a little less fat in the face, a squarer angle of
+    # the jaw below the ear; and Edit Dave's "Jawline" and "Under the chin"
+    "neck_double_decr": "neck/neck-double-decr.target", "neck_double_incr": "neck/neck-double-incr.target",
+    "head_fat_decr": "head/head-fat-decr.target", "head_fat_incr": "head/head-fat-incr.target",
+    "head_square": "head/head-square.target",
 }
+# targets used for the jaw alone: MakeHuman's head-square also squares the top of the skull, which would move the crown
+# (and with it the scale of the whole body, which is fitted to it) and the skull the hair is laid on, so these move only
+# the face below the eyes, fading out over the cheekbones
+LOWER_FACE = {"neck_double_decr", "neck_double_incr", "head_fat_decr", "head_fat_incr", "head_square"}
 FILES = ["3dobjs/base.obj", "rigs/default.mhskel", "rigs/default_weights.mhw"] + ["targets/" + t for t in TARGETS.values()]
 
 
@@ -107,6 +117,9 @@ class Mesh:
         self.root = root
         self.V0, self.F, self.G = load_obj(os.path.join(root, "3dobjs/base.obj"))
         self.cache = {}
+        eye = self.V0[np.unique([i for f, g in zip(self.F, self.G) if g == "helper-l-eye" for i in f])][:, 1].mean()
+        t = np.clip((self.V0[:, 1] - (eye - 0.35)) / 0.45, 0, 1)
+        self.lower_face = (1 - t * t * (3 - 2 * t))[:, None]       # 1 up to the cheekbones, 0 from just above the eyes
 
     def target(self, key):
         if key not in self.cache:
@@ -115,6 +128,8 @@ class Mesh:
             if lines:
                 a = np.array(lines, float)
                 d[a[:, 0].astype(int)] = a[:, 1:4]
+            if key in LOWER_FACE:
+                d *= self.lower_face
             self.cache[key] = d
         return self.cache[key]
 
@@ -359,7 +374,10 @@ def b64(a):
 
 BASE_MIX = {"male": 1, "male_minw": 0.25, "cauc": 1, "tall": 0.45, "ideal": 0.5,
             "vshape": 0.2, "bust_incr": 0.12, "waist_c_incr": 0.05, "hips_decr": 0.35,
-            "smile": 0.55, "laugh": 0.3, "cheek_l": 0.1, "cheek_r": 0.1, "fold_l": 0.3, "fold_r": 0.3, "lid_l": 0.2, "lid_r": 0.2}
+            "smile": 0.55, "laugh": 0.3, "cheek_l": 0.1, "cheek_r": 0.1, "fold_l": 0.3, "fold_r": 0.3, "lid_l": 0.2, "lid_r": 0.2,
+            # his jaw as a clear line from the chin to below the ear, with no double chin under it (the face's soft run
+            # into the neck read as one in the three-quarter and side views)
+            "neck_double_decr": 1, "head_fat_decr": 0.65, "head_square": 0.55, "chinb_incr": 0.45}
 # Edit Dave's sliders: each runs from -1 to 1, using the "_n" morph below zero and the "_p" morph above it.
 SLIDERS = {
     "weight": ({"male_minw": 0.75}, {"male_maxw": 0.8}),
@@ -387,6 +405,10 @@ SLIDERS = {
     "bicep": ({"bic_l_decr": 1.5, "bic_r_decr": 1.5}, {"bic_l_incr": 1.2, "bic_r_incr": 1.2}),
     "forearm": ({"fa_l_mus_decr": 0.75, "fa_r_mus_decr": 0.75, "fa_l_fat_decr": 0.75, "fa_r_fat_decr": 0.75},
                 {"fa_l_mus_incr": 0.42, "fa_r_mus_incr": 0.42, "fa_l_fat_incr": 0.25, "fa_r_fat_incr": 0.25}),
+    # (added 16 Oct 2026, last for the same reason) the jaw's line, softer back toward MakeHuman's man or more defined,
+    # and under the chin, a fold of fat (fuller) or tucked in further
+    "jawLine": ({"head_square": -0.55, "chinb_incr": -0.45, "head_fat_incr": 0.6}, {"head_square": 0.35, "chinb_incr": 0.3, "head_fat_decr": 0.35}),
+    "underChin": ({"neck_double_incr": 1}, {"neck_double_decr": 0.7}),
 }
 MORPHS = {}
 for _k, (_n, _p) in SLIDERS.items():

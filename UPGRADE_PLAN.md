@@ -3699,6 +3699,39 @@ change it fails 16 of the desktop checks and stops. Run it after any change to t
 question in Edit Dave (desktop and phone), Compare's header on a phone and the title's focus ring. The smoke test
 (2D and 3D) has no page errors. Nothing in the 3D builder changed.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. A clear jawline, without the double chin (16 Oct 2026)
+
+Section 5, item 1. Emma: "some shadowing around his lower face makes it look slightly like there's a double chin. I
+want his jaw line to be distinct."
+
+*Shape or light?* Close-ups of his face on `main` (`zoom.js`, front, three-quarter, side and from below) showed it is
+the shape: from the side his face ran in one soft slope from the chin into a thick-looking neck, with no corner under
+the chin and no line along the jaw, so the key light's shadow lay on a soft fold and read as a double chin. The light is
+not at fault; on a defined jaw the same light draws the jaw's line.
+
+*The shape* (`tools/build_body.py`, his base shape): MakeHuman's `neck/neck-double-decr` at 1 (its fold of fat under the
+chin taken out), `head/head-fat-decr` 0.65 (a little less fat in the face), `head/head-square` 0.55 and `chin-bones`
+0.45 (a squarer angle of the jaw below the ear). Tried in steps: the fold alone gave the corner under the chin but left a
+jowl in the three-quarter view; with less fat in the face and the squarer angle the jaw reads as a line from the chin to
+below the ear. Less cheek volume as well made him gaunt, and his cheeks are his own from the photos, so it was left out.
+
+*Nothing else moves.* `head-square` also squares the top of the skull, which lowered the crown by 2.6 mm; the body is
+scaled to put the crown at 1.79 m, so the first try shrank the whole body a little and moved the shoulder and arm
+sections (the shoulder landmark by 5 mm). The jaw targets (`LOWER_FACE`) now move only the face below the eyes, fading
+out over the cheekbones, so the skull, the hair, the face landmarks and every section below the face are as they were;
+the neck's top slice (1.61 m) moves under a millimetre. The body still builds byte for byte from the MakeHuman assets.
+
+*Edit Dave*, Face tab: "Jawline" (softer, back toward MakeHuman's man, to more defined) and "Under the chin" (fuller, a
+fold of fat, to tucked in), baked as morphs after the others so their data is unchanged. Body types keep their
+softness through the weight slider (MakeHuman's heavier man has his own fuller neck and face).
+
+**Checked**: close-ups against `main` in underwear and in a tee, a roll neck under a blazer, a mock neck and a shirt with
+a tie (collars sit as before); the new sliders at both ends; Edit Dave's Face view; the gate set on dave locally (38,
+none flagged) and on all five bodies, tucked and done up, in the pull-request check (all clean); 30 outfits with
+hoods, roll necks, funnel necks and scarves against `main` (the same 2 flagged on both, for a tool belt's front poke,
+90 and 96 on `main`, 97 and 104 now); card stills of five outfits against `main` (the same brightness, a mean
+difference of 0.2 levels); the smoke test.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -3928,6 +3961,8 @@ How:
 
 Done when: his jaw reads as a clear line from the front, three-quarter and side on every body type, card stills
 reviewed against `main`, and the smoke test clean. One pull request.
+
+**Done 16 Oct 2026** (PR #82, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz: the shape, not the light).
 
 ### 2. Edit Dave: skin tone on a slider, more options, a tidier panel
 
