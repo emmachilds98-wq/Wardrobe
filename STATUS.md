@@ -604,6 +604,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 16 Oct 2026 | #90 | Poses to choose from in the live views (Standing, At ease, Walking, Arms out): his skeleton in `data/body.json` (`rig`), his clothes bending with him (`poseRig`), a Pose row in the fitting room and a Pose button in Edit Dave's and the builder's docks | B8UXnh v24 |
 | 16 Oct 2026 | #89 | He stands still again: the breath and sway of PR #88 taken out (they read as the picture rocking, and made Emma feel travel sick) | B8UXnh v23 |
 | 16 Oct 2026 | #88 | A breath and a sway in the live views (`life` in `Live3D`), the skin's pores placed on the skin itself (`vSkP`) | B8UXnh v22 |
 | 16 Oct 2026 | #87 | Shoes made on a last: one per kind (`SHT`), fitted to his foot (`shoeFoot`), with an opening round his ankle, its lining and rolled edge, a tongue and laces, a heel counter and a sole for its kind (`shoeTpl`, `shoeSole`, `shoeDetail`); his ankle and instep show in the opening, in a sock where he wears one (`shoeFeet`); `window.__shoeTpl=0` draws the old pods | B8UXnh v21 (FtdHKg needs Emma's account) |
