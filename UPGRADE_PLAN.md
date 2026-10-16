@@ -3753,7 +3753,9 @@ and a Grey slider (none, a little grey, salt and pepper, mostly grey, silver: to
 at the end, gently at first, `greyed`). His browns with no grey give exactly the colours as before (`hairCol`,
 `hairTipCol`). Brows set to match his hair follow its colour, shade and grey (`browColor`), as does the hairline
 drawn on his scalp. The 2D figure's curls take a lighter line of a hair colour other than his browns. The moustache
-keeps its own colour choice.
+and beard keep their own colour (his is a little redder than his hair, and they often differ), with a Match hair
+choice first in their colours (Emma's ask, 16 Oct): set to it, `CHAR.tacheCol` is empty and they take his hair's
+colour, shade and grey (`tacheColor`); a swatch or a picked colour gives them their own colour again.
 
 *Deeper skin*: the warmth of his cheeks, nose and ears and the tint of his lips were fixed colours chosen from his
 photos (`#d98374`, `#b86a5e`), which gave a deep skin pink lips and red cheeks. They are now his own skin's: the same
@@ -3768,7 +3770,11 @@ middle (`ceRng`), so a track is always the same run of colours; the ◆ marks th
 **Checked**: saved looks load unchanged (the default skin, hair and ends' colours are the same hex values as on `main`); the
 sliders at both ends on a desktop and a 390 px phone screen; a swatch and a picked colour move the sliders, and the
 sliders back to where they were saved give back the saved colour; undo, the sliders' resets and Back to his defaults;
-one change counted per colour; the gate set on dave; the navigation check; the smoke test.
+one change counted per colour; Match hair on the moustache (it follows his hair from brown to blond, a swatch gives it
+its own again); close-ups of red with some grey, blond, black on a very deep skin, silver and a deep skin; the 2D figure
+with a deep skin and red hair; card stills of three outfits against `main` (a mean difference of 0.18 levels, the
+same as `main` against itself: the face's noise); the smoke test (the same cards and renders as `main`, no errors);
+the navigation check and the gate set on all five bodies in the pull-request check.
 
 ## 3. Next steps
 
