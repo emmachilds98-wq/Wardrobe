@@ -5,6 +5,7 @@
 # holes, an inner layer poking through, stray parts or colour drift. The pictures of anything flagged are kept as
 # the run's "qa-..." artifacts. It also reads every outfit piece as the page does (tools/specs.js) and fails when
 # that differs from data/specs.json, so a change to how pieces are read is committed, and reviewed, with the change.
+# And it walks the views and dialogs on a desktop and a phone screen (tools/qa/nav.js): each has a way back out.
 # How to read and fix a failure: CONTRIBUTING.md, "When the 3D check fails".
 name: 3D check
 
@@ -68,6 +69,28 @@ jobs:
         run: node tools/specs.js --site "$RUNNER_TEMP/site" --out "$RUNNER_TEMP/specs.json"
       - name: data/specs.json matches
         run: python3 tools/qa/specs_diff.py data/specs.json "$RUNNER_TEMP/specs.json" --ci
+
+  # every view and dialog has a way back out (Back, Escape, its own button and the title), on a desktop and a phone screen
+  nav:
+    name: Ways back (views and dialogs)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Playwright and Chromium
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Build
+        run: python3 tools/build_site.py --out "$RUNNER_TEMP/site"
+      - name: Back, Escape and close everywhere
+        run: node tools/qa/nav.js --site "$RUNNER_TEMP/site"
 
   render:
     name: 3D check, ${{ matrix.body }} (part ${{ matrix.part }} of 3)

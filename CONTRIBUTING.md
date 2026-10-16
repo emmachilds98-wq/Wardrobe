@@ -400,6 +400,12 @@ runs the build checks and the 3D check automatically, but run them yourself firs
      (from `dump.js`), to judge a reader change on every item of a kind.
    - `node tools/qa/ray.js <outfit> "[[x,y],...]"`: which layers sit at a point, front to back.
    - `node tools/qa/smoke.js`: the Outfits view in 2D and 3D, with any page errors.
+   - `node tools/qa/nav.js --site docs` (about 10 minutes; or `QA_PORT=8770` for a served copy): after any change to the
+     views, the menu, a dialog or the router, on a desktop and a phone screen. Every view and dialog must have a way
+     back out: Back and Forward through the views, the title to the start, the large view (the fitting room) closed
+     with Escape, Back and its own button, a shared `#fit/<id>` link, Edit Dave closed with Back (the large view
+     under it stays) and asking before it drops changes not saved, Compare closed with Back, Escape and its button.
+     The pull-request check runs it.
 4. **Run the 3D check** on the outfits you touched:
    `node tools/check_3d.js --site docs --ids a,b,c --out qa --debug` (or `--ids @file` with one id per line).
    For a change to the 3D builder or the photo reader, run it on every outfit (see below).
