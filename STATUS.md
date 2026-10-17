@@ -25,11 +25,18 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**17 Oct: draped straight trousers and jeans by default** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #97). Straight and regular
+trousers and jeans now hang as real cloth in every view and card (136 outfits, 55 of them over boots): their own folds,
+the hem resting on the shoe's instep and falling behind the heel (over boots, on the boot's front, its laces showing),
+the legs parting below the crotch, with their pockets, belt loops, fly and stitching, a belt on their waistband and room
+inside for a tucked-in shirt. Joggers, cargos, the other cuts and shorts look as before.
+**Next:** the other cuts, one group at a time.
+
 **17 Oct: a shirt's collar inside a done-up gilet or half-zip** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #96). With a crew-neck
 jumper between them, a shirt's collar came through a gilet's or half-zip's collar in shards beside his neck, worse on
 the looser fits (g-quiet-18, g-quiet-26, errands, g-outdoor-01); it now stays inside the jumper too, as under a collar
 zipped over it. Over the 9 outfits it changes, on the five bodies, flagged by the 3D check 15 times before, 3 after.
-**Next:** draped straight trousers and jeans by default.
+Merged (PR #96).
 
 **17 Oct: draped trousers, step 3: jeans** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #95, still behind `window.__legDrape`).
 Straight and regular jeans are draped too, with a jean's own details: gold topstitching, scooped front pockets with
@@ -641,6 +648,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 17 Oct 2026 | #96 | A shirt's collar under a done-up stand collar (a gilet, a half-zip, a roll neck, a jacket zipped up) with a jumper between stays inside the jumper too (`leafIn`, `STANDC`): no more shards through the outer collar beside his neck. Over the 9 outfits it changes on five bodies, flagged 15 to 3. | B8UXnh v29 |
 | 17 Oct 2026 | #95 | Draped trousers, step 3 (behind `window.__legDrape`): straight and regular jeans draped too, with a jean's own details (gold topstitching, scooped pockets and rivets, coin pocket, yoke, patch pockets with the arcuate, leather label, metal button). 81 outfits. Off by default. | B8UXnh v28 |
 | 17 Oct 2026 | #94 | Draped trousers, step 2 (behind `window.__legDrape`): the details `make3Dcore` draws on trousers placed on the draped pair (`drapeLoDetails`), belts moved onto its waistband, room inside it for a tucked-in top; the legs eased apart below the crotch. 55 outfits. Off by default. | B8UXnh v27 |
 | 17 Oct 2026 | #93 | Draped trousers, the proof: a chinos template (`tools/build_garments.py` cuts trousers, `data/garments/chinos.json`) draped behind `window.__legDrape` for straight pairs (`drapeLo`: held off his shoes the shortest way out, the legs kept apart below his crotch). Off by default: the page is unchanged. | B8UXnh v26 |

@@ -4224,6 +4224,50 @@ to 0; on loose 254 to 162, flagged 4 to 3. Close-ups of g-quiet-18 (dave and loo
 **What is not done**: on loose, g-quiet-18, g-quiet-26 and g-outdoor-01 still flag (front poke 31 to 36): the gilet's
 own collar folds down over the shirt's stand.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped straight trousers and jeans by default, over boots too (17 Oct 2026)
+
+Section 5, item 6, its fourth step (PR #97): the draped straight pair of steps 1 to 3 is now the page's own for
+straight and regular trousers and jeans (81 outfits as worn, and 55 more over boots: 136), where before it was behind
+`window.__legDrape`. `QA_INIT='window.__legDrape=0'` draws `make3Dcore`'s, for a before and after. Joggers, cargos,
+cuffed legs, the other cuts and shorts keep `make3Dcore`'s.
+
+*What else changed* (`drapeLo`, `drapeLoDetails`):
+- **30 settle steps, not 60.** The trousers settle in about 0.56 s of the 0.64 s they add to each outfit (measured
+  here, rendering in software); they come from the template nearly at rest, and over ten outfits 30 steps checked the
+  same as 60 (poke 37 against 44). Each outfit's 3D build now takes about a third longer than with `make3Dcore`'s
+  trousers (1.5 to 2.0 s on average here over six outfits; item 11 is the speed on phones).
+- **The hem rests on the highest of the shoe within a centimetre.** On its own 5 mm square's height, a heel tab or the
+  collar's edge, narrower than the cloth's points are apart (about 1.4 cm), came up through the back of the hem in
+  specks; out beside the shoe the cloth now stands 5 mm past it, not 3.
+- **Over boots** (`chinos_boot`, built by `tools/build_garments.py` with `hem_y=11`): the same chino cut to end 11 cm off
+  the floor, so its hem rests on the boot's front and the toe, the laces and the start of the shaft show, as
+  `make3Dcore`'s trousers stop on a boot (9 to 12 cm up). Cut 3.5 cm off the floor, the leg covered the whole shaft and
+  bunched at the front. And his shoes are a solid by height: at each centimetre up, a square is inside a shoe only where
+  the shoe reaches that high over it, so beside a boot's shaft the cloth stays round the shaft, not out past the whole
+  boot (with one outline for all heights, cloth beside a trainer's collar was also pushed out past its sole).
+- **A pocket on each thigh of a work or utility pair**, as `make3Dcore` puts on them (the DC worker chinos in
+  m5-skate-day, the Dickies work chinos in wk-party, g-mod-16): a patch 15 cm deep across the side seam, its top 17 cm
+  below his crotch, filled out a little in the middle, stitched round its edges, with a flap.
+
+**Checked**: `tools/check_3d.js` on the 136 outfits with the trousers draped (the default now): the 81 not over boots on
+the five bodies, the 55 over boots on the five bodies, and all 136 done up (`--wear zip=up,tuck=out`) and tucked in
+(`--wear tuck=in`) on dave and loose: 1,225 outfit checks, `legs`, `form` and `under` 0 throughout, `skin` 50 in all
+(none flagged). Flagged: the 81 only g-quiet-18 (front poke 31, 35 and 33 on dave, slim and loose; 8, 27 and 31 with
+`window.__legDrape=0`); over boots g-outdoor-14, g-quiet-22, wk-smart (heavier) and errands (loose), 9 times on the five
+bodies against 8 with `make3Dcore`'s trousers, each of the four flagged that way too on some body (g-outdoor-14 31 to
+119, g-quiet-22 33 to 62); done up g-quiet-18 and g-outdoor-14 on dave, errands and g-outdoor-14 on loose (3 with
+`make3Dcore`'s); tucked in g-casual-27 on dave and loose and g-mod-03 on loose (3 with `make3Dcore`'s). All are the
+fragile layers at his neck (a shirt's collar inside a half-zip's or a gilet's stand collar) or a knitted vest over a
+tucked shirt (g-casual-27: the shirt's placket shows through the vest), which move by tens of pixels either way with
+any change to the cloth under them (item 7). The gate set on the five bodies in CI: green. Close-ups: the hems at the
+heel (m7-skate, s5-linen-dinner, n3-chore-501), three outfits over boots (field-jacket, g-job-05, cold-commute) and the
+work pocket (m5-skate-day) against `main`; card stills of six. Timing: each outfit's 3D build about a third longer
+(1.5 to 2.0 s on average here over six outfits).
+
+**What is not done**: the other cuts (slim, skinny, tapered, wide, barrel, joggers with their cuffs, cargos), shorts,
+legs over boots and turn-ups on jeans; the hem's shade on the shoe is still cast from `make3Dcore`'s hem; the trousers
+are one size (not graded by Edit Dave's cloth fit).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4597,8 +4641,9 @@ against `main`. About five pull requests, one per group of cuts.
 `window.__legDrape` in the 48 outfits with a straight pair that is not jeans, joggers or cargos, not cuffed, not over
 boots, not under a belt and not with a top tucked in. **Step 2 (17 Oct 2026**, PR #94, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): the
 details `make3Dcore` draws on trousers, belts and tucked-in tops on the draped pair (55 outfits). **Step 3 (17 Oct
-2026**, PR #95, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight and regular jeans, with their own details (81 outfits). Next: a shirt's collar
-under a done-up gilet (g-quiet-18), then make it the default for straight trousers and jeans, then the other cuts.
+2026**, PR #95, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight and regular jeans, with their own details (81 outfits). A shirt's collar under a
+done-up gilet: PR #96. **Step 4 (17 Oct 2026**, PR #97, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): on by default for straight and regular trousers
+and jeans. Next: the other cuts, one group at a time (slim and tapered; wide and relaxed; joggers; cargos; shorts).
 
 ### 7. The tops still on `make3Dcore`, and known faults
 
@@ -4615,6 +4660,11 @@ under a done-up gilet (g-quiet-18), then make it the default for straight trouse
 - **A long car coat** (the ASOS tobacco overcoat, cold-commute): a balmacaan, `carcoat`'s collar and fly on
   `overcoat`'s length. Raglan sleeves in the builder would also let raglan and baseball tees drape.
 - **Dressing gowns** (5 outfits): a wrap template with its belt; low.
+- **Fragile layers that tip with the cloth under them**: a shirt's collar inside a half-zip's or a gilet's stand collar
+  (g-quiet-18, g-outdoor-14, g-quiet-22, errands: front or back poke 30 to 120 on some bodies, as worn or done up) and
+  a knitted vest over a tucked shirt (g-casual-27 tucked in: the placket through the vest). They move by tens of pixels
+  either way with any change below them (the draped trousers, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Hold the shirt's stand and placket
+  under the outer layer for good, as `drapePress` does a leaf, and measure on five bodies.
 - **Known faults on `main`**, each a small look: the link chain drawn as a straight bar across his neck
   (rv-black-smart); his chest through the shirt under the Harrington (n4-stone-navy); dark spikes (g-quiet-30); the
   scarf in pub-lunch; jb9-hirst-apron's front poke (41 against a limit of 30, not in the gate set).

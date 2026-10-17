@@ -25,11 +25,12 @@ at the back of his neck as its grip on a collar holds it) over his body and the 
 so build that first), then let fall. About 30 seconds. GB_SCARF_FWD=0.5 (and the rest of SCARF_WRAP) tries another
 wrap.
 
-Trousers (--only chinos; MEAS entries with legs=1) are cut as a pair (Trousers: a front and a back panel for each leg,
+Trousers (--only chinos,chinos_boot; MEAS entries with legs=1) are cut as a pair (Trousers: a front and a back panel for each leg,
 sewn down both sides of each leg and up the front and the back, and a waistband), their inseam from his crotch to
 3.5 cm off the floor, placed round his legs and hips (place_legs) and draped in his relaxed pose without his arms, the
 waistband held where it is put; each point is bound to his body on its own side (bind). The page drapes them with
-window.__legDrape set (UPGRADE_PLAN.md, section 5 item 6: the proof, straight trousers only).
+window.__legDrape on by default (UPGRADE_PLAN.md, section 5 item 6: straight trousers and jeans; chinos_boot, the same
+ending 11 cm off the floor, over boots).
 
 It runs itself inside Blender 4.5 LTS: BLENDER=<path to blender>, else ~/.cache/wardrobe-blender, where Blender is
 downloaded from download.blender.org (and checked against its published sha256) on first use. The MakeHuman assets
@@ -456,6 +457,16 @@ MEAS = {
     # the hem 3.5 cm off the floor. A straight chino: the waistband on his hips where make3Dcore's trousers sit (a rise
     # of 26 put it at his navel, 10 cm above them), a little room at the seat, straight from the knee to the hem.
     "chinos": dict(legs=1, waist=87, seat=100, knee=46, hem=41, wb=4, rise=16, length=100),
+    # the same chino cut to end 11 cm off the floor (hem_y), for over boots: its hem rests on the boot's front, so the
+    # toe, the laces and the start of the shaft show, as make3Dcore's trousers stop on a boot (9 to 12 cm up)
+    "chinos_boot": dict(legs=1, waist=87, seat=100, knee=46, hem=41, wb=4, rise=16, length=100, hem_y=11),
+    # shorts, the chino's waist and seat with a leg straight from the hem up to the thigh (knee = hem, 56 to 60 cm round
+    # each leg), by length below his crotch (at 83.4 cm in his warped frame): 21 cm (a slim short), 27 (the usual chino
+    # short), 30 (a relaxed one), 36 (a long or wide one, to the knee)
+    "shorts_short": dict(legs=1, waist=87, seat=101, knee=56, hem=56, wb=4, rise=16, length=40, hem_y=62),
+    "shorts": dict(legs=1, waist=87, seat=102, knee=58, hem=58, wb=4, rise=16, length=50, hem_y=56),
+    "shorts_mid": dict(legs=1, waist=87, seat=102, knee=59, hem=59, wb=4, rise=16, length=55, hem_y=53),
+    "shorts_long": dict(legs=1, waist=87, seat=102, knee=60, hem=60, wb=4, rise=16, length=60, hem_y=47),
 }
 H = 0.014   # mesh spacing (m)
 
@@ -833,12 +844,15 @@ def trouser_panels(M, s, yin, yrise):
                         (fs, yin - c(3)), (fs, ys))[:-1], bez((fs, ys), (fs, ys + (Hf - ys) * 0.4), (W / 4, Hf - c(4)), (W / 4, Hf))])
     f_waist = seg((W / 4, Hf), (0, Hf), 12)
     f_rise = np.vstack([seg((0, Hf), (0, ys), 6)[:-1], bez((0, ys), (0, yin + (ys - yin) * 0.35), (-fx * 0.55, yin), (-fx, yin))])
-    f_ins = np.vstack([bez((-fx, yin), (-fx, yin - c(7)), (cf - kf / 2, yk + c(14)), (cf - kf / 2, yk))[:-1], seg((cf - kf / 2, yk), (cf - hf / 2, 0), 10)])
+    # (on a short leg, shorts, the knee is above the hem and close under the crotch: the inseam's controls are kept
+    # between the two, or the curve loops back over itself)
+    ci1, ci2 = min(c(7), (yin - yk) * 0.4), min(c(14), (yin - yk) * 0.8)
+    f_ins = np.vstack([bez((-fx, yin), (-fx, yin - ci1), (cf - kf / 2, yk + ci2), (cf - kf / 2, yk))[:-1], seg((cf - kf / 2, yk), (cf - hf / 2, 0), 10)])
     front = Piece("front_L", 0, [("hem", f_hem), ("side", f_side), ("waist", f_waist), ("rise", f_rise), ("inseam", f_ins)])
     # the back: hem, inseam, rise (up from its crotch point, a centimetre lower), waist, side seam
     yb = yin - c(1); top = np.array((-c(3), Hf + c(1.5)))
     b_hem = seg((cb - hb / 2, 0), (cb + hb / 2, 0), 12)
-    b_ins = np.vstack([seg((cb + hb / 2, 0), (cb + kb / 2, yk), 10)[:-1], bez((cb + kb / 2, yk), (cb + kb / 2, yk + c(12)), (bx, yb - c(7)), (bx, yb))])
+    b_ins = np.vstack([seg((cb + hb / 2, 0), (cb + kb / 2, yk), 10)[:-1], bez((cb + kb / 2, yk), (cb + kb / 2, yk + min(c(12), (yb - yk) * 0.7)), (bx, yb - min(c(7), (yb - yk) * 0.4)), (bx, yb))])
     sl = (top - np.array((0, ys))) / np.linalg.norm(top - np.array((0, ys)))   # (the back seam's slant)
     b_rise = np.vstack([bez((bx, yb), (bx * 0.35, yb + c(0.5)), (0, yin + (ys - yin) * 0.2), (0, ys))[:-1], seg((0, ys), top, 8)])
     sx = top[0] - W / 4
@@ -855,13 +869,13 @@ def trouser_panels(M, s, yin, yrise):
 class Trousers:
     """A pair of trousers (MEAS with legs=1): his left leg's front and back panels and the mirrored right ones, sewn
     down the outside and the inside of each leg and up the front and the back, a waistband round the top. Its lengths
-    are his own: the inseam from his crotch to 3.5 cm off the floor."""
+    are his own: the inseam from his crotch to 3.5 cm off the floor (or MEAS hem_y, in cm)."""
 
     def __init__(self, arch, scale, body):
         self.arch, self.M, self.s = arch, MEAS[arch], scale
         M, s = self.M, scale
         self.yc = crotch_height(body.rel, body)
-        self.yhem = 0.035
+        self.yhem = M.get("hem_y", 3.5) / 100
         yin, yrise = self.yc - self.yhem, (M["rise"] - M["wb"]) / 100 * s
         fl, bl = trouser_panels(M, s, yin, yrise)
         P = {"front_L": fl, "back_L": bl, "front_R": mirror(fl, "front_R"), "back_R": mirror(bl, "back_R")}
