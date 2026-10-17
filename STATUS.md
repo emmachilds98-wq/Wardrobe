@@ -29,7 +29,7 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 trousers and jeans hang as real cloth too (67 outfits, 27 over boots), cut as such trousers are, narrower below the knee
 than the straight pair. A chino's back pocket no longer shows through a jumper over it, and the specks between the legs
 under the crotch are gone on trousers as on shorts.
-**Next:** wide, relaxed, baggy and barrel trousers.
+**Next:** the draped trousers' hips, which stand out in wings round the front pockets; then wide and relaxed cuts.
 
 **17 Oct: draped shorts** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #98). Shorts hang as real cloth too, in four lengths cut like
 the chinos (for listings 22, 27, 30 and 36 cm below his crotch), each pair ending where the old shorts did or a little

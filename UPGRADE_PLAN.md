@@ -4326,9 +4326,18 @@ background between the legs under the crotch came back on the slim pairs, whose 
 now fills the middle on trousers too wherever their insides are within 16 mm, down to 9 cm under his crotch (8 mm below
 that, where the 3D check's legs ray looks; its first ray is 11.5 cm under this crotch on Dave).
 
-**Checked**: CHECKED6
+**Checked**: the 67 outfits against `make3Dcore`'s (`window.__legDrape=0`) on the five bodies. Dave: flagged 1 and 1,
+the same (g-outdoor-21, the gilet's neck, item 7); holes 67 against 57, skin 0 against 1, poke 290 against 212 (41 of
+it g-outdoor-21's neck, the rest a few pixels each, the layers under a jacket at its hem's corners over his hips),
+legs 0, one `under` (g-quiet-30). Slim and athletic: flagged as before (g-outdoor-21); on the athletic build 2 or 3
+holes more from the front on 26 outfits, between the legs. Heavier and loose: g-quiet-30 is flagged too (back poke 38
+and 37, against 14 and 6): its overshirt comes out past its jacket at his sides over the hips. The draped trousers stand
+1.5 to 2 cm further out at the hips than `make3Dcore`'s, in wings round the front pockets from the waistband down 10 cm,
+the chinos too: the side seam keeps the seat's width 40% of the way up to the waist (`trouser_panels`). The next step
+reshapes it. The gate set on Dave: none flagged. CI: green.
 
-**What is not done**: the wide, relaxed, baggy and barrel cuts, joggers and cargos; the trousers are one size.
+**What is not done**: the hips' wings (all the draped trousers and shorts); the wide, relaxed, baggy and barrel cuts,
+joggers and cargos; the trousers are one size.
 
 ## 3. Next steps
 
