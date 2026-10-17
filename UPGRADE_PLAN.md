@@ -4071,6 +4071,54 @@ the cloth turns in at the waistband's top is the cloth's own triangles, a little
 tucked top under a closed layer keeps `make3Dcore`'s shapes. The draped polo's collar shows a few pixels of background
 from the side (4 to 6, worn in or out, as on `main`).
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped trousers, the proof: straight chinos behind a switch (17 Oct 2026)
+
+Section 5, item 6, its first step (PR #93): one straight cut, draped in a few outfits behind a switch, before any cut is
+made the default. `window.__legDrape=1` draws a straight pair of trousers draped from a chinos template in place of
+`make3Dcore`'s fitted legs; without it (the default) nothing changes, and the template is not loaded.
+
+*The template* (`tools/build_garments.py`, `data/garments/chinos.json`): `MEAS` entries with `legs=1` are cut as a pair
+of trousers (`Trousers`, `trouser_panels`): a front and a back panel for each leg, cut as a trouser block is (the back's
+crotch an eighth of the seat, the front's a sixteenth; the back 1.5 cm higher at its middle), sewn down both sides of
+each leg and up the front and the back, and a 4 cm waistband. The inseam runs from his crotch (found on his skin) to
+3.5 cm off the floor. The legs are placed as tubes round his legs, blended into his hips above the crotch
+(`place_legs`), and draped in his relaxed pose without his arms, the waistband held where it is put; each point is bound
+to his body on its own side (`bind`). The chino: waist 87, seat 100, knee 46, hem 41, rise 16 cm.
+
+*In the page* (`drapeLo`, after `warpMan` and before the tops): a straight or regular pair that is not jeans, joggers or
+cargos, not cuffed, not over boots, not under a belt and not with a top tucked in (those go with `make3Dcore`'s
+waistband and hems for now) is bound to his body and settled (60 steps) against his body and his shoes, then drawn in
+place of `make3Dcore`'s pair and everything drawn on it. It keeps the trousers' item and kind (`lo`), so the tops over
+it lie on it (`innerCols`) and the poses and the 3D check take it as trousers. 48 outfits are reached.
+- *His shoes* are a solid: how high each is over every 5 mm square of the floor, and from each square the nearest
+  square outside it. Cloth inside a shoe leaves it the shortest way: up onto the instep, or out beside it and behind
+  the heel.
+- *Each leg's inner side* is kept on its own side of him below his crotch, at least half way out to his thigh, and 2 mm.
+- `drapePush` takes a collider with its own `push` (the two above).
+
+*What was wrong on the way, and why:*
+- **The hem caught inside the shoes.** Pushed off the nearest point of a shoe, the hem (cut 3.5 cm off the floor,
+  inside the shoe) lay between the upper and its lining and came through in patches. Lifted onto the shoe's top
+  wherever it was over the shoe, it stood on the collar in a ledge, the whole shoe showing. Hence the shortest way out.
+- **The legs were joined down the thighs** (`legs` 16 on each of the first three outfits): with the room the cut
+  gives round his thigh, the legs' inner sides hung into the gap between his thighs and met in the middle down to 18 cm
+  below his crotch.
+- **Tops over them changed far from the waist.** At seat 106 the trousers were 4 to 5 cm rounder than `make3Dcore`'s
+  at his seat (96 against 91 cm), and with the back 3 cm higher their waistband stood 1.5 cm above `make3Dcore`'s at
+  his back: the shirt and half-zip over them were pushed out there, and in g-quiet-18 the half-zip's collar crumpled
+  and the shirt's collar came through it (front poke 76, `main` 21). At seat 100 and the back 1.5 cm higher the girth is
+  within 1 to 3 cm and the top within 5 mm of `make3Dcore`'s, and g-quiet-18 is under the limit.
+
+**Checked** (so far): the 48 outfits with `tools/check_3d.js` on dave, the switch on against off: none flagged either
+way, poke 96 to 81, holes 109 to 76, stray 103 to 1 (`make3Dcore`'s belt loops and pockets standing off), skin 3 to 2.
+Close-ups of m5-skate-day, m7-skate, s5-linen-dinner and g-quiet-18 against `main`. The other bodies, the poses and card
+stills are in progress.
+
+**What is not done**: the details `make3Dcore` draws on trousers (the waistband's line, belt loops, pockets, a jean's
+yoke and stitching, cargo pockets) are not drawn on the draped pair; the hem's shade on the shoe is still cast from
+`make3Dcore`'s hem; the template is one size, bound to his body (not graded by Edit Dave's clothes sizes); the other
+cuts, shorts, boots, turn-ups, belts and tucked-in tops are still `make3Dcore`'s.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4439,6 +4487,11 @@ How:
 Done when: the `legs`, `form` and `under` counts stay clean on all five bodies with both `--wear` runs (the legs must
 part below his crotch, as Emma asked on 10 Oct), boots and turn-ups look right close up, and card stills are reviewed
 against `main`. About five pull requests, one per group of cuts.
+
+**Step 1, the proof (17 Oct 2026**, PR #93, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight chinos from a template, draped behind
+`window.__legDrape` in the 48 outfits with a straight pair that is not jeans, joggers or cargos, not cuffed, not over
+boots, not under a belt and not with a top tucked in. Next: the details `make3Dcore` draws on trousers (waistband,
+pockets, belt loops), then make it the default, then the other cuts.
 
 ### 7. The tops still on `make3Dcore`, and known faults
 

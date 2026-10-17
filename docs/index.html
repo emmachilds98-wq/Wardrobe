@@ -4051,7 +4051,7 @@ function gtplPart(d){var o={n:d.n,m:d.m,pieces:d.pieces,pos:gtplDec(d.pos,Float3
   o.grp=new Uint8Array(o.n);for(var j=o.m-1;j>=0;j--)o.grp[o.vmap[j]]=o.pieces[o.piece[j]].grp;
   return o;}
 function loadGarments(){if(!window.__drape)return Promise.resolve();
-  return Promise.all(DRAPEF.map(function(a){return fetch("data/garments/"+a+".json").then(function(r){return r.ok?r.json():null;}).then(function(d){
+  return Promise.all(DRAPEF.concat(window.__legDrape?["chinos"]:[]).map(function(a){return fetch("data/garments/"+a+".json").then(function(r){return r.ok?r.json():null;}).then(function(d){
     if(!d)return;var t=gtplPart(d);t.arch=a;t.scale=d.scale;t.meas=d.meas_cm||{};if(d.hood)t.hood=gtplPart(d.hood);
     /* (a blazer's or an overcoat's collar and lapels (a template with lapel in its measures) are folded back over its
        stand, so as cut they face in toward him: turned round, its
@@ -4087,7 +4087,7 @@ function drapeCol(P,N,th,reach){var h=0.01,n=P.length/3,x0=1e9,y0=1e9,z0=1e9,x1=
     for(var a=Math.max(0,cx-r);a<=Math.min(nx-1,cx+r);a++)for(var b=Math.max(0,cy-r);b<=Math.min(ny-1,cy+r);b++)for(var c=Math.max(0,cz-r);c<=Math.min(nz-1,cz+r);c++){
       var dx=x0+a*h-px,dy=y0+b*h-py,dz=z0+c*h-pz,d2=dx*dx+dy*dy+dz*dz,k=(a*ny+b)*nz+c;if(d2<R2&&d2<D[k]){D[k]=d2;Ix[k]=v;}}}
   return {x0:x0,y0:y0,z0:z0,h:h,nx:nx,ny:ny,nz:nz,I:Ix,P:P,N:N,th:th};}
-function drapePush(c,P,o){if(!c)return;var ix=Math.round((P[o]-c.x0)/c.h),iy=Math.round((P[o+1]-c.y0)/c.h),iz=Math.round((P[o+2]-c.z0)/c.h);
+function drapePush(c,P,o){if(!c)return;if(c.push)return c.push(P,o);var ix=Math.round((P[o]-c.x0)/c.h),iy=Math.round((P[o+1]-c.y0)/c.h),iz=Math.round((P[o+2]-c.z0)/c.h);
   if(ix<0||iy<0||iz<0||ix>=c.nx||iy>=c.ny||iz>=c.nz)return;var v=c.I[(ix*c.ny+iy)*c.nz+iz];if(v<0)return;var q=v*3,N=c.N,Q=c.P;
   var d=(P[o]-Q[q])*N[q]+(P[o+1]-Q[q+1])*N[q+1]+(P[o+2]-Q[q+2])*N[q+2];if(d<c.th){var m=c.th-d;P[o]+=N[q]*m;P[o+1]+=N[q+1]*m;P[o+2]+=N[q+2]*m;}}
 function drapeNear(c,x,y,z){if(!c)return -1;var ix=Math.round((x-c.x0)/c.h),iy=Math.round((y-c.y0)/c.h),iz=Math.round((z-c.z0)/c.h);
@@ -4423,6 +4423,50 @@ var DRAPE_SIZES=[["S","S"],["M","M"],["","L"],["XL","XL"],["XXL","XXL"]];
 function drapeChest(){var M=ceMeasure();return M?M[0].m*100:0;}   /* (the measuring card's figure, which may read 2 to 3% low: UPGRADE_PLAN 2zzzzzzzzzzzzzzzzz) */
 function drapeSize(c){c=c||120;var z=SIZEM||window.__drapeSize||"",st={S:-2,M:-1,XL:1,XXL:2}[z]||0;return (c+8*st)/c*(1+0.04*(Number(CHAR.clothFit)||0));}
 /* the draped tops, added to his figure after warpMan. list: the tops in wearing order; pm: their cloth (make3Dcore's) */
+/* trousers draped (UPGRADE_PLAN 6, the proof, behind window.__legDrape): a straight pair from the chinos template
+   (tools/build_garments.py) bound to his body, settled against his body and his shoes, in place of make3Dcore's pair
+   and everything it drew on them (waistband, belt loops, pockets). Marked as his legwear (kind lo, item and what as
+   make3Dcore's), so the tops over them lie on them as on make3Dcore's (innerCols), and the poses and the 3D check take
+   them as trousers */
+function drapeLo(man,lo,pm){var T=window.THREE,t=GTPL.chinos,body=null,old=[],i,j,a;if(!t)return false;
+  man.traverse(function(o){if(o.isMesh&&o.userData.isBody)body=o;});if(!body)return false;
+  man.updateMatrixWorld(true);var inv=new T.Matrix4().copy(man.matrixWorld).invert();
+  var BP=body.geometry.attributes.position.array,BN=body.geometry.attributes.normal.array,AM=body.userData.armMask,P=[],N=[];
+  for(i=0;i<BODY.n;i++)if(!(AM&&AM[i]))for(a=0;a<3;a++){P.push(BP[i*3+a]);N.push(BN[i*3+a]);}
+  var cB=drapeCol(new Float32Array(P),new Float32Array(N),0.004);
+  /* (his shoes, as a solid: how high each is over every 5 mm square of the floor, and from each square the nearest
+     square outside it. Cloth inside a shoe leaves it the shortest way: up onto its top (over the instep), 3 mm over
+     it, or out sideways (beside it, behind the heel), 3 mm past the square outside. Held off by the nearest point of a
+     shoe, the hem caught inside it, between the upper and its lining, and came through it in patches; lifted onto its
+     top everywhere over it, the hem stood on the shoe's collar in a ledge, the whole shoe showing) */
+  var C=0.005,top=new Map(),K=function(i,k){return (i+4096)*8192+k+4096;};
+  man.traverse(function(o){if(!o.isMesh||!o.geometry.attributes.position)return;if(o.userData.kind==="lo"&&o.userData.item===lo.item){old.push(o);return;}
+    if(o.userData.kind!=="ft"||o.isInstancedMesh)return;var g=o.geometry,pa=g.attributes.position,M=new T.Matrix4().multiplyMatrices(inv,o.matrixWorld),ix=g.index,nt=(ix?ix.count:pa.count)/3,
+      A=new T.Vector3(),B=new T.Vector3(),D=new T.Vector3();
+    for(var f=0;f<nt;f++){A.fromBufferAttribute(pa,ix?ix.getX(f*3):f*3).applyMatrix4(M);B.fromBufferAttribute(pa,ix?ix.getX(f*3+1):f*3+1).applyMatrix4(M);D.fromBufferAttribute(pa,ix?ix.getX(f*3+2):f*3+2).applyMatrix4(M);
+      var S=Math.max(1,Math.ceil(Math.max(A.distanceTo(B),B.distanceTo(D),D.distanceTo(A))/C));
+      for(var p=0;p<=S;p++)for(var q=0;p+q<=S;q++){var wa=p/S,wb=q/S,wc=1-wa-wb,y=A.y*wa+B.y*wb+D.y*wc,k=K(Math.round((A.x*wa+B.x*wb+D.x*wc)/C),Math.round((A.z*wa+B.z*wb+D.z*wc)/C));if(!(top.get(k)>=y))top.set(k,y);}}});
+  /* (the nearest square outside: passed in from the edge, square by square, each keeping the nearest its neighbours
+     know of) */
+  var out=new Map(),fr=[],nb=[[1,0],[-1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,1],[-1,-1]];
+  top.forEach(function(h,k){var ci=Math.floor(k/8192)-4096,ck=k%8192-4096;nb.forEach(function(d){var e=K(ci+d[0],ck+d[1]);if(!top.has(e)){var c=out.get(k),dd=Math.hypot(d[0],d[1]);if(!c||dd<c[2])out.set(k,[ci+d[0],ck+d[1],dd]);}});if(out.has(k))fr.push(k);});
+  while(fr.length){var nf=[];fr.forEach(function(k){var c=out.get(k),ci=Math.floor(k/8192)-4096,ck=k%8192-4096;nb.forEach(function(d){var e=K(ci+d[0],ck+d[1]);if(!top.has(e))return;var o2=out.get(e),dd=Math.hypot(c[0]-ci-d[0],c[1]-ck-d[1]);if(!o2||dd<o2[2]-1e-6){out.set(e,[c[0],c[1],dd]);nf.push(e);}});});fr=nf;}
+  var cS=top.size?{push:function(P,o){var i=Math.round(P[o]/C),k=Math.round(P[o+2]/C),e=K(i,k),h=top.get(e);if(h==null||P[o+1]>=h+0.003)return;
+    var c=out.get(e),up=h+0.003-P[o+1],dx=c[0]*C-P[o],dz=c[1]*C-P[o+2],d=Math.hypot(dx,dz);if(d<up){d=(d+0.003)/(d||1);P[o]+=dx*d;P[o+2]+=dz*d;}else P[o+1]+=up;}}:null;
+  /* (each leg's inner side kept on its own side of him below his crotch, at least half way from the middle out to his
+     thigh, and 2 mm: with the room the cut gives round his thigh, the two legs' inner sides hung into the gap between
+     his thighs and met in the middle down to 18 cm below his crotch, as if sewn together, the 3D check's legs fault) */
+  var sd=new Int8Array(t.n),RG=BODY.regions,lg=[RG.indexOf("thigh"),RG.indexOf("shin")],gL=new Float32Array(200).fill(9),gR=new Float32Array(200).fill(9),cr=9,I=BODY.idx;
+  for(j=0;j<t.m;j++){var nm=t.pieces[t.piece[j]].name;sd[t.vmap[j]]=/_L$/.test(nm)?1:(/_R$/.test(nm)?-1:0);}
+  for(i=0;i<BODY.n;i++)if(!(AM&&AM[i])&&Math.abs(BP[i*3])<0.006&&BP[i*3+1]>0.6&&BP[i*3+1]<cr)cr=BP[i*3+1];
+  for(i=0;i<I.length/3;i++){if(lg.indexOf(BODY.treg[i])<0)continue;for(a=0;a<3;a++){var v=I[i*3+a],x=BP[v*3],b=Math.floor(BP[v*3+1]/0.01);if(b<0||b>=200)continue;if(x>0)gL[b]=Math.min(gL[b],x);else gR[b]=Math.min(gR[b],-x);}}
+  var cG={push:function(P,o){var q=o/3,s=sd[q],y=P[o+1];if(!s||y>cr-0.01||y<0.1)return;var b=Math.floor(y/0.01),G=s>0?gL:gR,m=Math.min(G[b],G[b-1],G[b+1]);if(m>0.2)return;m=0.5*m+0.002;if(P[o]*s<m)P[o]=s*m;}},cols=[[cB,cS,cG]];
+  t.cl=t.cl||drapeCloth(t,t.pos);var X=drapeBind(t,BP,1),H=drapeOut(X,cols,t.grp);X.set(H);drapeSettle(X,t.cl,cols,t.grp,null,window.__legSteps||60,H);
+  var g=new T.BufferGeometry(),pos=new Float32Array(t.m*3),nr=new Float32Array(t.m*3),uv=new Float32Array(t.m*2),Nx=drapeNormals(X,t.cl.W,t.n);
+  for(j=0;j<t.m;j++){var w=t.vmap[j];for(a=0;a<3;a++){pos[j*3+a]=X[w*3+a];nr[j*3+a]=Nx[w*3+a];}uv[j*2]=t.pat[j*2]*1.2;uv[j*2+1]=t.pat[j*2+1]*3.33;}
+  g.setAttribute("position",new T.BufferAttribute(pos,3));g.setAttribute("normal",new T.BufferAttribute(nr,3));g.setAttribute("uv",new T.BufferAttribute(uv,2));g.setIndex(new T.BufferAttribute(new Uint32Array(t.idx),1));
+  var m=pm(lo).clone();m.side=T.DoubleSide;var me=new T.Mesh(g,m);me.castShadow=me.receiveShadow=true;me.userData={item:lo.item,what:lo.what,kind:"lo",legDrape:true};
+  old.forEach(function(o){o.parent.remove(o);});man.add(me);return true;}
 /* a tie laid on a draped shirt, as make3Dcore lays one on its own shirt: each row of its ribbon 4.5 mm in front of the
    furthest-out of the shirt across the ribbon's width and a centimetre up and down (over the placket and the collar), its
    middle 1.2 mm prouder, and its knot 6 mm in front of the shirt between the collar's fronts; found by rays from in
@@ -6014,7 +6058,7 @@ function make3Dcore(pieces){
   var tuckIn=tuckOn(lo,!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!KITRE.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo))),pieces.some(function(q){return q.shape==="tie";}));
   var TUCK=tuckList(up,tuckIn),tE=TUCK.some(Boolean)?0.012:0;   /* (a shirt tucked in sits inside the waistband and seat, so they stand out by its thickness) */
   /* trousers or shorts */
-  var waistE=0;
+  var waistE=0,LOD=false;
   if(lo){
     curIt=lo.item;curWhat=lo.what;curKind="lo";PIECE=bodyOn?[]:null;
     var und=!!lo.under,lm=pm(lo),sh=lo.shape==="shorts",n0=nm(lo),BC=bottomCut(lo),wide=und?0.004:BC.wide;
@@ -6053,6 +6097,9 @@ function make3Dcore(pieces){
       [-1,1].forEach(function(s){var hq=secAt(LS0[String(s)],uLeg+0.004);band(uLeg-0.002,0.022,hq[1]+0.003,hq[2]+0.003,lm,{x:hq[3],z:hq[4],seg:36});});}
     if(!bodyOn)sec(shapeSecs([[0.785,0.156,0.102,0,-0.004],[0.85,0.174,0.114,0,-0.01],[0.92,0.184,0.123,0,-0.012],[0.98,0.18,0.118,0,-0.008],[1.035,0.165,0.111,0,-0.002]]),lm,{seg:44,sq:2.3,bottom:true});   /* the rise covers the seat and crotch */
     var wk1=shapeAt(1.02),jog=/jogger|track|sweatpant|lounge|pyjama/.test(n0),jean=/jean|denim/.test(n0);
+    /* (a straight pair of trousers is draped instead, behind window.__legDrape (drapeLo): not jeans, joggers or cargos,
+       not cuffed, over boots, with a top tucked in or under a belt, which go with make3Dcore's waistband and hems) */
+    LOD=!!(window.__legDrape&&bodyOn&&!und&&!sh&&!jog&&!jean&&!/cargo|combat/.test(n0)&&/^(straight|regular)$/.test(BC.k)&&!cuffd&&!cutL.bot&&!cutL.boot&&!tE&&!pieces.some(function(q){return q.shape==="belt";}));
     /* (the crotch seam hangs a little below his crotch, more on a looser cut) */
     /* (its folds, by its cut and cloth: jeans crease most and most sharply, joggers in soft wide folds, tailored trousers
        keep a pressed crease and little else; the break over the shoe from how long they are and what is under them) */
@@ -7437,6 +7484,7 @@ function make3Dcore(pieces){
   var kH=(Number(CHAR.height)||183)/183,bw=1+0.08*(Number(CHAR.weight)||0)+0.06*(Number(CHAR.muscle)||0);
   var PW=propWarp(bodyOn?BL.chin:1.567);
   if(PW){warpMan(man,PW,bodyOn?BL.skull[1]:0.0);kH*=1.79/PW.W(1.79);}
+  if(LOD)drapeLo(man,lo,pm);
   if(drp.length||dScarf){drp.sort(function(a,b){return layRank(a)-layRank(b);});drapeTops(man,drp,pm,up,{lo:lo,tieM:TIEM,belts:acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));}),scarf:dScarf,pm:pm,nm:nm,mat:mat,metal:metal,white:white,rib:rib,placeMap:placeMap,tie:acc.some(function(q){return q.shape==="tie"&&!/bow/.test(nm(q));}),under:(lo?[lo]:[]).concat(acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));})),over:acc.filter(function(p){return (p.shape==="scarf"&&!(dScarf&&dScarf.p===p))||p.shape==="snood"||(p.shape==="belt"&&KITRE.test(nm(p)));})});}   /* (a belt under them, or over a top tucked in, innerCols; left out, the belt came through a gilet at his waist) */
   if(bagS&&drp.length)bagOut(man,bagS);
   if(bodyOn)man.scale.set(kH,kH,kH);else man.scale.set(kH*bw,kH,kH*(0.5+0.5*bw));
