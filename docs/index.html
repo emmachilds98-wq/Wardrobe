@@ -5968,7 +5968,12 @@ function make3Dcore(pieces){
      same jacket zipped up) */
   /* (a top tucked in keeps make3Dcore's shape, which goes into the waistband: the templates hang loose to the hem) */
   var TUCK0=tuckList(up,tuckOn(lo,!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo))),pieces.some(function(q){return q.shape==="tie";})));
-  up.forEach(function(p,k){p._drape=false;p._tuck=!!TUCK0[k];var a=bodyOn&&(!TUCK0[k]||window.__tuckDrape)&&drapeArch(p);if(DRAPEOPEN[a]&&!openWorn(p,up))a=GTPL[a+"_up"]?a+"_up":null;else if(a&&!DRAPEOPEN[a]&&openWorn(p,up))a=null;   /* (only a jacket's, a shirt's and a padded jacket's templates open) */
+  /* (a top tucked in is draped where the tuck shows: with nothing over it, or under a blazer or a jacket worn open. Under
+     a closed layer, a jumper, a half-zip, a roll neck, a hoodie, a waistcoat, or a jacket, coat, gilet or cardigan done up,
+     only its collar and cuffs show and it keeps make3Dcore's shapes: draped there, its collar crumpled inside a half-zip's
+     stand collar and came through it, st-smart and winter-140 on the loose fit, as an untucked shirt's does under one) */
+  function tuckHid(k){return up.slice(k+1).some(function(q){return /^(jumper|halfzip|rollneck|hoodie|waistcoat)$/.test(q.shape)||(/^(jacket|coat|gilet|cardigan)$/.test(q.shape)&&!openWorn(q,up));});}
+  up.forEach(function(p,k){p._drape=false;p._tuck=!!TUCK0[k];var a=bodyOn&&(!TUCK0[k]||window.__tuckDrape&&!tuckHid(k))&&drapeArch(p);if(DRAPEOPEN[a]&&!openWorn(p,up))a=GTPL[a+"_up"]?a+"_up":null;else if(a&&!DRAPEOPEN[a]&&openWorn(p,up))a=null;   /* (only a jacket's, a shirt's and a padded jacket's templates open) */
     /* (a hooded padded jacket under a neck warmer keeps make3Dcore's shapes, its hood tucked under the neck warmer: the
        draped hood, padded and bulky, lay out over the neck warmer's foot at the back of his neck, jb11-winter, and held
        inside it the hood bunched and came through the jacket's back) */
