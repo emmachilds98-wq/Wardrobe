@@ -4191,6 +4191,39 @@ jeans-blazer (a tucked shirt) and nw-quarterzip.
 **What is not done**: a jean's fading and whiskers are the cloth's own texture, not drawn on the draped pair; selvedge
 turn-ups take the chino's turn-up; slim, skinny, tapered, wide and barrel jeans are still `make3Dcore`'s.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. A shirt's collar inside a stand collar done up, with a jumper between (17 Oct 2026)
+
+Section 5, item 7 (known faults; PR #96). A shirt's collar under a crew-neck jumper and a stand collar done up over
+both (a gilet, a half-zip, a roll neck, a jacket zipped up) came through the outer collar in shards beside his neck:
+g-quiet-18 (a shirt, a jumper and a gilet) read front poke 21 on dave and 74 on loose, and moved by tens of pixels with
+any change to the cloth under it (the draped trousers of section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz took it to 49 on dave).
+
+*Why:* the shirt's collar leaf is laid out over the layers worn over the shirt (a crew neck's neckline sits under it, as
+worn), up to the first layer it stays inside (`leafIn`: a stand collar, a hood, lapels). With a jumper between the shirt
+and a done-up gilet, the leaf was held outside the jumper and inside the gilet at once: on a looser fit there is no room
+between the two, and the leaf crumpled out through the gilet's collar.
+
+*The fix* (`drapeTops`): when the first layer the leaf stays inside is a stand collar done up (`STANDC`), the leaf stays
+inside the layers between too, as it would under a collar zipped over them; the 3D check no longer counts it as lying
+over them (`leafOver`). Not under lapels or an open jacket's collar, where the shirt's collar shows over the jumper in
+the opening: held inside the jumper there (tried first), it came through the jumper's front (cold-commute, pub-lunch,
+g-quiet-30, g-casual-31: front poke 0 to 1 became 10 to 33). `window.__leafUnder=0` lays the leaf out as before.
+
+*Tried and not kept:* pressing the leaf 4 mm under any stand collar done up with one jacket-weight layer (as under a
+jacket worn over another, `drapePress`): over the 20 outfits it moved, poke on dave 461 to 430, g-quiet-18 unchanged (21
+to 22).
+
+**Checked**: the 9 outfits it changes as worn (cold-commute, errands, pub-lunch, g-quiet-18, g-quiet-26, g-quiet-30,
+g-casual-31, g-mod-03, g-outdoor-01), `tools/check_3d.js` on the five bodies: poke 1,048 to 681, holes 40 to 40, skin
+0; flagged 15 to 3 (errands, g-quiet-18, g-quiet-26 and g-outdoor-01 on slim, heavier and loose, errands and g-quiet-26
+on dave, errands on athletic; still flagged on loose: g-quiet-18 front poke 31, g-quiet-26 and g-outdoor-01). Done up
+(`--wear zip=up,tuck=out`, 15 outfits, the jackets zipped up becoming stand collars): on dave poke 174 to 116, flagged 2
+to 0; on loose 254 to 162, flagged 4 to 3. Close-ups of g-quiet-18 (dave and loose), g-quiet-26 and errands against
+`main`.
+
+**What is not done**: on loose, g-quiet-18, g-quiet-26 and g-outdoor-01 still flag (front poke 31 to 36): the gilet's
+own collar folds down over the shirt's stand.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
