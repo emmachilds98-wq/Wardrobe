@@ -20,8 +20,9 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   four insulated and borg-lined overshirts) and the borg zip-through in
   g-casual-01, which it sends to `puffer` but which stays on `make3Dcore` over a half-zip (see the rule by `TUCK0`). Straight and regular trousers and jeans are draped too since 17 Oct (PR #97: `drapeLo`, from
   `data/garments/chinos.json`, and `chinos_boot.json` over boots, with their details by `drapeLoDetails`; 136 outfits); the
-  other cuts and shorts keep
-  `make3Dcore`'s legs. (Counted piece by piece in each outfit. `tools/qa/drape_survey.js`,
+  other cuts keep
+  `make3Dcore`'s legs. Shorts too since PR #98 (`shorts_short`, `shorts`, `shorts_mid`, `shorts_long`, by the listing's
+  length; not swim, board, jersey or cargo shorts). (Counted piece by piece in each outfit. `tools/qa/drape_survey.js`,
   below, gives one row per item, its template taken from the first outfit it is in, so a piece filed under another
   shape in another outfit can hide there: the guide said 932 and 20 until this was counted.) Run it for the live list.
 - **Templates** (`DRAPEF` in `page.html`; `_up` is the same garment done up, and the plain name is worn open where it
@@ -37,7 +38,8 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   - Coats: `overcoat(_up)` (the blazer's lapels on a coat to his knees), `carcoat(_up)` (a shirt collar, a fly front).
   - Accessories: `scarf`.
   - Trousers: `chinos` (a straight pair: chinos, trousers and jeans; `drapeLo`, not `drapeTops`, before the tops),
-    `chinos_boot` (the same, ending 11 cm off the floor, over boots).
+    `chinos_boot` (the same, ending 11 cm off the floor, over boots), `shorts_short`, `shorts`, `shorts_mid`,
+    `shorts_long` (for listings 22, 27, 30 and 36 cm below his crotch, each ending where `make3Dcore`'s did once warped).
 - **Which template a piece gets**: `drapeArch(p)` in `page.html` decides, from the piece's shape and the words in its
   item name and `what`. It returns `null` for anything a template would draw wrongly; that piece keeps `make3Dcore`'s
   shapes. Every rule there has a comment saying why.
@@ -48,7 +50,7 @@ The plan for the model from here, in order, with how to tackle each item and whe
 section 5 (16 Oct 2026): his jawline (done 16 Oct, PR #82), Edit Dave's skin tone and new colours (done 16 Oct, PR #83) and its panel layout (done 16 Oct, PR #84), the shoes and trouser hems (the hems done 16 Oct, PR #85, the shoes PR #87), a relaxed stance and poses (a breath and a
 sway in the live views was tried in PR #88 and taken out in PR #89: it read as the picture rocking; four poses to choose
 from in the live views followed, on his skeleton from the body script; a default stance is Emma's call),
-tucked-in tops and ties on a draped shirt (done 17 Oct, PR #91), draped trousers (straight trousers and jeans: the proof PR #93, details, belts and tucked tops PR #94, jeans PR #95, by default PR #97; the other cuts next), then the items below and the rest. The table lists the tops still on `make3Dcore`.
+tucked-in tops and ties on a draped shirt (done 17 Oct, PR #91), draped trousers (straight trousers and jeans: the proof PR #93, details, belts and tucked tops PR #94, jeans PR #95, by default PR #97, shorts PR #98; the other cuts next), then the items below and the rest. The table lists the tops still on `make3Dcore`.
 
 | Item | Pieces (outfits) | What it needs |
 | --- | --- | --- |
