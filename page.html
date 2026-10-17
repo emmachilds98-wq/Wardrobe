@@ -4135,8 +4135,10 @@ function drapeLegs(man,item){var T=window.THREE,n=72,ny=48,y0=0.8,W=new Float32A
     /* (the least of it within a centimetre up or down and one step round: inside that, the cloth is inside the trousers
        whatever lies between the rows, the step below the waistband or a pocket's edge) */
     r:function(y,a){var i=bin(a),k=Math.round((y-y0)/0.01),m=0;for(var dk=-1;dk<=1;dk++)for(var di=-1;di<=1;di++){var kk=k+dk;if(kk<0||kk>=ny)continue;var R=RR[kk*n+((i+di)%n+n)%n];if(R>0.05&&(!m||R<m))m=R;}return m;}};}
+/* (held from 4 mm below the trousers' top: the cloth above that is left free and laps a little over the waistband's
+   edge, as a tucked shirt does, rather than being drawn in above it) */
 function drapeTuck(t,X,legs,cB){var pin=new Uint8Array(t.n),low=new Uint8Array(t.n);
-  for(var q=0;q<t.n;q++){var g=t.grp[q];if(g===1||g===2)continue;var o=q*3,y=X[o+1],x=X[o],z=X[o+2]-FX.zc,a=Math.atan2(x,z),top=legs.top(a);if(!top||y>top+0.005)continue;
+  for(var q=0;q<t.n;q++){var g=t.grp[q];if(g===1||g===2)continue;var o=q*3,y=X[o+1],x=X[o],z=X[o+2]-FX.zc,a=Math.atan2(x,z),top=legs.top(a);if(!top||y>top-0.004)continue;
     /* (brought in inside the trousers first: where the cloth hung more than 4 cm off him, the nearest point of his body
        was out of reach, the point stayed where it hung, and the triangles from it to the cloth held inside the trousers
        stood out through them in spikes below the waistband, knit-polo-dinner and jeans-blazer) */
