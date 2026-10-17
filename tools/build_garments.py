@@ -460,6 +460,14 @@ MEAS = {
     # the same chino cut to end 11 cm off the floor (hem_y), for over boots: its hem rests on the boot's front, so the
     # toe, the laces and the start of the shaft show, as make3Dcore's trousers stop on a boot (9 to 12 cm up)
     "chinos_boot": dict(legs=1, waist=87, seat=100, knee=46, hem=41, wb=4, rise=16, length=100, hem_y=11),
+    # a slim pair: a little less room at the seat, narrower from the knee (44.5 cm round) to the hem (38); a tapered
+    # one: more room at the seat, the chino's knee, narrowing to a hem of 36. (The straight chino is 46 and 41. At 42
+    # and 35, and 44 and 34, both clung to his calf from the side, as skinny jeans.) The _boot cuts end 11 cm off the
+    # floor, over boots, as chinos_boot
+    "slim": dict(legs=1, waist=87, seat=99, knee=44.5, hem=38, wb=4, rise=16, length=100),
+    "slim_boot": dict(legs=1, waist=87, seat=99, knee=44.5, hem=38, wb=4, rise=16, length=100, hem_y=11),
+    "tapered": dict(legs=1, waist=87, seat=102, knee=46, hem=36, wb=4, rise=16, length=100),
+    "tapered_boot": dict(legs=1, waist=87, seat=102, knee=46, hem=36, wb=4, rise=16, length=100, hem_y=11),
     # shorts, the chino's waist and seat with a leg straight from the hem up to the thigh (knee = hem, 56 to 60 cm round
     # each leg), for the listing's length below his crotch: 22 cm (a slim short), 27 (the usual chino short), 30 (a
     # relaxed one), 36 (a long or wide one, to the knee). Each hem (hem_y) ends where make3Dcore's shorts of that length
