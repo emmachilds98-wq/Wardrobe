@@ -4119,6 +4119,25 @@ function drapeSettle(P,cl,cols,grp,pin,steps,home){var Q=P.slice(),n=cl.n,G=-9.8
 function drapeNormals(P,W,n){var N=new Float32Array(n*3);for(var f=0;f<W.length;f+=3){var a=W[f]*3,b=W[f+1]*3,c=W[f+2]*3,ux=P[b]-P[a],uy=P[b+1]-P[a+1],uz=P[b+2]-P[a+2],vx=P[c]-P[a],vy=P[c+1]-P[a+1],vz=P[c+2]-P[a+2],
     x=uy*vz-uz*vy,y=uz*vx-ux*vz,z=ux*vy-uy*vx;[a,b,c].forEach(function(o){N[o]+=x;N[o+1]+=y;N[o+2]+=z;});}
   for(var o=0;o<N.length;o+=3){var l=Math.hypot(N[o],N[o+1],N[o+2])||1;N[o]/=l;N[o+1]/=l;N[o+2]/=l;}return N;}
+/* a tucked-in top: each point of its body below the top of his waistband kept 3 mm inside the trousers, read from the
+   map of his legwear (legR, round the torso's centre line), as make3Dcore tucks its shirts; and more than 4 cm below the
+   waistband's top, laid 2 mm off his body and left undrawn (drapeHide): the map is no guide down there (at the front,
+   below his crotch, it holds nothing), and a long shirt's tails hung out over the trousers. wTop(angle) is the top of
+   the trousers' own mesh round him (the map reaches some 6 cm higher). Gives the points held, and in .low those left
+   undrawn */
+function drapeWTop(man,item){var T=window.THREE,n=72,W=new Float32Array(n),inv=new T.Matrix4(),v=new T.Vector3();man.updateMatrixWorld(true);inv.copy(man.matrixWorld).invert();
+  man.traverse(function(o){if(!o.isMesh||o.isInstancedMesh||o.userData.draped||o.userData.item!==item||!o.geometry.attributes.position)return;var M=new T.Matrix4().multiplyMatrices(inv,o.matrixWorld),pa=o.geometry.attributes.position;
+    for(var j=0;j<pa.count;j++){v.fromBufferAttribute(pa,j).applyMatrix4(M);var a=Math.atan2(v.x,v.z-FX.zc),i=Math.min(n-1,Math.floor((a+Math.PI)/(2*Math.PI)*n));if(v.y>W[i])W[i]=v.y;}});
+  for(var r=0;r<3;r++)for(var i=0;i<n;i++)if(!W[i])W[i]=Math.max(W[(i+n-1)%n],W[(i+1)%n]);
+  return function(a){var f=(a+Math.PI)/(2*Math.PI)*n-0.5,i0=Math.floor(f),u=f-i0;return W[((i0%n)+n)%n]*(1-u)+W[(((i0+1)%n)+n)%n]*u;};}
+function drapeTuck(t,X,legR,wTop,cB){var pin=new Uint8Array(t.n),low=new Uint8Array(t.n);
+  for(var q=0;q<t.n;q++){var g=t.grp[q];if(g===1||g===2)continue;var o=q*3,y=X[o+1],x=X[o],z=X[o+2]-FX.zc,a=Math.atan2(x,z),top=wTop(a);if(!top||y>top+0.005)continue;
+    if(y<top-0.04){low[q]=pin[q]=1;var b=drapeNear(cB,X[o],X[o+1],X[o+2]);if(b>=0)for(var c=0;c<3;c++)X[o+c]=cB.P[b*3+c]+cB.N[b*3+c]*0.002;continue;}
+    var r=Math.hypot(x,z),L=0;for(var dy=-0.008;dy<=0.0081;dy+=0.008){var lv=legR(y+dy,a);if(lv>L)L=lv;}
+    if(L>0.05){pin[q]=1;if(r>L-0.003){var k=(L-0.003)/r;X[o]=x*k;X[o+2]=FX.zc+z*k;}}}
+  pin.low=low;return pin;}
+/* the triangles of a draped garment's mesh with all three corners marked in low made empty (drawn as nothing) */
+function drapeHide(me,t,low){var ix=me.geometry.index,A=ix.array,ch=false;for(var f=0;f<A.length;f+=3){if(low[t.vmap[A[f]]]&&low[t.vmap[A[f+1]]]&&low[t.vmap[A[f+2]]]){A[f+1]=A[f];A[f+2]=A[f];ch=true;}}if(ch)ix.needsUpdate=true;}
 /* the jacket-weight templates, a jacket, coat or overshirt (drapeTops: one worn over another is cut a size up from it,
    its creases filled and the one under it held under it) */
 var DRAPEJW=/^(chore|trucker|jacket|jacket_coll|jacket_hood|bomber|puffer|puffer_hood|aviator|gilet|gilet_hood|blazer|overcoat|carcoat|parka)(_up)?$/;
@@ -4412,7 +4431,8 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
   /* (a blazer or an overcoat is held 7 mm off what make3Dcore built under it, not 4: a tucked shirt's box pleat came
      through a blazer's back in a line, jeans-blazer) */
   var thJ=0.004;
-  function innerCols(k,out,th0,lx){var ins={},lo=ctx&&ctx.under||[];(out?inner.slice(k+1).concat(ctx&&ctx.over||[]):inner.slice(0,k).concat(lo)).forEach(function(p){if(!p._drape)ins[p.item]=out?1:1+(jacketShirt(p)?(window.__drapeThJ==null?thJ:window.__drapeThJ):kvest(p)?(window.__drapeThV==null?0.008:window.__drapeThV):lo.indexOf(p)>=0&&lx?lx:0);});var uP=[[],[]],uN=[[],[]];
+  var TUCKNOW=false,WTOP=null;
+  function innerCols(k,out,th0,lx){var ins={},bl=ctx&&ctx.belts||[],lo=(ctx&&ctx.under||[]).filter(function(p){return !(TUCKNOW&&bl.indexOf(p)>=0);});(out?inner.slice(k+1).concat(ctx&&ctx.over||[]).concat(TUCKNOW?bl:[]):inner.slice(0,k).concat(lo)).forEach(function(p){if(!p._drape)ins[p.item]=out?1:1+(jacketShirt(p)?(window.__drapeThJ==null?thJ:window.__drapeThJ):kvest(p)?(window.__drapeThV==null?0.008:window.__drapeThV):lo.indexOf(p)>=0&&lx?lx:0);});var uP=[[],[]],uN=[[],[]];
     man.traverse(function(o){if(!o.isMesh||o.isInstancedMesh||o.userData.draped||!o.userData.item||!ins[o.userData.item]||!o.geometry.attributes.position)return;var g=o.geometry,pa=g.attributes.position,na=g.attributes.normal;
       var isArm=false,a=o;while(a&&a!==man){if(a.userData.arm)isArm=true;a=a.parent;}var M=new T.Matrix4().multiplyMatrices(inv,o.matrixWorld),Nm=new T.Matrix3().getNormalMatrix(M),nv=new T.Vector3();
       function add(){nv.normalize();
@@ -4486,7 +4506,7 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
      chore jacket, g-mod-15 and g-mod-11, or under a smaller trucker, g-mod-13, had nowhere to go but out through the
      jacket, crumpled in pleats through its front) */
   var G=1,sy=1,effIn=0,stackJW=list.filter(function(p){var t=GTPL[p._arch||drapeArch(p)];return t&&DRAPEJW.test(t.arch);}).length>1;
-  list.forEach(function(p){var t=GTPL[p._arch||drapeArch(p)];if(!t)return;thJ=/^(jacket_hood|parka)/.test(t.arch)?0.007:/^puffer_hood/.test(t.arch)?0.012:0.004;G=drapeSize(t.meas&&t.meas.chest);
+  list.forEach(function(p){var t=GTPL[p._arch||drapeArch(p)];if(!t)return;TUCKNOW=!!(p._tuck&&window.__tuckDrape&&ctx&&ctx.legR&&ctx.lo);thJ=/^(jacket_hood|parka)/.test(t.arch)?0.007:/^puffer_hood/.test(t.arch)?0.012:0.004;G=drapeSize(t.meas&&t.meas.chest);
     var ch=t.meas&&t.meas.chest||120,jw=DRAPEJW.test(t.arch),onJW=jw&&effIn>0;if(onJW)G=Math.max(G,(effIn+8)/ch);if(jw)effIn=Math.max(effIn,ch*G);sy=1+(G-1)*0.35;var k=inner.indexOf(p),ic=innerCols(k,false,t.meas.lapel?(window.__drapeThB==null?0.007:window.__drapeThB):0,/^puffer/.test(t.arch)?(window.__drapeThL==null?0.003:window.__drapeThL):0),oc=innerCols(k,true);cU=ic[0];cUA=ic[1];cO=oc[0];cOA=oc[1];t.cl=t.cl||drapeCloth(t,t.pos);var X=drapeBind(t,BP,G);
     /* (what each point is drawn back to is where its binding puts it moved out of what is under it: drawn back to the
        binding itself, a padded jacket's open front edge, bound close to his body, settled between the quarter-zip and
@@ -4507,19 +4527,20 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
        settles into folds a few centimetres apart, and in the jacket's hollows the shacket's folds came through it,
        g-mod-15 and g-casual-09) */
     if(stackJW&&jw)drapeFill(t,X,cB);
+    if(TUCKNOW){WTOP=WTOP||drapeWTop(man,ctx.lo.item);var tp=drapeTuck(t,X,ctx.legR,WTOP,cB);drapeSettle(X,drapeGrade(t.cl,G,sy),layerCols(thP),t.grp,tp,window.__tuckSteps||20,X.slice());drapeTuck(t,X,ctx.legR,WTOP,cB);}
     var r=mesh(t,X,p,"up"+k);
     /* (a shirt's collar leaf is left out of what the layers over it lie on, and laid out over them afterwards: a crew
        jumper's neckline sits under it, as worn. Settled under the jumper it came through the jumper's shoulders) */
     /* (a blazer's or an overcoat's leaf is its collar and lapels, part of what is worn over it lies on: laid out over a coat, as a shirt's
        collar is over a jumper, its lapels came out through the coat's front) */
-    var R={p:p,t:t,X:X,k:k,me:r.me,N:r.N,lf:t.meas.lapel?null:drapeLeaf(t),G:G,sy:sy,jw:jw};R.col=function(th){th=th||window.__drapeTh||0.01;var X=R.X,N=R.N,lf=R.lf;if(!lf)return drapeCol(X,N,th);var cX=[],cN=[];
+    var R={p:p,t:t,X:X,k:k,me:r.me,N:r.N,lf:t.meas.lapel?null:drapeLeaf(t),G:G,sy:sy,jw:jw,tuck:TUCKNOW};R.col=function(th){th=th||window.__drapeTh||0.01;var X=R.X,N=R.N,lf=R.lf;if(!lf)return drapeCol(X,N,th);var cX=[],cN=[];
       for(var q=0;q<t.n;q++)if(!lf[q])for(var a=0;a<3;a++){cX.push(X[q*3+a]);cN.push(N[q*3+a]);}return drapeCol(new Float32Array(cX),new Float32Array(cN),th);};
     recs.push(R);done.push({col:R.col(),X:X,N:r.N});if(t.hood)hoodies.push({p:p,t:t,X:X,k:k});});
   /* then, from the outside in, each draped layer under another is held inside the ones over it (its body inside
      their bodies, a short settle against their surfaces turned in), and a shirt's collar leaf is laid out over them (the rest of the
      shirt held where it is). (A jumper's rib band gathers it in at his hips over a shirt hanging straight, and the shirt
      came through above the band; held in, it is drawn in under the band, as the band presses a shirt in) */
-  for(var di=done.length-2;di>=0;di--){var R=recs[di],t=R.t,X=R.X;thJ=/^(jacket_hood|parka)/.test(t.arch)?0.007:/^puffer_hood/.test(t.arch)?0.012:0.004;var ic=innerCols(R.k),oc=innerCols(R.k,true),below=done.slice(0,di).map(function(d){return d.col;}),over=done.slice(di+1);
+  for(var di=done.length-2;di>=0;di--){var R=recs[di],t=R.t,X=R.X;TUCKNOW=!!R.tuck;thJ=/^(jacket_hood|parka)/.test(t.arch)?0.007:/^puffer_hood/.test(t.arch)?0.012:0.004;var ic=innerCols(R.k),oc=innerCols(R.k,true),below=done.slice(0,di).map(function(d){return d.col;}),over=done.slice(di+1);
     cU=ic[0];cUA=ic[1];cO=oc[0];cOA=oc[1];var c0=[cB,cU,cUA,cO].concat(below),c1=[cA,cU,cUA,cOA].concat(below),
       inw=recs.slice(di+1).map(function(O){return inCol(O,false);});
     /* (the body only, inside the bodies over it: held in by the whole of the jumper, a shirt's sleeves were pressed
@@ -4549,6 +4570,7 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
      along that point's normal, and in the folds of an open front, the far side of a fold facing in, a shacket's pleat
      lay on the jacket between its points, g-casual-09. What shows between the jacket's open fronts has no jacket
      between it and him, and is let be) */
+  TUCKNOW=false;recs.forEach(function(R,i){if(R.tuck){var tp=drapeTuck(R.t,R.X,ctx.legR,WTOP,cB);remesh(i);drapeHide(R.me,R.t,tp.low);}});
   if(stackJW)for(di=recs.length-2;di>=0;di--){var R=recs[di],mv=false;
     for(var oi=di+1;oi<recs.length;oi++){var O=recs[oi];if(!O.jw)continue;if(R.lf&&leafIn(O)&&drapePress(R.X,R.lf,O.X,O.N,cB,0.015,0.004))mv=true;if(drapeUnder(R,O,cB,cA,0.03,0.005))mv=true;}
     if(mv)remesh(di);}
@@ -4596,6 +4618,9 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
       if(mv)remesh(i);});});
   /* the photo's looks and the front details, on each one's cloth as it finally lies */
   recs.forEach(function(R){if(ctx)drapeDetails(man,R.p,R.t,R.X,R.N,ctx,"up"+R.k,drapeLooks(man,R.p,R.t,R.X,R.N,R.me,ctx,"up"+R.k));});
+  /* (a tucked top's buttons and other details below the top of the waistband left out: they are inside the trousers) */
+  if(WTOP){var dv=new T.Vector3(),gone=[];recs.forEach(function(R){if(!R.tuck)return;man.children.forEach(function(o){if(o===R.me||!o.isMesh||o.userData.kind!=="up"+R.k||!o.geometry)return;o.geometry.computeBoundingSphere();dv.copy(o.geometry.boundingSphere.center).applyMatrix4(o.matrix);
+      if(dv.y<WTOP(Math.atan2(dv.x,dv.z-FX.zc))-0.005)gone.push(o);});});gone.forEach(function(o){man.remove(o);});}
   /* a scarf, last of all: its template (wound once round his neck, both ends down his front, draped in Blender over his
      body and a jumper) bound to his body and settled out over every top he wears, draped or not */
   /* (kept a centimetre off what is under it, as the draped layers are off each other: a knitted scarf is thick, and at
@@ -5911,7 +5936,8 @@ function make3Dcore(pieces){
      same jacket zipped up) */
   /* (a top tucked in keeps make3Dcore's shape, which goes into the waistband: the templates hang loose to the hem) */
   var TUCK0=tuckList(up,tuckOn(lo,!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo))),pieces.some(function(q){return q.shape==="tie";})));
-  up.forEach(function(p,k){p._drape=false;var a=bodyOn&&!TUCK0[k]&&drapeArch(p);if(DRAPEOPEN[a]&&!openWorn(p,up))a=GTPL[a+"_up"]?a+"_up":null;else if(a&&!DRAPEOPEN[a]&&openWorn(p,up))a=null;   /* (only a jacket's, a shirt's and a padded jacket's templates open) */
+  var TIE0=pieces.some(function(q){return q.shape==="tie";});
+  up.forEach(function(p,k){p._drape=false;p._tuck=!!TUCK0[k];var a=bodyOn&&(!TUCK0[k]||(window.__tuckDrape&&!TIE0))&&drapeArch(p);if(DRAPEOPEN[a]&&!openWorn(p,up))a=GTPL[a+"_up"]?a+"_up":null;else if(a&&!DRAPEOPEN[a]&&openWorn(p,up))a=null;   /* (only a jacket's, a shirt's and a padded jacket's templates open) */
     /* (a hooded padded jacket under a neck warmer keeps make3Dcore's shapes, its hood tucked under the neck warmer: the
        draped hood, padded and bulky, lay out over the neck warmer's foot at the back of his neck, jb11-winter, and held
        inside it the hood bunched and came through the jacket's back) */
@@ -7368,7 +7394,7 @@ function make3Dcore(pieces){
   var kH=(Number(CHAR.height)||183)/183,bw=1+0.08*(Number(CHAR.weight)||0)+0.06*(Number(CHAR.muscle)||0);
   var PW=propWarp(bodyOn?BL.chin:1.567);
   if(PW){warpMan(man,PW,bodyOn?BL.skull[1]:0.0);kH*=1.79/PW.W(1.79);}
-  if(drp.length||dScarf){drp.sort(function(a,b){return layRank(a)-layRank(b);});drapeTops(man,drp,pm,up,{scarf:dScarf,pm:pm,nm:nm,mat:mat,metal:metal,white:white,rib:rib,placeMap:placeMap,tie:acc.some(function(q){return q.shape==="tie"&&!/bow/.test(nm(q));}),under:(lo?[lo]:[]).concat(acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));})),over:acc.filter(function(p){return (p.shape==="scarf"&&!(dScarf&&dScarf.p===p))||p.shape==="snood"||(p.shape==="belt"&&KITRE.test(nm(p)));})});}   /* (a belt under them: a draped top is never tucked in, so the belt is under it; left out, the belt came through a gilet at his waist) */
+  if(drp.length||dScarf){drp.sort(function(a,b){return layRank(a)-layRank(b);});drapeTops(man,drp,pm,up,{lo:lo,legR:OCC?function(y,a){return fmGet(OCC.L,y,a);}:null,belts:acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));}),scarf:dScarf,pm:pm,nm:nm,mat:mat,metal:metal,white:white,rib:rib,placeMap:placeMap,tie:acc.some(function(q){return q.shape==="tie"&&!/bow/.test(nm(q));}),under:(lo?[lo]:[]).concat(acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));})),over:acc.filter(function(p){return (p.shape==="scarf"&&!(dScarf&&dScarf.p===p))||p.shape==="snood"||(p.shape==="belt"&&KITRE.test(nm(p)));})});}   /* (a belt under them: a draped top is never tucked in, so the belt is under it; left out, the belt came through a gilet at his waist) */
   if(bagS&&drp.length)bagOut(man,bagS);
   if(bodyOn)man.scale.set(kH,kH,kH);else man.scale.set(kH*bw,kH,kH*(0.5+0.5*bw));
   /* (loHem: the height on his body of a pair of shorts' hem, for the 3D check's idea of what they cover) */
