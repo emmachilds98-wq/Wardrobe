@@ -1,13 +1,14 @@
 // node tools/qa/poses.js out.png <outfit ids, comma separated> [poses] ["rotY,camY,camZ,lookY;..."] : the live views' poses
 // (POSES in page.html), one row per outfit and pose, and for each piece how many of its triangles a pose stretches to over
 // 2.5 times their length (cloth tearing where its weights change: a seam, a layer bound apart from the one over it).
-// poses: stand,ease,walk,arms (the default). Serve a test copy first (sh tools/qa/serve.sh); QA_BODY as zoom.js;
+// poses: stand,ease,walk,arms (the default). Serve a test copy first (sh tools/qa/serve.sh); QA_BODY and QA_INIT as zoom.js;
 // QA_SIZE the width of each picture (300).
 const {chromium}=require('playwright');const fs=require('fs'),path=require('path');
 (async()=>{const out=process.argv[2],ids=process.argv[3].split(','),poses=(process.argv[4]||'stand,ease,walk,arms').split(',').map(x=>x==='stand'?'':x);
 const views=(process.argv[5]||"0.35,1.0,4.75,0.93;1.5708,1.0,4.75,0.93;2.8,1.0,4.75,0.93").split(';').map(v=>v.split(',').map(Number));
 const b=await chromium.launch({args:['--use-gl=swiftshader','--enable-webgl','--ignore-gpu-blocklist']});
 const p=await b.newPage({viewport:{width:1000,height:800}});
+if(process.env.QA_INIT)await p.addInitScript(process.env.QA_INIT);
 if(process.env.QA_BODY){const ch=require('./body').charFor(fs.readFileSync(path.join(__dirname,'../../docs/index.html'),'utf8'),process.env.QA_BODY);if(ch)await p.addInitScript(c=>localStorage.setItem('dw-char',JSON.stringify(c)),ch);}
 const errs=[];p.on('pageerror',e=>errs.push(e.message));
 await p.goto('http://localhost:'+(process.env.QA_PORT||8770)+'/',{waitUntil:'networkidle'});await p.waitForTimeout(2500);
