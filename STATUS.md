@@ -25,14 +25,19 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**17 Oct: draped trousers, step 2** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #94, still behind `window.__legDrape`). The draped
+pair now has the details `make3Dcore` draws on trousers (the waistband's stitching and button, belt loops, the fly, the
+front and back pockets, and pleats, a crease and turn-ups where the listing has them); a belt sits on its waistband and
+a top tucked in sits inside it, so the switch reaches 55 outfits. None of them is flagged by the 3D check.
+**Next:** make draped straight trousers the default, then the other cuts.
+
 **17 Oct: draped trousers, the proof** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 6, its first step: PR #93, a
 draft for Emma to review). A straight pair of trousers can be drawn draped from a chinos pattern sewn and settled in
 Blender, where it hangs in its own folds, rests on the shoe's instep, falls behind the heel and parts below the crotch,
 in place of `make3Dcore`'s fitted legs. It is behind a switch (`window.__legDrape=1`), off by default, and reaches 48
 outfits; nothing changes on the page without it. Not yet drawn on the draped pair: pockets, belt loops and the waistband's
 line.
-**Next:** Emma to look at the close-ups in PR #93 and say whether the draped look is the way to go; then the trouser
-details, making it the default, and the other cuts (slim, wide, joggers, cargos, jeans, shorts).
+Merged on Emma's go-ahead (17 Oct).
 
 **17 Oct: tucked-in tops draped, and ties on a draped shirt** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 5, both its
 pull requests in one: PR #91). A shirt, polo or tee worn tucked in is now draped like the rest, held inside the
