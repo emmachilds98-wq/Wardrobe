@@ -1,10 +1,11 @@
 // node tools/qa/card.js out.png id1,id2,... : the 3D card pictures of outfits as the page draws them (snap3D: the light
 // build, soft shadows, turned 0.32, 240 x 490 shown at 1.5x), each beside a 3x crop of the hips and thighs
 // QA_BODY=slim|average|athletic|heavier|close|loose renders on another of Edit Dave's body types or cloth fits (tools/qa/body.js)
+// QA_INIT='window.__legDrape=1' runs a script before the page, as zoom.js takes it
 const {chromium}=require('playwright');
 (async()=>{const out=process.argv[2],ids=process.argv[3].split(',');
 const b=await chromium.launch({args:['--use-gl=swiftshader','--enable-webgl','--ignore-gpu-blocklist']});
-const p=await b.newPage({viewport:{width:1000,height:800}});if(process.env.QA_BODY){const ch=require('./body').charFor(require('fs').readFileSync(require('path').join(__dirname,'../../docs/index.html'),'utf8'),process.env.QA_BODY);if(ch)await p.addInitScript(c=>localStorage.setItem('dw-char',JSON.stringify(c)),ch);}
+const p=await b.newPage({viewport:{width:1000,height:800}});if(process.env.QA_INIT)await p.addInitScript(process.env.QA_INIT);if(process.env.QA_BODY){const ch=require('./body').charFor(require('fs').readFileSync(require('path').join(__dirname,'../../docs/index.html'),'utf8'),process.env.QA_BODY);if(ch)await p.addInitScript(c=>localStorage.setItem('dw-char',JSON.stringify(c)),ch);}
 const errs=[];p.on('pageerror',e=>errs.push(e.message));await p.goto('http://localhost:'+(process.env.QA_PORT||8770)+'/',{waitUntil:'networkidle'});await p.waitForTimeout(2500);
 const urls=await p.evaluate(async(a)=>{await window.__dw.loadThree();const T=window.THREE,out=[];
  const rd=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});rd.setPixelRatio(1);rd.setSize(360,735);if(T.sRGBEncoding)rd.outputEncoding=T.sRGBEncoding;

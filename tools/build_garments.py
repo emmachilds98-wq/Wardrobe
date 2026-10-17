@@ -25,6 +25,12 @@ at the back of his neck as its grip on a collar holds it) over his body and the 
 so build that first), then let fall. About 30 seconds. GB_SCARF_FWD=0.5 (and the rest of SCARF_WRAP) tries another
 wrap.
 
+Trousers (--only chinos; MEAS entries with legs=1) are cut as a pair (Trousers: a front and a back panel for each leg,
+sewn down both sides of each leg and up the front and the back, and a waistband), their inseam from his crotch to
+3.5 cm off the floor, placed round his legs and hips (place_legs) and draped in his relaxed pose without his arms, the
+waistband held where it is put; each point is bound to his body on its own side (bind). The page drapes them with
+window.__legDrape set (UPGRADE_PLAN.md, section 5 item 6: the proof, straight trousers only).
+
 It runs itself inside Blender 4.5 LTS: BLENDER=<path to blender>, else ~/.cache/wardrobe-blender, where Blender is
 downloaded from download.blender.org (and checked against its published sha256) on first use. The MakeHuman assets
 come as in tools/build_body.py (--mh). --frames scales the simulation's length (0.3 for a quick look). --debug writes
@@ -444,6 +450,12 @@ MEAS = {
                     band_k=0.96, sleeve=65, bicep=44, wrist=28, cuff=5, cuff_c=24, collar=4, leaf=8, point=11, open=1),
     "aviator_up": dict(chest=124, length=66, shoulder=49, armhole=25.5, neck_w=19, neck_f=7.5, neck_b=2.2, sh_drop=4.5, band=5,
                        band_k=0.96, sleeve=65, bicep=44, wrist=28, cuff=5, cuff_c=24, collar=4, leaf=8, point=11),
+    # trousers (legs=1), for a 34 in waist: waist (the waistband all round), seat (the panels all round at the seat
+    # line), knee and hem (each leg all round), wb (waistband height), rise (from the crotch up to the waistband's top
+    # at the front, straight up his body). Their lengths come from his own body (Trousers): the crotch from his skin,
+    # the hem 3.5 cm off the floor. A straight chino: the waistband on his hips where make3Dcore's trousers sit (a rise
+    # of 26 put it at his navel, 10 cm above them), a little room at the seat, straight from the knee to the hem.
+    "chinos": dict(legs=1, waist=87, seat=106, knee=46, hem=41, wb=4, rise=16, length=100),
 }
 H = 0.014   # mesh spacing (m)
 
@@ -791,6 +803,145 @@ class Garment:
             # (each half's neckline on the garment's: his left from the front by the shoulder to the back, and his right)
             self.hood_ring = {"hood_L": [("neck_f", (fp, "neck_p")), ("neck_b", ("back", "neck_n"))],
                               "hood_R": [("neck_f", (fn, "neck_n")), ("neck_b", ("back", "neck_p"))]}
+
+
+# ---- trousers: each leg a front and a back panel, the two legs sewn up the front and the back, a waistband ----
+def crotch_height(P, body):
+    """the height of his crotch: the lowest of his skin within 6 mm of his middle, above his knees"""
+    sel = (~body.armMask) & (np.abs(P[:, 0]) < 0.006) & (P[:, 1] > 0.6)
+    return float(P[sel, 1].min())
+
+
+def trouser_panels(M, s, yin, yrise):
+    """A front and a back panel for his left leg (the right ones are these mirrored), cut as a trouser block is: x
+    across (the front's middle at 0, his left side seam at x > 0; the back's middle at 0, his left side at x < 0), y up
+    from the hem. yin: the inseam (hem to the crotch), yrise: the crotch to the panels' top at the front (the waistband
+    goes on above). The back reaches 3 cm higher at its middle, its seam slanting in toward the side seam at the top,
+    and its crotch goes deeper (an eighth of the seat against the front's sixteenth), as it has to go round his seat."""
+    c = lambda v: v / 100 * s
+    W, S, K, HM = c(M["waist"]), c(M["seat"]), c(M["knee"]), c(M["hem"])
+    Hf, ys, yk = yin + yrise, yin + yrise * 0.42, yin * 0.5 + c(4)
+    fx, bx = S / 16, S / 8.5
+    fs, bs = S / 4 - c(1), S / 4 + c(1)                  # (front and back across the seat line, middle to side)
+    cf = (fs - fx) / 2; cb = (bx - bs) / 2               # (the crease lines)
+    kf, kb, hf, hb = K / 2 - c(1), K / 2 + c(1), HM / 2 - c(1), HM / 2 + c(1)
+    # the front: hem, side seam, waist, rise (its middle, down to the crotch point), inseam
+    f_hem = seg((cf - hf / 2, 0), (cf + hf / 2, 0), 12)
+    f_side = np.vstack([seg((cf + hf / 2, 0), (cf + kf / 2, yk), 10)[:-1], bez((cf + kf / 2, yk), (cf + kf / 2 + (fs - kf / 2 - cf) * 0.45, yin * 0.82),
+                        (fs, yin - c(3)), (fs, ys))[:-1], bez((fs, ys), (fs, ys + (Hf - ys) * 0.4), (W / 4, Hf - c(4)), (W / 4, Hf))])
+    f_waist = seg((W / 4, Hf), (0, Hf), 12)
+    f_rise = np.vstack([seg((0, Hf), (0, ys), 6)[:-1], bez((0, ys), (0, yin + (ys - yin) * 0.35), (-fx * 0.55, yin), (-fx, yin))])
+    f_ins = np.vstack([bez((-fx, yin), (-fx, yin - c(7)), (cf - kf / 2, yk + c(14)), (cf - kf / 2, yk))[:-1], seg((cf - kf / 2, yk), (cf - hf / 2, 0), 10)])
+    front = Piece("front_L", 0, [("hem", f_hem), ("side", f_side), ("waist", f_waist), ("rise", f_rise), ("inseam", f_ins)])
+    # the back: hem, inseam, rise (up from its crotch point, a centimetre lower), waist, side seam
+    yb = yin - c(1); top = np.array((-c(3), Hf + c(3)))
+    b_hem = seg((cb - hb / 2, 0), (cb + hb / 2, 0), 12)
+    b_ins = np.vstack([seg((cb + hb / 2, 0), (cb + kb / 2, yk), 10)[:-1], bez((cb + kb / 2, yk), (cb + kb / 2, yk + c(12)), (bx, yb - c(7)), (bx, yb))])
+    sl = (top - np.array((0, ys))) / np.linalg.norm(top - np.array((0, ys)))   # (the back seam's slant)
+    b_rise = np.vstack([bez((bx, yb), (bx * 0.35, yb + c(0.5)), (0, yin + (ys - yin) * 0.2), (0, ys))[:-1], seg((0, ys), top, 8)])
+    sx = top[0] - W / 4
+    b_waist = seg(top, (sx, Hf - c(0.5)), 12)
+    # (the side seam leaves the waist at right angles to it, downward, so the corners there make a full turn)
+    wd = np.array((sx, Hf - c(0.5))) - top; wd /= np.linalg.norm(wd); dn = np.array((-wd[1], wd[0])); dn = -dn if dn[1] > 0 else dn
+    b_side = np.vstack([bez((sx, Hf - c(0.5)), np.array((sx, Hf - c(0.5))) + dn * c(4), (-bs, ys + (Hf - ys) * 0.4), (-bs, ys))[:-1],
+                        bez((-bs, ys), (-bs, yin - c(3)), (cb - kb / 2 - (bs - kb / 2 + cb) * 0.45, yin * 0.82), (cb - kb / 2, yk))[:-1],
+                        seg((cb - kb / 2, yk), (cb - hb / 2, 0), 10)])
+    back = Piece("back_L", 0, [("hem", b_hem), ("inseam", b_ins), ("rise", b_rise), ("waist", b_waist), ("side", b_side)])
+    return front, back
+
+
+class Trousers:
+    """A pair of trousers (MEAS with legs=1): his left leg's front and back panels and the mirrored right ones, sewn
+    down the outside and the inside of each leg and up the front and the back, a waistband round the top. Its lengths
+    are his own: the inseam from his crotch to 3.5 cm off the floor."""
+
+    def __init__(self, arch, scale, body):
+        self.arch, self.M, self.s = arch, MEAS[arch], scale
+        M, s = self.M, scale
+        self.yc = crotch_height(body.rel, body)
+        self.yhem = 0.035
+        yin, yrise = self.yc - self.yhem, (M["rise"] - M["wb"]) / 100 * s
+        fl, bl = trouser_panels(M, s, yin, yrise)
+        P = {"front_L": fl, "back_L": bl, "front_R": mirror(fl, "front_R"), "back_R": mirror(bl, "back_R")}
+        # the waistband: a band round his waist, sewn along the panels' tops (round from the front's middle by his
+        # left, the back and his right) and closed at the front
+        ring = [("front_L", "waist"), ("back_L", "waist"), ("back_R", "waist"), ("front_R", "waist")]
+        rl = [plen(P[a].edge(b)) for a, b in ring]; cum = np.r_[0, np.cumsum(rl)]; wb = M["wb"] / 100 * s
+        parts = [("n%d" % i, seg((cum[i], 0), (cum[i + 1], 0), 8)) for i in range(4)]
+        P["band"] = Piece("band", 0, parts + [("cf_p", seg((cum[4], 0), (cum[4], wb), 4)), ("top", seg((cum[4], wb), (0, wb), 24)), ("cf_n", seg((0, wb), (0, 0), 4))])
+        S = []
+        for sd in "LR":
+            S += [([("front_" + sd, "side")], [("back_" + sd, "side")], 0.5, False), ([("front_" + sd, "inseam")], [("back_" + sd, "inseam")], 0.5, False)]
+        S += [([("front_L", "rise")], [("front_R", "rise")], 0.5, False), ([("back_L", "rise")], [("back_R", "rise")], 0.5, False),
+              ([("band", "n%d" % i) for i in range(4)], ring, 1.0, False), ([("band", "cf_p")], [("band", "cf_n")], 0.5, False)]
+        self.P, self.S, self.hood, self.ring = P, S, None, ring
+        print("  crotch at %.3f m; inseam %.3f, rise %.3f (in his warped frame)" % (self.yc, yin, yrise), flush=True)
+
+
+def leg_axis(P, body, side):
+    """the middle of his leg (side 1: his left, x > 0) by height, every centimetre: x, z and its half-width"""
+    reg = np.array([body.regions[r] for r in body.vreg])
+    sel = (~body.armMask) & np.isin(reg, ["thigh", "shin", "foot", "hips"]) & (P[:, 0] * side > 0.004)
+    Q = P[sel]; out = []
+    for y in np.arange(0.0, 1.2, 0.01):
+        q = Q[np.abs(Q[:, 1] - y) < 0.012]
+        if len(q) < 6: out.append(out[-1] if out else (0.1 * side, 0.05, 0.05)); continue
+        out.append(((q[:, 0].min() + q[:, 0].max()) / 2, (q[:, 2].min() + q[:, 2].max()) / 2, max(np.ptp(q[:, 0]), np.ptp(q[:, 2])) / 2))
+    return np.array(out)
+
+
+def edge_x(pc, nm, y):
+    """x of a piece's edge at height y on the pattern (the edge's nearest sample in y)"""
+    E = pc.edge(nm); return float(np.interp(y, *zip(*sorted(zip(E[:, 1], E[:, 0])))))
+
+
+def place_legs(G, pieces, body):
+    """3D positions for the trousers' pieces round his relaxed body, before sewing: below his crotch each leg's front and
+    back wrapped round that leg (from its inside round to its outside), above it the four round his hips as an ellipse
+    from the front's and the back's middles to the side seams, the crotch's extensions running under him to his crotch,
+    the one blending into the other over a few centimetres; the waistband placed by close_seams on their tops"""
+    P = body.rel; yc, y0 = G.yc, G.yhem
+    axes = {1: leg_axis(P, body, 1), -1: leg_axis(P, body, -1)}
+    reg = np.array([body.regions[r] for r in body.vreg]); torso = (~body.armMask) & np.isin(reg, ["belly", "hips", "thigh"])
+    zcr = float(np.mean(P[(~body.armMask) & (np.abs(P[:, 0]) < 0.01) & (np.abs(P[:, 1] - yc) < 0.01), 2]))
+    def ell(y):
+        q = P[torso & (np.abs(P[:, 1] - y) < 0.01)]
+        return np.abs(q[:, 0]).max() + 0.015, np.ptp(q[:, 2]) / 2 + 0.015, (q[:, 2].max() + q[:, 2].min()) / 2
+    out = {}
+    for nm, pc in pieces.items():
+        if nm == "band":
+            out[nm] = np.full((len(pc.V), 3), np.nan); continue
+        sd = 1 if nm.endswith("_L") else -1; fr = nm.startswith("front"); ax = axes[sd]
+        X = np.zeros((len(pc.V), 3))
+        for i, (x, y) in enumerate(pc.V):
+            yb = y0 + y
+            # (the leg: from the inseam's x at this height to the side seam's, round from his leg's inside)
+            xin = edge_x(pc, "inseam", min(y, yc - y0 - 1e-4)) if y < yc - y0 else edge_x(pc, "inseam", yc - y0 - 1e-4)
+            xout = edge_x(pc, "side", y)
+            u = np.clip((x - xin) / (xout - xin + 1e-9), 0, 1)
+            ph = sd * (np.radians(-90 + 180 * u) if fr else np.radians(-90 - 180 * u))
+            k = int(np.clip(round(yb / 0.01), 0, len(ax) - 1)); cx, cz, rl = ax[k]
+            wf = abs(xout - xin)
+            other = pieces[("back_" if fr else "front_") + ("L" if sd > 0 else "R")]
+            wo = abs(edge_x(other, "side", y) - edge_x(other, "inseam", min(y, yc - y0 - 1e-4)))
+            r = max((wf + wo) / (2 * np.pi), rl + 0.01)
+            leg = np.array([cx + r * np.sin(ph), yb, cz + r * np.cos(ph)])
+            # (the hips: the front's middle at the front, the back's at the back, the side seams at his sides)
+            ea, eb, zc = ell(max(yb, yc + 0.02))
+            sw = abs(edge_x(pc, "side", y)) + 1e-9
+            ext = np.sign(x) != np.sign(edge_x(pc, "side", y)) and abs(x) > 1e-6
+            if not ext:
+                th = np.radians(90 * x / sw) if fr else np.radians(180 + 90 * x / sw)
+                hip = np.array([ea * np.sin(th), max(yb, yc + 0.005), zc + eb * np.cos(th)])
+            else:
+                # (beyond the middle: under him, from the front's (or back's) middle to his crotch)
+                mid = np.array([0.0, max(yb, yc + 0.005), zc + (eb if fr else -eb)])
+                t = abs(x) / (pieces["front_L" if fr else "back_L"].edge("rise")[:, 0].__abs__().max() + 1e-9)
+                hip = (1 - t) * mid + t * np.array([0.0, yc - 0.012, zcr])
+            w = float(sstep(yc + 0.05, yc - 0.01, yb))
+            X[i] = w * leg + (1 - w) * hip
+        out[nm] = X
+    return out
 
 
 def seam_counts(seams, pieces):
@@ -1542,6 +1693,9 @@ def bind(X, regs, body, P):
     tri = np.zeros(len(X), np.int64); W = np.zeros((len(X), 3))
     for rs in set(regs):
         sel = np.array([r == rs for r in regs]); cand = body.region_tris(rs)
+        # (a trouser leg's points only on that side of him: "+x" his left, "-x" his right)
+        sd = 1 if "+x" in rs else (-1 if "-x" in rs else 0)
+        if sd: cand = cand[P[body.idx[cand]].mean(1)[:, 0] * sd > -0.01]
         A, B, C = P[body.idx[cand, 0]], P[body.idx[cand, 1]], P[body.idx[cand, 2]]
         kd = mathutils.kdtree.KDTree(len(cand))
         for k, c in enumerate((A + B + C) / 3): kd.insert(c, k)
@@ -1581,6 +1735,9 @@ def write_template(path, G, body, can, Xs, T, hood=None):
     # there, swung them in, so the coat narrowed below his seat into a skirt)
     body_reg = TORSO_REG + ("thigh",) if G.M["length"] > 90 else TORSO_REG
     regs_of = lambda pc: ARM_REG if pc.grp in (1, 2) else body_reg
+    if G.M.get("legs"):
+        # (trousers: a leg bound to that leg, from his hips down to his feet; the waistband to his waist and hips)
+        regs_of = lambda pc: ("belly", "hips") if pc.name == "band" else ("belly", "hips", "thigh", "shin", "foot", "+x" if pc.name.endswith("_L") else "-x")
     out = {"v": 1, "arch": G.arch, "size": "L", "meas_cm": G.M, "scale": round(G.s, 5),
            "char": {k: v for k, v in body.char.items()},
            "about": "Made by tools/build_garments.py: sewn from flat pattern pieces and draped on Dave (CHAR_DEF, after "
@@ -1629,20 +1786,25 @@ def main():
     if "scarf" in archs:
         archs.remove("scarf"); drape_scarf(body, a, F0, scale)
     for arch in archs:
-        G = Garment(arch, scale)
+        legs = bool(MEAS[arch].get("legs"))
+        G = Trousers(arch, scale, body) if legs else Garment(arch, scale)
         cnt = seam_counts(G.S + (hood_seams(G) if G.hood else []), {**G.P, **(G.hood or {})})
         for pc in list(G.P.values()) + list((G.hood or {}).values()): mesh_piece(pc, cnt)
         print(arch, {k: len(v.V) for k, v in G.P.items()}, flush=True)
-        X = place(G, G.P, body, a.start)
+        X = place_legs(G, G.P, body) if legs else place(G, G.P, body, a.start)
         pairs, off = close_seams(G.P, X, G.S)
-        P0 = body.apose[a.start]; N0 = vnormals(P0, body.idx)
+        P0 = body.rel if legs else body.apose[a.start]; N0 = vnormals(P0, body.idx)
+        if legs:
+            # (trousers are draped on his relaxed body, his arms left out: his hands hang beside his thighs, and
+            # kept out of them the trousers stood off his legs there)
+            P0, N0 = P0[~body.armMask], N0[~body.armMask]
         allX = np.vstack([X[k] for k in G.P]); T = np.vstack([G.P[k].T + off[k] for k in G.P])
         print("  pushed out", push_out(allX, P0, N0), "points", flush=True)
         if a.debug:
             gap = np.array([np.linalg.norm(allX[i] - allX[j]) for i, j in pairs])
             print("  sewing gaps: mean %.4f max %.4f" % (gap.mean(), gap.max()), flush=True)
             lines = [list(allX[i]) + list(allX[j]) for i, j in pairs]
-            debug_json(os.path.join(a.debug, arch + "-placed.json"), body, P0, [(arch, allX, T, "#7a2a30")], lines)
+            debug_json(os.path.join(a.debug, arch + "-placed.json"), body, body.rel if legs else P0, [(arch, allX, T, "#7a2a30")], lines)
         # one connected garment: seams welded, eased to the pattern's lengths round him
         can, nw = weld(len(allX), pairs)
         Xw = np.zeros((nw, 3)); np.add.at(Xw, can, allX); Xw /= np.bincount(can, minlength=nw)[:, None]
@@ -1692,7 +1854,7 @@ def main():
             over = (np.where(on["leaf"] & ~body_on)[0], np.where(body_on & ~on["leaf"])[0], Tw)
         print("  eased to the pattern: edge/pattern 5%% %.3f, median %.3f, 95%% %.3f" % tuple(relax(Xw, E, R, P0, N0, over=over)), flush=True)
         if a.debug:
-            debug_json(os.path.join(a.debug, arch + "-relaxed.json"), body, P0, [(arch, Xw, Tw, "#7a2a30")])
+            debug_json(os.path.join(a.debug, arch + "-relaxed.json"), body, body.rel if legs else P0, [(arch, Xw, Tw, "#7a2a30")])
             pid = np.concatenate([np.full(len(G.P[k].V), i) for i, k in enumerate(G.P)])
             np.savez(os.path.join(a.debug, arch + "-weld.npz"), can=can, Vpat=Vpat, pid=pid, names=np.array(list(G.P)), T=T, Tw=Tw, E=E, R=R, Xw=Xw)
         # the drape under gravity, then his arms come down to his relaxed pose
@@ -1708,6 +1870,25 @@ def main():
             write_template(os.path.join(a.out, arch + ".json"), G, body, can, Xs, T, hood)
             continue
         clear_scene()
+        if legs:
+            # (trousers: his relaxed body without his arms as the collider, the waistband held where it was eased to,
+            # the legs let fall)
+            keep = ~np.any(body.armMask[body.idx], axis=1)
+            bo = new_obj("dave", body.rel, body.idx[keep]); bo.modifiers.new("collide", "COLLISION")
+            bo.collision.thickness_outer = 0.003; bo.collision.thickness_inner = 0.02; bo.collision.cloth_friction = a.friction; bo.collision.damping = 0.1
+            pins = np.unique(can[off["band"]:off["band"] + len(G.P["band"].V)])
+            frames = F(70)
+            co = cloth_obj(arch, Xw, Tw, None, [], pins=pins, frames=frames, bending=a.bending, mass=a.mass, tension=a.tension)
+
+            def snap(f, X):
+                if a.debug: debug_json(os.path.join(a.debug, "%s-f%03d.json" % (arch, f)), body, body.rel, [(arch, X[0], Tw, "#7a2a30")])
+            snap.at = {int(f) for f in os.environ.get("GB_SNAPS", "").split(",") if f}
+            Xs, = run(frames, [co], arch, snap)
+            st = np.linalg.norm(Xs[E[:, 0]] - Xs[E[:, 1]], axis=1) / R
+            print("  draped: edge/pattern 5%% %.3f, median %.3f, 95%% %.3f" % tuple(np.percentile(st, [5, 50, 95])), flush=True)
+            if a.debug: debug_json(os.path.join(a.debug, arch + "-draped.json"), body, body.rel, [(arch, Xs, Tw, "#7a2a30")])
+            write_template(os.path.join(a.out, arch + ".json"), G, body, can, Xs, T)
+            continue
         bo = body_obj(body, poses, pf, hold, a.friction)
         stw = np.zeros(nw); np.maximum.at(stw, can, np.concatenate([np.full(len(G.P[k].V), G.P[k].stiff) for k in G.P]))
         co = cloth_obj(arch, Xw, Tw, None, [], stiff=stw, frames=frames, bending=a.bending, mass=a.mass, tension=a.tension)
