@@ -4109,15 +4109,62 @@ it lie on it (`innerCols`) and the poses and the 3D check take it as trousers. 4
   and the shirt's collar came through it (front poke 76, `main` 21). At seat 100 and the back 1.5 cm higher the girth is
   within 1 to 3 cm and the top within 5 mm of `make3Dcore`'s, and g-quiet-18 is under the limit.
 
-**Checked** (so far): the 48 outfits with `tools/check_3d.js` on dave, the switch on against off: none flagged either
-way, poke 96 to 81, holes 109 to 76, stray 103 to 1 (`make3Dcore`'s belt loops and pockets standing off), skin 3 to 2.
-Close-ups of m5-skate-day, m7-skate, s5-linen-dinner and g-quiet-18 against `main`. The other bodies, the poses and card
-stills are in progress.
+**Checked**: the 48 outfits with `tools/check_3d.js` on dave, the switch on against off: none flagged either way,
+poke 96 to 81, holes 109 to 76, stray 103 to 1 (`make3Dcore`'s belt loops and pockets standing off), skin 3 to 2. With
+the switch on, on slim, athletic and heavier none flagged; on average, close and loose only g-quiet-18 (front poke 50,
+37 and 67, where `main` has 52, 29 and 74: the half-zip's stand collar over the shirt's at his neck, the known fault of
+a shirt collar under a half-zip). Close-ups of m5-skate-day, m7-skate, s5-linen-dinner and g-quiet-18 against `main`.
+CI (the gate set on all five bodies with the switch off, stored specs, ways back) green. Merged as PR #93.
 
 **What is not done**: the details `make3Dcore` draws on trousers (the waistband's line, belt loops, pockets, a jean's
 yoke and stitching, cargo pockets) are not drawn on the draped pair; the hem's shade on the shoe is still cast from
 `make3Dcore`'s hem; the template is one size, bound to his body (not graded by Edit Dave's clothes sizes); the other
 cuts, shorts, boots, turn-ups, belts and tucked-in tops are still `make3Dcore`'s.
+
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped trousers, step 2: their details, belts and tucked-in tops (17 Oct 2026)
+
+Section 5, item 6, its second step (PR #94), still behind `window.__legDrape`. The draped pair now carries what
+`make3Dcore` draws on trousers, a belt sits on its waistband and a top tucked in sits inside it, so the switch reaches 55
+outfits (the 48 of the proof and 7 with a belt or a top tucked in).
+
+*How it works* (`page.html`):
+- `drapeLoDetails` places the details on the draped cloth by their place on its pattern (`drapeAt`, as the draped tops'
+  details): stitching along both edges of the waistband and its button (a near shade of the cloth); five belt loops
+  where `make3Dcore` puts them (either side of the fly, over his hips, the middle of his back), sewn at the waistband's
+  edges and standing 4 mm off it between; the fly's J of stitching on his left front; the slanted openings of the front
+  pockets, from the waistband 4.5 cm in from his side to the side seam 15 cm below; jetted back pockets 13 cm across,
+  6.5 cm below the waistband; and pleats, a pressed crease (a fine line a little lighter, front and back) and turn-ups
+  (a band of the cloth 3.6 cm deep, stitched along its top) where the listing has them.
+- A belt worn over them is moved out or in round him by as much as the draped waistband is further out or in than
+  `make3Dcore`'s, angle by angle (every 5 degrees, evened over 15): it keeps its own shape and its buckle.
+- With a top tucked in, the trousers are held off him by its room as well (`make3Dcore`'s `tE`, 12 mm), from 1 cm above
+  his crotch, all of it from 7 cm up; the top is then held inside the draped trousers by #91's `drapeTuck`, which reads
+  their own mesh.
+- Workwear kit on a belt (a tool belt, holster pockets) still goes with `make3Dcore`'s trousers: it hangs from their
+  waistband.
+
+*What was wrong on the way:*
+- **A white button on a black suit.** The button took a shirt's shade (much lighter on a dark cloth); it is now a near
+  shade of the cloth.
+- **A crease that read as a pinstripe.** 15% lighter, the crease line stood out down both legs of a navy suit; it is
+  now 5% lighter and finer.
+- **A back pocket broken up.** Along three points 1.8 mm off the cloth, the cloth rose over the slit between them; it
+  now runs along nine, 2.5 mm off.
+- **A slit of background just under his crotch** (8 pixels from the front in five of the 7 new outfits): the inner
+  sides of the legs were held apart from 1 cm below his crotch. The rule is now eased in over the first 4 cm.
+
+**Checked**: the 55 outfits with `tools/check_3d.js` on dave, the switch on against off: poke 122 to 140, holes 114 to
+84, stray 114 to 1, skin 3 to 3; flagged only g-quiet-18 (front poke 49, `main` 21), the half-zip's stand collar over the
+shirt's collar at his neck, which moves with any change to the cloth under it (29 before the legs were eased in, and on
+the other bodies with step 1's trousers 50, 37 and 67 where `main` has 52, 29 and 74). Without it, poke 101 to 91. The 7
+new outfits on their own: holes 5 to 1 (8 before the easing), stray 11 to 0. Close-ups against `main`: the trousers
+alone (m5-skate-day, s5-linen-dinner, ox-suit) and as worn (smart-casual, ox-suit, wedding-guest, winter-formal). The
+poses (`tools/qa/poses.js`) on smart-casual, m5-skate-day and ox-suit: the draped trousers stretch no triangle in any
+pose (`main`'s 7, 7 and 5 mid-stride); smart-casual's tucked shirt 16 mid-stride, inside the trousers. Done up and worn
+out (`--wear zip=up,tuck=out`) on loose: only g-quiet-18 flagged (front poke 58, `main` 74).
+
+**What is not done**: a jean's yoke, rivets and stitching, a cargo's pockets, the other cuts, shorts and boots are
+still `make3Dcore`'s; the hem's shade on the shoe is still cast from `make3Dcore`'s hem; the template is one size.
 
 ## 3. Next steps
 
@@ -4490,8 +4537,9 @@ against `main`. About five pull requests, one per group of cuts.
 
 **Step 1, the proof (17 Oct 2026**, PR #93, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight chinos from a template, draped behind
 `window.__legDrape` in the 48 outfits with a straight pair that is not jeans, joggers or cargos, not cuffed, not over
-boots, not under a belt and not with a top tucked in. Next: the details `make3Dcore` draws on trousers (waistband,
-pockets, belt loops), then make it the default, then the other cuts.
+boots, not under a belt and not with a top tucked in. **Step 2 (17 Oct 2026**, PR #94, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): the
+details `make3Dcore` draws on trousers, belts and tucked-in tops on the draped pair (55 outfits). Next: make it the
+default for straight trousers, then the other cuts.
 
 ### 7. The tops still on `make3Dcore`, and known faults
 

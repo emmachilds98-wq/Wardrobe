@@ -25,14 +25,19 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**17 Oct: draped trousers, step 2** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #94, still behind `window.__legDrape`). The draped
+pair now has the details `make3Dcore` draws on trousers (the waistband's stitching and button, belt loops, the fly, the
+front and back pockets, and pleats, a crease and turn-ups where the listing has them); a belt sits on its waistband and
+a top tucked in sits inside it, so the switch reaches 55 outfits. None of them is flagged by the 3D check.
+**Next:** make draped straight trousers the default, then the other cuts.
+
 **17 Oct: draped trousers, the proof** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 6, its first step: PR #93, a
 draft for Emma to review). A straight pair of trousers can be drawn draped from a chinos pattern sewn and settled in
 Blender, where it hangs in its own folds, rests on the shoe's instep, falls behind the heel and parts below the crotch,
 in place of `make3Dcore`'s fitted legs. It is behind a switch (`window.__legDrape=1`), off by default, and reaches 48
 outfits; nothing changes on the page without it. Not yet drawn on the draped pair: pockets, belt loops and the waistband's
 line.
-**Next:** Emma to look at the close-ups in PR #93 and say whether the draped look is the way to go; then the trouser
-details, making it the default, and the other cuts (slim, wide, joggers, cargos, jeans, shorts).
+Merged on Emma's go-ahead (17 Oct).
 
 **17 Oct: tucked-in tops draped, and ties on a draped shirt** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 5, both its
 pull requests in one: PR #91). A shirt, polo or tee worn tucked in is now draped like the rest, held inside the
@@ -624,6 +629,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 17 Oct 2026 | #93 | Draped trousers, the proof: a chinos template (`tools/build_garments.py` cuts trousers, `data/garments/chinos.json`) draped behind `window.__legDrape` for straight pairs (`drapeLo`: held off his shoes the shortest way out, the legs kept apart below his crotch). Off by default: the page is unchanged. | B8UXnh v26 |
 | 17 Oct 2026 | #91 | Tucked-in tops draped: held 4 mm inside the trousers' own mesh below their top (`drapeTuck`, `drapeLegs`), blousing over the waistband, the cloth inside left out of what is worn over it (`R.tk`), draped only where the tuck shows (`tuckHid`: under a closed layer they keep `make3Dcore`'s shape); a tie laid on the draped shirt (`tieLay`); `window.__tuckDrape=0` draws the old shapes. The first try was recovered from the transcript of the session that lost it | B8UXnh v25 |
 | 16 Oct 2026 | #90 | Poses to choose from in the live views (Standing, At ease, Walking, Arms out): his skeleton in `data/body.json` (`rig`), his clothes bending with him (`poseRig`), a Pose row in the fitting room and a Pose button in Edit Dave's and the builder's docks | B8UXnh v24 |
 | 16 Oct 2026 | #89 | He stands still again: the breath and sway of PR #88 taken out (they read as the picture rocking, and made Emma feel travel sick) | B8UXnh v23 |
