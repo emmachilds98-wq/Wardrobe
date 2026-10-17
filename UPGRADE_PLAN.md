@@ -4064,7 +4064,7 @@ smart-casual, jeans-blazer, knit-polo-dinner, st-smart, winter-140, g-job-03, ox
 q6-christmas (a bow tie) against `main`; card stills of six. The poses (`tools/qa/poses.js`, which now takes `QA_INIT`)
 on smart-casual, ox-suit, jeans-blazer and g-job-02: a shirt stretches 2 or 3 triangles with his arms out, the trousers
 5 to 7 mid-stride as on `main`, and the first pose binds in up to 0.9 s (ox-suit, against 0.4). Stored specs
-unchanged (1379 pieces), the smoke test clean, the navigation check's 74 checks pass. The gate set tucked in with hems turned up, and done up worn out, on dave and loose: being run when this was written.
+unchanged (1379 pieces), the smoke test clean, the navigation check's 74 checks pass. The gate set tucked in with hems turned up (`--wear tuck=in,turn=up`), and done up worn out (`--wear zip=up,tuck=out`), on dave and loose: none of the 38 flagged in any of the four.
 
 **What is not done**: a long shirt's tails are cut off below the waistband (left undrawn), not folded; the line where
 the cloth turns in at the waistband's top is the cloth's own triangles, a little saw-toothed close up (jeans-blazer); a
