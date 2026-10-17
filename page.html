@@ -4535,7 +4535,7 @@ function drapeTops(man,list,pm,inner,ctx){var T=window.THREE,inv=new T.Matrix4()
      chore jacket, g-mod-15 and g-mod-11, or under a smaller trucker, g-mod-13, had nowhere to go but out through the
      jacket, crumpled in pleats through its front) */
   var G=1,sy=1,effIn=0,stackJW=list.filter(function(p){var t=GTPL[p._arch||drapeArch(p)];return t&&DRAPEJW.test(t.arch);}).length>1;
-  list.forEach(function(p){var t=GTPL[p._arch||drapeArch(p)];if(!t)return;TUCKNOW=!!(p._tuck&&window.__tuckDrape&&ctx&&ctx.lo);thJ=/^(jacket_hood|parka)/.test(t.arch)?0.007:/^puffer_hood/.test(t.arch)?0.012:0.004;G=drapeSize(t.meas&&t.meas.chest);
+  list.forEach(function(p){var t=GTPL[p._arch||drapeArch(p)];if(!t)return;TUCKNOW=!!(p._tuck&&ctx&&ctx.lo);thJ=/^(jacket_hood|parka)/.test(t.arch)?0.007:/^puffer_hood/.test(t.arch)?0.012:0.004;G=drapeSize(t.meas&&t.meas.chest);
     var ch=t.meas&&t.meas.chest||120,jw=DRAPEJW.test(t.arch),onJW=jw&&effIn>0;if(onJW)G=Math.max(G,(effIn+8)/ch);if(jw)effIn=Math.max(effIn,ch*G);sy=1+(G-1)*0.35;var k=inner.indexOf(p),ic=innerCols(k,false,t.meas.lapel?(window.__drapeThB==null?0.007:window.__drapeThB):0,/^puffer/.test(t.arch)?(window.__drapeThL==null?0.003:window.__drapeThL):0),oc=innerCols(k,true);cU=ic[0];cUA=ic[1];cO=oc[0];cOA=oc[1];t.cl=t.cl||drapeCloth(t,t.pos);var X=drapeBind(t,BP,G);
     /* (what each point is drawn back to is where its binding puts it moved out of what is under it: drawn back to the
        binding itself, a padded jacket's open front edge, bound close to his body, settled between the quarter-zip and
@@ -5968,14 +5968,15 @@ function make3Dcore(pieces){
   up.sort(function(a,b){return lay(a)-lay(b);});
   /* the tops drawn from draped templates (window.__drape; a jacket worn open from the open one, worn closed from the
      same jacket zipped up) */
-  /* (a top tucked in keeps make3Dcore's shape, which goes into the waistband: the templates hang loose to the hem) */
+  /* (a top tucked in is draped and held inside the trousers below their top, drapeTuck, where the tuck shows (tuckHid);
+     window.__tuckDrape=0 keeps make3Dcore's shape for every top tucked in, which goes into the waistband, as before) */
   var TUCK0=tuckList(up,tuckOn(lo,!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo))),pieces.some(function(q){return q.shape==="tie";})));
   /* (a top tucked in is draped where the tuck shows: with nothing over it, or under a blazer or a jacket worn open. Under
      a closed layer, a jumper, a half-zip, a roll neck, a hoodie, a waistcoat, or a jacket, coat, gilet or cardigan done up,
      only its collar and cuffs show and it keeps make3Dcore's shapes: draped there, its collar crumpled inside a half-zip's
      stand collar and came through it, st-smart and winter-140 on the loose fit, as an untucked shirt's does under one) */
   function tuckHid(k){return up.slice(k+1).some(function(q){return /^(jumper|halfzip|rollneck|hoodie|waistcoat)$/.test(q.shape)||(/^(jacket|coat|gilet|cardigan)$/.test(q.shape)&&!openWorn(q,up));});}
-  up.forEach(function(p,k){p._drape=false;p._tuck=!!TUCK0[k];var a=bodyOn&&(!TUCK0[k]||window.__tuckDrape&&!tuckHid(k))&&drapeArch(p);if(DRAPEOPEN[a]&&!openWorn(p,up))a=GTPL[a+"_up"]?a+"_up":null;else if(a&&!DRAPEOPEN[a]&&openWorn(p,up))a=null;   /* (only a jacket's, a shirt's and a padded jacket's templates open) */
+  up.forEach(function(p,k){p._drape=false;p._tuck=!!TUCK0[k];var a=bodyOn&&(!TUCK0[k]||window.__tuckDrape!==0&&!tuckHid(k))&&drapeArch(p);if(DRAPEOPEN[a]&&!openWorn(p,up))a=GTPL[a+"_up"]?a+"_up":null;else if(a&&!DRAPEOPEN[a]&&openWorn(p,up))a=null;   /* (only a jacket's, a shirt's and a padded jacket's templates open) */
     /* (a hooded padded jacket under a neck warmer keeps make3Dcore's shapes, its hood tucked under the neck warmer: the
        draped hood, padded and bulky, lay out over the neck warmer's foot at the back of his neck, jb11-winter, and held
        inside it the hood bunched and came through the jacket's back) */
@@ -7436,7 +7437,7 @@ function make3Dcore(pieces){
   var kH=(Number(CHAR.height)||183)/183,bw=1+0.08*(Number(CHAR.weight)||0)+0.06*(Number(CHAR.muscle)||0);
   var PW=propWarp(bodyOn?BL.chin:1.567);
   if(PW){warpMan(man,PW,bodyOn?BL.skull[1]:0.0);kH*=1.79/PW.W(1.79);}
-  if(drp.length||dScarf){drp.sort(function(a,b){return layRank(a)-layRank(b);});drapeTops(man,drp,pm,up,{lo:lo,tieM:TIEM,belts:acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));}),scarf:dScarf,pm:pm,nm:nm,mat:mat,metal:metal,white:white,rib:rib,placeMap:placeMap,tie:acc.some(function(q){return q.shape==="tie"&&!/bow/.test(nm(q));}),under:(lo?[lo]:[]).concat(acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));})),over:acc.filter(function(p){return (p.shape==="scarf"&&!(dScarf&&dScarf.p===p))||p.shape==="snood"||(p.shape==="belt"&&KITRE.test(nm(p)));})});}   /* (a belt under them: a draped top is never tucked in, so the belt is under it; left out, the belt came through a gilet at his waist) */
+  if(drp.length||dScarf){drp.sort(function(a,b){return layRank(a)-layRank(b);});drapeTops(man,drp,pm,up,{lo:lo,tieM:TIEM,belts:acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));}),scarf:dScarf,pm:pm,nm:nm,mat:mat,metal:metal,white:white,rib:rib,placeMap:placeMap,tie:acc.some(function(q){return q.shape==="tie"&&!/bow/.test(nm(q));}),under:(lo?[lo]:[]).concat(acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));})),over:acc.filter(function(p){return (p.shape==="scarf"&&!(dScarf&&dScarf.p===p))||p.shape==="snood"||(p.shape==="belt"&&KITRE.test(nm(p)));})});}   /* (a belt under them, or over a top tucked in, innerCols; left out, the belt came through a gilet at his waist) */
   if(bagS&&drp.length)bagOut(man,bagS);
   if(bodyOn)man.scale.set(kH,kH,kH);else man.scale.set(kH*bw,kH,kH*(0.5+0.5*bw));
   /* (loHem: the height on his body of a pair of shorts' hem, for the 3D check's idea of what they cover) */
