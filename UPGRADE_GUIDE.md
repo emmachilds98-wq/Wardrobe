@@ -19,7 +19,8 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   shapes: 5 that `drapeArch` sends nowhere (Carhartt's Super Dux and the
   four insulated and borg-lined overshirts) and the borg zip-through in
   g-casual-01, which it sends to `puffer` but which stays on `make3Dcore` over a half-zip (see the rule by `TUCK0`). Straight and regular trousers and jeans are draped too since 17 Oct (PR #97: `drapeLo`, from
-  `data/garments/chinos.json`, with their details by `drapeLoDetails`; 81 outfits); the other cuts and shorts keep
+  `data/garments/chinos.json`, and `chinos_boot.json` over boots, with their details by `drapeLoDetails`; 136 outfits); the
+  other cuts and shorts keep
   `make3Dcore`'s legs. (Counted piece by piece in each outfit. `tools/qa/drape_survey.js`,
   below, gives one row per item, its template taken from the first outfit it is in, so a piece filed under another
   shape in another outfit can hide there: the guide said 932 and 20 until this was counted.) Run it for the live list.
@@ -35,7 +36,8 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   - Tailoring: `blazer(_up)` (a shawl collar: the collar and lapels in one, rolled down the V to the button).
   - Coats: `overcoat(_up)` (the blazer's lapels on a coat to his knees), `carcoat(_up)` (a shirt collar, a fly front).
   - Accessories: `scarf`.
-  - Trousers: `chinos` (a straight pair: chinos, trousers and jeans; `drapeLo`, not `drapeTops`, before the tops).
+  - Trousers: `chinos` (a straight pair: chinos, trousers and jeans; `drapeLo`, not `drapeTops`, before the tops),
+    `chinos_boot` (the same, ending 11 cm off the floor, over boots).
 - **Which template a piece gets**: `drapeArch(p)` in `page.html` decides, from the piece's shape and the words in its
   item name and `what`. It returns `null` for anything a template would draw wrongly; that piece keeps `make3Dcore`'s
   shapes. Every rule there has a comment saying why.

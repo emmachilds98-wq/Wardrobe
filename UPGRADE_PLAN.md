@@ -4224,12 +4224,12 @@ to 0; on loose 254 to 162, flagged 4 to 3. Close-ups of g-quiet-18 (dave and loo
 **What is not done**: on loose, g-quiet-18, g-quiet-26 and g-outdoor-01 still flag (front poke 31 to 36): the gilet's
 own collar folds down over the shirt's stand.
 
-## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped straight trousers and jeans by default (17 Oct 2026)
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped straight trousers and jeans by default, over boots too (17 Oct 2026)
 
 Section 5, item 6, its fourth step (PR #97): the draped straight pair of steps 1 to 3 is now the page's own for
-straight and regular trousers and jeans (81 outfits as worn), where before it was behind `window.__legDrape`.
-`QA_INIT='window.__legDrape=0'` draws `make3Dcore`'s, for a before and after. Joggers, cargos, cuffed legs, legs over
-boots, the other cuts and shorts keep `make3Dcore`'s.
+straight and regular trousers and jeans (81 outfits as worn, and 55 more over boots: 136), where before it was behind
+`window.__legDrape`. `QA_INIT='window.__legDrape=0'` draws `make3Dcore`'s, for a before and after. Joggers, cargos,
+cuffed legs, the other cuts and shorts keep `make3Dcore`'s.
 
 *What else changed* (`drapeLo`, `drapeLoDetails`):
 - **30 settle steps, not 60.** The trousers settle in about 0.56 s of the 0.64 s they add to each outfit (measured
@@ -4239,6 +4239,12 @@ boots, the other cuts and shorts keep `make3Dcore`'s.
 - **The hem rests on the highest of the shoe within a centimetre.** On its own 5 mm square's height, a heel tab or the
   collar's edge, narrower than the cloth's points are apart (about 1.4 cm), came up through the back of the hem in
   specks; out beside the shoe the cloth now stands 5 mm past it, not 3.
+- **Over boots** (`chinos_boot`, built by `tools/build_garments.py` with `hem_y=11`): the same chino cut to end 11 cm off
+  the floor, so its hem rests on the boot's front and the toe, the laces and the start of the shaft show, as
+  `make3Dcore`'s trousers stop on a boot (9 to 12 cm up). Cut 3.5 cm off the floor, the leg covered the whole shaft and
+  bunched at the front. And his shoes are a solid by height: at each centimetre up, a square is inside a shoe only where
+  the shoe reaches that high over it, so beside a boot's shaft the cloth stays round the shaft, not out past the whole
+  boot (with one outline for all heights, cloth beside a trainer's collar was also pushed out past its sole).
 - **A pocket on each thigh of a work or utility pair**, as `make3Dcore` puts on them (the DC worker chinos in
   m5-skate-day, the Dickies work chinos in wk-party, g-mod-16): a patch 15 cm deep across the side seam, its top 17 cm
   below his crotch, filled out a little in the middle, stitched round its edges, with a flap.

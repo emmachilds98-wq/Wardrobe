@@ -25,11 +25,12 @@ at the back of his neck as its grip on a collar holds it) over his body and the 
 so build that first), then let fall. About 30 seconds. GB_SCARF_FWD=0.5 (and the rest of SCARF_WRAP) tries another
 wrap.
 
-Trousers (--only chinos; MEAS entries with legs=1) are cut as a pair (Trousers: a front and a back panel for each leg,
+Trousers (--only chinos,chinos_boot; MEAS entries with legs=1) are cut as a pair (Trousers: a front and a back panel for each leg,
 sewn down both sides of each leg and up the front and the back, and a waistband), their inseam from his crotch to
 3.5 cm off the floor, placed round his legs and hips (place_legs) and draped in his relaxed pose without his arms, the
 waistband held where it is put; each point is bound to his body on its own side (bind). The page drapes them with
-window.__legDrape set (UPGRADE_PLAN.md, section 5 item 6: the proof, straight trousers only).
+window.__legDrape on by default (UPGRADE_PLAN.md, section 5 item 6: straight trousers and jeans; chinos_boot, the same
+ending 11 cm off the floor, over boots).
 
 It runs itself inside Blender 4.5 LTS: BLENDER=<path to blender>, else ~/.cache/wardrobe-blender, where Blender is
 downloaded from download.blender.org (and checked against its published sha256) on first use. The MakeHuman assets
@@ -456,6 +457,9 @@ MEAS = {
     # the hem 3.5 cm off the floor. A straight chino: the waistband on his hips where make3Dcore's trousers sit (a rise
     # of 26 put it at his navel, 10 cm above them), a little room at the seat, straight from the knee to the hem.
     "chinos": dict(legs=1, waist=87, seat=100, knee=46, hem=41, wb=4, rise=16, length=100),
+    # the same chino cut to end 11 cm off the floor (hem_y), for over boots: its hem rests on the boot's front, so the
+    # toe, the laces and the start of the shaft show, as make3Dcore's trousers stop on a boot (9 to 12 cm up)
+    "chinos_boot": dict(legs=1, waist=87, seat=100, knee=46, hem=41, wb=4, rise=16, length=100, hem_y=11),
 }
 H = 0.014   # mesh spacing (m)
 
@@ -855,13 +859,13 @@ def trouser_panels(M, s, yin, yrise):
 class Trousers:
     """A pair of trousers (MEAS with legs=1): his left leg's front and back panels and the mirrored right ones, sewn
     down the outside and the inside of each leg and up the front and the back, a waistband round the top. Its lengths
-    are his own: the inseam from his crotch to 3.5 cm off the floor."""
+    are his own: the inseam from his crotch to 3.5 cm off the floor (or MEAS hem_y, in cm)."""
 
     def __init__(self, arch, scale, body):
         self.arch, self.M, self.s = arch, MEAS[arch], scale
         M, s = self.M, scale
         self.yc = crotch_height(body.rel, body)
-        self.yhem = 0.035
+        self.yhem = M.get("hem_y", 3.5) / 100
         yin, yrise = self.yc - self.yhem, (M["rise"] - M["wb"]) / 100 * s
         fl, bl = trouser_panels(M, s, yin, yrise)
         P = {"front_L": fl, "back_L": bl, "front_R": mirror(fl, "front_R"), "back_R": mirror(bl, "back_R")}

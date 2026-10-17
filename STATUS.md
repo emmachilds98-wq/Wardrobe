@@ -26,10 +26,10 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 ## Now
 
 **17 Oct: draped straight trousers and jeans by default** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #97). Straight and regular
-trousers and jeans now hang as real cloth in every view and card (81 outfits): their own folds, the hem resting on the
-shoe's instep and falling behind the heel, the legs parting below the crotch, with their pockets, belt loops, fly and
-stitching, a belt on their waistband and room inside for a tucked-in shirt. Joggers, cargos, legs over boots, the other
-cuts and shorts look as before.
+trousers and jeans now hang as real cloth in every view and card (136 outfits, 55 of them over boots): their own folds,
+the hem resting on the shoe's instep and falling behind the heel (over boots, on the boot's front, its laces showing),
+the legs parting below the crotch, with their pockets, belt loops, fly and stitching, a belt on their waistband and room
+inside for a tucked-in shirt. Joggers, cargos, the other cuts and shorts look as before.
 **Next:** the other cuts, one group at a time.
 
 **17 Oct: a shirt's collar inside a done-up gilet or half-zip** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #96). With a crew-neck
