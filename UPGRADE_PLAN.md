@@ -4224,6 +4224,31 @@ to 0; on loose 254 to 162, flagged 4 to 3. Close-ups of g-quiet-18 (dave and loo
 **What is not done**: on loose, g-quiet-18, g-quiet-26 and g-outdoor-01 still flag (front poke 31 to 36): the gilet's
 own collar folds down over the shirt's stand.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped straight trousers and jeans by default (17 Oct 2026)
+
+Section 5, item 6, its fourth step (PR #97): the draped straight pair of steps 1 to 3 is now the page's own for
+straight and regular trousers and jeans (81 outfits as worn), where before it was behind `window.__legDrape`.
+`QA_INIT='window.__legDrape=0'` draws `make3Dcore`'s, for a before and after. Joggers, cargos, cuffed legs, legs over
+boots, the other cuts and shorts keep `make3Dcore`'s.
+
+*What else changed* (`drapeLo`, `drapeLoDetails`):
+- **30 settle steps, not 60.** The trousers settle in about 0.56 s of the 0.64 s they add to each outfit (measured
+  here, rendering in software); they come from the template nearly at rest, and over ten outfits 30 steps checked the
+  same as 60 (poke 37 against 44). Each outfit's 3D build now takes about a third longer than with `make3Dcore`'s
+  trousers (1.5 to 2.0 s on average here over six outfits; item 11 is the speed on phones).
+- **The hem rests on the highest of the shoe within a centimetre.** On its own 5 mm square's height, a heel tab or the
+  collar's edge, narrower than the cloth's points are apart (about 1.4 cm), came up through the back of the hem in
+  specks; out beside the shoe the cloth now stands 5 mm past it, not 3.
+- **A pocket on each thigh of a work or utility pair**, as `make3Dcore` puts on them (the DC worker chinos in
+  m5-skate-day, the Dickies work chinos in wk-party, g-mod-16): a patch 15 cm deep across the side seam, its top 17 cm
+  below his crotch, filled out a little in the middle, stitched round its edges, with a flap.
+
+**Checked**: CHECKED3
+
+**What is not done**: the other cuts (slim, skinny, tapered, wide, barrel, joggers with their cuffs, cargos), shorts,
+legs over boots and turn-ups on jeans; the hem's shade on the shoe is still cast from `make3Dcore`'s hem; the trousers
+are one size (not graded by Edit Dave's cloth fit).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4597,8 +4622,9 @@ against `main`. About five pull requests, one per group of cuts.
 `window.__legDrape` in the 48 outfits with a straight pair that is not jeans, joggers or cargos, not cuffed, not over
 boots, not under a belt and not with a top tucked in. **Step 2 (17 Oct 2026**, PR #94, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): the
 details `make3Dcore` draws on trousers, belts and tucked-in tops on the draped pair (55 outfits). **Step 3 (17 Oct
-2026**, PR #95, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight and regular jeans, with their own details (81 outfits). Next: a shirt's collar
-under a done-up gilet (g-quiet-18), then make it the default for straight trousers and jeans, then the other cuts.
+2026**, PR #95, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight and regular jeans, with their own details (81 outfits). A shirt's collar under a
+done-up gilet: PR #96. **Step 4 (17 Oct 2026**, PR #97, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): on by default for straight and regular trousers
+and jeans. Next: the other cuts, one group at a time (slim and tapered; wide and relaxed; joggers; cargos; shorts).
 
 ### 7. The tops still on `make3Dcore`, and known faults
 
