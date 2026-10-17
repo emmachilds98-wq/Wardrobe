@@ -29,7 +29,7 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 the chinos (for listings 22, 27, 30 and 36 cm below his crotch), each pair ending where the old shorts did or a little
 lower, with the chinos' pockets, belt loops, fly and a turned-up hem, and no more specks of background between the legs
 under the crotch (on trousers either). Swim, board, jersey and cargo shorts look as before.
-**Next:** the other trouser cuts (slim and tapered, wide and relaxed, joggers, cargos).
+Merged (PR #98).
 
 **17 Oct: draped straight trousers and jeans by default** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #97). Straight and regular
 trousers and jeans now hang as real cloth in every view and card (136 outfits, 55 of them over boots): their own folds,
@@ -654,6 +654,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 17 Oct 2026 | #98 | Draped shorts: four lengths of a chino short (`shorts_short`, `shorts`, `shorts_mid`, `shorts_long`), each ending where `make3Dcore`'s did once warped; a crotch gusset where the legs come within 16 mm (8 on trousers) and the legs crossing where his thighs touch, so no specks of background between them. 76 outfits on five bodies flag only the two apron outfits, as before. | B8UXnh v31 |
 | 17 Oct 2026 | #97 | Draped straight trousers and jeans by default, over boots too (`chinos_boot`, ending 11 cm off the floor; his shoes a solid by height); 30 settle steps; the hem on the highest of the shoe within a centimetre; a work pair's thigh pockets. 136 outfits. `window.__legDrape=0` for `make3Dcore`'s. | B8UXnh v30 |
 | 17 Oct 2026 | #96 | A shirt's collar under a done-up stand collar (a gilet, a half-zip, a roll neck, a jacket zipped up) with a jumper between stays inside the jumper too (`leafIn`, `STANDC`): no more shards through the outer collar beside his neck. Over the 9 outfits it changes on five bodies, flagged 15 to 3. | B8UXnh v29 |
 | 17 Oct 2026 | #95 | Draped trousers, step 3 (behind `window.__legDrape`): straight and regular jeans draped too, with a jean's own details (gold topstitching, scooped pockets and rivets, coin pocket, yoke, patch pockets with the arcuate, leather label, metal button). 81 outfits. Off by default. | B8UXnh v28 |
