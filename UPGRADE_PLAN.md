@@ -4166,6 +4166,31 @@ out (`--wear zip=up,tuck=out`) on loose: only g-quiet-18 flagged (front poke 58,
 **What is not done**: a jean's yoke, rivets and stitching, a cargo's pockets, the other cuts, shorts and boots are
 still `make3Dcore`'s; the hem's shade on the shoe is still cast from `make3Dcore`'s hem; the template is one size.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped trousers, step 3: jeans (17 Oct 2026)
+
+Section 5, item 6, its third step (PR #95), still behind `window.__legDrape`: straight and regular jeans are draped
+from the same straight template as the chinos, with a jean's own details, so the switch reaches 81 outfits (26 more).
+
+*How it works* (`drapeLoDetails`, `jean`): in place of a chino's slanted pockets and jetted back pockets, jeans have
+gold topstitching (both edges of the waistband, the fly, and down the outside of each leg from 3 cm below the
+waistband to the hem); scooped front pockets, each from the waistband 9.5 cm out from the fly's middle round to the
+side seam 8 cm below, with a copper rivet at each end; a coin pocket up under the waistband on his right, clear of the
+scoop; a yoke across the back, from 4 cm below the waistband at the sides to 7.5 cm at the middle; patch pockets 13.5
+cm across and 14.5 cm deep below it, with a shallow point at the foot, a stitched hem and the arcuate; a leather label
+on the waistband over the right back pocket; and a metal button.
+
+*What was wrong on the way:* the scoop first ran along under the waistband before dropping to the side seam (its
+curve the wrong way round) and started 16 cm out from the middle, almost at his side; the coin pocket was crossed by
+the scoop; the back pockets had no hem.
+
+**Checked**: the 26 jeans outfits with `tools/check_3d.js` on dave, the switch on against off: none flagged either way;
+poke 44 to 49, holes 87 to 44, stray 105 to 3, skin 0 to 0. On loose and heavier with the switch on: none flagged.
+Close-ups against `main`: Levi's 501 alone (front, three-quarter, back, the whole pair) and as worn in n3-chore-501,
+jeans-blazer (a tucked shirt) and nw-quarterzip.
+
+**What is not done**: a jean's fading and whiskers are the cloth's own texture, not drawn on the draped pair; selvedge
+turn-ups take the chino's turn-up; slim, skinny, tapered, wide and barrel jeans are still `make3Dcore`'s.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4538,8 +4563,9 @@ against `main`. About five pull requests, one per group of cuts.
 **Step 1, the proof (17 Oct 2026**, PR #93, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight chinos from a template, draped behind
 `window.__legDrape` in the 48 outfits with a straight pair that is not jeans, joggers or cargos, not cuffed, not over
 boots, not under a belt and not with a top tucked in. **Step 2 (17 Oct 2026**, PR #94, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): the
-details `make3Dcore` draws on trousers, belts and tucked-in tops on the draped pair (55 outfits). Next: make it the
-default for straight trousers, then the other cuts.
+details `make3Dcore` draws on trousers, belts and tucked-in tops on the draped pair (55 outfits). **Step 3 (17 Oct
+2026**, PR #95, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight and regular jeans, with their own details (81 outfits). Next: a shirt's collar
+under a done-up gilet (g-quiet-18), then make it the default for straight trousers and jeans, then the other cuts.
 
 ### 7. The tops still on `make3Dcore`, and known faults
 
