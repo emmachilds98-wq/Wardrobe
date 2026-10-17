@@ -4302,7 +4302,10 @@ from straight in front, so it only closes the gap where it is seen at a slant. H
 **Checked**: on Dave, the 76 shorts outfits against `make3Dcore`'s (`window.__legDrape=0`): flagged 2 and 2, the same
 two (jb8-apron-shorts and jb9-hirst-apron, a work apron's poke; their shorts keep `make3Dcore`'s under the kit belt);
 holes 47 against 46, skin 7 against 6, poke 200 against 177 (5 to 8 pixels more on five of the 22 cm pairs, the back
-pockets' welts at an untucked shirt's hem), legs 0. The gate set on Dave: none flagged.
+pockets' welts at an untucked shirt's hem), legs 0. The gate set on Dave: none flagged. On the slim, athletic, heavier
+and loose builds the 76 flag only the same two (1, 2, 2 and 2), whose shorts are not draped; legs 0 on all. Smaller
+counts left: on the heavier build his thigh shows 2 pixels just under the hem from the front on 45 outfits (none on
+`make3Dcore`'s, six compared), and the loose fit's 9 holes from the side on 22 are `make3Dcore`'s too. CI: green.
 
 **What is not done**: swim, board, jersey, jogger and cargo shorts; the shorts are one size.
 
