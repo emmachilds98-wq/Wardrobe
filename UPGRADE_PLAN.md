@@ -4001,6 +4001,76 @@ nothing settles under gravity. Under a coat's arms the drape's own folds show as
 Edit Dave's measuring lines stay where they are on him standing. A relaxed default stance (the plan's original second
 step) can be one of these poses made the default once Emma has looked at them.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Tucked-in tops draped, and a tie on a draped shirt (17 Oct 2026)
+
+Section 5, item 5, both its pull requests in one (PR #91). A shirt, polo or tee worn tucked in (with tailoring, a belt
+worn to be seen or a tie, `TUCK0`; or any top with the fitting room's Tucked on) is draped like the rest, held inside
+the trousers below their top and bloused a little over the waistband, where before it kept `make3Dcore`'s shape. A tie
+lies on the draped shirt. `window.__tuckDrape=0` draws them as before, for before and after renders.
+
+*The first try, recovered.* It was written on 16 Oct by the session that wrote section 5 (behind
+`window.__tuckDrape`), stashed in that session's container when Emma asked for the ways back, and lost with the
+container. It was rebuilt from the seven edit scripts in that session's transcript (03:41 to 03:47 UTC), replayed on the
+commit they were written against (`b80e721`) and applied to `main` without a conflict. Lesson: push an experiment,
+behind its switch, before setting it aside.
+
+*How it works* (`page.html`):
+- A top tucked in drapes where the tuck shows: with nothing over it, or under a blazer or a jacket worn open. Under a
+  closed layer (a jumper, a half-zip, a roll neck, a hoodie, a waistcoat, or a jacket, coat, gilet or cardigan done up)
+  it keeps `make3Dcore`'s shapes (`tuckHid`): only its collar and cuffs show there.
+- After its settle, each point of its body below the trousers' top is held 4 mm inside them, then a short settle (20
+  steps) with those points held, so the cloth above blouses over the waistband (`drapeTuck`). The trousers are read
+  from their own mesh, round the torso's centre line (`drapeLegs`: their top by angle, and how far out they are by
+  height and angle, the least within a centimetre and one step round). Held from 4 mm below the top, the cloth above
+  laps a little over the waistband's edge.
+- More than 4 cm below the top, the cloth is brought inside the trousers, laid 2 mm off his body and left undrawn
+  (`drapeHide`).
+- The cloth held inside the trousers is left out of what the layers over it lie on (`R.tk`): the trousers hold those
+  layers out there.
+- The belt goes over a tucked top, not under it (`innerCols`); its buttons and details below the waistband are left
+  out.
+- A tie on a draped shirt is built as on `make3Dcore`'s shirt, at a shirt's heights with the knot between the collar's
+  fronts, and once the shirt has settled under everything worn over it, laid on the draped shirt (`tieLay`): each row
+  of the ribbon 4.5 mm in front of the furthest-out of the shirt across its width and a centimetre up and down, its
+  middle 1.2 mm prouder, the knot 6 mm proud, by rays from in front. A bow tie is placed as before.
+
+*What was wrong in the first try, and why:*
+- **The legwear map is in the wrong place.** The first try held the cloth inside `make3Dcore`'s map of his legwear
+  (`OCC.L`). That map is made before his proportions are warped (`warpMan`), and the drape runs after: measured on
+  knit-polo-dinner, the map reaches 1.03 to 1.04 m where the trousers stop at 0.98, and lies 3 to 15 mm outside them at
+  his sides and back (171 against 165 to 168 mm at his side), so the polo showed at his hip below the waistband. It is
+  about 1 cm inside the trousers at the front. Hence `drapeLegs`.
+- **Cloth pressed inside the trousers crumples**, its normals turned every way, and the collider pushes along the
+  nearest point's normal: the blazer or jacket over it was drawn in through the trousers, which showed through its back
+  in holes and a ragged hem (smart-casual, knit-polo-dinner). Hence `R.tk`.
+- **Cloth hanging more than 4 cm off him below the waistband was out of reach** of his body's nearest point (the
+  collider's reach), so it stayed where it hung, and the triangles from it to the cloth held inside stood out through
+  the trousers in spikes below the waistband (knit-polo-dinner, jeans-blazer). It is brought inside the trousers first.
+
+*Tried and not kept:* draping a tucked shirt under a half-zip. Its collar crumpled inside the half-zip's stand collar
+and came through it (st-smart front poke 31 and winter-140 back poke 31 on the loose fit), as an untucked draped shirt's
+does under one; over the 27 outfits then draped, the poke total on dave went from 77 to 167, most of it in four such
+outfits (st-smart, winter-140, g-mod-18, g-outdoor-12). Hence `tuckHid`.
+
+**Checked**: the 28 outfits that drape a tucked top as worn (19, and the 9 with a tie) with `tools/check_3d.js` on all five bodies
+as worn, and done up (`--wear zip=up`) on dave and loose: none flagged, no page errors, as with the switch off; poke
+over the 28 on dave 58 off and 53 on, on loose 23 and 88 (the most, winter-formal's back 25: the shirt's collar above
+the overcoat's and its cuffs past the sleeves). The gate set with the fitting room's Tucked on (`--wear tuck=in`):
+none flagged on dave or loose, where with the switch off mn9-knitzip flags on loose (back poke 106); poke totals 105 to
+82 on dave and 208 to 107 on loose. `tools/qa/through.js` over the 12 outfits with an open layer over a tucked top: 9,102
+to 12,017 pixels on dave and 5,419 to 8,403 on loose, most of it in the two with an overshirt open over a tucked shirt
+(wk-smart, smart-125: the shirt's cuffs and collar inside the overshirt's outline), looked at close up. Close-ups of
+smart-casual, jeans-blazer, knit-polo-dinner, st-smart, winter-140, g-job-03, ox-suit, m10-oxford-tiebar and
+q6-christmas (a bow tie) against `main`; card stills of six. The poses (`tools/qa/poses.js`, which now takes `QA_INIT`)
+on smart-casual, ox-suit, jeans-blazer and g-job-02: a shirt stretches 2 or 3 triangles with his arms out, the trousers
+5 to 7 mid-stride as on `main`, and the first pose binds in up to 0.9 s (ox-suit, against 0.4). Stored specs
+unchanged (1379 pieces), the smoke test clean, the navigation check's 74 checks pass. The gate set tucked in with hems turned up (`--wear tuck=in,turn=up`), and done up worn out (`--wear zip=up,tuck=out`), on dave and loose: none of the 38 flagged in any of the four.
+
+**What is not done**: a long shirt's tails are cut off below the waistband (left undrawn), not folded; the line where
+the cloth turns in at the waistband's top is the cloth's own triangles, a little saw-toothed close up (jeans-blazer); a
+tucked top under a closed layer keeps `make3Dcore`'s shapes. The draped polo's collar shows a few pixels of background
+from the side (4 to 6, worn in or out, as on `main`).
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4323,7 +4393,7 @@ stretching. Poses to choose from are what she asked for instead: the second step
 to choose from in the live views (Standing, At ease, Walking, Arms out). The templates are not draped again on a new
 stance: the clothes bend with him by the skin under them. Standing stays the default until Emma has looked at them.
 
-### 5. Tucked-in tops (a first try is under way)
+### 5. Tucked-in tops (done 17 Oct, PR #91)
 
 What: a shirt, polo or tee tucked in (worn with tailoring, a visible belt or a tie, or tailored trousers; `TUCK0`)
 keeps `make3Dcore`'s shape, which ends at the waistband, because a template hangs loose to its hem.
@@ -4345,6 +4415,10 @@ and g-job-02):
 
 Done when: no skin between hem and waistband and nothing hanging out on any body, the gate set clean with
 `--wear tuck=in`, and close-ups as good as or better than `main`. Two pull requests: without ties, then ties.
+
+**Done 17 Oct 2026** (PR #91, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, both in one): the first try recovered from the session
+that wrote it, held inside the trousers' own mesh rather than the legwear map, draped only where the tuck shows (under a
+blazer or an open jacket, or with nothing over it), and a tie laid on the draped shirt.
 
 ### 6. Draped trousers and shorts (the largest change left)
 

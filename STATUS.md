@@ -25,6 +25,17 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**17 Oct: tucked-in tops draped, and ties on a draped shirt** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 5, both its
+pull requests in one: PR #91). A shirt, polo or tee worn tucked in is now draped like the rest, held inside the
+trousers below their top and blousing a little over the waistband, where the tuck shows (with nothing over it, or under
+a blazer or an open jacket: 28 outfits as worn, 9 of them with a tie); under a closed layer, a jumper, a half-zip or a
+jacket done up, it keeps `make3Dcore`'s shape. A tie lies on the draped shirt. The first try at this (16 Oct) had been
+stashed in a session's container and lost with it; it was recovered from that session's transcript and its faults
+fixed (holes in a blazer's back, a polo at his hip, spikes below the waistband). `window.__tuckDrape=0` draws them as
+before.
+**Next:** draped trousers and shorts (item 6), the largest change left; Emma to try the poses and say whether one should
+be his default stance.
+
 **16 Oct: poses to choose from** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, section 5 item 4, its second step). The live views have four
 poses: Standing (as he always stood, the default), At ease (his weight on one leg), Walking (mid-stride) and Arms out.
 His skeleton now comes with his body (`data/body.json`'s `rig`, from MakeHuman's, by `tools/build_body.py`); his

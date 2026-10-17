@@ -1,6 +1,6 @@
 # Continuing the upgrade: a guide for the next engineer
 
-Written 15 Oct 2026, when work paused after PR #68; updated for the draped blazers, overcoats, remaining jackets, polos, V-necks, cardigans, the last jackets, collars under open jackets, the sleeveless tee, henley and mock-neck tee, open overshirts under open jackets, and Three.js 0.186.1. Read this first, then `STATUS.md` (what is happening now and the
+Written 15 Oct 2026, when work paused after PR #68; updated for tucked-in tops and ties (PR #91), the draped blazers, overcoats, remaining jackets, polos, V-necks, cardigans, the last jackets, collars under open jackets, the sleeveless tee, henley and mock-neck tee, open overshirts under open jackets, and Three.js 0.186.1. Read this first, then `STATUS.md` (what is happening now and the
 log), `HANDOFF.md` (how the page fits together) and `CONTRIBUTING.md` (the data rules and every check). The long
 history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections last before "3. Next steps".
 
@@ -13,8 +13,10 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   shapes (stiff shells). The upgrade replaces them with **draped templates**: real flat patterns sewn and settled
   as cloth on Dave in headless Blender (`tools/build_garments.py`, output `data/garments/<template>.json`), then fitted
   to whichever body and layers are worn, in the page (`drapeTops`, `drapeSettle`).
-- **Coverage**: 946 top pieces across the outfits are draped. Only 6 still use `make3Dcore`'s shapes, plus every top
-  worn tucked in, which is never draped (`TUCK0`): 5 that `drapeArch` sends nowhere (Carhartt's Super Dux and the
+- **Coverage**: 946 top pieces across the outfits are draped, and since 17 Oct (PR #91) the tops worn tucked in too
+  (28 outfits as worn), held inside the trousers below their top (`drapeTuck`), except under a closed layer, where only
+  their collar and cuffs show and they keep `make3Dcore`'s shapes (`tuckHid`). Only 6 others still use `make3Dcore`'s
+  shapes: 5 that `drapeArch` sends nowhere (Carhartt's Super Dux and the
   four insulated and borg-lined overshirts) and the borg zip-through in
   g-casual-01, which it sends to `puffer` but which stays on `make3Dcore` over a half-zip (see the rule by `TUCK0`). (Counted piece by piece in each outfit. `tools/qa/drape_survey.js`,
   below, gives one row per item, its template taken from the first outfit it is in, so a piece filed under another
@@ -41,7 +43,7 @@ The plan for the model from here, in order, with how to tackle each item and whe
 section 5 (16 Oct 2026): his jawline (done 16 Oct, PR #82), Edit Dave's skin tone and new colours (done 16 Oct, PR #83) and its panel layout (done 16 Oct, PR #84), the shoes and trouser hems (the hems done 16 Oct, PR #85, the shoes PR #87), a relaxed stance and poses (a breath and a
 sway in the live views was tried in PR #88 and taken out in PR #89: it read as the picture rocking; four poses to choose
 from in the live views followed, on his skeleton from the body script; a default stance is Emma's call),
-tucked-in tops, draped trousers, then the items below and the rest. The table lists the tops still on `make3Dcore`.
+tucked-in tops and ties on a draped shirt (done 17 Oct, PR #91), draped trousers, then the items below and the rest. The table lists the tops still on `make3Dcore`.
 
 | Item | Pieces (outfits) | What it needs |
 | --- | --- | --- |
@@ -50,7 +52,7 @@ tucked-in tops, draped trousers, then the items below and the rest. The table li
 | Insulated and borg-lined overshirts | 2 (4) | Tog24's Adamson and Matalan's borg overshirt are `chore`'s cut, and were tried on it again with the open-over-open fix. Under open jackets (g-outdoor-05, -09) the padded shacket still came through the jacket's lower front and round his neck in jagged patches, and under a done-up gilet (g-outdoor-21) the gilet bulged and creased at his neck; only g-outdoor-19 was passable. Tried again with a padded layer's 14 mm gap under the jacket, a 12 cm size step and an 8 mm push back under it: `tools/qa/through.js` over the four fell from 1,008 to 457 pixels, but `main`'s flat shapes count 9, 0, 15 and 821 (g-outdoor-21's pocket flaps through the gilet), and g-outdoor-05 and -09 still show shards, so they stay. |
 | Shirt-collared overcoat | (1) | The ASOS tobacco overcoat (cold-commute) has a shirt collar buttoned to the neck in its photo, a car coat's, but takes `overcoat`'s lapels. Sent to `carcoat` (a `collar` correction tried, then taken out), it came out worse. Looked at again: worn open, `carcoat`'s collar is there but lies flat and low, a narrow turn at his neck (ms-one-shop); the bigger miss is length, `carcoat` falls to mid-thigh and this coat to below the knee. It would need a long car coat (a balmacaan: `carcoat`'s collar and fly front on `overcoat`'s length and raglan sleeves). One outfit; low value. |
 | Stringers, racer backs, drop-arm and cropped vests; raglan and baseball tees | 0 now | None are in the outfits now; `drapeArch` returns `null` for them so they keep `make3Dcore`'s shapes when one is added. A racer back and a raglan sleeve are not in the builder. |
-| Tucked-in tops | many | Never draped (`TUCK0`): only with tailoring, a belt or a tie. A draped top would need its hem taken inside the trousers. Large job, modest gain. |
+| Tucked-in tops under a closed layer | (8 as worn) | Draped since PR #91 where the tuck shows; under a jumper, a half-zip, a roll neck, a hoodie, a waistcoat, or a jacket, coat, gilet or cardigan done up they keep `make3Dcore`'s shapes (`tuckHid`): draped there, a shirt's collar crumpled inside a half-zip's stand collar and came through it (st-smart, winter-140 on the loose fit), as an untucked shirt's does under one. Needs a shirt collar held flat inside a stand collar first. |
 
 Also noticed, not fixed, on `main` too: on rv-black-smart the link chain is drawn as a straight bar across his neck;
 in n4-stone-navy his chest shows through the shirt's front under the Harrington; in g-quiet-30 dark spikes stand out
@@ -191,3 +193,14 @@ is drawn as a shawl. The overcoat uses the same two pieces on a longer, roomier 
   A QA script that renders flat colours must set `outputColorSpace=T.LinearSRGBColorSpace` (`check_3d.js`, `through.js`).
 - **Measured cloth is noisy.** A small change to a settle moves every crumple, and one outfit's count can halve or
   double either way. Judge a change by totals over several outfits on all five bodies, not by one render.
+- **`make3Dcore`'s maps are not where its meshes are.** The maps it fits pieces by (`OCC.T`, `OCC.L`) are made before
+  his proportions are warped (`warpMan`), and the drape runs after: the legwear map lies about 5 cm higher than the
+  trousers and up to 1.5 cm further out at his sides and back. In `drapeTops`, read the meshes themselves, as
+  `drapeLegs` reads the trousers.
+- **Cloth pressed into a tight space crumples, its normals every way.** The collider pushes along the nearest point's
+  normal, so a layer settled over it is pushed in as often as out: a tucked shirt's cloth inside the trousers drew a
+  blazer's back in through them. Leave such cloth out of what the layers over it lie on (`R.tk`).
+- **A collider reaches 4 cm** (`drapeCol`'s `reach`). Beyond that `drapeNear` finds nothing and a point is not moved:
+  bring a point in first before laying it on his body (`drapeTuck`).
+- **Push an experiment before setting it aside.** The first try at tucked tops was stashed in a session's container
+  and lost with it; it was recovered only from that session's transcript. Push it behind its switch (`window.__<name>`).
