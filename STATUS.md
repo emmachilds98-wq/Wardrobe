@@ -615,6 +615,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 17 Oct 2026 | #91 | Tucked-in tops draped: held 4 mm inside the trousers' own mesh below their top (`drapeTuck`, `drapeLegs`), blousing over the waistband, the cloth inside left out of what is worn over it (`R.tk`), draped only where the tuck shows (`tuckHid`: under a closed layer they keep `make3Dcore`'s shape); a tie laid on the draped shirt (`tieLay`); `window.__tuckDrape=0` draws the old shapes. The first try was recovered from the transcript of the session that lost it | B8UXnh v25 |
 | 16 Oct 2026 | #90 | Poses to choose from in the live views (Standing, At ease, Walking, Arms out): his skeleton in `data/body.json` (`rig`), his clothes bending with him (`poseRig`), a Pose row in the fitting room and a Pose button in Edit Dave's and the builder's docks | B8UXnh v24 |
 | 16 Oct 2026 | #89 | He stands still again: the breath and sway of PR #88 taken out (they read as the picture rocking, and made Emma feel travel sick) | B8UXnh v23 |
 | 16 Oct 2026 | #88 | A breath and a sway in the live views (`life` in `Live3D`), the skin's pores placed on the skin itself (`vSkP`) | B8UXnh v22 |
