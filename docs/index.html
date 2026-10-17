@@ -4511,11 +4511,13 @@ function drapeLo(man,lo,pm,ctx){ctx=ctx||{};var T=window.THREE,c0=ctx.cut||"chin
      back (3 mm inside each). Seen a little from the side, through a gap that narrow and 10 to 16 cm deep, the background
      showed between the legs in broken specks, which the 3D check reads as holes (4 to 11 pixels on most of the shorts,
      from the front, turned 9 degrees); from straight in front it is edge on, and where the legs are further apart the
-     gap between them shows as before. (Trousers stop at 8 mm: below 7 cm under his crotch, where his thighs are 1.5 cm
-     apart, the legs are held at least 11.5 mm apart (cG), and the check's ray between them must find no cloth) */
+     gap between them shows as before. (Trousers stop at 8 mm from 9 cm under his crotch down: lower, where his thighs
+     are 1.5 cm apart, the legs are held at least 11.5 mm apart (cG), and the 3D check's ray between them must find no
+     cloth; its first is 11.5 cm under this crotch on Dave (7 cm under his own before the warp). Above, 16 mm as
+     shorts: a slim pair's legs, closer, left the specks there, 7 pixels on 20 outfits) */
   var GU=[],q,gy,xl,xr,zb,zf;for(i=0;i<40;i++){gy=cr+0.004-i*0.004;xl=9;xr=-9;zb=9;zf=-9;
     for(q=0;q<t.n;q++){var gx=X[q*3];if(!sd[q]||Math.abs(X[q*3+1]-gy)>0.006||Math.abs(gx)>0.03)continue;if(sd[q]>0)xl=Math.min(xl,gx);else xr=Math.max(xr,gx);if(Math.abs(gx)<0.012){zb=Math.min(zb,X[q*3+2]);zf=Math.max(zf,X[q*3+2]);}}
-    GU.push(xl<9&&xr>-9&&xl-xr<(ctx.sh?0.016:0.008)&&zf-zb>0.012?[gy,(xl+xr)/2,zb+0.003,zf-0.003]:null);}
+    GU.push(xl<9&&xr>-9&&xl-xr<(ctx.sh||gy>cr-0.09?0.016:0.008)&&zf-zb>0.012?[gy,(xl+xr)/2,zb+0.003,zf-0.003]:null);}
   var gp=[],gi=[];for(i=0;i+1<GU.length;i++)if(GU[i]&&GU[i+1]){var g0=gp.length/3;[GU[i],GU[i+1]].forEach(function(r){gp.push(r[1],r[0],r[2],r[1],r[0],r[3]);});gi.push(g0,g0+1,g0+3,g0,g0+3,g0+2);}
   if(gi.length){var gg=new T.BufferGeometry();gg.setAttribute("position",new T.Float32BufferAttribute(gp,3));gg.setIndex(gi);gg.computeVertexNormals();var gu=new T.Mesh(gg,m);gu.userData={item:lo.item,what:lo.what,kind:"lo",draped:true};man.add(gu);}   /* (draped: not one of the surfaces a top is laid on, drapeLegs and innerCols) */
   old.forEach(function(o){o.parent.remove(o);});man.add(me);drapeLoDetails(man,lo,t,X,Nx,m,ctx);return true;}
@@ -4558,8 +4560,12 @@ function drapeLoDetails(man,lo,t,X,N,lm,ctx){var T=window.THREE,col=cc(lo.col)[0
     var yp=fT-0.15,sp=span(fr,yp),xs=s>0?sp[1]-0.004:sp[0]+0.004,po=[];for(var k=0;k<=8;k++){var f=k/8;po.push(on(fr,(W4-s*0.045)*(1-f)+xs*f,(fT-0.002)*(1-f)+yp*f,0.0012));}
     line(po,0.0009,ctx.mat?ctx.mat(shade(col,0.5),0.9):seam,16);
     /* the back pocket: a jetted slit 13 cm across, 6.5 cm below the waistband, from 4 cm out from the middle of his back */
-    /* (along nine points, 2.5 mm off it: along three, 1.8 mm off, the cloth rose over it between them and broke it up) */
-    var bx0=-s*0.04,bx1=-s*0.17,jp=[];for(k=0;k<=8;k++){var xj=bx0+(bx1-bx0)*k/8;jp.push(on(bk,xj,topAt(bk,xj)-0.065,0.0025));}line(jp,0.0022,ctx.mat?ctx.mat(shade(col,0.55),0.9):seam,16);}
+    /* (a dark band 4 mm deep lying 1.2 mm off the cloth, its points every centimetre across, so the cloth's curve over
+       his seat cannot rise over it between them. As a tube 4.4 mm thick standing 2.5 mm off it, it came through a
+       jumper or a shirt lying on his seat in dark dashes, poke 8 to 15 on the slim pairs from the back; along three
+       points, 1.8 mm off, the cloth rose over it between them and broke it up) */
+    var bx0=-s*0.04,bx1=-s*0.17,jp=[],jx=[];for(k=0;k<=12;k++){var xj=bx0+(bx1-bx0)*k/12,yj=topAt(bk,xj)-0.065;[yj-0.002,yj+0.002].forEach(function(y){var q=on(bk,xj,y,0.0012)||[0,0,0];jp.push(q[0],q[1],q[2]);});if(k)jx.push(2*k-2,2*k-1,2*k,2*k-1,2*k+1,2*k);}
+    var jg=new T.BufferGeometry();jg.setAttribute("position",new T.Float32BufferAttribute(jp,3));jg.setIndex(jx);jg.computeVertexNormals();var jm=(ctx.mat?ctx.mat(shade(col,0.55),0.9):seam).clone();jm.side=T.DoubleSide;out.push(new T.Mesh(jg,jm));}
     else{
       /* jeans: the scooped front pocket, from the waistband 9.5 cm out from the fly's middle, round to the side seam
          8 cm below, a copper rivet at each end; the coin pocket inside the one on his right */

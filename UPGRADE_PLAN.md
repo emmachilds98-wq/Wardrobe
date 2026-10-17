@@ -4309,6 +4309,27 @@ counts left: on the heavier build his thigh shows 2 pixels just under the hem fr
 
 **What is not done**: swim, board, jersey, jogger and cargo shorts; the shorts are one size.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped slim and tapered trousers (17 Oct 2026)
+
+Section 5, item 6, its sixth step (PR #99): slim, skinny and tapered trousers and jeans are draped too, from two more
+cuts built like the chinos (`tools/build_garments.py`): `slim` (seat 99, knee 44.5, hem 38 cm round) and `tapered`
+(seat 102, knee 46, hem 36), each with a `_boot` cut ending 11 cm off the floor for over boots, as `chinos_boot`. The
+straight chino is 46 and 41. 67 outfits, 27 of them over boots, 8 of them jeans. `drapeLo` takes the cut's template
+(`ctx.cut`, from `LOCUT`: kept, as `LOLEN` is, before `make3Dcore` reuses `BC`).
+
+*What was wrong on the way:* cut as real slim trousers are (knee 42, hem 35) and tapered ones (44, 34), both clung to
+his calf from the side, as skinny jeans; they were let out below the knee. A chino's jetted back pocket, a tube 4.4 mm
+thick standing 2.5 mm off the cloth, came through a jumper or shirt lying on his seat in dark dashes (poke 8 to 15
+from the back on the slim pairs, on the straight ones too where a top lies close): it is now a dark band 4 mm deep
+lying 1.2 mm off the cloth, its points every centimetre so the cloth's curve cannot rise over it. And the specks of
+background between the legs under the crotch came back on the slim pairs, whose legs are closer: the gusset (PR #98)
+now fills the middle on trousers too wherever their insides are within 16 mm, down to 9 cm under his crotch (8 mm below
+that, where the 3D check's legs ray looks; its first ray is 11.5 cm under this crotch on Dave).
+
+**Checked**: CHECKED6
+
+**What is not done**: the wide, relaxed, baggy and barrel cuts, joggers and cargos; the trousers are one size.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4684,8 +4705,8 @@ boots, not under a belt and not with a top tucked in. **Step 2 (17 Oct 2026**, P
 details `make3Dcore` draws on trousers, belts and tucked-in tops on the draped pair (55 outfits). **Step 3 (17 Oct
 2026**, PR #95, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight and regular jeans, with their own details (81 outfits). A shirt's collar under a
 done-up gilet: PR #96. **Step 4 (17 Oct 2026**, PR #97, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): on by default for straight and regular trousers
-and jeans, over boots too. **Step 5 (17 Oct 2026**, PR #98, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): shorts in four lengths. Next: the other
-cuts, one group at a time (slim and tapered; wide and relaxed; joggers; cargos).
+and jeans, over boots too. **Step 5 (17 Oct 2026**, PR #98, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): shorts in four lengths. **Step 6 (17 Oct 2026**, PR #99, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): slim and
+tapered. Next: the other cuts, one group at a time (wide and relaxed; joggers; cargos).
 
 ### 7. The tops still on `make3Dcore`, and known faults
 
