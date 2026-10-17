@@ -4461,7 +4461,7 @@ function drapeLo(man,lo,pm){var T=window.THREE,t=GTPL.chinos,body=null,old=[],i,
   for(i=0;i<BODY.n;i++)if(!(AM&&AM[i])&&Math.abs(BP[i*3])<0.006&&BP[i*3+1]>0.6&&BP[i*3+1]<cr)cr=BP[i*3+1];
   for(i=0;i<I.length/3;i++){if(lg.indexOf(BODY.treg[i])<0)continue;for(a=0;a<3;a++){var v=I[i*3+a],x=BP[v*3],b=Math.floor(BP[v*3+1]/0.01);if(b<0||b>=200)continue;if(x>0)gL[b]=Math.min(gL[b],x);else gR[b]=Math.min(gR[b],-x);}}
   var cG={push:function(P,o){var q=o/3,s=sd[q],y=P[o+1];if(!s||y>cr-0.01||y<0.1)return;var b=Math.floor(y/0.01),G=s>0?gL:gR,m=Math.min(G[b],G[b-1],G[b+1]);if(m>0.2)return;m=0.5*m+0.002;if(P[o]*s<m)P[o]=s*m;}},cols=[[cB,cS,cG]];
-  t.cl=t.cl||drapeCloth(t,t.pos);var X=drapeBind(t,BP,1),H=drapeOut(X,cols,t.grp);if(window.__ldDbg)window.__ldDbg={X:X,BP:BP,AM:AM,X0:drapeBind(t,BP,1),H:H.slice(),top:Array.from(top.entries()),pat:Array.from(t.pat),vmap:Array.from(t.vmap),piece:Array.from(t.piece)};X.set(H);drapeSettle(X,t.cl,cols,t.grp,null,window.__legSteps||60,H);
+  t.cl=t.cl||drapeCloth(t,t.pos);var X=drapeBind(t,BP,1),H=drapeOut(X,cols,t.grp);X.set(H);drapeSettle(X,t.cl,cols,t.grp,null,window.__legSteps||60,H);
   var g=new T.BufferGeometry(),pos=new Float32Array(t.m*3),nr=new Float32Array(t.m*3),uv=new Float32Array(t.m*2),Nx=drapeNormals(X,t.cl.W,t.n);
   for(j=0;j<t.m;j++){var w=t.vmap[j];for(a=0;a<3;a++){pos[j*3+a]=X[w*3+a];nr[j*3+a]=Nx[w*3+a];}uv[j*2]=t.pat[j*2]*1.2;uv[j*2+1]=t.pat[j*2+1]*3.33;}
   g.setAttribute("position",new T.BufferAttribute(pos,3));g.setAttribute("normal",new T.BufferAttribute(nr,3));g.setAttribute("uv",new T.BufferAttribute(uv,2));g.setIndex(new T.BufferAttribute(new Uint32Array(t.idx),1));

@@ -455,7 +455,7 @@ MEAS = {
     # at the front, straight up his body). Their lengths come from his own body (Trousers): the crotch from his skin,
     # the hem 3.5 cm off the floor. A straight chino: the waistband on his hips where make3Dcore's trousers sit (a rise
     # of 26 put it at his navel, 10 cm above them), a little room at the seat, straight from the knee to the hem.
-    "chinos": dict(legs=1, waist=87, seat=106, knee=46, hem=41, wb=4, rise=16, length=100),
+    "chinos": dict(legs=1, waist=87, seat=100, knee=46, hem=41, wb=4, rise=16, length=100),
 }
 H = 0.014   # mesh spacing (m)
 
@@ -816,8 +816,10 @@ def trouser_panels(M, s, yin, yrise):
     """A front and a back panel for his left leg (the right ones are these mirrored), cut as a trouser block is: x
     across (the front's middle at 0, his left side seam at x > 0; the back's middle at 0, his left side at x < 0), y up
     from the hem. yin: the inseam (hem to the crotch), yrise: the crotch to the panels' top at the front (the waistband
-    goes on above). The back reaches 3 cm higher at its middle, its seam slanting in toward the side seam at the top,
-    and its crotch goes deeper (an eighth of the seat against the front's sixteenth), as it has to go round his seat."""
+    goes on above). The back reaches 1.5 cm higher at its middle, its seam slanting in toward the side seam at the
+    top, and its crotch goes deeper (an eighth of the seat against the front's sixteenth), as it has to go round his
+    seat. (3 cm higher, the waistband stood 1.5 cm above make3Dcore's at his back once draped, and pushed the tops
+    over it out there.)"""
     c = lambda v: v / 100 * s
     W, S, K, HM = c(M["waist"]), c(M["seat"]), c(M["knee"]), c(M["hem"])
     Hf, ys, yk = yin + yrise, yin + yrise * 0.42, yin * 0.5 + c(4)
@@ -834,7 +836,7 @@ def trouser_panels(M, s, yin, yrise):
     f_ins = np.vstack([bez((-fx, yin), (-fx, yin - c(7)), (cf - kf / 2, yk + c(14)), (cf - kf / 2, yk))[:-1], seg((cf - kf / 2, yk), (cf - hf / 2, 0), 10)])
     front = Piece("front_L", 0, [("hem", f_hem), ("side", f_side), ("waist", f_waist), ("rise", f_rise), ("inseam", f_ins)])
     # the back: hem, inseam, rise (up from its crotch point, a centimetre lower), waist, side seam
-    yb = yin - c(1); top = np.array((-c(3), Hf + c(3)))
+    yb = yin - c(1); top = np.array((-c(3), Hf + c(1.5)))
     b_hem = seg((cb - hb / 2, 0), (cb + hb / 2, 0), 12)
     b_ins = np.vstack([seg((cb + hb / 2, 0), (cb + kb / 2, yk), 10)[:-1], bez((cb + kb / 2, yk), (cb + kb / 2, yk + c(12)), (bx, yb - c(7)), (bx, yb))])
     sl = (top - np.array((0, ys))) / np.linalg.norm(top - np.array((0, ys)))   # (the back seam's slant)
