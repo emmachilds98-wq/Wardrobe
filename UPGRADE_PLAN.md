@@ -4268,6 +4268,47 @@ work pocket (m5-skate-day) against `main`; card stills of six. Timing: each outf
 legs over boots and turn-ups on jeans; the hem's shade on the shoe is still cast from `make3Dcore`'s hem; the trousers
 are one size (not graded by Edit Dave's cloth fit).
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped shorts (17 Oct 2026)
+
+Section 5, item 6, its fifth step (PR #98): shorts are draped too, from four lengths of a chino short built like the
+chinos (`tools/build_garments.py`: `shorts_short`, `shorts`, `shorts_mid`, `shorts_long`, for a listing 22, 27, 30 and
+36 cm below his crotch, the leg straight from the hem up to the thigh, 56 to 60 cm round). Each pair takes the template
+at least as long as its listing's length (`bottomCut`'s `len`), so it covers his thighs as far as `make3Dcore`'s did (the
+3D check reads that as `loHem`). Each template's hem ends where `make3Dcore`'s shorts of that length end on him once
+warped: 0.3 to 1.3 cm lower on Dave (a 32 cm pair, on the longest template, 3 cm lower). Swim, board, jersey, jogger and cargo shorts keep `make3Dcore`'s: an elastic waist, leg pockets.
+76 outfits.
+
+*How it works* (`drapeLo`, `drapeLoDetails`): as the straight trousers, with a turned-up hem stitched 2.5 cm above its
+edge, no crease or turn-ups, and a work pair's thigh pocket just above the hem. His thigh skin is hidden only from 10 cm
+below his crotch up (`SHD`): cut for his proportions as warped, the draped hem can end a little above `make3Dcore`'s,
+and with the skin hidden down to `make3Dcore`'s hem his leg showed missing between them (ca-beer-garden).
+
+*What was wrong on the way:* every pair came out the same length: further down `make3Dcore`, `BC` (the legwear's cut)
+is reused for the body's colours, so its `len` read as that array's length. The length is now kept (`LOLEN`). Then the
+first check on Dave: his thigh bare under the hem of every 22 cm pair (8 outfits, skin 316 pixels each) and just under
+it on the 30 cm pairs (17 pixels). The templates were cut to the length below his crotch in the warped frame, but
+`make3Dcore` builds its shorts before the warp (`warpMan`), which carries their hems 4 to 5 cm lower, and the check
+reads his skin's height from before it; the draped hems ended 1.8 to 3.5 cm above `make3Dcore`'s. They are cut lower
+now (`hem_y` 59, 54, 51 and 45.5 cm, from 62, 56, 53 and 47). And the background showed through between the legs under
+the crotch in broken specks (holes, 8 to 13 pixels from the front on 60 outfits, against none on `make3Dcore`'s): the
+front view is turned 9 degrees, and through a gap of 4 to 15 mm between the legs' insides, 10 to 16 cm deep, it saw the
+background only here and there past their creases. Two changes: where his thighs touch, the legs may cross 2 mm past
+the middle (`cG`; they were held 2 mm off it, a slit 4 mm wide), and a gusset fills the middle between the legs in 4 mm
+rows wherever their insides are within 16 mm of each other on shorts (8 mm on trousers: the legs check's ray between
+them must find no cloth where his thighs are 1.5 cm apart, and there they are held 11.5 mm apart at least). It is edge on
+from straight in front, so it only closes the gap where it is seen at a slant. Holes on the four worst then matched
+`make3Dcore`'s (0, 0, 6 and 9).
+
+**Checked**: on Dave, the 76 shorts outfits against `make3Dcore`'s (`window.__legDrape=0`): flagged 2 and 2, the same
+two (jb8-apron-shorts and jb9-hirst-apron, a work apron's poke; their shorts keep `make3Dcore`'s under the kit belt);
+holes 47 against 46, skin 7 against 6, poke 200 against 177 (5 to 8 pixels more on five of the 22 cm pairs, the back
+pockets' welts at an untucked shirt's hem), legs 0. The gate set on Dave: none flagged. On the slim, athletic, heavier
+and loose builds the 76 flag only the same two (1, 2, 2 and 2), whose shorts are not draped; legs 0 on all. Smaller
+counts left: on the heavier build his thigh shows 2 pixels just under the hem from the front on 45 outfits (none on
+`make3Dcore`'s, six compared), and the loose fit's 9 holes from the side on 22 are `make3Dcore`'s too. CI: green.
+
+**What is not done**: swim, board, jersey, jogger and cargo shorts; the shorts are one size.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4643,7 +4684,8 @@ boots, not under a belt and not with a top tucked in. **Step 2 (17 Oct 2026**, P
 details `make3Dcore` draws on trousers, belts and tucked-in tops on the draped pair (55 outfits). **Step 3 (17 Oct
 2026**, PR #95, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight and regular jeans, with their own details (81 outfits). A shirt's collar under a
 done-up gilet: PR #96. **Step 4 (17 Oct 2026**, PR #97, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): on by default for straight and regular trousers
-and jeans. Next: the other cuts, one group at a time (slim and tapered; wide and relaxed; joggers; cargos; shorts).
+and jeans, over boots too. **Step 5 (17 Oct 2026**, PR #98, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): shorts in four lengths. Next: the other
+cuts, one group at a time (slim and tapered; wide and relaxed; joggers; cargos).
 
 ### 7. The tops still on `make3Dcore`, and known faults
 

@@ -25,12 +25,18 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**17 Oct: draped shorts** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #98). Shorts hang as real cloth too, in four lengths cut like
+the chinos (for listings 22, 27, 30 and 36 cm below his crotch), each pair ending where the old shorts did or a little
+lower, with the chinos' pockets, belt loops, fly and a turned-up hem, and no more specks of background between the legs
+under the crotch (on trousers either). Swim, board, jersey and cargo shorts look as before.
+**Next:** the other trouser cuts (slim and tapered, wide and relaxed, joggers, cargos).
+
 **17 Oct: draped straight trousers and jeans by default** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #97). Straight and regular
 trousers and jeans now hang as real cloth in every view and card (136 outfits, 55 of them over boots): their own folds,
 the hem resting on the shoe's instep and falling behind the heel (over boots, on the boot's front, its laces showing),
 the legs parting below the crotch, with their pockets, belt loops, fly and stitching, a belt on their waistband and room
 inside for a tucked-in shirt. Joggers, cargos, the other cuts and shorts look as before.
-**Next:** the other cuts, one group at a time.
+Merged (PR #97).
 
 **17 Oct: a shirt's collar inside a done-up gilet or half-zip** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #96). With a crew-neck
 jumper between them, a shirt's collar came through a gilet's or half-zip's collar in shards beside his neck, worse on
@@ -648,6 +654,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 17 Oct 2026 | #97 | Draped straight trousers and jeans by default, over boots too (`chinos_boot`, ending 11 cm off the floor; his shoes a solid by height); 30 settle steps; the hem on the highest of the shoe within a centimetre; a work pair's thigh pockets. 136 outfits. `window.__legDrape=0` for `make3Dcore`'s. | B8UXnh v30 |
 | 17 Oct 2026 | #96 | A shirt's collar under a done-up stand collar (a gilet, a half-zip, a roll neck, a jacket zipped up) with a jumper between stays inside the jumper too (`leafIn`, `STANDC`): no more shards through the outer collar beside his neck. Over the 9 outfits it changes on five bodies, flagged 15 to 3. | B8UXnh v29 |
 | 17 Oct 2026 | #95 | Draped trousers, step 3 (behind `window.__legDrape`): straight and regular jeans draped too, with a jean's own details (gold topstitching, scooped pockets and rivets, coin pocket, yoke, patch pockets with the arcuate, leather label, metal button). 81 outfits. Off by default. | B8UXnh v28 |
 | 17 Oct 2026 | #94 | Draped trousers, step 2 (behind `window.__legDrape`): the details `make3Dcore` draws on trousers placed on the draped pair (`drapeLoDetails`), belts moved onto its waistband, room inside it for a tucked-in top; the legs eased apart below the crotch. 55 outfits. Off by default. | B8UXnh v27 |

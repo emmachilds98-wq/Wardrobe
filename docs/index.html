@@ -4051,7 +4051,7 @@ function gtplPart(d){var o={n:d.n,m:d.m,pieces:d.pieces,pos:gtplDec(d.pos,Float3
   o.grp=new Uint8Array(o.n);for(var j=o.m-1;j>=0;j--)o.grp[o.vmap[j]]=o.pieces[o.piece[j]].grp;
   return o;}
 function loadGarments(){if(!window.__drape)return Promise.resolve();
-  return Promise.all(DRAPEF.concat(window.__legDrape?["chinos","chinos_boot"]:[]).map(function(a){return fetch("data/garments/"+a+".json").then(function(r){return r.ok?r.json():null;}).then(function(d){
+  return Promise.all(DRAPEF.concat(window.__legDrape?["chinos","chinos_boot","shorts_short","shorts","shorts_mid","shorts_long"]:[]).map(function(a){return fetch("data/garments/"+a+".json").then(function(r){return r.ok?r.json():null;}).then(function(d){
     if(!d)return;var t=gtplPart(d);t.arch=a;t.scale=d.scale;t.meas=d.meas_cm||{};if(d.hood)t.hood=gtplPart(d.hood);
     /* (a blazer's or an overcoat's collar and lapels (a template with lapel in its measures) are folded back over its
        stand, so as cut they face in toward him: turned round, its
@@ -4433,8 +4433,9 @@ function drapeSize(c){c=c||120;var z=SIZEM||window.__drapeSize||"",st={S:-2,M:-1
    them as trousers. ctx: mat and metal (make3Dcore's), belts (the items of the belts worn over them), tk (the room a
    top tucked in takes inside them, make3Dcore's tE), turn (turn-ups), pleat, crease (a pressed crease down each leg),
    jean (jeans: their own details), cargo (a pocket on each thigh, as make3Dcore puts on work and utility trousers),
-   boot (over boots: the template cut to end 11 cm off the floor, chinos_boot) */
-function drapeLo(man,lo,pm,ctx){ctx=ctx||{};var T=window.THREE,t=ctx.boot&&GTPL.chinos_boot||GTPL.chinos,body=null,old=[],i,j,a;if(!t)return false;
+   boot (over boots: the template cut to end 11 cm off the floor, chinos_boot), sh (shorts: the template for their
+   length) */
+function drapeLo(man,lo,pm,ctx){ctx=ctx||{};var T=window.THREE,t=ctx.sh?GTPL[ctx.sh]:(ctx.boot&&GTPL.chinos_boot||GTPL.chinos),body=null,old=[],i,j,a;if(!t)return false;
   man.traverse(function(o){if(o.isMesh&&o.userData.isBody)body=o;});if(!body)return false;
   man.updateMatrixWorld(true);var inv=new T.Matrix4().copy(man.matrixWorld).invert();
   var BP=body.geometry.attributes.position.array,BN=body.geometry.attributes.normal.array,AM=body.userData.armMask,P=[],N=[];
@@ -4472,12 +4473,15 @@ function drapeLo(man,lo,pm,ctx){ctx=ctx||{};var T=window.THREE,t=ctx.boot&&GTPL.
      thigh, and 2 mm: with the room the cut gives round his thigh, the two legs' inner sides hung into the gap between
      his thighs and met in the middle down to 18 cm below his crotch, as if sewn together, the 3D check's legs fault.
      Eased in over the first 4 cm below his crotch: held apart from 1 cm below it, the background showed through a slit
-     between the legs just under the crotch, 8 pixels in five outfits from the front) */
+     between the legs just under the crotch, 8 pixels in five outfits from the front. Where his thighs touch (each within
+     3 mm of the middle, eased to 7 mm) the two legs may cross 2 mm past it instead, so they meet in front of and behind
+     the join: held 2 mm off it, a slit 4 mm wide showed the background through the hidden skin behind in broken
+     specks, 8 to 13 pixels from the front on the draped shorts) */
   var sd=new Int8Array(t.n),RG=BODY.regions,lg=[RG.indexOf("thigh"),RG.indexOf("shin")],gL=new Float32Array(200).fill(9),gR=new Float32Array(200).fill(9),cr=9,I=BODY.idx;
   for(j=0;j<t.m;j++){var nm=t.pieces[t.piece[j]].name;sd[t.vmap[j]]=/_L$/.test(nm)?1:(/_R$/.test(nm)?-1:0);}
   for(i=0;i<BODY.n;i++)if(!(AM&&AM[i])&&Math.abs(BP[i*3])<0.006&&BP[i*3+1]>0.6&&BP[i*3+1]<cr)cr=BP[i*3+1];
   for(i=0;i<I.length/3;i++){if(lg.indexOf(BODY.treg[i])<0)continue;for(a=0;a<3;a++){var v=I[i*3+a],x=BP[v*3],b=Math.floor(BP[v*3+1]/0.01);if(b<0||b>=200)continue;if(x>0)gL[b]=Math.min(gL[b],x);else gR[b]=Math.min(gR[b],-x);}}
-  var cG={push:function(P,o){var q=o/3,s=sd[q],y=P[o+1];if(!s||y>cr-0.01||y<0.1)return;var b=Math.floor(y/0.01),G=s>0?gL:gR,m=Math.min(G[b],G[b-1],G[b+1]);if(m>0.2)return;m=(0.5*m+0.002)*sstep(cr-0.01,cr-0.05,y);if(P[o]*s<m)P[o]=s*m;}};
+  var cG={push:function(P,o){var q=o/3,s=sd[q],y=P[o+1];if(!s||y>cr-0.01||y<0.1)return;var b=Math.floor(y/0.01),G=s>0?gL:gR,m=Math.min(G[b],G[b-1],G[b+1]);if(m>0.2)return;m=(0.5*m+0.002*Math.max(-1,Math.min(1,(m-0.005)/0.002)))*sstep(cr-0.01,cr-0.05,y);if(P[o]*s<m)P[o]=s*m;}};
   /* (a top tucked in: the trousers held off him by its room as well, from 1 cm above his crotch up, all of it from 7 cm,
      as make3Dcore's stand out by it at his waist and seat) */
   var cT=ctx.tk?{push:function(P,o){cB.th=0.004+ctx.tk*sstep(cr+0.01,cr+0.07,P[o+1]);drapePush(cB,P,o);cB.th=0.004;}}:cB,cols=[[cT,cS,cG]];
@@ -4502,6 +4506,18 @@ function drapeLo(man,lo,pm,ctx){ctx=ctx||{};var T=window.THREE,t=ctx.boot&&GTPL.
       for(var q=0;q<pa.count;q++){v.fromBufferAttribute(pa,q).applyMatrix4(M);var dx=v.x-bcx,dz=v.z-bcz,r=Math.hypot(dx,dz)||1,f=(Math.atan2(dx,dz)+Math.PI)/(2*Math.PI)*72-0.5,b0=Math.floor(f),w=f-b0,
         d=dR[(b0%72+72)%72]*(1-w)+dR[((b0+1)%72+72)%72]*w;v.x+=dx/r*d;v.z+=dz/r*d;v.applyMatrix4(Mi);pa.setXYZ(q,v.x,v.y,v.z);}
       pa.needsUpdate=true;g2.computeBoundingSphere();o.geometry=g2;});}
+  /* a gusset in the crotch: the cloth on the middle between the legs, in 4 mm rows from his crotch down 15 cm, where
+     the insides of the two legs come within 8 mm of each other (16 on shorts), from the front of the cloth there to its
+     back (3 mm inside each). Seen a little from the side, through a gap that narrow and 10 to 16 cm deep, the background
+     showed between the legs in broken specks, which the 3D check reads as holes (4 to 11 pixels on most of the shorts,
+     from the front, turned 9 degrees); from straight in front it is edge on, and where the legs are further apart the
+     gap between them shows as before. (Trousers stop at 8 mm: below 7 cm under his crotch, where his thighs are 1.5 cm
+     apart, the legs are held at least 11.5 mm apart (cG), and the check's ray between them must find no cloth) */
+  var GU=[],q,gy,xl,xr,zb,zf;for(i=0;i<40;i++){gy=cr+0.004-i*0.004;xl=9;xr=-9;zb=9;zf=-9;
+    for(q=0;q<t.n;q++){var gx=X[q*3];if(!sd[q]||Math.abs(X[q*3+1]-gy)>0.006||Math.abs(gx)>0.03)continue;if(sd[q]>0)xl=Math.min(xl,gx);else xr=Math.max(xr,gx);if(Math.abs(gx)<0.012){zb=Math.min(zb,X[q*3+2]);zf=Math.max(zf,X[q*3+2]);}}
+    GU.push(xl<9&&xr>-9&&xl-xr<(ctx.sh?0.016:0.008)&&zf-zb>0.012?[gy,(xl+xr)/2,zb+0.003,zf-0.003]:null);}
+  var gp=[],gi=[];for(i=0;i+1<GU.length;i++)if(GU[i]&&GU[i+1]){var g0=gp.length/3;[GU[i],GU[i+1]].forEach(function(r){gp.push(r[1],r[0],r[2],r[1],r[0],r[3]);});gi.push(g0,g0+1,g0+3,g0,g0+3,g0+2);}
+  if(gi.length){var gg=new T.BufferGeometry();gg.setAttribute("position",new T.Float32BufferAttribute(gp,3));gg.setIndex(gi);gg.computeVertexNormals();var gu=new T.Mesh(gg,m);gu.userData={item:lo.item,what:lo.what,kind:"lo",draped:true};man.add(gu);}   /* (draped: not one of the surfaces a top is laid on, drapeLegs and innerCols) */
   old.forEach(function(o){o.parent.remove(o);});man.add(me);drapeLoDetails(man,lo,t,X,Nx,m,ctx);return true;}
 /* the details make3Dcore draws on trousers, on the draped pair's cloth by their places on its pattern (drapeAt, as the
    draped tops' details): stitching along the waistband's edges and its button, five belt loops (standing 4 mm off it
@@ -4571,18 +4587,20 @@ function drapeLoDetails(man,lo,t,X,N,lm,ctx){var T=window.THREE,col=cc(lo.col)[0
     if(ctx.pleat){var pl=[];for(k=0;k<=3;k++)pl.push(on(fr,s*0.05,fT-0.002-0.1*k/3,0.001));line(pl,0.0014,ctx.mat?ctx.mat(shade(col,0.7),0.9):seam,8);}
     /* (a crease down the middle of each leg, front and back: a fine line a little lighter, from 10 cm below the waistband
        to the hem. A shade 15% lighter read as a pinstripe) */
-    if(ctx.crease)[fr,bk].forEach(function(pc){var cl=[],yk=0.45,sk=span(pc,yk),xm=(sk[0]+sk[1])/2;for(k=0;k<=10;k++){var y=0.01+(topAt(pc,xm)-0.11)*k/10;cl.push(on(pc,xm,y,0.0007));}line(cl,0.0005,ctx.mat?ctx.mat(shade(col,1.05),0.8):seam,30);});
+    if(ctx.crease&&!ctx.sh)[fr,bk].forEach(function(pc){var cl=[],yk=0.45,sk=span(pc,yk),xm=(sk[0]+sk[1])/2;for(k=0;k<=10;k++){var y=0.01+(topAt(pc,xm)-0.11)*k/10;cl.push(on(pc,xm,y,0.0007));}line(cl,0.0005,ctx.mat?ctx.mat(shade(col,1.05),0.8):seam,30);});
     /* a work or utility pair's pocket on the outside of each thigh, as make3Dcore's: a patch 15 cm deep across the side
        seam (6 cm onto the front, 5 onto the back), its top 17 cm below his crotch, filled out a little in the middle,
        stitched round its edges, with a flap over its top */
     if(ctx.cargo){var yc2=0;for(var j2=0;j2<t.m;j2++)if(t.piece[j2]===pid[fr]&&t.pat[j2*2]*s<-0.03)yc2=Math.max(yc2,t.pat[j2*2+1]);
-      var ct=yc2-0.17,cb=ct-0.15;[[fr,0.06],[bk,0.05]].forEach(function(q){var pc=q[0],sg=(pc===fr?1:-1)*s,s0=span(pc,cb),s1=span(pc,ct),eb=sg>0?s0[1]:s0[0],et=sg>0?s1[1]:s1[0],w=q[1]*sg;
+      var ct=yc2-0.17,cb=ct-0.15;if(ctx.sh){cb=0.035;ct=Math.min(yc2-0.05,cb+0.13);}   /* (on shorts, its foot just above the hem, as make3Dcore's) */[[fr,0.06],[bk,0.05]].forEach(function(q){var pc=q[0],sg=(pc===fr?1:-1)*s,s0=span(pc,cb),s1=span(pc,ct),eb=sg>0?s0[1]:s0[0],et=sg>0?s1[1]:s1[0],w=q[1]*sg;
         strip(pc,cb,ct,eb-w,eb,et-w,et,function(v){return 0.003+0.003*Math.sin(Math.PI*v);},dm,6,6);
         line([on(pc,et-w,ct-0.03,0.0042),on(pc,eb-w,cb+0.004,0.0036),on(pc,eb,cb+0.004,0.0036)],0.0007,seam,8);
         strip(pc,ct-0.035,ct+0.003,et-w*1.08,et,et-w*1.08,et,function(){return 0.0065;},dm,6,2);
         var fl=[];for(var k2=0;k2<=6;k2++)fl.push(on(pc,et-w*1.08*(1-k2/6),ct-0.035,0.0068));line(fl,0.0007,seam,12);});}
     /* turn-ups: a band of the cloth 3.6 cm deep round the bottom of each leg, standing off it, stitched along its top */
-    if(ctx.turn)[fr,bk].forEach(function(pc){var s0=span(pc,0.004),s1=span(pc,0.038);strip(pc,0.002,0.038,s0[0]+0.001,s0[1]-0.001,s1[0]+0.001,s1[1]-0.001,function(){return 0.0028;},dm,12,3);
+    /* (shorts: their hem turned up 2.5 cm and stitched, round each leg) */
+    if(ctx.sh)[fr,bk].forEach(function(pc){var hs=span(pc,0.025),hl=[];for(k=0;k<=10;k++)hl.push(on(pc,hs[0]+0.001+(hs[1]-hs[0]-0.002)*k/10,0.025,0.0012));line(hl,0.0007,seam,20);});
+    if(ctx.turn&&!ctx.sh)[fr,bk].forEach(function(pc){var s0=span(pc,0.004),s1=span(pc,0.038);strip(pc,0.002,0.038,s0[0]+0.001,s0[1]-0.001,s1[0]+0.001,s1[1]-0.001,function(){return 0.0028;},dm,12,3);
       var tl=[];for(k=0;k<=10;k++)tl.push(on(pc,s1[0]+0.001+(s1[1]-s1[0]-0.002)*k/10,0.038,0.003));line(tl,0.0008,seam,20);});});
   out.forEach(function(me){me.castShadow=me.receiveShadow=true;me.userData={item:lo.item,what:lo.what,kind:"lo"};man.add(me);});}
 /* a tie laid on a draped shirt, as make3Dcore lays one on its own shirt: each row of its ribbon 4.5 mm in front of the
@@ -5848,6 +5866,8 @@ function make3Dcore(pieces){
   if(bodyOn){
     /* the real body, minus the skin the clothes cover (so nothing can poke through) */
     var bc=bodyPos(),rules=[],ups0=pieces.filter(function(p){return UPPER[p.shape];}),lo0=pieces.filter(function(p){return LOWER[p.shape];})[0],ft0=pieces.filter(function(p){return FEET[p.shape];})[0];
+    /* (shorts drawn draped (drapeLo): not swim, board, jersey, jogger or cargo shorts, nor with workwear kit on a belt) */
+    var SHD=!!(window.__legDrape&&lo0&&lo0.shape==="shorts"&&!lo0.under&&!/swim|board|jersey|fleece|terry|jogger|track|sweatpant|lounge|pyjama|cargo|combat/.test(nm(lo0))&&!pieces.some(function(q){return q.shape==="belt"&&/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/.test(nm(q));}));
     var shortS=function(p){return /^(tee|polo|sshirt)$/.test(p.shape)&&!/long/.test(nm(p));},noSleeve=function(p){return slvless(p);};
     var closed0=ups0.filter(function(p){return !openWorn(p,ups0);});
     if(closed0.length){
@@ -5859,7 +5879,10 @@ function make3Dcore(pieces){
     if(ups0.some(function(p){return !noSleeve(p)&&!shortS(p);})){rules.push(["uarm"],["farm",SLV+0.012]);}
     else if(ups0.some(shortS)){rules.push(["uarm",1.27]);}
     if(lo0){if(lo0.under)rules.push(["hips",null,1.02],["belly",null,1.02],["chest",null,1.02],["thigh",BL.crotch-0.126,1.02]);   /* (underwear: only the skin under the briefs goes) */
-      else if(lo0.shape==="shorts")rules.push(["hips"],["thigh",Math.max(0.42,BL.crotch-(bottomCut(lo0).len||0.29))+0.012]);   /* (down to the shorts' own hem, as legSecs puts it) */else rules.push(["hips"],["thigh"],["shin",0.075]);}
+      /* (shorts draped (drapeLo; SHD) leave his thigh skin from 10 cm below his crotch: their hem, cut for his
+         proportions as warped, can end a little above make3Dcore's, and his leg showed missing between them; the cloth
+         stands clear of his thigh down there) */
+      else if(lo0.shape==="shorts")rules.push(["hips"],["thigh",SHD?BL.crotch-0.1:Math.max(0.42,BL.crotch-(bottomCut(lo0).len||0.29))+0.012]);   /* (down to the shorts' own hem, as legSecs puts it) */else rules.push(["hips"],["thigh"],["shin",0.075]);}
     /* (in open footwear his own foot shows; in shoes only the part wholly inside the shoe goes: the foot reaches up round
        his ankle bones above the shoe's opening, and taken away whole it left a saw-tooth edge of skin there) */
     if(ft0&&window.__shoeTpl&&!OPENFT.test((((byId[ft0.item]||{}).name||"")+" "+ft0.what).toLowerCase())){}   /* (the shoe templates hide his foot themselves, shoeFeet) */
@@ -6184,7 +6207,7 @@ function make3Dcore(pieces){
   var tuckIn=tuckOn(lo,!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!KITRE.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo))),pieces.some(function(q){return q.shape==="tie";}));
   var TUCK=tuckList(up,tuckIn),tE=TUCK.some(Boolean)?0.012:0;   /* (a shirt tucked in sits inside the waistband and seat, so they stand out by its thickness) */
   /* trousers or shorts */
-  var waistE=0,LOD=false;
+  var waistE=0,LOD=false,LOLEN=0.29;
   if(lo){
     curIt=lo.item;curWhat=lo.what;curKind="lo";PIECE=bodyOn?[]:null;
     var und=!!lo.under,lm=pm(lo),sh=lo.shape==="shorts",n0=nm(lo),BC=bottomCut(lo),wide=und?0.004:BC.wide;
@@ -6225,8 +6248,10 @@ function make3Dcore(pieces){
     var wk1=shapeAt(1.02),jog=/jogger|track|sweatpant|lounge|pyjama/.test(n0),jean=/jean|denim/.test(n0);
     /* (a straight pair of trousers or jeans is draped instead (drapeLo; window.__legDrape=0 for make3Dcore's): not
        joggers or cargos, not cuffed, and not with workwear kit on a belt, which hangs from make3Dcore's waistband. Over
-       boots, the leg falls round the shaft and its hem rests on the boot's front, where make3Dcore's stops on it) */
-    LOD=!!(window.__legDrape&&bodyOn&&!und&&!sh&&!jog&&!/cargo|combat/.test(n0)&&/^(straight|regular)$/.test(BC.k)&&!cuffd&&(!cutL.bot||cutL.boot)&&!pieces.some(function(q){return q.shape==="belt"&&KITRE.test(nm(q));}));
+       boots, the leg falls round the shaft and its hem rests on the boot's front, where make3Dcore's stops on it.
+       Shorts too, not swim, board or jersey shorts, which have an elastic waist) */
+    LOD=!!(window.__legDrape&&bodyOn&&!und&&(!sh||SHD)&&!jog&&!/cargo|combat/.test(n0)&&(sh||/^(straight|regular)$/.test(BC.k))&&!cuffd&&(!cutL.bot||cutL.boot)&&!pieces.some(function(q){return q.shape==="belt"&&KITRE.test(nm(q));}));
+    LOLEN=BC.len||0.29;   /* (the shorts' length, kept: further down make3Dcore's BC names the body's colours) */
     /* (the crotch seam hangs a little below his crotch, more on a looser cut) */
     /* (its folds, by its cut and cloth: jeans crease most and most sharply, joggers in soft wide folds, tailored trousers
        keep a pressed crease and little else; the break over the shoe from how long they are and what is under them) */
@@ -7612,7 +7637,10 @@ function make3Dcore(pieces){
   var PW=propWarp(bodyOn?BL.chin:1.567);
   if(PW){warpMan(man,PW,bodyOn?BL.skull[1]:0.0);kH*=1.79/PW.W(1.79);}
   if(LOD)drapeLo(man,lo,pm,{mat:mat,belts:acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));}).map(function(p){return p.item;}),tk:tE,turn:turnOn(lo),pleat:!!(lo.desc&&lo.desc.pleat),
-    crease:/suit|tailored|formal|dress trouser|wool trouser|pleat/.test(nm(lo)),jean:/jean|denim/.test(nm(lo)),metal:metal,cargo:/cargo|utility|combat|work/.test(nm(lo)),boot:!!cutL.boot});
+    crease:/suit|tailored|formal|dress trouser|wool trouser|pleat/.test(nm(lo)),jean:/jean|denim/.test(nm(lo)),metal:metal,cargo:/cargo|utility|combat|work/.test(nm(lo)),boot:!!cutL.boot,
+    /* (shorts: the template at least as long as the listing's length below his crotch, 21, 27, 30 or 36 cm, so they
+       cover his thighs as far as make3Dcore's do, which the 3D check reads: loHem) */
+    sh:lo.shape==="shorts"?(function(L){return L<=0.225?"shorts_short":L<=0.275?"shorts":L<=0.305?"shorts_mid":"shorts_long";})(LOLEN):null});
   if(drp.length||dScarf){drp.sort(function(a,b){return layRank(a)-layRank(b);});drapeTops(man,drp,pm,up,{lo:lo,tieM:TIEM,belts:acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));}),scarf:dScarf,pm:pm,nm:nm,mat:mat,metal:metal,white:white,rib:rib,placeMap:placeMap,tie:acc.some(function(q){return q.shape==="tie"&&!/bow/.test(nm(q));}),under:(lo?[lo]:[]).concat(acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));})),over:acc.filter(function(p){return (p.shape==="scarf"&&!(dScarf&&dScarf.p===p))||p.shape==="snood"||(p.shape==="belt"&&KITRE.test(nm(p)));})});}   /* (a belt under them, or over a top tucked in, innerCols; left out, the belt came through a gilet at his waist) */
   if(bagS&&drp.length)bagOut(man,bagS);
   if(bodyOn)man.scale.set(kH,kH,kH);else man.scale.set(kH*bw,kH,kH*(0.5+0.5*bw));

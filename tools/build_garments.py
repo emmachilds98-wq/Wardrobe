@@ -461,12 +461,14 @@ MEAS = {
     # toe, the laces and the start of the shaft show, as make3Dcore's trousers stop on a boot (9 to 12 cm up)
     "chinos_boot": dict(legs=1, waist=87, seat=100, knee=46, hem=41, wb=4, rise=16, length=100, hem_y=11),
     # shorts, the chino's waist and seat with a leg straight from the hem up to the thigh (knee = hem, 56 to 60 cm round
-    # each leg), by length below his crotch (at 83.4 cm in his warped frame): 21 cm (a slim short), 27 (the usual chino
-    # short), 30 (a relaxed one), 36 (a long or wide one, to the knee)
-    "shorts_short": dict(legs=1, waist=87, seat=101, knee=56, hem=56, wb=4, rise=16, length=40, hem_y=62),
-    "shorts": dict(legs=1, waist=87, seat=102, knee=58, hem=58, wb=4, rise=16, length=50, hem_y=56),
-    "shorts_mid": dict(legs=1, waist=87, seat=102, knee=59, hem=59, wb=4, rise=16, length=55, hem_y=53),
-    "shorts_long": dict(legs=1, waist=87, seat=102, knee=60, hem=60, wb=4, rise=16, length=60, hem_y=47),
+    # each leg), for the listing's length below his crotch: 22 cm (a slim short), 27 (the usual chino short), 30 (a
+    # relaxed one), 36 (a long or wide one, to the knee). Each hem (hem_y) ends where make3Dcore's shorts of that length
+    # end on him once warped, within a centimetre: the warp carries them 4 to 5 cm lower than their length below the
+    # crotch, and cut to the length itself (hem_y 62, 56, 53, 47) the 3D check found his thigh bare under their hems
+    "shorts_short": dict(legs=1, waist=87, seat=101, knee=56, hem=56, wb=4, rise=16, length=40, hem_y=59),
+    "shorts": dict(legs=1, waist=87, seat=102, knee=58, hem=58, wb=4, rise=16, length=50, hem_y=54),
+    "shorts_mid": dict(legs=1, waist=87, seat=102, knee=59, hem=59, wb=4, rise=16, length=55, hem_y=51),
+    "shorts_long": dict(legs=1, waist=87, seat=102, knee=60, hem=60, wb=4, rise=16, length=60, hem_y=45.5),
 }
 H = 0.014   # mesh spacing (m)
 
