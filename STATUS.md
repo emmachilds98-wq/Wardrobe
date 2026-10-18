@@ -25,10 +25,16 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**18 Oct: Edit Dave's "How clothes fit" on trousers and shorts** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #101). The slider in
+Edit Dave (Clothes fit) now fits trousers and shorts as it does tops: closer, they come in round each leg and his hips;
+looser, they stand further off him and fall straighter below the knee. Asked for on 18 Oct, so the fit can be set
+right; then a review of the other clothes on the artifact, with comments.
+**Next:** the review's comments, then wide and relaxed cuts.
+
 **18 Oct: the draped trousers' hips** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #100). The draped trousers and shorts no
 longer stand out at his hips in wings round the front pockets: cut for his body (waist 84, seat about 90), they sit as
 close as the old ones, and a jacket over an overshirt no longer has the overshirt poking out at his sides.
-**Next:** Edit Dave's "How clothes fit" on trousers and shorts too (asked for on 18 Oct), then wide and relaxed cuts.
+Merged (PR #100).
 
 **17 Oct: draped slim and tapered trousers** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #99). Slim, skinny and tapered
 trousers and jeans hang as real cloth too (67 outfits, 27 over boots), cut as such trousers are, narrower below the knee
@@ -665,6 +671,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 18 Oct 2026 | #100 | The draped trousers' and shorts' hips: every template cut for his body (waist 84, seat about 90, from 87 and 100), no more wings at his sides; on Dave's 277 legwear outfits flagged 5 against 6, poke 832 against 995; g-quiet-30 clear on the heavier and loose builds. | B8UXnh v33 |
 | 17 Oct 2026 | #99 | Draped slim and tapered trousers and jeans (`slim`, `tapered`, each with a `_boot`; 67 outfits); a chino's jetted back pocket lies flat on the cloth; the crotch gusset on trousers too, down to 9 cm under the crotch. g-quiet-30 newly flagged on the heavier and loose builds (the hips' wings, next). | B8UXnh v32 |
 | 17 Oct 2026 | #98 | Draped shorts: four lengths of a chino short (`shorts_short`, `shorts`, `shorts_mid`, `shorts_long`), each ending where `make3Dcore`'s did once warped; a crotch gusset where the legs come within 16 mm (8 on trousers) and the legs crossing where his thighs touch, so no specks of background between them. 76 outfits on five bodies flag only the two apron outfits, as before. | B8UXnh v31 |
 | 17 Oct 2026 | #97 | Draped straight trousers and jeans by default, over boots too (`chinos_boot`, ending 11 cm off the floor; his shoes a solid by height); 30 settle steps; the hem on the highest of the shoe within a centimetre; a work pair's thigh pockets. 136 outfits. `window.__legDrape=0` for `make3Dcore`'s. | B8UXnh v30 |
