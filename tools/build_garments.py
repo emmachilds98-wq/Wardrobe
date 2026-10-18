@@ -455,28 +455,31 @@ MEAS = {
     # line), knee and hem (each leg all round), wb (waistband height), rise (from the crotch up to the waistband's top
     # at the front, straight up his body). Their lengths come from his own body (Trousers): the crotch from his skin,
     # the hem 3.5 cm off the floor. A straight chino: the waistband on his hips where make3Dcore's trousers sit (a rise
-    # of 26 put it at his navel, 10 cm above them), a little room at the seat, straight from the knee to the hem.
-    "chinos": dict(legs=1, waist=87, seat=100, knee=46, hem=41, wb=4, rise=16, length=100),
+    # of 26 put it at his navel, 10 cm above them), a little room at the seat, straight from the knee to the hem. The
+    # waist and seat are for his body as built, not his size's label: with a seat of 100 (96.5 cm in his warped frame,
+    # 11 cm round him at the seat line, make3Dcore's 6) and a waist of 87, the room went to his sides, front and back
+    # lying on him, and stood out 1.5 to 2 cm there in wings round the front pockets, pushing the tops over them out.
+    "chinos": dict(legs=1, waist=84, seat=90, knee=46, hem=41, wb=4, rise=16, length=100),
     # the same chino cut to end 11 cm off the floor (hem_y), for over boots: its hem rests on the boot's front, so the
     # toe, the laces and the start of the shaft show, as make3Dcore's trousers stop on a boot (9 to 12 cm up)
-    "chinos_boot": dict(legs=1, waist=87, seat=100, knee=46, hem=41, wb=4, rise=16, length=100, hem_y=11),
-    # a slim pair: a little less room at the seat, narrower from the knee (44.5 cm round) to the hem (38); a tapered
+    "chinos_boot": dict(legs=1, waist=84, seat=90, knee=46, hem=41, wb=4, rise=16, length=100, hem_y=11),
+    # a slim pair: a little less room at the seat (as the chinos, for his body as built), narrower from the knee (44.5 cm round) to the hem (38); a tapered
     # one: more room at the seat, the chino's knee, narrowing to a hem of 36. (The straight chino is 46 and 41. At 42
     # and 35, and 44 and 34, both clung to his calf from the side, as skinny jeans.) The _boot cuts end 11 cm off the
     # floor, over boots, as chinos_boot
-    "slim": dict(legs=1, waist=87, seat=99, knee=44.5, hem=38, wb=4, rise=16, length=100),
-    "slim_boot": dict(legs=1, waist=87, seat=99, knee=44.5, hem=38, wb=4, rise=16, length=100, hem_y=11),
-    "tapered": dict(legs=1, waist=87, seat=102, knee=46, hem=36, wb=4, rise=16, length=100),
-    "tapered_boot": dict(legs=1, waist=87, seat=102, knee=46, hem=36, wb=4, rise=16, length=100, hem_y=11),
+    "slim": dict(legs=1, waist=84, seat=89, knee=44.5, hem=38, wb=4, rise=16, length=100),
+    "slim_boot": dict(legs=1, waist=84, seat=89, knee=44.5, hem=38, wb=4, rise=16, length=100, hem_y=11),
+    "tapered": dict(legs=1, waist=84, seat=92, knee=46, hem=36, wb=4, rise=16, length=100),
+    "tapered_boot": dict(legs=1, waist=84, seat=92, knee=46, hem=36, wb=4, rise=16, length=100, hem_y=11),
     # shorts, the chino's waist and seat with a leg straight from the hem up to the thigh (knee = hem, 56 to 60 cm round
     # each leg), for the listing's length below his crotch: 22 cm (a slim short), 27 (the usual chino short), 30 (a
     # relaxed one), 36 (a long or wide one, to the knee). Each hem (hem_y) ends where make3Dcore's shorts of that length
     # end on him once warped, within a centimetre: the warp carries them 4 to 5 cm lower than their length below the
     # crotch, and cut to the length itself (hem_y 62, 56, 53, 47) the 3D check found his thigh bare under their hems
-    "shorts_short": dict(legs=1, waist=87, seat=101, knee=56, hem=56, wb=4, rise=16, length=40, hem_y=59),
-    "shorts": dict(legs=1, waist=87, seat=102, knee=58, hem=58, wb=4, rise=16, length=50, hem_y=54),
-    "shorts_mid": dict(legs=1, waist=87, seat=102, knee=59, hem=59, wb=4, rise=16, length=55, hem_y=51),
-    "shorts_long": dict(legs=1, waist=87, seat=102, knee=60, hem=60, wb=4, rise=16, length=60, hem_y=45.5),
+    "shorts_short": dict(legs=1, waist=84, seat=91, knee=56, hem=56, wb=4, rise=16, length=40, hem_y=59),
+    "shorts": dict(legs=1, waist=84, seat=92, knee=58, hem=58, wb=4, rise=16, length=50, hem_y=54),
+    "shorts_mid": dict(legs=1, waist=84, seat=92, knee=59, hem=59, wb=4, rise=16, length=55, hem_y=51),
+    "shorts_long": dict(legs=1, waist=84, seat=92, knee=60, hem=60, wb=4, rise=16, length=60, hem_y=45.5),
 }
 H = 0.014   # mesh spacing (m)
 

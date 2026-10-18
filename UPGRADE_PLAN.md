@@ -4339,6 +4339,25 @@ reshapes it. The gate set on Dave: none flagged. CI: green.
 **What is not done**: the hips' wings (all the draped trousers and shorts); the wide, relaxed, baggy and barrel cuts,
 joggers and cargos; the trousers are one size.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped trousers' hips: a waist and seat for his body (18 Oct 2026)
+
+PR #100, after step 6. The draped trousers and shorts stood 1.5 to 2 cm further out at his hips than `make3Dcore`'s, in
+wings round the front pockets from the waistband down 10 cm, and pushed the tops over them out: g-quiet-30's overshirt
+came out past its jacket at his sides on the heavier and loose builds (#99). The templates were cut to his size's label
+(waist 87, seat 99 to 102): a seat of 100 is 96.5 cm in his warped frame, 11 cm of room round him at the seat line where
+`make3Dcore`'s has 6, and with front and back lying on him it all went to his sides. Every trouser and shorts template is
+now cut for his body as built: waist 84, seat 90 (chinos), 89 (slim), 92 (tapered), 91 and 92 (shorts). Within 0.5 to
+1 cm of `make3Dcore`'s at the hips, the same girth; the shorts' hems still end within 1.3 cm of `make3Dcore`'s.
+
+*Tried first:* the side seam's hip curve (narrowing in sooner above the seat line) and Blender's bending (2 for 0.5):
+neither moved the sides; the cross-section showed the room standing out at the side seams.
+
+**Checked**: on Dave, the 277 outfits in straight, regular, slim and tapered trousers and shorts against `main`:
+flagged 5 against 6 (g-quiet-18's shard clears), poke 832 against 995, holes 287 against 301, `under` 1 against 2, legs
+0; worse by more than 8 pixels on two (winter-formal 14 against 4, g-outdoor-14's neck 71 against 57), better on seven
+(g-quiet-30 5 against 25, g-mod-03, g-mod-28, g-outdoor-21, g-quiet-22). g-quiet-30 on the heavier and loose builds:
+10 and 6, from 39 and 38. CI: green.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4715,7 +4734,8 @@ details `make3Dcore` draws on trousers, belts and tucked-in tops on the draped p
 2026**, PR #95, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight and regular jeans, with their own details (81 outfits). A shirt's collar under a
 done-up gilet: PR #96. **Step 4 (17 Oct 2026**, PR #97, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): on by default for straight and regular trousers
 and jeans, over boots too. **Step 5 (17 Oct 2026**, PR #98, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): shorts in four lengths. **Step 6 (17 Oct 2026**, PR #99, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): slim and
-tapered. Next: the other cuts, one group at a time (wide and relaxed; joggers; cargos).
+tapered. The hips cut for his body: PR #100 (section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Next: the other cuts, one
+group at a time (wide and relaxed; joggers; cargos).
 
 ### 7. The tops still on `make3Dcore`, and known faults
 
