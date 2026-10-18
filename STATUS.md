@@ -27,8 +27,8 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 **18 Oct: each outfit fetches only its own garment templates** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #102). Speed fix 1
 of the review: opening Dave in 3D no longer fetches all 60 templates (24.3 MB) at once; each outfit fetches the two to
-six it is drawn from (`garmentsFor`, `ensureGarments`), as it is first drawn. Every outfit draws exactly as before
-(`tools/qa/garments.js`).
+six it is drawn from (`garmentsFor`, `ensureGarments`), as it is first drawn: to the first outfit cards in 3D, 6.7 MB
+of templates where it was 24.3 (28.4 MB in all, from 46.0). Every outfit draws exactly as before (`tools/qa/garments.js`).
 **Next:** speed fix 2 (ship the photos' colour readings), then phase A.
 
 **18 Oct: the review, and the road from here** (UPGRADE_PLAN section 6; the doc:

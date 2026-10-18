@@ -4408,8 +4408,10 @@ template were there (`drapeArch0`) and keeps the choice only if that template is
 not arrived leaves the pair on `make3Dcore`'s shapes (`LOD` false), as a top's does, so nothing is drawn half-dressed.
 
 **Checked**: `tools/qa/garments.js` (new) draws every outfit twice, with all 60 templates and with only the ones
-`garmentsFor` names, and compares every mesh's points: no outfit differs in the first 350 of 582 (the rest running). Downloads, the app opened in 3D in a headless
-browser for 90 s (outfit cards drawn as stills): being measured. CI: pending.
+`garmentsFor` names, and compares every mesh's points: none of the 582 differs. An outfit names 2.7 templates on average, 1.0 MB. Downloads, the app opened in 3D in a headless
+browser until its first outfit cards were drawn (7 stills): `main` fetched all 60 templates, 24.3 MB (46.0 MB in all);
+now 17, 6.7 MB (28.4 MB in all). One outfit alone (the fitting room opened from a link) fetches its own, about
+1 MB. More cards drawn fetch more, up to the 60 once every kind has been shown. CI: green.
 
 ## 3. Next steps
 
@@ -4869,6 +4871,13 @@ curls only, men's sizes and words, and the shop sweeps dropping women's listings
   the repository.
 - Dave's sizing: keep the model's shape, with sizing adjustable (the size row and Edit Dave's fit), as agreed on 12 Oct.
 - Shops for women's clothes: to ask when phase D starts.
+
+**Where Dave stands** (18 Oct, `main` at PR #101, `tools/check_3d.js` on all 582 outfits on dave as worn): 10
+flagged, every one for poke, the rest of the counts (holes, stray, skin, see-through, sunk, colour, under, legs, form)
+0. Six are workwear kit worn over the clothes (front poke: jb9-tool-belt-ut 104, jb10-snikki 97, jb8-tool-belt 79,
+jb11-toolbelt-braces 71, jb8-apron-shorts 66, jb9-hirst-apron 51) and four the fragile neck layers of section 5, item 7
+(g-outdoor-21 86, g-outdoor-14 68, g-outdoor-03 36 at the front, g-quiet-22 36 at the back). Phase A's gate runs the
+same on all five bodies, done up and tucked too.
 
 **A. Finish Dave's clothes** (section 5's items, about 10 to 14 pull requests): wide, relaxed, baggy and barrel
 trousers (130 outfits); joggers with ribbed cuffs (76); cargos and work trousers (58); swim, board, jersey and cargo
