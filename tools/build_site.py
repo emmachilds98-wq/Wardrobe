@@ -483,11 +483,12 @@ def main():
             items[k]["cut"] = v
     # The shop photos' readings, made by tools/specs.js for each item and the shape it is worn as (data/looks.json).
     # They ride on the item as "rd", which the page takes as read rather than fetching a photo pack to read the photo
-    # on the device (trueFor in page.html). A reading for an item no longer listed is left out.
+    # on the device (trueFor in page.html); false for a shape still read on the device. A reading for an item no longer
+    # listed is left out.
     looks = load("data/looks.json") if os.path.exists(os.path.join(ROOT, "data", "looks.json")) else {}
     for key, rd in looks.items():
         k, _, sh = key.rpartition("|")
-        if k in items and sh and isinstance(rd, dict):
+        if k in items and sh and (isinstance(rd, dict) or rd is False):
             items[k].setdefault("rd", {})[sh] = rd
     # What M, L and XL mean at each shop (data/sizecharts.json, read from the shops' own size guides by
     # tools/size_charts.py), for the size check on the cards

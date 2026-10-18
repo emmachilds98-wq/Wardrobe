@@ -20,8 +20,8 @@
 
    It also writes the photo readings themselves (data/looks.json, next to --out): each item and shape's sampleLook,
    read with that shape, so the page need not fetch a photo pack to read it on the device (trueFor; the build puts
-   each on its item as "rd"). Readings holding an image cut from the photo (a front panel, a chest print, a cloth
-   swatch) are left out: those pieces are still read on the device. Run it after a change to the readers or the
+   each on its item as "rd"). A reading holding an image cut from the photo (a front panel, a chest print, a cloth
+   swatch) is written as false: that piece is still read on the device. Run it after a change to the readers or the
    photos, and commit both files.
 
    The pull-request check runs it on the built site and compares with data/specs.json (tools/qa/specs_diff.py);
@@ -65,9 +65,11 @@ async function specOf(q) {
     if (window.__lkShape[q.item] === q.shape) Lq = X.LOOK[q.item];
     else { src = src || await new Promise(r => X.getPh(q.item, r)); Lq = src ? await X.sampleLook(src, q.shape, X.descOf(it, q)) : null; }
   }
-  /* (shipped: its words, colours and numbers, to 4 places; none that holds an image cut from the photo) */
+  /* (shipped: its words, colours and numbers, to 4 places; one that holds an image cut from the photo is false, read
+     on the device, so the page knows every shape the item is worn as) */
   let look;
-  if (Lq && !(Lq.front || Lq.decal || Lq.swatch || Lq.swCv)) {
+  if (Lq !== undefined && (!Lq || Lq.front || Lq.decal || Lq.swatch || Lq.swCv)) look = false;
+  else if (Lq) {
     look = {};
     Object.keys(Lq).sort().forEach(k => { const v = Lq[k]; if (v == null || typeof v === "function" || (typeof v === "object" && !Array.isArray(v) && Object.getPrototypeOf(v) !== Object.prototype)) return;
       look[k] = typeof v === "number" ? +v.toFixed(4) : v; });
@@ -143,15 +145,15 @@ async function specOf(q) {
       for (const q of qs) { try { r[q.item + "|" + q.shape] = await f(q); } catch (e) { r[q.item + "|" + q.shape] = { spec: { error: String(e.message || e) } }; } }
       return r;
     }, { qs: pairs.slice(i, i + 25), fn: specOf.toString() });
-    for (const k in part) if (part[k]) { specs[k] = part[k].spec; if (part[k].look) looks[k] = part[k].look; }
+    for (const k in part) if (part[k]) { specs[k] = part[k].spec; if (part[k].look !== undefined) looks[k] = part[k].look; }
     process.stdout.write("\r" + Math.min(i + 25, pairs.length) + "/" + pairs.length + " pieces");
   }
   await b.close(); srv.close();
   const keys = Object.keys(specs).filter(k => specs[k]).sort();
   const body = keys.map(k => JSON.stringify(k) + ":" + JSON.stringify(specs[k])).join(",\n");
   fs.writeFileSync(OUT, "{\n" + body + "\n}\n");
-  const lk = Object.keys(looks).sort();
+  const lk = Object.keys(looks).sort(), nlk = lk.filter(k => looks[k]).length;
   fs.writeFileSync(LOOKS, "{\n" + lk.map(k => JSON.stringify(k) + ":" + JSON.stringify(looks[k])).join(",\n") + "\n}\n");
-  console.log("\n" + keys.length + " pieces -> " + path.relative(ROOT, OUT) + ", " + lk.length + " readings -> " + path.relative(ROOT, LOOKS) + (errs.length ? " (page errors: " + errs.slice(0, 3).join("; ") + ")" : ""));
+  console.log("\n" + keys.length + " pieces -> " + path.relative(ROOT, OUT) + ", " + nlk + " readings (" + (lk.length - nlk) + " read on the device) -> " + path.relative(ROOT, LOOKS) + (errs.length ? " (page errors: " + errs.slice(0, 3).join("; ") + ")" : ""));
   if (errs.length) process.exitCode = 1;
 })();

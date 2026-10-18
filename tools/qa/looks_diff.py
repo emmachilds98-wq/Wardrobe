@@ -35,7 +35,7 @@ def main():
     a, b = (json.load(open(p, encoding="utf-8")) for p in args[:2])
     gone = sorted(set(a) - set(b))
     new = sorted(set(b) - set(a))
-    moved = {k: changes(a[k], b[k]) for k in sorted(set(a) & set(b))}
+    moved = {k: changes(a[k], b[k]) if isinstance(a[k], dict) and isinstance(b[k], dict) else ([] if a[k] == b[k] else ["%s -> %s" % (a[k], b[k])]) for k in sorted(set(a) & set(b))}
     moved = {k: v for k, v in moved.items() if v}
     for k in new:
         print("new  " + k)

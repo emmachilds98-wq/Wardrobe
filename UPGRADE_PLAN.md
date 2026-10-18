@@ -4422,12 +4422,13 @@ device (`trueFor`, `sampleLook`), so drawing an outfit, in 2D or 3D, fetched the
 *How it works:* `tools/specs.js`, which already reads every outfit piece as the page does for the stored specs, now
 also writes the readings themselves (`data/looks.json`): each item and the shape it is worn as, read with that shape,
 numbers to four places. A reading that holds an image cut from the photo (a front panel laid on, a chest print, a cloth
-swatch: 238 of 1,358) is left out, and those pieces are still read on the device. The build puts each on its item as
+swatch: 238 of 1,358) is written as false, and those pieces are still read on the device; false, not left out, so the
+page knows every shape an item is worn as (a pyjama set's striped top read on the device, its plain bottoms shipped). The build puts each on its item as
 `rd` (by shape); the page checks it as it does a correction (`normRd`), and `trueFor` takes it as read (`lookRd`),
-telling its caller as a photo reading would. An item worn as one shape starts read as the data loads, so the first
-cards are drawn in its colours. `window.__rd=0` reads every piece from its photo, as `tools/specs.js` does, so the
+telling its caller as a photo reading would. An item worn as one shape, shipped, starts read as the data loads, so the
+first cards are drawn in its colours. `window.__rd=0` reads every piece from its photo, as `tools/specs.js` does, so the
 stored specs still check the readers themselves. `tools/check_3d.js` takes the shipped readings, as the page does.
-1,120 readings, 140 KB (28 KB compressed), on the items.
+1,120 readings, 150 KB (31 KB compressed), on the items.
 
 Keep it current: after a change to the readers (`sampleLook`) or to the photos, run `tools/specs.js` and commit
 `data/specs.json` and `data/looks.json` together; the specs check fails until then, as before.

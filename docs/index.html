@@ -2984,9 +2984,12 @@ document.addEventListener("error",function(e){
 
 /* a correction to how the item looks (data/fixes.json, put on the item by the build), kept only in its known shape */
 /* (the photo readings made by the build, by the shape the item is worn as (tools/specs.js, data/looks.json): colours,
-   the pattern and its spacing, kept only in their known shape. None holds an image cut from the photo) */
+   the pattern and its spacing, kept only in their known shape. None holds an image cut from the photo: such a shape is
+   false, read on the device) */
 function normRd(r){if(!r||typeof r!=="object")return null;var o={},n=0,hx=/^#[0-9a-f]{6}$/i;
-  Object.keys(r).forEach(function(sh){var L=r[sh],q={};if(!/^[a-z]{2,12}$/.test(sh)||!L||typeof L!=="object")return;
+  Object.keys(r).forEach(function(sh){var L=r[sh],q={};if(!/^[a-z]{2,12}$/.test(sh))return;
+    if(L===false){o[sh]=false;n++;return;}   /* (worn as this shape too, and read on the device) */
+    if(!L||typeof L!=="object")return;
     Object.keys(L).forEach(function(k){var v=L[k];
       if(/^(c1|c2|c3|c1p|sole|acc|slv)$/.test(k)){if(v===""||hx.test(v))q[k]=v;}
       else if(k==="str"){if(typeof v==="string"&&/^#[0-9a-f]{6}(\|#[0-9a-f]{6})?$/i.test(v))q[k]=v;}
@@ -9852,7 +9855,7 @@ async function loadStatic(){
     items=Object.keys(I).map(function(k){return norm(k,I[k]);}).filter(Boolean);
     byId={};derived={};items.forEach(function(it){byId[it.id]=it;});
     /* (an item read at build time as the one shape it is worn as starts read, so the first cards are drawn in it) */
-    items.forEach(function(it){var k=it.rd&&Object.keys(it.rd);if(k&&k.length===1)lookRd({item:it.id,shape:k[0]});});
+    items.forEach(function(it){var k=it.rd&&Object.keys(it.rd);if(k&&k.length===1&&it.rd[k[0]])lookRd({item:it.id,shape:k[0]});});
     styleTags=M.styletags||{};applyTags();
     fits=Object.keys(O).map(function(k){return normFit(k,O[k]);}).filter(Boolean);fitById={};fits.forEach(function(f){fitById[f.id]=f;});fitsSeen=true;usage=null;
     meta=M.status||{};profile=M.profile||{};baseProfile=profile;shopInfo=M.shops||{};setFormal(M.formality);SIZES=M.sizes||{};
