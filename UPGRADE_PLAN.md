@@ -4370,11 +4370,19 @@ middle, every centimetre up his thighs and shins), or of his hips above his crot
 its distance from it either way; a looser pair a further 4% from the knee down, so it falls straighter, as the slider
 says. The cloth's lengths round him are graded to match (`drapeGrade`, 1 + 0.05 of the slider round, its lengths down
 him kept), so the settle keeps the new size and the hem stays where it was. `make3Dcore`'s legs (joggers, cargos, the
-wide cuts): their room by 1 + 0.55 of the slider, as its tops', and a looser pair keeping more of the thigh's size down
-the leg (`fall`). At the middle of the slider nothing changes. On Dave's chinos at the hips: girth 87.9 to 95.0 cm from
+wide cuts): their room by 1 + 0.55 of the slider looser, as its tops', 1 - 0.3 of it closer, and a looser pair keeping
+more of the thigh's size down the leg (`fall`). At the middle of the slider nothing changes. On Dave's chinos at the hips: girth 87.9 to 95.0 cm from
 closest to loosest, 90.9 at the middle.
 
-**Checked**: CHECKED7
+**Checked**: a sample of 179 outfits (every other one of the 277 in draped trousers and shorts, and 40 in joggers,
+cargos and the wide cuts) at both ends of the slider (`--body close`, `--body loose`) against `main`: flagged the same,
+the necks of item 7 (closest g-outdoor-21 and g-quiet-22; loosest g-quiet-18, g-outdoor-21 and errands); legs, `under`
+and form 0. Closest: holes 195 against 231, skin 13 against 17, poke 497 against 407 (g-quiet-18's neck 24 against 10,
+winter-formal 23 against 6 at its coat's hem corners by his hands, the rest a few pixels each). Loosest: holes 200
+against 211, poke 745 against 676 (the three necks 13 to 14 more each, w20261006-casual-01 29 against 12). On the way:
+closest, at 1 - 0.55 of their room, `make3Dcore`'s joggers sank into his seat at his back (sunk 1 to 12 pixels in ten
+lounge outfits), and a baggy pair's waistband came through the tee over it (rv-budget, 18): at 1 - 0.3, none, and 1.
+CI: green.
 
 **What is not done**: the fitting room's sizes (S to XXL) are for tops; a pair's waist size is not offered.
 
