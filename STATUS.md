@@ -25,6 +25,11 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**18 Oct: the draped trousers' hips** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #100). The draped trousers and shorts no
+longer stand out at his hips in wings round the front pockets: cut for his body (waist 84, seat about 90), they sit as
+close as the old ones, and a jacket over an overshirt no longer has the overshirt poking out at his sides.
+**Next:** Edit Dave's "How clothes fit" on trousers and shorts too (Emma's ask), then wide and relaxed cuts.
+
 **17 Oct: draped slim and tapered trousers** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #99). Slim, skinny and tapered
 trousers and jeans hang as real cloth too (67 outfits, 27 over boots), cut as such trousers are, narrower below the knee
 than the straight pair. A chino's back pocket no longer shows through a jumper over it, and the specks between the legs
