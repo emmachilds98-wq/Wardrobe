@@ -20,8 +20,9 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   four insulated and borg-lined overshirts) and the borg zip-through in
   g-casual-01, which it sends to `puffer` but which stays on `make3Dcore` over a half-zip (see the rule by `TUCK0`). Straight and regular trousers and jeans are draped too since 17 Oct (PR #97: `drapeLo`, from
   `data/garments/chinos.json`, and `chinos_boot.json` over boots, with their details by `drapeLoDetails`; 136 outfits); the
-  slim and tapered cuts since PR #99 (`slim`, `tapered`, each with a `_boot`); the wide, relaxed, baggy and barrel cuts,
-  joggers and cargos keep `make3Dcore`'s legs. Shorts too since PR #98 (`shorts_short`, `shorts`, `shorts_mid`, `shorts_long`, by the listing's
+  slim and tapered cuts since PR #99 (`slim`, `tapered`, each with a `_boot`); the relaxed, wide, baggy and barrel cuts
+  since PR #104 (`relaxed`, `wide`, `baggy`, each with a `_boot`, and `barrel`); joggers and cargos keep `make3Dcore`'s
+  legs. Shorts too since PR #98 (`shorts_short`, `shorts`, `shorts_mid`, `shorts_long`, by the listing's
   length; not swim, board, jersey or cargo shorts). (Counted piece by piece in each outfit. `tools/qa/drape_survey.js`,
   below, gives one row per item, its template taken from the first outfit it is in, so a piece filed under another
   shape in another outfit can hide there: the guide said 932 and 20 until this was counted.) Run it for the live list.
@@ -39,7 +40,7 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
   - Accessories: `scarf`.
   - Trousers: `chinos` (a straight pair: chinos, trousers and jeans; `drapeLo`, not `drapeTops`, before the tops),
     `chinos_boot` (the same, ending 11 cm off the floor, over boots), `slim(_boot)` and `tapered(_boot)` (those cuts,
-    PR #99), `shorts_short`, `shorts`, `shorts_mid`,
+    PR #99), `relaxed(_boot)`, `wide(_boot)`, `baggy(_boot)` and `barrel` (the looser cuts, PR #104), `shorts_short`, `shorts`, `shorts_mid`,
     `shorts_long` (for listings 22, 27, 30 and 36 cm below his crotch, each ending where `make3Dcore`'s did once warped).
     All of them graded by Edit Dave's "How clothes fit" in the page (`drapeLo`, PR #101), as the tops are by `drapeSize`.
 - **Which template a piece gets**: `drapeArch(p)` in `page.html` decides, from the piece's shape and the words in its

@@ -4078,9 +4078,14 @@ function gtplPart(d){var o={n:d.n,m:d.m,pieces:d.pieces,pos:gtplDec(d.pos,Float3
   o.grp=new Uint8Array(o.n);for(var j=o.m-1;j>=0;j--)o.grp[o.vmap[j]]=o.pieces[o.piece[j]].grp;
   return o;}
 /* (the legwear templates: the straight, slim and tapered pairs, each also cut to end on a boot, and the shorts by length) */
-var LOTPL=["chinos","chinos_boot","slim","slim_boot","tapered","tapered_boot","shorts_short","shorts","shorts_mid","shorts_long"];
-/* (a pair's cut as drapeLo takes it: tapered, slim (a skinny pair too) or null, the chinos' straight cut) */
-function loCut(k){return k==="tapered"?"tapered":/^(slim|skinny)$/.test(k)?"slim":null;}
+var LOTPL=["chinos","chinos_boot","slim","slim_boot","tapered","tapered_boot","shorts_short","shorts","shorts_mid","shorts_long",
+  "relaxed","relaxed_boot","wide","wide_boot","baggy","baggy_boot","barrel"];
+/* (relaxed, wide, baggy and barrel trousers draped too (window.__wideDrape, on by default; QA_INIT='window.__wideDrape=0'
+   for make3Dcore's, a before and after)) */
+if(window.__wideDrape==null)window.__wideDrape=1;
+/* (a pair's cut as drapeLo takes it: tapered, slim (a skinny pair too), relaxed, wide, baggy, barrel or null, the
+   chinos' straight cut) */
+function loCut(k){return /^(tapered|relaxed|wide|baggy|barrel)$/.test(k)?k:/^(slim|skinny)$/.test(k)?"slim":null;}
 /* (shorts: the template at least as long as the listing's length below his crotch, 21, 27, 30 or 36 cm, so they cover
    his thighs as far as make3Dcore's do, which the 3D check reads: loHem) */
 function shortsTpl(L){return L<=0.225?"shorts_short":L<=0.275?"shorts":L<=0.305?"shorts_mid":"shorts_long";}
@@ -4088,13 +4093,13 @@ function shortsTpl(L){return L<=0.225?"shorts_short":L<=0.275?"shorts":L<=0.305?
 function loTpl(sh,len,cut,boot){if(sh)return shortsTpl(len);var c=cut||"chinos";return boot&&GTPL[c+"_boot"]?c+"_boot":c;}
 /* (workwear kit, tool belts and holster pockets, worn on a belt over the clothes) */
 var KITRE=/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/;
-/* the template a pair is draped from (drapeLo), or null for make3Dcore's shapes: a straight, regular, slim or tapered
-   pair of trousers or jeans, or shorts, not swim, board, jersey, jogger or cargo shorts; not joggers or cargos, not cuffed
-   at the ankle, nor cropped unless over boots, nor under workwear kit on a belt. ps: the outfit's pieces, dressed */
+/* the template a pair is draped from (drapeLo), or null for make3Dcore's shapes: a straight, regular, slim, tapered,
+   relaxed, wide, baggy or barrel pair of trousers or jeans, or shorts, not swim, board, jersey, jogger or cargo shorts;
+   not joggers or cargos, not cuffed at the ankle, nor cropped unless over boots, nor under workwear kit on a belt. ps: the outfit's pieces, dressed */
 function loDrapeT(lo,ps){if(!window.__legDrape||!lo||lo.under)return null;
   var n=(((byId[lo.item]||{}).name||"")+" "+lo.what).toLowerCase(),sh=lo.shape==="shorts",BC=bottomCut(lo),ft=ps.filter(function(p){return FEET[p.shape];})[0],boot=!sh&&!!ft&&ft.shape==="boots";
   if(sh&&/swim|board|jersey|fleece|terry/.test(n)||/jogger|track|sweatpant|lounge|pyjama|cargo|combat/.test(n))return null;
-  if(!sh&&!/^(straight|regular|slim|skinny|tapered)$/.test(BC.k)||BC.cuff||BC.bot&&!boot)return null;
+  if(!sh&&!/^(straight|regular|slim|skinny|tapered)$/.test(BC.k)&&!(window.__wideDrape&&/^(relaxed|wide|baggy|barrel)$/.test(BC.k))||BC.cuff||BC.bot&&!boot)return null;
   if(ps.some(function(q){return q.shape==="belt"&&KITRE.test((((byId[q.item]||{}).name||"")+" "+q.what).toLowerCase());}))return null;
   return loTpl(sh,BC.len||0.29,loCut(BC.k),boot);}
 /* Each outfit fetches only the templates it can be drawn from (garmentsFor), as it is first drawn: not all 60 (24 MB)
@@ -4555,7 +4560,11 @@ function drapeLo(man,lo,pm,ctx){ctx=ctx||{};var T=window.THREE,c0=ctx.cut||"chin
     for(i=0;i<I.length/3;i++){var tl=lg.indexOf(BODY.treg[i])>=0;for(a=0;a<3;a++){var v2=I[i*3+a];if(AM&&AM[v2])continue;var x2=BP[v2*3],z2=BP[v2*3+2],b2=Math.floor(BP[v2*3+1]/0.01);if(b2<0||b2>=200)continue;
       if(tl){var j0=x2>0?0:4;lb4(b2,j0,x2,false);lb4(b2,j0+1,x2,true);lb4(b2,j0+2,z2,false);lb4(b2,j0+3,z2,true);}if(Math.abs(x2)<0.25){lb4(b2,8,z2,false);lb4(b2,9,z2,true);}}}
     for(j=0;j<10;j++){var last=NaN;for(i=0;i<200;i++){if(LB[i*10+j]===LB[i*10+j])last=LB[i*10+j];else LB[i*10+j]=last;}for(i=199;i>=0;i--){if(LB[i*10+j]===LB[i*10+j])last=LB[i*10+j];else LB[i*10+j]=last;}}}
-  var cG={push:function(P,o){var q=o/3,s=sd[q],y=P[o+1];if(!s||y>cr-0.01||y<0.1)return;var b=Math.floor(y/0.01),G=s>0?gL:gR,m=Math.min(G[b],G[b-1],G[b+1]);if(m>0.2)return;m=(0.5*m+0.002*Math.max(-1,Math.min(1,(m-0.005)/0.002)))*sstep(cr-0.01,cr-0.05,y);if(P[o]*s<m)P[o]=s*m;}};
+  /* (a relaxed, wide, baggy or barrel pair is held so down to 2 cm off the floor, below his shins by the gap at his
+     ankles: their hems are wide enough to meet between his feet, and tangled there) */
+  var gLo=/^(relaxed|wide|baggy|barrel)$/.test(c0)&&!ctx.sh?0.02:0.1,gA={"1":9,"-1":9};
+  for(i=0;i<200;i++){if(gA["1"]>0.2&&gL[i]<0.2)gA["1"]=gL[i];if(gA["-1"]>0.2&&gR[i]<0.2)gA["-1"]=gR[i];}
+  var cG={push:function(P,o){var q=o/3,s=sd[q],y=P[o+1];if(!s||y>cr-0.01||y<gLo)return;var b=Math.floor(y/0.01),G=s>0?gL:gR,m=Math.min(G[b],G[b-1],G[b+1]);if(m>0.2){if(gLo>0.05)return;m=gA[s];if(m>0.2)return;}m=(0.5*m+0.002*Math.max(-1,Math.min(1,(m-0.005)/0.002)))*sstep(cr-0.01,cr-0.05,y);if(P[o]*s<m)P[o]=s*m;}};
   /* (a top tucked in: the trousers held off him by its room as well, from 1 cm above his crotch up, all of it from 7 cm,
      as make3Dcore's stand out by it at his waist and seat) */
   var cT=ctx.tk?{push:function(P,o){cB.th=0.004+ctx.tk*sstep(cr+0.01,cr+0.07,P[o+1]);drapePush(cB,P,o);cB.th=0.004;}}:cB,cols=[[cT,cS,cG]];
@@ -6333,7 +6342,7 @@ function make3Dcore(pieces){
       [-1,1].forEach(function(s){var hq=secAt(LS0[String(s)],uLeg+0.004);band(uLeg-0.002,0.022,hq[1]+0.003,hq[2]+0.003,lm,{x:hq[3],z:hq[4],seg:36});});}
     if(!bodyOn)sec(shapeSecs([[0.785,0.156,0.102,0,-0.004],[0.85,0.174,0.114,0,-0.01],[0.92,0.184,0.123,0,-0.012],[0.98,0.18,0.118,0,-0.008],[1.035,0.165,0.111,0,-0.002]]),lm,{seg:44,sq:2.3,bottom:true});   /* the rise covers the seat and crotch */
     var wk1=shapeAt(1.02),jog=/jogger|track|sweatpant|lounge|pyjama/.test(n0),jean=/jean|denim/.test(n0);
-    /* (a straight, regular, slim or tapered pair of trousers or jeans, or shorts, is draped instead (drapeLo; which ones:
+    /* (a pair of trousers or jeans of any cut but a jogger's or a cargo's, or shorts, is draped instead (drapeLo; which ones:
        loDrapeT; window.__legDrape=0 for make3Dcore's). Workwear kit on a belt hangs from make3Dcore's waistband, and
        swim, board and jersey shorts have an elastic waist. Over boots, the leg falls round the shaft and its hem rests on
        the boot's front, where make3Dcore's stops on it) */

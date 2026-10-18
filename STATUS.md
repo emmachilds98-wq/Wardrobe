@@ -25,12 +25,18 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**18 Oct: draped relaxed, wide, baggy and barrel trousers** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #104). Phase A,
+item 1: the looser cuts (130 outfits) hang as real cloth too, from four new templates (and three cut for boots), each
+roomier through the thigh, knee and hem than the chinos, a barrel curving out to the knee and in to the hem. Their wide
+hems are held apart between his feet.
+**Next:** joggers (76 outfits), then cargos (58).
+
 **18 Oct: the photos' readings shipped with the outfits** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #103). Speed fix
 2: each piece's colours and pattern, read from its shop photo when the site is built (`tools/specs.js`,
 `data/looks.json`), ride on its item, so drawing an outfit no longer fetches photo packs to read them on the device
 (238 pieces with a printed front, a chest print or a cloth swatch still are). To the first outfit cards in 3D: photo
 packs 8.8 MB where they were 13.0. After a change to the readers or photos, run `tools/specs.js` and commit both files.
-**Next:** phase A, starting with wide and relaxed trousers.
+Merged (PR #103).
 
 **18 Oct: each outfit fetches only its own garment templates** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #102). Speed fix 1
 of the review: opening Dave in 3D no longer fetches all 60 templates (24.3 MB) at once; each outfit fetches the two to
@@ -691,6 +697,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 18 Oct 2026 | #103 | The photos' readings shipped with the outfits (`data/looks.json`, on each item as `rd`, by `tools/specs.js`): drawing an outfit no longer fetches photo packs to read them on the device (238 pieces with an image cut from the photo still are). To the first outfit cards in 3D: photo packs 8.8 MB from 13.0; every outfit's materials as before (582). A new CI step keeps the readings current. | B8UXnh v36 |
 | 18 Oct 2026 | #102 | Each outfit fetches only its own garment templates (`garmentsFor`, `ensureGarments`): to the first outfit cards in 3D, 6.7 MB of templates where all 60 were 24.3; every one of the 582 outfits draws as before (`tools/qa/garments.js`). The 18 Oct review's decisions and roadmap (UPGRADE_PLAN section 6). | B8UXnh v35 |
 | 18 Oct 2026 | #101 | Edit Dave's "How clothes fit" on trousers and shorts: the draped pairs graded round each leg and his hips (5% either way, a looser pair 4% more below the knee), `make3Dcore`'s legs by their room; 179 outfits at both ends of the slider flag as `main`. | B8UXnh v34 |
 | 18 Oct 2026 | #100 | The draped trousers' and shorts' hips: every template cut for his body (waist 84, seat about 90, from 87 and 100), no more wings at his sides; on Dave's 277 legwear outfits flagged 5 against 6, poke 832 against 995; g-quiet-30 clear on the heavier and loose builds. | B8UXnh v33 |
