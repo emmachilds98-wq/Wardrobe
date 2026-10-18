@@ -2301,7 +2301,7 @@ var state={view:"shop",dept:"all",shop:"all",col:"all",tfit:"all",fab:"all",comp
   tocc:"everyday",twx:(function(){var m=new Date().getMonth();return m>=10||m<=1?"cold":(m>=4&&m<=7?"warm":"mild");})(),mocc:"everyday",mwx:"all"};
 var lim={picks:PAGE,fits:FITPAGE};
 /* the automatic 3D checks (tools/check_3d.js) open the page with ?qa=1 and drive it through this */
-if(/[?&]qa=1\b/.test(location.search))window.__qa=function(){return {make3D:make3D,fitById:fitById,effPieces:effPieces,trueFor:trueFor,LOOK:LOOK,TRUE:TRUE,byId:byId,dressed:dressed,loadThree:loadThree,body:function(){return BODY;},bodyPos:bodyPos,propWarp:propWarp,cc:cc,descOf:descOf,getPh:getPh,sampleLook:sampleLook,pieceLook:pieceLook,sgKind:sgKind,shopSize:shopSize,guessShape:guessShape,wear:function(w){w=w||{};ZIPM=w.zip||"";TUCKM=w.tuck||"";TURNM=w.turn||"";}};};
+if(/[?&]qa=1\b/.test(location.search))window.__qa=function(){return {lookRd:lookRd,make3D:make3D,fitById:fitById,effPieces:effPieces,trueFor:trueFor,LOOK:LOOK,TRUE:TRUE,byId:byId,dressed:dressed,loadThree:loadThree,body:function(){return BODY;},bodyPos:bodyPos,propWarp:propWarp,cc:cc,descOf:descOf,getPh:getPh,sampleLook:sampleLook,pieceLook:pieceLook,sgKind:sgKind,shopSize:shopSize,guessShape:guessShape,wear:function(w){w=w||{};ZIPM=w.zip||"";TUCKM=w.tuck||"";TURNM=w.turn||"";}};};
 var items=[],fits=[],byId={},fitById={},meta={},profile={},phase="loading",fitsSeen=false;
 var db=null,canShare=true,saved={},votes={},myfits=[],local={saved:{},votes:{},myfits:{},owned:{}};
 var owned={},shopInfo={},staticMode=false,catFiles=false,swaps={},locked={},colCache={};
@@ -2946,16 +2946,22 @@ var PRCV={};function printCv(u){if(PRCV[u])return PRCV[u];var im=swImg(u);if(!(i
   for(j=0;j<h;j++)for(i=0;i<w;i++){if(i&&j&&i<w-1&&j<h-1)continue;var k=(j*w+i)*4;m[0]+=D[k];m[1]+=D[k+1];m[2]+=D[k+2];n++;}m=m.map(function(v){return v/n;});
   for(k=0;k<D.length;k+=4){var e=Math.hypot(D[k]-m[0],D[k+1]-m[1],D[k+2]-m[2]);D[k+3]=Math.round(255*Math.max(0,Math.min(1,(e-30)/34)));}
   x.putImageData(d,0,0);PRCV[u]=cv;return cv;}
+/* a piece read at build time (its item's "rd", by shape) is taken as read, without fetching its photo; the rest, and
+   with window.__rd=0 every one (tools/specs.js), are read from the photo here (sampleLook) */
+function lookRd(p){var it=byId[p.item],R=window.__rd!==0&&it&&it.rd&&it.rd[p.shape];if(!R||has(TRUE,p.item))return false;
+  LOOK[p.item]=Object.assign({},R);TRUE[p.item]=R.str;return true;}
 function trueFor(pieces,cb){
-  var jobs=[],seen={};
+  var jobs=[],seen={},got=false;
   (pieces||[]).forEach(function(p){
     var it=byId[p.item],F0=it&&it.fix;
     if(F0)[F0.swatch,F0.place,F0.crown,F0.strip,F0.print].concat(F0.shapes?Object.keys(F0.shapes).map(function(k){return F0.shapes[k].swatch;}):[]).forEach(function(u){if(!u||seen["sw:"+u])return;var im=swImg(u);if(im.complete&&im.naturalWidth)return;seen["sw:"+u]=1;
       jobs.push(new Promise(function(done){im.addEventListener("load",function(){done(1);});im.addEventListener("error",function(){done(0);});}));});if(!it||p.fixed||seen[p.item]||has(TRUE,p.item)||TRUEQ[p.item]||!hasPh(it))return;
+    if(lookRd(p)){got=true;return;}
     seen[p.item]=1;TRUEQ[p.item]=1;
     jobs.push(new Promise(function(done){getPh(p.item,function(src){if(!src){TRUE[p.item]="";done(0);return;}sampleLook(src,p.shape,descOf(it,p)).then(function(L){LOOK[p.item]=L||null;TRUE[p.item]=L?L.str:"";done(L?1:0);});});}));
   });
-  if(jobs.length){Promise.all(jobs).then(function(r){if(cb&&r.some(Boolean))cb();});}
+  if(jobs.length){Promise.all(jobs).then(function(r){if(cb&&(got||r.some(Boolean)))cb();});}
+  else if(got&&cb)Promise.resolve().then(cb);   /* (as a reading from the photo: after the caller has drawn) */
 }
 function glyph(it){
   var d=it&&derive(it);if(!d||!G[d.shape])return "";
@@ -2977,6 +2983,19 @@ document.addEventListener("error",function(e){
 },true);
 
 /* a correction to how the item looks (data/fixes.json, put on the item by the build), kept only in its known shape */
+/* (the photo readings made by the build, by the shape the item is worn as (tools/specs.js, data/looks.json): colours,
+   the pattern and its spacing, kept only in their known shape. None holds an image cut from the photo) */
+function normRd(r){if(!r||typeof r!=="object")return null;var o={},n=0,hx=/^#[0-9a-f]{6}$/i;
+  Object.keys(r).forEach(function(sh){var L=r[sh],q={};if(!/^[a-z]{2,12}$/.test(sh)||!L||typeof L!=="object")return;
+    Object.keys(L).forEach(function(k){var v=L[k];
+      if(/^(c1|c2|c3|c1p|sole|acc|slv)$/.test(k)){if(v===""||hx.test(v))q[k]=v;}
+      else if(k==="str"){if(typeof v==="string"&&/^#[0-9a-f]{6}(\|#[0-9a-f]{6})?$/i.test(v))q[k]=v;}
+      else if(k==="pat"){if(/^(plain|hstripe|vstripe|check|print|argyle)$/.test(v))q[k]=v;}
+      else if(k==="named"){if(typeof v==="string"&&v.length<=30)q[k]=v;}
+      else if(/^(close|model|wrap)$/.test(k)){if(typeof v==="boolean")q[k]=v;}
+      else if(/^(sheen|duty|per|swPer)$/.test(k)){if(typeof v==="number"&&isFinite(v)&&v>=0&&v<=1)q[k]=v;}});
+    if(q.c1&&q.pat&&q.str){o[sh]=q;n++;}});
+  return n?o:null;}
 function normFix(f){if(!f||typeof f!=="object")return null;var o={},hx=/^#[0-9a-f]{6}$/i,n=0;
   ["col","col2","slv"].forEach(function(k){if(typeof f[k]==="string"&&(hx.test(f[k])||(k==="col2"&&f[k]===""))){o[k]=f[k];n++;}});
   if(/^(plain|hstripe|vstripe|check|print|argyle)$/.test(f.pat||"")){o.pat=f.pat;n++;}
@@ -3002,7 +3021,7 @@ function norm(id,d){
     insize:d.insize===true?true:(d.insize===false?false:null),sizes:String(d.sizes||""),gift:d.gift===true,
     sets:Array.isArray(d.sets)?d.sets.filter(function(s){return typeof s==="string";}):[],img:okImg(d.img),
     pg:typeof d.pg==="string"?d.pg:"",sizeNote:String(d.sizeNote||"").slice(0,140),fit:String(d.fit||"").slice(0,20),cut:/^[a-z ]{3,40}$/.test(d.cut||"")?d.cut:"",fabric:String(d.fabric||"").slice(0,60),ph:d.ph===true||d.ph===1,
-    hist:Array.isArray(d.hist)?d.hist.filter(function(x){return Array.isArray(x)&&typeof x[0]==="string"&&Number(x[1])>0;}).map(function(x){return [x[0],Number(x[1])];}).slice(-6):[],fix:normFix(d.fix)};
+    hist:Array.isArray(d.hist)?d.hist.filter(function(x){return Array.isArray(x)&&typeof x[0]==="string"&&Number(x[1])>0;}).map(function(x){return [x[0],Number(x[1])];}).slice(-6):[],fix:normFix(d.fix),rd:normRd(d.rd)};
   if(!it.name||!url)return null;
   if(it.kind==="preowned"?!(it.lo>0):!(it.price>0))return null;
   it.sub=subOf(it);it.dept=SUBDEPT[it.sub]||"acc";
@@ -9832,6 +9851,8 @@ async function loadStatic(){
     }
     items=Object.keys(I).map(function(k){return norm(k,I[k]);}).filter(Boolean);
     byId={};derived={};items.forEach(function(it){byId[it.id]=it;});
+    /* (an item read at build time as the one shape it is worn as starts read, so the first cards are drawn in it) */
+    items.forEach(function(it){var k=it.rd&&Object.keys(it.rd);if(k&&k.length===1)lookRd({item:it.id,shape:k[0]});});
     styleTags=M.styletags||{};applyTags();
     fits=Object.keys(O).map(function(k){return normFit(k,O[k]);}).filter(Boolean);fitById={};fits.forEach(function(f){fitById[f.id]=f;});fitsSeen=true;usage=null;
     meta=M.status||{};profile=M.profile||{};baseProfile=profile;shopInfo=M.shops||{};setFormal(M.formality);SIZES=M.sizes||{};

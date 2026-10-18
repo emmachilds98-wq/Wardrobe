@@ -4413,6 +4413,30 @@ browser until its first outfit cards were drawn (7 stills): `main` fetched all 6
 now 17, 6.7 MB (28.4 MB in all). One outfit alone (the fitting room opened from a link) fetches its own, about
 1 MB. More cards drawn fetch more, up to the 60 once every kind has been shown. CI: green.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. The photos' readings shipped with the outfits (18 Oct 2026)
+
+Speed fix 2 of the 18 Oct review (section 6). Every piece's colours and pattern were read from its shop photo on the
+device (`trueFor`, `sampleLook`), so drawing an outfit, in 2D or 3D, fetched the photo pack each piece is in (about
+1 MB for one photo of 7 KB) and read it on the page's own thread.
+
+*How it works:* `tools/specs.js`, which already reads every outfit piece as the page does for the stored specs, now
+also writes the readings themselves (`data/looks.json`): each item and the shape it is worn as, read with that shape,
+numbers to four places. A reading that holds an image cut from the photo (a front panel laid on, a chest print, a cloth
+swatch: 238 of 1,358) is left out, and those pieces are still read on the device. The build puts each on its item as
+`rd` (by shape); the page checks it as it does a correction (`normRd`), and `trueFor` takes it as read (`lookRd`),
+telling its caller as a photo reading would. An item worn as one shape starts read as the data loads, so the first
+cards are drawn in its colours. `window.__rd=0` reads every piece from its photo, as `tools/specs.js` does, so the
+stored specs still check the readers themselves. `tools/check_3d.js` takes the shipped readings, as the page does.
+1,120 readings, 140 KB (28 KB compressed), on the items.
+
+Keep it current: after a change to the readers (`sampleLook`) or to the photos, run `tools/specs.js` and commit
+`data/specs.json` and `data/looks.json` together; the specs check fails until then, as before.
+
+**Checked**: `tools/specs.js` here reproduces `data/specs.json` (1,379 pieces, none read differently). Every outfit's
+materials (each mesh's colours and textures) drawn with the shipped readings and with every piece read from its photo:
+no outfit differs in the first 20 of 582 (the rest running). Downloads, the app opened in 3D to its first 7 outfit cards: photo packs 8.8 MB where they were 13.0 (7.6 of
+it the cards' own thumbnails), 24.4 MB in all (28.4 after speed fix 1, 46.0 before either). CI: pending.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

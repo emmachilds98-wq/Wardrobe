@@ -66,6 +66,7 @@ async function checkOutfit(arg) {
   const ps = X.effPieces(f);
   for (const p of ps) {   // the shop photo reading, as the page does when the card is shown
     const it = X.byId[p.item]; if (!it || p.fixed || X.LOOK[p.item] !== undefined) continue;
+    if (X.lookRd && X.lookRd(p)) continue;   // read at build time (data/looks.json), as the page takes it
     const src = await new Promise(r => X.getPh(p.item, r)); if (!src) { X.LOOK[p.item] = null; continue; }
     const L = await X.sampleLook(src, p.shape, X.descOf(it, p)); X.LOOK[p.item] = L || null; X.TRUE[p.item] = L ? L.str : "";
   }
