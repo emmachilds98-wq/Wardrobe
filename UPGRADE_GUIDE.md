@@ -101,6 +101,10 @@ is drawn as a shawl. The overcoat uses the same two pieces on a longer, roomier 
    - add details (buttons, plackets, zips, pockets, rib) in `drapeDetails`;
    - add rib materials in the mesh code near `knit=`.
    Search for an existing template's name (`sshirt`, `camp`) to find every place one is listed.
+   Each outfit fetches only the templates `garmentsFor` names (`drapeArch`'s choice and its `_up` twin, the scarf,
+   and the legwear `loDrapeT` picks; a legwear template goes in `LOTPL`). A template the page reaches any other way
+   must be named there too, or it is never fetched outside the QA scripts (which fetch all): run
+   `tools/qa/garments.js`, which reports any outfit that draws differently with only its own.
 4. **Build the site**: `python3 tools/build_site.py --out docs`, which also copies `data/garments` into `docs/data`.
    Commit `data/garments/<name>.json` and `docs/` with the change.
 

@@ -4386,6 +4386,31 @@ CI: green.
 
 **What is not done**: the fitting room's sizes (S to XXL) are for tops; a pair's waist size is not offered.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Each outfit fetches only its own garment templates (18 Oct 2026)
+
+Speed fix 1 of the 18 Oct review (section 6), the first of the two that go before phase A. Opening Dave in 3D fetched
+all 60 garment templates (24.3 MB) as his body loaded (`loadGarments`), whatever he wore; an outfit uses two to six.
+
+*How it works:* `garmentsFor(pieces)` names the templates an outfit can be drawn from: `drapeArch`'s choice for each
+piece (asked as if every template were there, `GTPL` swapped for a table of every name), with its `_up` twin for
+one that opens, so Zip up needs no fetch; the scarf's; and the trousers' or shorts' (`loDrapeT`, now the one rule
+`make3Dcore` drapes a pair by, its `LOD` and the shorts' skin rule `SHD`, and the planner both). `ensureGarments`
+fetches those not yet fetched (`gtplLoad`, once each; a failed fetch is tried again for the next outfit). Every place
+he is drawn waits for it: `loadThree(pieces)` fetches the outfit's templates alongside his body (the fitting room,
+Compare's live column, the builder, Edit Dave), each card still before it is drawn (`pumpSnap`), and a live view
+given new pieces (`h.update`) keeps the old figure until their templates are in, then draws them (and the fitting
+room's size row, `frLate`). `loadThree()` with no pieces, as the QA scripts call it, still fetches every template.
+
+On the way, `drapeArch` asked for the kind's own template before choosing a variant: a Harrington (`jacket_coll`)
+needed `jacket` loaded, a hybrid blazer (`jacket`) needed `blazer`, a long-sleeved polo (`polo_ls`) needed `polo`. With
+only the outfit's own fetched, those were left undraped (3 of the first 10 outfits tried). It now chooses as if every
+template were there (`drapeArch0`) and keeps the choice only if that template is fetched. And a template that has
+not arrived leaves the pair on `make3Dcore`'s shapes (`LOD` false), as a top's does, so nothing is drawn half-dressed.
+
+**Checked**: `tools/qa/garments.js` (new) draws every outfit twice, with all 60 templates and with only the ones
+`garmentsFor` names, and compares every mesh's points: no outfit differs in the first 350 of 582 (the rest running). Downloads, the app opened in 3D in a headless
+browser for 90 s (outfit cards drawn as stills): being measured. CI: pending.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing
@@ -4818,3 +4843,50 @@ garments per body (`bodyKey()`) for the card stills. Measure on a phone-sized pr
 - A look at the new Edit Dave panel (item 2) before it ships.
 - Republish her own copy of the artifact (FtdHKg) from her account.
 
+
+## 6. From Dave to anyone: the 18 Oct review and the road from here (18 Oct 2026)
+
+The review before the next upgrades (Claude Doc, "Wardrobe 3D review: before the next upgrades":
+<https://claude.ai/code/artifact/24617877-ab4f-4ae7-9f0e-488f0fc0bd83>) asked how far the 3D engine is from fitting other
+faces and bodies, and a woman's body (Emma's own, first) with women's clothes. In short: the clothes already are body
+independent where it matters, since each template point is bound to a triangle of the body mesh (`drapeBind`), not to
+Dave's shape, so any body on the same MakeHuman base mesh (13,380 points) wears every template once the templates are
+rebuilt on it (60 templates, 1.5 to 3 hours of build time per body). What ties the app to Dave is around the engine:
+male-only shape targets (`build_body.py`'s `BASE_MIX`), about 66 lookups at fixed heights, 40 height comparisons and 19
+height ranges in `make3Dcore`, `propWarp`'s anchors copied into the builder, one stored character (`CHAR`, `dw-char`),
+curls only, men's sizes and words, and the shop sweeps dropping women's listings on purpose (`WOMENS`).
+
+**Decided 18 Oct** (Emma left the calls to us where she had no preference):
+
+- Order: two speed fixes first (each outfit fetches only its own templates, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz; the
+  photos' colour readings shipped, not read from photo packs on the device), then the four phases below, each ending
+  at a gate it must pass before the next starts.
+- Fixed heights: from now on, new code reads the body's own landmarks (`BL`: chest, waist, crotch, shoulder), never a
+  fixed height.
+- People: one app with a switcher between the man's and the woman's body, each with their own wardrobe; not a
+  second copy of the app.
+- Emma's measurements and photos stay on her device (as Edit Dave's settings do); only a generic female body goes in
+  the repository.
+- Dave's sizing: keep the model's shape, with sizing adjustable (the size row and Edit Dave's fit), as agreed on 12 Oct.
+- Shops for women's clothes: to ask when phase D starts.
+
+**A. Finish Dave's clothes** (section 5's items, about 10 to 14 pull requests): wide, relaxed, baggy and barrel
+trousers (130 outfits); joggers with ribbed cuffs (76); cargos and work trousers (58); swim, board, jersey and cargo
+shorts (32); the fragile neck layers; borg and insulated overshirts; a long car coat, raglan sleeves and dressing gowns;
+shoes' uppers; fabrics as materials; sizing from size charts. Gate: all 582 outfits pass the 3D check on the five
+bodies as worn, done up and tucked, and card stills and close-ups are reviewed against the shop photos.
+
+**B. Speed and code health**: cache each body's colliders and each settled outfit, settle the cloth off the main
+thread, quantise the body file, load links and notes on demand, strip comments and load the 3D code on first use, and
+retire the old test switches and `make3Dcore`'s shapes that nothing draws any more. A size and speed budget in CI.
+
+**C. Any face, any body**: heights from landmarks throughout; the body built from a base (man or woman) and
+measurements (height, chest or bust, waist, hips, inseam), which also sets Dave's sliders from a tape measure; the
+builder taking a body as input; profiles (a name, a base body, shape, face, hair, sizes and a wardrobe each) with the
+switcher; hair styles beyond curls.
+
+**D. A woman's body and women's clothes**: a generic female body on the same base mesh, Emma's fitted on her device;
+tops, jeans and trousers rebuilt for her (darts, the other side's buttons and fly), then dresses and skirts (new item
+shapes, two legwear items, the legs test allowing skirts), then heels; a women's catalogue in the sweeps.
+
+Altogether about 33 to 44 pull requests.

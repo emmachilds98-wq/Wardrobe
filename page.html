@@ -3470,15 +3470,16 @@ function loadBody(){
     Object.keys(d.morphs).forEach(function(k){B.morphs[k]={i:dec(d.morphs[k].i,Uint16Array),d:dec(d.morphs[k].d,Int16Array)};});
     var f=d.face;B.face={x0:f.x0,y0:f.y0,st:f.st,nx:f.nx,ny:f.ny,z:dec(f.z,Int16Array)};
     if(d.rig)B.rig={parts:d.rig.parts,b:dec(d.rig.b,Uint8Array),w:dec(d.rig.w,Uint8Array)};   /* (his skeleton, for the live views' poses: poseRig) */
-    BODY=B;return loadGarments().then(function(){return B;});}).catch(function(){BODY=null;return null;});}
+    BODY=B;return B;}).catch(function(){BODY=null;return null;});}
   return bodyP;
 }
-function loadThree(){
-  if(window.THREE)return loadBody();
+/* (ps: the pieces about to be drawn, whose templates are fetched alongside his body; none given, every template) */
+function loadThree(ps){var g=ensureGarments(ps),both=function(){return Promise.all([loadBody(),g]).then(function(r){return r[0];});};
+  if(window.THREE)return both();
   /* (the module build, its exports copied onto a plain object kept as window.THREE, as the old script build set it.
      Colour management off: colours are taken as given and only textures marked sRGB are decoded, as r128 drew them) */
   if(!threeP){threeP=import(THREE_URL).then(function(ns){var T=Object.assign({},ns);T.ColorManagement.enabled=false;window.THREE=T;},function(e){threeP=null;throw e;});}
-  return threeP.then(loadBody);
+  return threeP.then(both);
 }
 /* a texture from a piece's photo look, sized to the real cloth: the uv of every garment runs about 1.2 units per
    metre round the body and 3.33 per metre down it, so a tile S metres across repeats 1/(1.2 S) and 1/(3.33 S) times */
@@ -3920,7 +3921,11 @@ function drapeLeaf(t){var li=-1,f;for(f=0;f<t.pieces.length;f++)if(t.pieces[f].n
 /* (the jacket template is an open, zipped track jacket with a stand collar; a padded or puffer jacket is drawn from the
    puffer template, a roomier cut with a taller collar (one with a hood from puffer_hood), unless it is a parka (a coat: the parka template); a chore or
    denim jacket from chore or trucker, a bomber from bomber; other jackets, waxed or worked, keep make3Dcore's shapes until they have templates of their own) */
-function drapeArch(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.__drape||!a||!GTPL[a])return null;var n=(((byId[p.item]||{}).name||"")+" "+(p.what||"")).toLowerCase(),D=p.desc||{};
+/* (a template only once it is fetched: drapeArch0's choice, made as if every one were, is kept only if it is in GTPL. Asking
+   for the kind's own template first (a Harrington, drawn from jacket_coll, needed jacket) left a pair of trainers' worth
+   of outfits undraped when each fetched only its own, garmentsFor) */
+function drapeArch(p){var a=drapeArch0(p);return a&&GTPL[a]?a:null;}
+function drapeArch0(p){var a=p.shape==="coat"?"parka":DRAPEK[p.shape];if(!window.__drape||!a)return null;var n=(((byId[p.item]||{}).name||"")+" "+(p.what||"")).toLowerCase(),D=p.desc||{};
   /* (a coat is draped only as a parka: a hooded coat cut to his thighs, a parka or a longline waterproof, padded or not.
      An overcoat, a mac, a trench, a car coat or a duffle (lapels or a collar, wool, cut longer) keeps make3Dcore's shapes) */
   if(a==="parka"){if(hoodOn(p,n)&&!/wool|overcoat|trench|\bmac\b|car coat|duffle|pea ?coat|tailor|fishtail|fur\b|sherpa|borg|leather|suede|3[- ]in[- ]1|poncho|cape/.test(n))return "parka";
@@ -4050,14 +4055,51 @@ function gtplPart(d){var o={n:d.n,m:d.m,pieces:d.pieces,pos:gtplDec(d.pos,Float3
   /* each welded point's piece group (0 the body of the garment, 1 and 2 his left and right sleeve, 3 the hood) */
   o.grp=new Uint8Array(o.n);for(var j=o.m-1;j>=0;j--)o.grp[o.vmap[j]]=o.pieces[o.piece[j]].grp;
   return o;}
-function loadGarments(){if(!window.__drape)return Promise.resolve();
-  return Promise.all(DRAPEF.concat(window.__legDrape?["chinos","chinos_boot","slim","slim_boot","tapered","tapered_boot","shorts_short","shorts","shorts_mid","shorts_long"]:[]).map(function(a){return fetch("data/garments/"+a+".json").then(function(r){return r.ok?r.json():null;}).then(function(d){
+/* (the legwear templates: the straight, slim and tapered pairs, each also cut to end on a boot, and the shorts by length) */
+var LOTPL=["chinos","chinos_boot","slim","slim_boot","tapered","tapered_boot","shorts_short","shorts","shorts_mid","shorts_long"];
+/* (a pair's cut as drapeLo takes it: tapered, slim (a skinny pair too) or null, the chinos' straight cut) */
+function loCut(k){return k==="tapered"?"tapered":/^(slim|skinny)$/.test(k)?"slim":null;}
+/* (shorts: the template at least as long as the listing's length below his crotch, 21, 27, 30 or 36 cm, so they cover
+   his thighs as far as make3Dcore's do, which the 3D check reads: loHem) */
+function shortsTpl(L){return L<=0.225?"shorts_short":L<=0.275?"shorts":L<=0.305?"shorts_mid":"shorts_long";}
+/* (the template a pair is draped from: over boots the cut's _boot, if it has one) */
+function loTpl(sh,len,cut,boot){if(sh)return shortsTpl(len);var c=cut||"chinos";return boot&&GTPL[c+"_boot"]?c+"_boot":c;}
+/* (workwear kit, tool belts and holster pockets, worn on a belt over the clothes) */
+var KITRE=/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/;
+/* the template a pair is draped from (drapeLo), or null for make3Dcore's shapes: a straight, regular, slim or tapered
+   pair of trousers or jeans, or shorts, not swim, board, jersey, jogger or cargo shorts; not joggers or cargos, not cuffed
+   at the ankle, nor cropped unless over boots, nor under workwear kit on a belt. ps: the outfit's pieces, dressed */
+function loDrapeT(lo,ps){if(!window.__legDrape||!lo||lo.under)return null;
+  var n=(((byId[lo.item]||{}).name||"")+" "+lo.what).toLowerCase(),sh=lo.shape==="shorts",BC=bottomCut(lo),ft=ps.filter(function(p){return FEET[p.shape];})[0],boot=!sh&&!!ft&&ft.shape==="boots";
+  if(sh&&/swim|board|jersey|fleece|terry/.test(n)||/jogger|track|sweatpant|lounge|pyjama|cargo|combat/.test(n))return null;
+  if(!sh&&!/^(straight|regular|slim|skinny|tapered)$/.test(BC.k)||BC.cuff||BC.bot&&!boot)return null;
+  if(ps.some(function(q){return q.shape==="belt"&&KITRE.test((((byId[q.item]||{}).name||"")+" "+q.what).toLowerCase());}))return null;
+  return loTpl(sh,BC.len||0.29,loCut(BC.k),boot);}
+/* Each outfit fetches only the templates it can be drawn from (garmentsFor), as it is first drawn: not all 60 (24 MB)
+   as Dave's body loads. GTRY: each template asked for, its fetch; GDONE: those fetched (or failed, and drawn from
+   make3Dcore's shapes). ensureGarments(null), as the QA tools' loadThree() asks, fetches every one */
+var GTRY={},GDONE={};
+function gtplLoad(a){return GTRY[a]||(GTRY[a]=fetch("data/garments/"+a+".json").then(function(r){return r.ok?r.json():null;}).then(function(d){GDONE[a]=1;
     if(!d)return;var t=gtplPart(d);t.arch=a;t.scale=d.scale;t.meas=d.meas_cm||{};if(d.hood)t.hood=gtplPart(d.hood);
     /* (a blazer's or an overcoat's collar and lapels (a template with lapel in its measures) are folded back over its
        stand, so as cut they face in toward him: turned round, its
        normals face out as the rest of it does, and what is under it is held in under the lapels, not pushed out through
        them. Facing in, a shirt's collar under a half-zip came out through the blazer's collar at the back, g-mod-18 done up) */
-    if(t.meas.lapel)drapeTurn(t,"leaf");GTPL[a]=t;}).catch(function(){});}));}
+    if(t.meas.lapel)drapeTurn(t,"leaf");GTPL[a]=t;}).catch(function(){GDONE[a]=1;delete GTRY[a];}));}   /* (a failed fetch is tried again for the next outfit) */
+/* the templates an outfit's pieces can be drawn from: drapeArch's choice for each (both open and done up, so Zip up
+   needs no fetch), the scarf's, and the trousers' or shorts' (loDrapeT) */
+function garmentsFor(ps){var need={},all={},G=GTPL;DRAPEF.concat(LOTPL).forEach(function(a){all[a]=1;});
+  GTPL=all;   /* (drapeArch asks GTPL whether a template is there: here as if every one were) */
+  try{var P=dressed(ps||[]),lo=P.filter(function(p){return LOWER[p.shape];})[0];
+    P.forEach(function(p){var a=null;try{a=drapeArch(p);}catch(e){}if(a){need[a]=1;if(DRAPEOPEN[a])need[a+"_up"]=1;}
+      if(p.shape==="scarf")need.scarf=1;
+      if(LOWER[p.shape]&&p===lo){var t=loDrapeT(p,P);if(t)need[t]=1;}});}
+  finally{GTPL=G;}
+  return Object.keys(need).filter(function(a){return all[a];});}
+function ensureGarments(ps){if(!window.__drape)return Promise.resolve();
+  return Promise.all((ps?garmentsFor(ps):DRAPEF.concat(window.__legDrape?LOTPL:[])).map(gtplLoad));}
+/* (whether an outfit's templates are all fetched, so it can be drawn at once) */
+function garmentsHave(ps){return !window.__drape||garmentsFor(ps).every(function(a){return GDONE[a];});}
 /* (a template piece's triangles turned round, so it faces the other way) */
 function drapeTurn(t,pc){var pi=-1,I=t.idx;for(var f=0;f<t.pieces.length;f++)if(t.pieces[f].name===pc)pi=f;if(pi<0)return;
   for(f=0;f<I.length;f+=3)if(t.piece[I[f]]===pi){var q=I[f+1];I[f+1]=I[f+2];I[f+2]=q;}}
@@ -5890,8 +5932,8 @@ function make3Dcore(pieces){
   if(bodyOn){
     /* the real body, minus the skin the clothes cover (so nothing can poke through) */
     var bc=bodyPos(),rules=[],ups0=pieces.filter(function(p){return UPPER[p.shape];}),lo0=pieces.filter(function(p){return LOWER[p.shape];})[0],ft0=pieces.filter(function(p){return FEET[p.shape];})[0];
-    /* (shorts drawn draped (drapeLo): not swim, board, jersey, jogger or cargo shorts, nor with workwear kit on a belt) */
-    var SHD=!!(window.__legDrape&&lo0&&lo0.shape==="shorts"&&!lo0.under&&!/swim|board|jersey|fleece|terry|jogger|track|sweatpant|lounge|pyjama|cargo|combat/.test(nm(lo0))&&!pieces.some(function(q){return q.shape==="belt"&&/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/.test(nm(q));}));
+    /* (shorts drawn draped (drapeLo; loDrapeT, its template fetched): not swim, board, jersey, jogger or cargo shorts, nor with workwear kit on a belt) */
+    var SHD=!!(lo0&&lo0.shape==="shorts"&&GTPL[loDrapeT(lo0,pieces)]);
     var shortS=function(p){return /^(tee|polo|sshirt)$/.test(p.shape)&&!/long/.test(nm(p));},noSleeve=function(p){return slvless(p);};
     var closed0=ups0.filter(function(p){return !openWorn(p,ups0);});
     if(closed0.length){
@@ -6227,7 +6269,6 @@ function make3Dcore(pieces){
   var metal=mat("#9a9a96",0.35,{metalness:0.6});
   /* (a belt worn with a shirt or polo is worn to be seen, so the shirt goes in; workwear kit, tool belts and holster
      pockets, is worn over the clothes and changes nothing) */
-  var KITRE=/holster|nail pocket|pouch|hammer|knife holder|tool belt|apron/;
   var tuckIn=tuckOn(lo,!!lo&&lo.shape!=="shorts"&&(pieces.some(function(q){return /^(blazer|waistcoat|tie)$/.test(q.shape)||(q.shape==="belt"&&!KITRE.test(nm(q)));})||/suit|tailored|formal|dress trouser|wool trouser/.test(nm(lo))),pieces.some(function(q){return q.shape==="tie";}));
   var TUCK=tuckList(up,tuckIn),tE=TUCK.some(Boolean)?0.012:0;   /* (a shirt tucked in sits inside the waistband and seat, so they stand out by its thickness) */
   /* trousers or shorts */
@@ -6270,12 +6311,12 @@ function make3Dcore(pieces){
       [-1,1].forEach(function(s){var hq=secAt(LS0[String(s)],uLeg+0.004);band(uLeg-0.002,0.022,hq[1]+0.003,hq[2]+0.003,lm,{x:hq[3],z:hq[4],seg:36});});}
     if(!bodyOn)sec(shapeSecs([[0.785,0.156,0.102,0,-0.004],[0.85,0.174,0.114,0,-0.01],[0.92,0.184,0.123,0,-0.012],[0.98,0.18,0.118,0,-0.008],[1.035,0.165,0.111,0,-0.002]]),lm,{seg:44,sq:2.3,bottom:true});   /* the rise covers the seat and crotch */
     var wk1=shapeAt(1.02),jog=/jogger|track|sweatpant|lounge|pyjama/.test(n0),jean=/jean|denim/.test(n0);
-    /* (a straight, regular, slim or tapered pair of trousers or jeans is draped instead (drapeLo; window.__legDrape=0
-       for make3Dcore's): not joggers or cargos, not cuffed, and not with workwear kit on a belt, which hangs from
-       make3Dcore's waistband. Over boots, the leg falls round the shaft and its hem rests on the boot's front, where
-       make3Dcore's stops on it. Shorts too, not swim, board or jersey shorts, which have an elastic waist) */
-    LOD=!!(window.__legDrape&&bodyOn&&!und&&(!sh||SHD)&&!jog&&!/cargo|combat/.test(n0)&&(sh||/^(straight|regular|slim|skinny|tapered)$/.test(BC.k))&&!cuffd&&(!cutL.bot||cutL.boot)&&!pieces.some(function(q){return q.shape==="belt"&&KITRE.test(nm(q));}));
-    LOLEN=BC.len||0.29;LOCUT=BC.k==="tapered"?"tapered":/^(slim|skinny)$/.test(BC.k)?"slim":null;   /* (the shorts' length and the trousers' cut, kept: further down make3Dcore's BC names the body's colours) */
+    /* (a straight, regular, slim or tapered pair of trousers or jeans, or shorts, is draped instead (drapeLo; which ones:
+       loDrapeT; window.__legDrape=0 for make3Dcore's). Workwear kit on a belt hangs from make3Dcore's waistband, and
+       swim, board and jersey shorts have an elastic waist. Over boots, the leg falls round the shaft and its hem rests on
+       the boot's front, where make3Dcore's stops on it) */
+    LOD=!!(bodyOn&&loDrapeT(lo,pieces));
+    LOLEN=BC.len||0.29;LOCUT=loCut(BC.k);if(LOD&&!GTPL[loTpl(sh,LOLEN,LOCUT,cutL.boot)])LOD=false;   /* (the shorts' length and the trousers' cut, kept: further down make3Dcore's BC names the body's colours) */
     /* (the crotch seam hangs a little below his crotch, more on a looser cut) */
     /* (its folds, by its cut and cloth: jeans crease most and most sharply, joggers in soft wide folds, tailored trousers
        keep a pressed crease and little else; the break over the shoe from how long they are and what is under them) */
@@ -7662,9 +7703,7 @@ function make3Dcore(pieces){
   if(PW){warpMan(man,PW,bodyOn?BL.skull[1]:0.0);kH*=1.79/PW.W(1.79);}
   if(LOD)drapeLo(man,lo,pm,{mat:mat,belts:acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));}).map(function(p){return p.item;}),tk:tE,turn:turnOn(lo),pleat:!!(lo.desc&&lo.desc.pleat),
     crease:/suit|tailored|formal|dress trouser|wool trouser|pleat/.test(nm(lo)),jean:/jean|denim/.test(nm(lo)),metal:metal,cargo:/cargo|utility|combat|work/.test(nm(lo)),boot:!!cutL.boot,cut:LOCUT,
-    /* (shorts: the template at least as long as the listing's length below his crotch, 21, 27, 30 or 36 cm, so they
-       cover his thighs as far as make3Dcore's do, which the 3D check reads: loHem) */
-    sh:lo.shape==="shorts"?(function(L){return L<=0.225?"shorts_short":L<=0.275?"shorts":L<=0.305?"shorts_mid":"shorts_long";})(LOLEN):null});
+    sh:lo.shape==="shorts"?shortsTpl(LOLEN):null});   /* (shorts: by length, shortsTpl) */
   if(drp.length||dScarf){drp.sort(function(a,b){return layRank(a)-layRank(b);});drapeTops(man,drp,pm,up,{lo:lo,tieM:TIEM,belts:acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));}),scarf:dScarf,pm:pm,nm:nm,mat:mat,metal:metal,white:white,rib:rib,placeMap:placeMap,tie:acc.some(function(q){return q.shape==="tie"&&!/bow/.test(nm(q));}),under:(lo?[lo]:[]).concat(acc.filter(function(p){return p.shape==="belt"&&!KITRE.test(nm(p));})),over:acc.filter(function(p){return (p.shape==="scarf"&&!(dScarf&&dScarf.p===p))||p.shape==="snood"||(p.shape==="belt"&&KITRE.test(nm(p)));})});}   /* (a belt under them, or over a top tucked in, innerCols; left out, the belt came through a gilet at his waist) */
   if(bagS&&drp.length)bagOut(man,bagS);
   if(bodyOn)man.scale.set(kH,kH,kH);else man.scale.set(kH*bw,kH,kH*(0.5+0.5*bw));
@@ -8027,7 +8066,10 @@ function Live3D(box,pieces,opt){
     if(el.parentNode!==box)box.insertBefore(el,box.firstChild);
     el.onpointerdown=onDown;el.onpointermove=onMove;el.onpointerup=onUp;el.onpointercancel=onUp;el.onwheel=onWheel;
     W=0;H=0;clearTimeout(h.tm);cancelAnimationFrame(h.raf);loop();};
-  h.update=function(ps){var old=o;tw=null;o=mk(ps);h.o=o;dispose3D(old);syncZip();};
+  /* (pieces whose templates are not all fetched yet are drawn once they are (garmentsHave), the old figure kept till then;
+     opt.onLoad is told when such a late one is drawn) */
+  h.update=function(ps){cur=ps;if(!garmentsHave(ps)){ensureGarments(ps).then(function(){if(cur===ps&&h.on){h.update(ps);if(opt.onLoad)opt.onLoad();}});return;}
+    var old=o;tw=null;o=mk(ps);h.o=o;dispose3D(old);syncZip();};
   /* his pose: k one of POSES' keys; he moves to it (at once if motion is reduced, or he is not posable) */
   h.pose=function(k){if(k==null)return pose;k=k||"";if(k===pose)return pose;pose=k;var R=poseRig(o.man);if(!R)return pose;poseSkinRest(R);
     var b=poseSolve(R,k),a=tw?poseMix(tw.a,tw.b,Math.min(1,(Date.now()-tw.t0)/450)):(R.cur||poseSolve(R,""));
@@ -8085,7 +8127,7 @@ function snap3D(ps,k,rot,first){
 function pumpSnap(){
   if(snapBusy||!snapQ.length)return;snapBusy=true;
   var j=snapQ.shift();
-  setTimeout(function(){
+  ensureGarments(j.ps).then(function(){setTimeout(function(){
     try{
       var T=window.THREE;
       if(!snapR){snapR=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});snapR.setPixelRatio(1);snapR.setSize(360,735);snapR.outputColorSpace=T.SRGBColorSpace;snapR.toneMapping=T.ACESFilmicToneMapping;snapR.toneMappingExposure=1.08;snapR.shadowMap.enabled=true;snapR.shadowMap.type=T.PCFShadowMap;snapR.domElement.addEventListener("webglcontextlost",function(e){e.preventDefault();snapR=null;},false);}
@@ -8096,7 +8138,7 @@ function pumpSnap(){
       snapCache[j.k]=url;j.ok(url);
     }catch(e){j.ok("");}
     snapBusy=false;pumpSnap();
-  },0);
+  },0);});
 }
 /* Wherever a figure is drawn: the 2D drawing, or in 3D mode a placeholder the still render replaces. */
 function figOut(pieces,hi){
@@ -8109,7 +8151,7 @@ function figOut(pieces,hi){
 function hydrate3D(){
   if(figMode()!=="3d")return;
   var els=document.querySelectorAll("[data-f3d]:not([data-f3d-on])");if(!els.length)return;
-  loadThree().then(function(){
+  loadThree([]).then(function(){
     Array.prototype.forEach.call(els,function(el){
       el.setAttribute("data-f3d-on","1");var k=el.getAttribute("data-f3d"),ps=F3DP[k];if(!ps)return;
       snap3D(ps,k).then(function(url){if(url&&el.isConnected){el.removeAttribute("opacity");el.innerHTML='<image href="'+url+'" x="0" y="0" width="240" height="490" preserveAspectRatio="xMidYMid meet"/>';}});
@@ -8296,14 +8338,16 @@ function frModeSet(m){
     $("fr-fig").innerHTML='<svg viewBox="0 0 268 486" role="img" aria-label="'+esc("Drawing of the outfit: "+ps.map(function(p){return p.what;}).join(", "))+'"><g transform="translate(14,4)">'+sv+'</g></svg>';}
   if(m==="3"||m==="s")frStart3D();else{if(z3&&z3.on)FR.view=z3.view();stop3D();}
 }
+/* (once a swapped piece's templates are in and he is drawn in it: the size row, which lists the draped tops, and the pins) */
+function frLate(){if($("fr-wear"))frWear();frPinSel();}
 function frStart3D(){
   var box=$("fr-3d");if(!box)return;var msg=box.querySelector(".zf-3dmsg");
-  loadThree().then(function(){
+  loadThree(frPieces()).then(function(){
     if(!$("fr-3d")||!$("zoom").open)return;var ps=frPieces();
     if(z3&&z3.box===box&&z3.on){z3.wear(FR.wear);z3.update(ps);frPinSel();return;}
     stop3D();
-    try{z3=Live3D(box,ps,{spin:false,onPick:frPick,onFrame:frFrame,wear:FR.wear,dock:document.querySelector("#fr .cam-dock")});z3.box=box;if(FR.view)z3.setView(FR.view);if(msg)msg.hidden=true;frPinSel();
-      if(window.__drape)loadBody().then(function(){if($("fr-wear"))frWear();});   /* (the draped tops' size row needs their templates) */
+    try{z3=Live3D(box,ps,{spin:false,onPick:frPick,onFrame:frFrame,onLoad:frLate,wear:FR.wear,dock:document.querySelector("#fr .cam-dock")});z3.box=box;if(FR.view)z3.setView(FR.view);if(msg)msg.hidden=true;frPinSel();
+      frLate();   /* (the draped tops' size row needs their templates, now fetched) */
       z3.onLost=function(){stop3D();live3DFail(box,msg,frStart3D);};}
     catch(e){z3=null;live3DFail(box,msg,frStart3D);}
   },function(){if(msg)msg.textContent="The 3D model could not load. Check the connection and try again.";});
@@ -8363,14 +8407,14 @@ function cmpSync(){var a=CMPA.indexOf(CMP.ang);
   var sb=document.querySelector("#cmp [data-cmpspin]");if(sb)sb.setAttribute("aria-pressed",String(CMP.spin));return a;}
 /* the stills at the current angle (the live column turns itself) */
 function cmpStills(){
-  if(!CMP.ids.length)return;loadThree().then(function(){CMP.ids.forEach(function(id){var f=fitById[id];if(!f)return;var ps=effPieces(f),ang=CMP.ang;
+  if(!CMP.ids.length)return;loadThree([]).then(function(){CMP.ids.forEach(function(id){var f=fitById[id];if(!f)return;var ps=effPieces(f),ang=CMP.ang;
     function one(){snap3D(ps,snapKey(ps),ang,true).then(function(url){if(ang!==CMP.ang)return;var im=document.querySelector('#cmp [data-cmpimg="'+id+'"]');if(im&&url){im.src=url;var m=im.nextElementSibling;if(m)m.hidden=true;}});}
     one();trueFor(ps,one);});},function(){});}
 /* one column live at a time */
 function cmpLive(id){
   if(z3&&z3.cmp){z3.stop();z3=null;}Array.prototype.forEach.call(document.querySelectorAll("#cmp .cmp-col"),function(c){c.classList.remove("live");});
   CMP.live=id||"";if(!id)return;var box=document.querySelector('#cmp [data-cmp3d="'+id+'"]'),f=fitById[id];if(!box||!f)return;
-  loadThree().then(function(){if(CMP.live!==id||!$("cmp").open)return;stop3D();try{z3=Live3D(box,effPieces(f),{spin:CMP.spin});z3.cmp=true;z3.setRot(CMP.ang);if(CMP.spin)z3.spinning(true);box.closest(".cmp-col").classList.add("live");}catch(e){z3=null;}},function(){});}
+  loadThree(effPieces(f)).then(function(){if(CMP.live!==id||!$("cmp").open)return;stop3D();try{z3=Live3D(box,effPieces(f),{spin:CMP.spin});z3.cmp=true;z3.setRot(CMP.ang);if(CMP.spin)z3.spinning(true);box.closest(".cmp-col").classList.add("live");}catch(e){z3=null;}},function(){});}
 function cmpAngle(a){CMP.ang=a;CMP.spin=false;clearInterval(CMP.tm);CMP.tm=0;cmpSync();cmpStills();if(z3&&z3.cmp)z3.turnTo(a);}
 /* Turn: the stills step round together (each angle is rendered once, then cached), the live one spins */
 function cmpSpin(){CMP.spin=!CMP.spin;clearInterval(CMP.tm);CMP.tm=0;cmpSync();if(z3&&z3.cmp)z3.spinning(CMP.spin);
@@ -8689,7 +8733,7 @@ function drawBuild(){
   if(!draw.some(function(p){return LOWER[p.shape];})){draw.push({item:"",shape:"trousers",col:"stone",what:""});}
   if(figMode()==="3d"){
     $("b-fig").style.display="none";var bd=$("b-3d");bd.hidden=false;$("b-3d-edit").hidden=false;
-    loadThree().then(function(){if(figMode()!=="3d")return;if(zb&&zb.on){zb.update(draw);}else{try{zb=Live3D(bd,draw,{dock:bd.clientWidth>=240});zb.onLost=function(){zb.stop();zb=null;live3DFail(bd,null,function(){drawBuild();});};}catch(e){zb=null;live3DFail(bd,null,function(){drawBuild();});}}},function(){bd.textContent="The 3D model could not load.";});
+    loadThree(draw).then(function(){if(figMode()!=="3d")return;if(zb&&zb.on){zb.update(draw);}else{try{zb=Live3D(bd,draw,{dock:bd.clientWidth>=240});zb.onLost=function(){zb.stop();zb=null;live3DFail(bd,null,function(){drawBuild();});};}catch(e){zb=null;live3DFail(bd,null,function(){drawBuild();});}}},function(){bd.textContent="The 3D model could not load.";});
   }else{
     if(zb){zb.stop();zb=null;}$("b-3d").hidden=true;$("b-3d-edit").hidden=true;$("b-fig").style.display="";
     $("b-fig").innerHTML=figure(draw);
@@ -9698,7 +9742,7 @@ function ceWipeAt(x){CEV.wipe=Math.max(4,Math.min(96,x));var w=$("ce-wipe"),d=$(
 function ceLinesMake(){CEV.M=ceMeasure();var box=$("ce-lines");if(!box)return;box.innerHTML=(CEV.M||[]).map(function(m){return '<div class="ce-ln"><i></i><span>'+esc(m.l)+' <b>'+ceIn(m.m)+'in</b></span></div>';}).join("");}
 function ceStart(){
   var box=$("ce-3d"),ld=box.querySelector(".ce-load");
-  loadThree().then(function(){if(!$("chared").open)return;if(cePrev){cePrev.stop();cePrev=null;}
+  loadThree(cePieces||[]).then(function(){if(!$("chared").open)return;if(cePrev){cePrev.stop();cePrev=null;}
     var st=box.parentNode,dk=st.querySelector(".cam-dock");if(!dk){st.insertAdjacentHTML("beforeend",camDock({wear:true,pose:true}));dk=st.querySelector(".cam-dock");}
     try{cePrev=Live3D(box,cePieces,{zoom:CE_ZOOM[ceTab]||0,spin:false,onFrame:ceFrame,dock:dk});if(ld)ld.hidden=true;CEV.key="";CEV.snapped="";ceLinesMake();ceForm();cePrev.onLost=function(){if(cePrev){cePrev.stop();cePrev=null;}live3DFail(box,ld,ceStart);};}
     catch(e){cePrev=null;live3DFail(box,ld,ceStart);}
