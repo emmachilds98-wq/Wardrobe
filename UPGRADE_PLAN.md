@@ -4435,8 +4435,41 @@ Keep it current: after a change to the readers (`sampleLook`) or to the photos, 
 
 **Checked**: `tools/specs.js` here reproduces `data/specs.json` (1,379 pieces, none read differently). Every outfit's
 materials (each mesh's colours and textures) drawn with the shipped readings and with every piece read from its photo:
-no outfit differs in the first 20 of 582 (the rest running). Downloads, the app opened in 3D to its first 7 outfit cards: photo packs 8.8 MB where they were 13.0 (7.6 of
-it the cards' own thumbnails), 24.4 MB in all (28.4 after speed fix 1, 46.0 before either). CI: pending.
+none of the 582 differs (a first run found x11-lounge-gown's striped pyjama top drawn in its plain bottoms' reading:
+the item's other shape was left out, so the page took it as worn one way; written as false now). Downloads, the app opened in 3D to its first 7 outfit cards: photo packs 8.8 MB where they were 13.0 (7.6 of
+it the cards' own thumbnails), 24.4 MB in all (28.4 after speed fix 1, 46.0 before either). CI: green.
+
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Draped relaxed, wide, baggy and barrel trousers (18 Oct 2026)
+
+Phase A, item 1 (section 6): the looser cuts, 130 outfits (relaxed 52, wide 49, baggy 19, barrel 10; 58 over boots),
+were the last trousers on `make3Dcore`'s legs but joggers and cargos.
+
+*Templates* (`tools/build_garments.py`): `relaxed`, `wide`, `baggy` and `barrel`, and `relaxed_boot`, `wide_boot` and
+`baggy_boot` ending 11 cm off the floor over boots (no barrel outfit has boots: one over boots takes `barrel`). Each on
+the chino's waist (84) and a seat of 92 (baggy 96): the room goes to the thigh, knee and hem, not the seat, which stood
+out at his hips in wings (section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Knee and hem, round each leg: relaxed 50 and 47, wide 60 and 62, baggy
+64 and 66, barrel 66 and 44. Draped, each measures about 2 cm less round the leg (on Dave, below the knee: chinos 42 to
+45 cm, relaxed 47 to 50, wide 56 to 57, baggy 59 to 65; barrel 60 at the knee to 48 at the hem), about 0.8 of
+`make3Dcore`'s girth for each cut, as the accepted chinos are of `make3Dcore`'s straight leg (`make3Dcore`'s wide is
+64 to 67 cm round all the way down, wider than a real wide leg's 56 to 60). Tried first: wide at 56, baggy at 60 and
+barrel at 58 and 42 read as straight legs.
+
+*Page:* `loDrapeT` drapes these cuts too (`window.__wideDrape`, on by default; `QA_INIT='window.__wideDrape=0'` for
+`make3Dcore`'s legs, a before and after), `loCut` names their templates, and `LOTPL` lists them (so each outfit fetches
+its own, `garmentsFor`). Their hems are wide enough to meet between his feet, where the two legs' cloth tangled: the
+legs-apart hold (`cG`), which kept each leg's cloth on its own side of the middle from 10 cm up, now holds these cuts
+down to 2 cm off the floor, below his shins by the gap at his ankles.
+
+**Checked** (`tools/check_3d.js`, against `make3Dcore`'s legs, `QA_INIT='window.__wideDrape=0'`): all 131 outfits on
+dave, and every third (44) on slim, athletic, heavier and loose. None flagged either way; legs, under and form 0
+throughout. Dave: poke 472 against 514, stray 18 against 204, skin 3 against 2, holes 346 against 138. The four other
+builds: poke 94 against 110 (slim), 76 against 71 (athletic), 143 against 185 (heavier), 177 against 159 (loose); stray
+11 against 182 in all. Holes are up on every build (dave 346 against 138, loose 144 against 18): the gap between the
+legs, which part in a narrow V from just under his crotch, as these roomier legs do, is under a pixel wide a few
+centimetres down at the check's size, so the V's top counts as background inside the outline (7 pixels from the front
+on about 40 outfits on dave; wider on the loose build). Close up it is the legs parting. A wider gusset, and a strip
+across the gap's top, were tried and changed nothing. Before the legs-apart hold reached their hems, the wide and baggy
+hems met between his feet and tangled, seen in close-ups; the 3D check did not flag them. CI: CHECK_CI.
 
 ## 3. Next steps
 
@@ -4814,8 +4847,8 @@ details `make3Dcore` draws on trousers, belts and tucked-in tops on the draped p
 2026**, PR #95, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): straight and regular jeans, with their own details (81 outfits). A shirt's collar under a
 done-up gilet: PR #96. **Step 4 (17 Oct 2026**, PR #97, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): on by default for straight and regular trousers
 and jeans, over boots too. **Step 5 (17 Oct 2026**, PR #98, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): shorts in four lengths. **Step 6 (17 Oct 2026**, PR #99, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): slim and
-tapered. The hips cut for his body: PR #100 (section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). Next: the other cuts, one
-group at a time (wide and relaxed; joggers; cargos).
+tapered. The hips cut for his body: PR #100 (section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz). **Phase A, item 1 (18 Oct
+2026**, PR #104, section 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz): relaxed, wide, baggy and barrel. Next: joggers, then cargos.
 
 ### 7. The tops still on `make3Dcore`, and known faults
 

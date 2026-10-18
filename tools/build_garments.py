@@ -471,6 +471,20 @@ MEAS = {
     "slim_boot": dict(legs=1, waist=84, seat=89, knee=44.5, hem=38, wb=4, rise=16, length=100, hem_y=11),
     "tapered": dict(legs=1, waist=84, seat=92, knee=46, hem=36, wb=4, rise=16, length=100),
     "tapered_boot": dict(legs=1, waist=84, seat=92, knee=46, hem=36, wb=4, rise=16, length=100, hem_y=11),
+    # the looser cuts (make3Dcore's BOTCUT relaxed, wide, baggy and barrel), each on the chino's waist, the room at the
+    # thigh, knee and hem rather than the seat (more seat stood out at his hips in wings: UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz):
+    # relaxed, roomy through the thigh and a little narrower to the hem (50 and 47); wide, straight down from the knee
+    # (60, the hem 62); baggy, wider still (64 and 66), a little more at the seat; barrel, curving out to the knee (66)
+    # and in to the hem (44; at 58 and 42 it read as a straight leg). Draped, each measures about 2 cm less round the leg (the chinos' 46 knee, 44), and about
+    # 0.8 of make3Dcore's girth for its cut, as the accepted chinos are of make3Dcore's straight leg; at 56 round the
+    # knee, a wide pair read as a straight one. The _boot cuts end 11 cm off the floor, over boots, as chinos_boot (no barrel outfit has boots)
+    "relaxed": dict(legs=1, waist=84, seat=92, knee=50, hem=47, wb=4, rise=16, length=100),
+    "relaxed_boot": dict(legs=1, waist=84, seat=92, knee=50, hem=47, wb=4, rise=16, length=100, hem_y=11),
+    "wide": dict(legs=1, waist=84, seat=92, knee=60, hem=62, wb=4, rise=16, length=100),
+    "wide_boot": dict(legs=1, waist=84, seat=92, knee=60, hem=62, wb=4, rise=16, length=100, hem_y=11),
+    "baggy": dict(legs=1, waist=84, seat=96, knee=64, hem=66, wb=4, rise=16, length=100),
+    "baggy_boot": dict(legs=1, waist=84, seat=96, knee=64, hem=66, wb=4, rise=16, length=100, hem_y=11),
+    "barrel": dict(legs=1, waist=84, seat=92, knee=66, hem=44, wb=4, rise=16, length=100),
     # shorts, the chino's waist and seat with a leg straight from the hem up to the thigh (knee = hem, 56 to 60 cm round
     # each leg), for the listing's length below his crotch: 22 cm (a slim short), 27 (the usual chino short), 30 (a
     # relaxed one), 36 (a long or wide one, to the knee). Each hem (hem_y) ends where make3Dcore's shorts of that length
