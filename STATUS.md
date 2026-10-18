@@ -25,11 +25,24 @@ The long history and the reasons behind each rule are in `UPGRADE_PLAN.md`; how 
 
 ## Now
 
+**18 Oct: each outfit fetches only its own garment templates** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #102). Speed fix 1
+of the review: opening Dave in 3D no longer fetches all 60 templates (24.3 MB) at once; each outfit fetches the two to
+six it is drawn from (`garmentsFor`, `ensureGarments`), as it is first drawn: to the first outfit cards in 3D, 6.7 MB
+of templates where it was 24.3 (28.4 MB in all, from 46.0). Every outfit draws exactly as before (`tools/qa/garments.js`).
+**Next:** speed fix 2 (ship the photos' colour readings), then phase A.
+
+**18 Oct: the review, and the road from here** (UPGRADE_PLAN section 6; the doc:
+<https://claude.ai/code/artifact/24617877-ab4f-4ae7-9f0e-488f0fc0bd83>). Decided: two speed fixes first, then A (finish
+Dave's clothes), B (speed and code health), C (any face and body), D (a woman's body, based on Emma, and women's
+clothes), each phase ending at a gate. One app with a switcher between the man's and the woman's body, each with their
+own wardrobe. New code reads heights from the body's landmarks, never fixed heights. Emma's measurements and photos
+stay on her device. Shops for women's clothes: to ask when phase D starts.
+
 **18 Oct: Edit Dave's "How clothes fit" on trousers and shorts** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #101). The slider in
 Edit Dave (Clothes fit) now fits trousers and shorts as it does tops: closer, they come in round each leg and his hips;
 looser, they stand further off him and fall straighter below the knee. Asked for on 18 Oct, so the fit can be set
 right; then a review of the other clothes on the artifact, with comments.
-**Next:** the review's comments, then wide and relaxed cuts.
+Merged (PR #101).
 
 **18 Oct: the draped trousers' hips** (UPGRADE_PLAN 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz, PR #100). The draped trousers and shorts no
 longer stand out at his hips in wings round the front pockets: cut for his body (waist 84, seat about 90), they sit as
@@ -671,6 +684,7 @@ Newest first. Date · PR · what changed · artifact version.
 
 | Date | PR | What | Artifact |
 | --- | --- | --- | --- |
+| 18 Oct 2026 | #101 | Edit Dave's "How clothes fit" on trousers and shorts: the draped pairs graded round each leg and his hips (5% either way, a looser pair 4% more below the knee), `make3Dcore`'s legs by their room; 179 outfits at both ends of the slider flag as `main`. | B8UXnh v34 |
 | 18 Oct 2026 | #100 | The draped trousers' and shorts' hips: every template cut for his body (waist 84, seat about 90, from 87 and 100), no more wings at his sides; on Dave's 277 legwear outfits flagged 5 against 6, poke 832 against 995; g-quiet-30 clear on the heavier and loose builds. | B8UXnh v33 |
 | 17 Oct 2026 | #99 | Draped slim and tapered trousers and jeans (`slim`, `tapered`, each with a `_boot`; 67 outfits); a chino's jetted back pocket lies flat on the cloth; the crotch gusset on trousers too, down to 9 cm under the crotch. g-quiet-30 newly flagged on the heavier and loose builds (the hips' wings, next). | B8UXnh v32 |
 | 17 Oct 2026 | #98 | Draped shorts: four lengths of a chino short (`shorts_short`, `shorts`, `shorts_mid`, `shorts_long`), each ending where `make3Dcore`'s did once warped; a crotch gusset where the legs come within 16 mm (8 on trousers) and the legs crossing where his thighs touch, so no specks of background between them. 76 outfits on five bodies flag only the two apron outfits, as before. | B8UXnh v31 |
