@@ -4358,6 +4358,26 @@ flagged 5 against 6 (g-quiet-18's shard clears), poke 832 against 995, holes 287
 (g-quiet-30 5 against 25, g-mod-03, g-mod-28, g-outdoor-21, g-quiet-22). g-quiet-30 on the heavier and loose builds:
 10 and 6, from 39 and 38. CI: green.
 
+## 2zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz. Edit Dave's "How clothes fit" on trousers and shorts (18 Oct 2026)
+
+PR #101, asked for on 18 Oct: the fit slider should set the fit of everything he wears. Edit Dave's "How clothes fit"
+(`CHAR.clothFit`, -1 "Slimmer, closer" to 1 "Looser, straighter") graded the draped tops (`drapeSize`, 4% of the chest
+either way) and `make3Dcore`'s tops (their room, 1 + 0.55 of it), but no legwear: the draped pairs were one size, bound
+to his body, and `make3Dcore`'s legs took their room from the listing's cut alone.
+
+*How it works:* `drapeLo` moves each point of the bound pair out from the middle of its own leg (each leg's outline's
+middle, every centimetre up his thighs and shins), or of his hips above his crotch, blended over 6 cm round it, by 5% of
+its distance from it either way; a looser pair a further 4% from the knee down, so it falls straighter, as the slider
+says. The cloth's lengths round him are graded to match (`drapeGrade`, 1 + 0.05 of the slider round, its lengths down
+him kept), so the settle keeps the new size and the hem stays where it was. `make3Dcore`'s legs (joggers, cargos, the
+wide cuts): their room by 1 + 0.55 of the slider, as its tops', and a looser pair keeping more of the thigh's size down
+the leg (`fall`). At the middle of the slider nothing changes. On Dave's chinos at the hips: girth 87.9 to 95.0 cm from
+closest to loosest, 90.9 at the middle.
+
+**Checked**: CHECKED7
+
+**What is not done**: the fitting room's sizes (S to XXL) are for tops; a pair's waist size is not offered.
+
 ## 3. Next steps
 
 ### Step 1: Photos still missing

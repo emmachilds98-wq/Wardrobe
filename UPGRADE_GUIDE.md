@@ -41,6 +41,7 @@ history and the reason behind each rule is in `UPGRADE_PLAN.md`, newest sections
     `chinos_boot` (the same, ending 11 cm off the floor, over boots), `slim(_boot)` and `tapered(_boot)` (those cuts,
     PR #99), `shorts_short`, `shorts`, `shorts_mid`,
     `shorts_long` (for listings 22, 27, 30 and 36 cm below his crotch, each ending where `make3Dcore`'s did once warped).
+    All of them graded by Edit Dave's "How clothes fit" in the page (`drapeLo`, PR #101), as the tops are by `drapeSize`.
 - **Which template a piece gets**: `drapeArch(p)` in `page.html` decides, from the piece's shape and the words in its
   item name and `what`. It returns `null` for anything a template would draw wrongly; that piece keeps `make3Dcore`'s
   shapes. Every rule there has a comment saying why.
