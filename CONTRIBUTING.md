@@ -33,6 +33,7 @@ fit as the shop's photo, layered as it would really be worn, with no skin or hol
 | `data/cuts.json` | How a pair of trousers or shorts is cut (skinny to baggy, cuffed, long), read from its shop photo, where its name reads it wrongly. |
 | `data/sizecharts.json` | What M, L and XL mean at each shop (the chest in inches, from the shop's own size guide, body or garment), with its source page. Made by `python3 tools/size_charts.py`; the cards show it as the size check. |
 | `data/specs.json` | The stored specs: how every piece worn in an outfit is read (colours, pattern, cut, cloth, details), with where each reading came from and how far to trust it. Made by `node tools/specs.js`; never edit it by hand. |
+| `data/looks.json` | The photo readings themselves (colours, pattern and its spacing), by item and shape, which the build puts on each item (`rd`) so the page need not read the photo on the device. Written by `node tools/specs.js` with `data/specs.json`; never edit it by hand. |
 | `photos/*-NN.json` | Listing photos (small WebP data URLs, keyed by item id), made by `tools/fetch_photos.py`. |
 | `data/body.json` | Dave's 3D body (MakeHuman CC0), made by `tools/build_body.py`. |
 | `page.html` | The whole page: styles, the 2D drawing, the Three.js 3D builder, the shop. |
@@ -381,9 +382,10 @@ runs the build checks and the 3D check automatically, but run them yourself firs
    check fails if it is out of date.
 1b. **Stored specs:** `node tools/specs.js` (about 20 seconds) after any change to the photo reader, `descOf`,
    `pieceLook`, `data/fixes.json`, the outfits or the picks they use. It reads every outfit piece as the page does
-   and rewrites `data/specs.json`. Look at what moved: `python3 tools/qa/specs_diff.py <old copy> data/specs.json`
+   and rewrites `data/specs.json`, and the readings the page takes as read, `data/looks.json`. Look at what moved: `python3 tools/qa/specs_diff.py <old copy> data/specs.json`
    lists every piece read differently (a colour more than 12 apart, another pattern or source, a changed cut or
-   detail). Every line must be one you meant; then commit `data/specs.json` with the change. The pull-request check
+   detail). Every line must be one you meant; then commit `data/specs.json` and `data/looks.json` with the change
+   (and `docs/`, rebuilt, as the readings ride on the items). The pull-request check
    reads every piece again and fails if `data/specs.json` does not match.
    - Its sources are a worklist: `"src": "unseen"` (a pattern named in the listing that the photo reading drew
      plain) and `"src": "name"` (the photo disagreed with the named colour) are where to look for pieces that do not

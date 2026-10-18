@@ -16,7 +16,13 @@
              photo+name 0.85 (named in the listing and drawn from the photo) · photo 0.6 (seen in the photo only) ·
              unseen 0.5 (named, but the photo read plain)
 
-     node tools/specs.js [--site docs] [--out data/specs.json]
+     node tools/specs.js [--site docs] [--out data/specs.json] [--looks data/looks.json]
+
+   It also writes the photo readings themselves (data/looks.json, next to --out): each item and shape's sampleLook,
+   read with that shape, so the page need not fetch a photo pack to read it on the device (trueFor; the build puts
+   each on its item as "rd"). A reading holding an image cut from the photo (a front panel, a chest print, a cloth
+   swatch) is written as false: that piece is still read on the device. Run it after a change to the readers or the
+   photos, and commit both files.
 
    The pull-request check runs it on the built site and compares with data/specs.json (tools/qa/specs_diff.py);
    after a change to the readers, fixes.json or the outfits, run it and commit data/specs.json with the change. That
@@ -30,6 +36,7 @@ try { ({ chromium } = require("playwright")); } catch (e) {
 const ROOT = path.join(__dirname, "..");
 const arg = (k, d) => { const i = process.argv.indexOf("--" + k); return i < 0 ? d : process.argv[i + 1]; };
 const SITE = path.resolve(ROOT, arg("site", "docs")), OUT = path.resolve(ROOT, arg("out", "data/specs.json"));
+const LOOKS = path.resolve(ROOT, arg("looks", path.join(path.dirname(OUT), "looks.json")));
 
 function serve(dir) {
   const types = { ".html": "text/html", ".json": "application/json", ".js": "text/javascript" };
@@ -42,14 +49,30 @@ function serve(dir) {
   });
 }
 
-/* runs in the page: one piece's spec */
+/* runs in the page: one piece's spec, and its photo reading to ship ({spec, look}) */
 async function specOf(q) {
   const X = window.__qa(), it = X.byId[q.item];
   if (!it) return null;
+  window.__lkShape = window.__lkShape || {};
+  let src = null, Lq;
   if (X.LOOK[q.item] === undefined && it.ph) {
-    const src = await new Promise(r => X.getPh(q.item, r));
-    if (src) { const L = await X.sampleLook(src, q.shape, X.descOf(it, q)); X.LOOK[q.item] = L || null; X.TRUE[q.item] = L ? L.str : ""; }
+    src = await new Promise(r => X.getPh(q.item, r));
+    if (src) { const L = await X.sampleLook(src, q.shape, X.descOf(it, q)); X.LOOK[q.item] = L || null; X.TRUE[q.item] = L ? L.str : ""; window.__lkShape[q.item] = q.shape; Lq = L; }
     else X.LOOK[q.item] = null;
+  }
+  /* (the reading to ship is this shape's own: the item's first reading if it was read as this shape, else read again) */
+  if (Lq === undefined && it.ph) {
+    if (window.__lkShape[q.item] === q.shape) Lq = X.LOOK[q.item];
+    else { src = src || await new Promise(r => X.getPh(q.item, r)); Lq = src ? await X.sampleLook(src, q.shape, X.descOf(it, q)) : null; }
+  }
+  /* (shipped: its words, colours and numbers, to 4 places; one that holds an image cut from the photo is false, read
+     on the device, so the page knows every shape the item is worn as) */
+  let look;
+  if (Lq !== undefined && (!Lq || Lq.front || Lq.decal || Lq.swatch || Lq.swCv)) look = false;
+  else if (Lq) {
+    look = {};
+    Object.keys(Lq).sort().forEach(k => { const v = Lq[k]; if (v == null || typeof v === "function" || (typeof v === "object" && !Array.isArray(v) && Object.getPrototypeOf(v) !== Object.prototype)) return;
+      look[k] = typeof v === "number" ? +v.toFixed(4) : v; });
   }
   const D = X.descOf(it, q), P = X.pieceLook(q), L = P.look || null, F = it.fix || {};
   const Fs = Object.assign({}, F, (F.shapes && F.shapes[q.shape]) || {});
@@ -94,7 +117,7 @@ async function specOf(q) {
   /* (the frame shape a pair of sunglasses is drawn with, from its listing: a change shows in the pull request) */
   if (q.shape === "sunglasses" && X.sgKind) out.form = X.sgKind(((it.name || "") + " " + (q.what || "")).toLowerCase());
   if (it.fix) out.fixed = Object.keys(Fs).filter(k => k !== "shapes").sort();
-  return out;
+  return { spec: out, look };
 }
 
 (async () => {
@@ -102,7 +125,8 @@ async function specOf(q) {
   const srv = await serve(SITE), port = srv.address().port;
   const b = await chromium.launch({ executablePath: process.env.CHROME_PATH || (fs.existsSync("/opt/pw-browsers/chromium-1194/chrome-linux/chrome") ? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome" : undefined) });
   const p = await b.newPage(), errs = []; p.on("pageerror", e => errs.push(e.message));
-  await p.addInitScript(() => { try { localStorage.setItem("dw-fig", "2d"); } catch (e) {} });
+  /* (window.__rd=0: every piece read from its photo here, not taken from the readings this writes) */
+  await p.addInitScript(() => { window.__rd = 0; try { localStorage.setItem("dw-fig", "2d"); } catch (e) {} });
   await p.goto("http://localhost:" + port + "/index.html?qa=1#fits");
   await p.waitForFunction(() => window.__qa && Object.keys(window.__qa().fitById).length > 0, null, { timeout: 120000 });
   // every item and the shape it is worn as, in the outfits' own order
@@ -114,20 +138,22 @@ async function specOf(q) {
     }));
     return out;
   });
-  const specs = {};
+  const specs = {}, looks = {};
   for (let i = 0; i < pairs.length; i += 25) {
     const part = await p.evaluate(async ({ qs, fn }) => {
       const f = eval("(" + fn + ")"), r = {};
-      for (const q of qs) { try { r[q.item + "|" + q.shape] = await f(q); } catch (e) { r[q.item + "|" + q.shape] = { error: String(e.message || e) }; } }
+      for (const q of qs) { try { r[q.item + "|" + q.shape] = await f(q); } catch (e) { r[q.item + "|" + q.shape] = { spec: { error: String(e.message || e) } }; } }
       return r;
     }, { qs: pairs.slice(i, i + 25), fn: specOf.toString() });
-    Object.assign(specs, part);
+    for (const k in part) if (part[k]) { specs[k] = part[k].spec; if (part[k].look !== undefined) looks[k] = part[k].look; }
     process.stdout.write("\r" + Math.min(i + 25, pairs.length) + "/" + pairs.length + " pieces");
   }
   await b.close(); srv.close();
   const keys = Object.keys(specs).filter(k => specs[k]).sort();
   const body = keys.map(k => JSON.stringify(k) + ":" + JSON.stringify(specs[k])).join(",\n");
   fs.writeFileSync(OUT, "{\n" + body + "\n}\n");
-  console.log("\n" + keys.length + " pieces -> " + path.relative(ROOT, OUT) + (errs.length ? " (page errors: " + errs.slice(0, 3).join("; ") + ")" : ""));
+  const lk = Object.keys(looks).sort(), nlk = lk.filter(k => looks[k]).length;
+  fs.writeFileSync(LOOKS, "{\n" + lk.map(k => JSON.stringify(k) + ":" + JSON.stringify(looks[k])).join(",\n") + "\n}\n");
+  console.log("\n" + keys.length + " pieces -> " + path.relative(ROOT, OUT) + ", " + nlk + " readings (" + (lk.length - nlk) + " read on the device) -> " + path.relative(ROOT, LOOKS) + (errs.length ? " (page errors: " + errs.slice(0, 3).join("; ") + ")" : ""));
   if (errs.length) process.exitCode = 1;
 })();

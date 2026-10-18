@@ -4,7 +4,8 @@
 # (tools/qa/gate.txt) on Dave's 3D model, as saved and on Edit Dave's other builds, and fails if any shows skin,
 # holes, an inner layer poking through, stray parts or colour drift. The pictures of anything flagged are kept as
 # the run's "qa-..." artifacts. It also reads every outfit piece as the page does (tools/specs.js) and fails when
-# that differs from data/specs.json, so a change to how pieces are read is committed, and reviewed, with the change.
+# that differs from data/specs.json, so a change to how pieces are read is committed, and reviewed, with the change;
+# and the readings the page takes as read (data/looks.json) with it.
 # And it walks the views and dialogs on a desktop and a phone screen (tools/qa/nav.js): each has a way back out.
 # How to read and fix a failure: CONTRIBUTING.md, "When the 3D check fails".
 name: 3D check
@@ -69,6 +70,8 @@ jobs:
         run: node tools/specs.js --site "$RUNNER_TEMP/site" --out "$RUNNER_TEMP/specs.json"
       - name: data/specs.json matches
         run: python3 tools/qa/specs_diff.py data/specs.json "$RUNNER_TEMP/specs.json" --ci
+      - name: data/looks.json matches
+        run: python3 tools/qa/looks_diff.py data/looks.json "$RUNNER_TEMP/looks.json" --ci
 
   # every view and dialog has a way back out (Back, Escape, its own button and the title), on a desktop and a phone screen
   nav:
